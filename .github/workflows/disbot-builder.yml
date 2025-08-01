@@ -11,7 +11,7 @@ on:
     - cron: "0 0 * * 1"
   push:
     branches:
-      - update_to_typescript
+      - main
 env:
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 jobs:
@@ -54,5 +54,5 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/disbotdevelopment/disbot:${{ steps.package-version.outputs.current-version}}
-            ghcr.io/disbotdevelopment/disbot:latest
+            ghcr.io/disbotdevelopment/disbot-bot:${{ steps.package-version.outputs.current-version}}
+            ghcr.io/disbotdevelopment/disbot-bot:latest
