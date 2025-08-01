@@ -11,7 +11,11 @@
 
 ---
 
-<version> <workflow-build> <discord> <website> <docs> <release> <more>
+![GitHub package.json dynamic (branch)](https://img.shields.io/github/package-json/version/DisBotDevelopment/DisBot-Bot/main)
+![Static Badge](https://img.shields.io/badge/Discord-DisBot%20Development?style=social&logo=discord&logoColor=%235865F2&link=https%3A%2F%2Fdisbot.app%2Fdiscord)
+![Static Badge](https://img.shields.io/badge/Website-DisBot%20Development?style=social&logo=awwwards&logoColor=%235865F2&link=https%3A%2F%2Fdisbot.app)
+![Static Badge](https://img.shields.io/badge/-Documentation-brightgreen%2CDocumentation?style=social&logo=googledocs&logoColor=%235865F2&link=https%3A%2F%2Fdisbot.app)
+[![CodeFactor](https://www.codefactor.io/repository/github/disbotdevelopment/disbot-bot/badge)](https://www.codefactor.io/repository/github/disbotdevelopment/disbot-bot)
 
 ---
 
