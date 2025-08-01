@@ -7,7 +7,7 @@
     "customer": "cd /home/disbot && node ./.build/src/main/startup.js",
     "customerdev": "bun run build && node ./.build/src/main/startup.js",
     "disbotdev": "bun run build && node ./.build/src/main/startup.js",
-    "build": "tsc && bun run setup:prisma && bun run sentry:sourcemaps",
+    "build": "tsc && bun run setup:prisma",
     "setup:prisma": "copyfiles -u 1 \"src/prisma/**/*\" .build/src",
     "sentry:sourcemaps": "sentry-cli sourcemaps inject --org nexocrew --project disbot-client ./.build && sentry-cli sourcemaps upload --org nexocrew --project disbot-client ./.build"
   },
