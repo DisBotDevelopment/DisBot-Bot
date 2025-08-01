@@ -1,0 +1,28 @@
+{
+  "commands": {
+    "ban": {
+      "permissions": {
+        "user": "",
+        "roles": "",
+        "yourself": "",
+        "higher": "",
+        "me": ""
+      },
+      "reason": {
+        "length": ""
+      }
+    }
+  },
+  "buttons": {},
+  "selecmenus": {},
+  "contextmenus": {},
+  "events": {},
+  "other": {
+    "blacklist": {
+      "user": "",
+      "server": ""
+    },
+    "roleperms": "",
+    "cooldown": ""
+  }
+}

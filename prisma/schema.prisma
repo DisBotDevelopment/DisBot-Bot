@@ -1,0 +1,641 @@
+generator client {
+  provider      = "prisma-client-js"
+  output        = "../src/prisma"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGODBURL")
+}
+
+// Guilds
+model Guilds {
+  id                   String                 @id @default(auto()) @map("_id") @db.ObjectId
+  GuildId              String                 @unique
+  GuildName            String
+  GuildOwner           String
+  AutoAutoDeletes      AutoDeletes[]
+  AutoPublish          AutoPublish?
+  AutoReacts           AutoReacts[]
+  AutoRoles            AutoRoles[]
+  GuildBans            GuildBans[]
+  ChatModerations      ChatModerations?
+  ChannelLinks         ChannelLinks[]
+  DiscordAddons        DiscordAddons?
+  Giveaways            Giveaways[]
+  TempVoices           TempVoices[]
+  GuildLeaveSetup      GuildLeaveSetups?
+  GuildLogging         GuildLoggings?
+  MessageTemplates     MessageTemplates[]
+  Permissions          Permissions?
+  ReactionRole         ReactionRoles[]
+  Security             Securitys?
+  SpotifyNotifications SpotifyNotifications[]
+  Tags                 Tags[]
+  TicketSetups         TicketSetups[]
+  GuildFeatureToggle   GuildFeatureToggles?
+  TwitchNotifications  TwitchNotifications[]
+  GuildWelcomeSetup    GuildWelcomeSetups?
+  YoutubeNotifications YoutubeNotifications[]
+  GuildLoggers         GuildLoggers[]
+}
+
+model AutoDeletes {
+  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
+  ChannelId           String?
+  IsActive            Boolean?
+  Time                String?
+  UUID                String?  @unique
+  WhitelistedMessages String[]
+  WhitelistedRoles    String[]
+  WhitelistedUsers    String[]
+  GuildId             String
+  Guilds              Guilds   @relation(fields: [GuildId], references: [GuildId])
+}
+
+model AutoPublish {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  Channels String[]
+  GuildId  String   @unique
+  Guilds   Guilds   @relation(fields: [GuildId], references: [GuildId])
+}
+
+model AutoReacts {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  ChannelId String
+  Emoji     String
+  GuildId   String
+  Guilds    Guilds @relation(fields: [GuildId], references: [GuildId])
+}
+
+model AutoRoles {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  RoleId  String
+  GuildId String
+  Guilds  Guilds @relation(fields: [GuildId], references: [GuildId])
+}
+
+model GuildBans {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  UUID        String    @unique
+  Time        String?
+  UserId      String[]
+  Reason      String?
+  ModeratorId String?
+  DmMessage   String?
+  Banned      Boolean?
+  CreatedAt   DateTime?
+  GuildId     String
+  Guilds      Guilds    @relation(fields: [GuildId], references: [GuildId])
+}
+
+model ChatModerations {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  LogChannelId     String
+  Words            String[]
+  WhiteListRole    String[]
+  WhiteListChannel String[]
+  GuildId          String   @unique
+  Guilds           Guilds   @relation(fields: [GuildId], references: [GuildId])
+}
+
+model ChannelLinks {
+  id                       String                      @id @default(auto()) @map("_id") @db.ObjectId
+  UUID                     String                      @unique
+  ChannelId                String
+  WebhookUrls              String[]
+  SyncedChannelLinkMessage SyncedChannelLinkMessages[]
+  GuildId                  String
+  Guilds                   Guilds                      @relation(fields: [GuildId], references: [GuildId])
+}
+
+model SyncedChannelLinkMessages {
+  id               String       @id @default(auto()) @map("_id") @db.ObjectId
+  GuildId          String
+  UserMessageId    String
+  WebhookMessageId String
+  WebhookURL       String
+  ChannelId        String
+  ChannelLinkId    String
+  ChannelLinks     ChannelLinks @relation(fields: [ChannelLinkId], references: [UUID])
+}
+
+model DiscordAddons {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  OnlyMedia     String[]
+  NoLinkEmbeds  String[]
+  InvitesPaused Boolean
+  GuildId       String   @unique
+  Guilds        Guilds   @relation(fields: [GuildId], references: [GuildId])
+}
+
+model Giveaways {
+  id                    String    @id @default(auto()) @map("_id") @db.ObjectId
+  UUID                  String    @unique
+  MessageId             String    @unique
+  ChannelId             String?
+  Prize                 String
+  Winners               Int
+  Time                  String
+  CreatedAt             DateTime
+  Ended                 Boolean
+  EndedAt               DateTime?
+  EndedBy               String?
+  Paused                Boolean
+  EndedMessage          String?
+  Rerolled              Boolean
+  WinnerIds             String[]
+  WinnerMessageTemplate String?
+  HostedBy              String
+  MessageTemplate       String?
+  Content               String?
+  Entrys                String[]
+  Requirements          String[]
+  GuildId               String
+  Guilds                Guilds    @relation(fields: [GuildId], references: [GuildId])
+}
+
+model TempVoices {
+  id                   String              @id @default(auto()) @map("_id") @db.ObjectId
+  UUID                 String              @unique
+  Name                 String
+  JointoCreateChannel  String
+  JointoCreateCategory String
+  Manage               Boolean
+  PresetLimit          Int
+  TempVoiceChannels    TempVoiceChannels[]
+  GuildId              String
+  Guilds               Guilds              @relation(fields: [GuildId], references: [GuildId])
+}
+
+model TempVoiceChannels {
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  GuildId     String
+  ChannelId   String     @unique
+  OwnerId     String     @unique
+  TempVoiceId String
+  TempVoices  TempVoices @relation(fields: [TempVoiceId], references: [UUID])
+}
+
+model GuildLeaveSetups {
+  id                String                 @id @default(auto()) @map("_id") @db.ObjectId
+  MessageTemplateId String?
+  ChannelId         String                 @unique
+  Image             Boolean?
+  ImageData         WelcomeLeaveImageData?
+  GuildId           String                 @unique
+  Guilds            Guilds                 @relation(fields: [GuildId], references: [GuildId])
+}
+
+model GuildWelcomeSetups {
+  id                String                @id @default(auto()) @map("_id") @db.ObjectId
+  MessageTemplateId String
+  ChannelId         String
+  Image             Boolean
+  ImageData         WelcomeLeaveImageData
+  GuildId           String                @unique
+  Guilds            Guilds                @relation(fields: [GuildId], references: [GuildId])
+}
+
+type WelcomeLeaveImageData {
+  Title      String
+  Text       String
+  Subtitle   String
+  Background String
+  Theme      String
+  Color      String
+  Gradient   String
+}
+
+model GuildLoggings {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  AutoMod     String?
+  Channel     String?
+  Emoji       String?
+  Guild       String?
+  Integration String?
+  Invite      String?
+  Member      String?
+  Message     String?
+  Moderation  String?
+  Reaction    String?
+  Role        String?
+  SoundBoard  String?
+  Sticker     String?
+  Thread      String?
+  Voice       String?
+  Webhook     String?
+  Ban         String?
+  Kick        String?
+  // TODO
+  Poll        String?
+  Stage       String?
+  Event       String?
+  GuildId     String  @unique
+  Guilds      Guilds  @relation(fields: [GuildId], references: [GuildId])
+}
+
+model GuildLoggers {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  UUID       String   @unique
+  Notes      String[]
+  LogMessage String
+  LogJSON    String
+  GuildId    String
+  Guilds     Guilds   @relation(fields: [GuildId], references: [GuildId])
+}
+
+model MessageTemplates {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  Content     String?
+  EmbedJSON   String?
+  OtherEmbeds String[]
+  Name        String   @unique
+  GuildId     String
+  Guilds      Guilds   @relation(fields: [GuildId], references: [GuildId])
+}
+
+model Permissions {
+  id          String           @id @default(auto()) @map("_id") @db.ObjectId
+  Permissions PermissionData[]
+  GuildId     String           @unique
+  Guilds      Guilds           @relation(fields: [GuildId], references: [GuildId])
+}
+
+type PermissionData {
+  RoleId String
+  Type   String
+}
+
+model ReactionRoles {
+  id            String                  @id @default(auto()) @map("_id") @db.ObjectId
+  UUID          String                  @unique
+  Roles         String[]
+  MessageId     String?
+  ChannelId     String?
+  AddMessage    String?
+  RemoveMessage String?
+  Button        ReactionRoleButton?
+  SelectMenu    ReactionRoleSelectmenu?
+  Emoji         String?
+  GuildId       String
+  Guilds        Guilds                  @relation(fields: [GuildId], references: [GuildId])
+}
+
+type ReactionRoleSelectmenu {
+  Emoji       String
+  Label       String
+  Description String
+}
+
+type ReactionRoleButton {
+  Emoji String
+  Type  String
+  Label String
+}
+
+model Securitys {
+  id                  String              @id @default(auto()) @map("_id") @db.ObjectId
+  InviteLoggingActive String?
+  MaxAccountAge       Int?
+  VerificationGates   VerificationGates[]
+  GuildId             String              @unique
+  Guilds              Guilds              @relation(fields: [GuildId], references: [GuildId])
+}
+
+model VerificationGates {
+  id                 String                        @id @default(auto()) @map("_id") @db.ObjectId
+  UUID               String                        @unique
+  ChannelId          String
+  MessageId          String
+  Action             String?
+  ActionType         String?
+  ChannelPermissions VerificationGatesPermission[]
+  Roles              String[]
+  VerifiedUsers      String[]
+  CreatedAt          DateTime
+  Active             Boolean?
+  SecurityId         String
+  VerificationGates  Securitys                     @relation(fields: [SecurityId], references: [GuildId])
+}
+
+model VerificationGatesPermission {
+  id                 String            @id @default(auto()) @map("_id") @db.ObjectId
+  Permission         String[]
+  ChannelId          String
+  VerificationGateId String
+  VerificationGates  VerificationGates @relation(fields: [VerificationGateId], references: [UUID])
+}
+
+model SpotifyNotifications {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  ShowId            String
+  ChannelId         String
+  Latests           String[]
+  MessageTemplateId String
+  PingRoles         String[]
+  UUID              String   @unique
+  GuildId           String
+  Guilds            Guilds   @relation(fields: [GuildId], references: [GuildId])
+}
+
+model Tags {
+  id                     String   @id @default(auto()) @map("_id") @db.ObjectId
+  UUID                   String   @unique
+  TagId                  String   @unique
+  MessageId              String
+  IsShlashCommand        Boolean
+  ShlashCommandId        String   @unique
+  IsTextInputCommand     Boolean
+  IsEnabled              Boolean
+  PermissionRoleId       String?
+  CommandDescription     String?
+  FilterTextFromMessages String[]
+  GuildId                String
+  Guilds                 Guilds   @relation(fields: [GuildId], references: [GuildId])
+}
+
+model TicketSetups {
+  id                               String            @id @default(auto()) @map("_id") @db.ObjectId
+  CategoryId                       String?
+  Handlers                         String[]
+  HandlerWithShadowPing            String[]
+  CustomId                         String            @unique
+  TicketChannelName                String?
+  ChannelType                      Int?
+  MessageTempleateId               String?
+  TicketBlacklistRoles             String[]
+  TranscriptChannelId              String?
+  HasModal                         Boolean?
+  UserDMWhenCloseMessageTemplateId String?
+  ModalOptions                     TicketModalData[]
+  TicketLimit                      Int?
+  WithTicketFeedback               Boolean?
+  TicketFeedbackChannelId          String?
+  ModalTitle                       String?
+  TicketCreationCooldownPerUser    Int?
+  AutoCloseAfterInactivity         Int?
+  AutoAssignHandler                String?
+  AutoReplyMessageTemplateId       String?
+  RequiredRoles                    String[]
+  OpenTicketWithCommand            Boolean?
+  SlashCommandId                   String?
+  TextCommandName                  String?
+  SendTranscriptToUser             Boolean?
+  GuildId                          String
+  Guilds                           Guilds            @relation(fields: [GuildId], references: [GuildId])
+  Tickets                          Tickets[]
+
+  // TODO: API Support
+  // WebhookOnOpen
+  // WebhookOnClose
+  // WebhookOn...
+}
+
+model TicketModalData {
+  id            String       @id @default(auto()) @map("_id") @db.ObjectId
+  Name          String
+  Placeholder   String
+  Type          Int
+  TicketSetupId String
+  TicketSetup   TicketSetups @relation(fields: [TicketSetupId], references: [CustomId])
+}
+
+model TicketHandlers {
+  id                       String   @id @default(auto()) @map("_id") @db.ObjectId
+  DiscordRoleId            String
+  TicketPermission         String?
+  AddedDiscordPermission   String[]
+  RemovedDiscordPermission String[]
+}
+
+model Tickets {
+  id                  String          @id @default(auto()) @map("_id") @db.ObjectId
+  TicketId            String          @unique
+  GuildId             String
+  ChannelId           String?
+  ThreadId            String?
+  IsClaimed           Boolean?
+  IsArchived          Boolean?
+  ArchiveMessageId    String?
+  UserWhoHasClaimedId String?
+  IsLooked            Boolean?
+  TicketOwnerId       String
+  AddedMemberIds      String[]
+  Handlers            String[]
+  TranscriptChannelId String
+  TranscriptHTML      String?
+  TicketNotes         String[]
+  TicketSetupId       String
+  TicketSetup         TicketSetups    @relation(fields: [TicketSetupId], references: [CustomId])
+  TicketFeedback      TicketFeedback?
+}
+
+model TicketFeedback {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  TicketId    String   @unique
+  Rating      Int // 1–5 oder 1–10 Skala
+  Comment     String?
+  SubmittedAt DateTime @default(now())
+  Ticket      Tickets  @relation(fields: [TicketId], references: [TicketId])
+}
+
+model GuildFeatureToggles {
+  id                 String  @id @default(auto()) @map("_id") @db.ObjectId
+  LevelEnabled       Boolean @default(false)
+  WecomeEnabled      Boolean @default(false)
+  LeaveEnabled       Boolean @default(false)
+  AutoreactEnabled   Boolean @default(false)
+  AutopublishEnabled Boolean @default(false)
+  ConnectionsEnabled Boolean @default(false)
+  ChatfilterEnabled  Boolean @default(false)
+  AutorolesEnabled   Boolean @default(false)
+  LoggingEnabled     Boolean @default(false)
+  TwitchEnabled      Boolean @default(false)
+  YoutubeEnabled     Boolean @default(false)
+  SpotifyEnabled     Boolean @default(false)
+  GuildId            String  @unique
+  Guilds             Guilds  @relation(fields: [GuildId], references: [GuildId])
+}
+
+model TwitchNotifications {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  UUID              String   @unique
+  TwitchChannelName String
+  ChannelId         String
+  Live              Boolean
+  MessageTemplateId String
+  PingRoles         String[]
+  GuildId           String
+  Guilds            Guilds   @relation(fields: [GuildId], references: [GuildId])
+}
+
+model YoutubeNotifications {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  YoutubeChannelId  String
+  ChannelId         String
+  Latest            String[]
+  MessageTemplateId String
+  PingRoles         String[]
+  UUID              String   @unique
+  GuildId           String
+  Guilds            Guilds   @relation(fields: [GuildId], references: [GuildId])
+}
+
+// Users
+model Users {
+  id                      String                   @id @default(auto()) @map("_id") @db.ObjectId
+  Username                String
+  UserId                  String                   @unique
+  Apiss                   Apis[]
+  GuildBackups            GuildBackups[]
+  Customers               Customers[]
+  DisBotUserNotifications DisBotUserNotifications?
+  Vanitys                 Vanitys[]
+  Votes                   Int                      @default(0)
+  GloablVotes             Int                      @default(0)
+  CustomerBots            Int                      @default(1)
+  BackupCount             Int                      @default(10000)
+}
+
+model Apis {
+  id     String   @id @default(auto()) @map("_id") @db.ObjectId
+  Flags  String[]
+  Guilds String[]
+  Key    String   @unique
+  UserId String   @unique
+  Users  Users    @relation(fields: [UserId], references: [UserId])
+}
+
+model GuildBackups {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  BackupJSON Json
+  CreatedAt  DateTime
+  UUID       String   @unique
+  Name       String
+  GuildId    String
+  UserId     String
+  Users      Users    @relation(fields: [UserId], references: [UserId])
+}
+
+model Customers {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  ExternalUUID String
+  RealUUID     String
+  Application  String
+  BotStatus    BotStatus
+  DisplayName  String
+  GuildIds     String[]
+  ServerPort   String
+  WSAPI        String
+  UserId       String
+  Users        Users     @relation(fields: [UserId], references: [UserId])
+}
+
+model Vanitys {
+  id        String           @id @default(auto()) @map("_id") @db.ObjectId
+  UUID      String           @unique
+  Slug      String
+  Host      String
+  GuildId   String
+  Invite    String
+  Analytics VanityAnalytics?
+  CreatedAt DateTime
+  Embed     VanityEmbeds?
+  UserId    String
+  Users     Users            @relation(fields: [UserId], references: [UserId])
+}
+
+model VanityEmbeds {
+  id           String              @id @default(auto()) @map("_id") @db.ObjectId
+  Title        String
+  Description  String
+  Color        String
+  Author       VanityEmbedAuthors?
+  ImageUrl     String
+  ThumbnailUrl String
+  VanityId     String              @unique
+  Vanitys      Vanitys             @relation(fields: [VanityId], references: [UUID])
+}
+
+model VanityEmbedAuthors {
+  id             String       @id @default(auto()) @map("_id") @db.ObjectId
+  Name           String
+  URL            String
+  IconURL        String
+  VanityEmbedsId String       @unique
+  VanityEmbeds   VanityEmbeds @relation(fields: [VanityEmbedsId], references: [VanityId])
+}
+
+model VanityAnalytics {
+  id                 String                 @id @default(auto()) @map("_id") @db.ObjectId
+  Click              Int
+  TrackInviteWithLog String?
+  TrackMessageId     String?
+  Latest30Days       AnalyticsLatest30Days?
+  Update             DateTime?
+  UniqueClick        Int?
+  JoinedWithCode     Int?
+  LoggedIPs          String[]
+  VanityId           String                 @unique
+  Vanitys            Vanitys                @relation(fields: [VanityId], references: [UUID])
+}
+
+model AnalyticsLatest30Days {
+  id                String          @id @default(auto()) @map("_id") @db.ObjectId
+  Click             Int?
+  UniqueClick       Int?
+  Date              DateTime?
+  JoinedWithCode    Int?
+  VanityAnalyticsId String          @unique
+  VanityAnalytics   VanityAnalytics @relation(fields: [VanityAnalyticsId], references: [VanityId])
+}
+
+type BotStatus {
+  Type   Int
+  Text   String
+  Status String
+  URL    String
+}
+
+model DisBotUserNotifications {
+  id            String  @id @default(auto()) @map("_id") @db.ObjectId
+  Updates       Boolean
+  Status        Boolean
+  Announcements Boolean
+  Customer      Boolean
+  UserId        String  @unique
+  Users         Users   @relation(fields: [UserId], references: [UserId])
+}
+
+// DisBot
+model DisBot {
+  id           String        @id @default(auto()) @map("_id") @db.ObjectId
+  Logs         DisbotsLogs[]
+  SpotifyToken String
+  TwitchToken  String
+  Version      String
+  GetConf      String        @unique
+}
+
+type DisbotsLogs {
+  Action    String
+  BotType   String
+  ChannelId String
+  GuildId   String
+  Label     String
+  Level     String
+  Message   String
+  MessageId String
+  Timestamp String
+  UUID      String
+  UserId    String
+}
+
+model ImageApis {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  UUID        String @unique
+  ImageBase64 String
+  URL         String
+}

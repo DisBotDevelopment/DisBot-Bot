@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= PageTitle %></title>
+
+    <!-- Allgemeine Meta-Tags -->
+    <meta name="description" content="<%= PageDescription %>">
+    <meta name="author" content="<%= AuthorName %>">
+    <link rel="icon" href="<%= AuthorIconURL %>">
+
+    <!-- Open Graph für Discord, Facebook usw. -->
+    <meta property="og:title" content="<%= PageTitle %>">
+    <meta property="og:description" content="<%= PageDescription %>">
+    <meta property="og:image" content="<%= ImageURL %>">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="<%= AuthorURL %>">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:title" content="<%= PageTitle %>">
+    <meta name="twitter:description" content="<%= PageDescription %>">
+    <meta name="twitter:image" content="<%= ImageURL %>">
+</head>
+<body>
+
+<noscript>
+    <p>Please <a href="<%= InviteURL %>">click here</a> if you are not redirected.</p>
+</noscript>
+
+<script>
+    window.location.href = "<%= InviteURL %>";
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+
+/node_modules
+dashbaord/.env
+.env
+/.build
+config.yml 
+/.VSCodeCounter/
+/src/generated/prisma
+/generated/prisma
+.sentryclirc

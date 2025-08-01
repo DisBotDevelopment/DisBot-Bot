@@ -1,0 +1,105 @@
+import {
+    ActionRowBuilder,
+    ButtonBuilder,
+    ButtonStyle,
+    EmbedBuilder,
+    MessageFlags,
+    StringSelectMenuBuilder,
+    UserSelectMenuInteraction
+} from "discord.js";
+import {ExtendedClient} from "../../../types/client.js";
+import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {database} from "../../../main/database.js";
+
+export default {
+    id: "giveaway-list",
+
+    /**
+     * @param {UserSelectMenuInteraction} interaction
+     * @param {ExtendedClient} client
+     */
+
+    async execute(
+        interaction: UserSelectMenuInteraction,
+        client: ExtendedClient
+    ) {
+        const [action, uuid, currentIndexStr] = interaction.customId.split(":");
+        const currentIndex = parseInt(currentIndexStr) || 0;
+        const guildId = interaction.guild?.id;
+        const pageSize = 5;
+
+        try {
+            const allEmbeds = await database.giveaways
+                .findMany({
+                    where: {
+                        GuildId: guildId
+                    }
+                })
+
+            if (!allEmbeds.length) {
+                if (!client.user) throw new Error("Client User is not defined");
+                return interaction.reply({
+                    content: `## ${await convertToEmojiPng("error", client.user?.id)} No Button Found`,
+                    flags: MessageFlags.Ephemeral
+                });
+            }
+
+            const embedsList = allEmbeds.slice(currentIndex, currentIndex + pageSize);
+            const embedMessages = embedsList.map((embed) => {
+                return new EmbedBuilder()
+                    .setColor("#2B2D31")
+                    .setDescription(
+                        [
+                            `**Prize**: \`${embed.Prize}\``,
+                            `**Message**: https://discord.com/channels/${interaction.guild?.id}/${embed.ChannelId}/${embed.MessageId}`,
+                            `**UUID**: \`\`\`${embed.UUID}\`\`\``
+                        ].join("\n")
+                    );
+            });
+
+
+            const selectMenu = new StringSelectMenuBuilder()
+                .setCustomId("ticket-button-update-select")
+                .setPlaceholder("Select a Option to manage")
+                .addOptions(
+                    embedsList.map((embed) => ({
+                        label: embed.Prize + " - " + embed.CreatedAt.toLocaleString(),
+                        description: `UUID: ${embed.UUID}`,
+                        value: embed.UUID,
+                        emoji: "<:giveaway:1366020996934668419>"
+                    })) as any
+                );
+
+            const navigationRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
+                new ButtonBuilder()
+                    .setEmoji("<:arrowbackregular24:1301119279088799815>")
+                    .setStyle(ButtonStyle.Secondary)
+                    .setCustomId(`giveaway-list:${uuid}:${currentIndex - pageSize}`)
+                    .setDisabled(currentIndex === 0),
+                new ButtonBuilder()
+                    .setEmoji("<:next:1287457822526935090>")
+                    .setStyle(ButtonStyle.Secondary)
+                    .setCustomId(`giveaway-list:${uuid}:${currentIndex + pageSize}`)
+                    .setDisabled(currentIndex + pageSize >= allEmbeds.length)
+            );
+
+            const selectMenuRow =
+                new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(
+                    selectMenu
+                );
+
+            await interaction.update({
+                embeds: embedMessages,
+                content: "",
+                components: [navigationRow, selectMenuRow]
+            });
+        } catch (error) {
+            console.error("Error:", error);
+            interaction.reply({
+                content:
+                    "## An error occurred while fetching the buttons. Please try again later",
+                flags: MessageFlags.Ephemeral
+            });
+        }
+    }
+};

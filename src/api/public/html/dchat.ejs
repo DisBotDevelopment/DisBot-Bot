@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <title>DChat.link – Your Vanity Chat Link</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700|Roboto:400&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --primary: #4f8cff;
+            --accent: #ff9473;
+            --bg: #181c24;
+            --text: #f3f6fb;
+            --card: #23283a;
+            --shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        header {
+            background: var(--card);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.2rem 1.5rem;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo .accent {
+            color: var(--accent);
+        }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 1rem 2.5rem 1rem;
+            background: linear-gradient(120deg, var(--primary) 0%, var(--accent) 100%);
+            color: #fff;
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.3rem, 7vw, 3.2rem);
+            margin-bottom: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.07);
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #fff;
+            color: var(--primary);
+            border-radius: 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: var(--shadow);
+            transition: background 0.2s, color 0.2s;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .feature {
+            background: var(--card);
+            border-radius: 1.2rem;
+            box-shadow: var(--shadow);
+            padding: 2rem 1.2rem;
+            max-width: 260px;
+            text-align: center;
+            flex: 1 1 180px;
+            transition: transform 0.2s;
+        }
+
+        .feature:hover {
+            transform: translateY(-6px) scale(1.03);
+        }
+
+        .feature .icon {
+            font-size: 2.3rem;
+            margin-bottom: 0.7rem;
+            display: block;
+        }
+
+        .feature h3 {
+            margin: 0.2rem 0 0.7rem 0;
+        }
+
+        .about {
+            background: var(--card);
+            border-radius: 1.2rem;
+            box-shadow: var(--shadow);
+            padding: 2rem 1.2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .free-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            font-weight: bold;
+            font-size: 1rem;
+            border-radius: 1rem;
+            padding: 0.4em 1em;
+            margin-bottom: 1em;
+            letter-spacing: 1px;
+            box-shadow: var(--shadow);
+            text-transform: uppercase;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem 1rem 1rem;
+            font-size: 1rem;
+            color: #888;
+            background: none;
+        }
+
+        /* MODAL STYLES */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(24, 28, 36, 0.85);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal {
+            background: var(--card);
+            color: var(--text);
+            border-radius: 1.2rem;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25);
+            max-width: 420px;
+            width: 92vw;
+            padding: 2.2rem 2rem 1.5rem 2rem;
+            position: relative;
+            animation: modalPop 0.25s;
+        }
+
+        @keyframes modalPop {
+            from {
+                transform: translateY(40px) scale(0.96);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.1rem;
+            right: 1.1rem;
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            color: var(--primary);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: var(--accent);
+        }
+
+        .modal h2 {
+            margin-top: 0;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            text-align: center;
+        }
+
+        .modal ol {
+            padding-left: 1.2em;
+            margin-bottom: 1.2em;
+        }
+
+        .modal ol li {
+            margin-bottom: 0.8em;
+            font-size: 1.08rem;
+            line-height: 1.5;
+            padding-left: 0.2em;
+        }
+
+        .modal .modal-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1.4em;
+            text-decoration: none;
+            font-weight: bold;
+            color: #fff;
+            background: var(--primary);
+            border-radius: 1.2em;
+            padding: 0.7em 1.4em;
+            font-size: 1.08rem;
+            box-shadow: var(--shadow);
+            transition: background 0.18s, color 0.18s;
+        }
+
+        .modal .modal-link:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .modal .modal-link svg {
+            margin-right: 0.6em;
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 480px) {
+            .modal {
+                padding: 1.1rem 0.5rem 1rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <span class="logo">DChat<span class="accent">.link</span></span>
+    </nav>
+</header>
+<main>
+    <section class="hero">
+        <span class="free-badge">100% Free!*</span>
+        <h1>Your Personal Discord Vanity Link</h1>
+        <p>With <strong>DChat.link</strong> you get a unique, shareable link for your chat – simple, secure, and
+            stylish.</p>
+        <button class="cta-btn" id="openModalBtn">Get Started</button>
+    </section>
+    <section class="features">
+        <div class="feature">
+            <span class="icon">💸</span>
+            <h3>Free*</h3>
+            <p>DChat.link is and will remain <b>completely free</b> for you!</p>
+        </div>
+        <div class="feature">
+            <span class="icon">📊</span>
+            <h3>Analytics</h3>
+            <p>Keep track: See how often your link is used.</p>
+        </div>
+        <div class="feature">
+            <span class="icon">✨</span>
+            <h3>Easy to Use</h3>
+            <p>Created in seconds, ready to use immediately – no tech hassle.</p>
+        </div>
+        <div class="feature">
+            <span class="icon">🔗</span>
+            <h3>Vanity URL</h3>
+            <p>Choose your own unique chat link.</p>
+        </div>
+    </section>
+</main>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" tabindex="-1">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" id="closeModalBtn" aria-label="Close">&times;</button>
+        <h2 id="modalTitle">How It Works:</h2>
+        <ol>
+            <li>Add <b>Disbot</b> to your Discord server.</li>
+            <li>Open Discord and type <code>/manage vanity</code> in the desired server.</li>
+            <li>Choose your preferred link and confirm.</li>
+            <li>Share your new DChat.link vanity link with your friends!</li>
+        </ol>
+        <a class="modal-link" href="https://disbot.app/invite" target="_blank" rel="noopener">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20" style="vertical-align:middle">
+                <path d="M12.293 2.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-8.5 8.5a1 1 0 01-.414.242l-5 1.5a1 1 0 01-1.263-1.263l1.5-5a1 1 0 01.242-.414l8.5-8.5zM15 7l-2-2-8.086 8.086-.707 2.121 2.121-.707L15 7z"></path>
+            </svg>
+            Invite Disbot to Discord
+        </a>
+        <div style="text-align:center;margin-top:0.8em;font-size:0.95em;color:#aaa;">
+            <span>You need to use <b>/manage vanity</b> to set your link.</span>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; <%= new Date().getFullYear() %> DChat.link – All rights reserved.</p>
+    <p>* In the Future you can also pay for extra features but the beas is everytime free!!</p>
+</footer>
+<script>
+    // Modal open/close logic
+    const openBtn = document.getElementById('openModalBtn');
+    const closeBtn = document.getElementById('closeModalBtn');
+    const overlay = document.getElementById('modalOverlay');
+
+    openBtn.addEventListener('click', () => {
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        overlay.focus();
+    });
+
+    function closeModal() {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+
+    // Close modal on overlay click
+    overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closeModal();
+    });
+
+    // ESC key closes modal
+    window.addEventListener('keydown', function (e) {
+        if (overlay.classList.contains('active') && e.key === "Escape") {
+            closeModal();
+        }
+    });
+</script>
+</body>
+</html>

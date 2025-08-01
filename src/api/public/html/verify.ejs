@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Success Verified</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #18191c;
+        --accent: #5865f2;
+        --accent2: #00b8d9;
+        --white: #fff;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        background: var(--bg);
+        color: var(--white);
+        font-family: "Inter", sans-serif;
+        min-height: 100vh;
+        /* Zentrierung mit Flexbox */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: rgba(35, 39, 42, 0.98);
+        border-radius: 1.5rem;
+        box-shadow: 0 8px 32px rgba(88, 101, 242, 0.1);
+        padding: 3rem 2.5rem;
+        max-width: 400px;
+        width: 100%;
+      }
+      .badge {
+        width: 64px;
+        height: 64px;
+        margin-bottom: 1.5rem;
+        display: block;
+      }
+      .hero h1 {
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+        line-height: 1.1;
+        text-align: center;
+      }
+      .highlight {
+        color: var(--accent);
+      }
+      .hero p {
+        font-size: 1.15rem;
+        margin-bottom: 0;
+        color: #cfd8dc;
+        text-align: center;
+      }
+      @media (max-width: 500px) {
+        .hero {
+          padding: 2rem 1rem;
+          max-width: 98vw;
+        }
+        .hero h1 {
+          font-size: 1.4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero">
+      <svg class="badge" viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="32" fill="#5865F2" />
+        <path
+          d="M44 24L29 39l-9-9"
+          stroke="#fff"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+      <h1>Congratulations, you are <span class="highlight">verified!</span></h1>
+      <p>
+        Your server now has the official Discord Verified badge.<br />
+        Enjoy exclusive features and greater security.
+      </p>
+    </section>
+  </body>
+</html>
