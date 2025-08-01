@@ -14,6 +14,7 @@ on:
       - main
 env:
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
 jobs:
   push:
     name: "DisBot Builder"
