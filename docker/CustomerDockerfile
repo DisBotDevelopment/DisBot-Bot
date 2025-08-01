@@ -26,5 +26,5 @@ RUN bun run build
 RUN useradd -m -d /home/container container
 ENV USER=container HOME=/home/container
 USER container
-COPY entrypoint.sh /entrypoint.sh
+COPY ./entrypoint.sh /entrypoint.sh
 CMD ["/bin/bash", "/entrypoint.sh"]
