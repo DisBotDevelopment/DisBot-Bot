@@ -189,9 +189,9 @@ client
 
         process.setMaxListeners(0);
         client.setMaxListeners(0);
-        if (Config.Logging.SentryDsn) {
+        if (process.env.SENTRY_DSN) {
             Sentry.init({
-                dsn: Config.Logging.SentryDsn,
+                dsn: process.env.SENTRY_DSN,
                 tracesSampleRate: 1.0,
                 environment: process.env.NODE_ENV || "development",
                 release: botData.version,

@@ -74,8 +74,6 @@ export async function configStartup() {
                 BotLoggingApiPort: 0,
                 BotLoggingPassword: "",
                 ErrorWebhook: "",
-                SentryDsn: "",
-                SentryAuthToken: "",
                 BotLogger: "",
             },
             BotType: "",

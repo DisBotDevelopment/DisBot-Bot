@@ -10,7 +10,7 @@ colors.enable();
 await configStartup();
 
 Sentry.init({
-    dsn: Config.Logging.SentryDsn,
+    dsn: process.env.SENTRY_DSN,
     sendDefaultPii: true,
 });
 

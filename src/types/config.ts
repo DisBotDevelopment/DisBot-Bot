@@ -62,8 +62,6 @@ export type DisBotConfigData = {
         BotLoggingApiPort: number;
         BotLoggingPassword: string;
         ErrorWebhook: string;
-        SentryDsn: string;
-        SentryAuthToken: string;
         BotLogger: string;
     };
     BotType: string;
