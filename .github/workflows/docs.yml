@@ -28,11 +28,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - uses: oven-sh/setup-bun@v2
         with:
-          node-version: 20
-          cache: "bun"
+          registries: |
+            https://registry.npmjs.org/
+            @myorg:https://npm.pkg.github.com/|$GITHUB_TOKEN
+            @internal:https://username:$INTERNAL_PASSWORD@registry.internal.com/
+
+      - name: Install dependencies
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          INTERNAL_PASSWORD: ${{ secrets.INTERNAL_PASSWORD }}
+        run: bun install
 
       - name: TSDoc Action
         uses: erikyo/tsdoc-action@v1
