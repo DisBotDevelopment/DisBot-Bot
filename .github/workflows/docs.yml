@@ -31,8 +31,8 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 16
-          cache: "npm"
+          node-version: 20
+          cache: "bun"
 
       - name: TSDoc Action
         uses: erikyo/tsdoc-action@v1
