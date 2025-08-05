@@ -49,7 +49,6 @@ export default {
                     .setDescription(
                         [
                             `**TicketChannelName**: \`${plainEmbed.TicketChannelName || "Unknown"}\``,
-                            `**Handlers**: <@&${plainEmbed.Handlers || "None"}>`,
                             `**UUID**: \`\`\`${plainEmbed.CustomId || "None"}\`\`\``
                         ].join("\n")
                     );

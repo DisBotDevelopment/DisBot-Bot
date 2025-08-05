@@ -352,7 +352,6 @@ export async function app(client: ExtendedClient) {
             });
             if (data && data.CustomId === req.params.uuid) {
                 const guild = client.guilds.cache.get(data.GuildId as string);
-                const role = guild?.roles.cache.get(data.Handlers[0] as string);
 
                 const transcripts = guild?.channels.cache.get(
                     data.TranscriptChannelId as string

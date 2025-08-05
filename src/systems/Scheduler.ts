@@ -3,11 +3,11 @@ import {
     AttachmentBuilder,
     ButtonBuilder,
     ButtonInteraction,
-    ButtonStyle,
+    ButtonStyle, ChannelType,
     ContainerBuilder,
     FileBuilder,
-    MessageFlags,
-    StringSelectMenuBuilder
+    MessageFlags, PrivateThreadChannel,
+    StringSelectMenuBuilder, TextChannel
 } from "discord.js";
 import {ExtendedClient} from "../types/client.js";
 import {database} from "../main/database.js";
@@ -73,6 +73,63 @@ export class Scheduler {
                 await msg.delete().catch(() => {
                 });
             }
+        }
+    }
+
+
+    public static async scheduleTicketsDeleteAfterTimeAndInactivity(client: ExtendedClient) {
+
+        const ticketData = await database.tickets.findMany({
+            include: {
+                TicketSetup: true
+            }
+        })
+
+        if (!ticketData) return
+
+        for (const ticket of ticketData) {
+            const guild = client.guilds.cache.get(ticket.GuildId)
+            if (!guild) continue;
+            let channel: TextChannel | PrivateThreadChannel
+            if (ticket.TicketSetup.ChannelType == ChannelType.GuildCategory) {
+                channel = guild.channels.cache.get(ticket.ChannelId) as TextChannel
+            } else if (ticket.TicketSetup.ChannelType == ChannelType.PrivateThread) {
+                const threadChannel = guild.channels.cache.get(ticket.TicketSetup.CategoryId) as TextChannel
+                channel = threadChannel.threads.cache.get(ticket.ThreadId) as PrivateThreadChannel
+            }
+
+            if (ticket.TicketSetup.AutoCloseAfterInactivity) {
+                const latestMessage = channel.messages.cache.last();
+                const inactivityTime = ticket.TicketSetup.AutoCloseAfterInactivity; // MS TIME
+
+                if (latestMessage) {
+                    const time = latestMessage.createdAt.getTime();
+                    const now = Date.now();
+
+                    const inactiveFor = now - time;
+
+                    if (inactiveFor >= inactivityTime) {
+                        // TODO: HANDLE CLOSE!
+                    }
+                }
+            }
+
+            if (ticket.TicketSetup.AutoCloseAfterTime) {
+                const latestMessage = channel.messages.cache.last();
+                const autoCloseTime = ticket.TicketSetup.AutoCloseAfterTime; // MS TIME
+
+                if (latestMessage) {
+                    const time = ticket.CreatedAt.getTime()
+                    const now = Date.now();
+
+                    const inactiveFor = now - time;
+
+                    if (inactiveFor >= autoCloseTime) {
+                        // TODO: HANDLE CLOSE!
+                    }
+                }
+            }
+
         }
     }
 }

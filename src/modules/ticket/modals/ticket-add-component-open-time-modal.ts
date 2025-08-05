@@ -1,0 +1,37 @@
+import {MessageFlags, ModalSubmitInteraction} from "discord.js";
+import {ExtendedClient} from "../../../types/client.js";
+import {database} from "../../../main/database.js";
+import {convertToEmojiPng} from "../../../helper/emojis.js";
+import ms, {StringValue} from "ms";
+
+export default {
+    id: "ticket-add-component-open-time-modal",
+
+    /**
+     *
+     * @param {ModalSubmitInteraction} interaction
+     * @param {ExtendedClient} client
+     */
+
+    async execute(interaction: ModalSubmitInteraction, client: ExtendedClient) {
+        const uuid = interaction.fields.getTextInputValue(
+            "time"
+        );
+
+        const menuID = interaction.customId.split(":")[1];
+
+        await database.ticketSetups.update(
+            {
+                where: {
+                    GuildId: interaction.guild?.id,
+                    CustomId: menuID
+                },
+                data: {
+                    EnableTicketsOnlyFromTime: uuid ?? null
+                }
+            }
+        );
+
+        await interaction.deferUpdate();
+    }
+};

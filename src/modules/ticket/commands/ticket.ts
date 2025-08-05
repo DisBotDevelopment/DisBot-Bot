@@ -8,59 +8,39 @@ import {
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {ticketActionsHelper} from "../../../helper/ticketHelper.js";
+import {database} from "../../../main/database.js";
+import {Channel} from "diagnostics_channel";
 
 export default {
-    help: {
-        name: 'Tickets',
-        description: 'Manage your ticket components and create new ones',
-        usage: '/ticket',
-        examples: [],
-        aliases: [],
-        docsLink: 'https://docs.disbot.app/docs/commands/ticket'
-    },
     data: new SlashCommandBuilder()
-        .setName("tickets")
+        .setName("ticket")
         .setDescription(
-            "Manage your ticket components and create new ones"
+            "Manage tickets and perform actions."
         )
         .setDescriptionLocalizations({
-            de: "Verwalte deine Ticket Components und erstelle neue",
+            de: "Verwalte tickets und führe aktionen aus.",
         })
         .setContexts(InteractionContextType.Guild)
-        .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
+        .setDefaultMemberPermissions(PermissionFlagsBits.UseApplicationCommands),
+
     async execute(interaction: ChatInputCommandInteraction, client: ExtendedClient) {
 
-        await interaction.reply({
-            flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
-            components: [
-                new ContainerBuilder()
-                    .addTextDisplayComponents(
-                        new TextDisplayBuilder().setContent(
-                            [`# ${await convertToEmojiPng("ticket", client.user.id)} Tickets`,
-                                `> - Manage you tickets and ticket Components`,
-                                `> - Create, Manage, Delete Ticket Components`,
-                            ].join("\n"))
-                    ).addActionRowComponents(
-                    new ActionRowBuilder<ButtonBuilder>().addComponents(
-                        new ButtonBuilder()
-                            .setCustomId("ticket-list-guild-tickets")
-                            .setLabel("Show Guild Tickets")
-                            .setEmoji("<:ticket:1400577766205816852>")
-                            .setStyle(ButtonStyle.Secondary),
-                        new ButtonBuilder()
-                            .setCustomId("ticket-add-component")
-                            .setLabel("Add a new Ticket Component")
-                            .setEmoji("<:puzzle:1381000302601441440>")
-                            .setStyle(ButtonStyle.Secondary),
-                        new ButtonBuilder()
-                            .setCustomId("ticket-manage")
-                            .setLabel("Manage your Components")
-                            .setEmoji("<:setting:1260156922569687071>")
-                            .setStyle(ButtonStyle.Secondary),
-                    )
+        const data = await database.tickets.findFirst({
+            where: {
+                ...(
+                    interaction.channel.type == ChannelType.PrivateThread ? {ThreadId: interaction.channel.id} : {ChannelId: interaction.channel.id}
                 )
-            ]
+            }
         })
+
+        if (!data) {
+            await interaction.deferReply({
+                flags: MessageFlags.Ephemeral,
+            })
+            return await interaction.deleteReply()
+        }
+        await ticketActionsHelper(client, data.TicketId, interaction)
 
     }
 };

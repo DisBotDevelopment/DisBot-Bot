@@ -357,34 +357,37 @@ model Tags {
 }
 
 model TicketSetups {
-  id                               String            @id @default(auto()) @map("_id") @db.ObjectId
+  id                               String              @id @default(auto()) @map("_id") @db.ObjectId
   CategoryId                       String?
-  Handlers                         String[]
-  HandlerWithShadowPing            String[]
-  CustomId                         String            @unique
-  TicketChannelName                String?
   ChannelType                      Int?
-  MessageTempleateId               String?
-  TicketBlacklistRoles             String[]
-  TranscriptChannelId              String?
+  TicketPermissions                TicketPermissions[]
+  CustomId                         String              @unique
+  TicketChannelName                String?
+  EnableTicketsOnlyFromTime        String?
+  MessageTemplateId                String?
+  TicketBlacklistRoles             String[] // DONE!
+  TranscriptChannelId              String? // TRANSFER
   HasModal                         Boolean?
-  UserDMWhenCloseMessageTemplateId String?
-  ModalOptions                     TicketModalData[]
-  TicketLimit                      Int?
-  WithTicketFeedback               Boolean?
-  TicketFeedbackChannelId          String?
   ModalTitle                       String?
-  TicketCreationCooldownPerUser    Int?
-  AutoCloseAfterInactivity         Int?
-  AutoAssignHandler                String?
-  AutoReplyMessageTemplateId       String?
-  RequiredRoles                    String[]
-  OpenTicketWithCommand            Boolean?
-  SlashCommandId                   String?
-  TextCommandName                  String?
-  SendTranscriptToUser             Boolean?
+  ModalOptions                     TicketModalData[]
+  OnlyClaimMode                    Boolean? // DONE
+  TicketLimit                      Int? //DONE
+  UserDMWhenCloseMessageTemplateId String? // DONE
+  WithTicketFeedback               Boolean? // DONE
+  TicketFeedbackChannelId          String? // DONE
+  TicketCreationCooldownPerUser    Int? // DONE
+  AutoCloseAfterInactivity         Int? // DONE
+  AutoCloseAfterTime               Int? // DONE
+  AutoAssignHandler                String? // DONE
+  AutoReplyMessageTemplateId       String? // DONE
+  AutoCloseAction                  String[] // DONE                        // LOOK (THREAD), ARCHIVE (BOTH), MOVE_TO_OLD_CHANNEL (Channel), DELETE (BOTH), WITH_CONFIRM (BOTH), TRANSCRIPT (BOTH), REASON (BOTH), REMOVE_USER_FROM_TICKET (BOTH) - !!! SUGGEST MORE !!!
+  OldTicketCategoryId              String? // DONE
+  RequiredRoles                    String[] // DONE
+  SlashCommandId                   String? // DONE
+  TextCommandName                  String? // DONE
+  SendTranscriptToUser             Boolean? // DONE
   GuildId                          String
-  Guilds                           Guilds            @relation(fields: [GuildId], references: [GuildId])
+  Guilds                           Guilds              @relation(fields: [GuildId], references: [GuildId])
   Tickets                          Tickets[]
 
   // TODO: API Support
@@ -395,47 +398,68 @@ model TicketSetups {
 
 model TicketModalData {
   id            String       @id @default(auto()) @map("_id") @db.ObjectId
+  UUID          String       @unique
   Name          String
-  Placeholder   String
+  Placeholder   String?
   Type          Int
+  MinLength     Int?
+  MaxLength     Int?
+  Required      Boolean
   TicketSetupId String
   TicketSetup   TicketSetups @relation(fields: [TicketSetupId], references: [CustomId])
 }
 
-model TicketHandlers {
-  id                       String   @id @default(auto()) @map("_id") @db.ObjectId
-  DiscordRoleId            String
-  TicketPermission         String?
-  AddedDiscordPermission   String[]
-  RemovedDiscordPermission String[]
+model TicketPermissions {
+  id                        String       @id @default(auto()) @map("_id") @db.ObjectId
+  UUID                      String       @unique
+  DiscordUserId             String?
+  DiscordRoleId             String?
+  HasShadowPing             Boolean?
+  IsHandler                 Boolean      @default(false)
+  TicketPermissions         String[]
+  AllowedDiscordPermissions BigInt?
+  DeniedDiscordPermissions  BigInt?
+  TicketSetupId             String
+  TicketSetup               TicketSetups @relation(fields: [TicketSetupId], references: [CustomId])
 }
 
 model Tickets {
-  id                  String          @id @default(auto()) @map("_id") @db.ObjectId
-  TicketId            String          @unique
-  GuildId             String
-  ChannelId           String?
-  ThreadId            String?
-  IsClaimed           Boolean?
-  IsArchived          Boolean?
-  ArchiveMessageId    String?
-  UserWhoHasClaimedId String?
-  IsLooked            Boolean?
-  TicketOwnerId       String
-  AddedMemberIds      String[]
-  Handlers            String[]
-  TranscriptChannelId String
-  TranscriptHTML      String?
-  TicketNotes         String[]
-  TicketSetupId       String
-  TicketSetup         TicketSetups    @relation(fields: [TicketSetupId], references: [CustomId])
-  TicketFeedback      TicketFeedback?
+  id                               String          @id @default(auto()) @map("_id") @db.ObjectId
+  TicketId                         String          @unique
+  CreatedAt                        DateTime
+  ClosedAt                         DateTime?
+  GuildId                          String
+  ChannelType                      Int
+  ChannelId                        String?
+  ThreadId                         String?
+  IsClaimed                        Boolean?
+  IsArchived                       Boolean?
+  ArchiveMessageId                 String?
+  UserWhoHasClaimedId              String?
+  IsLooked                         Boolean?
+  TicketOwnerId                    String
+  AddedMemberIds                   String[]
+  TranscriptChannelId              String?
+  TranscriptHTML                   String?
+  TicketNotes                      String[]
+  SendTranscriptToUser             Boolean?
+  OldTicketCategoryId              String?
+  AutoCloseAction                  String[]
+  AutoReplyMessageTemplateId       String?
+  AutoAssignHandler                String?
+  TicketFeedbackChannelId          String?
+  WithTicketFeedback               Boolean?
+  UserDMWhenCloseMessageTemplateId String?
+  OnlyClaimMode                    Boolean?
+  TicketSetupId                    String
+  TicketSetup                      TicketSetups    @relation(fields: [TicketSetupId], references: [CustomId])
+  TicketFeedback                   TicketFeedback?
 }
 
 model TicketFeedback {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   TicketId    String   @unique
-  Rating      Int // 1–5 oder 1–10 Skala
+  Rating      Int // 1–5 
   Comment     String?
   SubmittedAt DateTime @default(now())
   Ticket      Tickets  @relation(fields: [TicketId], references: [TicketId])

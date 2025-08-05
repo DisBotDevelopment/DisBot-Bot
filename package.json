@@ -8,6 +8,7 @@
     "customerdev": "bun run build && node ./.build/src/main/startup.js",
     "disbotdev": "bun run build && node ./.build/src/main/startup.js",
     "build": "tsc && bun run setup:prisma",
+    "typedoc": "bun x typedoc --entryPointStrategy Expand src",
     "setup:prisma": "copyfiles -u 1 \"src/prisma/**/*\" .build/src",
     "sentry:sourcemaps": "sentry-cli sourcemaps inject --org nexocrew --project disbot-client ./.build && sentry-cli sourcemaps upload --org nexocrew --project disbot-client ./.build"
   },
@@ -65,6 +66,7 @@
     "topgg-autoposter": "^2.0.2",
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.16",
+    "typedoc": "^0.28.9",
     "undici": "^7.11.0",
     "uuid": "^11.1.0",
     "winston": "^3.17.0",

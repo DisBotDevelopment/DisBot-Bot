@@ -45,7 +45,6 @@ export default {
                     .setDescription(
                         [
                             `**TicketChannelName**: \`${embed.TicketChannelName}\``,
-                            `**Handlers**: <@&${embed.Handlers}>`,
                             `**UUID**: \`\`\`${embed.CustomId}\`\`\``
                         ].join("\n")
                     );

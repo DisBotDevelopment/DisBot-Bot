@@ -33,7 +33,6 @@ export default {
             new RoleSelectMenuBuilder()
                 .setCustomId("ticket-set-button-handler-sec")
                 .setPlaceholder("📁  Set a Ticket Handler")
-                .setDefaultRoles([ticketbuttons?.Handlers[0] as string])
                 .setMinValues(1)
                 .setMaxValues(1)
         );

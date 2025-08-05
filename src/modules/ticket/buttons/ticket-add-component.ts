@@ -5,7 +5,7 @@ import {
     ButtonStyle,
     ChannelSelectMenuBuilder,
     ContainerBuilder,
-    MessageFlags, RoleSelectMenuBuilder, SeparatorBuilder, SeparatorComponent, SeparatorSpacingSize,
+    MessageFlags, RoleSelectMenuBuilder, SectionBuilder, SeparatorBuilder, SeparatorComponent, SeparatorSpacingSize,
     StringSelectMenuBuilder,
     TextDisplayBuilder,
 } from "discord.js";
@@ -46,8 +46,7 @@ export default {
             components: [
                 new ContainerBuilder()
                     .addTextDisplayComponents(
-                        new TextDisplayBuilder().setContent
-                        (
+                        new TextDisplayBuilder().setContent(
                             [
                                 `# ${await convertToEmojiPng("puzzle", client.user.id)} Component Editor`,
                                 `- Use the Buttons and Menus to Setup your Ticket Component`,
@@ -72,29 +71,19 @@ export default {
                                 .setCustomId("ticket-add-component-message:" + uuid)
                                 .setEmoji("<:message:1322252985702551767>")
                                 .setStyle(ButtonStyle.Secondary)
-                                .setLabel("Message Template"),
-                            new ButtonBuilder()
-                                .setCustomId("ticket-add-component-modal:" + uuid)
-                                .setEmoji("<:package:1365715766623604746>")
-                                .setStyle(ButtonStyle.Secondary)
-                                .setLabel("Modal Component"),
+                                .setLabel("Message Template")
                         )
                     )
                     .addTextDisplayComponents(
-                        new TextDisplayBuilder().setContent("Select Moderator Roles, Transcript Channel and Blacklist Roles")
+                        new TextDisplayBuilder().setContent("Select Blacklist Roles, Transcript Channel and Permissions")
                     )
                     .addActionRowComponents(
                         new ActionRowBuilder<RoleSelectMenuBuilder>().addComponents(
                             new RoleSelectMenuBuilder()
                                 .setCustomId("ticket-add-component-blacklist:" + uuid)
-                                .setPlaceholder("Select Blacklist Role")
-                        )
-                    )
-                    .addActionRowComponents(
-                        new ActionRowBuilder<RoleSelectMenuBuilder>().addComponents(
-                            new RoleSelectMenuBuilder()
-                                .setCustomId("ticket-add-component-handlers:" + uuid)
-                                .setPlaceholder("Select Moderation Role")
+                                .setMaxValues(25)
+                                .setMinValues(0)
+                                .setPlaceholder("Select Blacklist Roles")
                         )
                     )
                     .addActionRowComponents(
@@ -104,6 +93,15 @@ export default {
                                 .setPlaceholder("Select a Transcript Channel")
                         )
                     )
+                    .addActionRowComponents(
+                        new ActionRowBuilder<ButtonBuilder>().addComponents(
+                            new ButtonBuilder()
+                                .setCustomId("ticket-add-component-permission:" + uuid)
+                                .setEmoji("<:permissions:1277170947761111130>")
+                                .setStyle(ButtonStyle.Secondary)
+                                .setLabel("Ticket Permissions")
+                        )
+                    )
                     .addSeparatorComponents(new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Large))
                     .addTextDisplayComponents(
                         new TextDisplayBuilder().setContent("Select custom and optional options")
@@ -111,97 +109,98 @@ export default {
                     .addActionRowComponents(
                         new ActionRowBuilder<RoleSelectMenuBuilder>().addComponents(
                             new RoleSelectMenuBuilder()
-                                .setCustomId("ticket-add-component-shadow-ping:" + uuid)
-                                .setPlaceholder("Select Moderator Roles to shadow ping it.")
-                        )
-                    )
-                    .addActionRowComponents(
-                        new ActionRowBuilder<RoleSelectMenuBuilder>().addComponents(
-                            new RoleSelectMenuBuilder()
                                 .setCustomId("ticket-add-component-required-roles:" + uuid)
+                                .setMaxValues(25)
+                                .setMinValues(0)
                                 .setPlaceholder("Select Required Roles to open a ticket")
                         )
                     )
                     .addActionRowComponents(
                         new ActionRowBuilder<ButtonBuilder>().addComponents(
                             new ButtonBuilder()
+                                .setCustomId("ticket-add-component-modal:" + uuid)
+                                .setEmoji("<:package:1365715766623604746>")
+                                .setStyle(ButtonStyle.Secondary)
+                                .setLabel("Modal Component"),
+                            new ButtonBuilder()
                                 .setCustomId("ticket-add-component-ticket-limit:" + uuid)
                                 .setEmoji("<:renamesolid24:1259433901554929675>")
                                 .setStyle(ButtonStyle.Secondary)
-                                .setLabel("Ticket Limit"),
-                            new ButtonBuilder()
-                                .setCustomId("ticket-add-component-feedback:" + uuid)
-                                .setEmoji("<:feedback:1400662627268427777>")
-                                .setStyle(ButtonStyle.Secondary)
-                                .setLabel("Feedback from User"),
-                            new ButtonBuilder()
-                                .setCustomId("ticket-add-component-permission:" + uuid)
-                                .setEmoji("<:permissions:1277170947761111130>")
-                                .setStyle(ButtonStyle.Secondary)
-                                .setLabel("Custom User Permission"),
-                            new ButtonBuilder()
-                                .setCustomId("ticket-add-component-user-close:" + uuid)
-                                .setEmoji("<:userdetail:1321937833296134205>")
-                                .setStyle(ButtonStyle.Secondary)
-                                .setLabel("Edit Close Actions"),
+                                .setLabel("Ticket Limit")
                         )
                     )
                     .addActionRowComponents(
                         new ActionRowBuilder<ButtonBuilder>().addComponents(
                             new ButtonBuilder()
+                                .setCustomId("ticket-add-component-only-claim:" + uuid)
+                                .setEmoji("<:support:1259853380885549117>")
+                                .setStyle(ButtonStyle.Secondary)
+                                .setLabel("Only Claim Mode"),
+                            new ButtonBuilder()
+                                .setCustomId("ticket-add-component-feedback:" + uuid)
+                                .setEmoji("<:feedback:1400662627268427777>")
+                                .setStyle(ButtonStyle.Secondary)
+                                .setLabel("Feedback from User")
+                        )
+                    )
+                    .addActionRowComponents(
+                        new ActionRowBuilder<ButtonBuilder>().addComponents(
+                            new ButtonBuilder()
+                                .setCustomId("ticket-add-component-automation:" + uuid)
+                                .setEmoji("<:workflow:1400780067877163189>")
+                                .setStyle(ButtonStyle.Secondary)
+                                .setLabel("Automatic Actions"),
+                            new ButtonBuilder()
                                 .setCustomId("ticket-add-component-send-transcript:" + uuid)
                                 .setEmoji("<:file:1381000301124911134>")
                                 .setStyle(ButtonStyle.Secondary)
-                                .setLabel("Send Transcript to User"),
+                                .setLabel("Send Transcript to User")
+                        )
+                    )
+                    .addActionRowComponents(
+                        new ActionRowBuilder<ButtonBuilder>().addComponents(
                             new ButtonBuilder()
                                 .setCustomId("ticket-add-component-command:" + uuid)
                                 .setEmoji("<:terminal:1260322426323996783>")
                                 .setStyle(ButtonStyle.Secondary)
                                 .setLabel("Setup Ticket Command"),
+                            new ButtonBuilder()
+                                .setCustomId("ticket-add-component-open-time:" + uuid)
+                                .setEmoji("<:timer:1321939051921801308>")
+                                .setStyle(ButtonStyle.Secondary)
+                                .setLabel("Add Open Time Requirement")
                         )
                     )
                     .addActionRowComponents(
                         new ActionRowBuilder<ButtonBuilder>().addComponents(
                             new ButtonBuilder()
-                                .setCustomId("ticket-add-component-auto-reply:" + uuid)
-                                .setEmoji("<:message:1322252985702551767>")
-                                .setStyle(ButtonStyle.Secondary)
-                                .setLabel("Enable Auto Reply Message"),
-                            new ButtonBuilder()
-                                .setCustomId("ticket-add-component-assign-handler:" + uuid)
-                                .setEmoji("<:authorize:1377367876788551792>")
-                                .setStyle(ButtonStyle.Secondary)
-                                .setLabel("Auto assign Moderator from Moderator Roles"),
-                            new ButtonBuilder()
                                 .setCustomId("ticket-add-component-ticket-creation-cooldown:" + uuid)
                                 .setEmoji("<:timer:1321939051921801308>")
                                 .setStyle(ButtonStyle.Secondary)
-                                .setLabel("Add creation Cooldown Per User"),
+                                .setLabel("Add Creation Cooldown"),
                             new ButtonBuilder()
                                 .setCustomId("ticket-add-component-add-dm-message:" + uuid)
                                 .setEmoji("<:message:1322252985702551767>")
                                 .setStyle(ButtonStyle.Secondary)
-                                .setLabel("Add User DM when Close"),
+                                .setLabel("Add User DM when Close")
                         )
                     )
                     .addSeparatorComponents(new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Large))
                     .addActionRowComponents(
                         new ActionRowBuilder<ButtonBuilder>().addComponents(
                             new ButtonBuilder()
-                                .setCustomId("ticket-add-component-save:" + uuid)
-                                .setEmoji("<:check:1320090167444377713>")
-                                .setStyle(ButtonStyle.Secondary)
-                                .setLabel("Validate & Save Component"),
-                            new ButtonBuilder()
                                 .setCustomId("ticket-add-component-use:" + uuid)
                                 .setEmoji("<:puzzle:1381000302601441440>")
                                 .setStyle(ButtonStyle.Secondary)
-                                .setLabel("Use Component")
+                                .setLabel("Use Component"),
+                            new ButtonBuilder()
+                                .setCustomId("ticket-add-component-show:" + uuid)
+                                .setEmoji("<:emoji:1288230393757171825>")
+                                .setStyle(ButtonStyle.Secondary)
+                                .setLabel("Show Component")
                         )
                     )
             ]
-        })
-
-
+        });
     }
 };

@@ -8,3 +8,4 @@ config.yml
 /src/generated/prisma
 /generated/prisma
 .sentryclirc
+/docs/

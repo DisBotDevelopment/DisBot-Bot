@@ -45,15 +45,7 @@ export default {
                 )} Please set a category first!`,
             });
         }
-
-        if (!data.Handlers) {
-            return interaction.editReply({
-                content: `## ${await convertToEmojiPng(
-                    "error",
-                    client.user.id
-                )} There are no handlers setup.`,
-            });
-        }
+        
         await interaction.editReply({
             content: `## ${await convertToEmojiPng(
                 "check",

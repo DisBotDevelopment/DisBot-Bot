@@ -29,8 +29,6 @@ export default {
             where: {GuildId: guild.id}
         });
 
-        console.log(chatfilterData)
-
         if (!chatfilterData || !chatfilterData.Words?.length) return;
 
         const memberCache = guild.members.cache.get(member.id);

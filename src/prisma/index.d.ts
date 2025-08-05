@@ -179,10 +179,10 @@ export type TicketSetups = $Result.DefaultSelection<Prisma.$TicketSetupsPayload>
  */
 export type TicketModalData = $Result.DefaultSelection<Prisma.$TicketModalDataPayload>
 /**
- * Model TicketHandlers
+ * Model TicketPermissions
  * 
  */
-export type TicketHandlers = $Result.DefaultSelection<Prisma.$TicketHandlersPayload>
+export type TicketPermissions = $Result.DefaultSelection<Prisma.$TicketPermissionsPayload>
 /**
  * Model Tickets
  * 
@@ -632,14 +632,14 @@ export class PrismaClient<
   get ticketModalData(): Prisma.TicketModalDataDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.ticketHandlers`: Exposes CRUD operations for the **TicketHandlers** model.
+   * `prisma.ticketPermissions`: Exposes CRUD operations for the **TicketPermissions** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more TicketHandlers
-    * const ticketHandlers = await prisma.ticketHandlers.findMany()
+    * // Fetch zero or more TicketPermissions
+    * const ticketPermissions = await prisma.ticketPermissions.findMany()
     * ```
     */
-  get ticketHandlers(): Prisma.TicketHandlersDelegate<ExtArgs, ClientOptions>;
+  get ticketPermissions(): Prisma.TicketPermissionsDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.tickets`: Exposes CRUD operations for the **Tickets** model.
@@ -1277,7 +1277,7 @@ export namespace Prisma {
     Tags: 'Tags',
     TicketSetups: 'TicketSetups',
     TicketModalData: 'TicketModalData',
-    TicketHandlers: 'TicketHandlers',
+    TicketPermissions: 'TicketPermissions',
     Tickets: 'Tickets',
     TicketFeedback: 'TicketFeedback',
     GuildFeatureToggles: 'GuildFeatureToggles',
@@ -1313,7 +1313,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "guilds" | "autoDeletes" | "autoPublish" | "autoReacts" | "autoRoles" | "guildBans" | "chatModerations" | "channelLinks" | "syncedChannelLinkMessages" | "discordAddons" | "giveaways" | "tempVoices" | "tempVoiceChannels" | "guildLeaveSetups" | "guildWelcomeSetups" | "guildLoggings" | "guildLoggers" | "messageTemplates" | "permissions" | "reactionRoles" | "securitys" | "verificationGates" | "verificationGatesPermission" | "spotifyNotifications" | "tags" | "ticketSetups" | "ticketModalData" | "ticketHandlers" | "tickets" | "ticketFeedback" | "guildFeatureToggles" | "twitchNotifications" | "youtubeNotifications" | "users" | "apis" | "guildBackups" | "customers" | "vanitys" | "vanityEmbeds" | "vanityEmbedAuthors" | "vanityAnalytics" | "analyticsLatest30Days" | "disBotUserNotifications" | "disBot" | "imageApis"
+      modelProps: "guilds" | "autoDeletes" | "autoPublish" | "autoReacts" | "autoRoles" | "guildBans" | "chatModerations" | "channelLinks" | "syncedChannelLinkMessages" | "discordAddons" | "giveaways" | "tempVoices" | "tempVoiceChannels" | "guildLeaveSetups" | "guildWelcomeSetups" | "guildLoggings" | "guildLoggers" | "messageTemplates" | "permissions" | "reactionRoles" | "securitys" | "verificationGates" | "verificationGatesPermission" | "spotifyNotifications" | "tags" | "ticketSetups" | "ticketModalData" | "ticketPermissions" | "tickets" | "ticketFeedback" | "guildFeatureToggles" | "twitchNotifications" | "youtubeNotifications" | "users" | "apis" | "guildBackups" | "customers" | "vanitys" | "vanityEmbeds" | "vanityEmbedAuthors" | "vanityAnalytics" | "analyticsLatest30Days" | "disBotUserNotifications" | "disBot" | "imageApis"
       txIsolationLevel: never
     }
     model: {
@@ -3315,77 +3315,77 @@ export namespace Prisma {
           }
         }
       }
-      TicketHandlers: {
-        payload: Prisma.$TicketHandlersPayload<ExtArgs>
-        fields: Prisma.TicketHandlersFieldRefs
+      TicketPermissions: {
+        payload: Prisma.$TicketPermissionsPayload<ExtArgs>
+        fields: Prisma.TicketPermissionsFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.TicketHandlersFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TicketHandlersPayload> | null
+            args: Prisma.TicketPermissionsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TicketPermissionsPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.TicketHandlersFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TicketHandlersPayload>
+            args: Prisma.TicketPermissionsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TicketPermissionsPayload>
           }
           findFirst: {
-            args: Prisma.TicketHandlersFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TicketHandlersPayload> | null
+            args: Prisma.TicketPermissionsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TicketPermissionsPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.TicketHandlersFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TicketHandlersPayload>
+            args: Prisma.TicketPermissionsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TicketPermissionsPayload>
           }
           findMany: {
-            args: Prisma.TicketHandlersFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TicketHandlersPayload>[]
+            args: Prisma.TicketPermissionsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TicketPermissionsPayload>[]
           }
           create: {
-            args: Prisma.TicketHandlersCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TicketHandlersPayload>
+            args: Prisma.TicketPermissionsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TicketPermissionsPayload>
           }
           createMany: {
-            args: Prisma.TicketHandlersCreateManyArgs<ExtArgs>
+            args: Prisma.TicketPermissionsCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           delete: {
-            args: Prisma.TicketHandlersDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TicketHandlersPayload>
+            args: Prisma.TicketPermissionsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TicketPermissionsPayload>
           }
           update: {
-            args: Prisma.TicketHandlersUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TicketHandlersPayload>
+            args: Prisma.TicketPermissionsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TicketPermissionsPayload>
           }
           deleteMany: {
-            args: Prisma.TicketHandlersDeleteManyArgs<ExtArgs>
+            args: Prisma.TicketPermissionsDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.TicketHandlersUpdateManyArgs<ExtArgs>
+            args: Prisma.TicketPermissionsUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           upsert: {
-            args: Prisma.TicketHandlersUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TicketHandlersPayload>
+            args: Prisma.TicketPermissionsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TicketPermissionsPayload>
           }
           aggregate: {
-            args: Prisma.TicketHandlersAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateTicketHandlers>
+            args: Prisma.TicketPermissionsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTicketPermissions>
           }
           groupBy: {
-            args: Prisma.TicketHandlersGroupByArgs<ExtArgs>
-            result: $Utils.Optional<TicketHandlersGroupByOutputType>[]
+            args: Prisma.TicketPermissionsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TicketPermissionsGroupByOutputType>[]
           }
           findRaw: {
-            args: Prisma.TicketHandlersFindRawArgs<ExtArgs>
+            args: Prisma.TicketPermissionsFindRawArgs<ExtArgs>
             result: JsonObject
           }
           aggregateRaw: {
-            args: Prisma.TicketHandlersAggregateRawArgs<ExtArgs>
+            args: Prisma.TicketPermissionsAggregateRawArgs<ExtArgs>
             result: JsonObject
           }
           count: {
-            args: Prisma.TicketHandlersCountArgs<ExtArgs>
-            result: $Utils.Optional<TicketHandlersCountAggregateOutputType> | number
+            args: Prisma.TicketPermissionsCountArgs<ExtArgs>
+            result: $Utils.Optional<TicketPermissionsCountAggregateOutputType> | number
           }
         }
       }
@@ -4745,7 +4745,7 @@ export namespace Prisma {
     tags?: TagsOmit
     ticketSetups?: TicketSetupsOmit
     ticketModalData?: TicketModalDataOmit
-    ticketHandlers?: TicketHandlersOmit
+    ticketPermissions?: TicketPermissionsOmit
     tickets?: TicketsOmit
     ticketFeedback?: TicketFeedbackOmit
     guildFeatureToggles?: GuildFeatureTogglesOmit
@@ -5138,11 +5138,13 @@ export namespace Prisma {
    */
 
   export type TicketSetupsCountOutputType = {
+    TicketPermissions: number
     ModalOptions: number
     Tickets: number
   }
 
   export type TicketSetupsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    TicketPermissions?: boolean | TicketSetupsCountOutputTypeCountTicketPermissionsArgs
     ModalOptions?: boolean | TicketSetupsCountOutputTypeCountModalOptionsArgs
     Tickets?: boolean | TicketSetupsCountOutputTypeCountTicketsArgs
   }
@@ -5156,6 +5158,13 @@ export namespace Prisma {
      * Select specific fields to fetch from the TicketSetupsCountOutputType
      */
     select?: TicketSetupsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * TicketSetupsCountOutputType without action
+   */
+  export type TicketSetupsCountOutputTypeCountTicketPermissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TicketPermissionsWhereInput
   }
 
   /**
@@ -31617,6 +31626,7 @@ export namespace Prisma {
     TicketLimit: number | null
     TicketCreationCooldownPerUser: number | null
     AutoCloseAfterInactivity: number | null
+    AutoCloseAfterTime: number | null
   }
 
   export type TicketSetupsSumAggregateOutputType = {
@@ -31624,27 +31634,31 @@ export namespace Prisma {
     TicketLimit: number | null
     TicketCreationCooldownPerUser: number | null
     AutoCloseAfterInactivity: number | null
+    AutoCloseAfterTime: number | null
   }
 
   export type TicketSetupsMinAggregateOutputType = {
     id: string | null
     CategoryId: string | null
+    ChannelType: number | null
     CustomId: string | null
     TicketChannelName: string | null
-    ChannelType: number | null
-    MessageTempleateId: string | null
+    EnableTicketsOnlyFromTime: string | null
+    MessageTemplateId: string | null
     TranscriptChannelId: string | null
     HasModal: boolean | null
-    UserDMWhenCloseMessageTemplateId: string | null
+    ModalTitle: string | null
+    OnlyClaimMode: boolean | null
     TicketLimit: number | null
+    UserDMWhenCloseMessageTemplateId: string | null
     WithTicketFeedback: boolean | null
     TicketFeedbackChannelId: string | null
-    ModalTitle: string | null
     TicketCreationCooldownPerUser: number | null
     AutoCloseAfterInactivity: number | null
+    AutoCloseAfterTime: number | null
     AutoAssignHandler: string | null
     AutoReplyMessageTemplateId: string | null
-    OpenTicketWithCommand: boolean | null
+    OldTicketCategoryId: string | null
     SlashCommandId: string | null
     TextCommandName: string | null
     SendTranscriptToUser: boolean | null
@@ -31654,22 +31668,25 @@ export namespace Prisma {
   export type TicketSetupsMaxAggregateOutputType = {
     id: string | null
     CategoryId: string | null
+    ChannelType: number | null
     CustomId: string | null
     TicketChannelName: string | null
-    ChannelType: number | null
-    MessageTempleateId: string | null
+    EnableTicketsOnlyFromTime: string | null
+    MessageTemplateId: string | null
     TranscriptChannelId: string | null
     HasModal: boolean | null
-    UserDMWhenCloseMessageTemplateId: string | null
+    ModalTitle: string | null
+    OnlyClaimMode: boolean | null
     TicketLimit: number | null
+    UserDMWhenCloseMessageTemplateId: string | null
     WithTicketFeedback: boolean | null
     TicketFeedbackChannelId: string | null
-    ModalTitle: string | null
     TicketCreationCooldownPerUser: number | null
     AutoCloseAfterInactivity: number | null
+    AutoCloseAfterTime: number | null
     AutoAssignHandler: string | null
     AutoReplyMessageTemplateId: string | null
-    OpenTicketWithCommand: boolean | null
+    OldTicketCategoryId: string | null
     SlashCommandId: string | null
     TextCommandName: string | null
     SendTranscriptToUser: boolean | null
@@ -31679,26 +31696,28 @@ export namespace Prisma {
   export type TicketSetupsCountAggregateOutputType = {
     id: number
     CategoryId: number
-    Handlers: number
-    HandlerWithShadowPing: number
+    ChannelType: number
     CustomId: number
     TicketChannelName: number
-    ChannelType: number
-    MessageTempleateId: number
+    EnableTicketsOnlyFromTime: number
+    MessageTemplateId: number
     TicketBlacklistRoles: number
     TranscriptChannelId: number
     HasModal: number
-    UserDMWhenCloseMessageTemplateId: number
+    ModalTitle: number
+    OnlyClaimMode: number
     TicketLimit: number
+    UserDMWhenCloseMessageTemplateId: number
     WithTicketFeedback: number
     TicketFeedbackChannelId: number
-    ModalTitle: number
     TicketCreationCooldownPerUser: number
     AutoCloseAfterInactivity: number
+    AutoCloseAfterTime: number
     AutoAssignHandler: number
     AutoReplyMessageTemplateId: number
+    AutoCloseAction: number
+    OldTicketCategoryId: number
     RequiredRoles: number
-    OpenTicketWithCommand: number
     SlashCommandId: number
     TextCommandName: number
     SendTranscriptToUser: number
@@ -31712,6 +31731,7 @@ export namespace Prisma {
     TicketLimit?: true
     TicketCreationCooldownPerUser?: true
     AutoCloseAfterInactivity?: true
+    AutoCloseAfterTime?: true
   }
 
   export type TicketSetupsSumAggregateInputType = {
@@ -31719,27 +31739,31 @@ export namespace Prisma {
     TicketLimit?: true
     TicketCreationCooldownPerUser?: true
     AutoCloseAfterInactivity?: true
+    AutoCloseAfterTime?: true
   }
 
   export type TicketSetupsMinAggregateInputType = {
     id?: true
     CategoryId?: true
+    ChannelType?: true
     CustomId?: true
     TicketChannelName?: true
-    ChannelType?: true
-    MessageTempleateId?: true
+    EnableTicketsOnlyFromTime?: true
+    MessageTemplateId?: true
     TranscriptChannelId?: true
     HasModal?: true
-    UserDMWhenCloseMessageTemplateId?: true
+    ModalTitle?: true
+    OnlyClaimMode?: true
     TicketLimit?: true
+    UserDMWhenCloseMessageTemplateId?: true
     WithTicketFeedback?: true
     TicketFeedbackChannelId?: true
-    ModalTitle?: true
     TicketCreationCooldownPerUser?: true
     AutoCloseAfterInactivity?: true
+    AutoCloseAfterTime?: true
     AutoAssignHandler?: true
     AutoReplyMessageTemplateId?: true
-    OpenTicketWithCommand?: true
+    OldTicketCategoryId?: true
     SlashCommandId?: true
     TextCommandName?: true
     SendTranscriptToUser?: true
@@ -31749,22 +31773,25 @@ export namespace Prisma {
   export type TicketSetupsMaxAggregateInputType = {
     id?: true
     CategoryId?: true
+    ChannelType?: true
     CustomId?: true
     TicketChannelName?: true
-    ChannelType?: true
-    MessageTempleateId?: true
+    EnableTicketsOnlyFromTime?: true
+    MessageTemplateId?: true
     TranscriptChannelId?: true
     HasModal?: true
-    UserDMWhenCloseMessageTemplateId?: true
+    ModalTitle?: true
+    OnlyClaimMode?: true
     TicketLimit?: true
+    UserDMWhenCloseMessageTemplateId?: true
     WithTicketFeedback?: true
     TicketFeedbackChannelId?: true
-    ModalTitle?: true
     TicketCreationCooldownPerUser?: true
     AutoCloseAfterInactivity?: true
+    AutoCloseAfterTime?: true
     AutoAssignHandler?: true
     AutoReplyMessageTemplateId?: true
-    OpenTicketWithCommand?: true
+    OldTicketCategoryId?: true
     SlashCommandId?: true
     TextCommandName?: true
     SendTranscriptToUser?: true
@@ -31774,26 +31801,28 @@ export namespace Prisma {
   export type TicketSetupsCountAggregateInputType = {
     id?: true
     CategoryId?: true
-    Handlers?: true
-    HandlerWithShadowPing?: true
+    ChannelType?: true
     CustomId?: true
     TicketChannelName?: true
-    ChannelType?: true
-    MessageTempleateId?: true
+    EnableTicketsOnlyFromTime?: true
+    MessageTemplateId?: true
     TicketBlacklistRoles?: true
     TranscriptChannelId?: true
     HasModal?: true
-    UserDMWhenCloseMessageTemplateId?: true
+    ModalTitle?: true
+    OnlyClaimMode?: true
     TicketLimit?: true
+    UserDMWhenCloseMessageTemplateId?: true
     WithTicketFeedback?: true
     TicketFeedbackChannelId?: true
-    ModalTitle?: true
     TicketCreationCooldownPerUser?: true
     AutoCloseAfterInactivity?: true
+    AutoCloseAfterTime?: true
     AutoAssignHandler?: true
     AutoReplyMessageTemplateId?: true
+    AutoCloseAction?: true
+    OldTicketCategoryId?: true
     RequiredRoles?: true
-    OpenTicketWithCommand?: true
     SlashCommandId?: true
     TextCommandName?: true
     SendTranscriptToUser?: true
@@ -31890,26 +31919,28 @@ export namespace Prisma {
   export type TicketSetupsGroupByOutputType = {
     id: string
     CategoryId: string | null
-    Handlers: string[]
-    HandlerWithShadowPing: string[]
+    ChannelType: number | null
     CustomId: string
     TicketChannelName: string | null
-    ChannelType: number | null
-    MessageTempleateId: string | null
+    EnableTicketsOnlyFromTime: string | null
+    MessageTemplateId: string | null
     TicketBlacklistRoles: string[]
     TranscriptChannelId: string | null
     HasModal: boolean | null
-    UserDMWhenCloseMessageTemplateId: string | null
+    ModalTitle: string | null
+    OnlyClaimMode: boolean | null
     TicketLimit: number | null
+    UserDMWhenCloseMessageTemplateId: string | null
     WithTicketFeedback: boolean | null
     TicketFeedbackChannelId: string | null
-    ModalTitle: string | null
     TicketCreationCooldownPerUser: number | null
     AutoCloseAfterInactivity: number | null
+    AutoCloseAfterTime: number | null
     AutoAssignHandler: string | null
     AutoReplyMessageTemplateId: string | null
+    AutoCloseAction: string[]
+    OldTicketCategoryId: string | null
     RequiredRoles: string[]
-    OpenTicketWithCommand: boolean | null
     SlashCommandId: string | null
     TextCommandName: string | null
     SendTranscriptToUser: boolean | null
@@ -31938,30 +31969,33 @@ export namespace Prisma {
   export type TicketSetupsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     CategoryId?: boolean
-    Handlers?: boolean
-    HandlerWithShadowPing?: boolean
+    ChannelType?: boolean
     CustomId?: boolean
     TicketChannelName?: boolean
-    ChannelType?: boolean
-    MessageTempleateId?: boolean
+    EnableTicketsOnlyFromTime?: boolean
+    MessageTemplateId?: boolean
     TicketBlacklistRoles?: boolean
     TranscriptChannelId?: boolean
     HasModal?: boolean
-    UserDMWhenCloseMessageTemplateId?: boolean
+    ModalTitle?: boolean
+    OnlyClaimMode?: boolean
     TicketLimit?: boolean
+    UserDMWhenCloseMessageTemplateId?: boolean
     WithTicketFeedback?: boolean
     TicketFeedbackChannelId?: boolean
-    ModalTitle?: boolean
     TicketCreationCooldownPerUser?: boolean
     AutoCloseAfterInactivity?: boolean
+    AutoCloseAfterTime?: boolean
     AutoAssignHandler?: boolean
     AutoReplyMessageTemplateId?: boolean
+    AutoCloseAction?: boolean
+    OldTicketCategoryId?: boolean
     RequiredRoles?: boolean
-    OpenTicketWithCommand?: boolean
     SlashCommandId?: boolean
     TextCommandName?: boolean
     SendTranscriptToUser?: boolean
     GuildId?: boolean
+    TicketPermissions?: boolean | TicketSetups$TicketPermissionsArgs<ExtArgs>
     ModalOptions?: boolean | TicketSetups$ModalOptionsArgs<ExtArgs>
     Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
     Tickets?: boolean | TicketSetups$TicketsArgs<ExtArgs>
@@ -31973,34 +32007,37 @@ export namespace Prisma {
   export type TicketSetupsSelectScalar = {
     id?: boolean
     CategoryId?: boolean
-    Handlers?: boolean
-    HandlerWithShadowPing?: boolean
+    ChannelType?: boolean
     CustomId?: boolean
     TicketChannelName?: boolean
-    ChannelType?: boolean
-    MessageTempleateId?: boolean
+    EnableTicketsOnlyFromTime?: boolean
+    MessageTemplateId?: boolean
     TicketBlacklistRoles?: boolean
     TranscriptChannelId?: boolean
     HasModal?: boolean
-    UserDMWhenCloseMessageTemplateId?: boolean
+    ModalTitle?: boolean
+    OnlyClaimMode?: boolean
     TicketLimit?: boolean
+    UserDMWhenCloseMessageTemplateId?: boolean
     WithTicketFeedback?: boolean
     TicketFeedbackChannelId?: boolean
-    ModalTitle?: boolean
     TicketCreationCooldownPerUser?: boolean
     AutoCloseAfterInactivity?: boolean
+    AutoCloseAfterTime?: boolean
     AutoAssignHandler?: boolean
     AutoReplyMessageTemplateId?: boolean
+    AutoCloseAction?: boolean
+    OldTicketCategoryId?: boolean
     RequiredRoles?: boolean
-    OpenTicketWithCommand?: boolean
     SlashCommandId?: boolean
     TextCommandName?: boolean
     SendTranscriptToUser?: boolean
     GuildId?: boolean
   }
 
-  export type TicketSetupsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "CategoryId" | "Handlers" | "HandlerWithShadowPing" | "CustomId" | "TicketChannelName" | "ChannelType" | "MessageTempleateId" | "TicketBlacklistRoles" | "TranscriptChannelId" | "HasModal" | "UserDMWhenCloseMessageTemplateId" | "TicketLimit" | "WithTicketFeedback" | "TicketFeedbackChannelId" | "ModalTitle" | "TicketCreationCooldownPerUser" | "AutoCloseAfterInactivity" | "AutoAssignHandler" | "AutoReplyMessageTemplateId" | "RequiredRoles" | "OpenTicketWithCommand" | "SlashCommandId" | "TextCommandName" | "SendTranscriptToUser" | "GuildId", ExtArgs["result"]["ticketSetups"]>
+  export type TicketSetupsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "CategoryId" | "ChannelType" | "CustomId" | "TicketChannelName" | "EnableTicketsOnlyFromTime" | "MessageTemplateId" | "TicketBlacklistRoles" | "TranscriptChannelId" | "HasModal" | "ModalTitle" | "OnlyClaimMode" | "TicketLimit" | "UserDMWhenCloseMessageTemplateId" | "WithTicketFeedback" | "TicketFeedbackChannelId" | "TicketCreationCooldownPerUser" | "AutoCloseAfterInactivity" | "AutoCloseAfterTime" | "AutoAssignHandler" | "AutoReplyMessageTemplateId" | "AutoCloseAction" | "OldTicketCategoryId" | "RequiredRoles" | "SlashCommandId" | "TextCommandName" | "SendTranscriptToUser" | "GuildId", ExtArgs["result"]["ticketSetups"]>
   export type TicketSetupsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    TicketPermissions?: boolean | TicketSetups$TicketPermissionsArgs<ExtArgs>
     ModalOptions?: boolean | TicketSetups$ModalOptionsArgs<ExtArgs>
     Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
     Tickets?: boolean | TicketSetups$TicketsArgs<ExtArgs>
@@ -32010,6 +32047,7 @@ export namespace Prisma {
   export type $TicketSetupsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "TicketSetups"
     objects: {
+      TicketPermissions: Prisma.$TicketPermissionsPayload<ExtArgs>[]
       ModalOptions: Prisma.$TicketModalDataPayload<ExtArgs>[]
       Guilds: Prisma.$GuildsPayload<ExtArgs>
       Tickets: Prisma.$TicketsPayload<ExtArgs>[]
@@ -32017,26 +32055,28 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       CategoryId: string | null
-      Handlers: string[]
-      HandlerWithShadowPing: string[]
+      ChannelType: number | null
       CustomId: string
       TicketChannelName: string | null
-      ChannelType: number | null
-      MessageTempleateId: string | null
+      EnableTicketsOnlyFromTime: string | null
+      MessageTemplateId: string | null
       TicketBlacklistRoles: string[]
       TranscriptChannelId: string | null
       HasModal: boolean | null
-      UserDMWhenCloseMessageTemplateId: string | null
+      ModalTitle: string | null
+      OnlyClaimMode: boolean | null
       TicketLimit: number | null
+      UserDMWhenCloseMessageTemplateId: string | null
       WithTicketFeedback: boolean | null
       TicketFeedbackChannelId: string | null
-      ModalTitle: string | null
       TicketCreationCooldownPerUser: number | null
       AutoCloseAfterInactivity: number | null
+      AutoCloseAfterTime: number | null
       AutoAssignHandler: string | null
       AutoReplyMessageTemplateId: string | null
+      AutoCloseAction: string[]
+      OldTicketCategoryId: string | null
       RequiredRoles: string[]
-      OpenTicketWithCommand: boolean | null
       SlashCommandId: string | null
       TextCommandName: string | null
       SendTranscriptToUser: boolean | null
@@ -32404,6 +32444,7 @@ export namespace Prisma {
    */
   export interface Prisma__TicketSetupsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    TicketPermissions<T extends TicketSetups$TicketPermissionsArgs<ExtArgs> = {}>(args?: Subset<T, TicketSetups$TicketPermissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TicketPermissionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ModalOptions<T extends TicketSetups$ModalOptionsArgs<ExtArgs> = {}>(args?: Subset<T, TicketSetups$ModalOptionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TicketModalDataPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Guilds<T extends GuildsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GuildsDefaultArgs<ExtArgs>>): Prisma__GuildsClient<$Result.GetResult<Prisma.$GuildsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     Tickets<T extends TicketSetups$TicketsArgs<ExtArgs> = {}>(args?: Subset<T, TicketSetups$TicketsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TicketsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -32438,26 +32479,28 @@ export namespace Prisma {
   interface TicketSetupsFieldRefs {
     readonly id: FieldRef<"TicketSetups", 'String'>
     readonly CategoryId: FieldRef<"TicketSetups", 'String'>
-    readonly Handlers: FieldRef<"TicketSetups", 'String[]'>
-    readonly HandlerWithShadowPing: FieldRef<"TicketSetups", 'String[]'>
+    readonly ChannelType: FieldRef<"TicketSetups", 'Int'>
     readonly CustomId: FieldRef<"TicketSetups", 'String'>
     readonly TicketChannelName: FieldRef<"TicketSetups", 'String'>
-    readonly ChannelType: FieldRef<"TicketSetups", 'Int'>
-    readonly MessageTempleateId: FieldRef<"TicketSetups", 'String'>
+    readonly EnableTicketsOnlyFromTime: FieldRef<"TicketSetups", 'String'>
+    readonly MessageTemplateId: FieldRef<"TicketSetups", 'String'>
     readonly TicketBlacklistRoles: FieldRef<"TicketSetups", 'String[]'>
     readonly TranscriptChannelId: FieldRef<"TicketSetups", 'String'>
     readonly HasModal: FieldRef<"TicketSetups", 'Boolean'>
-    readonly UserDMWhenCloseMessageTemplateId: FieldRef<"TicketSetups", 'String'>
+    readonly ModalTitle: FieldRef<"TicketSetups", 'String'>
+    readonly OnlyClaimMode: FieldRef<"TicketSetups", 'Boolean'>
     readonly TicketLimit: FieldRef<"TicketSetups", 'Int'>
+    readonly UserDMWhenCloseMessageTemplateId: FieldRef<"TicketSetups", 'String'>
     readonly WithTicketFeedback: FieldRef<"TicketSetups", 'Boolean'>
     readonly TicketFeedbackChannelId: FieldRef<"TicketSetups", 'String'>
-    readonly ModalTitle: FieldRef<"TicketSetups", 'String'>
     readonly TicketCreationCooldownPerUser: FieldRef<"TicketSetups", 'Int'>
     readonly AutoCloseAfterInactivity: FieldRef<"TicketSetups", 'Int'>
+    readonly AutoCloseAfterTime: FieldRef<"TicketSetups", 'Int'>
     readonly AutoAssignHandler: FieldRef<"TicketSetups", 'String'>
     readonly AutoReplyMessageTemplateId: FieldRef<"TicketSetups", 'String'>
+    readonly AutoCloseAction: FieldRef<"TicketSetups", 'String[]'>
+    readonly OldTicketCategoryId: FieldRef<"TicketSetups", 'String'>
     readonly RequiredRoles: FieldRef<"TicketSetups", 'String[]'>
-    readonly OpenTicketWithCommand: FieldRef<"TicketSetups", 'Boolean'>
     readonly SlashCommandId: FieldRef<"TicketSetups", 'String'>
     readonly TextCommandName: FieldRef<"TicketSetups", 'String'>
     readonly SendTranscriptToUser: FieldRef<"TicketSetups", 'Boolean'>
@@ -32832,6 +32875,30 @@ export namespace Prisma {
   }
 
   /**
+   * TicketSetups.TicketPermissions
+   */
+  export type TicketSetups$TicketPermissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TicketPermissions
+     */
+    select?: TicketPermissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TicketPermissions
+     */
+    omit?: TicketPermissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TicketPermissionsInclude<ExtArgs> | null
+    where?: TicketPermissionsWhereInput
+    orderBy?: TicketPermissionsOrderByWithRelationInput | TicketPermissionsOrderByWithRelationInput[]
+    cursor?: TicketPermissionsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TicketPermissionsScalarFieldEnum | TicketPermissionsScalarFieldEnum[]
+  }
+
+  /**
    * TicketSetups.ModalOptions
    */
   export type TicketSetups$ModalOptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -32912,33 +32979,49 @@ export namespace Prisma {
 
   export type TicketModalDataAvgAggregateOutputType = {
     Type: number | null
+    MinLength: number | null
+    MaxLength: number | null
   }
 
   export type TicketModalDataSumAggregateOutputType = {
     Type: number | null
+    MinLength: number | null
+    MaxLength: number | null
   }
 
   export type TicketModalDataMinAggregateOutputType = {
     id: string | null
+    UUID: string | null
     Name: string | null
     Placeholder: string | null
     Type: number | null
+    MinLength: number | null
+    MaxLength: number | null
+    Required: boolean | null
     TicketSetupId: string | null
   }
 
   export type TicketModalDataMaxAggregateOutputType = {
     id: string | null
+    UUID: string | null
     Name: string | null
     Placeholder: string | null
     Type: number | null
+    MinLength: number | null
+    MaxLength: number | null
+    Required: boolean | null
     TicketSetupId: string | null
   }
 
   export type TicketModalDataCountAggregateOutputType = {
     id: number
+    UUID: number
     Name: number
     Placeholder: number
     Type: number
+    MinLength: number
+    MaxLength: number
+    Required: number
     TicketSetupId: number
     _all: number
   }
@@ -32946,33 +33029,49 @@ export namespace Prisma {
 
   export type TicketModalDataAvgAggregateInputType = {
     Type?: true
+    MinLength?: true
+    MaxLength?: true
   }
 
   export type TicketModalDataSumAggregateInputType = {
     Type?: true
+    MinLength?: true
+    MaxLength?: true
   }
 
   export type TicketModalDataMinAggregateInputType = {
     id?: true
+    UUID?: true
     Name?: true
     Placeholder?: true
     Type?: true
+    MinLength?: true
+    MaxLength?: true
+    Required?: true
     TicketSetupId?: true
   }
 
   export type TicketModalDataMaxAggregateInputType = {
     id?: true
+    UUID?: true
     Name?: true
     Placeholder?: true
     Type?: true
+    MinLength?: true
+    MaxLength?: true
+    Required?: true
     TicketSetupId?: true
   }
 
   export type TicketModalDataCountAggregateInputType = {
     id?: true
+    UUID?: true
     Name?: true
     Placeholder?: true
     Type?: true
+    MinLength?: true
+    MaxLength?: true
+    Required?: true
     TicketSetupId?: true
     _all?: true
   }
@@ -33065,9 +33164,13 @@ export namespace Prisma {
 
   export type TicketModalDataGroupByOutputType = {
     id: string
+    UUID: string
     Name: string
-    Placeholder: string
+    Placeholder: string | null
     Type: number
+    MinLength: number | null
+    MaxLength: number | null
+    Required: boolean
     TicketSetupId: string
     _count: TicketModalDataCountAggregateOutputType | null
     _avg: TicketModalDataAvgAggregateOutputType | null
@@ -33092,9 +33195,13 @@ export namespace Prisma {
 
   export type TicketModalDataSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    UUID?: boolean
     Name?: boolean
     Placeholder?: boolean
     Type?: boolean
+    MinLength?: boolean
+    MaxLength?: boolean
+    Required?: boolean
     TicketSetupId?: boolean
     TicketSetup?: boolean | TicketSetupsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ticketModalData"]>
@@ -33103,13 +33210,17 @@ export namespace Prisma {
 
   export type TicketModalDataSelectScalar = {
     id?: boolean
+    UUID?: boolean
     Name?: boolean
     Placeholder?: boolean
     Type?: boolean
+    MinLength?: boolean
+    MaxLength?: boolean
+    Required?: boolean
     TicketSetupId?: boolean
   }
 
-  export type TicketModalDataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "Name" | "Placeholder" | "Type" | "TicketSetupId", ExtArgs["result"]["ticketModalData"]>
+  export type TicketModalDataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "UUID" | "Name" | "Placeholder" | "Type" | "MinLength" | "MaxLength" | "Required" | "TicketSetupId", ExtArgs["result"]["ticketModalData"]>
   export type TicketModalDataInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     TicketSetup?: boolean | TicketSetupsDefaultArgs<ExtArgs>
   }
@@ -33121,9 +33232,13 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      UUID: string
       Name: string
-      Placeholder: string
+      Placeholder: string | null
       Type: number
+      MinLength: number | null
+      MaxLength: number | null
+      Required: boolean
       TicketSetupId: string
     }, ExtArgs["result"]["ticketModalData"]>
     composites: {}
@@ -33519,9 +33634,13 @@ export namespace Prisma {
    */
   interface TicketModalDataFieldRefs {
     readonly id: FieldRef<"TicketModalData", 'String'>
+    readonly UUID: FieldRef<"TicketModalData", 'String'>
     readonly Name: FieldRef<"TicketModalData", 'String'>
     readonly Placeholder: FieldRef<"TicketModalData", 'String'>
     readonly Type: FieldRef<"TicketModalData", 'Int'>
+    readonly MinLength: FieldRef<"TicketModalData", 'Int'>
+    readonly MaxLength: FieldRef<"TicketModalData", 'Int'>
+    readonly Required: FieldRef<"TicketModalData", 'Boolean'>
     readonly TicketSetupId: FieldRef<"TicketModalData", 'String'>
   }
     
@@ -33912,321 +34031,419 @@ export namespace Prisma {
 
 
   /**
-   * Model TicketHandlers
+   * Model TicketPermissions
    */
 
-  export type AggregateTicketHandlers = {
-    _count: TicketHandlersCountAggregateOutputType | null
-    _min: TicketHandlersMinAggregateOutputType | null
-    _max: TicketHandlersMaxAggregateOutputType | null
+  export type AggregateTicketPermissions = {
+    _count: TicketPermissionsCountAggregateOutputType | null
+    _avg: TicketPermissionsAvgAggregateOutputType | null
+    _sum: TicketPermissionsSumAggregateOutputType | null
+    _min: TicketPermissionsMinAggregateOutputType | null
+    _max: TicketPermissionsMaxAggregateOutputType | null
   }
 
-  export type TicketHandlersMinAggregateOutputType = {
+  export type TicketPermissionsAvgAggregateOutputType = {
+    AllowedDiscordPermissions: number | null
+    DeniedDiscordPermissions: number | null
+  }
+
+  export type TicketPermissionsSumAggregateOutputType = {
+    AllowedDiscordPermissions: bigint | null
+    DeniedDiscordPermissions: bigint | null
+  }
+
+  export type TicketPermissionsMinAggregateOutputType = {
     id: string | null
+    UUID: string | null
+    DiscordUserId: string | null
     DiscordRoleId: string | null
-    TicketPermission: string | null
+    HasShadowPing: boolean | null
+    IsHandler: boolean | null
+    AllowedDiscordPermissions: bigint | null
+    DeniedDiscordPermissions: bigint | null
+    TicketSetupId: string | null
   }
 
-  export type TicketHandlersMaxAggregateOutputType = {
+  export type TicketPermissionsMaxAggregateOutputType = {
     id: string | null
+    UUID: string | null
+    DiscordUserId: string | null
     DiscordRoleId: string | null
-    TicketPermission: string | null
+    HasShadowPing: boolean | null
+    IsHandler: boolean | null
+    AllowedDiscordPermissions: bigint | null
+    DeniedDiscordPermissions: bigint | null
+    TicketSetupId: string | null
   }
 
-  export type TicketHandlersCountAggregateOutputType = {
+  export type TicketPermissionsCountAggregateOutputType = {
     id: number
+    UUID: number
+    DiscordUserId: number
     DiscordRoleId: number
-    TicketPermission: number
-    AddedDiscordPermission: number
-    RemovedDiscordPermission: number
+    HasShadowPing: number
+    IsHandler: number
+    TicketPermissions: number
+    AllowedDiscordPermissions: number
+    DeniedDiscordPermissions: number
+    TicketSetupId: number
     _all: number
   }
 
 
-  export type TicketHandlersMinAggregateInputType = {
-    id?: true
-    DiscordRoleId?: true
-    TicketPermission?: true
+  export type TicketPermissionsAvgAggregateInputType = {
+    AllowedDiscordPermissions?: true
+    DeniedDiscordPermissions?: true
   }
 
-  export type TicketHandlersMaxAggregateInputType = {
-    id?: true
-    DiscordRoleId?: true
-    TicketPermission?: true
+  export type TicketPermissionsSumAggregateInputType = {
+    AllowedDiscordPermissions?: true
+    DeniedDiscordPermissions?: true
   }
 
-  export type TicketHandlersCountAggregateInputType = {
+  export type TicketPermissionsMinAggregateInputType = {
     id?: true
+    UUID?: true
+    DiscordUserId?: true
     DiscordRoleId?: true
-    TicketPermission?: true
-    AddedDiscordPermission?: true
-    RemovedDiscordPermission?: true
+    HasShadowPing?: true
+    IsHandler?: true
+    AllowedDiscordPermissions?: true
+    DeniedDiscordPermissions?: true
+    TicketSetupId?: true
+  }
+
+  export type TicketPermissionsMaxAggregateInputType = {
+    id?: true
+    UUID?: true
+    DiscordUserId?: true
+    DiscordRoleId?: true
+    HasShadowPing?: true
+    IsHandler?: true
+    AllowedDiscordPermissions?: true
+    DeniedDiscordPermissions?: true
+    TicketSetupId?: true
+  }
+
+  export type TicketPermissionsCountAggregateInputType = {
+    id?: true
+    UUID?: true
+    DiscordUserId?: true
+    DiscordRoleId?: true
+    HasShadowPing?: true
+    IsHandler?: true
+    TicketPermissions?: true
+    AllowedDiscordPermissions?: true
+    DeniedDiscordPermissions?: true
+    TicketSetupId?: true
     _all?: true
   }
 
-  export type TicketHandlersAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TicketPermissionsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which TicketHandlers to aggregate.
+     * Filter which TicketPermissions to aggregate.
      */
-    where?: TicketHandlersWhereInput
+    where?: TicketPermissionsWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of TicketHandlers to fetch.
+     * Determine the order of TicketPermissions to fetch.
      */
-    orderBy?: TicketHandlersOrderByWithRelationInput | TicketHandlersOrderByWithRelationInput[]
+    orderBy?: TicketPermissionsOrderByWithRelationInput | TicketPermissionsOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: TicketHandlersWhereUniqueInput
+    cursor?: TicketPermissionsWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` TicketHandlers from the position of the cursor.
+     * Take `±n` TicketPermissions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` TicketHandlers.
+     * Skip the first `n` TicketPermissions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned TicketHandlers
+     * Count returned TicketPermissions
     **/
-    _count?: true | TicketHandlersCountAggregateInputType
+    _count?: true | TicketPermissionsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TicketPermissionsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TicketPermissionsSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: TicketHandlersMinAggregateInputType
+    _min?: TicketPermissionsMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: TicketHandlersMaxAggregateInputType
+    _max?: TicketPermissionsMaxAggregateInputType
   }
 
-  export type GetTicketHandlersAggregateType<T extends TicketHandlersAggregateArgs> = {
-        [P in keyof T & keyof AggregateTicketHandlers]: P extends '_count' | 'count'
+  export type GetTicketPermissionsAggregateType<T extends TicketPermissionsAggregateArgs> = {
+        [P in keyof T & keyof AggregateTicketPermissions]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateTicketHandlers[P]>
-      : GetScalarType<T[P], AggregateTicketHandlers[P]>
+        : GetScalarType<T[P], AggregateTicketPermissions[P]>
+      : GetScalarType<T[P], AggregateTicketPermissions[P]>
   }
 
 
 
 
-  export type TicketHandlersGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TicketHandlersWhereInput
-    orderBy?: TicketHandlersOrderByWithAggregationInput | TicketHandlersOrderByWithAggregationInput[]
-    by: TicketHandlersScalarFieldEnum[] | TicketHandlersScalarFieldEnum
-    having?: TicketHandlersScalarWhereWithAggregatesInput
+  export type TicketPermissionsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TicketPermissionsWhereInput
+    orderBy?: TicketPermissionsOrderByWithAggregationInput | TicketPermissionsOrderByWithAggregationInput[]
+    by: TicketPermissionsScalarFieldEnum[] | TicketPermissionsScalarFieldEnum
+    having?: TicketPermissionsScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: TicketHandlersCountAggregateInputType | true
-    _min?: TicketHandlersMinAggregateInputType
-    _max?: TicketHandlersMaxAggregateInputType
+    _count?: TicketPermissionsCountAggregateInputType | true
+    _avg?: TicketPermissionsAvgAggregateInputType
+    _sum?: TicketPermissionsSumAggregateInputType
+    _min?: TicketPermissionsMinAggregateInputType
+    _max?: TicketPermissionsMaxAggregateInputType
   }
 
-  export type TicketHandlersGroupByOutputType = {
+  export type TicketPermissionsGroupByOutputType = {
     id: string
-    DiscordRoleId: string
-    TicketPermission: string | null
-    AddedDiscordPermission: string[]
-    RemovedDiscordPermission: string[]
-    _count: TicketHandlersCountAggregateOutputType | null
-    _min: TicketHandlersMinAggregateOutputType | null
-    _max: TicketHandlersMaxAggregateOutputType | null
+    UUID: string
+    DiscordUserId: string | null
+    DiscordRoleId: string | null
+    HasShadowPing: boolean | null
+    IsHandler: boolean
+    TicketPermissions: string[]
+    AllowedDiscordPermissions: bigint | null
+    DeniedDiscordPermissions: bigint | null
+    TicketSetupId: string
+    _count: TicketPermissionsCountAggregateOutputType | null
+    _avg: TicketPermissionsAvgAggregateOutputType | null
+    _sum: TicketPermissionsSumAggregateOutputType | null
+    _min: TicketPermissionsMinAggregateOutputType | null
+    _max: TicketPermissionsMaxAggregateOutputType | null
   }
 
-  type GetTicketHandlersGroupByPayload<T extends TicketHandlersGroupByArgs> = Prisma.PrismaPromise<
+  type GetTicketPermissionsGroupByPayload<T extends TicketPermissionsGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<TicketHandlersGroupByOutputType, T['by']> &
+      PickEnumerable<TicketPermissionsGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof TicketHandlersGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof TicketPermissionsGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], TicketHandlersGroupByOutputType[P]>
-            : GetScalarType<T[P], TicketHandlersGroupByOutputType[P]>
+              : GetScalarType<T[P], TicketPermissionsGroupByOutputType[P]>
+            : GetScalarType<T[P], TicketPermissionsGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type TicketHandlersSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type TicketPermissionsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    UUID?: boolean
+    DiscordUserId?: boolean
     DiscordRoleId?: boolean
-    TicketPermission?: boolean
-    AddedDiscordPermission?: boolean
-    RemovedDiscordPermission?: boolean
-  }, ExtArgs["result"]["ticketHandlers"]>
+    HasShadowPing?: boolean
+    IsHandler?: boolean
+    TicketPermissions?: boolean
+    AllowedDiscordPermissions?: boolean
+    DeniedDiscordPermissions?: boolean
+    TicketSetupId?: boolean
+    TicketSetup?: boolean | TicketSetupsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["ticketPermissions"]>
 
 
 
-  export type TicketHandlersSelectScalar = {
+  export type TicketPermissionsSelectScalar = {
     id?: boolean
+    UUID?: boolean
+    DiscordUserId?: boolean
     DiscordRoleId?: boolean
-    TicketPermission?: boolean
-    AddedDiscordPermission?: boolean
-    RemovedDiscordPermission?: boolean
+    HasShadowPing?: boolean
+    IsHandler?: boolean
+    TicketPermissions?: boolean
+    AllowedDiscordPermissions?: boolean
+    DeniedDiscordPermissions?: boolean
+    TicketSetupId?: boolean
   }
 
-  export type TicketHandlersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "DiscordRoleId" | "TicketPermission" | "AddedDiscordPermission" | "RemovedDiscordPermission", ExtArgs["result"]["ticketHandlers"]>
+  export type TicketPermissionsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "UUID" | "DiscordUserId" | "DiscordRoleId" | "HasShadowPing" | "IsHandler" | "TicketPermissions" | "AllowedDiscordPermissions" | "DeniedDiscordPermissions" | "TicketSetupId", ExtArgs["result"]["ticketPermissions"]>
+  export type TicketPermissionsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    TicketSetup?: boolean | TicketSetupsDefaultArgs<ExtArgs>
+  }
 
-  export type $TicketHandlersPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "TicketHandlers"
-    objects: {}
+  export type $TicketPermissionsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TicketPermissions"
+    objects: {
+      TicketSetup: Prisma.$TicketSetupsPayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      DiscordRoleId: string
-      TicketPermission: string | null
-      AddedDiscordPermission: string[]
-      RemovedDiscordPermission: string[]
-    }, ExtArgs["result"]["ticketHandlers"]>
+      UUID: string
+      DiscordUserId: string | null
+      DiscordRoleId: string | null
+      HasShadowPing: boolean | null
+      IsHandler: boolean
+      TicketPermissions: string[]
+      AllowedDiscordPermissions: bigint | null
+      DeniedDiscordPermissions: bigint | null
+      TicketSetupId: string
+    }, ExtArgs["result"]["ticketPermissions"]>
     composites: {}
   }
 
-  type TicketHandlersGetPayload<S extends boolean | null | undefined | TicketHandlersDefaultArgs> = $Result.GetResult<Prisma.$TicketHandlersPayload, S>
+  type TicketPermissionsGetPayload<S extends boolean | null | undefined | TicketPermissionsDefaultArgs> = $Result.GetResult<Prisma.$TicketPermissionsPayload, S>
 
-  type TicketHandlersCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<TicketHandlersFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: TicketHandlersCountAggregateInputType | true
+  type TicketPermissionsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TicketPermissionsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TicketPermissionsCountAggregateInputType | true
     }
 
-  export interface TicketHandlersDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TicketHandlers'], meta: { name: 'TicketHandlers' } }
+  export interface TicketPermissionsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TicketPermissions'], meta: { name: 'TicketPermissions' } }
     /**
-     * Find zero or one TicketHandlers that matches the filter.
-     * @param {TicketHandlersFindUniqueArgs} args - Arguments to find a TicketHandlers
+     * Find zero or one TicketPermissions that matches the filter.
+     * @param {TicketPermissionsFindUniqueArgs} args - Arguments to find a TicketPermissions
      * @example
-     * // Get one TicketHandlers
-     * const ticketHandlers = await prisma.ticketHandlers.findUnique({
+     * // Get one TicketPermissions
+     * const ticketPermissions = await prisma.ticketPermissions.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends TicketHandlersFindUniqueArgs>(args: SelectSubset<T, TicketHandlersFindUniqueArgs<ExtArgs>>): Prisma__TicketHandlersClient<$Result.GetResult<Prisma.$TicketHandlersPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends TicketPermissionsFindUniqueArgs>(args: SelectSubset<T, TicketPermissionsFindUniqueArgs<ExtArgs>>): Prisma__TicketPermissionsClient<$Result.GetResult<Prisma.$TicketPermissionsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one TicketHandlers that matches the filter or throw an error with `error.code='P2025'`
+     * Find one TicketPermissions that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {TicketHandlersFindUniqueOrThrowArgs} args - Arguments to find a TicketHandlers
+     * @param {TicketPermissionsFindUniqueOrThrowArgs} args - Arguments to find a TicketPermissions
      * @example
-     * // Get one TicketHandlers
-     * const ticketHandlers = await prisma.ticketHandlers.findUniqueOrThrow({
+     * // Get one TicketPermissions
+     * const ticketPermissions = await prisma.ticketPermissions.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends TicketHandlersFindUniqueOrThrowArgs>(args: SelectSubset<T, TicketHandlersFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TicketHandlersClient<$Result.GetResult<Prisma.$TicketHandlersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends TicketPermissionsFindUniqueOrThrowArgs>(args: SelectSubset<T, TicketPermissionsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TicketPermissionsClient<$Result.GetResult<Prisma.$TicketPermissionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first TicketHandlers that matches the filter.
+     * Find the first TicketPermissions that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TicketHandlersFindFirstArgs} args - Arguments to find a TicketHandlers
+     * @param {TicketPermissionsFindFirstArgs} args - Arguments to find a TicketPermissions
      * @example
-     * // Get one TicketHandlers
-     * const ticketHandlers = await prisma.ticketHandlers.findFirst({
+     * // Get one TicketPermissions
+     * const ticketPermissions = await prisma.ticketPermissions.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends TicketHandlersFindFirstArgs>(args?: SelectSubset<T, TicketHandlersFindFirstArgs<ExtArgs>>): Prisma__TicketHandlersClient<$Result.GetResult<Prisma.$TicketHandlersPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends TicketPermissionsFindFirstArgs>(args?: SelectSubset<T, TicketPermissionsFindFirstArgs<ExtArgs>>): Prisma__TicketPermissionsClient<$Result.GetResult<Prisma.$TicketPermissionsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first TicketHandlers that matches the filter or
+     * Find the first TicketPermissions that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TicketHandlersFindFirstOrThrowArgs} args - Arguments to find a TicketHandlers
+     * @param {TicketPermissionsFindFirstOrThrowArgs} args - Arguments to find a TicketPermissions
      * @example
-     * // Get one TicketHandlers
-     * const ticketHandlers = await prisma.ticketHandlers.findFirstOrThrow({
+     * // Get one TicketPermissions
+     * const ticketPermissions = await prisma.ticketPermissions.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends TicketHandlersFindFirstOrThrowArgs>(args?: SelectSubset<T, TicketHandlersFindFirstOrThrowArgs<ExtArgs>>): Prisma__TicketHandlersClient<$Result.GetResult<Prisma.$TicketHandlersPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends TicketPermissionsFindFirstOrThrowArgs>(args?: SelectSubset<T, TicketPermissionsFindFirstOrThrowArgs<ExtArgs>>): Prisma__TicketPermissionsClient<$Result.GetResult<Prisma.$TicketPermissionsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more TicketHandlers that matches the filter.
+     * Find zero or more TicketPermissions that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TicketHandlersFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {TicketPermissionsFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all TicketHandlers
-     * const ticketHandlers = await prisma.ticketHandlers.findMany()
+     * // Get all TicketPermissions
+     * const ticketPermissions = await prisma.ticketPermissions.findMany()
      * 
-     * // Get first 10 TicketHandlers
-     * const ticketHandlers = await prisma.ticketHandlers.findMany({ take: 10 })
+     * // Get first 10 TicketPermissions
+     * const ticketPermissions = await prisma.ticketPermissions.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const ticketHandlersWithIdOnly = await prisma.ticketHandlers.findMany({ select: { id: true } })
+     * const ticketPermissionsWithIdOnly = await prisma.ticketPermissions.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends TicketHandlersFindManyArgs>(args?: SelectSubset<T, TicketHandlersFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TicketHandlersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends TicketPermissionsFindManyArgs>(args?: SelectSubset<T, TicketPermissionsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TicketPermissionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a TicketHandlers.
-     * @param {TicketHandlersCreateArgs} args - Arguments to create a TicketHandlers.
+     * Create a TicketPermissions.
+     * @param {TicketPermissionsCreateArgs} args - Arguments to create a TicketPermissions.
      * @example
-     * // Create one TicketHandlers
-     * const TicketHandlers = await prisma.ticketHandlers.create({
+     * // Create one TicketPermissions
+     * const TicketPermissions = await prisma.ticketPermissions.create({
      *   data: {
-     *     // ... data to create a TicketHandlers
+     *     // ... data to create a TicketPermissions
      *   }
      * })
      * 
      */
-    create<T extends TicketHandlersCreateArgs>(args: SelectSubset<T, TicketHandlersCreateArgs<ExtArgs>>): Prisma__TicketHandlersClient<$Result.GetResult<Prisma.$TicketHandlersPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends TicketPermissionsCreateArgs>(args: SelectSubset<T, TicketPermissionsCreateArgs<ExtArgs>>): Prisma__TicketPermissionsClient<$Result.GetResult<Prisma.$TicketPermissionsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many TicketHandlers.
-     * @param {TicketHandlersCreateManyArgs} args - Arguments to create many TicketHandlers.
+     * Create many TicketPermissions.
+     * @param {TicketPermissionsCreateManyArgs} args - Arguments to create many TicketPermissions.
      * @example
-     * // Create many TicketHandlers
-     * const ticketHandlers = await prisma.ticketHandlers.createMany({
+     * // Create many TicketPermissions
+     * const ticketPermissions = await prisma.ticketPermissions.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends TicketHandlersCreateManyArgs>(args?: SelectSubset<T, TicketHandlersCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends TicketPermissionsCreateManyArgs>(args?: SelectSubset<T, TicketPermissionsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a TicketHandlers.
-     * @param {TicketHandlersDeleteArgs} args - Arguments to delete one TicketHandlers.
+     * Delete a TicketPermissions.
+     * @param {TicketPermissionsDeleteArgs} args - Arguments to delete one TicketPermissions.
      * @example
-     * // Delete one TicketHandlers
-     * const TicketHandlers = await prisma.ticketHandlers.delete({
+     * // Delete one TicketPermissions
+     * const TicketPermissions = await prisma.ticketPermissions.delete({
      *   where: {
-     *     // ... filter to delete one TicketHandlers
+     *     // ... filter to delete one TicketPermissions
      *   }
      * })
      * 
      */
-    delete<T extends TicketHandlersDeleteArgs>(args: SelectSubset<T, TicketHandlersDeleteArgs<ExtArgs>>): Prisma__TicketHandlersClient<$Result.GetResult<Prisma.$TicketHandlersPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends TicketPermissionsDeleteArgs>(args: SelectSubset<T, TicketPermissionsDeleteArgs<ExtArgs>>): Prisma__TicketPermissionsClient<$Result.GetResult<Prisma.$TicketPermissionsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one TicketHandlers.
-     * @param {TicketHandlersUpdateArgs} args - Arguments to update one TicketHandlers.
+     * Update one TicketPermissions.
+     * @param {TicketPermissionsUpdateArgs} args - Arguments to update one TicketPermissions.
      * @example
-     * // Update one TicketHandlers
-     * const ticketHandlers = await prisma.ticketHandlers.update({
+     * // Update one TicketPermissions
+     * const ticketPermissions = await prisma.ticketPermissions.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -34236,30 +34453,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends TicketHandlersUpdateArgs>(args: SelectSubset<T, TicketHandlersUpdateArgs<ExtArgs>>): Prisma__TicketHandlersClient<$Result.GetResult<Prisma.$TicketHandlersPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends TicketPermissionsUpdateArgs>(args: SelectSubset<T, TicketPermissionsUpdateArgs<ExtArgs>>): Prisma__TicketPermissionsClient<$Result.GetResult<Prisma.$TicketPermissionsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more TicketHandlers.
-     * @param {TicketHandlersDeleteManyArgs} args - Arguments to filter TicketHandlers to delete.
+     * Delete zero or more TicketPermissions.
+     * @param {TicketPermissionsDeleteManyArgs} args - Arguments to filter TicketPermissions to delete.
      * @example
-     * // Delete a few TicketHandlers
-     * const { count } = await prisma.ticketHandlers.deleteMany({
+     * // Delete a few TicketPermissions
+     * const { count } = await prisma.ticketPermissions.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends TicketHandlersDeleteManyArgs>(args?: SelectSubset<T, TicketHandlersDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends TicketPermissionsDeleteManyArgs>(args?: SelectSubset<T, TicketPermissionsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more TicketHandlers.
+     * Update zero or more TicketPermissions.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TicketHandlersUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {TicketPermissionsUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many TicketHandlers
-     * const ticketHandlers = await prisma.ticketHandlers.updateMany({
+     * // Update many TicketPermissions
+     * const ticketPermissions = await prisma.ticketPermissions.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -34269,79 +34486,79 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends TicketHandlersUpdateManyArgs>(args: SelectSubset<T, TicketHandlersUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends TicketPermissionsUpdateManyArgs>(args: SelectSubset<T, TicketPermissionsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one TicketHandlers.
-     * @param {TicketHandlersUpsertArgs} args - Arguments to update or create a TicketHandlers.
+     * Create or update one TicketPermissions.
+     * @param {TicketPermissionsUpsertArgs} args - Arguments to update or create a TicketPermissions.
      * @example
-     * // Update or create a TicketHandlers
-     * const ticketHandlers = await prisma.ticketHandlers.upsert({
+     * // Update or create a TicketPermissions
+     * const ticketPermissions = await prisma.ticketPermissions.upsert({
      *   create: {
-     *     // ... data to create a TicketHandlers
+     *     // ... data to create a TicketPermissions
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the TicketHandlers we want to update
+     *     // ... the filter for the TicketPermissions we want to update
      *   }
      * })
      */
-    upsert<T extends TicketHandlersUpsertArgs>(args: SelectSubset<T, TicketHandlersUpsertArgs<ExtArgs>>): Prisma__TicketHandlersClient<$Result.GetResult<Prisma.$TicketHandlersPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends TicketPermissionsUpsertArgs>(args: SelectSubset<T, TicketPermissionsUpsertArgs<ExtArgs>>): Prisma__TicketPermissionsClient<$Result.GetResult<Prisma.$TicketPermissionsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more TicketHandlers that matches the filter.
-     * @param {TicketHandlersFindRawArgs} args - Select which filters you would like to apply.
+     * Find zero or more TicketPermissions that matches the filter.
+     * @param {TicketPermissionsFindRawArgs} args - Select which filters you would like to apply.
      * @example
-     * const ticketHandlers = await prisma.ticketHandlers.findRaw({
+     * const ticketPermissions = await prisma.ticketPermissions.findRaw({
      *   filter: { age: { $gt: 25 } }
      * })
      */
-    findRaw(args?: TicketHandlersFindRawArgs): Prisma.PrismaPromise<JsonObject>
+    findRaw(args?: TicketPermissionsFindRawArgs): Prisma.PrismaPromise<JsonObject>
 
     /**
-     * Perform aggregation operations on a TicketHandlers.
-     * @param {TicketHandlersAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * Perform aggregation operations on a TicketPermissions.
+     * @param {TicketPermissionsAggregateRawArgs} args - Select which aggregations you would like to apply.
      * @example
-     * const ticketHandlers = await prisma.ticketHandlers.aggregateRaw({
+     * const ticketPermissions = await prisma.ticketPermissions.aggregateRaw({
      *   pipeline: [
      *     { $match: { status: "registered" } },
      *     { $group: { _id: "$country", total: { $sum: 1 } } }
      *   ]
      * })
      */
-    aggregateRaw(args?: TicketHandlersAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+    aggregateRaw(args?: TicketPermissionsAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
 
 
     /**
-     * Count the number of TicketHandlers.
+     * Count the number of TicketPermissions.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TicketHandlersCountArgs} args - Arguments to filter TicketHandlers to count.
+     * @param {TicketPermissionsCountArgs} args - Arguments to filter TicketPermissions to count.
      * @example
-     * // Count the number of TicketHandlers
-     * const count = await prisma.ticketHandlers.count({
+     * // Count the number of TicketPermissions
+     * const count = await prisma.ticketPermissions.count({
      *   where: {
-     *     // ... the filter for the TicketHandlers we want to count
+     *     // ... the filter for the TicketPermissions we want to count
      *   }
      * })
     **/
-    count<T extends TicketHandlersCountArgs>(
-      args?: Subset<T, TicketHandlersCountArgs>,
+    count<T extends TicketPermissionsCountArgs>(
+      args?: Subset<T, TicketPermissionsCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], TicketHandlersCountAggregateOutputType>
+          : GetScalarType<T['select'], TicketPermissionsCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a TicketHandlers.
+     * Allows you to perform aggregations operations on a TicketPermissions.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TicketHandlersAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {TicketPermissionsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -34361,13 +34578,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends TicketHandlersAggregateArgs>(args: Subset<T, TicketHandlersAggregateArgs>): Prisma.PrismaPromise<GetTicketHandlersAggregateType<T>>
+    aggregate<T extends TicketPermissionsAggregateArgs>(args: Subset<T, TicketPermissionsAggregateArgs>): Prisma.PrismaPromise<GetTicketPermissionsAggregateType<T>>
 
     /**
-     * Group by TicketHandlers.
+     * Group by TicketPermissions.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TicketHandlersGroupByArgs} args - Group by arguments.
+     * @param {TicketPermissionsGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -34382,14 +34599,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends TicketHandlersGroupByArgs,
+      T extends TicketPermissionsGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: TicketHandlersGroupByArgs['orderBy'] }
-        : { orderBy?: TicketHandlersGroupByArgs['orderBy'] },
+        ? { orderBy: TicketPermissionsGroupByArgs['orderBy'] }
+        : { orderBy?: TicketPermissionsGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -34438,21 +34655,22 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, TicketHandlersGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTicketHandlersGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, TicketPermissionsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTicketPermissionsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the TicketHandlers model
+   * Fields of the TicketPermissions model
    */
-  readonly fields: TicketHandlersFieldRefs;
+  readonly fields: TicketPermissionsFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for TicketHandlers.
+   * The delegate class that acts as a "Promise-like" for TicketPermissions.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__TicketHandlersClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__TicketPermissionsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    TicketSetup<T extends TicketSetupsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TicketSetupsDefaultArgs<ExtArgs>>): Prisma__TicketSetupsClient<$Result.GetResult<Prisma.$TicketSetupsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -34479,323 +34697,364 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the TicketHandlers model
+   * Fields of the TicketPermissions model
    */
-  interface TicketHandlersFieldRefs {
-    readonly id: FieldRef<"TicketHandlers", 'String'>
-    readonly DiscordRoleId: FieldRef<"TicketHandlers", 'String'>
-    readonly TicketPermission: FieldRef<"TicketHandlers", 'String'>
-    readonly AddedDiscordPermission: FieldRef<"TicketHandlers", 'String[]'>
-    readonly RemovedDiscordPermission: FieldRef<"TicketHandlers", 'String[]'>
+  interface TicketPermissionsFieldRefs {
+    readonly id: FieldRef<"TicketPermissions", 'String'>
+    readonly UUID: FieldRef<"TicketPermissions", 'String'>
+    readonly DiscordUserId: FieldRef<"TicketPermissions", 'String'>
+    readonly DiscordRoleId: FieldRef<"TicketPermissions", 'String'>
+    readonly HasShadowPing: FieldRef<"TicketPermissions", 'Boolean'>
+    readonly IsHandler: FieldRef<"TicketPermissions", 'Boolean'>
+    readonly TicketPermissions: FieldRef<"TicketPermissions", 'String[]'>
+    readonly AllowedDiscordPermissions: FieldRef<"TicketPermissions", 'BigInt'>
+    readonly DeniedDiscordPermissions: FieldRef<"TicketPermissions", 'BigInt'>
+    readonly TicketSetupId: FieldRef<"TicketPermissions", 'String'>
   }
     
 
   // Custom InputTypes
   /**
-   * TicketHandlers findUnique
+   * TicketPermissions findUnique
    */
-  export type TicketHandlersFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TicketPermissionsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TicketHandlers
+     * Select specific fields to fetch from the TicketPermissions
      */
-    select?: TicketHandlersSelect<ExtArgs> | null
+    select?: TicketPermissionsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TicketHandlers
+     * Omit specific fields from the TicketPermissions
      */
-    omit?: TicketHandlersOmit<ExtArgs> | null
+    omit?: TicketPermissionsOmit<ExtArgs> | null
     /**
-     * Filter, which TicketHandlers to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where: TicketHandlersWhereUniqueInput
+    include?: TicketPermissionsInclude<ExtArgs> | null
+    /**
+     * Filter, which TicketPermissions to fetch.
+     */
+    where: TicketPermissionsWhereUniqueInput
   }
 
   /**
-   * TicketHandlers findUniqueOrThrow
+   * TicketPermissions findUniqueOrThrow
    */
-  export type TicketHandlersFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TicketPermissionsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TicketHandlers
+     * Select specific fields to fetch from the TicketPermissions
      */
-    select?: TicketHandlersSelect<ExtArgs> | null
+    select?: TicketPermissionsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TicketHandlers
+     * Omit specific fields from the TicketPermissions
      */
-    omit?: TicketHandlersOmit<ExtArgs> | null
+    omit?: TicketPermissionsOmit<ExtArgs> | null
     /**
-     * Filter, which TicketHandlers to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where: TicketHandlersWhereUniqueInput
+    include?: TicketPermissionsInclude<ExtArgs> | null
+    /**
+     * Filter, which TicketPermissions to fetch.
+     */
+    where: TicketPermissionsWhereUniqueInput
   }
 
   /**
-   * TicketHandlers findFirst
+   * TicketPermissions findFirst
    */
-  export type TicketHandlersFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TicketPermissionsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TicketHandlers
+     * Select specific fields to fetch from the TicketPermissions
      */
-    select?: TicketHandlersSelect<ExtArgs> | null
+    select?: TicketPermissionsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TicketHandlers
+     * Omit specific fields from the TicketPermissions
      */
-    omit?: TicketHandlersOmit<ExtArgs> | null
+    omit?: TicketPermissionsOmit<ExtArgs> | null
     /**
-     * Filter, which TicketHandlers to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: TicketHandlersWhereInput
+    include?: TicketPermissionsInclude<ExtArgs> | null
+    /**
+     * Filter, which TicketPermissions to fetch.
+     */
+    where?: TicketPermissionsWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of TicketHandlers to fetch.
+     * Determine the order of TicketPermissions to fetch.
      */
-    orderBy?: TicketHandlersOrderByWithRelationInput | TicketHandlersOrderByWithRelationInput[]
+    orderBy?: TicketPermissionsOrderByWithRelationInput | TicketPermissionsOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for TicketHandlers.
+     * Sets the position for searching for TicketPermissions.
      */
-    cursor?: TicketHandlersWhereUniqueInput
+    cursor?: TicketPermissionsWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` TicketHandlers from the position of the cursor.
+     * Take `±n` TicketPermissions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` TicketHandlers.
+     * Skip the first `n` TicketPermissions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of TicketHandlers.
+     * Filter by unique combinations of TicketPermissions.
      */
-    distinct?: TicketHandlersScalarFieldEnum | TicketHandlersScalarFieldEnum[]
+    distinct?: TicketPermissionsScalarFieldEnum | TicketPermissionsScalarFieldEnum[]
   }
 
   /**
-   * TicketHandlers findFirstOrThrow
+   * TicketPermissions findFirstOrThrow
    */
-  export type TicketHandlersFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TicketPermissionsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TicketHandlers
+     * Select specific fields to fetch from the TicketPermissions
      */
-    select?: TicketHandlersSelect<ExtArgs> | null
+    select?: TicketPermissionsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TicketHandlers
+     * Omit specific fields from the TicketPermissions
      */
-    omit?: TicketHandlersOmit<ExtArgs> | null
+    omit?: TicketPermissionsOmit<ExtArgs> | null
     /**
-     * Filter, which TicketHandlers to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: TicketHandlersWhereInput
+    include?: TicketPermissionsInclude<ExtArgs> | null
+    /**
+     * Filter, which TicketPermissions to fetch.
+     */
+    where?: TicketPermissionsWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of TicketHandlers to fetch.
+     * Determine the order of TicketPermissions to fetch.
      */
-    orderBy?: TicketHandlersOrderByWithRelationInput | TicketHandlersOrderByWithRelationInput[]
+    orderBy?: TicketPermissionsOrderByWithRelationInput | TicketPermissionsOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for TicketHandlers.
+     * Sets the position for searching for TicketPermissions.
      */
-    cursor?: TicketHandlersWhereUniqueInput
+    cursor?: TicketPermissionsWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` TicketHandlers from the position of the cursor.
+     * Take `±n` TicketPermissions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` TicketHandlers.
+     * Skip the first `n` TicketPermissions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of TicketHandlers.
+     * Filter by unique combinations of TicketPermissions.
      */
-    distinct?: TicketHandlersScalarFieldEnum | TicketHandlersScalarFieldEnum[]
+    distinct?: TicketPermissionsScalarFieldEnum | TicketPermissionsScalarFieldEnum[]
   }
 
   /**
-   * TicketHandlers findMany
+   * TicketPermissions findMany
    */
-  export type TicketHandlersFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TicketPermissionsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TicketHandlers
+     * Select specific fields to fetch from the TicketPermissions
      */
-    select?: TicketHandlersSelect<ExtArgs> | null
+    select?: TicketPermissionsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TicketHandlers
+     * Omit specific fields from the TicketPermissions
      */
-    omit?: TicketHandlersOmit<ExtArgs> | null
+    omit?: TicketPermissionsOmit<ExtArgs> | null
     /**
-     * Filter, which TicketHandlers to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: TicketHandlersWhereInput
+    include?: TicketPermissionsInclude<ExtArgs> | null
+    /**
+     * Filter, which TicketPermissions to fetch.
+     */
+    where?: TicketPermissionsWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of TicketHandlers to fetch.
+     * Determine the order of TicketPermissions to fetch.
      */
-    orderBy?: TicketHandlersOrderByWithRelationInput | TicketHandlersOrderByWithRelationInput[]
+    orderBy?: TicketPermissionsOrderByWithRelationInput | TicketPermissionsOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing TicketHandlers.
+     * Sets the position for listing TicketPermissions.
      */
-    cursor?: TicketHandlersWhereUniqueInput
+    cursor?: TicketPermissionsWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` TicketHandlers from the position of the cursor.
+     * Take `±n` TicketPermissions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` TicketHandlers.
+     * Skip the first `n` TicketPermissions.
      */
     skip?: number
-    distinct?: TicketHandlersScalarFieldEnum | TicketHandlersScalarFieldEnum[]
+    distinct?: TicketPermissionsScalarFieldEnum | TicketPermissionsScalarFieldEnum[]
   }
 
   /**
-   * TicketHandlers create
+   * TicketPermissions create
    */
-  export type TicketHandlersCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TicketPermissionsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TicketHandlers
+     * Select specific fields to fetch from the TicketPermissions
      */
-    select?: TicketHandlersSelect<ExtArgs> | null
+    select?: TicketPermissionsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TicketHandlers
+     * Omit specific fields from the TicketPermissions
      */
-    omit?: TicketHandlersOmit<ExtArgs> | null
+    omit?: TicketPermissionsOmit<ExtArgs> | null
     /**
-     * The data needed to create a TicketHandlers.
+     * Choose, which related nodes to fetch as well
      */
-    data: XOR<TicketHandlersCreateInput, TicketHandlersUncheckedCreateInput>
+    include?: TicketPermissionsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TicketPermissions.
+     */
+    data: XOR<TicketPermissionsCreateInput, TicketPermissionsUncheckedCreateInput>
   }
 
   /**
-   * TicketHandlers createMany
+   * TicketPermissions createMany
    */
-  export type TicketHandlersCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TicketPermissionsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many TicketHandlers.
+     * The data used to create many TicketPermissions.
      */
-    data: TicketHandlersCreateManyInput | TicketHandlersCreateManyInput[]
+    data: TicketPermissionsCreateManyInput | TicketPermissionsCreateManyInput[]
   }
 
   /**
-   * TicketHandlers update
+   * TicketPermissions update
    */
-  export type TicketHandlersUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TicketPermissionsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TicketHandlers
+     * Select specific fields to fetch from the TicketPermissions
      */
-    select?: TicketHandlersSelect<ExtArgs> | null
+    select?: TicketPermissionsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TicketHandlers
+     * Omit specific fields from the TicketPermissions
      */
-    omit?: TicketHandlersOmit<ExtArgs> | null
+    omit?: TicketPermissionsOmit<ExtArgs> | null
     /**
-     * The data needed to update a TicketHandlers.
+     * Choose, which related nodes to fetch as well
      */
-    data: XOR<TicketHandlersUpdateInput, TicketHandlersUncheckedUpdateInput>
+    include?: TicketPermissionsInclude<ExtArgs> | null
     /**
-     * Choose, which TicketHandlers to update.
+     * The data needed to update a TicketPermissions.
      */
-    where: TicketHandlersWhereUniqueInput
+    data: XOR<TicketPermissionsUpdateInput, TicketPermissionsUncheckedUpdateInput>
+    /**
+     * Choose, which TicketPermissions to update.
+     */
+    where: TicketPermissionsWhereUniqueInput
   }
 
   /**
-   * TicketHandlers updateMany
+   * TicketPermissions updateMany
    */
-  export type TicketHandlersUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TicketPermissionsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update TicketHandlers.
+     * The data used to update TicketPermissions.
      */
-    data: XOR<TicketHandlersUpdateManyMutationInput, TicketHandlersUncheckedUpdateManyInput>
+    data: XOR<TicketPermissionsUpdateManyMutationInput, TicketPermissionsUncheckedUpdateManyInput>
     /**
-     * Filter which TicketHandlers to update
+     * Filter which TicketPermissions to update
      */
-    where?: TicketHandlersWhereInput
+    where?: TicketPermissionsWhereInput
     /**
-     * Limit how many TicketHandlers to update.
+     * Limit how many TicketPermissions to update.
      */
     limit?: number
   }
 
   /**
-   * TicketHandlers upsert
+   * TicketPermissions upsert
    */
-  export type TicketHandlersUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TicketPermissionsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TicketHandlers
+     * Select specific fields to fetch from the TicketPermissions
      */
-    select?: TicketHandlersSelect<ExtArgs> | null
+    select?: TicketPermissionsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TicketHandlers
+     * Omit specific fields from the TicketPermissions
      */
-    omit?: TicketHandlersOmit<ExtArgs> | null
+    omit?: TicketPermissionsOmit<ExtArgs> | null
     /**
-     * The filter to search for the TicketHandlers to update in case it exists.
+     * Choose, which related nodes to fetch as well
      */
-    where: TicketHandlersWhereUniqueInput
+    include?: TicketPermissionsInclude<ExtArgs> | null
     /**
-     * In case the TicketHandlers found by the `where` argument doesn't exist, create a new TicketHandlers with this data.
+     * The filter to search for the TicketPermissions to update in case it exists.
      */
-    create: XOR<TicketHandlersCreateInput, TicketHandlersUncheckedCreateInput>
+    where: TicketPermissionsWhereUniqueInput
     /**
-     * In case the TicketHandlers was found with the provided `where` argument, update it with this data.
+     * In case the TicketPermissions found by the `where` argument doesn't exist, create a new TicketPermissions with this data.
      */
-    update: XOR<TicketHandlersUpdateInput, TicketHandlersUncheckedUpdateInput>
+    create: XOR<TicketPermissionsCreateInput, TicketPermissionsUncheckedCreateInput>
+    /**
+     * In case the TicketPermissions was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TicketPermissionsUpdateInput, TicketPermissionsUncheckedUpdateInput>
   }
 
   /**
-   * TicketHandlers delete
+   * TicketPermissions delete
    */
-  export type TicketHandlersDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TicketPermissionsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TicketHandlers
+     * Select specific fields to fetch from the TicketPermissions
      */
-    select?: TicketHandlersSelect<ExtArgs> | null
+    select?: TicketPermissionsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TicketHandlers
+     * Omit specific fields from the TicketPermissions
      */
-    omit?: TicketHandlersOmit<ExtArgs> | null
+    omit?: TicketPermissionsOmit<ExtArgs> | null
     /**
-     * Filter which TicketHandlers to delete.
+     * Choose, which related nodes to fetch as well
      */
-    where: TicketHandlersWhereUniqueInput
+    include?: TicketPermissionsInclude<ExtArgs> | null
+    /**
+     * Filter which TicketPermissions to delete.
+     */
+    where: TicketPermissionsWhereUniqueInput
   }
 
   /**
-   * TicketHandlers deleteMany
+   * TicketPermissions deleteMany
    */
-  export type TicketHandlersDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TicketPermissionsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which TicketHandlers to delete
+     * Filter which TicketPermissions to delete
      */
-    where?: TicketHandlersWhereInput
+    where?: TicketPermissionsWhereInput
     /**
-     * Limit how many TicketHandlers to delete.
+     * Limit how many TicketPermissions to delete.
      */
     limit?: number
   }
 
   /**
-   * TicketHandlers findRaw
+   * TicketPermissions findRaw
    */
-  export type TicketHandlersFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TicketPermissionsFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
      */
@@ -34807,9 +35066,9 @@ export namespace Prisma {
   }
 
   /**
-   * TicketHandlers aggregateRaw
+   * TicketPermissions aggregateRaw
    */
-  export type TicketHandlersAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TicketPermissionsAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
      */
@@ -34821,17 +35080,21 @@ export namespace Prisma {
   }
 
   /**
-   * TicketHandlers without action
+   * TicketPermissions without action
    */
-  export type TicketHandlersDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TicketPermissionsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TicketHandlers
+     * Select specific fields to fetch from the TicketPermissions
      */
-    select?: TicketHandlersSelect<ExtArgs> | null
+    select?: TicketPermissionsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TicketHandlers
+     * Omit specific fields from the TicketPermissions
      */
-    omit?: TicketHandlersOmit<ExtArgs> | null
+    omit?: TicketPermissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TicketPermissionsInclude<ExtArgs> | null
   }
 
 
@@ -34841,14 +35104,27 @@ export namespace Prisma {
 
   export type AggregateTickets = {
     _count: TicketsCountAggregateOutputType | null
+    _avg: TicketsAvgAggregateOutputType | null
+    _sum: TicketsSumAggregateOutputType | null
     _min: TicketsMinAggregateOutputType | null
     _max: TicketsMaxAggregateOutputType | null
+  }
+
+  export type TicketsAvgAggregateOutputType = {
+    ChannelType: number | null
+  }
+
+  export type TicketsSumAggregateOutputType = {
+    ChannelType: number | null
   }
 
   export type TicketsMinAggregateOutputType = {
     id: string | null
     TicketId: string | null
+    CreatedAt: Date | null
+    ClosedAt: Date | null
     GuildId: string | null
+    ChannelType: number | null
     ChannelId: string | null
     ThreadId: string | null
     IsClaimed: boolean | null
@@ -34859,13 +35135,24 @@ export namespace Prisma {
     TicketOwnerId: string | null
     TranscriptChannelId: string | null
     TranscriptHTML: string | null
+    SendTranscriptToUser: boolean | null
+    OldTicketCategoryId: string | null
+    AutoReplyMessageTemplateId: string | null
+    AutoAssignHandler: string | null
+    TicketFeedbackChannelId: string | null
+    WithTicketFeedback: boolean | null
+    UserDMWhenCloseMessageTemplateId: string | null
+    OnlyClaimMode: boolean | null
     TicketSetupId: string | null
   }
 
   export type TicketsMaxAggregateOutputType = {
     id: string | null
     TicketId: string | null
+    CreatedAt: Date | null
+    ClosedAt: Date | null
     GuildId: string | null
+    ChannelType: number | null
     ChannelId: string | null
     ThreadId: string | null
     IsClaimed: boolean | null
@@ -34876,13 +35163,24 @@ export namespace Prisma {
     TicketOwnerId: string | null
     TranscriptChannelId: string | null
     TranscriptHTML: string | null
+    SendTranscriptToUser: boolean | null
+    OldTicketCategoryId: string | null
+    AutoReplyMessageTemplateId: string | null
+    AutoAssignHandler: string | null
+    TicketFeedbackChannelId: string | null
+    WithTicketFeedback: boolean | null
+    UserDMWhenCloseMessageTemplateId: string | null
+    OnlyClaimMode: boolean | null
     TicketSetupId: string | null
   }
 
   export type TicketsCountAggregateOutputType = {
     id: number
     TicketId: number
+    CreatedAt: number
+    ClosedAt: number
     GuildId: number
+    ChannelType: number
     ChannelId: number
     ThreadId: number
     IsClaimed: number
@@ -34892,19 +35190,38 @@ export namespace Prisma {
     IsLooked: number
     TicketOwnerId: number
     AddedMemberIds: number
-    Handlers: number
     TranscriptChannelId: number
     TranscriptHTML: number
     TicketNotes: number
+    SendTranscriptToUser: number
+    OldTicketCategoryId: number
+    AutoCloseAction: number
+    AutoReplyMessageTemplateId: number
+    AutoAssignHandler: number
+    TicketFeedbackChannelId: number
+    WithTicketFeedback: number
+    UserDMWhenCloseMessageTemplateId: number
+    OnlyClaimMode: number
     TicketSetupId: number
     _all: number
   }
 
 
+  export type TicketsAvgAggregateInputType = {
+    ChannelType?: true
+  }
+
+  export type TicketsSumAggregateInputType = {
+    ChannelType?: true
+  }
+
   export type TicketsMinAggregateInputType = {
     id?: true
     TicketId?: true
+    CreatedAt?: true
+    ClosedAt?: true
     GuildId?: true
+    ChannelType?: true
     ChannelId?: true
     ThreadId?: true
     IsClaimed?: true
@@ -34915,13 +35232,24 @@ export namespace Prisma {
     TicketOwnerId?: true
     TranscriptChannelId?: true
     TranscriptHTML?: true
+    SendTranscriptToUser?: true
+    OldTicketCategoryId?: true
+    AutoReplyMessageTemplateId?: true
+    AutoAssignHandler?: true
+    TicketFeedbackChannelId?: true
+    WithTicketFeedback?: true
+    UserDMWhenCloseMessageTemplateId?: true
+    OnlyClaimMode?: true
     TicketSetupId?: true
   }
 
   export type TicketsMaxAggregateInputType = {
     id?: true
     TicketId?: true
+    CreatedAt?: true
+    ClosedAt?: true
     GuildId?: true
+    ChannelType?: true
     ChannelId?: true
     ThreadId?: true
     IsClaimed?: true
@@ -34932,13 +35260,24 @@ export namespace Prisma {
     TicketOwnerId?: true
     TranscriptChannelId?: true
     TranscriptHTML?: true
+    SendTranscriptToUser?: true
+    OldTicketCategoryId?: true
+    AutoReplyMessageTemplateId?: true
+    AutoAssignHandler?: true
+    TicketFeedbackChannelId?: true
+    WithTicketFeedback?: true
+    UserDMWhenCloseMessageTemplateId?: true
+    OnlyClaimMode?: true
     TicketSetupId?: true
   }
 
   export type TicketsCountAggregateInputType = {
     id?: true
     TicketId?: true
+    CreatedAt?: true
+    ClosedAt?: true
     GuildId?: true
+    ChannelType?: true
     ChannelId?: true
     ThreadId?: true
     IsClaimed?: true
@@ -34948,10 +35287,18 @@ export namespace Prisma {
     IsLooked?: true
     TicketOwnerId?: true
     AddedMemberIds?: true
-    Handlers?: true
     TranscriptChannelId?: true
     TranscriptHTML?: true
     TicketNotes?: true
+    SendTranscriptToUser?: true
+    OldTicketCategoryId?: true
+    AutoCloseAction?: true
+    AutoReplyMessageTemplateId?: true
+    AutoAssignHandler?: true
+    TicketFeedbackChannelId?: true
+    WithTicketFeedback?: true
+    UserDMWhenCloseMessageTemplateId?: true
+    OnlyClaimMode?: true
     TicketSetupId?: true
     _all?: true
   }
@@ -34994,6 +35341,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: TicketsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TicketsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: TicketsMinAggregateInputType
@@ -35024,6 +35383,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: TicketsCountAggregateInputType | true
+    _avg?: TicketsAvgAggregateInputType
+    _sum?: TicketsSumAggregateInputType
     _min?: TicketsMinAggregateInputType
     _max?: TicketsMaxAggregateInputType
   }
@@ -35031,7 +35392,10 @@ export namespace Prisma {
   export type TicketsGroupByOutputType = {
     id: string
     TicketId: string
+    CreatedAt: Date
+    ClosedAt: Date | null
     GuildId: string
+    ChannelType: number
     ChannelId: string | null
     ThreadId: string | null
     IsClaimed: boolean | null
@@ -35041,12 +35405,22 @@ export namespace Prisma {
     IsLooked: boolean | null
     TicketOwnerId: string
     AddedMemberIds: string[]
-    Handlers: string[]
-    TranscriptChannelId: string
+    TranscriptChannelId: string | null
     TranscriptHTML: string | null
     TicketNotes: string[]
+    SendTranscriptToUser: boolean | null
+    OldTicketCategoryId: string | null
+    AutoCloseAction: string[]
+    AutoReplyMessageTemplateId: string | null
+    AutoAssignHandler: string | null
+    TicketFeedbackChannelId: string | null
+    WithTicketFeedback: boolean | null
+    UserDMWhenCloseMessageTemplateId: string | null
+    OnlyClaimMode: boolean | null
     TicketSetupId: string
     _count: TicketsCountAggregateOutputType | null
+    _avg: TicketsAvgAggregateOutputType | null
+    _sum: TicketsSumAggregateOutputType | null
     _min: TicketsMinAggregateOutputType | null
     _max: TicketsMaxAggregateOutputType | null
   }
@@ -35068,7 +35442,10 @@ export namespace Prisma {
   export type TicketsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     TicketId?: boolean
+    CreatedAt?: boolean
+    ClosedAt?: boolean
     GuildId?: boolean
+    ChannelType?: boolean
     ChannelId?: boolean
     ThreadId?: boolean
     IsClaimed?: boolean
@@ -35078,10 +35455,18 @@ export namespace Prisma {
     IsLooked?: boolean
     TicketOwnerId?: boolean
     AddedMemberIds?: boolean
-    Handlers?: boolean
     TranscriptChannelId?: boolean
     TranscriptHTML?: boolean
     TicketNotes?: boolean
+    SendTranscriptToUser?: boolean
+    OldTicketCategoryId?: boolean
+    AutoCloseAction?: boolean
+    AutoReplyMessageTemplateId?: boolean
+    AutoAssignHandler?: boolean
+    TicketFeedbackChannelId?: boolean
+    WithTicketFeedback?: boolean
+    UserDMWhenCloseMessageTemplateId?: boolean
+    OnlyClaimMode?: boolean
     TicketSetupId?: boolean
     TicketSetup?: boolean | TicketSetupsDefaultArgs<ExtArgs>
     TicketFeedback?: boolean | Tickets$TicketFeedbackArgs<ExtArgs>
@@ -35092,7 +35477,10 @@ export namespace Prisma {
   export type TicketsSelectScalar = {
     id?: boolean
     TicketId?: boolean
+    CreatedAt?: boolean
+    ClosedAt?: boolean
     GuildId?: boolean
+    ChannelType?: boolean
     ChannelId?: boolean
     ThreadId?: boolean
     IsClaimed?: boolean
@@ -35102,14 +35490,22 @@ export namespace Prisma {
     IsLooked?: boolean
     TicketOwnerId?: boolean
     AddedMemberIds?: boolean
-    Handlers?: boolean
     TranscriptChannelId?: boolean
     TranscriptHTML?: boolean
     TicketNotes?: boolean
+    SendTranscriptToUser?: boolean
+    OldTicketCategoryId?: boolean
+    AutoCloseAction?: boolean
+    AutoReplyMessageTemplateId?: boolean
+    AutoAssignHandler?: boolean
+    TicketFeedbackChannelId?: boolean
+    WithTicketFeedback?: boolean
+    UserDMWhenCloseMessageTemplateId?: boolean
+    OnlyClaimMode?: boolean
     TicketSetupId?: boolean
   }
 
-  export type TicketsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "TicketId" | "GuildId" | "ChannelId" | "ThreadId" | "IsClaimed" | "IsArchived" | "ArchiveMessageId" | "UserWhoHasClaimedId" | "IsLooked" | "TicketOwnerId" | "AddedMemberIds" | "Handlers" | "TranscriptChannelId" | "TranscriptHTML" | "TicketNotes" | "TicketSetupId", ExtArgs["result"]["tickets"]>
+  export type TicketsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "TicketId" | "CreatedAt" | "ClosedAt" | "GuildId" | "ChannelType" | "ChannelId" | "ThreadId" | "IsClaimed" | "IsArchived" | "ArchiveMessageId" | "UserWhoHasClaimedId" | "IsLooked" | "TicketOwnerId" | "AddedMemberIds" | "TranscriptChannelId" | "TranscriptHTML" | "TicketNotes" | "SendTranscriptToUser" | "OldTicketCategoryId" | "AutoCloseAction" | "AutoReplyMessageTemplateId" | "AutoAssignHandler" | "TicketFeedbackChannelId" | "WithTicketFeedback" | "UserDMWhenCloseMessageTemplateId" | "OnlyClaimMode" | "TicketSetupId", ExtArgs["result"]["tickets"]>
   export type TicketsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     TicketSetup?: boolean | TicketSetupsDefaultArgs<ExtArgs>
     TicketFeedback?: boolean | Tickets$TicketFeedbackArgs<ExtArgs>
@@ -35124,7 +35520,10 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       TicketId: string
+      CreatedAt: Date
+      ClosedAt: Date | null
       GuildId: string
+      ChannelType: number
       ChannelId: string | null
       ThreadId: string | null
       IsClaimed: boolean | null
@@ -35134,10 +35533,18 @@ export namespace Prisma {
       IsLooked: boolean | null
       TicketOwnerId: string
       AddedMemberIds: string[]
-      Handlers: string[]
-      TranscriptChannelId: string
+      TranscriptChannelId: string | null
       TranscriptHTML: string | null
       TicketNotes: string[]
+      SendTranscriptToUser: boolean | null
+      OldTicketCategoryId: string | null
+      AutoCloseAction: string[]
+      AutoReplyMessageTemplateId: string | null
+      AutoAssignHandler: string | null
+      TicketFeedbackChannelId: string | null
+      WithTicketFeedback: boolean | null
+      UserDMWhenCloseMessageTemplateId: string | null
+      OnlyClaimMode: boolean | null
       TicketSetupId: string
     }, ExtArgs["result"]["tickets"]>
     composites: {}
@@ -35535,7 +35942,10 @@ export namespace Prisma {
   interface TicketsFieldRefs {
     readonly id: FieldRef<"Tickets", 'String'>
     readonly TicketId: FieldRef<"Tickets", 'String'>
+    readonly CreatedAt: FieldRef<"Tickets", 'DateTime'>
+    readonly ClosedAt: FieldRef<"Tickets", 'DateTime'>
     readonly GuildId: FieldRef<"Tickets", 'String'>
+    readonly ChannelType: FieldRef<"Tickets", 'Int'>
     readonly ChannelId: FieldRef<"Tickets", 'String'>
     readonly ThreadId: FieldRef<"Tickets", 'String'>
     readonly IsClaimed: FieldRef<"Tickets", 'Boolean'>
@@ -35545,10 +35955,18 @@ export namespace Prisma {
     readonly IsLooked: FieldRef<"Tickets", 'Boolean'>
     readonly TicketOwnerId: FieldRef<"Tickets", 'String'>
     readonly AddedMemberIds: FieldRef<"Tickets", 'String[]'>
-    readonly Handlers: FieldRef<"Tickets", 'String[]'>
     readonly TranscriptChannelId: FieldRef<"Tickets", 'String'>
     readonly TranscriptHTML: FieldRef<"Tickets", 'String'>
     readonly TicketNotes: FieldRef<"Tickets", 'String[]'>
+    readonly SendTranscriptToUser: FieldRef<"Tickets", 'Boolean'>
+    readonly OldTicketCategoryId: FieldRef<"Tickets", 'String'>
+    readonly AutoCloseAction: FieldRef<"Tickets", 'String[]'>
+    readonly AutoReplyMessageTemplateId: FieldRef<"Tickets", 'String'>
+    readonly AutoAssignHandler: FieldRef<"Tickets", 'String'>
+    readonly TicketFeedbackChannelId: FieldRef<"Tickets", 'String'>
+    readonly WithTicketFeedback: FieldRef<"Tickets", 'Boolean'>
+    readonly UserDMWhenCloseMessageTemplateId: FieldRef<"Tickets", 'String'>
+    readonly OnlyClaimMode: FieldRef<"Tickets", 'Boolean'>
     readonly TicketSetupId: FieldRef<"Tickets", 'String'>
   }
     
@@ -52637,26 +53055,28 @@ export namespace Prisma {
   export const TicketSetupsScalarFieldEnum: {
     id: 'id',
     CategoryId: 'CategoryId',
-    Handlers: 'Handlers',
-    HandlerWithShadowPing: 'HandlerWithShadowPing',
+    ChannelType: 'ChannelType',
     CustomId: 'CustomId',
     TicketChannelName: 'TicketChannelName',
-    ChannelType: 'ChannelType',
-    MessageTempleateId: 'MessageTempleateId',
+    EnableTicketsOnlyFromTime: 'EnableTicketsOnlyFromTime',
+    MessageTemplateId: 'MessageTemplateId',
     TicketBlacklistRoles: 'TicketBlacklistRoles',
     TranscriptChannelId: 'TranscriptChannelId',
     HasModal: 'HasModal',
-    UserDMWhenCloseMessageTemplateId: 'UserDMWhenCloseMessageTemplateId',
+    ModalTitle: 'ModalTitle',
+    OnlyClaimMode: 'OnlyClaimMode',
     TicketLimit: 'TicketLimit',
+    UserDMWhenCloseMessageTemplateId: 'UserDMWhenCloseMessageTemplateId',
     WithTicketFeedback: 'WithTicketFeedback',
     TicketFeedbackChannelId: 'TicketFeedbackChannelId',
-    ModalTitle: 'ModalTitle',
     TicketCreationCooldownPerUser: 'TicketCreationCooldownPerUser',
     AutoCloseAfterInactivity: 'AutoCloseAfterInactivity',
+    AutoCloseAfterTime: 'AutoCloseAfterTime',
     AutoAssignHandler: 'AutoAssignHandler',
     AutoReplyMessageTemplateId: 'AutoReplyMessageTemplateId',
+    AutoCloseAction: 'AutoCloseAction',
+    OldTicketCategoryId: 'OldTicketCategoryId',
     RequiredRoles: 'RequiredRoles',
-    OpenTicketWithCommand: 'OpenTicketWithCommand',
     SlashCommandId: 'SlashCommandId',
     TextCommandName: 'TextCommandName',
     SendTranscriptToUser: 'SendTranscriptToUser',
@@ -52668,30 +53088,42 @@ export namespace Prisma {
 
   export const TicketModalDataScalarFieldEnum: {
     id: 'id',
+    UUID: 'UUID',
     Name: 'Name',
     Placeholder: 'Placeholder',
     Type: 'Type',
+    MinLength: 'MinLength',
+    MaxLength: 'MaxLength',
+    Required: 'Required',
     TicketSetupId: 'TicketSetupId'
   };
 
   export type TicketModalDataScalarFieldEnum = (typeof TicketModalDataScalarFieldEnum)[keyof typeof TicketModalDataScalarFieldEnum]
 
 
-  export const TicketHandlersScalarFieldEnum: {
+  export const TicketPermissionsScalarFieldEnum: {
     id: 'id',
+    UUID: 'UUID',
+    DiscordUserId: 'DiscordUserId',
     DiscordRoleId: 'DiscordRoleId',
-    TicketPermission: 'TicketPermission',
-    AddedDiscordPermission: 'AddedDiscordPermission',
-    RemovedDiscordPermission: 'RemovedDiscordPermission'
+    HasShadowPing: 'HasShadowPing',
+    IsHandler: 'IsHandler',
+    TicketPermissions: 'TicketPermissions',
+    AllowedDiscordPermissions: 'AllowedDiscordPermissions',
+    DeniedDiscordPermissions: 'DeniedDiscordPermissions',
+    TicketSetupId: 'TicketSetupId'
   };
 
-  export type TicketHandlersScalarFieldEnum = (typeof TicketHandlersScalarFieldEnum)[keyof typeof TicketHandlersScalarFieldEnum]
+  export type TicketPermissionsScalarFieldEnum = (typeof TicketPermissionsScalarFieldEnum)[keyof typeof TicketPermissionsScalarFieldEnum]
 
 
   export const TicketsScalarFieldEnum: {
     id: 'id',
     TicketId: 'TicketId',
+    CreatedAt: 'CreatedAt',
+    ClosedAt: 'ClosedAt',
     GuildId: 'GuildId',
+    ChannelType: 'ChannelType',
     ChannelId: 'ChannelId',
     ThreadId: 'ThreadId',
     IsClaimed: 'IsClaimed',
@@ -52701,10 +53133,18 @@ export namespace Prisma {
     IsLooked: 'IsLooked',
     TicketOwnerId: 'TicketOwnerId',
     AddedMemberIds: 'AddedMemberIds',
-    Handlers: 'Handlers',
     TranscriptChannelId: 'TranscriptChannelId',
     TranscriptHTML: 'TranscriptHTML',
     TicketNotes: 'TicketNotes',
+    SendTranscriptToUser: 'SendTranscriptToUser',
+    OldTicketCategoryId: 'OldTicketCategoryId',
+    AutoCloseAction: 'AutoCloseAction',
+    AutoReplyMessageTemplateId: 'AutoReplyMessageTemplateId',
+    AutoAssignHandler: 'AutoAssignHandler',
+    TicketFeedbackChannelId: 'TicketFeedbackChannelId',
+    WithTicketFeedback: 'WithTicketFeedback',
+    UserDMWhenCloseMessageTemplateId: 'UserDMWhenCloseMessageTemplateId',
+    OnlyClaimMode: 'OnlyClaimMode',
     TicketSetupId: 'TicketSetupId'
   };
 
@@ -52987,6 +53427,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'BigInt'
+   */
+  export type BigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt'>
+    
+
+
+  /**
+   * Reference to a field of type 'BigInt[]'
+   */
+  export type ListBigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt[]'>
     
 
 
@@ -54802,30 +55256,33 @@ export namespace Prisma {
     NOT?: TicketSetupsWhereInput | TicketSetupsWhereInput[]
     id?: StringFilter<"TicketSetups"> | string
     CategoryId?: StringNullableFilter<"TicketSetups"> | string | null
-    Handlers?: StringNullableListFilter<"TicketSetups">
-    HandlerWithShadowPing?: StringNullableListFilter<"TicketSetups">
+    ChannelType?: IntNullableFilter<"TicketSetups"> | number | null
     CustomId?: StringFilter<"TicketSetups"> | string
     TicketChannelName?: StringNullableFilter<"TicketSetups"> | string | null
-    ChannelType?: IntNullableFilter<"TicketSetups"> | number | null
-    MessageTempleateId?: StringNullableFilter<"TicketSetups"> | string | null
+    EnableTicketsOnlyFromTime?: StringNullableFilter<"TicketSetups"> | string | null
+    MessageTemplateId?: StringNullableFilter<"TicketSetups"> | string | null
     TicketBlacklistRoles?: StringNullableListFilter<"TicketSetups">
     TranscriptChannelId?: StringNullableFilter<"TicketSetups"> | string | null
     HasModal?: BoolNullableFilter<"TicketSetups"> | boolean | null
-    UserDMWhenCloseMessageTemplateId?: StringNullableFilter<"TicketSetups"> | string | null
+    ModalTitle?: StringNullableFilter<"TicketSetups"> | string | null
+    OnlyClaimMode?: BoolNullableFilter<"TicketSetups"> | boolean | null
     TicketLimit?: IntNullableFilter<"TicketSetups"> | number | null
+    UserDMWhenCloseMessageTemplateId?: StringNullableFilter<"TicketSetups"> | string | null
     WithTicketFeedback?: BoolNullableFilter<"TicketSetups"> | boolean | null
     TicketFeedbackChannelId?: StringNullableFilter<"TicketSetups"> | string | null
-    ModalTitle?: StringNullableFilter<"TicketSetups"> | string | null
     TicketCreationCooldownPerUser?: IntNullableFilter<"TicketSetups"> | number | null
     AutoCloseAfterInactivity?: IntNullableFilter<"TicketSetups"> | number | null
+    AutoCloseAfterTime?: IntNullableFilter<"TicketSetups"> | number | null
     AutoAssignHandler?: StringNullableFilter<"TicketSetups"> | string | null
     AutoReplyMessageTemplateId?: StringNullableFilter<"TicketSetups"> | string | null
+    AutoCloseAction?: StringNullableListFilter<"TicketSetups">
+    OldTicketCategoryId?: StringNullableFilter<"TicketSetups"> | string | null
     RequiredRoles?: StringNullableListFilter<"TicketSetups">
-    OpenTicketWithCommand?: BoolNullableFilter<"TicketSetups"> | boolean | null
     SlashCommandId?: StringNullableFilter<"TicketSetups"> | string | null
     TextCommandName?: StringNullableFilter<"TicketSetups"> | string | null
     SendTranscriptToUser?: BoolNullableFilter<"TicketSetups"> | boolean | null
     GuildId?: StringFilter<"TicketSetups"> | string
+    TicketPermissions?: TicketPermissionsListRelationFilter
     ModalOptions?: TicketModalDataListRelationFilter
     Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
     Tickets?: TicketsListRelationFilter
@@ -54834,30 +55291,33 @@ export namespace Prisma {
   export type TicketSetupsOrderByWithRelationInput = {
     id?: SortOrder
     CategoryId?: SortOrder
-    Handlers?: SortOrder
-    HandlerWithShadowPing?: SortOrder
+    ChannelType?: SortOrder
     CustomId?: SortOrder
     TicketChannelName?: SortOrder
-    ChannelType?: SortOrder
-    MessageTempleateId?: SortOrder
+    EnableTicketsOnlyFromTime?: SortOrder
+    MessageTemplateId?: SortOrder
     TicketBlacklistRoles?: SortOrder
     TranscriptChannelId?: SortOrder
     HasModal?: SortOrder
-    UserDMWhenCloseMessageTemplateId?: SortOrder
+    ModalTitle?: SortOrder
+    OnlyClaimMode?: SortOrder
     TicketLimit?: SortOrder
+    UserDMWhenCloseMessageTemplateId?: SortOrder
     WithTicketFeedback?: SortOrder
     TicketFeedbackChannelId?: SortOrder
-    ModalTitle?: SortOrder
     TicketCreationCooldownPerUser?: SortOrder
     AutoCloseAfterInactivity?: SortOrder
+    AutoCloseAfterTime?: SortOrder
     AutoAssignHandler?: SortOrder
     AutoReplyMessageTemplateId?: SortOrder
+    AutoCloseAction?: SortOrder
+    OldTicketCategoryId?: SortOrder
     RequiredRoles?: SortOrder
-    OpenTicketWithCommand?: SortOrder
     SlashCommandId?: SortOrder
     TextCommandName?: SortOrder
     SendTranscriptToUser?: SortOrder
     GuildId?: SortOrder
+    TicketPermissions?: TicketPermissionsOrderByRelationAggregateInput
     ModalOptions?: TicketModalDataOrderByRelationAggregateInput
     Guilds?: GuildsOrderByWithRelationInput
     Tickets?: TicketsOrderByRelationAggregateInput
@@ -54870,29 +55330,32 @@ export namespace Prisma {
     OR?: TicketSetupsWhereInput[]
     NOT?: TicketSetupsWhereInput | TicketSetupsWhereInput[]
     CategoryId?: StringNullableFilter<"TicketSetups"> | string | null
-    Handlers?: StringNullableListFilter<"TicketSetups">
-    HandlerWithShadowPing?: StringNullableListFilter<"TicketSetups">
-    TicketChannelName?: StringNullableFilter<"TicketSetups"> | string | null
     ChannelType?: IntNullableFilter<"TicketSetups"> | number | null
-    MessageTempleateId?: StringNullableFilter<"TicketSetups"> | string | null
+    TicketChannelName?: StringNullableFilter<"TicketSetups"> | string | null
+    EnableTicketsOnlyFromTime?: StringNullableFilter<"TicketSetups"> | string | null
+    MessageTemplateId?: StringNullableFilter<"TicketSetups"> | string | null
     TicketBlacklistRoles?: StringNullableListFilter<"TicketSetups">
     TranscriptChannelId?: StringNullableFilter<"TicketSetups"> | string | null
     HasModal?: BoolNullableFilter<"TicketSetups"> | boolean | null
-    UserDMWhenCloseMessageTemplateId?: StringNullableFilter<"TicketSetups"> | string | null
+    ModalTitle?: StringNullableFilter<"TicketSetups"> | string | null
+    OnlyClaimMode?: BoolNullableFilter<"TicketSetups"> | boolean | null
     TicketLimit?: IntNullableFilter<"TicketSetups"> | number | null
+    UserDMWhenCloseMessageTemplateId?: StringNullableFilter<"TicketSetups"> | string | null
     WithTicketFeedback?: BoolNullableFilter<"TicketSetups"> | boolean | null
     TicketFeedbackChannelId?: StringNullableFilter<"TicketSetups"> | string | null
-    ModalTitle?: StringNullableFilter<"TicketSetups"> | string | null
     TicketCreationCooldownPerUser?: IntNullableFilter<"TicketSetups"> | number | null
     AutoCloseAfterInactivity?: IntNullableFilter<"TicketSetups"> | number | null
+    AutoCloseAfterTime?: IntNullableFilter<"TicketSetups"> | number | null
     AutoAssignHandler?: StringNullableFilter<"TicketSetups"> | string | null
     AutoReplyMessageTemplateId?: StringNullableFilter<"TicketSetups"> | string | null
+    AutoCloseAction?: StringNullableListFilter<"TicketSetups">
+    OldTicketCategoryId?: StringNullableFilter<"TicketSetups"> | string | null
     RequiredRoles?: StringNullableListFilter<"TicketSetups">
-    OpenTicketWithCommand?: BoolNullableFilter<"TicketSetups"> | boolean | null
     SlashCommandId?: StringNullableFilter<"TicketSetups"> | string | null
     TextCommandName?: StringNullableFilter<"TicketSetups"> | string | null
     SendTranscriptToUser?: BoolNullableFilter<"TicketSetups"> | boolean | null
     GuildId?: StringFilter<"TicketSetups"> | string
+    TicketPermissions?: TicketPermissionsListRelationFilter
     ModalOptions?: TicketModalDataListRelationFilter
     Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
     Tickets?: TicketsListRelationFilter
@@ -54901,26 +55364,28 @@ export namespace Prisma {
   export type TicketSetupsOrderByWithAggregationInput = {
     id?: SortOrder
     CategoryId?: SortOrder
-    Handlers?: SortOrder
-    HandlerWithShadowPing?: SortOrder
+    ChannelType?: SortOrder
     CustomId?: SortOrder
     TicketChannelName?: SortOrder
-    ChannelType?: SortOrder
-    MessageTempleateId?: SortOrder
+    EnableTicketsOnlyFromTime?: SortOrder
+    MessageTemplateId?: SortOrder
     TicketBlacklistRoles?: SortOrder
     TranscriptChannelId?: SortOrder
     HasModal?: SortOrder
-    UserDMWhenCloseMessageTemplateId?: SortOrder
+    ModalTitle?: SortOrder
+    OnlyClaimMode?: SortOrder
     TicketLimit?: SortOrder
+    UserDMWhenCloseMessageTemplateId?: SortOrder
     WithTicketFeedback?: SortOrder
     TicketFeedbackChannelId?: SortOrder
-    ModalTitle?: SortOrder
     TicketCreationCooldownPerUser?: SortOrder
     AutoCloseAfterInactivity?: SortOrder
+    AutoCloseAfterTime?: SortOrder
     AutoAssignHandler?: SortOrder
     AutoReplyMessageTemplateId?: SortOrder
+    AutoCloseAction?: SortOrder
+    OldTicketCategoryId?: SortOrder
     RequiredRoles?: SortOrder
-    OpenTicketWithCommand?: SortOrder
     SlashCommandId?: SortOrder
     TextCommandName?: SortOrder
     SendTranscriptToUser?: SortOrder
@@ -54938,26 +55403,28 @@ export namespace Prisma {
     NOT?: TicketSetupsScalarWhereWithAggregatesInput | TicketSetupsScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"TicketSetups"> | string
     CategoryId?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
-    Handlers?: StringNullableListFilter<"TicketSetups">
-    HandlerWithShadowPing?: StringNullableListFilter<"TicketSetups">
+    ChannelType?: IntNullableWithAggregatesFilter<"TicketSetups"> | number | null
     CustomId?: StringWithAggregatesFilter<"TicketSetups"> | string
     TicketChannelName?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
-    ChannelType?: IntNullableWithAggregatesFilter<"TicketSetups"> | number | null
-    MessageTempleateId?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
+    EnableTicketsOnlyFromTime?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
+    MessageTemplateId?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
     TicketBlacklistRoles?: StringNullableListFilter<"TicketSetups">
     TranscriptChannelId?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
     HasModal?: BoolNullableWithAggregatesFilter<"TicketSetups"> | boolean | null
-    UserDMWhenCloseMessageTemplateId?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
+    ModalTitle?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
+    OnlyClaimMode?: BoolNullableWithAggregatesFilter<"TicketSetups"> | boolean | null
     TicketLimit?: IntNullableWithAggregatesFilter<"TicketSetups"> | number | null
+    UserDMWhenCloseMessageTemplateId?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
     WithTicketFeedback?: BoolNullableWithAggregatesFilter<"TicketSetups"> | boolean | null
     TicketFeedbackChannelId?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
-    ModalTitle?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
     TicketCreationCooldownPerUser?: IntNullableWithAggregatesFilter<"TicketSetups"> | number | null
     AutoCloseAfterInactivity?: IntNullableWithAggregatesFilter<"TicketSetups"> | number | null
+    AutoCloseAfterTime?: IntNullableWithAggregatesFilter<"TicketSetups"> | number | null
     AutoAssignHandler?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
     AutoReplyMessageTemplateId?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
+    AutoCloseAction?: StringNullableListFilter<"TicketSetups">
+    OldTicketCategoryId?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
     RequiredRoles?: StringNullableListFilter<"TicketSetups">
-    OpenTicketWithCommand?: BoolNullableWithAggregatesFilter<"TicketSetups"> | boolean | null
     SlashCommandId?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
     TextCommandName?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
     SendTranscriptToUser?: BoolNullableWithAggregatesFilter<"TicketSetups"> | boolean | null
@@ -54969,39 +55436,55 @@ export namespace Prisma {
     OR?: TicketModalDataWhereInput[]
     NOT?: TicketModalDataWhereInput | TicketModalDataWhereInput[]
     id?: StringFilter<"TicketModalData"> | string
+    UUID?: StringFilter<"TicketModalData"> | string
     Name?: StringFilter<"TicketModalData"> | string
-    Placeholder?: StringFilter<"TicketModalData"> | string
+    Placeholder?: StringNullableFilter<"TicketModalData"> | string | null
     Type?: IntFilter<"TicketModalData"> | number
+    MinLength?: IntNullableFilter<"TicketModalData"> | number | null
+    MaxLength?: IntNullableFilter<"TicketModalData"> | number | null
+    Required?: BoolFilter<"TicketModalData"> | boolean
     TicketSetupId?: StringFilter<"TicketModalData"> | string
     TicketSetup?: XOR<TicketSetupsScalarRelationFilter, TicketSetupsWhereInput>
   }
 
   export type TicketModalDataOrderByWithRelationInput = {
     id?: SortOrder
+    UUID?: SortOrder
     Name?: SortOrder
     Placeholder?: SortOrder
     Type?: SortOrder
+    MinLength?: SortOrder
+    MaxLength?: SortOrder
+    Required?: SortOrder
     TicketSetupId?: SortOrder
     TicketSetup?: TicketSetupsOrderByWithRelationInput
   }
 
   export type TicketModalDataWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    UUID?: string
     AND?: TicketModalDataWhereInput | TicketModalDataWhereInput[]
     OR?: TicketModalDataWhereInput[]
     NOT?: TicketModalDataWhereInput | TicketModalDataWhereInput[]
     Name?: StringFilter<"TicketModalData"> | string
-    Placeholder?: StringFilter<"TicketModalData"> | string
+    Placeholder?: StringNullableFilter<"TicketModalData"> | string | null
     Type?: IntFilter<"TicketModalData"> | number
+    MinLength?: IntNullableFilter<"TicketModalData"> | number | null
+    MaxLength?: IntNullableFilter<"TicketModalData"> | number | null
+    Required?: BoolFilter<"TicketModalData"> | boolean
     TicketSetupId?: StringFilter<"TicketModalData"> | string
     TicketSetup?: XOR<TicketSetupsScalarRelationFilter, TicketSetupsWhereInput>
-  }, "id">
+  }, "id" | "UUID">
 
   export type TicketModalDataOrderByWithAggregationInput = {
     id?: SortOrder
+    UUID?: SortOrder
     Name?: SortOrder
     Placeholder?: SortOrder
     Type?: SortOrder
+    MinLength?: SortOrder
+    MaxLength?: SortOrder
+    Required?: SortOrder
     TicketSetupId?: SortOrder
     _count?: TicketModalDataCountOrderByAggregateInput
     _avg?: TicketModalDataAvgOrderByAggregateInput
@@ -55015,62 +55498,96 @@ export namespace Prisma {
     OR?: TicketModalDataScalarWhereWithAggregatesInput[]
     NOT?: TicketModalDataScalarWhereWithAggregatesInput | TicketModalDataScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"TicketModalData"> | string
+    UUID?: StringWithAggregatesFilter<"TicketModalData"> | string
     Name?: StringWithAggregatesFilter<"TicketModalData"> | string
-    Placeholder?: StringWithAggregatesFilter<"TicketModalData"> | string
+    Placeholder?: StringNullableWithAggregatesFilter<"TicketModalData"> | string | null
     Type?: IntWithAggregatesFilter<"TicketModalData"> | number
+    MinLength?: IntNullableWithAggregatesFilter<"TicketModalData"> | number | null
+    MaxLength?: IntNullableWithAggregatesFilter<"TicketModalData"> | number | null
+    Required?: BoolWithAggregatesFilter<"TicketModalData"> | boolean
     TicketSetupId?: StringWithAggregatesFilter<"TicketModalData"> | string
   }
 
-  export type TicketHandlersWhereInput = {
-    AND?: TicketHandlersWhereInput | TicketHandlersWhereInput[]
-    OR?: TicketHandlersWhereInput[]
-    NOT?: TicketHandlersWhereInput | TicketHandlersWhereInput[]
-    id?: StringFilter<"TicketHandlers"> | string
-    DiscordRoleId?: StringFilter<"TicketHandlers"> | string
-    TicketPermission?: StringNullableFilter<"TicketHandlers"> | string | null
-    AddedDiscordPermission?: StringNullableListFilter<"TicketHandlers">
-    RemovedDiscordPermission?: StringNullableListFilter<"TicketHandlers">
+  export type TicketPermissionsWhereInput = {
+    AND?: TicketPermissionsWhereInput | TicketPermissionsWhereInput[]
+    OR?: TicketPermissionsWhereInput[]
+    NOT?: TicketPermissionsWhereInput | TicketPermissionsWhereInput[]
+    id?: StringFilter<"TicketPermissions"> | string
+    UUID?: StringFilter<"TicketPermissions"> | string
+    DiscordUserId?: StringNullableFilter<"TicketPermissions"> | string | null
+    DiscordRoleId?: StringNullableFilter<"TicketPermissions"> | string | null
+    HasShadowPing?: BoolNullableFilter<"TicketPermissions"> | boolean | null
+    IsHandler?: BoolFilter<"TicketPermissions"> | boolean
+    TicketPermissions?: StringNullableListFilter<"TicketPermissions">
+    AllowedDiscordPermissions?: BigIntNullableFilter<"TicketPermissions"> | bigint | number | null
+    DeniedDiscordPermissions?: BigIntNullableFilter<"TicketPermissions"> | bigint | number | null
+    TicketSetupId?: StringFilter<"TicketPermissions"> | string
+    TicketSetup?: XOR<TicketSetupsScalarRelationFilter, TicketSetupsWhereInput>
   }
 
-  export type TicketHandlersOrderByWithRelationInput = {
+  export type TicketPermissionsOrderByWithRelationInput = {
     id?: SortOrder
+    UUID?: SortOrder
+    DiscordUserId?: SortOrder
     DiscordRoleId?: SortOrder
-    TicketPermission?: SortOrder
-    AddedDiscordPermission?: SortOrder
-    RemovedDiscordPermission?: SortOrder
+    HasShadowPing?: SortOrder
+    IsHandler?: SortOrder
+    TicketPermissions?: SortOrder
+    AllowedDiscordPermissions?: SortOrder
+    DeniedDiscordPermissions?: SortOrder
+    TicketSetupId?: SortOrder
+    TicketSetup?: TicketSetupsOrderByWithRelationInput
   }
 
-  export type TicketHandlersWhereUniqueInput = Prisma.AtLeast<{
+  export type TicketPermissionsWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    AND?: TicketHandlersWhereInput | TicketHandlersWhereInput[]
-    OR?: TicketHandlersWhereInput[]
-    NOT?: TicketHandlersWhereInput | TicketHandlersWhereInput[]
-    DiscordRoleId?: StringFilter<"TicketHandlers"> | string
-    TicketPermission?: StringNullableFilter<"TicketHandlers"> | string | null
-    AddedDiscordPermission?: StringNullableListFilter<"TicketHandlers">
-    RemovedDiscordPermission?: StringNullableListFilter<"TicketHandlers">
-  }, "id">
+    UUID?: string
+    AND?: TicketPermissionsWhereInput | TicketPermissionsWhereInput[]
+    OR?: TicketPermissionsWhereInput[]
+    NOT?: TicketPermissionsWhereInput | TicketPermissionsWhereInput[]
+    DiscordUserId?: StringNullableFilter<"TicketPermissions"> | string | null
+    DiscordRoleId?: StringNullableFilter<"TicketPermissions"> | string | null
+    HasShadowPing?: BoolNullableFilter<"TicketPermissions"> | boolean | null
+    IsHandler?: BoolFilter<"TicketPermissions"> | boolean
+    TicketPermissions?: StringNullableListFilter<"TicketPermissions">
+    AllowedDiscordPermissions?: BigIntNullableFilter<"TicketPermissions"> | bigint | number | null
+    DeniedDiscordPermissions?: BigIntNullableFilter<"TicketPermissions"> | bigint | number | null
+    TicketSetupId?: StringFilter<"TicketPermissions"> | string
+    TicketSetup?: XOR<TicketSetupsScalarRelationFilter, TicketSetupsWhereInput>
+  }, "id" | "UUID">
 
-  export type TicketHandlersOrderByWithAggregationInput = {
+  export type TicketPermissionsOrderByWithAggregationInput = {
     id?: SortOrder
+    UUID?: SortOrder
+    DiscordUserId?: SortOrder
     DiscordRoleId?: SortOrder
-    TicketPermission?: SortOrder
-    AddedDiscordPermission?: SortOrder
-    RemovedDiscordPermission?: SortOrder
-    _count?: TicketHandlersCountOrderByAggregateInput
-    _max?: TicketHandlersMaxOrderByAggregateInput
-    _min?: TicketHandlersMinOrderByAggregateInput
+    HasShadowPing?: SortOrder
+    IsHandler?: SortOrder
+    TicketPermissions?: SortOrder
+    AllowedDiscordPermissions?: SortOrder
+    DeniedDiscordPermissions?: SortOrder
+    TicketSetupId?: SortOrder
+    _count?: TicketPermissionsCountOrderByAggregateInput
+    _avg?: TicketPermissionsAvgOrderByAggregateInput
+    _max?: TicketPermissionsMaxOrderByAggregateInput
+    _min?: TicketPermissionsMinOrderByAggregateInput
+    _sum?: TicketPermissionsSumOrderByAggregateInput
   }
 
-  export type TicketHandlersScalarWhereWithAggregatesInput = {
-    AND?: TicketHandlersScalarWhereWithAggregatesInput | TicketHandlersScalarWhereWithAggregatesInput[]
-    OR?: TicketHandlersScalarWhereWithAggregatesInput[]
-    NOT?: TicketHandlersScalarWhereWithAggregatesInput | TicketHandlersScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"TicketHandlers"> | string
-    DiscordRoleId?: StringWithAggregatesFilter<"TicketHandlers"> | string
-    TicketPermission?: StringNullableWithAggregatesFilter<"TicketHandlers"> | string | null
-    AddedDiscordPermission?: StringNullableListFilter<"TicketHandlers">
-    RemovedDiscordPermission?: StringNullableListFilter<"TicketHandlers">
+  export type TicketPermissionsScalarWhereWithAggregatesInput = {
+    AND?: TicketPermissionsScalarWhereWithAggregatesInput | TicketPermissionsScalarWhereWithAggregatesInput[]
+    OR?: TicketPermissionsScalarWhereWithAggregatesInput[]
+    NOT?: TicketPermissionsScalarWhereWithAggregatesInput | TicketPermissionsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TicketPermissions"> | string
+    UUID?: StringWithAggregatesFilter<"TicketPermissions"> | string
+    DiscordUserId?: StringNullableWithAggregatesFilter<"TicketPermissions"> | string | null
+    DiscordRoleId?: StringNullableWithAggregatesFilter<"TicketPermissions"> | string | null
+    HasShadowPing?: BoolNullableWithAggregatesFilter<"TicketPermissions"> | boolean | null
+    IsHandler?: BoolWithAggregatesFilter<"TicketPermissions"> | boolean
+    TicketPermissions?: StringNullableListFilter<"TicketPermissions">
+    AllowedDiscordPermissions?: BigIntNullableWithAggregatesFilter<"TicketPermissions"> | bigint | number | null
+    DeniedDiscordPermissions?: BigIntNullableWithAggregatesFilter<"TicketPermissions"> | bigint | number | null
+    TicketSetupId?: StringWithAggregatesFilter<"TicketPermissions"> | string
   }
 
   export type TicketsWhereInput = {
@@ -55079,7 +55596,10 @@ export namespace Prisma {
     NOT?: TicketsWhereInput | TicketsWhereInput[]
     id?: StringFilter<"Tickets"> | string
     TicketId?: StringFilter<"Tickets"> | string
+    CreatedAt?: DateTimeFilter<"Tickets"> | Date | string
+    ClosedAt?: DateTimeNullableFilter<"Tickets"> | Date | string | null
     GuildId?: StringFilter<"Tickets"> | string
+    ChannelType?: IntFilter<"Tickets"> | number
     ChannelId?: StringNullableFilter<"Tickets"> | string | null
     ThreadId?: StringNullableFilter<"Tickets"> | string | null
     IsClaimed?: BoolNullableFilter<"Tickets"> | boolean | null
@@ -55089,10 +55609,18 @@ export namespace Prisma {
     IsLooked?: BoolNullableFilter<"Tickets"> | boolean | null
     TicketOwnerId?: StringFilter<"Tickets"> | string
     AddedMemberIds?: StringNullableListFilter<"Tickets">
-    Handlers?: StringNullableListFilter<"Tickets">
-    TranscriptChannelId?: StringFilter<"Tickets"> | string
+    TranscriptChannelId?: StringNullableFilter<"Tickets"> | string | null
     TranscriptHTML?: StringNullableFilter<"Tickets"> | string | null
     TicketNotes?: StringNullableListFilter<"Tickets">
+    SendTranscriptToUser?: BoolNullableFilter<"Tickets"> | boolean | null
+    OldTicketCategoryId?: StringNullableFilter<"Tickets"> | string | null
+    AutoCloseAction?: StringNullableListFilter<"Tickets">
+    AutoReplyMessageTemplateId?: StringNullableFilter<"Tickets"> | string | null
+    AutoAssignHandler?: StringNullableFilter<"Tickets"> | string | null
+    TicketFeedbackChannelId?: StringNullableFilter<"Tickets"> | string | null
+    WithTicketFeedback?: BoolNullableFilter<"Tickets"> | boolean | null
+    UserDMWhenCloseMessageTemplateId?: StringNullableFilter<"Tickets"> | string | null
+    OnlyClaimMode?: BoolNullableFilter<"Tickets"> | boolean | null
     TicketSetupId?: StringFilter<"Tickets"> | string
     TicketSetup?: XOR<TicketSetupsScalarRelationFilter, TicketSetupsWhereInput>
     TicketFeedback?: XOR<TicketFeedbackNullableScalarRelationFilter, TicketFeedbackWhereInput> | null
@@ -55101,7 +55629,10 @@ export namespace Prisma {
   export type TicketsOrderByWithRelationInput = {
     id?: SortOrder
     TicketId?: SortOrder
+    CreatedAt?: SortOrder
+    ClosedAt?: SortOrder
     GuildId?: SortOrder
+    ChannelType?: SortOrder
     ChannelId?: SortOrder
     ThreadId?: SortOrder
     IsClaimed?: SortOrder
@@ -55111,10 +55642,18 @@ export namespace Prisma {
     IsLooked?: SortOrder
     TicketOwnerId?: SortOrder
     AddedMemberIds?: SortOrder
-    Handlers?: SortOrder
     TranscriptChannelId?: SortOrder
     TranscriptHTML?: SortOrder
     TicketNotes?: SortOrder
+    SendTranscriptToUser?: SortOrder
+    OldTicketCategoryId?: SortOrder
+    AutoCloseAction?: SortOrder
+    AutoReplyMessageTemplateId?: SortOrder
+    AutoAssignHandler?: SortOrder
+    TicketFeedbackChannelId?: SortOrder
+    WithTicketFeedback?: SortOrder
+    UserDMWhenCloseMessageTemplateId?: SortOrder
+    OnlyClaimMode?: SortOrder
     TicketSetupId?: SortOrder
     TicketSetup?: TicketSetupsOrderByWithRelationInput
     TicketFeedback?: TicketFeedbackOrderByWithRelationInput
@@ -55126,7 +55665,10 @@ export namespace Prisma {
     AND?: TicketsWhereInput | TicketsWhereInput[]
     OR?: TicketsWhereInput[]
     NOT?: TicketsWhereInput | TicketsWhereInput[]
+    CreatedAt?: DateTimeFilter<"Tickets"> | Date | string
+    ClosedAt?: DateTimeNullableFilter<"Tickets"> | Date | string | null
     GuildId?: StringFilter<"Tickets"> | string
+    ChannelType?: IntFilter<"Tickets"> | number
     ChannelId?: StringNullableFilter<"Tickets"> | string | null
     ThreadId?: StringNullableFilter<"Tickets"> | string | null
     IsClaimed?: BoolNullableFilter<"Tickets"> | boolean | null
@@ -55136,10 +55678,18 @@ export namespace Prisma {
     IsLooked?: BoolNullableFilter<"Tickets"> | boolean | null
     TicketOwnerId?: StringFilter<"Tickets"> | string
     AddedMemberIds?: StringNullableListFilter<"Tickets">
-    Handlers?: StringNullableListFilter<"Tickets">
-    TranscriptChannelId?: StringFilter<"Tickets"> | string
+    TranscriptChannelId?: StringNullableFilter<"Tickets"> | string | null
     TranscriptHTML?: StringNullableFilter<"Tickets"> | string | null
     TicketNotes?: StringNullableListFilter<"Tickets">
+    SendTranscriptToUser?: BoolNullableFilter<"Tickets"> | boolean | null
+    OldTicketCategoryId?: StringNullableFilter<"Tickets"> | string | null
+    AutoCloseAction?: StringNullableListFilter<"Tickets">
+    AutoReplyMessageTemplateId?: StringNullableFilter<"Tickets"> | string | null
+    AutoAssignHandler?: StringNullableFilter<"Tickets"> | string | null
+    TicketFeedbackChannelId?: StringNullableFilter<"Tickets"> | string | null
+    WithTicketFeedback?: BoolNullableFilter<"Tickets"> | boolean | null
+    UserDMWhenCloseMessageTemplateId?: StringNullableFilter<"Tickets"> | string | null
+    OnlyClaimMode?: BoolNullableFilter<"Tickets"> | boolean | null
     TicketSetupId?: StringFilter<"Tickets"> | string
     TicketSetup?: XOR<TicketSetupsScalarRelationFilter, TicketSetupsWhereInput>
     TicketFeedback?: XOR<TicketFeedbackNullableScalarRelationFilter, TicketFeedbackWhereInput> | null
@@ -55148,7 +55698,10 @@ export namespace Prisma {
   export type TicketsOrderByWithAggregationInput = {
     id?: SortOrder
     TicketId?: SortOrder
+    CreatedAt?: SortOrder
+    ClosedAt?: SortOrder
     GuildId?: SortOrder
+    ChannelType?: SortOrder
     ChannelId?: SortOrder
     ThreadId?: SortOrder
     IsClaimed?: SortOrder
@@ -55158,14 +55711,24 @@ export namespace Prisma {
     IsLooked?: SortOrder
     TicketOwnerId?: SortOrder
     AddedMemberIds?: SortOrder
-    Handlers?: SortOrder
     TranscriptChannelId?: SortOrder
     TranscriptHTML?: SortOrder
     TicketNotes?: SortOrder
+    SendTranscriptToUser?: SortOrder
+    OldTicketCategoryId?: SortOrder
+    AutoCloseAction?: SortOrder
+    AutoReplyMessageTemplateId?: SortOrder
+    AutoAssignHandler?: SortOrder
+    TicketFeedbackChannelId?: SortOrder
+    WithTicketFeedback?: SortOrder
+    UserDMWhenCloseMessageTemplateId?: SortOrder
+    OnlyClaimMode?: SortOrder
     TicketSetupId?: SortOrder
     _count?: TicketsCountOrderByAggregateInput
+    _avg?: TicketsAvgOrderByAggregateInput
     _max?: TicketsMaxOrderByAggregateInput
     _min?: TicketsMinOrderByAggregateInput
+    _sum?: TicketsSumOrderByAggregateInput
   }
 
   export type TicketsScalarWhereWithAggregatesInput = {
@@ -55174,7 +55737,10 @@ export namespace Prisma {
     NOT?: TicketsScalarWhereWithAggregatesInput | TicketsScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Tickets"> | string
     TicketId?: StringWithAggregatesFilter<"Tickets"> | string
+    CreatedAt?: DateTimeWithAggregatesFilter<"Tickets"> | Date | string
+    ClosedAt?: DateTimeNullableWithAggregatesFilter<"Tickets"> | Date | string | null
     GuildId?: StringWithAggregatesFilter<"Tickets"> | string
+    ChannelType?: IntWithAggregatesFilter<"Tickets"> | number
     ChannelId?: StringNullableWithAggregatesFilter<"Tickets"> | string | null
     ThreadId?: StringNullableWithAggregatesFilter<"Tickets"> | string | null
     IsClaimed?: BoolNullableWithAggregatesFilter<"Tickets"> | boolean | null
@@ -55184,10 +55750,18 @@ export namespace Prisma {
     IsLooked?: BoolNullableWithAggregatesFilter<"Tickets"> | boolean | null
     TicketOwnerId?: StringWithAggregatesFilter<"Tickets"> | string
     AddedMemberIds?: StringNullableListFilter<"Tickets">
-    Handlers?: StringNullableListFilter<"Tickets">
-    TranscriptChannelId?: StringWithAggregatesFilter<"Tickets"> | string
+    TranscriptChannelId?: StringNullableWithAggregatesFilter<"Tickets"> | string | null
     TranscriptHTML?: StringNullableWithAggregatesFilter<"Tickets"> | string | null
     TicketNotes?: StringNullableListFilter<"Tickets">
+    SendTranscriptToUser?: BoolNullableWithAggregatesFilter<"Tickets"> | boolean | null
+    OldTicketCategoryId?: StringNullableWithAggregatesFilter<"Tickets"> | string | null
+    AutoCloseAction?: StringNullableListFilter<"Tickets">
+    AutoReplyMessageTemplateId?: StringNullableWithAggregatesFilter<"Tickets"> | string | null
+    AutoAssignHandler?: StringNullableWithAggregatesFilter<"Tickets"> | string | null
+    TicketFeedbackChannelId?: StringNullableWithAggregatesFilter<"Tickets"> | string | null
+    WithTicketFeedback?: BoolNullableWithAggregatesFilter<"Tickets"> | boolean | null
+    UserDMWhenCloseMessageTemplateId?: StringNullableWithAggregatesFilter<"Tickets"> | string | null
+    OnlyClaimMode?: BoolNullableWithAggregatesFilter<"Tickets"> | boolean | null
     TicketSetupId?: StringWithAggregatesFilter<"Tickets"> | string
   }
 
@@ -58121,29 +58695,32 @@ export namespace Prisma {
   export type TicketSetupsCreateInput = {
     id?: string
     CategoryId?: string | null
-    Handlers?: TicketSetupsCreateHandlersInput | string[]
-    HandlerWithShadowPing?: TicketSetupsCreateHandlerWithShadowPingInput | string[]
+    ChannelType?: number | null
     CustomId: string
     TicketChannelName?: string | null
-    ChannelType?: number | null
-    MessageTempleateId?: string | null
+    EnableTicketsOnlyFromTime?: string | null
+    MessageTemplateId?: string | null
     TicketBlacklistRoles?: TicketSetupsCreateTicketBlacklistRolesInput | string[]
     TranscriptChannelId?: string | null
     HasModal?: boolean | null
-    UserDMWhenCloseMessageTemplateId?: string | null
+    ModalTitle?: string | null
+    OnlyClaimMode?: boolean | null
     TicketLimit?: number | null
+    UserDMWhenCloseMessageTemplateId?: string | null
     WithTicketFeedback?: boolean | null
     TicketFeedbackChannelId?: string | null
-    ModalTitle?: string | null
     TicketCreationCooldownPerUser?: number | null
     AutoCloseAfterInactivity?: number | null
+    AutoCloseAfterTime?: number | null
     AutoAssignHandler?: string | null
     AutoReplyMessageTemplateId?: string | null
+    AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
+    OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
-    OpenTicketWithCommand?: boolean | null
     SlashCommandId?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
+    TicketPermissions?: TicketPermissionsCreateNestedManyWithoutTicketSetupInput
     ModalOptions?: TicketModalDataCreateNestedManyWithoutTicketSetupInput
     Guilds: GuildsCreateNestedOneWithoutTicketSetupsInput
     Tickets?: TicketsCreateNestedManyWithoutTicketSetupInput
@@ -58152,59 +58729,65 @@ export namespace Prisma {
   export type TicketSetupsUncheckedCreateInput = {
     id?: string
     CategoryId?: string | null
-    Handlers?: TicketSetupsCreateHandlersInput | string[]
-    HandlerWithShadowPing?: TicketSetupsCreateHandlerWithShadowPingInput | string[]
+    ChannelType?: number | null
     CustomId: string
     TicketChannelName?: string | null
-    ChannelType?: number | null
-    MessageTempleateId?: string | null
+    EnableTicketsOnlyFromTime?: string | null
+    MessageTemplateId?: string | null
     TicketBlacklistRoles?: TicketSetupsCreateTicketBlacklistRolesInput | string[]
     TranscriptChannelId?: string | null
     HasModal?: boolean | null
-    UserDMWhenCloseMessageTemplateId?: string | null
+    ModalTitle?: string | null
+    OnlyClaimMode?: boolean | null
     TicketLimit?: number | null
+    UserDMWhenCloseMessageTemplateId?: string | null
     WithTicketFeedback?: boolean | null
     TicketFeedbackChannelId?: string | null
-    ModalTitle?: string | null
     TicketCreationCooldownPerUser?: number | null
     AutoCloseAfterInactivity?: number | null
+    AutoCloseAfterTime?: number | null
     AutoAssignHandler?: string | null
     AutoReplyMessageTemplateId?: string | null
+    AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
+    OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
-    OpenTicketWithCommand?: boolean | null
     SlashCommandId?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
     GuildId: string
+    TicketPermissions?: TicketPermissionsUncheckedCreateNestedManyWithoutTicketSetupInput
     ModalOptions?: TicketModalDataUncheckedCreateNestedManyWithoutTicketSetupInput
     Tickets?: TicketsUncheckedCreateNestedManyWithoutTicketSetupInput
   }
 
   export type TicketSetupsUpdateInput = {
     CategoryId?: NullableStringFieldUpdateOperationsInput | string | null
-    Handlers?: TicketSetupsUpdateHandlersInput | string[]
-    HandlerWithShadowPing?: TicketSetupsUpdateHandlerWithShadowPingInput | string[]
+    ChannelType?: NullableIntFieldUpdateOperationsInput | number | null
     CustomId?: StringFieldUpdateOperationsInput | string
     TicketChannelName?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelType?: NullableIntFieldUpdateOperationsInput | number | null
-    MessageTempleateId?: NullableStringFieldUpdateOperationsInput | string | null
+    EnableTicketsOnlyFromTime?: NullableStringFieldUpdateOperationsInput | string | null
+    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     TicketBlacklistRoles?: TicketSetupsUpdateTicketBlacklistRolesInput | string[]
     TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     HasModal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    ModalTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    OnlyClaimMode?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketLimit?: NullableIntFieldUpdateOperationsInput | number | null
+    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     WithTicketFeedback?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    ModalTitle?: NullableStringFieldUpdateOperationsInput | string | null
     TicketCreationCooldownPerUser?: NullableIntFieldUpdateOperationsInput | number | null
     AutoCloseAfterInactivity?: NullableIntFieldUpdateOperationsInput | number | null
+    AutoCloseAfterTime?: NullableIntFieldUpdateOperationsInput | number | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
+    OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
-    OpenTicketWithCommand?: NullableBoolFieldUpdateOperationsInput | boolean | null
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    TicketPermissions?: TicketPermissionsUpdateManyWithoutTicketSetupNestedInput
     ModalOptions?: TicketModalDataUpdateManyWithoutTicketSetupNestedInput
     Guilds?: GuildsUpdateOneRequiredWithoutTicketSetupsNestedInput
     Tickets?: TicketsUpdateManyWithoutTicketSetupNestedInput
@@ -58212,30 +58795,33 @@ export namespace Prisma {
 
   export type TicketSetupsUncheckedUpdateInput = {
     CategoryId?: NullableStringFieldUpdateOperationsInput | string | null
-    Handlers?: TicketSetupsUpdateHandlersInput | string[]
-    HandlerWithShadowPing?: TicketSetupsUpdateHandlerWithShadowPingInput | string[]
+    ChannelType?: NullableIntFieldUpdateOperationsInput | number | null
     CustomId?: StringFieldUpdateOperationsInput | string
     TicketChannelName?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelType?: NullableIntFieldUpdateOperationsInput | number | null
-    MessageTempleateId?: NullableStringFieldUpdateOperationsInput | string | null
+    EnableTicketsOnlyFromTime?: NullableStringFieldUpdateOperationsInput | string | null
+    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     TicketBlacklistRoles?: TicketSetupsUpdateTicketBlacklistRolesInput | string[]
     TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     HasModal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    ModalTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    OnlyClaimMode?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketLimit?: NullableIntFieldUpdateOperationsInput | number | null
+    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     WithTicketFeedback?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    ModalTitle?: NullableStringFieldUpdateOperationsInput | string | null
     TicketCreationCooldownPerUser?: NullableIntFieldUpdateOperationsInput | number | null
     AutoCloseAfterInactivity?: NullableIntFieldUpdateOperationsInput | number | null
+    AutoCloseAfterTime?: NullableIntFieldUpdateOperationsInput | number | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
+    OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
-    OpenTicketWithCommand?: NullableBoolFieldUpdateOperationsInput | boolean | null
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
     GuildId?: StringFieldUpdateOperationsInput | string
+    TicketPermissions?: TicketPermissionsUncheckedUpdateManyWithoutTicketSetupNestedInput
     ModalOptions?: TicketModalDataUncheckedUpdateManyWithoutTicketSetupNestedInput
     Tickets?: TicketsUncheckedUpdateManyWithoutTicketSetupNestedInput
   }
@@ -58243,26 +58829,28 @@ export namespace Prisma {
   export type TicketSetupsCreateManyInput = {
     id?: string
     CategoryId?: string | null
-    Handlers?: TicketSetupsCreateHandlersInput | string[]
-    HandlerWithShadowPing?: TicketSetupsCreateHandlerWithShadowPingInput | string[]
+    ChannelType?: number | null
     CustomId: string
     TicketChannelName?: string | null
-    ChannelType?: number | null
-    MessageTempleateId?: string | null
+    EnableTicketsOnlyFromTime?: string | null
+    MessageTemplateId?: string | null
     TicketBlacklistRoles?: TicketSetupsCreateTicketBlacklistRolesInput | string[]
     TranscriptChannelId?: string | null
     HasModal?: boolean | null
-    UserDMWhenCloseMessageTemplateId?: string | null
+    ModalTitle?: string | null
+    OnlyClaimMode?: boolean | null
     TicketLimit?: number | null
+    UserDMWhenCloseMessageTemplateId?: string | null
     WithTicketFeedback?: boolean | null
     TicketFeedbackChannelId?: string | null
-    ModalTitle?: string | null
     TicketCreationCooldownPerUser?: number | null
     AutoCloseAfterInactivity?: number | null
+    AutoCloseAfterTime?: number | null
     AutoAssignHandler?: string | null
     AutoReplyMessageTemplateId?: string | null
+    AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
+    OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
-    OpenTicketWithCommand?: boolean | null
     SlashCommandId?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
@@ -58271,26 +58859,28 @@ export namespace Prisma {
 
   export type TicketSetupsUpdateManyMutationInput = {
     CategoryId?: NullableStringFieldUpdateOperationsInput | string | null
-    Handlers?: TicketSetupsUpdateHandlersInput | string[]
-    HandlerWithShadowPing?: TicketSetupsUpdateHandlerWithShadowPingInput | string[]
+    ChannelType?: NullableIntFieldUpdateOperationsInput | number | null
     CustomId?: StringFieldUpdateOperationsInput | string
     TicketChannelName?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelType?: NullableIntFieldUpdateOperationsInput | number | null
-    MessageTempleateId?: NullableStringFieldUpdateOperationsInput | string | null
+    EnableTicketsOnlyFromTime?: NullableStringFieldUpdateOperationsInput | string | null
+    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     TicketBlacklistRoles?: TicketSetupsUpdateTicketBlacklistRolesInput | string[]
     TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     HasModal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    ModalTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    OnlyClaimMode?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketLimit?: NullableIntFieldUpdateOperationsInput | number | null
+    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     WithTicketFeedback?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    ModalTitle?: NullableStringFieldUpdateOperationsInput | string | null
     TicketCreationCooldownPerUser?: NullableIntFieldUpdateOperationsInput | number | null
     AutoCloseAfterInactivity?: NullableIntFieldUpdateOperationsInput | number | null
+    AutoCloseAfterTime?: NullableIntFieldUpdateOperationsInput | number | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
+    OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
-    OpenTicketWithCommand?: NullableBoolFieldUpdateOperationsInput | boolean | null
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -58298,26 +58888,28 @@ export namespace Prisma {
 
   export type TicketSetupsUncheckedUpdateManyInput = {
     CategoryId?: NullableStringFieldUpdateOperationsInput | string | null
-    Handlers?: TicketSetupsUpdateHandlersInput | string[]
-    HandlerWithShadowPing?: TicketSetupsUpdateHandlerWithShadowPingInput | string[]
+    ChannelType?: NullableIntFieldUpdateOperationsInput | number | null
     CustomId?: StringFieldUpdateOperationsInput | string
     TicketChannelName?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelType?: NullableIntFieldUpdateOperationsInput | number | null
-    MessageTempleateId?: NullableStringFieldUpdateOperationsInput | string | null
+    EnableTicketsOnlyFromTime?: NullableStringFieldUpdateOperationsInput | string | null
+    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     TicketBlacklistRoles?: TicketSetupsUpdateTicketBlacklistRolesInput | string[]
     TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     HasModal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    ModalTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    OnlyClaimMode?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketLimit?: NullableIntFieldUpdateOperationsInput | number | null
+    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     WithTicketFeedback?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    ModalTitle?: NullableStringFieldUpdateOperationsInput | string | null
     TicketCreationCooldownPerUser?: NullableIntFieldUpdateOperationsInput | number | null
     AutoCloseAfterInactivity?: NullableIntFieldUpdateOperationsInput | number | null
+    AutoCloseAfterTime?: NullableIntFieldUpdateOperationsInput | number | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
+    OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
-    OpenTicketWithCommand?: NullableBoolFieldUpdateOperationsInput | boolean | null
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -58326,111 +58918,176 @@ export namespace Prisma {
 
   export type TicketModalDataCreateInput = {
     id?: string
+    UUID: string
     Name: string
-    Placeholder: string
+    Placeholder?: string | null
     Type: number
+    MinLength?: number | null
+    MaxLength?: number | null
+    Required: boolean
     TicketSetup: TicketSetupsCreateNestedOneWithoutModalOptionsInput
   }
 
   export type TicketModalDataUncheckedCreateInput = {
     id?: string
+    UUID: string
     Name: string
-    Placeholder: string
+    Placeholder?: string | null
     Type: number
+    MinLength?: number | null
+    MaxLength?: number | null
+    Required: boolean
     TicketSetupId: string
   }
 
   export type TicketModalDataUpdateInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
     Name?: StringFieldUpdateOperationsInput | string
-    Placeholder?: StringFieldUpdateOperationsInput | string
+    Placeholder?: NullableStringFieldUpdateOperationsInput | string | null
     Type?: IntFieldUpdateOperationsInput | number
+    MinLength?: NullableIntFieldUpdateOperationsInput | number | null
+    MaxLength?: NullableIntFieldUpdateOperationsInput | number | null
+    Required?: BoolFieldUpdateOperationsInput | boolean
     TicketSetup?: TicketSetupsUpdateOneRequiredWithoutModalOptionsNestedInput
   }
 
   export type TicketModalDataUncheckedUpdateInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
     Name?: StringFieldUpdateOperationsInput | string
-    Placeholder?: StringFieldUpdateOperationsInput | string
+    Placeholder?: NullableStringFieldUpdateOperationsInput | string | null
     Type?: IntFieldUpdateOperationsInput | number
+    MinLength?: NullableIntFieldUpdateOperationsInput | number | null
+    MaxLength?: NullableIntFieldUpdateOperationsInput | number | null
+    Required?: BoolFieldUpdateOperationsInput | boolean
     TicketSetupId?: StringFieldUpdateOperationsInput | string
   }
 
   export type TicketModalDataCreateManyInput = {
     id?: string
+    UUID: string
     Name: string
-    Placeholder: string
+    Placeholder?: string | null
     Type: number
+    MinLength?: number | null
+    MaxLength?: number | null
+    Required: boolean
     TicketSetupId: string
   }
 
   export type TicketModalDataUpdateManyMutationInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
     Name?: StringFieldUpdateOperationsInput | string
-    Placeholder?: StringFieldUpdateOperationsInput | string
+    Placeholder?: NullableStringFieldUpdateOperationsInput | string | null
     Type?: IntFieldUpdateOperationsInput | number
+    MinLength?: NullableIntFieldUpdateOperationsInput | number | null
+    MaxLength?: NullableIntFieldUpdateOperationsInput | number | null
+    Required?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TicketModalDataUncheckedUpdateManyInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
     Name?: StringFieldUpdateOperationsInput | string
-    Placeholder?: StringFieldUpdateOperationsInput | string
+    Placeholder?: NullableStringFieldUpdateOperationsInput | string | null
     Type?: IntFieldUpdateOperationsInput | number
+    MinLength?: NullableIntFieldUpdateOperationsInput | number | null
+    MaxLength?: NullableIntFieldUpdateOperationsInput | number | null
+    Required?: BoolFieldUpdateOperationsInput | boolean
     TicketSetupId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type TicketHandlersCreateInput = {
+  export type TicketPermissionsCreateInput = {
     id?: string
-    DiscordRoleId: string
-    TicketPermission?: string | null
-    AddedDiscordPermission?: TicketHandlersCreateAddedDiscordPermissionInput | string[]
-    RemovedDiscordPermission?: TicketHandlersCreateRemovedDiscordPermissionInput | string[]
+    UUID: string
+    DiscordUserId?: string | null
+    DiscordRoleId?: string | null
+    HasShadowPing?: boolean | null
+    IsHandler?: boolean
+    TicketPermissions?: TicketPermissionsCreateTicketPermissionsInput | string[]
+    AllowedDiscordPermissions?: bigint | number | null
+    DeniedDiscordPermissions?: bigint | number | null
+    TicketSetup: TicketSetupsCreateNestedOneWithoutTicketPermissionsInput
   }
 
-  export type TicketHandlersUncheckedCreateInput = {
+  export type TicketPermissionsUncheckedCreateInput = {
     id?: string
-    DiscordRoleId: string
-    TicketPermission?: string | null
-    AddedDiscordPermission?: TicketHandlersCreateAddedDiscordPermissionInput | string[]
-    RemovedDiscordPermission?: TicketHandlersCreateRemovedDiscordPermissionInput | string[]
+    UUID: string
+    DiscordUserId?: string | null
+    DiscordRoleId?: string | null
+    HasShadowPing?: boolean | null
+    IsHandler?: boolean
+    TicketPermissions?: TicketPermissionsCreateTicketPermissionsInput | string[]
+    AllowedDiscordPermissions?: bigint | number | null
+    DeniedDiscordPermissions?: bigint | number | null
+    TicketSetupId: string
   }
 
-  export type TicketHandlersUpdateInput = {
-    DiscordRoleId?: StringFieldUpdateOperationsInput | string
-    TicketPermission?: NullableStringFieldUpdateOperationsInput | string | null
-    AddedDiscordPermission?: TicketHandlersUpdateAddedDiscordPermissionInput | string[]
-    RemovedDiscordPermission?: TicketHandlersUpdateRemovedDiscordPermissionInput | string[]
+  export type TicketPermissionsUpdateInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    DiscordUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    DiscordRoleId?: NullableStringFieldUpdateOperationsInput | string | null
+    HasShadowPing?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsHandler?: BoolFieldUpdateOperationsInput | boolean
+    TicketPermissions?: TicketPermissionsUpdateTicketPermissionsInput | string[]
+    AllowedDiscordPermissions?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    DeniedDiscordPermissions?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    TicketSetup?: TicketSetupsUpdateOneRequiredWithoutTicketPermissionsNestedInput
   }
 
-  export type TicketHandlersUncheckedUpdateInput = {
-    DiscordRoleId?: StringFieldUpdateOperationsInput | string
-    TicketPermission?: NullableStringFieldUpdateOperationsInput | string | null
-    AddedDiscordPermission?: TicketHandlersUpdateAddedDiscordPermissionInput | string[]
-    RemovedDiscordPermission?: TicketHandlersUpdateRemovedDiscordPermissionInput | string[]
+  export type TicketPermissionsUncheckedUpdateInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    DiscordUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    DiscordRoleId?: NullableStringFieldUpdateOperationsInput | string | null
+    HasShadowPing?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsHandler?: BoolFieldUpdateOperationsInput | boolean
+    TicketPermissions?: TicketPermissionsUpdateTicketPermissionsInput | string[]
+    AllowedDiscordPermissions?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    DeniedDiscordPermissions?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    TicketSetupId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type TicketHandlersCreateManyInput = {
+  export type TicketPermissionsCreateManyInput = {
     id?: string
-    DiscordRoleId: string
-    TicketPermission?: string | null
-    AddedDiscordPermission?: TicketHandlersCreateAddedDiscordPermissionInput | string[]
-    RemovedDiscordPermission?: TicketHandlersCreateRemovedDiscordPermissionInput | string[]
+    UUID: string
+    DiscordUserId?: string | null
+    DiscordRoleId?: string | null
+    HasShadowPing?: boolean | null
+    IsHandler?: boolean
+    TicketPermissions?: TicketPermissionsCreateTicketPermissionsInput | string[]
+    AllowedDiscordPermissions?: bigint | number | null
+    DeniedDiscordPermissions?: bigint | number | null
+    TicketSetupId: string
   }
 
-  export type TicketHandlersUpdateManyMutationInput = {
-    DiscordRoleId?: StringFieldUpdateOperationsInput | string
-    TicketPermission?: NullableStringFieldUpdateOperationsInput | string | null
-    AddedDiscordPermission?: TicketHandlersUpdateAddedDiscordPermissionInput | string[]
-    RemovedDiscordPermission?: TicketHandlersUpdateRemovedDiscordPermissionInput | string[]
+  export type TicketPermissionsUpdateManyMutationInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    DiscordUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    DiscordRoleId?: NullableStringFieldUpdateOperationsInput | string | null
+    HasShadowPing?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsHandler?: BoolFieldUpdateOperationsInput | boolean
+    TicketPermissions?: TicketPermissionsUpdateTicketPermissionsInput | string[]
+    AllowedDiscordPermissions?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    DeniedDiscordPermissions?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   }
 
-  export type TicketHandlersUncheckedUpdateManyInput = {
-    DiscordRoleId?: StringFieldUpdateOperationsInput | string
-    TicketPermission?: NullableStringFieldUpdateOperationsInput | string | null
-    AddedDiscordPermission?: TicketHandlersUpdateAddedDiscordPermissionInput | string[]
-    RemovedDiscordPermission?: TicketHandlersUpdateRemovedDiscordPermissionInput | string[]
+  export type TicketPermissionsUncheckedUpdateManyInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    DiscordUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    DiscordRoleId?: NullableStringFieldUpdateOperationsInput | string | null
+    HasShadowPing?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsHandler?: BoolFieldUpdateOperationsInput | boolean
+    TicketPermissions?: TicketPermissionsUpdateTicketPermissionsInput | string[]
+    AllowedDiscordPermissions?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    DeniedDiscordPermissions?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    TicketSetupId?: StringFieldUpdateOperationsInput | string
   }
 
   export type TicketsCreateInput = {
     id?: string
     TicketId: string
+    CreatedAt: Date | string
+    ClosedAt?: Date | string | null
     GuildId: string
+    ChannelType: number
     ChannelId?: string | null
     ThreadId?: string | null
     IsClaimed?: boolean | null
@@ -58440,10 +59097,18 @@ export namespace Prisma {
     IsLooked?: boolean | null
     TicketOwnerId: string
     AddedMemberIds?: TicketsCreateAddedMemberIdsInput | string[]
-    Handlers?: TicketsCreateHandlersInput | string[]
-    TranscriptChannelId: string
+    TranscriptChannelId?: string | null
     TranscriptHTML?: string | null
     TicketNotes?: TicketsCreateTicketNotesInput | string[]
+    SendTranscriptToUser?: boolean | null
+    OldTicketCategoryId?: string | null
+    AutoCloseAction?: TicketsCreateAutoCloseActionInput | string[]
+    AutoReplyMessageTemplateId?: string | null
+    AutoAssignHandler?: string | null
+    TicketFeedbackChannelId?: string | null
+    WithTicketFeedback?: boolean | null
+    UserDMWhenCloseMessageTemplateId?: string | null
+    OnlyClaimMode?: boolean | null
     TicketSetup: TicketSetupsCreateNestedOneWithoutTicketsInput
     TicketFeedback?: TicketFeedbackCreateNestedOneWithoutTicketInput
   }
@@ -58451,7 +59116,10 @@ export namespace Prisma {
   export type TicketsUncheckedCreateInput = {
     id?: string
     TicketId: string
+    CreatedAt: Date | string
+    ClosedAt?: Date | string | null
     GuildId: string
+    ChannelType: number
     ChannelId?: string | null
     ThreadId?: string | null
     IsClaimed?: boolean | null
@@ -58461,17 +59129,28 @@ export namespace Prisma {
     IsLooked?: boolean | null
     TicketOwnerId: string
     AddedMemberIds?: TicketsCreateAddedMemberIdsInput | string[]
-    Handlers?: TicketsCreateHandlersInput | string[]
-    TranscriptChannelId: string
+    TranscriptChannelId?: string | null
     TranscriptHTML?: string | null
     TicketNotes?: TicketsCreateTicketNotesInput | string[]
+    SendTranscriptToUser?: boolean | null
+    OldTicketCategoryId?: string | null
+    AutoCloseAction?: TicketsCreateAutoCloseActionInput | string[]
+    AutoReplyMessageTemplateId?: string | null
+    AutoAssignHandler?: string | null
+    TicketFeedbackChannelId?: string | null
+    WithTicketFeedback?: boolean | null
+    UserDMWhenCloseMessageTemplateId?: string | null
+    OnlyClaimMode?: boolean | null
     TicketSetupId: string
     TicketFeedback?: TicketFeedbackUncheckedCreateNestedOneWithoutTicketInput
   }
 
   export type TicketsUpdateInput = {
     TicketId?: StringFieldUpdateOperationsInput | string
+    CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ClosedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     GuildId?: StringFieldUpdateOperationsInput | string
+    ChannelType?: IntFieldUpdateOperationsInput | number
     ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     ThreadId?: NullableStringFieldUpdateOperationsInput | string | null
     IsClaimed?: NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -58481,17 +59160,28 @@ export namespace Prisma {
     IsLooked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketOwnerId?: StringFieldUpdateOperationsInput | string
     AddedMemberIds?: TicketsUpdateAddedMemberIdsInput | string[]
-    Handlers?: TicketsUpdateHandlersInput | string[]
-    TranscriptChannelId?: StringFieldUpdateOperationsInput | string
+    TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     TranscriptHTML?: NullableStringFieldUpdateOperationsInput | string | null
     TicketNotes?: TicketsUpdateTicketNotesInput | string[]
+    SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoCloseAction?: TicketsUpdateAutoCloseActionInput | string[]
+    AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    WithTicketFeedback?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    OnlyClaimMode?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketSetup?: TicketSetupsUpdateOneRequiredWithoutTicketsNestedInput
     TicketFeedback?: TicketFeedbackUpdateOneWithoutTicketNestedInput
   }
 
   export type TicketsUncheckedUpdateInput = {
     TicketId?: StringFieldUpdateOperationsInput | string
+    CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ClosedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     GuildId?: StringFieldUpdateOperationsInput | string
+    ChannelType?: IntFieldUpdateOperationsInput | number
     ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     ThreadId?: NullableStringFieldUpdateOperationsInput | string | null
     IsClaimed?: NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -58501,10 +59191,18 @@ export namespace Prisma {
     IsLooked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketOwnerId?: StringFieldUpdateOperationsInput | string
     AddedMemberIds?: TicketsUpdateAddedMemberIdsInput | string[]
-    Handlers?: TicketsUpdateHandlersInput | string[]
-    TranscriptChannelId?: StringFieldUpdateOperationsInput | string
+    TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     TranscriptHTML?: NullableStringFieldUpdateOperationsInput | string | null
     TicketNotes?: TicketsUpdateTicketNotesInput | string[]
+    SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoCloseAction?: TicketsUpdateAutoCloseActionInput | string[]
+    AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    WithTicketFeedback?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    OnlyClaimMode?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketSetupId?: StringFieldUpdateOperationsInput | string
     TicketFeedback?: TicketFeedbackUncheckedUpdateOneWithoutTicketNestedInput
   }
@@ -58512,7 +59210,10 @@ export namespace Prisma {
   export type TicketsCreateManyInput = {
     id?: string
     TicketId: string
+    CreatedAt: Date | string
+    ClosedAt?: Date | string | null
     GuildId: string
+    ChannelType: number
     ChannelId?: string | null
     ThreadId?: string | null
     IsClaimed?: boolean | null
@@ -58522,16 +59223,27 @@ export namespace Prisma {
     IsLooked?: boolean | null
     TicketOwnerId: string
     AddedMemberIds?: TicketsCreateAddedMemberIdsInput | string[]
-    Handlers?: TicketsCreateHandlersInput | string[]
-    TranscriptChannelId: string
+    TranscriptChannelId?: string | null
     TranscriptHTML?: string | null
     TicketNotes?: TicketsCreateTicketNotesInput | string[]
+    SendTranscriptToUser?: boolean | null
+    OldTicketCategoryId?: string | null
+    AutoCloseAction?: TicketsCreateAutoCloseActionInput | string[]
+    AutoReplyMessageTemplateId?: string | null
+    AutoAssignHandler?: string | null
+    TicketFeedbackChannelId?: string | null
+    WithTicketFeedback?: boolean | null
+    UserDMWhenCloseMessageTemplateId?: string | null
+    OnlyClaimMode?: boolean | null
     TicketSetupId: string
   }
 
   export type TicketsUpdateManyMutationInput = {
     TicketId?: StringFieldUpdateOperationsInput | string
+    CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ClosedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     GuildId?: StringFieldUpdateOperationsInput | string
+    ChannelType?: IntFieldUpdateOperationsInput | number
     ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     ThreadId?: NullableStringFieldUpdateOperationsInput | string | null
     IsClaimed?: NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -58541,15 +59253,26 @@ export namespace Prisma {
     IsLooked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketOwnerId?: StringFieldUpdateOperationsInput | string
     AddedMemberIds?: TicketsUpdateAddedMemberIdsInput | string[]
-    Handlers?: TicketsUpdateHandlersInput | string[]
-    TranscriptChannelId?: StringFieldUpdateOperationsInput | string
+    TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     TranscriptHTML?: NullableStringFieldUpdateOperationsInput | string | null
     TicketNotes?: TicketsUpdateTicketNotesInput | string[]
+    SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoCloseAction?: TicketsUpdateAutoCloseActionInput | string[]
+    AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    WithTicketFeedback?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    OnlyClaimMode?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type TicketsUncheckedUpdateManyInput = {
     TicketId?: StringFieldUpdateOperationsInput | string
+    CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ClosedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     GuildId?: StringFieldUpdateOperationsInput | string
+    ChannelType?: IntFieldUpdateOperationsInput | number
     ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     ThreadId?: NullableStringFieldUpdateOperationsInput | string | null
     IsClaimed?: NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -58559,10 +59282,18 @@ export namespace Prisma {
     IsLooked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketOwnerId?: StringFieldUpdateOperationsInput | string
     AddedMemberIds?: TicketsUpdateAddedMemberIdsInput | string[]
-    Handlers?: TicketsUpdateHandlersInput | string[]
-    TranscriptChannelId?: StringFieldUpdateOperationsInput | string
+    TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     TranscriptHTML?: NullableStringFieldUpdateOperationsInput | string | null
     TicketNotes?: TicketsUpdateTicketNotesInput | string[]
+    SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoCloseAction?: TicketsUpdateAutoCloseActionInput | string[]
+    AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    WithTicketFeedback?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    OnlyClaimMode?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketSetupId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -60988,6 +61719,12 @@ export namespace Prisma {
     GuildId?: SortOrder
   }
 
+  export type TicketPermissionsListRelationFilter = {
+    every?: TicketPermissionsWhereInput
+    some?: TicketPermissionsWhereInput
+    none?: TicketPermissionsWhereInput
+  }
+
   export type TicketModalDataListRelationFilter = {
     every?: TicketModalDataWhereInput
     some?: TicketModalDataWhereInput
@@ -60998,6 +61735,10 @@ export namespace Prisma {
     every?: TicketsWhereInput
     some?: TicketsWhereInput
     none?: TicketsWhereInput
+  }
+
+  export type TicketPermissionsOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type TicketModalDataOrderByRelationAggregateInput = {
@@ -61011,26 +61752,28 @@ export namespace Prisma {
   export type TicketSetupsCountOrderByAggregateInput = {
     id?: SortOrder
     CategoryId?: SortOrder
-    Handlers?: SortOrder
-    HandlerWithShadowPing?: SortOrder
+    ChannelType?: SortOrder
     CustomId?: SortOrder
     TicketChannelName?: SortOrder
-    ChannelType?: SortOrder
-    MessageTempleateId?: SortOrder
+    EnableTicketsOnlyFromTime?: SortOrder
+    MessageTemplateId?: SortOrder
     TicketBlacklistRoles?: SortOrder
     TranscriptChannelId?: SortOrder
     HasModal?: SortOrder
-    UserDMWhenCloseMessageTemplateId?: SortOrder
+    ModalTitle?: SortOrder
+    OnlyClaimMode?: SortOrder
     TicketLimit?: SortOrder
+    UserDMWhenCloseMessageTemplateId?: SortOrder
     WithTicketFeedback?: SortOrder
     TicketFeedbackChannelId?: SortOrder
-    ModalTitle?: SortOrder
     TicketCreationCooldownPerUser?: SortOrder
     AutoCloseAfterInactivity?: SortOrder
+    AutoCloseAfterTime?: SortOrder
     AutoAssignHandler?: SortOrder
     AutoReplyMessageTemplateId?: SortOrder
+    AutoCloseAction?: SortOrder
+    OldTicketCategoryId?: SortOrder
     RequiredRoles?: SortOrder
-    OpenTicketWithCommand?: SortOrder
     SlashCommandId?: SortOrder
     TextCommandName?: SortOrder
     SendTranscriptToUser?: SortOrder
@@ -61042,27 +61785,31 @@ export namespace Prisma {
     TicketLimit?: SortOrder
     TicketCreationCooldownPerUser?: SortOrder
     AutoCloseAfterInactivity?: SortOrder
+    AutoCloseAfterTime?: SortOrder
   }
 
   export type TicketSetupsMaxOrderByAggregateInput = {
     id?: SortOrder
     CategoryId?: SortOrder
+    ChannelType?: SortOrder
     CustomId?: SortOrder
     TicketChannelName?: SortOrder
-    ChannelType?: SortOrder
-    MessageTempleateId?: SortOrder
+    EnableTicketsOnlyFromTime?: SortOrder
+    MessageTemplateId?: SortOrder
     TranscriptChannelId?: SortOrder
     HasModal?: SortOrder
-    UserDMWhenCloseMessageTemplateId?: SortOrder
+    ModalTitle?: SortOrder
+    OnlyClaimMode?: SortOrder
     TicketLimit?: SortOrder
+    UserDMWhenCloseMessageTemplateId?: SortOrder
     WithTicketFeedback?: SortOrder
     TicketFeedbackChannelId?: SortOrder
-    ModalTitle?: SortOrder
     TicketCreationCooldownPerUser?: SortOrder
     AutoCloseAfterInactivity?: SortOrder
+    AutoCloseAfterTime?: SortOrder
     AutoAssignHandler?: SortOrder
     AutoReplyMessageTemplateId?: SortOrder
-    OpenTicketWithCommand?: SortOrder
+    OldTicketCategoryId?: SortOrder
     SlashCommandId?: SortOrder
     TextCommandName?: SortOrder
     SendTranscriptToUser?: SortOrder
@@ -61072,22 +61819,25 @@ export namespace Prisma {
   export type TicketSetupsMinOrderByAggregateInput = {
     id?: SortOrder
     CategoryId?: SortOrder
+    ChannelType?: SortOrder
     CustomId?: SortOrder
     TicketChannelName?: SortOrder
-    ChannelType?: SortOrder
-    MessageTempleateId?: SortOrder
+    EnableTicketsOnlyFromTime?: SortOrder
+    MessageTemplateId?: SortOrder
     TranscriptChannelId?: SortOrder
     HasModal?: SortOrder
-    UserDMWhenCloseMessageTemplateId?: SortOrder
+    ModalTitle?: SortOrder
+    OnlyClaimMode?: SortOrder
     TicketLimit?: SortOrder
+    UserDMWhenCloseMessageTemplateId?: SortOrder
     WithTicketFeedback?: SortOrder
     TicketFeedbackChannelId?: SortOrder
-    ModalTitle?: SortOrder
     TicketCreationCooldownPerUser?: SortOrder
     AutoCloseAfterInactivity?: SortOrder
+    AutoCloseAfterTime?: SortOrder
     AutoAssignHandler?: SortOrder
     AutoReplyMessageTemplateId?: SortOrder
-    OpenTicketWithCommand?: SortOrder
+    OldTicketCategoryId?: SortOrder
     SlashCommandId?: SortOrder
     TextCommandName?: SortOrder
     SendTranscriptToUser?: SortOrder
@@ -61099,6 +61849,7 @@ export namespace Prisma {
     TicketLimit?: SortOrder
     TicketCreationCooldownPerUser?: SortOrder
     AutoCloseAfterInactivity?: SortOrder
+    AutoCloseAfterTime?: SortOrder
   }
 
   export type TicketSetupsScalarRelationFilter = {
@@ -61108,54 +61859,126 @@ export namespace Prisma {
 
   export type TicketModalDataCountOrderByAggregateInput = {
     id?: SortOrder
+    UUID?: SortOrder
     Name?: SortOrder
     Placeholder?: SortOrder
     Type?: SortOrder
+    MinLength?: SortOrder
+    MaxLength?: SortOrder
+    Required?: SortOrder
     TicketSetupId?: SortOrder
   }
 
   export type TicketModalDataAvgOrderByAggregateInput = {
     Type?: SortOrder
+    MinLength?: SortOrder
+    MaxLength?: SortOrder
   }
 
   export type TicketModalDataMaxOrderByAggregateInput = {
     id?: SortOrder
+    UUID?: SortOrder
     Name?: SortOrder
     Placeholder?: SortOrder
     Type?: SortOrder
+    MinLength?: SortOrder
+    MaxLength?: SortOrder
+    Required?: SortOrder
     TicketSetupId?: SortOrder
   }
 
   export type TicketModalDataMinOrderByAggregateInput = {
     id?: SortOrder
+    UUID?: SortOrder
     Name?: SortOrder
     Placeholder?: SortOrder
     Type?: SortOrder
+    MinLength?: SortOrder
+    MaxLength?: SortOrder
+    Required?: SortOrder
     TicketSetupId?: SortOrder
   }
 
   export type TicketModalDataSumOrderByAggregateInput = {
     Type?: SortOrder
+    MinLength?: SortOrder
+    MaxLength?: SortOrder
   }
 
-  export type TicketHandlersCountOrderByAggregateInput = {
-    id?: SortOrder
-    DiscordRoleId?: SortOrder
-    TicketPermission?: SortOrder
-    AddedDiscordPermission?: SortOrder
-    RemovedDiscordPermission?: SortOrder
+  export type BigIntNullableFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntNullableFilter<$PrismaModel> | bigint | number | null
+    isSet?: boolean
   }
 
-  export type TicketHandlersMaxOrderByAggregateInput = {
+  export type TicketPermissionsCountOrderByAggregateInput = {
     id?: SortOrder
+    UUID?: SortOrder
+    DiscordUserId?: SortOrder
     DiscordRoleId?: SortOrder
-    TicketPermission?: SortOrder
+    HasShadowPing?: SortOrder
+    IsHandler?: SortOrder
+    TicketPermissions?: SortOrder
+    AllowedDiscordPermissions?: SortOrder
+    DeniedDiscordPermissions?: SortOrder
+    TicketSetupId?: SortOrder
   }
 
-  export type TicketHandlersMinOrderByAggregateInput = {
+  export type TicketPermissionsAvgOrderByAggregateInput = {
+    AllowedDiscordPermissions?: SortOrder
+    DeniedDiscordPermissions?: SortOrder
+  }
+
+  export type TicketPermissionsMaxOrderByAggregateInput = {
     id?: SortOrder
+    UUID?: SortOrder
+    DiscordUserId?: SortOrder
     DiscordRoleId?: SortOrder
-    TicketPermission?: SortOrder
+    HasShadowPing?: SortOrder
+    IsHandler?: SortOrder
+    AllowedDiscordPermissions?: SortOrder
+    DeniedDiscordPermissions?: SortOrder
+    TicketSetupId?: SortOrder
+  }
+
+  export type TicketPermissionsMinOrderByAggregateInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    DiscordUserId?: SortOrder
+    DiscordRoleId?: SortOrder
+    HasShadowPing?: SortOrder
+    IsHandler?: SortOrder
+    AllowedDiscordPermissions?: SortOrder
+    DeniedDiscordPermissions?: SortOrder
+    TicketSetupId?: SortOrder
+  }
+
+  export type TicketPermissionsSumOrderByAggregateInput = {
+    AllowedDiscordPermissions?: SortOrder
+    DeniedDiscordPermissions?: SortOrder
+  }
+
+  export type BigIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntNullableWithAggregatesFilter<$PrismaModel> | bigint | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedBigIntNullableFilter<$PrismaModel>
+    _min?: NestedBigIntNullableFilter<$PrismaModel>
+    _max?: NestedBigIntNullableFilter<$PrismaModel>
+    isSet?: boolean
   }
 
   export type TicketFeedbackNullableScalarRelationFilter = {
@@ -61166,7 +61989,10 @@ export namespace Prisma {
   export type TicketsCountOrderByAggregateInput = {
     id?: SortOrder
     TicketId?: SortOrder
+    CreatedAt?: SortOrder
+    ClosedAt?: SortOrder
     GuildId?: SortOrder
+    ChannelType?: SortOrder
     ChannelId?: SortOrder
     ThreadId?: SortOrder
     IsClaimed?: SortOrder
@@ -61176,17 +62002,32 @@ export namespace Prisma {
     IsLooked?: SortOrder
     TicketOwnerId?: SortOrder
     AddedMemberIds?: SortOrder
-    Handlers?: SortOrder
     TranscriptChannelId?: SortOrder
     TranscriptHTML?: SortOrder
     TicketNotes?: SortOrder
+    SendTranscriptToUser?: SortOrder
+    OldTicketCategoryId?: SortOrder
+    AutoCloseAction?: SortOrder
+    AutoReplyMessageTemplateId?: SortOrder
+    AutoAssignHandler?: SortOrder
+    TicketFeedbackChannelId?: SortOrder
+    WithTicketFeedback?: SortOrder
+    UserDMWhenCloseMessageTemplateId?: SortOrder
+    OnlyClaimMode?: SortOrder
     TicketSetupId?: SortOrder
+  }
+
+  export type TicketsAvgOrderByAggregateInput = {
+    ChannelType?: SortOrder
   }
 
   export type TicketsMaxOrderByAggregateInput = {
     id?: SortOrder
     TicketId?: SortOrder
+    CreatedAt?: SortOrder
+    ClosedAt?: SortOrder
     GuildId?: SortOrder
+    ChannelType?: SortOrder
     ChannelId?: SortOrder
     ThreadId?: SortOrder
     IsClaimed?: SortOrder
@@ -61197,13 +62038,24 @@ export namespace Prisma {
     TicketOwnerId?: SortOrder
     TranscriptChannelId?: SortOrder
     TranscriptHTML?: SortOrder
+    SendTranscriptToUser?: SortOrder
+    OldTicketCategoryId?: SortOrder
+    AutoReplyMessageTemplateId?: SortOrder
+    AutoAssignHandler?: SortOrder
+    TicketFeedbackChannelId?: SortOrder
+    WithTicketFeedback?: SortOrder
+    UserDMWhenCloseMessageTemplateId?: SortOrder
+    OnlyClaimMode?: SortOrder
     TicketSetupId?: SortOrder
   }
 
   export type TicketsMinOrderByAggregateInput = {
     id?: SortOrder
     TicketId?: SortOrder
+    CreatedAt?: SortOrder
+    ClosedAt?: SortOrder
     GuildId?: SortOrder
+    ChannelType?: SortOrder
     ChannelId?: SortOrder
     ThreadId?: SortOrder
     IsClaimed?: SortOrder
@@ -61214,7 +62066,19 @@ export namespace Prisma {
     TicketOwnerId?: SortOrder
     TranscriptChannelId?: SortOrder
     TranscriptHTML?: SortOrder
+    SendTranscriptToUser?: SortOrder
+    OldTicketCategoryId?: SortOrder
+    AutoReplyMessageTemplateId?: SortOrder
+    AutoAssignHandler?: SortOrder
+    TicketFeedbackChannelId?: SortOrder
+    WithTicketFeedback?: SortOrder
+    UserDMWhenCloseMessageTemplateId?: SortOrder
+    OnlyClaimMode?: SortOrder
     TicketSetupId?: SortOrder
+  }
+
+  export type TicketsSumOrderByAggregateInput = {
+    ChannelType?: SortOrder
   }
 
   export type TicketsScalarRelationFilter = {
@@ -63642,20 +64506,23 @@ export namespace Prisma {
     update?: XOR<XOR<GuildsUpdateToOneWithWhereWithoutTagsInput, GuildsUpdateWithoutTagsInput>, GuildsUncheckedUpdateWithoutTagsInput>
   }
 
-  export type TicketSetupsCreateHandlersInput = {
-    set: string[]
-  }
-
-  export type TicketSetupsCreateHandlerWithShadowPingInput = {
-    set: string[]
-  }
-
   export type TicketSetupsCreateTicketBlacklistRolesInput = {
+    set: string[]
+  }
+
+  export type TicketSetupsCreateAutoCloseActionInput = {
     set: string[]
   }
 
   export type TicketSetupsCreateRequiredRolesInput = {
     set: string[]
+  }
+
+  export type TicketPermissionsCreateNestedManyWithoutTicketSetupInput = {
+    create?: XOR<TicketPermissionsCreateWithoutTicketSetupInput, TicketPermissionsUncheckedCreateWithoutTicketSetupInput> | TicketPermissionsCreateWithoutTicketSetupInput[] | TicketPermissionsUncheckedCreateWithoutTicketSetupInput[]
+    connectOrCreate?: TicketPermissionsCreateOrConnectWithoutTicketSetupInput | TicketPermissionsCreateOrConnectWithoutTicketSetupInput[]
+    createMany?: TicketPermissionsCreateManyTicketSetupInputEnvelope
+    connect?: TicketPermissionsWhereUniqueInput | TicketPermissionsWhereUniqueInput[]
   }
 
   export type TicketModalDataCreateNestedManyWithoutTicketSetupInput = {
@@ -63678,6 +64545,13 @@ export namespace Prisma {
     connect?: TicketsWhereUniqueInput | TicketsWhereUniqueInput[]
   }
 
+  export type TicketPermissionsUncheckedCreateNestedManyWithoutTicketSetupInput = {
+    create?: XOR<TicketPermissionsCreateWithoutTicketSetupInput, TicketPermissionsUncheckedCreateWithoutTicketSetupInput> | TicketPermissionsCreateWithoutTicketSetupInput[] | TicketPermissionsUncheckedCreateWithoutTicketSetupInput[]
+    connectOrCreate?: TicketPermissionsCreateOrConnectWithoutTicketSetupInput | TicketPermissionsCreateOrConnectWithoutTicketSetupInput[]
+    createMany?: TicketPermissionsCreateManyTicketSetupInputEnvelope
+    connect?: TicketPermissionsWhereUniqueInput | TicketPermissionsWhereUniqueInput[]
+  }
+
   export type TicketModalDataUncheckedCreateNestedManyWithoutTicketSetupInput = {
     create?: XOR<TicketModalDataCreateWithoutTicketSetupInput, TicketModalDataUncheckedCreateWithoutTicketSetupInput> | TicketModalDataCreateWithoutTicketSetupInput[] | TicketModalDataUncheckedCreateWithoutTicketSetupInput[]
     connectOrCreate?: TicketModalDataCreateOrConnectWithoutTicketSetupInput | TicketModalDataCreateOrConnectWithoutTicketSetupInput[]
@@ -63692,17 +64566,12 @@ export namespace Prisma {
     connect?: TicketsWhereUniqueInput | TicketsWhereUniqueInput[]
   }
 
-  export type TicketSetupsUpdateHandlersInput = {
-    set?: string[]
-    push?: string | string[]
-  }
-
-  export type TicketSetupsUpdateHandlerWithShadowPingInput = {
-    set?: string[]
-    push?: string | string[]
-  }
-
   export type TicketSetupsUpdateTicketBlacklistRolesInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type TicketSetupsUpdateAutoCloseActionInput = {
     set?: string[]
     push?: string | string[]
   }
@@ -63710,6 +64579,20 @@ export namespace Prisma {
   export type TicketSetupsUpdateRequiredRolesInput = {
     set?: string[]
     push?: string | string[]
+  }
+
+  export type TicketPermissionsUpdateManyWithoutTicketSetupNestedInput = {
+    create?: XOR<TicketPermissionsCreateWithoutTicketSetupInput, TicketPermissionsUncheckedCreateWithoutTicketSetupInput> | TicketPermissionsCreateWithoutTicketSetupInput[] | TicketPermissionsUncheckedCreateWithoutTicketSetupInput[]
+    connectOrCreate?: TicketPermissionsCreateOrConnectWithoutTicketSetupInput | TicketPermissionsCreateOrConnectWithoutTicketSetupInput[]
+    upsert?: TicketPermissionsUpsertWithWhereUniqueWithoutTicketSetupInput | TicketPermissionsUpsertWithWhereUniqueWithoutTicketSetupInput[]
+    createMany?: TicketPermissionsCreateManyTicketSetupInputEnvelope
+    set?: TicketPermissionsWhereUniqueInput | TicketPermissionsWhereUniqueInput[]
+    disconnect?: TicketPermissionsWhereUniqueInput | TicketPermissionsWhereUniqueInput[]
+    delete?: TicketPermissionsWhereUniqueInput | TicketPermissionsWhereUniqueInput[]
+    connect?: TicketPermissionsWhereUniqueInput | TicketPermissionsWhereUniqueInput[]
+    update?: TicketPermissionsUpdateWithWhereUniqueWithoutTicketSetupInput | TicketPermissionsUpdateWithWhereUniqueWithoutTicketSetupInput[]
+    updateMany?: TicketPermissionsUpdateManyWithWhereWithoutTicketSetupInput | TicketPermissionsUpdateManyWithWhereWithoutTicketSetupInput[]
+    deleteMany?: TicketPermissionsScalarWhereInput | TicketPermissionsScalarWhereInput[]
   }
 
   export type TicketModalDataUpdateManyWithoutTicketSetupNestedInput = {
@@ -63746,6 +64629,20 @@ export namespace Prisma {
     update?: TicketsUpdateWithWhereUniqueWithoutTicketSetupInput | TicketsUpdateWithWhereUniqueWithoutTicketSetupInput[]
     updateMany?: TicketsUpdateManyWithWhereWithoutTicketSetupInput | TicketsUpdateManyWithWhereWithoutTicketSetupInput[]
     deleteMany?: TicketsScalarWhereInput | TicketsScalarWhereInput[]
+  }
+
+  export type TicketPermissionsUncheckedUpdateManyWithoutTicketSetupNestedInput = {
+    create?: XOR<TicketPermissionsCreateWithoutTicketSetupInput, TicketPermissionsUncheckedCreateWithoutTicketSetupInput> | TicketPermissionsCreateWithoutTicketSetupInput[] | TicketPermissionsUncheckedCreateWithoutTicketSetupInput[]
+    connectOrCreate?: TicketPermissionsCreateOrConnectWithoutTicketSetupInput | TicketPermissionsCreateOrConnectWithoutTicketSetupInput[]
+    upsert?: TicketPermissionsUpsertWithWhereUniqueWithoutTicketSetupInput | TicketPermissionsUpsertWithWhereUniqueWithoutTicketSetupInput[]
+    createMany?: TicketPermissionsCreateManyTicketSetupInputEnvelope
+    set?: TicketPermissionsWhereUniqueInput | TicketPermissionsWhereUniqueInput[]
+    disconnect?: TicketPermissionsWhereUniqueInput | TicketPermissionsWhereUniqueInput[]
+    delete?: TicketPermissionsWhereUniqueInput | TicketPermissionsWhereUniqueInput[]
+    connect?: TicketPermissionsWhereUniqueInput | TicketPermissionsWhereUniqueInput[]
+    update?: TicketPermissionsUpdateWithWhereUniqueWithoutTicketSetupInput | TicketPermissionsUpdateWithWhereUniqueWithoutTicketSetupInput[]
+    updateMany?: TicketPermissionsUpdateManyWithWhereWithoutTicketSetupInput | TicketPermissionsUpdateManyWithWhereWithoutTicketSetupInput[]
+    deleteMany?: TicketPermissionsScalarWhereInput | TicketPermissionsScalarWhereInput[]
   }
 
   export type TicketModalDataUncheckedUpdateManyWithoutTicketSetupNestedInput = {
@@ -63790,33 +64687,47 @@ export namespace Prisma {
     update?: XOR<XOR<TicketSetupsUpdateToOneWithWhereWithoutModalOptionsInput, TicketSetupsUpdateWithoutModalOptionsInput>, TicketSetupsUncheckedUpdateWithoutModalOptionsInput>
   }
 
-  export type TicketHandlersCreateAddedDiscordPermissionInput = {
+  export type TicketPermissionsCreateTicketPermissionsInput = {
     set: string[]
   }
 
-  export type TicketHandlersCreateRemovedDiscordPermissionInput = {
-    set: string[]
+  export type TicketSetupsCreateNestedOneWithoutTicketPermissionsInput = {
+    create?: XOR<TicketSetupsCreateWithoutTicketPermissionsInput, TicketSetupsUncheckedCreateWithoutTicketPermissionsInput>
+    connectOrCreate?: TicketSetupsCreateOrConnectWithoutTicketPermissionsInput
+    connect?: TicketSetupsWhereUniqueInput
   }
 
-  export type TicketHandlersUpdateAddedDiscordPermissionInput = {
+  export type TicketPermissionsUpdateTicketPermissionsInput = {
     set?: string[]
     push?: string | string[]
   }
 
-  export type TicketHandlersUpdateRemovedDiscordPermissionInput = {
-    set?: string[]
-    push?: string | string[]
+  export type NullableBigIntFieldUpdateOperationsInput = {
+    set?: bigint | number | null
+    increment?: bigint | number
+    decrement?: bigint | number
+    multiply?: bigint | number
+    divide?: bigint | number
+    unset?: boolean
+  }
+
+  export type TicketSetupsUpdateOneRequiredWithoutTicketPermissionsNestedInput = {
+    create?: XOR<TicketSetupsCreateWithoutTicketPermissionsInput, TicketSetupsUncheckedCreateWithoutTicketPermissionsInput>
+    connectOrCreate?: TicketSetupsCreateOrConnectWithoutTicketPermissionsInput
+    upsert?: TicketSetupsUpsertWithoutTicketPermissionsInput
+    connect?: TicketSetupsWhereUniqueInput
+    update?: XOR<XOR<TicketSetupsUpdateToOneWithWhereWithoutTicketPermissionsInput, TicketSetupsUpdateWithoutTicketPermissionsInput>, TicketSetupsUncheckedUpdateWithoutTicketPermissionsInput>
   }
 
   export type TicketsCreateAddedMemberIdsInput = {
     set: string[]
   }
 
-  export type TicketsCreateHandlersInput = {
+  export type TicketsCreateTicketNotesInput = {
     set: string[]
   }
 
-  export type TicketsCreateTicketNotesInput = {
+  export type TicketsCreateAutoCloseActionInput = {
     set: string[]
   }
 
@@ -63843,12 +64754,12 @@ export namespace Prisma {
     push?: string | string[]
   }
 
-  export type TicketsUpdateHandlersInput = {
+  export type TicketsUpdateTicketNotesInput = {
     set?: string[]
     push?: string | string[]
   }
 
-  export type TicketsUpdateTicketNotesInput = {
+  export type TicketsUpdateAutoCloseActionInput = {
     set?: string[]
     push?: string | string[]
   }
@@ -64756,6 +65667,35 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
     isSet?: boolean
   }
+
+  export type NestedBigIntNullableFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntNullableFilter<$PrismaModel> | bigint | number | null
+    isSet?: boolean
+  }
+
+  export type NestedBigIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntNullableWithAggregatesFilter<$PrismaModel> | bigint | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedBigIntNullableFilter<$PrismaModel>
+    _min?: NestedBigIntNullableFilter<$PrismaModel>
+    _max?: NestedBigIntNullableFilter<$PrismaModel>
+    isSet?: boolean
+  }
   export type NestedJsonFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
@@ -65306,29 +66246,32 @@ export namespace Prisma {
   export type TicketSetupsCreateWithoutGuildsInput = {
     id?: string
     CategoryId?: string | null
-    Handlers?: TicketSetupsCreateHandlersInput | string[]
-    HandlerWithShadowPing?: TicketSetupsCreateHandlerWithShadowPingInput | string[]
+    ChannelType?: number | null
     CustomId: string
     TicketChannelName?: string | null
-    ChannelType?: number | null
-    MessageTempleateId?: string | null
+    EnableTicketsOnlyFromTime?: string | null
+    MessageTemplateId?: string | null
     TicketBlacklistRoles?: TicketSetupsCreateTicketBlacklistRolesInput | string[]
     TranscriptChannelId?: string | null
     HasModal?: boolean | null
-    UserDMWhenCloseMessageTemplateId?: string | null
+    ModalTitle?: string | null
+    OnlyClaimMode?: boolean | null
     TicketLimit?: number | null
+    UserDMWhenCloseMessageTemplateId?: string | null
     WithTicketFeedback?: boolean | null
     TicketFeedbackChannelId?: string | null
-    ModalTitle?: string | null
     TicketCreationCooldownPerUser?: number | null
     AutoCloseAfterInactivity?: number | null
+    AutoCloseAfterTime?: number | null
     AutoAssignHandler?: string | null
     AutoReplyMessageTemplateId?: string | null
+    AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
+    OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
-    OpenTicketWithCommand?: boolean | null
     SlashCommandId?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
+    TicketPermissions?: TicketPermissionsCreateNestedManyWithoutTicketSetupInput
     ModalOptions?: TicketModalDataCreateNestedManyWithoutTicketSetupInput
     Tickets?: TicketsCreateNestedManyWithoutTicketSetupInput
   }
@@ -65336,29 +66279,32 @@ export namespace Prisma {
   export type TicketSetupsUncheckedCreateWithoutGuildsInput = {
     id?: string
     CategoryId?: string | null
-    Handlers?: TicketSetupsCreateHandlersInput | string[]
-    HandlerWithShadowPing?: TicketSetupsCreateHandlerWithShadowPingInput | string[]
+    ChannelType?: number | null
     CustomId: string
     TicketChannelName?: string | null
-    ChannelType?: number | null
-    MessageTempleateId?: string | null
+    EnableTicketsOnlyFromTime?: string | null
+    MessageTemplateId?: string | null
     TicketBlacklistRoles?: TicketSetupsCreateTicketBlacklistRolesInput | string[]
     TranscriptChannelId?: string | null
     HasModal?: boolean | null
-    UserDMWhenCloseMessageTemplateId?: string | null
+    ModalTitle?: string | null
+    OnlyClaimMode?: boolean | null
     TicketLimit?: number | null
+    UserDMWhenCloseMessageTemplateId?: string | null
     WithTicketFeedback?: boolean | null
     TicketFeedbackChannelId?: string | null
-    ModalTitle?: string | null
     TicketCreationCooldownPerUser?: number | null
     AutoCloseAfterInactivity?: number | null
+    AutoCloseAfterTime?: number | null
     AutoAssignHandler?: string | null
     AutoReplyMessageTemplateId?: string | null
+    AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
+    OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
-    OpenTicketWithCommand?: boolean | null
     SlashCommandId?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
+    TicketPermissions?: TicketPermissionsUncheckedCreateNestedManyWithoutTicketSetupInput
     ModalOptions?: TicketModalDataUncheckedCreateNestedManyWithoutTicketSetupInput
     Tickets?: TicketsUncheckedCreateNestedManyWithoutTicketSetupInput
   }
@@ -66066,26 +67012,28 @@ export namespace Prisma {
     NOT?: TicketSetupsScalarWhereInput | TicketSetupsScalarWhereInput[]
     id?: StringFilter<"TicketSetups"> | string
     CategoryId?: StringNullableFilter<"TicketSetups"> | string | null
-    Handlers?: StringNullableListFilter<"TicketSetups">
-    HandlerWithShadowPing?: StringNullableListFilter<"TicketSetups">
+    ChannelType?: IntNullableFilter<"TicketSetups"> | number | null
     CustomId?: StringFilter<"TicketSetups"> | string
     TicketChannelName?: StringNullableFilter<"TicketSetups"> | string | null
-    ChannelType?: IntNullableFilter<"TicketSetups"> | number | null
-    MessageTempleateId?: StringNullableFilter<"TicketSetups"> | string | null
+    EnableTicketsOnlyFromTime?: StringNullableFilter<"TicketSetups"> | string | null
+    MessageTemplateId?: StringNullableFilter<"TicketSetups"> | string | null
     TicketBlacklistRoles?: StringNullableListFilter<"TicketSetups">
     TranscriptChannelId?: StringNullableFilter<"TicketSetups"> | string | null
     HasModal?: BoolNullableFilter<"TicketSetups"> | boolean | null
-    UserDMWhenCloseMessageTemplateId?: StringNullableFilter<"TicketSetups"> | string | null
+    ModalTitle?: StringNullableFilter<"TicketSetups"> | string | null
+    OnlyClaimMode?: BoolNullableFilter<"TicketSetups"> | boolean | null
     TicketLimit?: IntNullableFilter<"TicketSetups"> | number | null
+    UserDMWhenCloseMessageTemplateId?: StringNullableFilter<"TicketSetups"> | string | null
     WithTicketFeedback?: BoolNullableFilter<"TicketSetups"> | boolean | null
     TicketFeedbackChannelId?: StringNullableFilter<"TicketSetups"> | string | null
-    ModalTitle?: StringNullableFilter<"TicketSetups"> | string | null
     TicketCreationCooldownPerUser?: IntNullableFilter<"TicketSetups"> | number | null
     AutoCloseAfterInactivity?: IntNullableFilter<"TicketSetups"> | number | null
+    AutoCloseAfterTime?: IntNullableFilter<"TicketSetups"> | number | null
     AutoAssignHandler?: StringNullableFilter<"TicketSetups"> | string | null
     AutoReplyMessageTemplateId?: StringNullableFilter<"TicketSetups"> | string | null
+    AutoCloseAction?: StringNullableListFilter<"TicketSetups">
+    OldTicketCategoryId?: StringNullableFilter<"TicketSetups"> | string | null
     RequiredRoles?: StringNullableListFilter<"TicketSetups">
-    OpenTicketWithCommand?: BoolNullableFilter<"TicketSetups"> | boolean | null
     SlashCommandId?: StringNullableFilter<"TicketSetups"> | string | null
     TextCommandName?: StringNullableFilter<"TicketSetups"> | string | null
     SendTranscriptToUser?: BoolNullableFilter<"TicketSetups"> | boolean | null
@@ -69399,18 +70347,59 @@ export namespace Prisma {
     GuildLoggers?: GuildLoggersUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
+  export type TicketPermissionsCreateWithoutTicketSetupInput = {
+    id?: string
+    UUID: string
+    DiscordUserId?: string | null
+    DiscordRoleId?: string | null
+    HasShadowPing?: boolean | null
+    IsHandler?: boolean
+    TicketPermissions?: TicketPermissionsCreateTicketPermissionsInput | string[]
+    AllowedDiscordPermissions?: bigint | number | null
+    DeniedDiscordPermissions?: bigint | number | null
+  }
+
+  export type TicketPermissionsUncheckedCreateWithoutTicketSetupInput = {
+    id?: string
+    UUID: string
+    DiscordUserId?: string | null
+    DiscordRoleId?: string | null
+    HasShadowPing?: boolean | null
+    IsHandler?: boolean
+    TicketPermissions?: TicketPermissionsCreateTicketPermissionsInput | string[]
+    AllowedDiscordPermissions?: bigint | number | null
+    DeniedDiscordPermissions?: bigint | number | null
+  }
+
+  export type TicketPermissionsCreateOrConnectWithoutTicketSetupInput = {
+    where: TicketPermissionsWhereUniqueInput
+    create: XOR<TicketPermissionsCreateWithoutTicketSetupInput, TicketPermissionsUncheckedCreateWithoutTicketSetupInput>
+  }
+
+  export type TicketPermissionsCreateManyTicketSetupInputEnvelope = {
+    data: TicketPermissionsCreateManyTicketSetupInput | TicketPermissionsCreateManyTicketSetupInput[]
+  }
+
   export type TicketModalDataCreateWithoutTicketSetupInput = {
     id?: string
+    UUID: string
     Name: string
-    Placeholder: string
+    Placeholder?: string | null
     Type: number
+    MinLength?: number | null
+    MaxLength?: number | null
+    Required: boolean
   }
 
   export type TicketModalDataUncheckedCreateWithoutTicketSetupInput = {
     id?: string
+    UUID: string
     Name: string
-    Placeholder: string
+    Placeholder?: string | null
     Type: number
+    MinLength?: number | null
+    MaxLength?: number | null
+    Required: boolean
   }
 
   export type TicketModalDataCreateOrConnectWithoutTicketSetupInput = {
@@ -69490,7 +70479,10 @@ export namespace Prisma {
   export type TicketsCreateWithoutTicketSetupInput = {
     id?: string
     TicketId: string
+    CreatedAt: Date | string
+    ClosedAt?: Date | string | null
     GuildId: string
+    ChannelType: number
     ChannelId?: string | null
     ThreadId?: string | null
     IsClaimed?: boolean | null
@@ -69500,17 +70492,28 @@ export namespace Prisma {
     IsLooked?: boolean | null
     TicketOwnerId: string
     AddedMemberIds?: TicketsCreateAddedMemberIdsInput | string[]
-    Handlers?: TicketsCreateHandlersInput | string[]
-    TranscriptChannelId: string
+    TranscriptChannelId?: string | null
     TranscriptHTML?: string | null
     TicketNotes?: TicketsCreateTicketNotesInput | string[]
+    SendTranscriptToUser?: boolean | null
+    OldTicketCategoryId?: string | null
+    AutoCloseAction?: TicketsCreateAutoCloseActionInput | string[]
+    AutoReplyMessageTemplateId?: string | null
+    AutoAssignHandler?: string | null
+    TicketFeedbackChannelId?: string | null
+    WithTicketFeedback?: boolean | null
+    UserDMWhenCloseMessageTemplateId?: string | null
+    OnlyClaimMode?: boolean | null
     TicketFeedback?: TicketFeedbackCreateNestedOneWithoutTicketInput
   }
 
   export type TicketsUncheckedCreateWithoutTicketSetupInput = {
     id?: string
     TicketId: string
+    CreatedAt: Date | string
+    ClosedAt?: Date | string | null
     GuildId: string
+    ChannelType: number
     ChannelId?: string | null
     ThreadId?: string | null
     IsClaimed?: boolean | null
@@ -69520,10 +70523,18 @@ export namespace Prisma {
     IsLooked?: boolean | null
     TicketOwnerId: string
     AddedMemberIds?: TicketsCreateAddedMemberIdsInput | string[]
-    Handlers?: TicketsCreateHandlersInput | string[]
-    TranscriptChannelId: string
+    TranscriptChannelId?: string | null
     TranscriptHTML?: string | null
     TicketNotes?: TicketsCreateTicketNotesInput | string[]
+    SendTranscriptToUser?: boolean | null
+    OldTicketCategoryId?: string | null
+    AutoCloseAction?: TicketsCreateAutoCloseActionInput | string[]
+    AutoReplyMessageTemplateId?: string | null
+    AutoAssignHandler?: string | null
+    TicketFeedbackChannelId?: string | null
+    WithTicketFeedback?: boolean | null
+    UserDMWhenCloseMessageTemplateId?: string | null
+    OnlyClaimMode?: boolean | null
     TicketFeedback?: TicketFeedbackUncheckedCreateNestedOneWithoutTicketInput
   }
 
@@ -69534,6 +70545,38 @@ export namespace Prisma {
 
   export type TicketsCreateManyTicketSetupInputEnvelope = {
     data: TicketsCreateManyTicketSetupInput | TicketsCreateManyTicketSetupInput[]
+  }
+
+  export type TicketPermissionsUpsertWithWhereUniqueWithoutTicketSetupInput = {
+    where: TicketPermissionsWhereUniqueInput
+    update: XOR<TicketPermissionsUpdateWithoutTicketSetupInput, TicketPermissionsUncheckedUpdateWithoutTicketSetupInput>
+    create: XOR<TicketPermissionsCreateWithoutTicketSetupInput, TicketPermissionsUncheckedCreateWithoutTicketSetupInput>
+  }
+
+  export type TicketPermissionsUpdateWithWhereUniqueWithoutTicketSetupInput = {
+    where: TicketPermissionsWhereUniqueInput
+    data: XOR<TicketPermissionsUpdateWithoutTicketSetupInput, TicketPermissionsUncheckedUpdateWithoutTicketSetupInput>
+  }
+
+  export type TicketPermissionsUpdateManyWithWhereWithoutTicketSetupInput = {
+    where: TicketPermissionsScalarWhereInput
+    data: XOR<TicketPermissionsUpdateManyMutationInput, TicketPermissionsUncheckedUpdateManyWithoutTicketSetupInput>
+  }
+
+  export type TicketPermissionsScalarWhereInput = {
+    AND?: TicketPermissionsScalarWhereInput | TicketPermissionsScalarWhereInput[]
+    OR?: TicketPermissionsScalarWhereInput[]
+    NOT?: TicketPermissionsScalarWhereInput | TicketPermissionsScalarWhereInput[]
+    id?: StringFilter<"TicketPermissions"> | string
+    UUID?: StringFilter<"TicketPermissions"> | string
+    DiscordUserId?: StringNullableFilter<"TicketPermissions"> | string | null
+    DiscordRoleId?: StringNullableFilter<"TicketPermissions"> | string | null
+    HasShadowPing?: BoolNullableFilter<"TicketPermissions"> | boolean | null
+    IsHandler?: BoolFilter<"TicketPermissions"> | boolean
+    TicketPermissions?: StringNullableListFilter<"TicketPermissions">
+    AllowedDiscordPermissions?: BigIntNullableFilter<"TicketPermissions"> | bigint | number | null
+    DeniedDiscordPermissions?: BigIntNullableFilter<"TicketPermissions"> | bigint | number | null
+    TicketSetupId?: StringFilter<"TicketPermissions"> | string
   }
 
   export type TicketModalDataUpsertWithWhereUniqueWithoutTicketSetupInput = {
@@ -69557,9 +70600,13 @@ export namespace Prisma {
     OR?: TicketModalDataScalarWhereInput[]
     NOT?: TicketModalDataScalarWhereInput | TicketModalDataScalarWhereInput[]
     id?: StringFilter<"TicketModalData"> | string
+    UUID?: StringFilter<"TicketModalData"> | string
     Name?: StringFilter<"TicketModalData"> | string
-    Placeholder?: StringFilter<"TicketModalData"> | string
+    Placeholder?: StringNullableFilter<"TicketModalData"> | string | null
     Type?: IntFilter<"TicketModalData"> | number
+    MinLength?: IntNullableFilter<"TicketModalData"> | number | null
+    MaxLength?: IntNullableFilter<"TicketModalData"> | number | null
+    Required?: BoolFilter<"TicketModalData"> | boolean
     TicketSetupId?: StringFilter<"TicketModalData"> | string
   }
 
@@ -69654,7 +70701,10 @@ export namespace Prisma {
     NOT?: TicketsScalarWhereInput | TicketsScalarWhereInput[]
     id?: StringFilter<"Tickets"> | string
     TicketId?: StringFilter<"Tickets"> | string
+    CreatedAt?: DateTimeFilter<"Tickets"> | Date | string
+    ClosedAt?: DateTimeNullableFilter<"Tickets"> | Date | string | null
     GuildId?: StringFilter<"Tickets"> | string
+    ChannelType?: IntFilter<"Tickets"> | number
     ChannelId?: StringNullableFilter<"Tickets"> | string | null
     ThreadId?: StringNullableFilter<"Tickets"> | string | null
     IsClaimed?: BoolNullableFilter<"Tickets"> | boolean | null
@@ -69664,39 +70714,50 @@ export namespace Prisma {
     IsLooked?: BoolNullableFilter<"Tickets"> | boolean | null
     TicketOwnerId?: StringFilter<"Tickets"> | string
     AddedMemberIds?: StringNullableListFilter<"Tickets">
-    Handlers?: StringNullableListFilter<"Tickets">
-    TranscriptChannelId?: StringFilter<"Tickets"> | string
+    TranscriptChannelId?: StringNullableFilter<"Tickets"> | string | null
     TranscriptHTML?: StringNullableFilter<"Tickets"> | string | null
     TicketNotes?: StringNullableListFilter<"Tickets">
+    SendTranscriptToUser?: BoolNullableFilter<"Tickets"> | boolean | null
+    OldTicketCategoryId?: StringNullableFilter<"Tickets"> | string | null
+    AutoCloseAction?: StringNullableListFilter<"Tickets">
+    AutoReplyMessageTemplateId?: StringNullableFilter<"Tickets"> | string | null
+    AutoAssignHandler?: StringNullableFilter<"Tickets"> | string | null
+    TicketFeedbackChannelId?: StringNullableFilter<"Tickets"> | string | null
+    WithTicketFeedback?: BoolNullableFilter<"Tickets"> | boolean | null
+    UserDMWhenCloseMessageTemplateId?: StringNullableFilter<"Tickets"> | string | null
+    OnlyClaimMode?: BoolNullableFilter<"Tickets"> | boolean | null
     TicketSetupId?: StringFilter<"Tickets"> | string
   }
 
   export type TicketSetupsCreateWithoutModalOptionsInput = {
     id?: string
     CategoryId?: string | null
-    Handlers?: TicketSetupsCreateHandlersInput | string[]
-    HandlerWithShadowPing?: TicketSetupsCreateHandlerWithShadowPingInput | string[]
+    ChannelType?: number | null
     CustomId: string
     TicketChannelName?: string | null
-    ChannelType?: number | null
-    MessageTempleateId?: string | null
+    EnableTicketsOnlyFromTime?: string | null
+    MessageTemplateId?: string | null
     TicketBlacklistRoles?: TicketSetupsCreateTicketBlacklistRolesInput | string[]
     TranscriptChannelId?: string | null
     HasModal?: boolean | null
-    UserDMWhenCloseMessageTemplateId?: string | null
+    ModalTitle?: string | null
+    OnlyClaimMode?: boolean | null
     TicketLimit?: number | null
+    UserDMWhenCloseMessageTemplateId?: string | null
     WithTicketFeedback?: boolean | null
     TicketFeedbackChannelId?: string | null
-    ModalTitle?: string | null
     TicketCreationCooldownPerUser?: number | null
     AutoCloseAfterInactivity?: number | null
+    AutoCloseAfterTime?: number | null
     AutoAssignHandler?: string | null
     AutoReplyMessageTemplateId?: string | null
+    AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
+    OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
-    OpenTicketWithCommand?: boolean | null
     SlashCommandId?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
+    TicketPermissions?: TicketPermissionsCreateNestedManyWithoutTicketSetupInput
     Guilds: GuildsCreateNestedOneWithoutTicketSetupsInput
     Tickets?: TicketsCreateNestedManyWithoutTicketSetupInput
   }
@@ -69704,30 +70765,33 @@ export namespace Prisma {
   export type TicketSetupsUncheckedCreateWithoutModalOptionsInput = {
     id?: string
     CategoryId?: string | null
-    Handlers?: TicketSetupsCreateHandlersInput | string[]
-    HandlerWithShadowPing?: TicketSetupsCreateHandlerWithShadowPingInput | string[]
+    ChannelType?: number | null
     CustomId: string
     TicketChannelName?: string | null
-    ChannelType?: number | null
-    MessageTempleateId?: string | null
+    EnableTicketsOnlyFromTime?: string | null
+    MessageTemplateId?: string | null
     TicketBlacklistRoles?: TicketSetupsCreateTicketBlacklistRolesInput | string[]
     TranscriptChannelId?: string | null
     HasModal?: boolean | null
-    UserDMWhenCloseMessageTemplateId?: string | null
+    ModalTitle?: string | null
+    OnlyClaimMode?: boolean | null
     TicketLimit?: number | null
+    UserDMWhenCloseMessageTemplateId?: string | null
     WithTicketFeedback?: boolean | null
     TicketFeedbackChannelId?: string | null
-    ModalTitle?: string | null
     TicketCreationCooldownPerUser?: number | null
     AutoCloseAfterInactivity?: number | null
+    AutoCloseAfterTime?: number | null
     AutoAssignHandler?: string | null
     AutoReplyMessageTemplateId?: string | null
+    AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
+    OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
-    OpenTicketWithCommand?: boolean | null
     SlashCommandId?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
     GuildId: string
+    TicketPermissions?: TicketPermissionsUncheckedCreateNestedManyWithoutTicketSetupInput
     Tickets?: TicketsUncheckedCreateNestedManyWithoutTicketSetupInput
   }
 
@@ -69749,88 +70813,243 @@ export namespace Prisma {
 
   export type TicketSetupsUpdateWithoutModalOptionsInput = {
     CategoryId?: NullableStringFieldUpdateOperationsInput | string | null
-    Handlers?: TicketSetupsUpdateHandlersInput | string[]
-    HandlerWithShadowPing?: TicketSetupsUpdateHandlerWithShadowPingInput | string[]
+    ChannelType?: NullableIntFieldUpdateOperationsInput | number | null
     CustomId?: StringFieldUpdateOperationsInput | string
     TicketChannelName?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelType?: NullableIntFieldUpdateOperationsInput | number | null
-    MessageTempleateId?: NullableStringFieldUpdateOperationsInput | string | null
+    EnableTicketsOnlyFromTime?: NullableStringFieldUpdateOperationsInput | string | null
+    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     TicketBlacklistRoles?: TicketSetupsUpdateTicketBlacklistRolesInput | string[]
     TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     HasModal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    ModalTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    OnlyClaimMode?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketLimit?: NullableIntFieldUpdateOperationsInput | number | null
+    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     WithTicketFeedback?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    ModalTitle?: NullableStringFieldUpdateOperationsInput | string | null
     TicketCreationCooldownPerUser?: NullableIntFieldUpdateOperationsInput | number | null
     AutoCloseAfterInactivity?: NullableIntFieldUpdateOperationsInput | number | null
+    AutoCloseAfterTime?: NullableIntFieldUpdateOperationsInput | number | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
+    OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
-    OpenTicketWithCommand?: NullableBoolFieldUpdateOperationsInput | boolean | null
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    TicketPermissions?: TicketPermissionsUpdateManyWithoutTicketSetupNestedInput
     Guilds?: GuildsUpdateOneRequiredWithoutTicketSetupsNestedInput
     Tickets?: TicketsUpdateManyWithoutTicketSetupNestedInput
   }
 
   export type TicketSetupsUncheckedUpdateWithoutModalOptionsInput = {
     CategoryId?: NullableStringFieldUpdateOperationsInput | string | null
-    Handlers?: TicketSetupsUpdateHandlersInput | string[]
-    HandlerWithShadowPing?: TicketSetupsUpdateHandlerWithShadowPingInput | string[]
+    ChannelType?: NullableIntFieldUpdateOperationsInput | number | null
     CustomId?: StringFieldUpdateOperationsInput | string
     TicketChannelName?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelType?: NullableIntFieldUpdateOperationsInput | number | null
-    MessageTempleateId?: NullableStringFieldUpdateOperationsInput | string | null
+    EnableTicketsOnlyFromTime?: NullableStringFieldUpdateOperationsInput | string | null
+    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     TicketBlacklistRoles?: TicketSetupsUpdateTicketBlacklistRolesInput | string[]
     TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     HasModal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    ModalTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    OnlyClaimMode?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketLimit?: NullableIntFieldUpdateOperationsInput | number | null
+    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     WithTicketFeedback?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    ModalTitle?: NullableStringFieldUpdateOperationsInput | string | null
     TicketCreationCooldownPerUser?: NullableIntFieldUpdateOperationsInput | number | null
     AutoCloseAfterInactivity?: NullableIntFieldUpdateOperationsInput | number | null
+    AutoCloseAfterTime?: NullableIntFieldUpdateOperationsInput | number | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
+    OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
-    OpenTicketWithCommand?: NullableBoolFieldUpdateOperationsInput | boolean | null
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
     GuildId?: StringFieldUpdateOperationsInput | string
+    TicketPermissions?: TicketPermissionsUncheckedUpdateManyWithoutTicketSetupNestedInput
+    Tickets?: TicketsUncheckedUpdateManyWithoutTicketSetupNestedInput
+  }
+
+  export type TicketSetupsCreateWithoutTicketPermissionsInput = {
+    id?: string
+    CategoryId?: string | null
+    ChannelType?: number | null
+    CustomId: string
+    TicketChannelName?: string | null
+    EnableTicketsOnlyFromTime?: string | null
+    MessageTemplateId?: string | null
+    TicketBlacklistRoles?: TicketSetupsCreateTicketBlacklistRolesInput | string[]
+    TranscriptChannelId?: string | null
+    HasModal?: boolean | null
+    ModalTitle?: string | null
+    OnlyClaimMode?: boolean | null
+    TicketLimit?: number | null
+    UserDMWhenCloseMessageTemplateId?: string | null
+    WithTicketFeedback?: boolean | null
+    TicketFeedbackChannelId?: string | null
+    TicketCreationCooldownPerUser?: number | null
+    AutoCloseAfterInactivity?: number | null
+    AutoCloseAfterTime?: number | null
+    AutoAssignHandler?: string | null
+    AutoReplyMessageTemplateId?: string | null
+    AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
+    OldTicketCategoryId?: string | null
+    RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
+    SlashCommandId?: string | null
+    TextCommandName?: string | null
+    SendTranscriptToUser?: boolean | null
+    ModalOptions?: TicketModalDataCreateNestedManyWithoutTicketSetupInput
+    Guilds: GuildsCreateNestedOneWithoutTicketSetupsInput
+    Tickets?: TicketsCreateNestedManyWithoutTicketSetupInput
+  }
+
+  export type TicketSetupsUncheckedCreateWithoutTicketPermissionsInput = {
+    id?: string
+    CategoryId?: string | null
+    ChannelType?: number | null
+    CustomId: string
+    TicketChannelName?: string | null
+    EnableTicketsOnlyFromTime?: string | null
+    MessageTemplateId?: string | null
+    TicketBlacklistRoles?: TicketSetupsCreateTicketBlacklistRolesInput | string[]
+    TranscriptChannelId?: string | null
+    HasModal?: boolean | null
+    ModalTitle?: string | null
+    OnlyClaimMode?: boolean | null
+    TicketLimit?: number | null
+    UserDMWhenCloseMessageTemplateId?: string | null
+    WithTicketFeedback?: boolean | null
+    TicketFeedbackChannelId?: string | null
+    TicketCreationCooldownPerUser?: number | null
+    AutoCloseAfterInactivity?: number | null
+    AutoCloseAfterTime?: number | null
+    AutoAssignHandler?: string | null
+    AutoReplyMessageTemplateId?: string | null
+    AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
+    OldTicketCategoryId?: string | null
+    RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
+    SlashCommandId?: string | null
+    TextCommandName?: string | null
+    SendTranscriptToUser?: boolean | null
+    GuildId: string
+    ModalOptions?: TicketModalDataUncheckedCreateNestedManyWithoutTicketSetupInput
+    Tickets?: TicketsUncheckedCreateNestedManyWithoutTicketSetupInput
+  }
+
+  export type TicketSetupsCreateOrConnectWithoutTicketPermissionsInput = {
+    where: TicketSetupsWhereUniqueInput
+    create: XOR<TicketSetupsCreateWithoutTicketPermissionsInput, TicketSetupsUncheckedCreateWithoutTicketPermissionsInput>
+  }
+
+  export type TicketSetupsUpsertWithoutTicketPermissionsInput = {
+    update: XOR<TicketSetupsUpdateWithoutTicketPermissionsInput, TicketSetupsUncheckedUpdateWithoutTicketPermissionsInput>
+    create: XOR<TicketSetupsCreateWithoutTicketPermissionsInput, TicketSetupsUncheckedCreateWithoutTicketPermissionsInput>
+    where?: TicketSetupsWhereInput
+  }
+
+  export type TicketSetupsUpdateToOneWithWhereWithoutTicketPermissionsInput = {
+    where?: TicketSetupsWhereInput
+    data: XOR<TicketSetupsUpdateWithoutTicketPermissionsInput, TicketSetupsUncheckedUpdateWithoutTicketPermissionsInput>
+  }
+
+  export type TicketSetupsUpdateWithoutTicketPermissionsInput = {
+    CategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    ChannelType?: NullableIntFieldUpdateOperationsInput | number | null
+    CustomId?: StringFieldUpdateOperationsInput | string
+    TicketChannelName?: NullableStringFieldUpdateOperationsInput | string | null
+    EnableTicketsOnlyFromTime?: NullableStringFieldUpdateOperationsInput | string | null
+    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketBlacklistRoles?: TicketSetupsUpdateTicketBlacklistRolesInput | string[]
+    TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    HasModal?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    ModalTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    OnlyClaimMode?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    TicketLimit?: NullableIntFieldUpdateOperationsInput | number | null
+    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    WithTicketFeedback?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketCreationCooldownPerUser?: NullableIntFieldUpdateOperationsInput | number | null
+    AutoCloseAfterInactivity?: NullableIntFieldUpdateOperationsInput | number | null
+    AutoCloseAfterTime?: NullableIntFieldUpdateOperationsInput | number | null
+    AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
+    OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
+    SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
+    TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
+    SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    ModalOptions?: TicketModalDataUpdateManyWithoutTicketSetupNestedInput
+    Guilds?: GuildsUpdateOneRequiredWithoutTicketSetupsNestedInput
+    Tickets?: TicketsUpdateManyWithoutTicketSetupNestedInput
+  }
+
+  export type TicketSetupsUncheckedUpdateWithoutTicketPermissionsInput = {
+    CategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    ChannelType?: NullableIntFieldUpdateOperationsInput | number | null
+    CustomId?: StringFieldUpdateOperationsInput | string
+    TicketChannelName?: NullableStringFieldUpdateOperationsInput | string | null
+    EnableTicketsOnlyFromTime?: NullableStringFieldUpdateOperationsInput | string | null
+    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketBlacklistRoles?: TicketSetupsUpdateTicketBlacklistRolesInput | string[]
+    TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    HasModal?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    ModalTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    OnlyClaimMode?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    TicketLimit?: NullableIntFieldUpdateOperationsInput | number | null
+    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    WithTicketFeedback?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketCreationCooldownPerUser?: NullableIntFieldUpdateOperationsInput | number | null
+    AutoCloseAfterInactivity?: NullableIntFieldUpdateOperationsInput | number | null
+    AutoCloseAfterTime?: NullableIntFieldUpdateOperationsInput | number | null
+    AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
+    OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
+    SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
+    TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
+    SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    GuildId?: StringFieldUpdateOperationsInput | string
+    ModalOptions?: TicketModalDataUncheckedUpdateManyWithoutTicketSetupNestedInput
     Tickets?: TicketsUncheckedUpdateManyWithoutTicketSetupNestedInput
   }
 
   export type TicketSetupsCreateWithoutTicketsInput = {
     id?: string
     CategoryId?: string | null
-    Handlers?: TicketSetupsCreateHandlersInput | string[]
-    HandlerWithShadowPing?: TicketSetupsCreateHandlerWithShadowPingInput | string[]
+    ChannelType?: number | null
     CustomId: string
     TicketChannelName?: string | null
-    ChannelType?: number | null
-    MessageTempleateId?: string | null
+    EnableTicketsOnlyFromTime?: string | null
+    MessageTemplateId?: string | null
     TicketBlacklistRoles?: TicketSetupsCreateTicketBlacklistRolesInput | string[]
     TranscriptChannelId?: string | null
     HasModal?: boolean | null
-    UserDMWhenCloseMessageTemplateId?: string | null
+    ModalTitle?: string | null
+    OnlyClaimMode?: boolean | null
     TicketLimit?: number | null
+    UserDMWhenCloseMessageTemplateId?: string | null
     WithTicketFeedback?: boolean | null
     TicketFeedbackChannelId?: string | null
-    ModalTitle?: string | null
     TicketCreationCooldownPerUser?: number | null
     AutoCloseAfterInactivity?: number | null
+    AutoCloseAfterTime?: number | null
     AutoAssignHandler?: string | null
     AutoReplyMessageTemplateId?: string | null
+    AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
+    OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
-    OpenTicketWithCommand?: boolean | null
     SlashCommandId?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
+    TicketPermissions?: TicketPermissionsCreateNestedManyWithoutTicketSetupInput
     ModalOptions?: TicketModalDataCreateNestedManyWithoutTicketSetupInput
     Guilds: GuildsCreateNestedOneWithoutTicketSetupsInput
   }
@@ -69838,30 +71057,33 @@ export namespace Prisma {
   export type TicketSetupsUncheckedCreateWithoutTicketsInput = {
     id?: string
     CategoryId?: string | null
-    Handlers?: TicketSetupsCreateHandlersInput | string[]
-    HandlerWithShadowPing?: TicketSetupsCreateHandlerWithShadowPingInput | string[]
+    ChannelType?: number | null
     CustomId: string
     TicketChannelName?: string | null
-    ChannelType?: number | null
-    MessageTempleateId?: string | null
+    EnableTicketsOnlyFromTime?: string | null
+    MessageTemplateId?: string | null
     TicketBlacklistRoles?: TicketSetupsCreateTicketBlacklistRolesInput | string[]
     TranscriptChannelId?: string | null
     HasModal?: boolean | null
-    UserDMWhenCloseMessageTemplateId?: string | null
+    ModalTitle?: string | null
+    OnlyClaimMode?: boolean | null
     TicketLimit?: number | null
+    UserDMWhenCloseMessageTemplateId?: string | null
     WithTicketFeedback?: boolean | null
     TicketFeedbackChannelId?: string | null
-    ModalTitle?: string | null
     TicketCreationCooldownPerUser?: number | null
     AutoCloseAfterInactivity?: number | null
+    AutoCloseAfterTime?: number | null
     AutoAssignHandler?: string | null
     AutoReplyMessageTemplateId?: string | null
+    AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
+    OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
-    OpenTicketWithCommand?: boolean | null
     SlashCommandId?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
     GuildId: string
+    TicketPermissions?: TicketPermissionsUncheckedCreateNestedManyWithoutTicketSetupInput
     ModalOptions?: TicketModalDataUncheckedCreateNestedManyWithoutTicketSetupInput
   }
 
@@ -69902,59 +71124,65 @@ export namespace Prisma {
 
   export type TicketSetupsUpdateWithoutTicketsInput = {
     CategoryId?: NullableStringFieldUpdateOperationsInput | string | null
-    Handlers?: TicketSetupsUpdateHandlersInput | string[]
-    HandlerWithShadowPing?: TicketSetupsUpdateHandlerWithShadowPingInput | string[]
+    ChannelType?: NullableIntFieldUpdateOperationsInput | number | null
     CustomId?: StringFieldUpdateOperationsInput | string
     TicketChannelName?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelType?: NullableIntFieldUpdateOperationsInput | number | null
-    MessageTempleateId?: NullableStringFieldUpdateOperationsInput | string | null
+    EnableTicketsOnlyFromTime?: NullableStringFieldUpdateOperationsInput | string | null
+    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     TicketBlacklistRoles?: TicketSetupsUpdateTicketBlacklistRolesInput | string[]
     TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     HasModal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    ModalTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    OnlyClaimMode?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketLimit?: NullableIntFieldUpdateOperationsInput | number | null
+    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     WithTicketFeedback?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    ModalTitle?: NullableStringFieldUpdateOperationsInput | string | null
     TicketCreationCooldownPerUser?: NullableIntFieldUpdateOperationsInput | number | null
     AutoCloseAfterInactivity?: NullableIntFieldUpdateOperationsInput | number | null
+    AutoCloseAfterTime?: NullableIntFieldUpdateOperationsInput | number | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
+    OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
-    OpenTicketWithCommand?: NullableBoolFieldUpdateOperationsInput | boolean | null
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    TicketPermissions?: TicketPermissionsUpdateManyWithoutTicketSetupNestedInput
     ModalOptions?: TicketModalDataUpdateManyWithoutTicketSetupNestedInput
     Guilds?: GuildsUpdateOneRequiredWithoutTicketSetupsNestedInput
   }
 
   export type TicketSetupsUncheckedUpdateWithoutTicketsInput = {
     CategoryId?: NullableStringFieldUpdateOperationsInput | string | null
-    Handlers?: TicketSetupsUpdateHandlersInput | string[]
-    HandlerWithShadowPing?: TicketSetupsUpdateHandlerWithShadowPingInput | string[]
+    ChannelType?: NullableIntFieldUpdateOperationsInput | number | null
     CustomId?: StringFieldUpdateOperationsInput | string
     TicketChannelName?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelType?: NullableIntFieldUpdateOperationsInput | number | null
-    MessageTempleateId?: NullableStringFieldUpdateOperationsInput | string | null
+    EnableTicketsOnlyFromTime?: NullableStringFieldUpdateOperationsInput | string | null
+    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     TicketBlacklistRoles?: TicketSetupsUpdateTicketBlacklistRolesInput | string[]
     TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     HasModal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    ModalTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    OnlyClaimMode?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketLimit?: NullableIntFieldUpdateOperationsInput | number | null
+    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     WithTicketFeedback?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    ModalTitle?: NullableStringFieldUpdateOperationsInput | string | null
     TicketCreationCooldownPerUser?: NullableIntFieldUpdateOperationsInput | number | null
     AutoCloseAfterInactivity?: NullableIntFieldUpdateOperationsInput | number | null
+    AutoCloseAfterTime?: NullableIntFieldUpdateOperationsInput | number | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
+    OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
-    OpenTicketWithCommand?: NullableBoolFieldUpdateOperationsInput | boolean | null
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
     GuildId?: StringFieldUpdateOperationsInput | string
+    TicketPermissions?: TicketPermissionsUncheckedUpdateManyWithoutTicketSetupNestedInput
     ModalOptions?: TicketModalDataUncheckedUpdateManyWithoutTicketSetupNestedInput
   }
 
@@ -69984,7 +71212,10 @@ export namespace Prisma {
   export type TicketsCreateWithoutTicketFeedbackInput = {
     id?: string
     TicketId: string
+    CreatedAt: Date | string
+    ClosedAt?: Date | string | null
     GuildId: string
+    ChannelType: number
     ChannelId?: string | null
     ThreadId?: string | null
     IsClaimed?: boolean | null
@@ -69994,17 +71225,28 @@ export namespace Prisma {
     IsLooked?: boolean | null
     TicketOwnerId: string
     AddedMemberIds?: TicketsCreateAddedMemberIdsInput | string[]
-    Handlers?: TicketsCreateHandlersInput | string[]
-    TranscriptChannelId: string
+    TranscriptChannelId?: string | null
     TranscriptHTML?: string | null
     TicketNotes?: TicketsCreateTicketNotesInput | string[]
+    SendTranscriptToUser?: boolean | null
+    OldTicketCategoryId?: string | null
+    AutoCloseAction?: TicketsCreateAutoCloseActionInput | string[]
+    AutoReplyMessageTemplateId?: string | null
+    AutoAssignHandler?: string | null
+    TicketFeedbackChannelId?: string | null
+    WithTicketFeedback?: boolean | null
+    UserDMWhenCloseMessageTemplateId?: string | null
+    OnlyClaimMode?: boolean | null
     TicketSetup: TicketSetupsCreateNestedOneWithoutTicketsInput
   }
 
   export type TicketsUncheckedCreateWithoutTicketFeedbackInput = {
     id?: string
     TicketId: string
+    CreatedAt: Date | string
+    ClosedAt?: Date | string | null
     GuildId: string
+    ChannelType: number
     ChannelId?: string | null
     ThreadId?: string | null
     IsClaimed?: boolean | null
@@ -70014,10 +71256,18 @@ export namespace Prisma {
     IsLooked?: boolean | null
     TicketOwnerId: string
     AddedMemberIds?: TicketsCreateAddedMemberIdsInput | string[]
-    Handlers?: TicketsCreateHandlersInput | string[]
-    TranscriptChannelId: string
+    TranscriptChannelId?: string | null
     TranscriptHTML?: string | null
     TicketNotes?: TicketsCreateTicketNotesInput | string[]
+    SendTranscriptToUser?: boolean | null
+    OldTicketCategoryId?: string | null
+    AutoCloseAction?: TicketsCreateAutoCloseActionInput | string[]
+    AutoReplyMessageTemplateId?: string | null
+    AutoAssignHandler?: string | null
+    TicketFeedbackChannelId?: string | null
+    WithTicketFeedback?: boolean | null
+    UserDMWhenCloseMessageTemplateId?: string | null
+    OnlyClaimMode?: boolean | null
     TicketSetupId: string
   }
 
@@ -70039,7 +71289,10 @@ export namespace Prisma {
 
   export type TicketsUpdateWithoutTicketFeedbackInput = {
     TicketId?: StringFieldUpdateOperationsInput | string
+    CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ClosedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     GuildId?: StringFieldUpdateOperationsInput | string
+    ChannelType?: IntFieldUpdateOperationsInput | number
     ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     ThreadId?: NullableStringFieldUpdateOperationsInput | string | null
     IsClaimed?: NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -70049,16 +71302,27 @@ export namespace Prisma {
     IsLooked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketOwnerId?: StringFieldUpdateOperationsInput | string
     AddedMemberIds?: TicketsUpdateAddedMemberIdsInput | string[]
-    Handlers?: TicketsUpdateHandlersInput | string[]
-    TranscriptChannelId?: StringFieldUpdateOperationsInput | string
+    TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     TranscriptHTML?: NullableStringFieldUpdateOperationsInput | string | null
     TicketNotes?: TicketsUpdateTicketNotesInput | string[]
+    SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoCloseAction?: TicketsUpdateAutoCloseActionInput | string[]
+    AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    WithTicketFeedback?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    OnlyClaimMode?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketSetup?: TicketSetupsUpdateOneRequiredWithoutTicketsNestedInput
   }
 
   export type TicketsUncheckedUpdateWithoutTicketFeedbackInput = {
     TicketId?: StringFieldUpdateOperationsInput | string
+    CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ClosedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     GuildId?: StringFieldUpdateOperationsInput | string
+    ChannelType?: IntFieldUpdateOperationsInput | number
     ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     ThreadId?: NullableStringFieldUpdateOperationsInput | string | null
     IsClaimed?: NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -70068,10 +71332,18 @@ export namespace Prisma {
     IsLooked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketOwnerId?: StringFieldUpdateOperationsInput | string
     AddedMemberIds?: TicketsUpdateAddedMemberIdsInput | string[]
-    Handlers?: TicketsUpdateHandlersInput | string[]
-    TranscriptChannelId?: StringFieldUpdateOperationsInput | string
+    TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     TranscriptHTML?: NullableStringFieldUpdateOperationsInput | string | null
     TicketNotes?: TicketsUpdateTicketNotesInput | string[]
+    SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoCloseAction?: TicketsUpdateAutoCloseActionInput | string[]
+    AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    WithTicketFeedback?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    OnlyClaimMode?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketSetupId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -71689,26 +72961,28 @@ export namespace Prisma {
   export type TicketSetupsCreateManyGuildsInput = {
     id?: string
     CategoryId?: string | null
-    Handlers?: TicketSetupsCreateHandlersInput | string[]
-    HandlerWithShadowPing?: TicketSetupsCreateHandlerWithShadowPingInput | string[]
+    ChannelType?: number | null
     CustomId: string
     TicketChannelName?: string | null
-    ChannelType?: number | null
-    MessageTempleateId?: string | null
+    EnableTicketsOnlyFromTime?: string | null
+    MessageTemplateId?: string | null
     TicketBlacklistRoles?: TicketSetupsCreateTicketBlacklistRolesInput | string[]
     TranscriptChannelId?: string | null
     HasModal?: boolean | null
-    UserDMWhenCloseMessageTemplateId?: string | null
+    ModalTitle?: string | null
+    OnlyClaimMode?: boolean | null
     TicketLimit?: number | null
+    UserDMWhenCloseMessageTemplateId?: string | null
     WithTicketFeedback?: boolean | null
     TicketFeedbackChannelId?: string | null
-    ModalTitle?: string | null
     TicketCreationCooldownPerUser?: number | null
     AutoCloseAfterInactivity?: number | null
+    AutoCloseAfterTime?: number | null
     AutoAssignHandler?: string | null
     AutoReplyMessageTemplateId?: string | null
+    AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
+    OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
-    OpenTicketWithCommand?: boolean | null
     SlashCommandId?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
@@ -72075,84 +73349,92 @@ export namespace Prisma {
 
   export type TicketSetupsUpdateWithoutGuildsInput = {
     CategoryId?: NullableStringFieldUpdateOperationsInput | string | null
-    Handlers?: TicketSetupsUpdateHandlersInput | string[]
-    HandlerWithShadowPing?: TicketSetupsUpdateHandlerWithShadowPingInput | string[]
+    ChannelType?: NullableIntFieldUpdateOperationsInput | number | null
     CustomId?: StringFieldUpdateOperationsInput | string
     TicketChannelName?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelType?: NullableIntFieldUpdateOperationsInput | number | null
-    MessageTempleateId?: NullableStringFieldUpdateOperationsInput | string | null
+    EnableTicketsOnlyFromTime?: NullableStringFieldUpdateOperationsInput | string | null
+    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     TicketBlacklistRoles?: TicketSetupsUpdateTicketBlacklistRolesInput | string[]
     TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     HasModal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    ModalTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    OnlyClaimMode?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketLimit?: NullableIntFieldUpdateOperationsInput | number | null
+    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     WithTicketFeedback?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    ModalTitle?: NullableStringFieldUpdateOperationsInput | string | null
     TicketCreationCooldownPerUser?: NullableIntFieldUpdateOperationsInput | number | null
     AutoCloseAfterInactivity?: NullableIntFieldUpdateOperationsInput | number | null
+    AutoCloseAfterTime?: NullableIntFieldUpdateOperationsInput | number | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
+    OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
-    OpenTicketWithCommand?: NullableBoolFieldUpdateOperationsInput | boolean | null
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    TicketPermissions?: TicketPermissionsUpdateManyWithoutTicketSetupNestedInput
     ModalOptions?: TicketModalDataUpdateManyWithoutTicketSetupNestedInput
     Tickets?: TicketsUpdateManyWithoutTicketSetupNestedInput
   }
 
   export type TicketSetupsUncheckedUpdateWithoutGuildsInput = {
     CategoryId?: NullableStringFieldUpdateOperationsInput | string | null
-    Handlers?: TicketSetupsUpdateHandlersInput | string[]
-    HandlerWithShadowPing?: TicketSetupsUpdateHandlerWithShadowPingInput | string[]
+    ChannelType?: NullableIntFieldUpdateOperationsInput | number | null
     CustomId?: StringFieldUpdateOperationsInput | string
     TicketChannelName?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelType?: NullableIntFieldUpdateOperationsInput | number | null
-    MessageTempleateId?: NullableStringFieldUpdateOperationsInput | string | null
+    EnableTicketsOnlyFromTime?: NullableStringFieldUpdateOperationsInput | string | null
+    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     TicketBlacklistRoles?: TicketSetupsUpdateTicketBlacklistRolesInput | string[]
     TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     HasModal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    ModalTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    OnlyClaimMode?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketLimit?: NullableIntFieldUpdateOperationsInput | number | null
+    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     WithTicketFeedback?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    ModalTitle?: NullableStringFieldUpdateOperationsInput | string | null
     TicketCreationCooldownPerUser?: NullableIntFieldUpdateOperationsInput | number | null
     AutoCloseAfterInactivity?: NullableIntFieldUpdateOperationsInput | number | null
+    AutoCloseAfterTime?: NullableIntFieldUpdateOperationsInput | number | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
+    OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
-    OpenTicketWithCommand?: NullableBoolFieldUpdateOperationsInput | boolean | null
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    TicketPermissions?: TicketPermissionsUncheckedUpdateManyWithoutTicketSetupNestedInput
     ModalOptions?: TicketModalDataUncheckedUpdateManyWithoutTicketSetupNestedInput
     Tickets?: TicketsUncheckedUpdateManyWithoutTicketSetupNestedInput
   }
 
   export type TicketSetupsUncheckedUpdateManyWithoutGuildsInput = {
     CategoryId?: NullableStringFieldUpdateOperationsInput | string | null
-    Handlers?: TicketSetupsUpdateHandlersInput | string[]
-    HandlerWithShadowPing?: TicketSetupsUpdateHandlerWithShadowPingInput | string[]
+    ChannelType?: NullableIntFieldUpdateOperationsInput | number | null
     CustomId?: StringFieldUpdateOperationsInput | string
     TicketChannelName?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelType?: NullableIntFieldUpdateOperationsInput | number | null
-    MessageTempleateId?: NullableStringFieldUpdateOperationsInput | string | null
+    EnableTicketsOnlyFromTime?: NullableStringFieldUpdateOperationsInput | string | null
+    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     TicketBlacklistRoles?: TicketSetupsUpdateTicketBlacklistRolesInput | string[]
     TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     HasModal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    ModalTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    OnlyClaimMode?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketLimit?: NullableIntFieldUpdateOperationsInput | number | null
+    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     WithTicketFeedback?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    ModalTitle?: NullableStringFieldUpdateOperationsInput | string | null
     TicketCreationCooldownPerUser?: NullableIntFieldUpdateOperationsInput | number | null
     AutoCloseAfterInactivity?: NullableIntFieldUpdateOperationsInput | number | null
+    AutoCloseAfterTime?: NullableIntFieldUpdateOperationsInput | number | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
+    OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
-    OpenTicketWithCommand?: NullableBoolFieldUpdateOperationsInput | boolean | null
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -72380,17 +73662,36 @@ export namespace Prisma {
     ChannelId?: StringFieldUpdateOperationsInput | string
   }
 
+  export type TicketPermissionsCreateManyTicketSetupInput = {
+    id?: string
+    UUID: string
+    DiscordUserId?: string | null
+    DiscordRoleId?: string | null
+    HasShadowPing?: boolean | null
+    IsHandler?: boolean
+    TicketPermissions?: TicketPermissionsCreateTicketPermissionsInput | string[]
+    AllowedDiscordPermissions?: bigint | number | null
+    DeniedDiscordPermissions?: bigint | number | null
+  }
+
   export type TicketModalDataCreateManyTicketSetupInput = {
     id?: string
+    UUID: string
     Name: string
-    Placeholder: string
+    Placeholder?: string | null
     Type: number
+    MinLength?: number | null
+    MaxLength?: number | null
+    Required: boolean
   }
 
   export type TicketsCreateManyTicketSetupInput = {
     id?: string
     TicketId: string
+    CreatedAt: Date | string
+    ClosedAt?: Date | string | null
     GuildId: string
+    ChannelType: number
     ChannelId?: string | null
     ThreadId?: string | null
     IsClaimed?: boolean | null
@@ -72400,33 +73701,89 @@ export namespace Prisma {
     IsLooked?: boolean | null
     TicketOwnerId: string
     AddedMemberIds?: TicketsCreateAddedMemberIdsInput | string[]
-    Handlers?: TicketsCreateHandlersInput | string[]
-    TranscriptChannelId: string
+    TranscriptChannelId?: string | null
     TranscriptHTML?: string | null
     TicketNotes?: TicketsCreateTicketNotesInput | string[]
+    SendTranscriptToUser?: boolean | null
+    OldTicketCategoryId?: string | null
+    AutoCloseAction?: TicketsCreateAutoCloseActionInput | string[]
+    AutoReplyMessageTemplateId?: string | null
+    AutoAssignHandler?: string | null
+    TicketFeedbackChannelId?: string | null
+    WithTicketFeedback?: boolean | null
+    UserDMWhenCloseMessageTemplateId?: string | null
+    OnlyClaimMode?: boolean | null
+  }
+
+  export type TicketPermissionsUpdateWithoutTicketSetupInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    DiscordUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    DiscordRoleId?: NullableStringFieldUpdateOperationsInput | string | null
+    HasShadowPing?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsHandler?: BoolFieldUpdateOperationsInput | boolean
+    TicketPermissions?: TicketPermissionsUpdateTicketPermissionsInput | string[]
+    AllowedDiscordPermissions?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    DeniedDiscordPermissions?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type TicketPermissionsUncheckedUpdateWithoutTicketSetupInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    DiscordUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    DiscordRoleId?: NullableStringFieldUpdateOperationsInput | string | null
+    HasShadowPing?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsHandler?: BoolFieldUpdateOperationsInput | boolean
+    TicketPermissions?: TicketPermissionsUpdateTicketPermissionsInput | string[]
+    AllowedDiscordPermissions?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    DeniedDiscordPermissions?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type TicketPermissionsUncheckedUpdateManyWithoutTicketSetupInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    DiscordUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    DiscordRoleId?: NullableStringFieldUpdateOperationsInput | string | null
+    HasShadowPing?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsHandler?: BoolFieldUpdateOperationsInput | boolean
+    TicketPermissions?: TicketPermissionsUpdateTicketPermissionsInput | string[]
+    AllowedDiscordPermissions?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    DeniedDiscordPermissions?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   }
 
   export type TicketModalDataUpdateWithoutTicketSetupInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
     Name?: StringFieldUpdateOperationsInput | string
-    Placeholder?: StringFieldUpdateOperationsInput | string
+    Placeholder?: NullableStringFieldUpdateOperationsInput | string | null
     Type?: IntFieldUpdateOperationsInput | number
+    MinLength?: NullableIntFieldUpdateOperationsInput | number | null
+    MaxLength?: NullableIntFieldUpdateOperationsInput | number | null
+    Required?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TicketModalDataUncheckedUpdateWithoutTicketSetupInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
     Name?: StringFieldUpdateOperationsInput | string
-    Placeholder?: StringFieldUpdateOperationsInput | string
+    Placeholder?: NullableStringFieldUpdateOperationsInput | string | null
     Type?: IntFieldUpdateOperationsInput | number
+    MinLength?: NullableIntFieldUpdateOperationsInput | number | null
+    MaxLength?: NullableIntFieldUpdateOperationsInput | number | null
+    Required?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TicketModalDataUncheckedUpdateManyWithoutTicketSetupInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
     Name?: StringFieldUpdateOperationsInput | string
-    Placeholder?: StringFieldUpdateOperationsInput | string
+    Placeholder?: NullableStringFieldUpdateOperationsInput | string | null
     Type?: IntFieldUpdateOperationsInput | number
+    MinLength?: NullableIntFieldUpdateOperationsInput | number | null
+    MaxLength?: NullableIntFieldUpdateOperationsInput | number | null
+    Required?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TicketsUpdateWithoutTicketSetupInput = {
     TicketId?: StringFieldUpdateOperationsInput | string
+    CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ClosedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     GuildId?: StringFieldUpdateOperationsInput | string
+    ChannelType?: IntFieldUpdateOperationsInput | number
     ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     ThreadId?: NullableStringFieldUpdateOperationsInput | string | null
     IsClaimed?: NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -72436,16 +73793,27 @@ export namespace Prisma {
     IsLooked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketOwnerId?: StringFieldUpdateOperationsInput | string
     AddedMemberIds?: TicketsUpdateAddedMemberIdsInput | string[]
-    Handlers?: TicketsUpdateHandlersInput | string[]
-    TranscriptChannelId?: StringFieldUpdateOperationsInput | string
+    TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     TranscriptHTML?: NullableStringFieldUpdateOperationsInput | string | null
     TicketNotes?: TicketsUpdateTicketNotesInput | string[]
+    SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoCloseAction?: TicketsUpdateAutoCloseActionInput | string[]
+    AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    WithTicketFeedback?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    OnlyClaimMode?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketFeedback?: TicketFeedbackUpdateOneWithoutTicketNestedInput
   }
 
   export type TicketsUncheckedUpdateWithoutTicketSetupInput = {
     TicketId?: StringFieldUpdateOperationsInput | string
+    CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ClosedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     GuildId?: StringFieldUpdateOperationsInput | string
+    ChannelType?: IntFieldUpdateOperationsInput | number
     ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     ThreadId?: NullableStringFieldUpdateOperationsInput | string | null
     IsClaimed?: NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -72455,16 +73823,27 @@ export namespace Prisma {
     IsLooked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketOwnerId?: StringFieldUpdateOperationsInput | string
     AddedMemberIds?: TicketsUpdateAddedMemberIdsInput | string[]
-    Handlers?: TicketsUpdateHandlersInput | string[]
-    TranscriptChannelId?: StringFieldUpdateOperationsInput | string
+    TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     TranscriptHTML?: NullableStringFieldUpdateOperationsInput | string | null
     TicketNotes?: TicketsUpdateTicketNotesInput | string[]
+    SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoCloseAction?: TicketsUpdateAutoCloseActionInput | string[]
+    AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    WithTicketFeedback?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    OnlyClaimMode?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketFeedback?: TicketFeedbackUncheckedUpdateOneWithoutTicketNestedInput
   }
 
   export type TicketsUncheckedUpdateManyWithoutTicketSetupInput = {
     TicketId?: StringFieldUpdateOperationsInput | string
+    CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ClosedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     GuildId?: StringFieldUpdateOperationsInput | string
+    ChannelType?: IntFieldUpdateOperationsInput | number
     ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     ThreadId?: NullableStringFieldUpdateOperationsInput | string | null
     IsClaimed?: NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -72474,10 +73853,18 @@ export namespace Prisma {
     IsLooked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketOwnerId?: StringFieldUpdateOperationsInput | string
     AddedMemberIds?: TicketsUpdateAddedMemberIdsInput | string[]
-    Handlers?: TicketsUpdateHandlersInput | string[]
-    TranscriptChannelId?: StringFieldUpdateOperationsInput | string
+    TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     TranscriptHTML?: NullableStringFieldUpdateOperationsInput | string | null
     TicketNotes?: TicketsUpdateTicketNotesInput | string[]
+    SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoCloseAction?: TicketsUpdateAutoCloseActionInput | string[]
+    AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    WithTicketFeedback?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    OnlyClaimMode?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type ApisCreateManyUsersInput = {
