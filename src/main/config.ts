@@ -12,7 +12,12 @@ export let Config: DisBotConfigData
 
 export async function configStartup() {
     const fileCheck = fs.existsSync(`${process.cwd()}/config.yml`);
-    if (!fileCheck) {
+    let content: string
+    if (fileCheck) {
+        const fileContent = fs.readFileSync(`${process.cwd()}/config.yml`);
+        content = fileContent.toString();
+    }
+    if (!fileCheck || !content) {
         const configData: DisBotConfigData = {
             Bot: {
                 DiscordBotToken: "",
