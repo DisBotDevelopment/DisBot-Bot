@@ -14,7 +14,7 @@ export async function setupDisBotConfig(client: ExtendedClient): Promise<void> {
 
     try {
         const fetchTwitchToken = await axios.post(
-            `https://id.twitch.tv/oauth2/token?client_id=dtqw2suy9vbzzhpoure8ibuq8r0vnj&client_secret=a3jr6v2444vf8z7ynk5b17ogf5d9rt&grant_type=client_credentials`
+            `https://id.twitch.tv/oauth2/token?client_id=${Config.Modules.Notifications.TwitchClientId}&client_secret=${Config.Modules.Notifications.TwitchClientSecret}&grant_type=client_credentials`
         );
 
         const result = await fetch("https://accounts.spotify.com/api/token", {

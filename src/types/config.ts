@@ -29,6 +29,8 @@ export type DisBotConfigData = {
         Notifications: {
             SpotifyClientId: string;
             SpotifyClientSecret: string;
+            TwitchClientId: string;
+            TwitchClientSecret: string;
             // SOON
             TiktokClientKey: string;
             TiktokClientSecret: string;

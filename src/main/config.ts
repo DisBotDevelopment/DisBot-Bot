@@ -45,6 +45,8 @@ export async function configStartup() {
                 Notifications: {
                     SpotifyClientId: "",
                     SpotifyClientSecret: "",
+                    TwitchClientId: "",
+                    TwitchClientSecret: "",
                     TiktokClientKey: "",
                     TiktokClientSecret: "",
                 },
