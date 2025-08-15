@@ -11,7 +11,7 @@ import {
 } from "discord.js";
 import { ExtendedClient } from "../../../types/client.js";
 import { convertToEmojiPng } from "../../../helper/emojis.js";
-import { DisbotInteractionType } from "../../../enums/disbotInteractionType.js";
+import { DisBotInteractionType } from "../../../enums/disBotInteractionType.js";
 import { PermissionType } from "../../../enums/permissionType.js";
 
 export default {
@@ -24,7 +24,7 @@ export default {
     userHasOnePermission: true,
     isGuildOwner: false,
   },
-  type: DisbotInteractionType.ContextMenu,
+  type: DisBotInteractionType.ContextMenu,
   context: true,
   data: new ContextMenuCommandBuilder()
     .setName("Edit this message")

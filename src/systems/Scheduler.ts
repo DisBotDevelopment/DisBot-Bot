@@ -11,6 +11,7 @@ import {
 } from "discord.js";
 import {ExtendedClient} from "../types/client.js";
 import {database} from "../main/database.js";
+import {handleCloseAction} from "../helper/ticketHelper.js";
 
 export class Scheduler {
     public static async checkLast30DaysVanities(client: ExtendedClient) {
@@ -76,7 +77,6 @@ export class Scheduler {
         }
     }
 
-
     public static async scheduleTicketsDeleteAfterTimeAndInactivity(client: ExtendedClient) {
 
         const ticketData = await database.tickets.findMany({
@@ -84,38 +84,68 @@ export class Scheduler {
                 TicketSetup: true
             }
         })
-
-        if (!ticketData) return
+        if (!ticketData) return;
 
         for (const ticket of ticketData) {
-            const guild = client.guilds.cache.get(ticket.GuildId)
+
+            if (ticket.IsAutoDone) continue;
+
+            const guild = await client.guilds.fetch(ticket.GuildId)
             if (!guild) continue;
             let channel: TextChannel | PrivateThreadChannel
-            if (ticket.TicketSetup.ChannelType == ChannelType.GuildCategory) {
-                channel = guild.channels.cache.get(ticket.ChannelId) as TextChannel
-            } else if (ticket.TicketSetup.ChannelType == ChannelType.PrivateThread) {
-                const threadChannel = guild.channels.cache.get(ticket.TicketSetup.CategoryId) as TextChannel
-                channel = threadChannel.threads.cache.get(ticket.ThreadId) as PrivateThreadChannel
+            if (ticket.ChannelType == ChannelType.GuildCategory) {
+                try {
+                    channel = await guild.channels.fetch(ticket.ChannelId) as TextChannel
+                } catch (e) {
+                    continue;
+                }
+            } else if (ticket.ChannelType == ChannelType.PrivateThread) {
+                try {
+                    const threadChannel = await guild.channels.fetch(ticket.TicketSetup.CategoryId) as TextChannel
+                    channel = await threadChannel.threads.fetch(ticket.ThreadId) as PrivateThreadChannel
+                } catch (e) {
+                    continue;
+                }
             }
 
             if (ticket.TicketSetup.AutoCloseAfterInactivity) {
-                const latestMessage = channel.messages.cache.last();
+                if (!ticket.LastMessageId) continue;
+                let latestMessage = null;
+                try {
+                    latestMessage = await channel.messages.fetch(ticket.LastMessageId);
+                } catch (err) {
+                    continue
+                }
                 const inactivityTime = ticket.TicketSetup.AutoCloseAfterInactivity; // MS TIME
 
-                if (latestMessage) {
+                if (latestMessage && latestMessage.createdAt instanceof Date) {
                     const time = latestMessage.createdAt.getTime();
                     const now = Date.now();
 
                     const inactiveFor = now - time;
 
                     if (inactiveFor >= inactivityTime) {
-                        // TODO: HANDLE CLOSE!
+                        await handleCloseAction(
+                            client,
+                            guild,
+                            channel,
+                            ticket.TicketId,
+                            null,
+                            "Ticket Inactive",
+                            true,
+                        )
                     }
                 }
             }
 
             if (ticket.TicketSetup.AutoCloseAfterTime) {
-                const latestMessage = channel.messages.cache.last();
+                if (!ticket.LastMessageId) continue;
+                let latestMessage = null;
+                try {
+                    latestMessage = await channel.messages.fetch(ticket.LastMessageId);
+                } catch (err) {
+                    continue
+                }
                 const autoCloseTime = ticket.TicketSetup.AutoCloseAfterTime; // MS TIME
 
                 if (latestMessage) {
@@ -125,11 +155,18 @@ export class Scheduler {
                     const inactiveFor = now - time;
 
                     if (inactiveFor >= autoCloseTime) {
-                        // TODO: HANDLE CLOSE!
+                        await handleCloseAction(
+                            client,
+                            guild,
+                            channel,
+                            ticket.TicketId,
+                            null,
+                            "Ticket is too long open!",
+                            true,
+                        )
                     }
                 }
             }
-
         }
     }
 }

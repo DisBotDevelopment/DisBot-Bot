@@ -1,4 +1,4 @@
-import {Events, GuildMember} from "discord.js";
+import {ChannelType, Events, GuildMember} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -11,9 +11,7 @@ export default {
      * @param {ExtendedClient} client
      */
     async execute(member: GuildMember, client: ExtendedClient) {
-
         const {guild} = member;
-        const {me} = guild.members;
 
         const toggleData = await database.guildFeatureToggles.findFirst({
             where: {

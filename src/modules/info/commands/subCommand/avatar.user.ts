@@ -8,7 +8,7 @@ import {
     MessageFlags,
     PermissionFlagsBits
 } from "discord.js";
-import { DisbotInteractionType } from "../../../../enums/disbotInteractionType.js";
+import { DisBotInteractionType } from "../../../../enums/disBotInteractionType.js";
 import { PermissionType } from "../../../../enums/permissionType.js";
 import { ExtendedClient } from "../../../../types/client.js";
 
@@ -32,7 +32,7 @@ export default {
         aliases: [],
         docsLink: "https://docs.disbot.app/docs/commands/avatar#user",
     },
-    type: DisbotInteractionType.SubCommand,
+    type: DisBotInteractionType.SubCommand,
 
     /**
      * @param {ChatInputCommandInteraction} interaction

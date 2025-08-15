@@ -1,0 +1,52 @@
+import {
+    ActionRowBuilder,
+    ButtonBuilder,
+    ButtonInteraction,
+    ButtonStyle,
+    ChannelType,
+    ContainerBuilder,
+    PrivateThreadChannel,
+    TextChannel,
+    TextDisplayBuilder,
+} from "discord.js";
+import {ExtendedClient} from "../../../types/client.js";
+import {database} from "../../../main/database.js";
+import {handleCloseAction, ticketErrorMessage} from "../../../helper/ticketHelper.js";
+import {cli} from "winston/lib/winston/config/index.js";
+
+export default {
+    id: "ticket-close-action-confirm",
+
+    /**
+     *
+     * @param {ButtonInteraction} interaction
+     * @param {ExtendedClient} client
+     */
+
+    async execute(interaction: ButtonInteraction, client: ExtendedClient) {
+
+        const uuid = interaction.customId.split(":")[1]
+        const data = await database.tickets.findFirst({
+            where: {
+                TicketId: uuid
+            }
+        })
+
+        if (!data) {
+            return ticketErrorMessage("No Ticket found", interaction, client)
+        }
+
+        await handleCloseAction(
+            client,
+            interaction.guild,
+            interaction.channel as TextChannel | PrivateThreadChannel,
+            uuid,
+            confirm ? Boolean(confirm) : null,
+            null,
+            false,
+            interaction
+        )
+
+
+    },
+};

@@ -1,4 +1,4 @@
-import {Events, Message, TextChannel} from "discord.js";
+import {ChannelType, Events, Message, TextChannel} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -9,6 +9,9 @@ export default {
      */
     async execute(message: Message, client: ExtendedClient) {
         const eventchannel = message.channel.id;
+
+        if (message.channel.type == ChannelType.DM) return;
+        if (message.author.bot) return;
 
         const toggledata = await database.guildFeatureToggles.findFirst({
             where: {

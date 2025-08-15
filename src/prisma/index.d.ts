@@ -35123,20 +35123,25 @@ export namespace Prisma {
     TicketId: string | null
     CreatedAt: Date | null
     ClosedAt: Date | null
+    IsClosed: boolean | null
     GuildId: string | null
     ChannelType: number | null
     ChannelId: string | null
     ThreadId: string | null
+    LastMessageId: string | null
     IsClaimed: boolean | null
     IsArchived: boolean | null
     ArchiveMessageId: string | null
     UserWhoHasClaimedId: string | null
-    IsLooked: boolean | null
+    IsLocked: boolean | null
     TicketOwnerId: string | null
     TranscriptChannelId: string | null
     TranscriptHTML: string | null
+    TranscriptJSON: string | null
     SendTranscriptToUser: boolean | null
+    IsAutoDone: boolean | null
     OldTicketCategoryId: string | null
+    CloseActionReason: string | null
     AutoReplyMessageTemplateId: string | null
     AutoAssignHandler: string | null
     TicketFeedbackChannelId: string | null
@@ -35151,20 +35156,25 @@ export namespace Prisma {
     TicketId: string | null
     CreatedAt: Date | null
     ClosedAt: Date | null
+    IsClosed: boolean | null
     GuildId: string | null
     ChannelType: number | null
     ChannelId: string | null
     ThreadId: string | null
+    LastMessageId: string | null
     IsClaimed: boolean | null
     IsArchived: boolean | null
     ArchiveMessageId: string | null
     UserWhoHasClaimedId: string | null
-    IsLooked: boolean | null
+    IsLocked: boolean | null
     TicketOwnerId: string | null
     TranscriptChannelId: string | null
     TranscriptHTML: string | null
+    TranscriptJSON: string | null
     SendTranscriptToUser: boolean | null
+    IsAutoDone: boolean | null
     OldTicketCategoryId: string | null
+    CloseActionReason: string | null
     AutoReplyMessageTemplateId: string | null
     AutoAssignHandler: string | null
     TicketFeedbackChannelId: string | null
@@ -35179,23 +35189,28 @@ export namespace Prisma {
     TicketId: number
     CreatedAt: number
     ClosedAt: number
+    IsClosed: number
     GuildId: number
     ChannelType: number
     ChannelId: number
     ThreadId: number
+    LastMessageId: number
     IsClaimed: number
     IsArchived: number
     ArchiveMessageId: number
     UserWhoHasClaimedId: number
-    IsLooked: number
+    IsLocked: number
     TicketOwnerId: number
     AddedMemberIds: number
     TranscriptChannelId: number
     TranscriptHTML: number
+    TranscriptJSON: number
     TicketNotes: number
     SendTranscriptToUser: number
+    IsAutoDone: number
     OldTicketCategoryId: number
     AutoCloseAction: number
+    CloseActionReason: number
     AutoReplyMessageTemplateId: number
     AutoAssignHandler: number
     TicketFeedbackChannelId: number
@@ -35220,20 +35235,25 @@ export namespace Prisma {
     TicketId?: true
     CreatedAt?: true
     ClosedAt?: true
+    IsClosed?: true
     GuildId?: true
     ChannelType?: true
     ChannelId?: true
     ThreadId?: true
+    LastMessageId?: true
     IsClaimed?: true
     IsArchived?: true
     ArchiveMessageId?: true
     UserWhoHasClaimedId?: true
-    IsLooked?: true
+    IsLocked?: true
     TicketOwnerId?: true
     TranscriptChannelId?: true
     TranscriptHTML?: true
+    TranscriptJSON?: true
     SendTranscriptToUser?: true
+    IsAutoDone?: true
     OldTicketCategoryId?: true
+    CloseActionReason?: true
     AutoReplyMessageTemplateId?: true
     AutoAssignHandler?: true
     TicketFeedbackChannelId?: true
@@ -35248,20 +35268,25 @@ export namespace Prisma {
     TicketId?: true
     CreatedAt?: true
     ClosedAt?: true
+    IsClosed?: true
     GuildId?: true
     ChannelType?: true
     ChannelId?: true
     ThreadId?: true
+    LastMessageId?: true
     IsClaimed?: true
     IsArchived?: true
     ArchiveMessageId?: true
     UserWhoHasClaimedId?: true
-    IsLooked?: true
+    IsLocked?: true
     TicketOwnerId?: true
     TranscriptChannelId?: true
     TranscriptHTML?: true
+    TranscriptJSON?: true
     SendTranscriptToUser?: true
+    IsAutoDone?: true
     OldTicketCategoryId?: true
+    CloseActionReason?: true
     AutoReplyMessageTemplateId?: true
     AutoAssignHandler?: true
     TicketFeedbackChannelId?: true
@@ -35276,23 +35301,28 @@ export namespace Prisma {
     TicketId?: true
     CreatedAt?: true
     ClosedAt?: true
+    IsClosed?: true
     GuildId?: true
     ChannelType?: true
     ChannelId?: true
     ThreadId?: true
+    LastMessageId?: true
     IsClaimed?: true
     IsArchived?: true
     ArchiveMessageId?: true
     UserWhoHasClaimedId?: true
-    IsLooked?: true
+    IsLocked?: true
     TicketOwnerId?: true
     AddedMemberIds?: true
     TranscriptChannelId?: true
     TranscriptHTML?: true
+    TranscriptJSON?: true
     TicketNotes?: true
     SendTranscriptToUser?: true
+    IsAutoDone?: true
     OldTicketCategoryId?: true
     AutoCloseAction?: true
+    CloseActionReason?: true
     AutoReplyMessageTemplateId?: true
     AutoAssignHandler?: true
     TicketFeedbackChannelId?: true
@@ -35394,23 +35424,28 @@ export namespace Prisma {
     TicketId: string
     CreatedAt: Date
     ClosedAt: Date | null
+    IsClosed: boolean
     GuildId: string
     ChannelType: number
     ChannelId: string | null
     ThreadId: string | null
-    IsClaimed: boolean | null
+    LastMessageId: string | null
+    IsClaimed: boolean
     IsArchived: boolean | null
     ArchiveMessageId: string | null
     UserWhoHasClaimedId: string | null
-    IsLooked: boolean | null
+    IsLocked: boolean | null
     TicketOwnerId: string
     AddedMemberIds: string[]
     TranscriptChannelId: string | null
     TranscriptHTML: string | null
+    TranscriptJSON: string | null
     TicketNotes: string[]
     SendTranscriptToUser: boolean | null
+    IsAutoDone: boolean | null
     OldTicketCategoryId: string | null
     AutoCloseAction: string[]
+    CloseActionReason: string | null
     AutoReplyMessageTemplateId: string | null
     AutoAssignHandler: string | null
     TicketFeedbackChannelId: string | null
@@ -35444,23 +35479,28 @@ export namespace Prisma {
     TicketId?: boolean
     CreatedAt?: boolean
     ClosedAt?: boolean
+    IsClosed?: boolean
     GuildId?: boolean
     ChannelType?: boolean
     ChannelId?: boolean
     ThreadId?: boolean
+    LastMessageId?: boolean
     IsClaimed?: boolean
     IsArchived?: boolean
     ArchiveMessageId?: boolean
     UserWhoHasClaimedId?: boolean
-    IsLooked?: boolean
+    IsLocked?: boolean
     TicketOwnerId?: boolean
     AddedMemberIds?: boolean
     TranscriptChannelId?: boolean
     TranscriptHTML?: boolean
+    TranscriptJSON?: boolean
     TicketNotes?: boolean
     SendTranscriptToUser?: boolean
+    IsAutoDone?: boolean
     OldTicketCategoryId?: boolean
     AutoCloseAction?: boolean
+    CloseActionReason?: boolean
     AutoReplyMessageTemplateId?: boolean
     AutoAssignHandler?: boolean
     TicketFeedbackChannelId?: boolean
@@ -35468,8 +35508,8 @@ export namespace Prisma {
     UserDMWhenCloseMessageTemplateId?: boolean
     OnlyClaimMode?: boolean
     TicketSetupId?: boolean
-    TicketSetup?: boolean | TicketSetupsDefaultArgs<ExtArgs>
     TicketFeedback?: boolean | Tickets$TicketFeedbackArgs<ExtArgs>
+    TicketSetup?: boolean | TicketSetupsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["tickets"]>
 
 
@@ -35479,23 +35519,28 @@ export namespace Prisma {
     TicketId?: boolean
     CreatedAt?: boolean
     ClosedAt?: boolean
+    IsClosed?: boolean
     GuildId?: boolean
     ChannelType?: boolean
     ChannelId?: boolean
     ThreadId?: boolean
+    LastMessageId?: boolean
     IsClaimed?: boolean
     IsArchived?: boolean
     ArchiveMessageId?: boolean
     UserWhoHasClaimedId?: boolean
-    IsLooked?: boolean
+    IsLocked?: boolean
     TicketOwnerId?: boolean
     AddedMemberIds?: boolean
     TranscriptChannelId?: boolean
     TranscriptHTML?: boolean
+    TranscriptJSON?: boolean
     TicketNotes?: boolean
     SendTranscriptToUser?: boolean
+    IsAutoDone?: boolean
     OldTicketCategoryId?: boolean
     AutoCloseAction?: boolean
+    CloseActionReason?: boolean
     AutoReplyMessageTemplateId?: boolean
     AutoAssignHandler?: boolean
     TicketFeedbackChannelId?: boolean
@@ -35505,40 +35550,45 @@ export namespace Prisma {
     TicketSetupId?: boolean
   }
 
-  export type TicketsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "TicketId" | "CreatedAt" | "ClosedAt" | "GuildId" | "ChannelType" | "ChannelId" | "ThreadId" | "IsClaimed" | "IsArchived" | "ArchiveMessageId" | "UserWhoHasClaimedId" | "IsLooked" | "TicketOwnerId" | "AddedMemberIds" | "TranscriptChannelId" | "TranscriptHTML" | "TicketNotes" | "SendTranscriptToUser" | "OldTicketCategoryId" | "AutoCloseAction" | "AutoReplyMessageTemplateId" | "AutoAssignHandler" | "TicketFeedbackChannelId" | "WithTicketFeedback" | "UserDMWhenCloseMessageTemplateId" | "OnlyClaimMode" | "TicketSetupId", ExtArgs["result"]["tickets"]>
+  export type TicketsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "TicketId" | "CreatedAt" | "ClosedAt" | "IsClosed" | "GuildId" | "ChannelType" | "ChannelId" | "ThreadId" | "LastMessageId" | "IsClaimed" | "IsArchived" | "ArchiveMessageId" | "UserWhoHasClaimedId" | "IsLocked" | "TicketOwnerId" | "AddedMemberIds" | "TranscriptChannelId" | "TranscriptHTML" | "TranscriptJSON" | "TicketNotes" | "SendTranscriptToUser" | "IsAutoDone" | "OldTicketCategoryId" | "AutoCloseAction" | "CloseActionReason" | "AutoReplyMessageTemplateId" | "AutoAssignHandler" | "TicketFeedbackChannelId" | "WithTicketFeedback" | "UserDMWhenCloseMessageTemplateId" | "OnlyClaimMode" | "TicketSetupId", ExtArgs["result"]["tickets"]>
   export type TicketsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    TicketSetup?: boolean | TicketSetupsDefaultArgs<ExtArgs>
     TicketFeedback?: boolean | Tickets$TicketFeedbackArgs<ExtArgs>
+    TicketSetup?: boolean | TicketSetupsDefaultArgs<ExtArgs>
   }
 
   export type $TicketsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Tickets"
     objects: {
-      TicketSetup: Prisma.$TicketSetupsPayload<ExtArgs>
       TicketFeedback: Prisma.$TicketFeedbackPayload<ExtArgs> | null
+      TicketSetup: Prisma.$TicketSetupsPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       TicketId: string
       CreatedAt: Date
       ClosedAt: Date | null
+      IsClosed: boolean
       GuildId: string
       ChannelType: number
       ChannelId: string | null
       ThreadId: string | null
-      IsClaimed: boolean | null
+      LastMessageId: string | null
+      IsClaimed: boolean
       IsArchived: boolean | null
       ArchiveMessageId: string | null
       UserWhoHasClaimedId: string | null
-      IsLooked: boolean | null
+      IsLocked: boolean | null
       TicketOwnerId: string
       AddedMemberIds: string[]
       TranscriptChannelId: string | null
       TranscriptHTML: string | null
+      TranscriptJSON: string | null
       TicketNotes: string[]
       SendTranscriptToUser: boolean | null
+      IsAutoDone: boolean | null
       OldTicketCategoryId: string | null
       AutoCloseAction: string[]
+      CloseActionReason: string | null
       AutoReplyMessageTemplateId: string | null
       AutoAssignHandler: string | null
       TicketFeedbackChannelId: string | null
@@ -35909,8 +35959,8 @@ export namespace Prisma {
    */
   export interface Prisma__TicketsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    TicketSetup<T extends TicketSetupsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TicketSetupsDefaultArgs<ExtArgs>>): Prisma__TicketSetupsClient<$Result.GetResult<Prisma.$TicketSetupsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     TicketFeedback<T extends Tickets$TicketFeedbackArgs<ExtArgs> = {}>(args?: Subset<T, Tickets$TicketFeedbackArgs<ExtArgs>>): Prisma__TicketFeedbackClient<$Result.GetResult<Prisma.$TicketFeedbackPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    TicketSetup<T extends TicketSetupsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TicketSetupsDefaultArgs<ExtArgs>>): Prisma__TicketSetupsClient<$Result.GetResult<Prisma.$TicketSetupsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -35944,23 +35994,28 @@ export namespace Prisma {
     readonly TicketId: FieldRef<"Tickets", 'String'>
     readonly CreatedAt: FieldRef<"Tickets", 'DateTime'>
     readonly ClosedAt: FieldRef<"Tickets", 'DateTime'>
+    readonly IsClosed: FieldRef<"Tickets", 'Boolean'>
     readonly GuildId: FieldRef<"Tickets", 'String'>
     readonly ChannelType: FieldRef<"Tickets", 'Int'>
     readonly ChannelId: FieldRef<"Tickets", 'String'>
     readonly ThreadId: FieldRef<"Tickets", 'String'>
+    readonly LastMessageId: FieldRef<"Tickets", 'String'>
     readonly IsClaimed: FieldRef<"Tickets", 'Boolean'>
     readonly IsArchived: FieldRef<"Tickets", 'Boolean'>
     readonly ArchiveMessageId: FieldRef<"Tickets", 'String'>
     readonly UserWhoHasClaimedId: FieldRef<"Tickets", 'String'>
-    readonly IsLooked: FieldRef<"Tickets", 'Boolean'>
+    readonly IsLocked: FieldRef<"Tickets", 'Boolean'>
     readonly TicketOwnerId: FieldRef<"Tickets", 'String'>
     readonly AddedMemberIds: FieldRef<"Tickets", 'String[]'>
     readonly TranscriptChannelId: FieldRef<"Tickets", 'String'>
     readonly TranscriptHTML: FieldRef<"Tickets", 'String'>
+    readonly TranscriptJSON: FieldRef<"Tickets", 'String'>
     readonly TicketNotes: FieldRef<"Tickets", 'String[]'>
     readonly SendTranscriptToUser: FieldRef<"Tickets", 'Boolean'>
+    readonly IsAutoDone: FieldRef<"Tickets", 'Boolean'>
     readonly OldTicketCategoryId: FieldRef<"Tickets", 'String'>
     readonly AutoCloseAction: FieldRef<"Tickets", 'String[]'>
+    readonly CloseActionReason: FieldRef<"Tickets", 'String'>
     readonly AutoReplyMessageTemplateId: FieldRef<"Tickets", 'String'>
     readonly AutoAssignHandler: FieldRef<"Tickets", 'String'>
     readonly TicketFeedbackChannelId: FieldRef<"Tickets", 'String'>
@@ -36400,6 +36455,7 @@ export namespace Prisma {
     TicketId: string | null
     Rating: number | null
     Comment: string | null
+    Sent: boolean | null
     SubmittedAt: Date | null
   }
 
@@ -36408,6 +36464,7 @@ export namespace Prisma {
     TicketId: string | null
     Rating: number | null
     Comment: string | null
+    Sent: boolean | null
     SubmittedAt: Date | null
   }
 
@@ -36416,6 +36473,7 @@ export namespace Prisma {
     TicketId: number
     Rating: number
     Comment: number
+    Sent: number
     SubmittedAt: number
     _all: number
   }
@@ -36434,6 +36492,7 @@ export namespace Prisma {
     TicketId?: true
     Rating?: true
     Comment?: true
+    Sent?: true
     SubmittedAt?: true
   }
 
@@ -36442,6 +36501,7 @@ export namespace Prisma {
     TicketId?: true
     Rating?: true
     Comment?: true
+    Sent?: true
     SubmittedAt?: true
   }
 
@@ -36450,6 +36510,7 @@ export namespace Prisma {
     TicketId?: true
     Rating?: true
     Comment?: true
+    Sent?: true
     SubmittedAt?: true
     _all?: true
   }
@@ -36543,9 +36604,10 @@ export namespace Prisma {
   export type TicketFeedbackGroupByOutputType = {
     id: string
     TicketId: string
-    Rating: number
+    Rating: number | null
     Comment: string | null
-    SubmittedAt: Date
+    Sent: boolean
+    SubmittedAt: Date | null
     _count: TicketFeedbackCountAggregateOutputType | null
     _avg: TicketFeedbackAvgAggregateOutputType | null
     _sum: TicketFeedbackSumAggregateOutputType | null
@@ -36572,6 +36634,7 @@ export namespace Prisma {
     TicketId?: boolean
     Rating?: boolean
     Comment?: boolean
+    Sent?: boolean
     SubmittedAt?: boolean
     Ticket?: boolean | TicketsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ticketFeedback"]>
@@ -36583,10 +36646,11 @@ export namespace Prisma {
     TicketId?: boolean
     Rating?: boolean
     Comment?: boolean
+    Sent?: boolean
     SubmittedAt?: boolean
   }
 
-  export type TicketFeedbackOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "TicketId" | "Rating" | "Comment" | "SubmittedAt", ExtArgs["result"]["ticketFeedback"]>
+  export type TicketFeedbackOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "TicketId" | "Rating" | "Comment" | "Sent" | "SubmittedAt", ExtArgs["result"]["ticketFeedback"]>
   export type TicketFeedbackInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Ticket?: boolean | TicketsDefaultArgs<ExtArgs>
   }
@@ -36599,9 +36663,10 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       TicketId: string
-      Rating: number
+      Rating: number | null
       Comment: string | null
-      SubmittedAt: Date
+      Sent: boolean
+      SubmittedAt: Date | null
     }, ExtArgs["result"]["ticketFeedback"]>
     composites: {}
   }
@@ -36999,6 +37064,7 @@ export namespace Prisma {
     readonly TicketId: FieldRef<"TicketFeedback", 'String'>
     readonly Rating: FieldRef<"TicketFeedback", 'Int'>
     readonly Comment: FieldRef<"TicketFeedback", 'String'>
+    readonly Sent: FieldRef<"TicketFeedback", 'Boolean'>
     readonly SubmittedAt: FieldRef<"TicketFeedback", 'DateTime'>
   }
     
@@ -53122,23 +53188,28 @@ export namespace Prisma {
     TicketId: 'TicketId',
     CreatedAt: 'CreatedAt',
     ClosedAt: 'ClosedAt',
+    IsClosed: 'IsClosed',
     GuildId: 'GuildId',
     ChannelType: 'ChannelType',
     ChannelId: 'ChannelId',
     ThreadId: 'ThreadId',
+    LastMessageId: 'LastMessageId',
     IsClaimed: 'IsClaimed',
     IsArchived: 'IsArchived',
     ArchiveMessageId: 'ArchiveMessageId',
     UserWhoHasClaimedId: 'UserWhoHasClaimedId',
-    IsLooked: 'IsLooked',
+    IsLocked: 'IsLocked',
     TicketOwnerId: 'TicketOwnerId',
     AddedMemberIds: 'AddedMemberIds',
     TranscriptChannelId: 'TranscriptChannelId',
     TranscriptHTML: 'TranscriptHTML',
+    TranscriptJSON: 'TranscriptJSON',
     TicketNotes: 'TicketNotes',
     SendTranscriptToUser: 'SendTranscriptToUser',
+    IsAutoDone: 'IsAutoDone',
     OldTicketCategoryId: 'OldTicketCategoryId',
     AutoCloseAction: 'AutoCloseAction',
+    CloseActionReason: 'CloseActionReason',
     AutoReplyMessageTemplateId: 'AutoReplyMessageTemplateId',
     AutoAssignHandler: 'AutoAssignHandler',
     TicketFeedbackChannelId: 'TicketFeedbackChannelId',
@@ -53156,6 +53227,7 @@ export namespace Prisma {
     TicketId: 'TicketId',
     Rating: 'Rating',
     Comment: 'Comment',
+    Sent: 'Sent',
     SubmittedAt: 'SubmittedAt'
   };
 
@@ -55598,23 +55670,28 @@ export namespace Prisma {
     TicketId?: StringFilter<"Tickets"> | string
     CreatedAt?: DateTimeFilter<"Tickets"> | Date | string
     ClosedAt?: DateTimeNullableFilter<"Tickets"> | Date | string | null
+    IsClosed?: BoolFilter<"Tickets"> | boolean
     GuildId?: StringFilter<"Tickets"> | string
     ChannelType?: IntFilter<"Tickets"> | number
     ChannelId?: StringNullableFilter<"Tickets"> | string | null
     ThreadId?: StringNullableFilter<"Tickets"> | string | null
-    IsClaimed?: BoolNullableFilter<"Tickets"> | boolean | null
+    LastMessageId?: StringNullableFilter<"Tickets"> | string | null
+    IsClaimed?: BoolFilter<"Tickets"> | boolean
     IsArchived?: BoolNullableFilter<"Tickets"> | boolean | null
     ArchiveMessageId?: StringNullableFilter<"Tickets"> | string | null
     UserWhoHasClaimedId?: StringNullableFilter<"Tickets"> | string | null
-    IsLooked?: BoolNullableFilter<"Tickets"> | boolean | null
+    IsLocked?: BoolNullableFilter<"Tickets"> | boolean | null
     TicketOwnerId?: StringFilter<"Tickets"> | string
     AddedMemberIds?: StringNullableListFilter<"Tickets">
     TranscriptChannelId?: StringNullableFilter<"Tickets"> | string | null
     TranscriptHTML?: StringNullableFilter<"Tickets"> | string | null
+    TranscriptJSON?: StringNullableFilter<"Tickets"> | string | null
     TicketNotes?: StringNullableListFilter<"Tickets">
     SendTranscriptToUser?: BoolNullableFilter<"Tickets"> | boolean | null
+    IsAutoDone?: BoolNullableFilter<"Tickets"> | boolean | null
     OldTicketCategoryId?: StringNullableFilter<"Tickets"> | string | null
     AutoCloseAction?: StringNullableListFilter<"Tickets">
+    CloseActionReason?: StringNullableFilter<"Tickets"> | string | null
     AutoReplyMessageTemplateId?: StringNullableFilter<"Tickets"> | string | null
     AutoAssignHandler?: StringNullableFilter<"Tickets"> | string | null
     TicketFeedbackChannelId?: StringNullableFilter<"Tickets"> | string | null
@@ -55622,8 +55699,8 @@ export namespace Prisma {
     UserDMWhenCloseMessageTemplateId?: StringNullableFilter<"Tickets"> | string | null
     OnlyClaimMode?: BoolNullableFilter<"Tickets"> | boolean | null
     TicketSetupId?: StringFilter<"Tickets"> | string
-    TicketSetup?: XOR<TicketSetupsScalarRelationFilter, TicketSetupsWhereInput>
     TicketFeedback?: XOR<TicketFeedbackNullableScalarRelationFilter, TicketFeedbackWhereInput> | null
+    TicketSetup?: XOR<TicketSetupsScalarRelationFilter, TicketSetupsWhereInput>
   }
 
   export type TicketsOrderByWithRelationInput = {
@@ -55631,23 +55708,28 @@ export namespace Prisma {
     TicketId?: SortOrder
     CreatedAt?: SortOrder
     ClosedAt?: SortOrder
+    IsClosed?: SortOrder
     GuildId?: SortOrder
     ChannelType?: SortOrder
     ChannelId?: SortOrder
     ThreadId?: SortOrder
+    LastMessageId?: SortOrder
     IsClaimed?: SortOrder
     IsArchived?: SortOrder
     ArchiveMessageId?: SortOrder
     UserWhoHasClaimedId?: SortOrder
-    IsLooked?: SortOrder
+    IsLocked?: SortOrder
     TicketOwnerId?: SortOrder
     AddedMemberIds?: SortOrder
     TranscriptChannelId?: SortOrder
     TranscriptHTML?: SortOrder
+    TranscriptJSON?: SortOrder
     TicketNotes?: SortOrder
     SendTranscriptToUser?: SortOrder
+    IsAutoDone?: SortOrder
     OldTicketCategoryId?: SortOrder
     AutoCloseAction?: SortOrder
+    CloseActionReason?: SortOrder
     AutoReplyMessageTemplateId?: SortOrder
     AutoAssignHandler?: SortOrder
     TicketFeedbackChannelId?: SortOrder
@@ -55655,8 +55737,8 @@ export namespace Prisma {
     UserDMWhenCloseMessageTemplateId?: SortOrder
     OnlyClaimMode?: SortOrder
     TicketSetupId?: SortOrder
-    TicketSetup?: TicketSetupsOrderByWithRelationInput
     TicketFeedback?: TicketFeedbackOrderByWithRelationInput
+    TicketSetup?: TicketSetupsOrderByWithRelationInput
   }
 
   export type TicketsWhereUniqueInput = Prisma.AtLeast<{
@@ -55667,23 +55749,28 @@ export namespace Prisma {
     NOT?: TicketsWhereInput | TicketsWhereInput[]
     CreatedAt?: DateTimeFilter<"Tickets"> | Date | string
     ClosedAt?: DateTimeNullableFilter<"Tickets"> | Date | string | null
+    IsClosed?: BoolFilter<"Tickets"> | boolean
     GuildId?: StringFilter<"Tickets"> | string
     ChannelType?: IntFilter<"Tickets"> | number
     ChannelId?: StringNullableFilter<"Tickets"> | string | null
     ThreadId?: StringNullableFilter<"Tickets"> | string | null
-    IsClaimed?: BoolNullableFilter<"Tickets"> | boolean | null
+    LastMessageId?: StringNullableFilter<"Tickets"> | string | null
+    IsClaimed?: BoolFilter<"Tickets"> | boolean
     IsArchived?: BoolNullableFilter<"Tickets"> | boolean | null
     ArchiveMessageId?: StringNullableFilter<"Tickets"> | string | null
     UserWhoHasClaimedId?: StringNullableFilter<"Tickets"> | string | null
-    IsLooked?: BoolNullableFilter<"Tickets"> | boolean | null
+    IsLocked?: BoolNullableFilter<"Tickets"> | boolean | null
     TicketOwnerId?: StringFilter<"Tickets"> | string
     AddedMemberIds?: StringNullableListFilter<"Tickets">
     TranscriptChannelId?: StringNullableFilter<"Tickets"> | string | null
     TranscriptHTML?: StringNullableFilter<"Tickets"> | string | null
+    TranscriptJSON?: StringNullableFilter<"Tickets"> | string | null
     TicketNotes?: StringNullableListFilter<"Tickets">
     SendTranscriptToUser?: BoolNullableFilter<"Tickets"> | boolean | null
+    IsAutoDone?: BoolNullableFilter<"Tickets"> | boolean | null
     OldTicketCategoryId?: StringNullableFilter<"Tickets"> | string | null
     AutoCloseAction?: StringNullableListFilter<"Tickets">
+    CloseActionReason?: StringNullableFilter<"Tickets"> | string | null
     AutoReplyMessageTemplateId?: StringNullableFilter<"Tickets"> | string | null
     AutoAssignHandler?: StringNullableFilter<"Tickets"> | string | null
     TicketFeedbackChannelId?: StringNullableFilter<"Tickets"> | string | null
@@ -55691,8 +55778,8 @@ export namespace Prisma {
     UserDMWhenCloseMessageTemplateId?: StringNullableFilter<"Tickets"> | string | null
     OnlyClaimMode?: BoolNullableFilter<"Tickets"> | boolean | null
     TicketSetupId?: StringFilter<"Tickets"> | string
-    TicketSetup?: XOR<TicketSetupsScalarRelationFilter, TicketSetupsWhereInput>
     TicketFeedback?: XOR<TicketFeedbackNullableScalarRelationFilter, TicketFeedbackWhereInput> | null
+    TicketSetup?: XOR<TicketSetupsScalarRelationFilter, TicketSetupsWhereInput>
   }, "id" | "TicketId">
 
   export type TicketsOrderByWithAggregationInput = {
@@ -55700,23 +55787,28 @@ export namespace Prisma {
     TicketId?: SortOrder
     CreatedAt?: SortOrder
     ClosedAt?: SortOrder
+    IsClosed?: SortOrder
     GuildId?: SortOrder
     ChannelType?: SortOrder
     ChannelId?: SortOrder
     ThreadId?: SortOrder
+    LastMessageId?: SortOrder
     IsClaimed?: SortOrder
     IsArchived?: SortOrder
     ArchiveMessageId?: SortOrder
     UserWhoHasClaimedId?: SortOrder
-    IsLooked?: SortOrder
+    IsLocked?: SortOrder
     TicketOwnerId?: SortOrder
     AddedMemberIds?: SortOrder
     TranscriptChannelId?: SortOrder
     TranscriptHTML?: SortOrder
+    TranscriptJSON?: SortOrder
     TicketNotes?: SortOrder
     SendTranscriptToUser?: SortOrder
+    IsAutoDone?: SortOrder
     OldTicketCategoryId?: SortOrder
     AutoCloseAction?: SortOrder
+    CloseActionReason?: SortOrder
     AutoReplyMessageTemplateId?: SortOrder
     AutoAssignHandler?: SortOrder
     TicketFeedbackChannelId?: SortOrder
@@ -55739,23 +55831,28 @@ export namespace Prisma {
     TicketId?: StringWithAggregatesFilter<"Tickets"> | string
     CreatedAt?: DateTimeWithAggregatesFilter<"Tickets"> | Date | string
     ClosedAt?: DateTimeNullableWithAggregatesFilter<"Tickets"> | Date | string | null
+    IsClosed?: BoolWithAggregatesFilter<"Tickets"> | boolean
     GuildId?: StringWithAggregatesFilter<"Tickets"> | string
     ChannelType?: IntWithAggregatesFilter<"Tickets"> | number
     ChannelId?: StringNullableWithAggregatesFilter<"Tickets"> | string | null
     ThreadId?: StringNullableWithAggregatesFilter<"Tickets"> | string | null
-    IsClaimed?: BoolNullableWithAggregatesFilter<"Tickets"> | boolean | null
+    LastMessageId?: StringNullableWithAggregatesFilter<"Tickets"> | string | null
+    IsClaimed?: BoolWithAggregatesFilter<"Tickets"> | boolean
     IsArchived?: BoolNullableWithAggregatesFilter<"Tickets"> | boolean | null
     ArchiveMessageId?: StringNullableWithAggregatesFilter<"Tickets"> | string | null
     UserWhoHasClaimedId?: StringNullableWithAggregatesFilter<"Tickets"> | string | null
-    IsLooked?: BoolNullableWithAggregatesFilter<"Tickets"> | boolean | null
+    IsLocked?: BoolNullableWithAggregatesFilter<"Tickets"> | boolean | null
     TicketOwnerId?: StringWithAggregatesFilter<"Tickets"> | string
     AddedMemberIds?: StringNullableListFilter<"Tickets">
     TranscriptChannelId?: StringNullableWithAggregatesFilter<"Tickets"> | string | null
     TranscriptHTML?: StringNullableWithAggregatesFilter<"Tickets"> | string | null
+    TranscriptJSON?: StringNullableWithAggregatesFilter<"Tickets"> | string | null
     TicketNotes?: StringNullableListFilter<"Tickets">
     SendTranscriptToUser?: BoolNullableWithAggregatesFilter<"Tickets"> | boolean | null
+    IsAutoDone?: BoolNullableWithAggregatesFilter<"Tickets"> | boolean | null
     OldTicketCategoryId?: StringNullableWithAggregatesFilter<"Tickets"> | string | null
     AutoCloseAction?: StringNullableListFilter<"Tickets">
+    CloseActionReason?: StringNullableWithAggregatesFilter<"Tickets"> | string | null
     AutoReplyMessageTemplateId?: StringNullableWithAggregatesFilter<"Tickets"> | string | null
     AutoAssignHandler?: StringNullableWithAggregatesFilter<"Tickets"> | string | null
     TicketFeedbackChannelId?: StringNullableWithAggregatesFilter<"Tickets"> | string | null
@@ -55771,9 +55868,10 @@ export namespace Prisma {
     NOT?: TicketFeedbackWhereInput | TicketFeedbackWhereInput[]
     id?: StringFilter<"TicketFeedback"> | string
     TicketId?: StringFilter<"TicketFeedback"> | string
-    Rating?: IntFilter<"TicketFeedback"> | number
+    Rating?: IntNullableFilter<"TicketFeedback"> | number | null
     Comment?: StringNullableFilter<"TicketFeedback"> | string | null
-    SubmittedAt?: DateTimeFilter<"TicketFeedback"> | Date | string
+    Sent?: BoolFilter<"TicketFeedback"> | boolean
+    SubmittedAt?: DateTimeNullableFilter<"TicketFeedback"> | Date | string | null
     Ticket?: XOR<TicketsScalarRelationFilter, TicketsWhereInput>
   }
 
@@ -55782,6 +55880,7 @@ export namespace Prisma {
     TicketId?: SortOrder
     Rating?: SortOrder
     Comment?: SortOrder
+    Sent?: SortOrder
     SubmittedAt?: SortOrder
     Ticket?: TicketsOrderByWithRelationInput
   }
@@ -55792,9 +55891,10 @@ export namespace Prisma {
     AND?: TicketFeedbackWhereInput | TicketFeedbackWhereInput[]
     OR?: TicketFeedbackWhereInput[]
     NOT?: TicketFeedbackWhereInput | TicketFeedbackWhereInput[]
-    Rating?: IntFilter<"TicketFeedback"> | number
+    Rating?: IntNullableFilter<"TicketFeedback"> | number | null
     Comment?: StringNullableFilter<"TicketFeedback"> | string | null
-    SubmittedAt?: DateTimeFilter<"TicketFeedback"> | Date | string
+    Sent?: BoolFilter<"TicketFeedback"> | boolean
+    SubmittedAt?: DateTimeNullableFilter<"TicketFeedback"> | Date | string | null
     Ticket?: XOR<TicketsScalarRelationFilter, TicketsWhereInput>
   }, "id" | "TicketId">
 
@@ -55803,6 +55903,7 @@ export namespace Prisma {
     TicketId?: SortOrder
     Rating?: SortOrder
     Comment?: SortOrder
+    Sent?: SortOrder
     SubmittedAt?: SortOrder
     _count?: TicketFeedbackCountOrderByAggregateInput
     _avg?: TicketFeedbackAvgOrderByAggregateInput
@@ -55817,9 +55918,10 @@ export namespace Prisma {
     NOT?: TicketFeedbackScalarWhereWithAggregatesInput | TicketFeedbackScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"TicketFeedback"> | string
     TicketId?: StringWithAggregatesFilter<"TicketFeedback"> | string
-    Rating?: IntWithAggregatesFilter<"TicketFeedback"> | number
+    Rating?: IntNullableWithAggregatesFilter<"TicketFeedback"> | number | null
     Comment?: StringNullableWithAggregatesFilter<"TicketFeedback"> | string | null
-    SubmittedAt?: DateTimeWithAggregatesFilter<"TicketFeedback"> | Date | string
+    Sent?: BoolWithAggregatesFilter<"TicketFeedback"> | boolean
+    SubmittedAt?: DateTimeNullableWithAggregatesFilter<"TicketFeedback"> | Date | string | null
   }
 
   export type GuildFeatureTogglesWhereInput = {
@@ -59086,31 +59188,36 @@ export namespace Prisma {
     TicketId: string
     CreatedAt: Date | string
     ClosedAt?: Date | string | null
+    IsClosed?: boolean
     GuildId: string
     ChannelType: number
     ChannelId?: string | null
     ThreadId?: string | null
-    IsClaimed?: boolean | null
+    LastMessageId?: string | null
+    IsClaimed?: boolean
     IsArchived?: boolean | null
     ArchiveMessageId?: string | null
     UserWhoHasClaimedId?: string | null
-    IsLooked?: boolean | null
+    IsLocked?: boolean | null
     TicketOwnerId: string
     AddedMemberIds?: TicketsCreateAddedMemberIdsInput | string[]
     TranscriptChannelId?: string | null
     TranscriptHTML?: string | null
+    TranscriptJSON?: string | null
     TicketNotes?: TicketsCreateTicketNotesInput | string[]
     SendTranscriptToUser?: boolean | null
+    IsAutoDone?: boolean | null
     OldTicketCategoryId?: string | null
     AutoCloseAction?: TicketsCreateAutoCloseActionInput | string[]
+    CloseActionReason?: string | null
     AutoReplyMessageTemplateId?: string | null
     AutoAssignHandler?: string | null
     TicketFeedbackChannelId?: string | null
     WithTicketFeedback?: boolean | null
     UserDMWhenCloseMessageTemplateId?: string | null
     OnlyClaimMode?: boolean | null
-    TicketSetup: TicketSetupsCreateNestedOneWithoutTicketsInput
     TicketFeedback?: TicketFeedbackCreateNestedOneWithoutTicketInput
+    TicketSetup: TicketSetupsCreateNestedOneWithoutTicketsInput
   }
 
   export type TicketsUncheckedCreateInput = {
@@ -59118,23 +59225,28 @@ export namespace Prisma {
     TicketId: string
     CreatedAt: Date | string
     ClosedAt?: Date | string | null
+    IsClosed?: boolean
     GuildId: string
     ChannelType: number
     ChannelId?: string | null
     ThreadId?: string | null
-    IsClaimed?: boolean | null
+    LastMessageId?: string | null
+    IsClaimed?: boolean
     IsArchived?: boolean | null
     ArchiveMessageId?: string | null
     UserWhoHasClaimedId?: string | null
-    IsLooked?: boolean | null
+    IsLocked?: boolean | null
     TicketOwnerId: string
     AddedMemberIds?: TicketsCreateAddedMemberIdsInput | string[]
     TranscriptChannelId?: string | null
     TranscriptHTML?: string | null
+    TranscriptJSON?: string | null
     TicketNotes?: TicketsCreateTicketNotesInput | string[]
     SendTranscriptToUser?: boolean | null
+    IsAutoDone?: boolean | null
     OldTicketCategoryId?: string | null
     AutoCloseAction?: TicketsCreateAutoCloseActionInput | string[]
+    CloseActionReason?: string | null
     AutoReplyMessageTemplateId?: string | null
     AutoAssignHandler?: string | null
     TicketFeedbackChannelId?: string | null
@@ -59149,54 +59261,64 @@ export namespace Prisma {
     TicketId?: StringFieldUpdateOperationsInput | string
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ClosedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    IsClosed?: BoolFieldUpdateOperationsInput | boolean
     GuildId?: StringFieldUpdateOperationsInput | string
     ChannelType?: IntFieldUpdateOperationsInput | number
     ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     ThreadId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsClaimed?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    LastMessageId?: NullableStringFieldUpdateOperationsInput | string | null
+    IsClaimed?: BoolFieldUpdateOperationsInput | boolean
     IsArchived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ArchiveMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     UserWhoHasClaimedId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsLooked?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsLocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketOwnerId?: StringFieldUpdateOperationsInput | string
     AddedMemberIds?: TicketsUpdateAddedMemberIdsInput | string[]
     TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     TranscriptHTML?: NullableStringFieldUpdateOperationsInput | string | null
+    TranscriptJSON?: NullableStringFieldUpdateOperationsInput | string | null
     TicketNotes?: TicketsUpdateTicketNotesInput | string[]
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsAutoDone?: NullableBoolFieldUpdateOperationsInput | boolean | null
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketsUpdateAutoCloseActionInput | string[]
+    CloseActionReason?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     WithTicketFeedback?: NullableBoolFieldUpdateOperationsInput | boolean | null
     UserDMWhenCloseMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     OnlyClaimMode?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    TicketSetup?: TicketSetupsUpdateOneRequiredWithoutTicketsNestedInput
     TicketFeedback?: TicketFeedbackUpdateOneWithoutTicketNestedInput
+    TicketSetup?: TicketSetupsUpdateOneRequiredWithoutTicketsNestedInput
   }
 
   export type TicketsUncheckedUpdateInput = {
     TicketId?: StringFieldUpdateOperationsInput | string
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ClosedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    IsClosed?: BoolFieldUpdateOperationsInput | boolean
     GuildId?: StringFieldUpdateOperationsInput | string
     ChannelType?: IntFieldUpdateOperationsInput | number
     ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     ThreadId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsClaimed?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    LastMessageId?: NullableStringFieldUpdateOperationsInput | string | null
+    IsClaimed?: BoolFieldUpdateOperationsInput | boolean
     IsArchived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ArchiveMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     UserWhoHasClaimedId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsLooked?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsLocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketOwnerId?: StringFieldUpdateOperationsInput | string
     AddedMemberIds?: TicketsUpdateAddedMemberIdsInput | string[]
     TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     TranscriptHTML?: NullableStringFieldUpdateOperationsInput | string | null
+    TranscriptJSON?: NullableStringFieldUpdateOperationsInput | string | null
     TicketNotes?: TicketsUpdateTicketNotesInput | string[]
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsAutoDone?: NullableBoolFieldUpdateOperationsInput | boolean | null
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketsUpdateAutoCloseActionInput | string[]
+    CloseActionReason?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -59212,23 +59334,28 @@ export namespace Prisma {
     TicketId: string
     CreatedAt: Date | string
     ClosedAt?: Date | string | null
+    IsClosed?: boolean
     GuildId: string
     ChannelType: number
     ChannelId?: string | null
     ThreadId?: string | null
-    IsClaimed?: boolean | null
+    LastMessageId?: string | null
+    IsClaimed?: boolean
     IsArchived?: boolean | null
     ArchiveMessageId?: string | null
     UserWhoHasClaimedId?: string | null
-    IsLooked?: boolean | null
+    IsLocked?: boolean | null
     TicketOwnerId: string
     AddedMemberIds?: TicketsCreateAddedMemberIdsInput | string[]
     TranscriptChannelId?: string | null
     TranscriptHTML?: string | null
+    TranscriptJSON?: string | null
     TicketNotes?: TicketsCreateTicketNotesInput | string[]
     SendTranscriptToUser?: boolean | null
+    IsAutoDone?: boolean | null
     OldTicketCategoryId?: string | null
     AutoCloseAction?: TicketsCreateAutoCloseActionInput | string[]
+    CloseActionReason?: string | null
     AutoReplyMessageTemplateId?: string | null
     AutoAssignHandler?: string | null
     TicketFeedbackChannelId?: string | null
@@ -59242,23 +59369,28 @@ export namespace Prisma {
     TicketId?: StringFieldUpdateOperationsInput | string
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ClosedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    IsClosed?: BoolFieldUpdateOperationsInput | boolean
     GuildId?: StringFieldUpdateOperationsInput | string
     ChannelType?: IntFieldUpdateOperationsInput | number
     ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     ThreadId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsClaimed?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    LastMessageId?: NullableStringFieldUpdateOperationsInput | string | null
+    IsClaimed?: BoolFieldUpdateOperationsInput | boolean
     IsArchived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ArchiveMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     UserWhoHasClaimedId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsLooked?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsLocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketOwnerId?: StringFieldUpdateOperationsInput | string
     AddedMemberIds?: TicketsUpdateAddedMemberIdsInput | string[]
     TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     TranscriptHTML?: NullableStringFieldUpdateOperationsInput | string | null
+    TranscriptJSON?: NullableStringFieldUpdateOperationsInput | string | null
     TicketNotes?: TicketsUpdateTicketNotesInput | string[]
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsAutoDone?: NullableBoolFieldUpdateOperationsInput | boolean | null
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketsUpdateAutoCloseActionInput | string[]
+    CloseActionReason?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -59271,23 +59403,28 @@ export namespace Prisma {
     TicketId?: StringFieldUpdateOperationsInput | string
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ClosedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    IsClosed?: BoolFieldUpdateOperationsInput | boolean
     GuildId?: StringFieldUpdateOperationsInput | string
     ChannelType?: IntFieldUpdateOperationsInput | number
     ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     ThreadId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsClaimed?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    LastMessageId?: NullableStringFieldUpdateOperationsInput | string | null
+    IsClaimed?: BoolFieldUpdateOperationsInput | boolean
     IsArchived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ArchiveMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     UserWhoHasClaimedId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsLooked?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsLocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketOwnerId?: StringFieldUpdateOperationsInput | string
     AddedMemberIds?: TicketsUpdateAddedMemberIdsInput | string[]
     TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     TranscriptHTML?: NullableStringFieldUpdateOperationsInput | string | null
+    TranscriptJSON?: NullableStringFieldUpdateOperationsInput | string | null
     TicketNotes?: TicketsUpdateTicketNotesInput | string[]
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsAutoDone?: NullableBoolFieldUpdateOperationsInput | boolean | null
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketsUpdateAutoCloseActionInput | string[]
+    CloseActionReason?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -59299,53 +59436,60 @@ export namespace Prisma {
 
   export type TicketFeedbackCreateInput = {
     id?: string
-    Rating: number
+    Rating?: number | null
     Comment?: string | null
-    SubmittedAt?: Date | string
+    Sent?: boolean
+    SubmittedAt?: Date | string | null
     Ticket: TicketsCreateNestedOneWithoutTicketFeedbackInput
   }
 
   export type TicketFeedbackUncheckedCreateInput = {
     id?: string
     TicketId: string
-    Rating: number
+    Rating?: number | null
     Comment?: string | null
-    SubmittedAt?: Date | string
+    Sent?: boolean
+    SubmittedAt?: Date | string | null
   }
 
   export type TicketFeedbackUpdateInput = {
-    Rating?: IntFieldUpdateOperationsInput | number
+    Rating?: NullableIntFieldUpdateOperationsInput | number | null
     Comment?: NullableStringFieldUpdateOperationsInput | string | null
-    SubmittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Sent?: BoolFieldUpdateOperationsInput | boolean
+    SubmittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Ticket?: TicketsUpdateOneRequiredWithoutTicketFeedbackNestedInput
   }
 
   export type TicketFeedbackUncheckedUpdateInput = {
     TicketId?: StringFieldUpdateOperationsInput | string
-    Rating?: IntFieldUpdateOperationsInput | number
+    Rating?: NullableIntFieldUpdateOperationsInput | number | null
     Comment?: NullableStringFieldUpdateOperationsInput | string | null
-    SubmittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Sent?: BoolFieldUpdateOperationsInput | boolean
+    SubmittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type TicketFeedbackCreateManyInput = {
     id?: string
     TicketId: string
-    Rating: number
+    Rating?: number | null
     Comment?: string | null
-    SubmittedAt?: Date | string
+    Sent?: boolean
+    SubmittedAt?: Date | string | null
   }
 
   export type TicketFeedbackUpdateManyMutationInput = {
-    Rating?: IntFieldUpdateOperationsInput | number
+    Rating?: NullableIntFieldUpdateOperationsInput | number | null
     Comment?: NullableStringFieldUpdateOperationsInput | string | null
-    SubmittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Sent?: BoolFieldUpdateOperationsInput | boolean
+    SubmittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type TicketFeedbackUncheckedUpdateManyInput = {
     TicketId?: StringFieldUpdateOperationsInput | string
-    Rating?: IntFieldUpdateOperationsInput | number
+    Rating?: NullableIntFieldUpdateOperationsInput | number | null
     Comment?: NullableStringFieldUpdateOperationsInput | string | null
-    SubmittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Sent?: BoolFieldUpdateOperationsInput | boolean
+    SubmittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type GuildFeatureTogglesCreateInput = {
@@ -61991,23 +62135,28 @@ export namespace Prisma {
     TicketId?: SortOrder
     CreatedAt?: SortOrder
     ClosedAt?: SortOrder
+    IsClosed?: SortOrder
     GuildId?: SortOrder
     ChannelType?: SortOrder
     ChannelId?: SortOrder
     ThreadId?: SortOrder
+    LastMessageId?: SortOrder
     IsClaimed?: SortOrder
     IsArchived?: SortOrder
     ArchiveMessageId?: SortOrder
     UserWhoHasClaimedId?: SortOrder
-    IsLooked?: SortOrder
+    IsLocked?: SortOrder
     TicketOwnerId?: SortOrder
     AddedMemberIds?: SortOrder
     TranscriptChannelId?: SortOrder
     TranscriptHTML?: SortOrder
+    TranscriptJSON?: SortOrder
     TicketNotes?: SortOrder
     SendTranscriptToUser?: SortOrder
+    IsAutoDone?: SortOrder
     OldTicketCategoryId?: SortOrder
     AutoCloseAction?: SortOrder
+    CloseActionReason?: SortOrder
     AutoReplyMessageTemplateId?: SortOrder
     AutoAssignHandler?: SortOrder
     TicketFeedbackChannelId?: SortOrder
@@ -62026,20 +62175,25 @@ export namespace Prisma {
     TicketId?: SortOrder
     CreatedAt?: SortOrder
     ClosedAt?: SortOrder
+    IsClosed?: SortOrder
     GuildId?: SortOrder
     ChannelType?: SortOrder
     ChannelId?: SortOrder
     ThreadId?: SortOrder
+    LastMessageId?: SortOrder
     IsClaimed?: SortOrder
     IsArchived?: SortOrder
     ArchiveMessageId?: SortOrder
     UserWhoHasClaimedId?: SortOrder
-    IsLooked?: SortOrder
+    IsLocked?: SortOrder
     TicketOwnerId?: SortOrder
     TranscriptChannelId?: SortOrder
     TranscriptHTML?: SortOrder
+    TranscriptJSON?: SortOrder
     SendTranscriptToUser?: SortOrder
+    IsAutoDone?: SortOrder
     OldTicketCategoryId?: SortOrder
+    CloseActionReason?: SortOrder
     AutoReplyMessageTemplateId?: SortOrder
     AutoAssignHandler?: SortOrder
     TicketFeedbackChannelId?: SortOrder
@@ -62054,20 +62208,25 @@ export namespace Prisma {
     TicketId?: SortOrder
     CreatedAt?: SortOrder
     ClosedAt?: SortOrder
+    IsClosed?: SortOrder
     GuildId?: SortOrder
     ChannelType?: SortOrder
     ChannelId?: SortOrder
     ThreadId?: SortOrder
+    LastMessageId?: SortOrder
     IsClaimed?: SortOrder
     IsArchived?: SortOrder
     ArchiveMessageId?: SortOrder
     UserWhoHasClaimedId?: SortOrder
-    IsLooked?: SortOrder
+    IsLocked?: SortOrder
     TicketOwnerId?: SortOrder
     TranscriptChannelId?: SortOrder
     TranscriptHTML?: SortOrder
+    TranscriptJSON?: SortOrder
     SendTranscriptToUser?: SortOrder
+    IsAutoDone?: SortOrder
     OldTicketCategoryId?: SortOrder
+    CloseActionReason?: SortOrder
     AutoReplyMessageTemplateId?: SortOrder
     AutoAssignHandler?: SortOrder
     TicketFeedbackChannelId?: SortOrder
@@ -62091,6 +62250,7 @@ export namespace Prisma {
     TicketId?: SortOrder
     Rating?: SortOrder
     Comment?: SortOrder
+    Sent?: SortOrder
     SubmittedAt?: SortOrder
   }
 
@@ -62103,6 +62263,7 @@ export namespace Prisma {
     TicketId?: SortOrder
     Rating?: SortOrder
     Comment?: SortOrder
+    Sent?: SortOrder
     SubmittedAt?: SortOrder
   }
 
@@ -62111,6 +62272,7 @@ export namespace Prisma {
     TicketId?: SortOrder
     Rating?: SortOrder
     Comment?: SortOrder
+    Sent?: SortOrder
     SubmittedAt?: SortOrder
   }
 
@@ -64731,16 +64893,16 @@ export namespace Prisma {
     set: string[]
   }
 
-  export type TicketSetupsCreateNestedOneWithoutTicketsInput = {
-    create?: XOR<TicketSetupsCreateWithoutTicketsInput, TicketSetupsUncheckedCreateWithoutTicketsInput>
-    connectOrCreate?: TicketSetupsCreateOrConnectWithoutTicketsInput
-    connect?: TicketSetupsWhereUniqueInput
-  }
-
   export type TicketFeedbackCreateNestedOneWithoutTicketInput = {
     create?: XOR<TicketFeedbackCreateWithoutTicketInput, TicketFeedbackUncheckedCreateWithoutTicketInput>
     connectOrCreate?: TicketFeedbackCreateOrConnectWithoutTicketInput
     connect?: TicketFeedbackWhereUniqueInput
+  }
+
+  export type TicketSetupsCreateNestedOneWithoutTicketsInput = {
+    create?: XOR<TicketSetupsCreateWithoutTicketsInput, TicketSetupsUncheckedCreateWithoutTicketsInput>
+    connectOrCreate?: TicketSetupsCreateOrConnectWithoutTicketsInput
+    connect?: TicketSetupsWhereUniqueInput
   }
 
   export type TicketFeedbackUncheckedCreateNestedOneWithoutTicketInput = {
@@ -64764,14 +64926,6 @@ export namespace Prisma {
     push?: string | string[]
   }
 
-  export type TicketSetupsUpdateOneRequiredWithoutTicketsNestedInput = {
-    create?: XOR<TicketSetupsCreateWithoutTicketsInput, TicketSetupsUncheckedCreateWithoutTicketsInput>
-    connectOrCreate?: TicketSetupsCreateOrConnectWithoutTicketsInput
-    upsert?: TicketSetupsUpsertWithoutTicketsInput
-    connect?: TicketSetupsWhereUniqueInput
-    update?: XOR<XOR<TicketSetupsUpdateToOneWithWhereWithoutTicketsInput, TicketSetupsUpdateWithoutTicketsInput>, TicketSetupsUncheckedUpdateWithoutTicketsInput>
-  }
-
   export type TicketFeedbackUpdateOneWithoutTicketNestedInput = {
     create?: XOR<TicketFeedbackCreateWithoutTicketInput, TicketFeedbackUncheckedCreateWithoutTicketInput>
     connectOrCreate?: TicketFeedbackCreateOrConnectWithoutTicketInput
@@ -64780,6 +64934,14 @@ export namespace Prisma {
     delete?: TicketFeedbackWhereInput | boolean
     connect?: TicketFeedbackWhereUniqueInput
     update?: XOR<XOR<TicketFeedbackUpdateToOneWithWhereWithoutTicketInput, TicketFeedbackUpdateWithoutTicketInput>, TicketFeedbackUncheckedUpdateWithoutTicketInput>
+  }
+
+  export type TicketSetupsUpdateOneRequiredWithoutTicketsNestedInput = {
+    create?: XOR<TicketSetupsCreateWithoutTicketsInput, TicketSetupsUncheckedCreateWithoutTicketsInput>
+    connectOrCreate?: TicketSetupsCreateOrConnectWithoutTicketsInput
+    upsert?: TicketSetupsUpsertWithoutTicketsInput
+    connect?: TicketSetupsWhereUniqueInput
+    update?: XOR<XOR<TicketSetupsUpdateToOneWithWhereWithoutTicketsInput, TicketSetupsUpdateWithoutTicketsInput>, TicketSetupsUncheckedUpdateWithoutTicketsInput>
   }
 
   export type TicketFeedbackUncheckedUpdateOneWithoutTicketNestedInput = {
@@ -70481,23 +70643,28 @@ export namespace Prisma {
     TicketId: string
     CreatedAt: Date | string
     ClosedAt?: Date | string | null
+    IsClosed?: boolean
     GuildId: string
     ChannelType: number
     ChannelId?: string | null
     ThreadId?: string | null
-    IsClaimed?: boolean | null
+    LastMessageId?: string | null
+    IsClaimed?: boolean
     IsArchived?: boolean | null
     ArchiveMessageId?: string | null
     UserWhoHasClaimedId?: string | null
-    IsLooked?: boolean | null
+    IsLocked?: boolean | null
     TicketOwnerId: string
     AddedMemberIds?: TicketsCreateAddedMemberIdsInput | string[]
     TranscriptChannelId?: string | null
     TranscriptHTML?: string | null
+    TranscriptJSON?: string | null
     TicketNotes?: TicketsCreateTicketNotesInput | string[]
     SendTranscriptToUser?: boolean | null
+    IsAutoDone?: boolean | null
     OldTicketCategoryId?: string | null
     AutoCloseAction?: TicketsCreateAutoCloseActionInput | string[]
+    CloseActionReason?: string | null
     AutoReplyMessageTemplateId?: string | null
     AutoAssignHandler?: string | null
     TicketFeedbackChannelId?: string | null
@@ -70512,23 +70679,28 @@ export namespace Prisma {
     TicketId: string
     CreatedAt: Date | string
     ClosedAt?: Date | string | null
+    IsClosed?: boolean
     GuildId: string
     ChannelType: number
     ChannelId?: string | null
     ThreadId?: string | null
-    IsClaimed?: boolean | null
+    LastMessageId?: string | null
+    IsClaimed?: boolean
     IsArchived?: boolean | null
     ArchiveMessageId?: string | null
     UserWhoHasClaimedId?: string | null
-    IsLooked?: boolean | null
+    IsLocked?: boolean | null
     TicketOwnerId: string
     AddedMemberIds?: TicketsCreateAddedMemberIdsInput | string[]
     TranscriptChannelId?: string | null
     TranscriptHTML?: string | null
+    TranscriptJSON?: string | null
     TicketNotes?: TicketsCreateTicketNotesInput | string[]
     SendTranscriptToUser?: boolean | null
+    IsAutoDone?: boolean | null
     OldTicketCategoryId?: string | null
     AutoCloseAction?: TicketsCreateAutoCloseActionInput | string[]
+    CloseActionReason?: string | null
     AutoReplyMessageTemplateId?: string | null
     AutoAssignHandler?: string | null
     TicketFeedbackChannelId?: string | null
@@ -70703,23 +70875,28 @@ export namespace Prisma {
     TicketId?: StringFilter<"Tickets"> | string
     CreatedAt?: DateTimeFilter<"Tickets"> | Date | string
     ClosedAt?: DateTimeNullableFilter<"Tickets"> | Date | string | null
+    IsClosed?: BoolFilter<"Tickets"> | boolean
     GuildId?: StringFilter<"Tickets"> | string
     ChannelType?: IntFilter<"Tickets"> | number
     ChannelId?: StringNullableFilter<"Tickets"> | string | null
     ThreadId?: StringNullableFilter<"Tickets"> | string | null
-    IsClaimed?: BoolNullableFilter<"Tickets"> | boolean | null
+    LastMessageId?: StringNullableFilter<"Tickets"> | string | null
+    IsClaimed?: BoolFilter<"Tickets"> | boolean
     IsArchived?: BoolNullableFilter<"Tickets"> | boolean | null
     ArchiveMessageId?: StringNullableFilter<"Tickets"> | string | null
     UserWhoHasClaimedId?: StringNullableFilter<"Tickets"> | string | null
-    IsLooked?: BoolNullableFilter<"Tickets"> | boolean | null
+    IsLocked?: BoolNullableFilter<"Tickets"> | boolean | null
     TicketOwnerId?: StringFilter<"Tickets"> | string
     AddedMemberIds?: StringNullableListFilter<"Tickets">
     TranscriptChannelId?: StringNullableFilter<"Tickets"> | string | null
     TranscriptHTML?: StringNullableFilter<"Tickets"> | string | null
+    TranscriptJSON?: StringNullableFilter<"Tickets"> | string | null
     TicketNotes?: StringNullableListFilter<"Tickets">
     SendTranscriptToUser?: BoolNullableFilter<"Tickets"> | boolean | null
+    IsAutoDone?: BoolNullableFilter<"Tickets"> | boolean | null
     OldTicketCategoryId?: StringNullableFilter<"Tickets"> | string | null
     AutoCloseAction?: StringNullableListFilter<"Tickets">
+    CloseActionReason?: StringNullableFilter<"Tickets"> | string | null
     AutoReplyMessageTemplateId?: StringNullableFilter<"Tickets"> | string | null
     AutoAssignHandler?: StringNullableFilter<"Tickets"> | string | null
     TicketFeedbackChannelId?: StringNullableFilter<"Tickets"> | string | null
@@ -71021,6 +71198,27 @@ export namespace Prisma {
     Tickets?: TicketsUncheckedUpdateManyWithoutTicketSetupNestedInput
   }
 
+  export type TicketFeedbackCreateWithoutTicketInput = {
+    id?: string
+    Rating?: number | null
+    Comment?: string | null
+    Sent?: boolean
+    SubmittedAt?: Date | string | null
+  }
+
+  export type TicketFeedbackUncheckedCreateWithoutTicketInput = {
+    id?: string
+    Rating?: number | null
+    Comment?: string | null
+    Sent?: boolean
+    SubmittedAt?: Date | string | null
+  }
+
+  export type TicketFeedbackCreateOrConnectWithoutTicketInput = {
+    where: TicketFeedbackWhereUniqueInput
+    create: XOR<TicketFeedbackCreateWithoutTicketInput, TicketFeedbackUncheckedCreateWithoutTicketInput>
+  }
+
   export type TicketSetupsCreateWithoutTicketsInput = {
     id?: string
     CategoryId?: string | null
@@ -71092,23 +71290,29 @@ export namespace Prisma {
     create: XOR<TicketSetupsCreateWithoutTicketsInput, TicketSetupsUncheckedCreateWithoutTicketsInput>
   }
 
-  export type TicketFeedbackCreateWithoutTicketInput = {
-    id?: string
-    Rating: number
-    Comment?: string | null
-    SubmittedAt?: Date | string
-  }
-
-  export type TicketFeedbackUncheckedCreateWithoutTicketInput = {
-    id?: string
-    Rating: number
-    Comment?: string | null
-    SubmittedAt?: Date | string
-  }
-
-  export type TicketFeedbackCreateOrConnectWithoutTicketInput = {
-    where: TicketFeedbackWhereUniqueInput
+  export type TicketFeedbackUpsertWithoutTicketInput = {
+    update: XOR<TicketFeedbackUpdateWithoutTicketInput, TicketFeedbackUncheckedUpdateWithoutTicketInput>
     create: XOR<TicketFeedbackCreateWithoutTicketInput, TicketFeedbackUncheckedCreateWithoutTicketInput>
+    where?: TicketFeedbackWhereInput
+  }
+
+  export type TicketFeedbackUpdateToOneWithWhereWithoutTicketInput = {
+    where?: TicketFeedbackWhereInput
+    data: XOR<TicketFeedbackUpdateWithoutTicketInput, TicketFeedbackUncheckedUpdateWithoutTicketInput>
+  }
+
+  export type TicketFeedbackUpdateWithoutTicketInput = {
+    Rating?: NullableIntFieldUpdateOperationsInput | number | null
+    Comment?: NullableStringFieldUpdateOperationsInput | string | null
+    Sent?: BoolFieldUpdateOperationsInput | boolean
+    SubmittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type TicketFeedbackUncheckedUpdateWithoutTicketInput = {
+    Rating?: NullableIntFieldUpdateOperationsInput | number | null
+    Comment?: NullableStringFieldUpdateOperationsInput | string | null
+    Sent?: BoolFieldUpdateOperationsInput | boolean
+    SubmittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type TicketSetupsUpsertWithoutTicketsInput = {
@@ -71186,51 +71390,33 @@ export namespace Prisma {
     ModalOptions?: TicketModalDataUncheckedUpdateManyWithoutTicketSetupNestedInput
   }
 
-  export type TicketFeedbackUpsertWithoutTicketInput = {
-    update: XOR<TicketFeedbackUpdateWithoutTicketInput, TicketFeedbackUncheckedUpdateWithoutTicketInput>
-    create: XOR<TicketFeedbackCreateWithoutTicketInput, TicketFeedbackUncheckedCreateWithoutTicketInput>
-    where?: TicketFeedbackWhereInput
-  }
-
-  export type TicketFeedbackUpdateToOneWithWhereWithoutTicketInput = {
-    where?: TicketFeedbackWhereInput
-    data: XOR<TicketFeedbackUpdateWithoutTicketInput, TicketFeedbackUncheckedUpdateWithoutTicketInput>
-  }
-
-  export type TicketFeedbackUpdateWithoutTicketInput = {
-    Rating?: IntFieldUpdateOperationsInput | number
-    Comment?: NullableStringFieldUpdateOperationsInput | string | null
-    SubmittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type TicketFeedbackUncheckedUpdateWithoutTicketInput = {
-    Rating?: IntFieldUpdateOperationsInput | number
-    Comment?: NullableStringFieldUpdateOperationsInput | string | null
-    SubmittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type TicketsCreateWithoutTicketFeedbackInput = {
     id?: string
     TicketId: string
     CreatedAt: Date | string
     ClosedAt?: Date | string | null
+    IsClosed?: boolean
     GuildId: string
     ChannelType: number
     ChannelId?: string | null
     ThreadId?: string | null
-    IsClaimed?: boolean | null
+    LastMessageId?: string | null
+    IsClaimed?: boolean
     IsArchived?: boolean | null
     ArchiveMessageId?: string | null
     UserWhoHasClaimedId?: string | null
-    IsLooked?: boolean | null
+    IsLocked?: boolean | null
     TicketOwnerId: string
     AddedMemberIds?: TicketsCreateAddedMemberIdsInput | string[]
     TranscriptChannelId?: string | null
     TranscriptHTML?: string | null
+    TranscriptJSON?: string | null
     TicketNotes?: TicketsCreateTicketNotesInput | string[]
     SendTranscriptToUser?: boolean | null
+    IsAutoDone?: boolean | null
     OldTicketCategoryId?: string | null
     AutoCloseAction?: TicketsCreateAutoCloseActionInput | string[]
+    CloseActionReason?: string | null
     AutoReplyMessageTemplateId?: string | null
     AutoAssignHandler?: string | null
     TicketFeedbackChannelId?: string | null
@@ -71245,23 +71431,28 @@ export namespace Prisma {
     TicketId: string
     CreatedAt: Date | string
     ClosedAt?: Date | string | null
+    IsClosed?: boolean
     GuildId: string
     ChannelType: number
     ChannelId?: string | null
     ThreadId?: string | null
-    IsClaimed?: boolean | null
+    LastMessageId?: string | null
+    IsClaimed?: boolean
     IsArchived?: boolean | null
     ArchiveMessageId?: string | null
     UserWhoHasClaimedId?: string | null
-    IsLooked?: boolean | null
+    IsLocked?: boolean | null
     TicketOwnerId: string
     AddedMemberIds?: TicketsCreateAddedMemberIdsInput | string[]
     TranscriptChannelId?: string | null
     TranscriptHTML?: string | null
+    TranscriptJSON?: string | null
     TicketNotes?: TicketsCreateTicketNotesInput | string[]
     SendTranscriptToUser?: boolean | null
+    IsAutoDone?: boolean | null
     OldTicketCategoryId?: string | null
     AutoCloseAction?: TicketsCreateAutoCloseActionInput | string[]
+    CloseActionReason?: string | null
     AutoReplyMessageTemplateId?: string | null
     AutoAssignHandler?: string | null
     TicketFeedbackChannelId?: string | null
@@ -71291,23 +71482,28 @@ export namespace Prisma {
     TicketId?: StringFieldUpdateOperationsInput | string
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ClosedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    IsClosed?: BoolFieldUpdateOperationsInput | boolean
     GuildId?: StringFieldUpdateOperationsInput | string
     ChannelType?: IntFieldUpdateOperationsInput | number
     ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     ThreadId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsClaimed?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    LastMessageId?: NullableStringFieldUpdateOperationsInput | string | null
+    IsClaimed?: BoolFieldUpdateOperationsInput | boolean
     IsArchived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ArchiveMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     UserWhoHasClaimedId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsLooked?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsLocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketOwnerId?: StringFieldUpdateOperationsInput | string
     AddedMemberIds?: TicketsUpdateAddedMemberIdsInput | string[]
     TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     TranscriptHTML?: NullableStringFieldUpdateOperationsInput | string | null
+    TranscriptJSON?: NullableStringFieldUpdateOperationsInput | string | null
     TicketNotes?: TicketsUpdateTicketNotesInput | string[]
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsAutoDone?: NullableBoolFieldUpdateOperationsInput | boolean | null
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketsUpdateAutoCloseActionInput | string[]
+    CloseActionReason?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -71321,23 +71517,28 @@ export namespace Prisma {
     TicketId?: StringFieldUpdateOperationsInput | string
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ClosedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    IsClosed?: BoolFieldUpdateOperationsInput | boolean
     GuildId?: StringFieldUpdateOperationsInput | string
     ChannelType?: IntFieldUpdateOperationsInput | number
     ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     ThreadId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsClaimed?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    LastMessageId?: NullableStringFieldUpdateOperationsInput | string | null
+    IsClaimed?: BoolFieldUpdateOperationsInput | boolean
     IsArchived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ArchiveMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     UserWhoHasClaimedId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsLooked?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsLocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketOwnerId?: StringFieldUpdateOperationsInput | string
     AddedMemberIds?: TicketsUpdateAddedMemberIdsInput | string[]
     TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     TranscriptHTML?: NullableStringFieldUpdateOperationsInput | string | null
+    TranscriptJSON?: NullableStringFieldUpdateOperationsInput | string | null
     TicketNotes?: TicketsUpdateTicketNotesInput | string[]
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsAutoDone?: NullableBoolFieldUpdateOperationsInput | boolean | null
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketsUpdateAutoCloseActionInput | string[]
+    CloseActionReason?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -73690,23 +73891,28 @@ export namespace Prisma {
     TicketId: string
     CreatedAt: Date | string
     ClosedAt?: Date | string | null
+    IsClosed?: boolean
     GuildId: string
     ChannelType: number
     ChannelId?: string | null
     ThreadId?: string | null
-    IsClaimed?: boolean | null
+    LastMessageId?: string | null
+    IsClaimed?: boolean
     IsArchived?: boolean | null
     ArchiveMessageId?: string | null
     UserWhoHasClaimedId?: string | null
-    IsLooked?: boolean | null
+    IsLocked?: boolean | null
     TicketOwnerId: string
     AddedMemberIds?: TicketsCreateAddedMemberIdsInput | string[]
     TranscriptChannelId?: string | null
     TranscriptHTML?: string | null
+    TranscriptJSON?: string | null
     TicketNotes?: TicketsCreateTicketNotesInput | string[]
     SendTranscriptToUser?: boolean | null
+    IsAutoDone?: boolean | null
     OldTicketCategoryId?: string | null
     AutoCloseAction?: TicketsCreateAutoCloseActionInput | string[]
+    CloseActionReason?: string | null
     AutoReplyMessageTemplateId?: string | null
     AutoAssignHandler?: string | null
     TicketFeedbackChannelId?: string | null
@@ -73782,23 +73988,28 @@ export namespace Prisma {
     TicketId?: StringFieldUpdateOperationsInput | string
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ClosedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    IsClosed?: BoolFieldUpdateOperationsInput | boolean
     GuildId?: StringFieldUpdateOperationsInput | string
     ChannelType?: IntFieldUpdateOperationsInput | number
     ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     ThreadId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsClaimed?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    LastMessageId?: NullableStringFieldUpdateOperationsInput | string | null
+    IsClaimed?: BoolFieldUpdateOperationsInput | boolean
     IsArchived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ArchiveMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     UserWhoHasClaimedId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsLooked?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsLocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketOwnerId?: StringFieldUpdateOperationsInput | string
     AddedMemberIds?: TicketsUpdateAddedMemberIdsInput | string[]
     TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     TranscriptHTML?: NullableStringFieldUpdateOperationsInput | string | null
+    TranscriptJSON?: NullableStringFieldUpdateOperationsInput | string | null
     TicketNotes?: TicketsUpdateTicketNotesInput | string[]
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsAutoDone?: NullableBoolFieldUpdateOperationsInput | boolean | null
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketsUpdateAutoCloseActionInput | string[]
+    CloseActionReason?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -73812,23 +74023,28 @@ export namespace Prisma {
     TicketId?: StringFieldUpdateOperationsInput | string
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ClosedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    IsClosed?: BoolFieldUpdateOperationsInput | boolean
     GuildId?: StringFieldUpdateOperationsInput | string
     ChannelType?: IntFieldUpdateOperationsInput | number
     ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     ThreadId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsClaimed?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    LastMessageId?: NullableStringFieldUpdateOperationsInput | string | null
+    IsClaimed?: BoolFieldUpdateOperationsInput | boolean
     IsArchived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ArchiveMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     UserWhoHasClaimedId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsLooked?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsLocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketOwnerId?: StringFieldUpdateOperationsInput | string
     AddedMemberIds?: TicketsUpdateAddedMemberIdsInput | string[]
     TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     TranscriptHTML?: NullableStringFieldUpdateOperationsInput | string | null
+    TranscriptJSON?: NullableStringFieldUpdateOperationsInput | string | null
     TicketNotes?: TicketsUpdateTicketNotesInput | string[]
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsAutoDone?: NullableBoolFieldUpdateOperationsInput | boolean | null
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketsUpdateAutoCloseActionInput | string[]
+    CloseActionReason?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -73842,23 +74058,28 @@ export namespace Prisma {
     TicketId?: StringFieldUpdateOperationsInput | string
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ClosedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    IsClosed?: BoolFieldUpdateOperationsInput | boolean
     GuildId?: StringFieldUpdateOperationsInput | string
     ChannelType?: IntFieldUpdateOperationsInput | number
     ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     ThreadId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsClaimed?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    LastMessageId?: NullableStringFieldUpdateOperationsInput | string | null
+    IsClaimed?: BoolFieldUpdateOperationsInput | boolean
     IsArchived?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ArchiveMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     UserWhoHasClaimedId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsLooked?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsLocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketOwnerId?: StringFieldUpdateOperationsInput | string
     AddedMemberIds?: TicketsUpdateAddedMemberIdsInput | string[]
     TranscriptChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     TranscriptHTML?: NullableStringFieldUpdateOperationsInput | string | null
+    TranscriptJSON?: NullableStringFieldUpdateOperationsInput | string | null
     TicketNotes?: TicketsUpdateTicketNotesInput | string[]
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsAutoDone?: NullableBoolFieldUpdateOperationsInput | boolean | null
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketsUpdateAutoCloseActionInput | string[]
+    CloseActionReason?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     TicketFeedbackChannelId?: NullableStringFieldUpdateOperationsInput | string | null

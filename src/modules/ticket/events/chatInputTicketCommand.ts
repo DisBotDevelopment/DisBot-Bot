@@ -7,7 +7,7 @@ import {
     GuildMember, GuildTextBasedChannel,
     Message,
     MessageFlags,
-    ButtonStyle
+    ButtonStyle, ChannelType
 } from "discord.js";
 import {inviteTracker} from "../../../systems/inviteTracker/inviteTracker.js";
 import {ExtendedClient} from "../../../types/client.js";
@@ -23,7 +23,9 @@ export default {
      * @param {ExtendedClient} client
      */
     async execute(message: Message, client: ExtendedClient) {
-
+        if (message.channel.type == ChannelType.DM) return;
+        if (message.author.bot) return;
+        
         const data = await database.ticketSetups.findFirst({
             include: {
                 ModalOptions: true

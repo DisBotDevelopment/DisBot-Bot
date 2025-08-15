@@ -1,5 +1,5 @@
 import {AnySelectMenuInteraction, Events, Guild, GuildMember,} from "discord.js";
-import {DisbotInteractionType} from "../../../enums/disbotInteractionType.js";
+import {DisBotInteractionType} from "../../../enums/disBotInteractionType.js";
 import {PermissionType} from "../../../enums/permissionType.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {errorHandler} from "../../../helper/errorHelper.js";
@@ -61,7 +61,7 @@ export default {
                         selectmenu.options.cooldown as number,
                         interaction,
                         client,
-                        selectmenu.type as DisbotInteractionType
+                        selectmenu.type as DisBotInteractionType
                     );
                 }
                 if ((selectmenu.options.botPermissions?.length ?? 0) > 0) {

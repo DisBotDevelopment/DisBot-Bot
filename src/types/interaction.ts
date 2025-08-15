@@ -1,5 +1,5 @@
 import {PermissionResolvable, SlashCommandBuilder} from "discord.js";
-import type {DisbotInteractionType} from "../enums/disbotInteractionType.js";
+import type {DisBotInteractionType} from "../enums/disBotInteractionType.js";
 import type {PermissionType} from "../enums/permissionType.js";
 import type {ExtendedClient} from "./client.js";
 
@@ -11,7 +11,7 @@ export interface DisBotInteraction {
     subCommand?: string;
     subCommandGroup?: string;
     data?: SlashCommandBuilder;
-    type: DisbotInteractionType;
+    type: DisBotInteractionType;
     options: {
         once?: boolean;
         permission: PermissionType | null;

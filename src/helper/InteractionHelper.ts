@@ -7,7 +7,7 @@ import {
     PermissionResolvable,
     PermissionsBitField
 } from "discord.js";
-import {DisbotInteractionType} from "../enums/disbotInteractionType.js";
+import {DisBotInteractionType} from "../enums/disBotInteractionType.js";
 import {PermissionType} from "../enums/permissionType.js";
 import {convertToEmojiPng} from "./emojis.js";
 import {ExtendedClient} from "../types/client.js";
@@ -48,10 +48,10 @@ export class InteractionHelper {
         }
     }
 
-    public static async cooldownCheck(cooldown: number, interaction: Interaction, client: ExtendedClient, type: DisbotInteractionType) {
+    public static async cooldownCheck(cooldown: number, interaction: Interaction, client: ExtendedClient, type: DisBotInteractionType) {
         const now = Date.now();
 
-        if (type == DisbotInteractionType.Command || type == DisbotInteractionType.SubCommand || type == DisbotInteractionType.SubCommandGroup) {
+        if (type == DisBotInteractionType.Command || type == DisBotInteractionType.SubCommand || type == DisBotInteractionType.SubCommandGroup) {
             if (!interaction.isCommand()) return;
             const cooldownTime = cooldown ? cooldown : 3000;
             const cooldownKey = `${interaction.commandName}:${interaction.user.id}`;

@@ -1,5 +1,5 @@
 import { Events, Guild, GuildMember, InteractionType, ModalSubmitInteraction, } from "discord.js";
-import { DisbotInteractionType } from "../../../enums/disbotInteractionType.js";
+import { DisBotInteractionType } from "../../../enums/disBotInteractionType.js";
 import { PermissionType } from "../../../enums/permissionType.js";
 import { ExtendedClient } from "../../../types/client.js";
 import { errorHandler } from "../../../helper/errorHelper.js";
@@ -53,7 +53,7 @@ export default {
                         modal.options.cooldown as number,
                         interaction,
                         client,
-                        modal.type as DisbotInteractionType
+                        modal.type as DisBotInteractionType
                     );
                 }
                 if ((modal.options.botPermissions?.length ?? 0) > 0) {

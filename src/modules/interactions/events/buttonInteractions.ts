@@ -1,6 +1,6 @@
 import {ButtonInteraction, Events, Guild, GuildMember,} from "discord.js";
 import {Error} from "mongoose";
-import {DisbotInteractionType} from "../../../enums/disbotInteractionType.js";
+import {DisBotInteractionType} from "../../../enums/disBotInteractionType.js";
 import {PermissionType} from "../../../enums/permissionType.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {errorHandler} from "../../../helper/errorHelper.js";
@@ -69,7 +69,7 @@ export default {
                         buttonHandler.options.cooldown as number,
                         interaction,
                         client,
-                        buttonHandler.type as DisbotInteractionType
+                        buttonHandler.type as DisBotInteractionType
                     );
                 }
                 if ((buttonHandler.options.botPermissions?.length ?? 0) > 0) {

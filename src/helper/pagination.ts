@@ -1,6 +1,14 @@
-import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ContainerBuilder, MessageFlags, StringSelectMenuBuilder, TextDisplayBuilder } from "discord.js";
-import { convertToEmojiPng } from "./emojis.js";
-import { PaginationData } from "../types/pagination.js";
+import {
+    ActionRowBuilder, AnyComponentBuilder, AnySelectMenuInteraction,
+    ButtonBuilder,
+    ButtonStyle, ChannelSelectMenuBuilder,
+    ContainerBuilder,
+    MessageFlags, RoleSelectMenuBuilder,
+    StringSelectMenuBuilder,
+    TextDisplayBuilder, UserSelectMenuBuilder
+} from "discord.js";
+import {convertToEmojiPng} from "./emojis.js";
+import {PaginationData} from "../types/pagination.js";
 
 export async function PaginationBuilder(data: PaginationData) {
 
@@ -9,10 +17,10 @@ export async function PaginationBuilder(data: PaginationData) {
         const currentIndex = data.currentIndex || 0;
         const uuid = data.latestUUID
 
-        if (!data.paginationData.length) {
+        if (data.paginationData.length <= 0) {
             if (!data.client.user) throw new Error("Client User is not defined");
             return data.interaction.reply({
-                content: `## ${await convertToEmojiPng("error", data.client.user?.id)} No Button Found`,
+                content: `## ${await convertToEmojiPng("error", data.client.user?.id)} No data for pagination found! Failed to Build Message`,
                 flags: MessageFlags.Ephemeral
             });
         }
@@ -38,17 +46,33 @@ export async function PaginationBuilder(data: PaginationData) {
                 selectMenu
             );
 
+        const container = new ContainerBuilder()
+
+        container
+            .addTextDisplayComponents(message)
+        container
+            .addActionRowComponents(
+                navigationRow
+            )
+        container
+            .addActionRowComponents(
+                selectMenuRow
+            )
+        if (data.extraComponents !== undefined) {
+            container.addActionRowComponents(
+                new ActionRowBuilder<ButtonBuilder | StringSelectMenuBuilder | UserSelectMenuBuilder | ChannelSelectMenuBuilder | RoleSelectMenuBuilder>().addComponents(
+                    data.extraComponents
+                )
+            )
+        }
+
         await data.interaction.reply({
             flags: MessageFlags.IsComponentsV2 | MessageFlags.Ephemeral,
-            components: [
-                new ContainerBuilder()
-                    .addTextDisplayComponents(message).addActionRowComponents(
-                        navigationRow
-                    ).addActionRowComponents(selectMenuRow)]
+            components: [container]
         });
     } catch (error) {
         console.error("Error:", error);
-        data.interaction.reply({
+        await data.interaction.reply({
             content:
                 "## An error occurred while fetching the buttons. Please try again later",
             flags: MessageFlags.Ephemeral

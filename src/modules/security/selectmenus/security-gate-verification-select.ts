@@ -6,7 +6,7 @@ import {
     MessageFlags,
     PermissionFlagsBits
 } from "discord.js";
-import {DisbotInteractionType} from "../../../enums/disbotInteractionType.js";
+import {DisBotInteractionType} from "../../../enums/disBotInteractionType.js";
 import {PermissionType} from "../../../enums/permissionType.js";
 import {convertToEmojiPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
@@ -14,7 +14,7 @@ import {database} from "../../../main/database.js";
 
 export default {
     id: "security-gate-verification-select",
-    type: DisbotInteractionType.SelectMenu,
+    type: DisBotInteractionType.SelectMenu,
     options: {
         once: false,
         permission: PermissionType.SecurityGate,

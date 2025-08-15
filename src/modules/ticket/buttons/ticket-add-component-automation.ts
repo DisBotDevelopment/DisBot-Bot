@@ -96,7 +96,17 @@ export default {
                                             label: "With Confirm Message (Both)",
                                             value: "confirm",
                                             emoji: "<:threds:1395716084870549575>"
-                                        }
+                                        },
+                                        {
+                                            label: "Remove user from Ticket Close (Both)",
+                                            value: "remove_user_from_ticket",
+                                            emoji: "<:threds:1395716084870549575>"
+                                        },
+                                        {
+                                            label: "Require Reason (Both)",
+                                            value: "reason",
+                                            emoji: "<:threds:1395716084870549575>"
+                                        },
                                     ]
                                 )
                         )

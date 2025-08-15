@@ -428,41 +428,47 @@ model Tickets {
   TicketId                         String          @unique
   CreatedAt                        DateTime
   ClosedAt                         DateTime?
+  IsClosed                         Boolean         @default(false)
   GuildId                          String
   ChannelType                      Int
   ChannelId                        String?
   ThreadId                         String?
-  IsClaimed                        Boolean?
-  IsArchived                       Boolean?
+  LastMessageId                    String?
+  IsClaimed                        Boolean         @default(false)
+  IsArchived                       Boolean?        @default(false)
   ArchiveMessageId                 String?
   UserWhoHasClaimedId              String?
-  IsLooked                         Boolean?
+  IsLocked                         Boolean?
   TicketOwnerId                    String
   AddedMemberIds                   String[]
   TranscriptChannelId              String?
   TranscriptHTML                   String?
+  TranscriptJSON                   String?
   TicketNotes                      String[]
   SendTranscriptToUser             Boolean?
+  IsAutoDone                       Boolean?        @default(false)
   OldTicketCategoryId              String?
   AutoCloseAction                  String[]
+  CloseActionReason                String?
   AutoReplyMessageTemplateId       String?
   AutoAssignHandler                String?
   TicketFeedbackChannelId          String?
   WithTicketFeedback               Boolean?
+  TicketFeedback                   TicketFeedback?
   UserDMWhenCloseMessageTemplateId String?
   OnlyClaimMode                    Boolean?
   TicketSetupId                    String
   TicketSetup                      TicketSetups    @relation(fields: [TicketSetupId], references: [CustomId])
-  TicketFeedback                   TicketFeedback?
 }
 
 model TicketFeedback {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  TicketId    String   @unique
-  Rating      Int // 1–5 
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  TicketId    String    @unique
+  Rating      Int? // 1–5 
   Comment     String?
-  SubmittedAt DateTime @default(now())
-  Ticket      Tickets  @relation(fields: [TicketId], references: [TicketId])
+  Sent        Boolean   @default(false)
+  SubmittedAt DateTime? @default(now())
+  Ticket      Tickets   @relation(fields: [TicketId], references: [TicketId])
 }
 
 model GuildFeatureToggles {
