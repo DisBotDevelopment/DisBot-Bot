@@ -12,19 +12,23 @@ RUN apt-get update && apt-get install -y \
     g++ \
     curl \
     ca-certificates \
-    && apt-get clean
+    && apt-get clean && useradd -m -d /home/container container
 
-WORKDIR /home/container
+WORKDIR /bot
 COPY . .
 
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs
 
 RUN bun install @napi-rs/canvas
+
 RUN bun install --force
+
 RUN bun run build
-RUN useradd -m -d /home/container container
-ENV USER=container HOME=/home/container
-USER container
-COPY ./entrypoint.sh /entrypoint.sh
-CMD ["/bin/bash", "/entrypoint.sh"]
+
+USER        container
+ENV         USER=container HOME=/home/container
+WORKDIR     /home/container
+
+COPY entrypoint.sh /entrypoint.sh
+CMD [ "/bin/bash", "/entrypoint.sh" ]

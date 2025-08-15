@@ -2,7 +2,7 @@
 #  Copyright (c) https://github.com/gOOvER/own-pterodactyl-images/blob/main/LICENSE
 #
 
-name: DisBot Docker Builder (Customer)
+name: DisBot Docker Builder (EntryPoint)
 
 on:
   # Allows you to run this workflow manually from the Actions tab
@@ -18,7 +18,7 @@ env:
   SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
 jobs:
   push:
-    name: "Customer Builder"
+    name: "DisBot Builder"
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -52,9 +52,9 @@ jobs:
       - uses: docker/build-push-action@v5
         with:
           context: .
-          file: docker/CustomerDockerfile
+          file: docker/DisBotDockerfileWithEntry
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/disbotdevelopment/disbot-bot:${{ steps.package-version.outputs.current-version}}
-            ghcr.io/disbotdevelopment/disbot-bot:latest
+            ghcr.io/disbotdevelopment/disbot-bot:${{ steps.package-version.outputs.current-version}}-with-entry
+            ghcr.io/disbotdevelopment/disbot-bot:latest-with-entry
