@@ -12,9 +12,7 @@ export let database: PrismaClient = new PrismaClient();
 
 export async function connectToDatabase(client: ExtendedClient) {
 
-    const dbClient = new PrismaClient({
-        datasourceUrl: Config.Database.MongodbUrl
-    });
+    const dbClient = new PrismaClient();
     await dbClient.$connect().then(() => {
         Logger.info(
             {

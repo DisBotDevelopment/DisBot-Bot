@@ -62,16 +62,12 @@ export async function configStartup() {
                 EventsApi: {
                     ApiKey: "",
                     ApiPort: 0,
+                    WsPort: 0,
                 },
-                WsPort: 0,
                 API: {
                     ApiPort: 0,
                     ApiKey: "",
                 },
-            },
-            Database: {
-                MongodbUrl: "",
-                DbName: "",
             },
             Logging: {
                 ErrorWebhook: "",
@@ -81,9 +77,14 @@ export async function configStartup() {
             CONFIG_VERSION: botData.configVersion,
         };
 
+        const doc = new YAML.Document();
+        doc.contents = configData as any;
+
+        doc.commentBefore = ` DisBot Config v${botData.configVersion} of version ${botData.version}\n Read more: https://doc.xyzhub.link/s/disbot/doc/config-yXEob11woF`;
+
         fs.writeFileSync(
             process.env.CONFIG_PATH,
-            YAML.stringify(configData)
+            YAML.stringify(doc)
         );
     }
 

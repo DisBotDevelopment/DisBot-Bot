@@ -17,8 +17,8 @@ interface AuthenticatedSocket extends Socket {
 
 export async function setupSocketIO(client: ExtendedClient) {
     // Port configuration with fallbacks
-    const apiPort = Config.Other.WsPort
-        ? Number(Config.Other.WsPort) : 3459;
+    const apiPort = Config.Other.EventsApi.WsPort
+        ? Number(Config.Other.EventsApi.WsPort) : 3459;
 
     io = new Server(apiPort);
 

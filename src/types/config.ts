@@ -47,16 +47,12 @@ export type DisBotConfigData = {
         EventsApi: {
             ApiKey: string;
             ApiPort: number;
+            WsPort: number;
         };
-        WsPort: number;
         API: {
             ApiPort: number;
             ApiKey: string;
         };
-    };
-    Database: {
-        MongodbUrl: string;
-        DbName: string;
     };
     Logging: {
         ErrorWebhook: string;
