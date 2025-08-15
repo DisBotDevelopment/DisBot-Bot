@@ -2,7 +2,6 @@ import {setupSocketIO} from "../api/eventsAPI/server.js";
 import {api} from "../api/restAPI/api.js";
 import {app} from "../api/services/app.js";
 import {emojiCache} from "../api/services/emojiCache.js";
-import {loggerApi} from "../api/services/loggerApi.js";
 import {vanityAPI} from "../api/services/vanity.js";
 import {vote} from "../api/services/vote.js";
 import {ActivityType, Guild, PresenceStatusData, PresenceUpdateStatus} from "discord.js";
@@ -31,6 +30,7 @@ export async function clientReady(client: ExtendedClient) {
         setInterval(async () => {
             banScheduled(client);
             giveaway(client);
+            Scheduler.scheduleTicketsDeleteAfterTimeAndInactivity(client)
         }, 10000);
 
         // AutoDelete
@@ -50,7 +50,6 @@ export async function clientReady(client: ExtendedClient) {
 
         // API
         await api(client);
-        await loggerApi(client);
         await setupSocketIO(client);
         await emojiCache(client);
 
