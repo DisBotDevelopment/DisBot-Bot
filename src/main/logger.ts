@@ -13,7 +13,7 @@ import {
 } from "discord.js";
 import color from "colors";
 import {randomUUID} from "crypto";
-import {Config} from "./config.js";
+import {Config, configStartup} from "./config.js";
 
 color.enable();
 
@@ -30,57 +30,6 @@ class DiscordTransport extends Transport {
 
             const uuid = randomUUID();
 
-            // const data = await database.disBot.findFirst({
-            //     where: {
-            //         GetConf: "config"
-            //     }
-            // });
-            // if (data) {
-            //     if (data.Logs.length >= 1000) {
-            //         data.Logs.forEach(async (log) => {
-            //             if (log.UUID === uuid) return;
-            //             const logDate = new Date(log.Timestamp as string);
-            //             const now = new Date();
-            //             const diff = now.getTime() - logDate.getTime();
-            //             if (diff > ms("10m")) {
-            //                 await database.disBot.update(
-            //                     {
-            //                         where: { GetConf: "config", },
-            //                         data: {
-            //                             Logs: {
-            //                                 set: data.Logs.filter((f) => f.UUID != log.UUID)
-            //                             }
-            //                         }
-            //                     }
-            //                 );
-            //             }
-            //         });
-            //     }
-            // }
-
-            // await database.disBot.update(
-            //     {
-            //         where: { GetConf: "config", },
-            //         data: {
-            //             Logs: {
-            //                 push: {
-            //                     UUID: uuid.toString(),
-            //                     GuildId: info.guildId ? info.guildId : "0",
-            //                     UserId: info.userId ? info.userId : "0",
-            //                     ChannelId: info.channelId ? info.channelId : "0",
-            //                     MessageId: info.messageId ? info.messageId : "0",
-            //                     Timestamp: info.timestamp ? info.timestamp : new Date().toISOString(),
-            //                     Level: info.level ? info.level : "info",
-            //                     Label: info.label ? info.label : "General",
-            //                     Message: info.message ? info.message : "No message provided",
-            //                     BotType: Config.BotType.toString() || "Unknown",
-            //                     Action: info.action
-            //                 }
-            //             }
-            //         }
-            //     })
-
-            const logUrl = `https://logs.disbot.app/log/${uuid}`;
             const emoji = this.getEmoji(info.level);
 
             let truncatedMessage = "";
@@ -105,14 +54,6 @@ class DiscordTransport extends Transport {
                         `**Bot Type:** ${Config.BotType.toString() || "Unknown"}`,
                         `**Action:** ${info.action}`,
                     ].join("\n"))
-            ).addActionRowComponents(
-                new ActionRowBuilder<ButtonBuilder>()
-                    .addComponents(
-                        new ButtonBuilder()
-                            .setLabel("View Log")
-                            .setStyle(ButtonStyle.Link)
-                            .setURL(logUrl)
-                    )
             )
             this.webhook.send({
                 components: [container],
@@ -144,6 +85,7 @@ class DiscordTransport extends Transport {
     }
 }
 
+await configStartup();
 export const Logger = winston.createLogger({
     format: winston.format.combine(
         winston.format.timestamp({format: "YYYY-MM-DD HH:mm:ss"}),
@@ -160,7 +102,6 @@ export const Logger = winston.createLogger({
     ),
     transports: [
         new winston.transports.Console(),
-        // TODO: Fix DiscordExporter
-        // new DiscordTransport({webhookUrl: Config.Logging.BotLogger})
+        new DiscordTransport({webhookUrl: Config.Logging.BotLogger})
     ],
 });

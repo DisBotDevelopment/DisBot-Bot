@@ -1,6 +1,6 @@
 import {
     ActionRowBuilder,
-    AttachmentBuilder, ButtonBuilder, ButtonInteraction, ButtonStyle, ChannelSelectMenuBuilder,
+    AttachmentBuilder, ButtonBuilder, ButtonInteraction, ButtonStyle, ChannelSelectMenuBuilder, ChannelType,
     ContainerBuilder,
     FileBuilder,
     MessageFlags, SeparatorBuilder, SeparatorSpacingSize,
@@ -58,6 +58,7 @@ export async function loggingHelper(
                         new ActionRowBuilder<ChannelSelectMenuBuilder>().addComponents(
                             new ChannelSelectMenuBuilder()
                                 .setCustomId("logging-to-channel:" + uuid)
+                                .setChannelTypes(ChannelType.GuildText, ChannelType.PublicThread, ChannelType.PrivateThread, ChannelType.AnnouncementThread, ChannelType.GuildAnnouncement)
                         )
                     )
                     .addFileComponents(
