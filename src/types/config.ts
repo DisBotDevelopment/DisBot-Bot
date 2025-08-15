@@ -59,8 +59,6 @@ export type DisBotConfigData = {
         DbName: string;
     };
     Logging: {
-        BotLoggingApiPort: number;
-        BotLoggingPassword: string;
         ErrorWebhook: string;
         BotLogger: string;
     };

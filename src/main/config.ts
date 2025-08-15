@@ -1,7 +1,5 @@
 import YAML from "yaml";
 import fs from "fs";
-import {Logger} from "./logger.js";
-import {LoggingAction} from "../enums/loggingTypes.js";
 import {botData} from "./version.js";
 import colors from "colors";
 import {DisBotConfigData} from "../types/config.js";
@@ -11,10 +9,10 @@ colors.enable();
 export let Config: DisBotConfigData
 
 export async function configStartup() {
-    const fileCheck = fs.existsSync(`${process.cwd()}/config.yml`);
+    const fileCheck = fs.existsSync(process.env.CONFIG_PATH);
     let content: string
     if (fileCheck) {
-        const fileContent = fs.readFileSync(`${process.cwd()}/config.yml`);
+        const fileContent = fs.readFileSync(process.env.CONFIG_PATH);
         content = fileContent.toString();
     }
     if (!fileCheck || !content) {
@@ -76,8 +74,6 @@ export async function configStartup() {
                 DbName: "",
             },
             Logging: {
-                BotLoggingApiPort: 0,
-                BotLoggingPassword: "",
                 ErrorWebhook: "",
                 BotLogger: "",
             },
@@ -86,41 +82,19 @@ export async function configStartup() {
         };
 
         fs.writeFileSync(
-            `${process.cwd()}/config.yml`,
+            process.env.CONFIG_PATH,
             YAML.stringify(configData)
         );
     }
 
-    const file = fs.readFileSync(`${process.cwd()}/config.yml`, "utf8");
+    const file = fs.readFileSync(process.env.CONFIG_PATH, "utf8");
     const ymlData = YAML.parse(file);
     Config = ymlData;
 
-    Logger.info({
-        guildId: "0",
-        userId: "0",
-        channelId: "0",
-        messageId: "0",
-        timestamp: new Date().toISOString(),
-        level: "info",
-        label: "Config",
-        message: `DisBot Config is loaded and exported!`,
-        botType: "Unknown",
-        action: LoggingAction.Other,
-    });
+    console.log("DisBot Config is loaded and exported! (Logger, Startup, Bot)")
 
     if (Config.CONFIG_VERSION != botData.configVersion) {
-        Logger.error({
-            guildId: "0",
-            userId: "0",
-            channelId: "0",
-            messageId: "0",
-            timestamp: new Date().toISOString(),
-            level: "error",
-            label: "Config",
-            message: `Please recreate your Bot Config`.red,
-            botType: "Unknown",
-            action: LoggingAction.Other,
-        });
+        console.error(`Please recreate your Bot Config`.red)
         process.exit(0);
     }
 }
