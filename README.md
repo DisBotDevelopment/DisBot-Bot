@@ -20,7 +20,10 @@
 ---
 
 Welcome to **DisBot**  
-This is the official open-source repository of DisBot – a modern, modular Discord bot focused on performance, extensibility, and ease of use.
+This is the official open-source repository of DisBot! -- DisBot is a modern, modular Discord bot designed for performance, expandability, and ease of use.
+Developed for developers, server administrators, and communities that value flexibility, stability, and clear structures.
+
+Read More: https://disbot.app/#features
 
 ---
 

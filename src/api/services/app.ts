@@ -11,7 +11,7 @@ import {Config} from "../../main/config.js";
 
 export async function app(client: ExtendedClient) {
     const app = express();
-    const port = Config.Other.API.ApiPort || 3000;
+    const port = Config.Other.AppPort || 3000;
 
     app.set("view engine", "ejs");
     app.use(express.static(`${process.cwd()}/src/api/public`));

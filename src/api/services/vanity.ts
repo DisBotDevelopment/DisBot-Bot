@@ -118,17 +118,15 @@ export async function vanityAPI(client: ExtendedClient) {
     });
 
     app.get("/", (req, res) => {
-        return res
-            .status(200)
-            .render(path.join(process.cwd(), "src", "api", "public", "html", "dchat.ejs"))
+        res.redirect(Config.Modules.Vanity.MainPageRedirect)
     });
 
-    app.listen(Config.Other.VanityPort, () => {
+    app.listen(Config.Modules.Vanity.VanityPort, () => {
         Logger.info({
             timestamp: new Date().toISOString(),
             level: "info",
             label: "VanityAPI",
-            message: `Vanity API is running on port ${Config.Other.VanityPort}`,
+            message: `Vanity API is running on port ${Config.Modules.Vanity.VanityPort}`,
             botType: Config.BotType.toString() || "Unknown",
             action: LoggingAction.Other,
         });

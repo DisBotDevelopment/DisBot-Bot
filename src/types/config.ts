@@ -10,6 +10,10 @@ export type DisBotConfigData = {
         ShardList: string;
     };
     Modules: {
+        Vanity: {
+            VanityPort: number;
+            MainPageRedirect: string;
+        }
         Verification: {
             VerifyRedirectUrl: string;
             VerifyAuthUrl: string;
@@ -44,8 +48,6 @@ export type DisBotConfigData = {
             VotePort: number;
         };
         AppPort: number;
-        AiPort: number;
-        VanityPort: number;
         EventsApi: {
             ApiKey: string;
             ApiPort: number;

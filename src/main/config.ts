@@ -26,6 +26,10 @@ export async function configStartup() {
                 ShardList: "",
             },
             Modules: {
+                Vanity: {
+                    MainPageRedirect: "https://disbot.app/discovery",
+                    VanityPort: 0
+                },
                 Verification: {
                     VerifyRedirectUrl: "",
                     VerifyAuthUrl: "",
@@ -59,8 +63,6 @@ export async function configStartup() {
                     VotePort: 0,
                 },
                 AppPort: 0,
-                AiPort: 0,
-                VanityPort: 0,
                 EventsApi: {
                     ApiKey: "",
                     ApiPort: 0,
