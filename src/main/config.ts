@@ -1,8 +1,9 @@
-import YAML from "yaml";
+import * as YAML from "yaml";
 import fs from "fs";
 import {botData} from "./version.js";
 import colors from "colors";
 import {DisBotConfigData} from "../types/config.js";
+import {YAMLMap} from "yaml";
 
 colors.enable();
 
@@ -77,14 +78,32 @@ export async function configStartup() {
                 ErrorWebhook: "",
                 BotLogger: "",
             },
-            BotType: "",
+            BotType: "DISBOT",
             CONFIG_VERSION: botData.configVersion,
         };
 
-        const doc = new YAML.Document();
-        doc.contents = configData as any;
+
+        const doc = new YAML.Document(configData);
 
         doc.commentBefore = ` DisBot Config v${botData.configVersion} of version ${botData.version}\n Read more: https://doc.xyzhub.link/s/disbot/doc/config-yXEob11woF`;
+
+        generateConfigCommentIn(doc, ["Bot", "DiscordBotToken"], " Discord Bot Token from https://discord.com/developers/applications/<bot-id>/bot")
+        generateConfigCommentIn(doc, ["Bot", "DiscordApplicationId"], " Discord Bot Token from https://discord.com/developers/applications/<bot-id>/information")
+        generateConfigCommentIn(doc, ["Bot", "DiscordClientSecret"], " Discord Bot Token from https://discord.com/developers/applications/<bot-id>/oauth2")
+        generateConfigCommentIn(doc, ["Bot", "AdminGuildId"], " Bot Admin Guild for Internal Commands (https://github.com/DisBotDevelopment/DisBot-Bot/tree/main/src/internal)")
+        generateConfigCommentIn(doc, ["Bot", "ShardCount"], " Use this only if you know what you are doing")
+        generateConfigCommentIn(doc, ["Modules", "Verification", "VerifyRedirectUrl"], " Redirect from the Auth")
+        generateConfigCommentIn(doc, ["Modules", "Verification", "VerifyAuthUrl"], " Discord Auth Url from the https://discord.com/developers/applications/<bot-id>/oauth2 Portal")
+        generateConfigCommentIn(doc, ["Modules", "Bot", "NewsChannel1"], " Only for DisBots Discord Server as Info Channel")
+        generateConfigCommentIn(doc, ["Modules", "Customer", "PelicanApi"], " Currently in Development and not inclued in the Bot (CODE: https://github.com/DisBotDevelopment/DisBot-Bot/tree/main/templates/unusedModules/customer)")
+        generateConfigCommentIn(doc, ["Modules", "Notifications", "SpotifyClientId"], " Auth for your notifications")
+        generateConfigCommentIn(doc, ["Modules", "Vanity", "VanityPort"], " Port for the Redirect of the vanity.")
+        generateConfigCommentIn(doc, ["Modules", "Vanity", "MainPageRedirect"], " Main Page Redirect to any site (dchat.link -> https://google.com)")
+
+        generateConfigComment(doc, "Other", " Internal use and currently in rework (API Update)")
+        generateConfigCommentBefore(doc, "Logging", " DisBot Logs and Debug Logging (Webhook)")
+        generateConfigComment(doc, "BotType", " Internal use for loading services. (Use DISBOT)")
+        generateConfigComment(doc, "CONFIG_VERSION", " Used for updates in the Config.")
 
         fs.writeFileSync(
             process.env.CONFIG_PATH,
@@ -102,4 +121,24 @@ export async function configStartup() {
         console.error(`Please recreate your Bot Config`.red)
         process.exit(0);
     }
+}
+
+function generateConfigCommentIn(yamlDocument: YAML.Document, path: string[], comment: string) {
+    const node = yamlDocument.getIn(path, true) as YAMLMap;
+    node.comment = comment;
+}
+
+function generateConfigComment(yamlDocument: YAML.Document, key: string, comment: string) {
+    const node = yamlDocument.get(key, true) as YAMLMap;
+    node.comment = comment
+}
+
+function generateConfigCommentBeforeIn(yamlDocument: YAML.Document, path: string[], comment: string) {
+    const node = yamlDocument.getIn(path, true) as YAMLMap;
+    node.commentBefore = comment;
+}
+
+function generateConfigCommentBefore(yamlDocument: YAML.Document, key: string, comment: string) {
+    const node = yamlDocument.get(key, true) as YAMLMap;
+    node.commentBefore = comment
 }

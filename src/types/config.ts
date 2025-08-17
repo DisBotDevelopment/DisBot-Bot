@@ -12,7 +12,7 @@ export type DisBotConfigData = {
     Modules: {
         Vanity: {
             VanityPort: number;
-            MainPageRedirect: string;
+            MainPageRedirect: string | "https://disbot.app/discovery";
         }
         Verification: {
             VerifyRedirectUrl: string;
@@ -63,5 +63,5 @@ export type DisBotConfigData = {
         BotLogger: string;
     };
     BotType: string;
-    CONFIG_VERSION: string;
+    CONFIG_VERSION: string
 };
