@@ -21,6 +21,9 @@ jobs:
     strategy:
       fail-fast: false
 
+  build:
+    if: "!contains(github.ref, '-dev')"
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: get-npm-version
