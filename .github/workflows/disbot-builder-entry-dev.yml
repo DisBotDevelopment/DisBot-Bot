@@ -43,6 +43,10 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Set outputs
+        id: vars
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
       - uses: docker/build-push-action@v5
         with:
           context: .
@@ -50,5 +54,5 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/disbotdevelopment/disbot-bot:${{ steps.package-version.outputs.current-version}}-with-entry-${{ github.ref_name }}-dev
+            ghcr.io/disbotdevelopment/disbot-bot:${{ steps.package-version.outputs.current-version}}-with-entry-${{ steps.vars.outputs.sha_short }}-dev
             ghcr.io/disbotdevelopment/disbot-bot:latest-with-entry-dev

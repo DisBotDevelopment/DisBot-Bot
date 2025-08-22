@@ -1,4 +1,4 @@
-name: Build DisBot Dev Image (DisBot) 
+name: Build DisBot Dev Image (DisBot)
 
 on:
   workflow_dispatch:
@@ -42,6 +42,10 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Set outputs
+        id: vars
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
       - uses: docker/build-push-action@v5
         with:
           context: .
@@ -49,5 +53,5 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/disbotdevelopment/disbot-bot:${{ steps.package-version.outputs.current-version}}-${{ github.ref_name }}-dev
+            ghcr.io/disbotdevelopment/disbot-bot:${{ steps.package-version.outputs.current-version}}-${{ steps.vars.outputs.sha_short }}-dev
             ghcr.io/disbotdevelopment/disbot-bot:latest-dev
