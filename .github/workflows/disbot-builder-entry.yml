@@ -11,18 +11,14 @@ env:
   SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
   SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
 jobs:
-  push:
-    name: "DisBot Builder"
-    runs-on: ubuntu-latest
+  build:
+    if: "!contains(github.ref, '-dev')"
     permissions:
       contents: read
       packages: write
       id-token: write
     strategy:
       fail-fast: false
-
-  build:
-    if: "!contains(github.ref, '-dev')"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
