@@ -10,7 +10,6 @@ import {
     PresenceStatusData,
     PresenceUpdateStatus
 } from "discord.js";
-import {connect} from "mongoose";
 import {loadEventsAPI} from "../api/eventsAPI/EventsAPI.js";
 import {loadButtons} from "../handler/files/buttons.js";
 import {loadCommands} from "../handler/files/commands.js";
