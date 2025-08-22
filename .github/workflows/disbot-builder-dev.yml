@@ -1,12 +1,10 @@
-name: Build DisBot Docker Image (DisBot)
+name: Build DisBot Dev Image (DisBot)
 
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
     tags:
-      - release
+      - buildDev
 env:
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
   SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
@@ -51,5 +49,5 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/disbotdevelopment/disbot-bot:${{ steps.package-version.outputs.current-version}}
-            ghcr.io/disbotdevelopment/disbot-bot:latest
+            ghcr.io/disbotdevelopment/disbot-bot:${{ steps.package-version.outputs.current-version}}-${{ github.ref_name }}-dev
+            ghcr.io/disbotdevelopment/disbot-bot:latest-dev
