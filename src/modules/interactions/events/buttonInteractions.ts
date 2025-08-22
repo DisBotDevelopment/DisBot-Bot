@@ -1,5 +1,4 @@
 import {ButtonInteraction, Events, Guild, GuildMember, MessageFlags,} from "discord.js";
-import {Error} from "mongoose";
 import {DisBotInteractionType} from "../../../enums/disBotInteractionType.js";
 import {GuildPermissionType, PermissionType} from "../../../enums/permissionType.js";
 import {ExtendedClient} from "../../../types/client.js";

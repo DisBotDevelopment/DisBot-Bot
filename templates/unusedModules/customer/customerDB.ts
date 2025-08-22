@@ -1,6 +1,4 @@
-import { model, Schema } from "mongoose";
-
-
+/*
 const customerSchema = new Schema({
   UserID: String,
   ExternalUUID: String,
@@ -21,3 +19,4 @@ const customerSchema = new Schema({
 
 
 export const customerDB = model("customer", customerSchema);
+*/
