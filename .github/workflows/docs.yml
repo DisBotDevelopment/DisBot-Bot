@@ -3,45 +3,44 @@ name: TSDoc Actions
 
 on:
   release:
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
 jobs:
-  # Single deploy job since we're just deploying
   deploy:
     name: Deploy Documentation
+    runs-on: ubuntu-latest
 
-    # Deploy to the github-pages environment
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
-    # Specify runner + deployment step
-    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - uses: oven-sh/setup-bun@v2
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
-          registries: |
-            https://registry.npmjs.org/
-            @myorg:https://npm.pkg.github.com/|$GITHUB_TOKEN
-            @internal:https://username:$INTERNAL_PASSWORD@registry.internal.com/
+          version: latest
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
 
       - name: Install dependencies
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           INTERNAL_PASSWORD: ${{ secrets.INTERNAL_PASSWORD }}
-        run: bun install
+        run: pnpm install
 
-      - name: TSDoc Action
+      - name: Generate TSDoc
         uses: erikyo/tsdoc-action@v1
         with:
           source_dir: ./src/*
@@ -54,7 +53,6 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
           path: './docs'
 
       - name: Deploy to GitHub Pages
