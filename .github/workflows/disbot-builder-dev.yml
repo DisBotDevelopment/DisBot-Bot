@@ -3,7 +3,7 @@ name: Build DisBot Dev Image (DisBot)
 on:
   workflow_dispatch:
   push:
-    tags:
+    tags: 
       - v.*-dev*
       - v.*-dev 
 env:
