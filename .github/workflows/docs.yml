@@ -35,7 +35,7 @@ jobs:
         run: bun install
 
       - name: Fake npx via bunx
-        run: sudo ln -s $(which bunx) /usr/local/bin/npx
+        run: sudo rm /usr/local/bin/npx && sudo ln -s $(which bunx) /usr/local/bin/npx
 
       - name: Generate TSDoc
         uses: erikyo/tsdoc-action@v1
