@@ -23,12 +23,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Setup pnpm
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           version: latest
 
-      - name: Setup Node
+      # Setup Node + Cache (auf Basis pnpm-lock.yaml)
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -38,8 +40,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           INTERNAL_PASSWORD: ${{ secrets.INTERNAL_PASSWORD }}
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
+      # TSDoc läuft unabhängig von pnpm
       - name: Generate TSDoc
         uses: erikyo/tsdoc-action@v1
         with:
