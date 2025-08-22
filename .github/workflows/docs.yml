@@ -32,7 +32,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           INTERNAL_PASSWORD: ${{ secrets.INTERNAL_PASSWORD }}
-        run: bun install --frozen-lockfile
+        run: bun install
 
       - name: Generate TSDoc
         uses: erikyo/tsdoc-action@v1
