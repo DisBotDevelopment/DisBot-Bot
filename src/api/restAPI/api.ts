@@ -1,16 +1,6 @@
 import eventsAPI from "../eventsAPI/post/eventsAPI.js";
 import authMiddleware from "./middleware/defaultAuth.js";
 import {eventAPIAuth} from "./middleware/eventAPIAuth.js";
-import {customerChannel, customerChannels} from "./routes/get/customerChannels.js";
-import {customerEmoji, customerEmojis} from "./routes/get/customerEmojis.js";
-import {customerGuild, customerGuilds} from "./routes/get/customerGuilds.js";
-import {
-    customerAvatar,
-    customerBanner,
-    customername,
-    customerProfile,
-    customerStatus
-} from "./routes/get/customerProfile.js";
 import disbotstatsRoute from "./routes/get/disbotstats.js";
 import reactionrolesRoute from "./routes/get/reactionroles.js";
 import ticketbuttonsRoute from "./routes/get/ticketbuttons.js";
@@ -54,36 +44,36 @@ export async function api(client: ExtendedClient) {
     APIServer.get("/v2/bot/discovery", discoveryApi);
 
     // Customer Routes
-    APIServer.get(
-        "/v2/customer/:customer/guilds",
-        authMiddleware,
-        customerGuilds
-    );
-    APIServer.get(
-        "/v2/customer/:customer/guild/:id",
-        authMiddleware,
-        customerGuild
-    );
-    APIServer.get(
-        "/v2/customer/:customer/guild/:id/channels",
-        authMiddleware,
-        customerChannels
-    );
-    APIServer.get(
-        "/v2/customer/:customer/guild/:id/channel/:channel",
-        authMiddleware,
-        customerChannel
-    );
-    APIServer.get(
-        "/v2/customer/:customer/guild/:id/emojis",
-        authMiddleware,
-        customerEmojis
-    );
-    APIServer.get(
-        "/v2/customer/:customer/guild/:id/emoji/:emoji",
-        authMiddleware,
-        customerEmoji
-    );
+    // APIServer.get(
+    //     "/v2/customer/:customer/guilds",
+    //     authMiddleware,
+    //    customerGuilds
+    //  );
+    // APIServer.get(
+    //     "/v2/customer/:customer/guild/:id",
+    //     authMiddleware,
+    //     customerGuild
+    //  );
+    // APIServer.get(
+    //    "/v2/customer/:customer/guild/:id/channels",
+    //    authMiddleware,
+    //   customerChannels
+    // );
+    // APIServer.get(
+    //    "/v2/customer/:customer/guild/:id/channel/:channel",
+    //    authMiddleware,
+    //   customerChannel
+    // );
+    // APIServer.get(
+    //   "/v2/customer/:customer/guild/:id/emojis",
+    //  authMiddleware,
+    //  customerEmojis
+    // );
+    // APIServer.get(
+    //  "/v2/customer/:customer/guild/:id/emoji/:emoji",
+    //  authMiddleware,
+    //  customerEmoji
+    // );
     //  APIServer.get(
     //      "/v2/customer/:customer/guild/:id/roles",
     //    authMiddleware,
@@ -94,31 +84,31 @@ export async function api(client: ExtendedClient) {
     //     authMiddleware,
     //     autorolesRoute
     //  );
-    APIServer.get("/v2/customer/:customer", authMiddleware, customerProfile);
-    APIServer.post(
-        "/v2/customer/:customer/avatar",
-        authMiddleware,
-        bodyParser.json(),
-        customerAvatar
-    );
-    APIServer.post(
-        "/v2/customer/:customer/banner",
-        authMiddleware,
-        bodyParser.json(),
-        customerBanner
-    );
-    APIServer.post(
-        "/v2/customer/:customer/name",
-        authMiddleware,
-        bodyParser.json(),
-        customername
-    );
-    APIServer.post(
-        "/v2/customer/:customer/status",
-        authMiddleware,
-        bodyParser.json(),
-        customerStatus
-    );
+    //  APIServer.get("/v2/customer/:customer", authMiddleware, customerProfile);
+    //  APIServer.post(
+    //      "/v2/customer/:customer/avatar",
+    //     authMiddleware,
+    //     bodyParser.json(),
+    //     customerAvatar
+    //  );
+    // APIServer.post(
+    //     "/v2/customer/:customer/banner",
+    //    authMiddleware,
+    //    bodyParser.json(),
+    //    customerBanner
+    //  );
+    //APIServer.post(
+    //  "/v2/customer/:customer/name",
+    //  authMiddleware,
+    //  bodyParser.json(),
+    //  customername
+    //  );
+    //APIServer.post(
+    //   "/v2/customer/:customer/status",
+    //   authMiddleware,
+    //   bodyParser.json(),
+    //   customerStatus
+    //  );
 
     // APIServer.post(
     //     "/v2/image/upload",

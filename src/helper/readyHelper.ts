@@ -7,7 +7,6 @@ import {vote} from "../api/services/vote.js";
 import {ActivityType, Guild, PresenceStatusData, PresenceUpdateStatus} from "discord.js";
 import {Logger} from "../main/logger.js";
 import {botData} from "../main/version.js";
-import {customerDB} from "../../templates/unusedModules/customer/customerDB.js";
 import {giveaway} from "../systems/giveaway.js";
 import {guildFetcher} from "../systems/inviteTracker/guildFetcher.js";
 import {banScheduled} from "../systems/moderation/ban.js";
@@ -64,63 +63,20 @@ export async function clientReady(client: ExtendedClient) {
             ],
         });
 
-        if (!client.user) throw new Error("Client is not ready yet");
-        if (
-            Config.BotType.toString() == "DISBOT"
-        ) {
+        // API Entypoint
+        await vote(client);
+        await app(client);
+        await vanityAPI(client);
 
-            // API Entypoint
-            await vote(client);
-            await app(client);
-            await vanityAPI(client);
-
-            client.user.presence.set({
-                status: PresenceUpdateStatus.Online,
-                activities: [
-                    {
-                        type: ActivityType.Custom,
-                        name: `disbot.app | 🧪 ${botData.version}${Config.Bot.DiscordApplicationId == "1154097245105422427" ? "dev" : ""}`,
-                    },
-                ],
-            });
-        } else {
-            // Customer Status Update
-            // TODO: Currently unused!
-
-            const data = await customerDB.findOne({Application: client.user.id});
-            if (data)
-                await customerDB.findOneAndUpdate(
-                    {Application: client.user.id},
-                    {
-                        GuildID: client.guilds.cache.map((guild: { id: any; }) => guild.id),
-                        //     ServerPort: process.env.SERVER_PORT,
-                    }
-                );
-
-            if (data) {
-                if (data.BotStatus) {
-                    client.user.setPresence({
-                        status: data.BotStatus.Status as PresenceStatusData,
-                        activities: [
-                            {
-                                name: data.BotStatus.Text as string,
-                                type: data.BotStatus.Type as ActivityType,
-                            },
-                        ],
-                    });
-                }
-            }
-
-            client.user.presence.set({
-                status: PresenceUpdateStatus.Idle,
-                activities: [
-                    {
-                        type: ActivityType.Custom,
-                        name: `📚 Manage with /customer`,
-                    },
-                ],
-            });
-        }
+        client.user.presence.set({
+            status: PresenceUpdateStatus.Online,
+            activities: [
+                {
+                    type: ActivityType.Custom,
+                    name: `disbot.app | 🧪 ${botData.version}${Config.Bot.DiscordApplicationId == "1154097245105422427" ? "dev" : ""}`,
+                },
+            ],
+        });
 
         // const commandsJson = client.commands?.map((command: any) => ({
         //     name: command.data?.name,
