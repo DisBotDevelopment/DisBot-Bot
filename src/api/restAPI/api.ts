@@ -24,6 +24,7 @@ import {LoggingAction} from "../../enums/loggingTypes.js";
 import cors from "cors";
 import {botData} from "../../main/version.js";
 import {Config} from "../../main/config.js";
+import {discoveryApi} from "./routes/get/discovery.js";
 
 export const APIServer = express();
 
@@ -50,6 +51,7 @@ export async function api(client: ExtendedClient) {
 
     // Open Stats Route
     APIServer.get("/v2/bot/stats", disbotstatsRoute);
+    APIServer.get("/v2/bot/discovery", discoveryApi);
 
     // Customer Routes
     APIServer.get(

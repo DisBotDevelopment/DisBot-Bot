@@ -11,34 +11,50 @@ datasource db {
 
 // Guilds
 model Guilds {
-  id                   String                 @id @default(auto()) @map("_id") @db.ObjectId
-  GuildId              String                 @unique
-  GuildName            String
-  GuildOwner           String
-  AutoAutoDeletes      AutoDeletes[]
-  AutoPublish          AutoPublish?
-  AutoReacts           AutoReacts[]
-  AutoRoles            AutoRoles[]
-  GuildBans            GuildBans[]
-  ChatModerations      ChatModerations?
-  ChannelLinks         ChannelLinks[]
-  DiscordAddons        DiscordAddons?
-  Giveaways            Giveaways[]
-  TempVoices           TempVoices[]
-  GuildLeaveSetup      GuildLeaveSetups?
-  GuildLogging         GuildLoggings?
-  MessageTemplates     MessageTemplates[]
-  Permissions          Permissions?
-  ReactionRole         ReactionRoles[]
-  Security             Securitys?
-  SpotifyNotifications SpotifyNotifications[]
-  Tags                 Tags[]
-  TicketSetups         TicketSetups[]
-  GuildFeatureToggle   GuildFeatureToggles?
-  TwitchNotifications  TwitchNotifications[]
-  GuildWelcomeSetup    GuildWelcomeSetups?
-  YoutubeNotifications YoutubeNotifications[]
-  GuildLoggers         GuildLoggers[]
+  id                          String                        @id @default(auto()) @map("_id") @db.ObjectId
+  GuildId                     String                        @unique
+  GuildName                   String
+  GuildOwner                  String
+  AutoAutoDeletes             AutoDeletes[]
+  AutoPublish                 AutoPublish?
+  AutoReacts                  AutoReacts[]
+  AutoRoles                   AutoRoles[]
+  GuildBans                   GuildBans[]
+  ChatModerations             ChatModerations?
+  ChannelLinks                ChannelLinks[]
+  DiscordAddons               DiscordAddons?
+  Giveaways                   Giveaways[]
+  TempVoices                  TempVoices[]
+  GuildLeaveSetup             GuildLeaveSetups?
+  GuildLogging                GuildLoggings?
+  MessageTemplates            MessageTemplates[]
+  ReactionRole                ReactionRoles[]
+  Security                    Securitys?
+  SpotifyNotifications        SpotifyNotifications[]
+  Tags                        Tags[]
+  TicketSetups                TicketSetups[]
+  GuildFeatureToggle          GuildFeatureToggles?
+  TwitchNotifications         TwitchNotifications[]
+  GuildWelcomeSetup           GuildWelcomeSetups?
+  YoutubeNotifications        YoutubeNotifications[]
+  GuildLoggers                GuildLoggers[]
+  GuildInteractionPermissions GuildInteractionPermissions[]
+}
+
+model GuildInteractionPermissions {
+  id                            String   @id @default(auto()) @map("_id") @db.ObjectId
+  UUID                          String   @unique
+  RoleIds                       String[]
+  UserIds                       String[]
+  ChannelIds                    String[]
+  CustomId                      String?
+  CommandName                   String?
+  Type                          String // BUTTON, SELECTMENU, COMMAND, SUBCOMMAND, SUBCOMMANDGROUP, MODAL (GuildPermissionType)
+  DisableInternalUserPermission Boolean? @default(false)
+  NeedsGuildOwner               Boolean?
+  Cooldown                      Int?
+  GuildId                       String
+  Guilds                        Guilds   @relation(fields: [GuildId], references: [GuildId])
 }
 
 model AutoDeletes {
@@ -254,18 +270,6 @@ model MessageTemplates {
   Name        String   @unique
   GuildId     String
   Guilds      Guilds   @relation(fields: [GuildId], references: [GuildId])
-}
-
-model Permissions {
-  id          String           @id @default(auto()) @map("_id") @db.ObjectId
-  Permissions PermissionData[]
-  GuildId     String           @unique
-  Guilds      Guilds           @relation(fields: [GuildId], references: [GuildId])
-}
-
-type PermissionData {
-  RoleId String
-  Type   String
 }
 
 model ReactionRoles {
@@ -564,17 +568,19 @@ model Customers {
 }
 
 model Vanitys {
-  id        String           @id @default(auto()) @map("_id") @db.ObjectId
-  UUID      String           @unique
-  Slug      String
-  Host      String
-  GuildId   String
-  Invite    String
-  Analytics VanityAnalytics?
-  CreatedAt DateTime
-  Embed     VanityEmbeds?
-  UserId    String
-  Users     Users            @relation(fields: [UserId], references: [UserId])
+  id                   String           @id @default(auto()) @map("_id") @db.ObjectId
+  UUID                 String           @unique
+  Slug                 String
+  Host                 String
+  GuildId              String
+  Invite               String
+  InDiscovery          Boolean?         @default(false)
+  IsBannedFromDiscover Boolean?         @default(false)
+  Analytics            VanityAnalytics?
+  CreatedAt            DateTime
+  Embed                VanityEmbeds?
+  UserId               String
+  Users                Users            @relation(fields: [UserId], references: [UserId])
 }
 
 model VanityEmbeds {

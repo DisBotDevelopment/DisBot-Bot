@@ -20,12 +20,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.11.1
- * Query Engine version: f40f79ec31188888a2e33acda0ecc8fd10a853a9
+ * Prisma Client JS version: 6.14.0
+ * Query Engine version: 717184b7b35ea05dfa71a3236b7af656013e1e49
  */
 Prisma.prismaVersion = {
-  client: "6.11.1",
-  engine: "f40f79ec31188888a2e33acda0ecc8fd10a853a9"
+  client: "6.14.0",
+  engine: "717184b7b35ea05dfa71a3236b7af656013e1e49"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -118,6 +118,21 @@ exports.Prisma.GuildsScalarFieldEnum = {
   GuildId: 'GuildId',
   GuildName: 'GuildName',
   GuildOwner: 'GuildOwner'
+};
+
+exports.Prisma.GuildInteractionPermissionsScalarFieldEnum = {
+  id: 'id',
+  UUID: 'UUID',
+  RoleIds: 'RoleIds',
+  UserIds: 'UserIds',
+  ChannelIds: 'ChannelIds',
+  CustomId: 'CustomId',
+  CommandName: 'CommandName',
+  Type: 'Type',
+  DisableInternalUserPermission: 'DisableInternalUserPermission',
+  NeedsGuildOwner: 'NeedsGuildOwner',
+  Cooldown: 'Cooldown',
+  GuildId: 'GuildId'
 };
 
 exports.Prisma.AutoDeletesScalarFieldEnum = {
@@ -300,11 +315,6 @@ exports.Prisma.MessageTemplatesScalarFieldEnum = {
   EmbedJSON: 'EmbedJSON',
   OtherEmbeds: 'OtherEmbeds',
   Name: 'Name',
-  GuildId: 'GuildId'
-};
-
-exports.Prisma.PermissionsScalarFieldEnum = {
-  id: 'id',
   GuildId: 'GuildId'
 };
 
@@ -561,6 +571,8 @@ exports.Prisma.VanitysScalarFieldEnum = {
   Host: 'Host',
   GuildId: 'GuildId',
   Invite: 'Invite',
+  InDiscovery: 'InDiscovery',
+  IsBannedFromDiscover: 'IsBannedFromDiscover',
   CreatedAt: 'CreatedAt',
   UserId: 'UserId'
 };
@@ -641,6 +653,7 @@ exports.Prisma.QueryMode = {
 
 exports.Prisma.ModelName = {
   Guilds: 'Guilds',
+  GuildInteractionPermissions: 'GuildInteractionPermissions',
   AutoDeletes: 'AutoDeletes',
   AutoPublish: 'AutoPublish',
   AutoReacts: 'AutoReacts',
@@ -658,7 +671,6 @@ exports.Prisma.ModelName = {
   GuildLoggings: 'GuildLoggings',
   GuildLoggers: 'GuildLoggers',
   MessageTemplates: 'MessageTemplates',
-  Permissions: 'Permissions',
   ReactionRoles: 'ReactionRoles',
   Securitys: 'Securitys',
   VerificationGates: 'VerificationGates',

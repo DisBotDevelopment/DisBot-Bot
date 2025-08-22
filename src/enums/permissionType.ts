@@ -29,3 +29,12 @@ export enum PermissionType {
     Economy = "Economy",
     IgnoreDiscordPermissionRequirement = "IgnoreDiscordPermissionRequirement",
 }
+
+export enum GuildPermissionType {
+    BUTTON = "BUTTON",
+    SELECTMENU = "SELECTMENU",
+    COMMAND = "COMMAND",
+    SUBCOMMAND = "SUBCOMMAND",
+    SUBCOMMANDGROUP = "SUBCOMMANDGROUP",
+    MODAL = "MODAL",
+}

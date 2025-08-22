@@ -11,11 +11,13 @@ import {
     StringSelectMenuBuilder,
     TextDisplayBuilder
 } from "discord.js";
-import { convertToEmojiPng } from "../../../helper/emojis.js";
-import { ExtendedClient } from "../../../types/client.js";
-import { PermissionType } from "../../../enums/permissionType.js";
+import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {ExtendedClient} from "../../../types/client.js";
+import {PermissionType} from "../../../enums/permissionType.js";
 
 export default {
+    interactionName: "automation",
+    interactionDescription: "Automation",
     options: {
         once: false,
         permission: PermissionType.Automation,
@@ -43,13 +45,13 @@ export default {
     },
 
     /**
-    *
-    * @param {ChatInputCommandInteraction} interaction
-    * @param {ExtendedClient} client
-    */
+     *
+     * @param {ChatInputCommandInteraction} interaction
+     * @param {ExtendedClient} client
+     */
 
     async execute(interaction: ChatInputCommandInteraction, client: ExtendedClient) {
-        await interaction.deferReply({ flags: MessageFlags.Ephemeral });
+        await interaction.deferReply({flags: MessageFlags.Ephemeral});
         if (!client.user) throw new Error("Client user is not defined");
         const row = new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(
             new StringSelectMenuBuilder()
@@ -74,11 +76,11 @@ export default {
                         description: "Automatically react to messages",
                         emoji: "<:smileplus:1362545378075082853>",
                     }, {
-                    label: "AutoDelete",
-                    value: "autodelete",
-                    description: "Automatically delete messages",
-                    emoji: "<:trash:1259432932234367069>",
-                },
+                        label: "AutoDelete",
+                        value: "autodelete",
+                        description: "Automatically delete messages",
+                        emoji: "<:trash:1259432932234367069>",
+                    },
                 )
         )
         interaction.editReply({
@@ -86,15 +88,15 @@ export default {
             components: [
                 new ContainerBuilder()
                     .addTextDisplayComponents(new TextDisplayBuilder().setContent([
-                        `## ${await convertToEmojiPng("workflow", client.user?.id)} Automation`,
-                        ``,
-                        `**Manage all automations**`,
-                        `> ${await convertToEmojiPng("packageplus", client.user?.id)} Autoroles - Automatically assign roles to new members`,
-                        `> ${await convertToEmojiPng("megaphone", client.user?.id)} AutoPublish - Automatically publish messages in announcement channels`,
-                        `> ${await convertToEmojiPng("smileplus", client.user?.id)} AutoReact - Automatically react to messages`,
-                        `> ${await convertToEmojiPng("error", client.user?.id)} AutoDelete - Automatically delete messages \`NEW\``,
-                        ``
-                    ].join("\n"))
+                            `## ${await convertToEmojiPng("workflow", client.user?.id)} Automation`,
+                            ``,
+                            `**Manage all automations**`,
+                            `> ${await convertToEmojiPng("packageplus", client.user?.id)} Autoroles - Automatically assign roles to new members`,
+                            `> ${await convertToEmojiPng("megaphone", client.user?.id)} AutoPublish - Automatically publish messages in announcement channels`,
+                            `> ${await convertToEmojiPng("smileplus", client.user?.id)} AutoReact - Automatically react to messages`,
+                            `> ${await convertToEmojiPng("error", client.user?.id)} AutoDelete - Automatically delete messages \`NEW\``,
+                            ``
+                        ].join("\n"))
                     )
                     .addActionRowComponents(row)
             ],

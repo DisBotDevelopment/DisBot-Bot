@@ -7,10 +7,10 @@ import {
     MessageFlags,
     PermissionFlagsBits,
 } from "discord.js";
-import { ExtendedClient } from "../../../../types/client.js";
-import { convertToEmojiPng } from "../../../../helper/emojis.js";
-import { PermissionType } from "../../../../enums/permissionType.js";
-import { database } from "../../../../main/database.js";
+import {ExtendedClient} from "../../../../types/client.js";
+import {convertToEmojiPng} from "../../../../helper/emojis.js";
+import {PermissionType} from "../../../../enums/permissionType.js";
+import {database} from "../../../../main/database.js";
 
 export default {
     options: {
@@ -20,7 +20,7 @@ export default {
         botPermissions: [],
         userPermissions: [PermissionFlagsBits.Administrator],
         userHasOnePermission: true,
-        isGuildOwner: false,
+        isGuildOwner: true,
     },
     subCommand: "bot.api",
     help: {

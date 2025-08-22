@@ -19,11 +19,6 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type WelcomeLeaveImageData = $Result.DefaultSelection<Prisma.$WelcomeLeaveImageDataPayload>
 /**
- * Model PermissionData
- * 
- */
-export type PermissionData = $Result.DefaultSelection<Prisma.$PermissionDataPayload>
-/**
  * Model ReactionRoleSelectmenu
  * 
  */
@@ -48,6 +43,11 @@ export type DisbotsLogs = $Result.DefaultSelection<Prisma.$DisbotsLogsPayload>
  * 
  */
 export type Guilds = $Result.DefaultSelection<Prisma.$GuildsPayload>
+/**
+ * Model GuildInteractionPermissions
+ * 
+ */
+export type GuildInteractionPermissions = $Result.DefaultSelection<Prisma.$GuildInteractionPermissionsPayload>
 /**
  * Model AutoDeletes
  * 
@@ -133,11 +133,6 @@ export type GuildLoggers = $Result.DefaultSelection<Prisma.$GuildLoggersPayload>
  * 
  */
 export type MessageTemplates = $Result.DefaultSelection<Prisma.$MessageTemplatesPayload>
-/**
- * Model Permissions
- * 
- */
-export type Permissions = $Result.DefaultSelection<Prisma.$PermissionsPayload>
 /**
  * Model ReactionRoles
  * 
@@ -285,7 +280,7 @@ export type ImageApis = $Result.DefaultSelection<Prisma.$ImageApisPayload>
  */
 export class PrismaClient<
   ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
-  U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
+  const U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
   ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
 > {
   [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
@@ -317,13 +312,6 @@ export class PrismaClient<
    * Disconnect from the database
    */
   $disconnect(): $Utils.JsPromise<void>;
-
-  /**
-   * Add a middleware
-   * @deprecated since 4.16.0. For new code, prefer client extensions instead.
-   * @see https://pris.ly/d/extensions
-   */
-  $use(cb: Prisma.Middleware): void
 
 /**
    * Allows the running of a sequence of read/write operations that are guaranteed to either succeed or fail as a whole.
@@ -370,6 +358,16 @@ export class PrismaClient<
     * ```
     */
   get guilds(): Prisma.GuildsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.guildInteractionPermissions`: Exposes CRUD operations for the **GuildInteractionPermissions** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more GuildInteractionPermissions
+    * const guildInteractionPermissions = await prisma.guildInteractionPermissions.findMany()
+    * ```
+    */
+  get guildInteractionPermissions(): Prisma.GuildInteractionPermissionsDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.autoDeletes`: Exposes CRUD operations for the **AutoDeletes** model.
@@ -540,16 +538,6 @@ export class PrismaClient<
     * ```
     */
   get messageTemplates(): Prisma.MessageTemplatesDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.permissions`: Exposes CRUD operations for the **Permissions** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Permissions
-    * const permissions = await prisma.permissions.findMany()
-    * ```
-    */
-  get permissions(): Prisma.PermissionsDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.reactionRoles`: Exposes CRUD operations for the **ReactionRoles** model.
@@ -868,8 +856,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.11.1
-   * Query Engine version: f40f79ec31188888a2e33acda0ecc8fd10a853a9
+   * Prisma Client JS version: 6.14.0
+   * Query Engine version: 717184b7b35ea05dfa71a3236b7af656013e1e49
    */
   export type PrismaVersion = {
     client: string
@@ -1251,6 +1239,7 @@ export namespace Prisma {
 
   export const ModelName: {
     Guilds: 'Guilds',
+    GuildInteractionPermissions: 'GuildInteractionPermissions',
     AutoDeletes: 'AutoDeletes',
     AutoPublish: 'AutoPublish',
     AutoReacts: 'AutoReacts',
@@ -1268,7 +1257,6 @@ export namespace Prisma {
     GuildLoggings: 'GuildLoggings',
     GuildLoggers: 'GuildLoggers',
     MessageTemplates: 'MessageTemplates',
-    Permissions: 'Permissions',
     ReactionRoles: 'ReactionRoles',
     Securitys: 'Securitys',
     VerificationGates: 'VerificationGates',
@@ -1313,7 +1301,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "guilds" | "autoDeletes" | "autoPublish" | "autoReacts" | "autoRoles" | "guildBans" | "chatModerations" | "channelLinks" | "syncedChannelLinkMessages" | "discordAddons" | "giveaways" | "tempVoices" | "tempVoiceChannels" | "guildLeaveSetups" | "guildWelcomeSetups" | "guildLoggings" | "guildLoggers" | "messageTemplates" | "permissions" | "reactionRoles" | "securitys" | "verificationGates" | "verificationGatesPermission" | "spotifyNotifications" | "tags" | "ticketSetups" | "ticketModalData" | "ticketPermissions" | "tickets" | "ticketFeedback" | "guildFeatureToggles" | "twitchNotifications" | "youtubeNotifications" | "users" | "apis" | "guildBackups" | "customers" | "vanitys" | "vanityEmbeds" | "vanityEmbedAuthors" | "vanityAnalytics" | "analyticsLatest30Days" | "disBotUserNotifications" | "disBot" | "imageApis"
+      modelProps: "guilds" | "guildInteractionPermissions" | "autoDeletes" | "autoPublish" | "autoReacts" | "autoRoles" | "guildBans" | "chatModerations" | "channelLinks" | "syncedChannelLinkMessages" | "discordAddons" | "giveaways" | "tempVoices" | "tempVoiceChannels" | "guildLeaveSetups" | "guildWelcomeSetups" | "guildLoggings" | "guildLoggers" | "messageTemplates" | "reactionRoles" | "securitys" | "verificationGates" | "verificationGatesPermission" | "spotifyNotifications" | "tags" | "ticketSetups" | "ticketModalData" | "ticketPermissions" | "tickets" | "ticketFeedback" | "guildFeatureToggles" | "twitchNotifications" | "youtubeNotifications" | "users" | "apis" | "guildBackups" | "customers" | "vanitys" | "vanityEmbeds" | "vanityEmbedAuthors" | "vanityAnalytics" | "analyticsLatest30Days" | "disBotUserNotifications" | "disBot" | "imageApis"
       txIsolationLevel: never
     }
     model: {
@@ -1388,6 +1376,80 @@ export namespace Prisma {
           count: {
             args: Prisma.GuildsCountArgs<ExtArgs>
             result: $Utils.Optional<GuildsCountAggregateOutputType> | number
+          }
+        }
+      }
+      GuildInteractionPermissions: {
+        payload: Prisma.$GuildInteractionPermissionsPayload<ExtArgs>
+        fields: Prisma.GuildInteractionPermissionsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.GuildInteractionPermissionsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuildInteractionPermissionsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.GuildInteractionPermissionsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuildInteractionPermissionsPayload>
+          }
+          findFirst: {
+            args: Prisma.GuildInteractionPermissionsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuildInteractionPermissionsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.GuildInteractionPermissionsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuildInteractionPermissionsPayload>
+          }
+          findMany: {
+            args: Prisma.GuildInteractionPermissionsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuildInteractionPermissionsPayload>[]
+          }
+          create: {
+            args: Prisma.GuildInteractionPermissionsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuildInteractionPermissionsPayload>
+          }
+          createMany: {
+            args: Prisma.GuildInteractionPermissionsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.GuildInteractionPermissionsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuildInteractionPermissionsPayload>
+          }
+          update: {
+            args: Prisma.GuildInteractionPermissionsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuildInteractionPermissionsPayload>
+          }
+          deleteMany: {
+            args: Prisma.GuildInteractionPermissionsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.GuildInteractionPermissionsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.GuildInteractionPermissionsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GuildInteractionPermissionsPayload>
+          }
+          aggregate: {
+            args: Prisma.GuildInteractionPermissionsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateGuildInteractionPermissions>
+          }
+          groupBy: {
+            args: Prisma.GuildInteractionPermissionsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<GuildInteractionPermissionsGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.GuildInteractionPermissionsFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.GuildInteractionPermissionsAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.GuildInteractionPermissionsCountArgs<ExtArgs>
+            result: $Utils.Optional<GuildInteractionPermissionsCountAggregateOutputType> | number
           }
         }
       }
@@ -2646,80 +2708,6 @@ export namespace Prisma {
           count: {
             args: Prisma.MessageTemplatesCountArgs<ExtArgs>
             result: $Utils.Optional<MessageTemplatesCountAggregateOutputType> | number
-          }
-        }
-      }
-      Permissions: {
-        payload: Prisma.$PermissionsPayload<ExtArgs>
-        fields: Prisma.PermissionsFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.PermissionsFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PermissionsPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.PermissionsFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PermissionsPayload>
-          }
-          findFirst: {
-            args: Prisma.PermissionsFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PermissionsPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.PermissionsFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PermissionsPayload>
-          }
-          findMany: {
-            args: Prisma.PermissionsFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PermissionsPayload>[]
-          }
-          create: {
-            args: Prisma.PermissionsCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PermissionsPayload>
-          }
-          createMany: {
-            args: Prisma.PermissionsCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.PermissionsDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PermissionsPayload>
-          }
-          update: {
-            args: Prisma.PermissionsUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PermissionsPayload>
-          }
-          deleteMany: {
-            args: Prisma.PermissionsDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.PermissionsUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.PermissionsUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PermissionsPayload>
-          }
-          aggregate: {
-            args: Prisma.PermissionsAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregatePermissions>
-          }
-          groupBy: {
-            args: Prisma.PermissionsGroupByArgs<ExtArgs>
-            result: $Utils.Optional<PermissionsGroupByOutputType>[]
-          }
-          findRaw: {
-            args: Prisma.PermissionsFindRawArgs<ExtArgs>
-            result: JsonObject
-          }
-          aggregateRaw: {
-            args: Prisma.PermissionsAggregateRawArgs<ExtArgs>
-            result: JsonObject
-          }
-          count: {
-            args: Prisma.PermissionsCountArgs<ExtArgs>
-            result: $Utils.Optional<PermissionsCountAggregateOutputType> | number
           }
         }
       }
@@ -4678,16 +4666,24 @@ export namespace Prisma {
     /**
      * @example
      * ```
-     * // Defaults to stdout
+     * // Shorthand for `emit: 'stdout'`
      * log: ['query', 'info', 'warn', 'error']
      * 
-     * // Emit as events
+     * // Emit as events only
      * log: [
-     *   { emit: 'stdout', level: 'query' },
-     *   { emit: 'stdout', level: 'info' },
-     *   { emit: 'stdout', level: 'warn' }
-     *   { emit: 'stdout', level: 'error' }
+     *   { emit: 'event', level: 'query' },
+     *   { emit: 'event', level: 'info' },
+     *   { emit: 'event', level: 'warn' }
+     *   { emit: 'event', level: 'error' }
      * ]
+     * 
+     * / Emit as events and log to stdout
+     * og: [
+     *  { emit: 'stdout', level: 'query' },
+     *  { emit: 'stdout', level: 'info' },
+     *  { emit: 'stdout', level: 'warn' }
+     *  { emit: 'stdout', level: 'error' }
+     * 
      * ```
      * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
      */
@@ -4719,6 +4715,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     guilds?: GuildsOmit
+    guildInteractionPermissions?: GuildInteractionPermissionsOmit
     autoDeletes?: AutoDeletesOmit
     autoPublish?: AutoPublishOmit
     autoReacts?: AutoReactsOmit
@@ -4736,7 +4733,6 @@ export namespace Prisma {
     guildLoggings?: GuildLoggingsOmit
     guildLoggers?: GuildLoggersOmit
     messageTemplates?: MessageTemplatesOmit
-    permissions?: PermissionsOmit
     reactionRoles?: ReactionRolesOmit
     securitys?: SecuritysOmit
     verificationGates?: VerificationGatesOmit
@@ -4772,10 +4768,15 @@ export namespace Prisma {
     emit: 'stdout' | 'event'
   }
 
-  export type GetLogType<T extends LogLevel | LogDefinition> = T extends LogDefinition ? T['emit'] extends 'event' ? T['level'] : never : never
-  export type GetEvents<T extends any> = T extends Array<LogLevel | LogDefinition> ?
-    GetLogType<T[0]> | GetLogType<T[1]> | GetLogType<T[2]> | GetLogType<T[3]>
-    : never
+  export type CheckIsLogLevel<T> = T extends LogLevel ? T : never;
+
+  export type GetLogType<T> = CheckIsLogLevel<
+    T extends LogDefinition ? T['level'] : T
+  >;
+
+  export type GetEvents<T extends any[]> = T extends Array<LogLevel | LogDefinition>
+    ? GetLogType<T[number]>
+    : never;
 
   export type QueryEvent = {
     timestamp: Date
@@ -4816,25 +4817,6 @@ export namespace Prisma {
     | 'findRaw'
     | 'groupBy'
 
-  /**
-   * These options are being passed into the middleware as "params"
-   */
-  export type MiddlewareParams = {
-    model?: ModelName
-    action: PrismaAction
-    args: any
-    dataPath: string[]
-    runInTransaction: boolean
-  }
-
-  /**
-   * The `T` type makes sure, that the `return proceed` is not forgotten in the middleware implementation
-   */
-  export type Middleware<T = any> = (
-    params: MiddlewareParams,
-    next: (params: MiddlewareParams) => $Utils.JsPromise<T>,
-  ) => $Utils.JsPromise<T>
-
   // tested in getLogLevel.test.ts
   export function getLogLevel(log: Array<LogLevel | LogDefinition>): LogLevel | undefined;
 
@@ -4872,6 +4854,7 @@ export namespace Prisma {
     TwitchNotifications: number
     YoutubeNotifications: number
     GuildLoggers: number
+    GuildInteractionPermissions: number
   }
 
   export type GuildsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4890,6 +4873,7 @@ export namespace Prisma {
     TwitchNotifications?: boolean | GuildsCountOutputTypeCountTwitchNotificationsArgs
     YoutubeNotifications?: boolean | GuildsCountOutputTypeCountYoutubeNotificationsArgs
     GuildLoggers?: boolean | GuildsCountOutputTypeCountGuildLoggersArgs
+    GuildInteractionPermissions?: boolean | GuildsCountOutputTypeCountGuildInteractionPermissionsArgs
   }
 
   // Custom InputTypes
@@ -5006,6 +4990,13 @@ export namespace Prisma {
    */
   export type GuildsCountOutputTypeCountGuildLoggersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: GuildLoggersWhereInput
+  }
+
+  /**
+   * GuildsCountOutputType without action
+   */
+  export type GuildsCountOutputTypeCountGuildInteractionPermissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GuildInteractionPermissionsWhereInput
   }
 
 
@@ -5324,69 +5315,6 @@ export namespace Prisma {
      * Omit specific fields from the WelcomeLeaveImageData
      */
     omit?: WelcomeLeaveImageDataOmit<ExtArgs> | null
-  }
-
-
-  /**
-   * Model PermissionData
-   */
-
-
-
-
-
-  export type PermissionDataSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    RoleId?: boolean
-    Type?: boolean
-  }, ExtArgs["result"]["permissionData"]>
-
-
-
-  export type PermissionDataSelectScalar = {
-    RoleId?: boolean
-    Type?: boolean
-  }
-
-  export type PermissionDataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"RoleId" | "Type", ExtArgs["result"]["permissionData"]>
-
-  export type $PermissionDataPayload = {
-    name: "PermissionData"
-    objects: {}
-    scalars: {
-      RoleId: string
-      Type: string
-    }
-    composites: {}
-  }
-
-  type PermissionDataGetPayload<S extends boolean | null | undefined | PermissionDataDefaultArgs> = $Result.GetResult<Prisma.$PermissionDataPayload, S>
-
-
-
-
-
-  /**
-   * Fields of the PermissionData model
-   */
-  interface PermissionDataFieldRefs {
-    readonly RoleId: FieldRef<"PermissionData", 'String'>
-    readonly Type: FieldRef<"PermissionData", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * PermissionData without action
-   */
-  export type PermissionDataDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PermissionData
-     */
-    select?: PermissionDataSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PermissionData
-     */
-    omit?: PermissionDataOmit<ExtArgs> | null
   }
 
 
@@ -5863,7 +5791,6 @@ export namespace Prisma {
     GuildLeaveSetup?: boolean | Guilds$GuildLeaveSetupArgs<ExtArgs>
     GuildLogging?: boolean | Guilds$GuildLoggingArgs<ExtArgs>
     MessageTemplates?: boolean | Guilds$MessageTemplatesArgs<ExtArgs>
-    Permissions?: boolean | Guilds$PermissionsArgs<ExtArgs>
     ReactionRole?: boolean | Guilds$ReactionRoleArgs<ExtArgs>
     Security?: boolean | Guilds$SecurityArgs<ExtArgs>
     SpotifyNotifications?: boolean | Guilds$SpotifyNotificationsArgs<ExtArgs>
@@ -5874,6 +5801,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: boolean | Guilds$GuildWelcomeSetupArgs<ExtArgs>
     YoutubeNotifications?: boolean | Guilds$YoutubeNotificationsArgs<ExtArgs>
     GuildLoggers?: boolean | Guilds$GuildLoggersArgs<ExtArgs>
+    GuildInteractionPermissions?: boolean | Guilds$GuildInteractionPermissionsArgs<ExtArgs>
     _count?: boolean | GuildsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["guilds"]>
 
@@ -5901,7 +5829,6 @@ export namespace Prisma {
     GuildLeaveSetup?: boolean | Guilds$GuildLeaveSetupArgs<ExtArgs>
     GuildLogging?: boolean | Guilds$GuildLoggingArgs<ExtArgs>
     MessageTemplates?: boolean | Guilds$MessageTemplatesArgs<ExtArgs>
-    Permissions?: boolean | Guilds$PermissionsArgs<ExtArgs>
     ReactionRole?: boolean | Guilds$ReactionRoleArgs<ExtArgs>
     Security?: boolean | Guilds$SecurityArgs<ExtArgs>
     SpotifyNotifications?: boolean | Guilds$SpotifyNotificationsArgs<ExtArgs>
@@ -5912,6 +5839,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: boolean | Guilds$GuildWelcomeSetupArgs<ExtArgs>
     YoutubeNotifications?: boolean | Guilds$YoutubeNotificationsArgs<ExtArgs>
     GuildLoggers?: boolean | Guilds$GuildLoggersArgs<ExtArgs>
+    GuildInteractionPermissions?: boolean | Guilds$GuildInteractionPermissionsArgs<ExtArgs>
     _count?: boolean | GuildsCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -5931,7 +5859,6 @@ export namespace Prisma {
       GuildLeaveSetup: Prisma.$GuildLeaveSetupsPayload<ExtArgs> | null
       GuildLogging: Prisma.$GuildLoggingsPayload<ExtArgs> | null
       MessageTemplates: Prisma.$MessageTemplatesPayload<ExtArgs>[]
-      Permissions: Prisma.$PermissionsPayload<ExtArgs> | null
       ReactionRole: Prisma.$ReactionRolesPayload<ExtArgs>[]
       Security: Prisma.$SecuritysPayload<ExtArgs> | null
       SpotifyNotifications: Prisma.$SpotifyNotificationsPayload<ExtArgs>[]
@@ -5942,6 +5869,7 @@ export namespace Prisma {
       GuildWelcomeSetup: Prisma.$GuildWelcomeSetupsPayload<ExtArgs> | null
       YoutubeNotifications: Prisma.$YoutubeNotificationsPayload<ExtArgs>[]
       GuildLoggers: Prisma.$GuildLoggersPayload<ExtArgs>[]
+      GuildInteractionPermissions: Prisma.$GuildInteractionPermissionsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6324,7 +6252,6 @@ export namespace Prisma {
     GuildLeaveSetup<T extends Guilds$GuildLeaveSetupArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$GuildLeaveSetupArgs<ExtArgs>>): Prisma__GuildLeaveSetupsClient<$Result.GetResult<Prisma.$GuildLeaveSetupsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     GuildLogging<T extends Guilds$GuildLoggingArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$GuildLoggingArgs<ExtArgs>>): Prisma__GuildLoggingsClient<$Result.GetResult<Prisma.$GuildLoggingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     MessageTemplates<T extends Guilds$MessageTemplatesArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$MessageTemplatesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessageTemplatesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Permissions<T extends Guilds$PermissionsArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$PermissionsArgs<ExtArgs>>): Prisma__PermissionsClient<$Result.GetResult<Prisma.$PermissionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     ReactionRole<T extends Guilds$ReactionRoleArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$ReactionRoleArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReactionRolesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Security<T extends Guilds$SecurityArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$SecurityArgs<ExtArgs>>): Prisma__SecuritysClient<$Result.GetResult<Prisma.$SecuritysPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     SpotifyNotifications<T extends Guilds$SpotifyNotificationsArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$SpotifyNotificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SpotifyNotificationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -6335,6 +6262,7 @@ export namespace Prisma {
     GuildWelcomeSetup<T extends Guilds$GuildWelcomeSetupArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$GuildWelcomeSetupArgs<ExtArgs>>): Prisma__GuildWelcomeSetupsClient<$Result.GetResult<Prisma.$GuildWelcomeSetupsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     YoutubeNotifications<T extends Guilds$YoutubeNotificationsArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$YoutubeNotificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$YoutubeNotificationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     GuildLoggers<T extends Guilds$GuildLoggersArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$GuildLoggersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuildLoggersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    GuildInteractionPermissions<T extends Guilds$GuildInteractionPermissionsArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$GuildInteractionPermissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuildInteractionPermissionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7025,25 +6953,6 @@ export namespace Prisma {
   }
 
   /**
-   * Guilds.Permissions
-   */
-  export type Guilds$PermissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Permissions
-     */
-    select?: PermissionsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Permissions
-     */
-    omit?: PermissionsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PermissionsInclude<ExtArgs> | null
-    where?: PermissionsWhereInput
-  }
-
-  /**
    * Guilds.ReactionRole
    */
   export type Guilds$ReactionRoleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7269,6 +7178,30 @@ export namespace Prisma {
   }
 
   /**
+   * Guilds.GuildInteractionPermissions
+   */
+  export type Guilds$GuildInteractionPermissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuildInteractionPermissions
+     */
+    select?: GuildInteractionPermissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuildInteractionPermissions
+     */
+    omit?: GuildInteractionPermissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuildInteractionPermissionsInclude<ExtArgs> | null
+    where?: GuildInteractionPermissionsWhereInput
+    orderBy?: GuildInteractionPermissionsOrderByWithRelationInput | GuildInteractionPermissionsOrderByWithRelationInput[]
+    cursor?: GuildInteractionPermissionsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GuildInteractionPermissionsScalarFieldEnum | GuildInteractionPermissionsScalarFieldEnum[]
+  }
+
+  /**
    * Guilds without action
    */
   export type GuildsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7284,6 +7217,1084 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: GuildsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model GuildInteractionPermissions
+   */
+
+  export type AggregateGuildInteractionPermissions = {
+    _count: GuildInteractionPermissionsCountAggregateOutputType | null
+    _avg: GuildInteractionPermissionsAvgAggregateOutputType | null
+    _sum: GuildInteractionPermissionsSumAggregateOutputType | null
+    _min: GuildInteractionPermissionsMinAggregateOutputType | null
+    _max: GuildInteractionPermissionsMaxAggregateOutputType | null
+  }
+
+  export type GuildInteractionPermissionsAvgAggregateOutputType = {
+    Cooldown: number | null
+  }
+
+  export type GuildInteractionPermissionsSumAggregateOutputType = {
+    Cooldown: number | null
+  }
+
+  export type GuildInteractionPermissionsMinAggregateOutputType = {
+    id: string | null
+    UUID: string | null
+    CustomId: string | null
+    CommandName: string | null
+    Type: string | null
+    DisableInternalUserPermission: boolean | null
+    NeedsGuildOwner: boolean | null
+    Cooldown: number | null
+    GuildId: string | null
+  }
+
+  export type GuildInteractionPermissionsMaxAggregateOutputType = {
+    id: string | null
+    UUID: string | null
+    CustomId: string | null
+    CommandName: string | null
+    Type: string | null
+    DisableInternalUserPermission: boolean | null
+    NeedsGuildOwner: boolean | null
+    Cooldown: number | null
+    GuildId: string | null
+  }
+
+  export type GuildInteractionPermissionsCountAggregateOutputType = {
+    id: number
+    UUID: number
+    RoleIds: number
+    UserIds: number
+    ChannelIds: number
+    CustomId: number
+    CommandName: number
+    Type: number
+    DisableInternalUserPermission: number
+    NeedsGuildOwner: number
+    Cooldown: number
+    GuildId: number
+    _all: number
+  }
+
+
+  export type GuildInteractionPermissionsAvgAggregateInputType = {
+    Cooldown?: true
+  }
+
+  export type GuildInteractionPermissionsSumAggregateInputType = {
+    Cooldown?: true
+  }
+
+  export type GuildInteractionPermissionsMinAggregateInputType = {
+    id?: true
+    UUID?: true
+    CustomId?: true
+    CommandName?: true
+    Type?: true
+    DisableInternalUserPermission?: true
+    NeedsGuildOwner?: true
+    Cooldown?: true
+    GuildId?: true
+  }
+
+  export type GuildInteractionPermissionsMaxAggregateInputType = {
+    id?: true
+    UUID?: true
+    CustomId?: true
+    CommandName?: true
+    Type?: true
+    DisableInternalUserPermission?: true
+    NeedsGuildOwner?: true
+    Cooldown?: true
+    GuildId?: true
+  }
+
+  export type GuildInteractionPermissionsCountAggregateInputType = {
+    id?: true
+    UUID?: true
+    RoleIds?: true
+    UserIds?: true
+    ChannelIds?: true
+    CustomId?: true
+    CommandName?: true
+    Type?: true
+    DisableInternalUserPermission?: true
+    NeedsGuildOwner?: true
+    Cooldown?: true
+    GuildId?: true
+    _all?: true
+  }
+
+  export type GuildInteractionPermissionsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GuildInteractionPermissions to aggregate.
+     */
+    where?: GuildInteractionPermissionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GuildInteractionPermissions to fetch.
+     */
+    orderBy?: GuildInteractionPermissionsOrderByWithRelationInput | GuildInteractionPermissionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: GuildInteractionPermissionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GuildInteractionPermissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GuildInteractionPermissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned GuildInteractionPermissions
+    **/
+    _count?: true | GuildInteractionPermissionsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: GuildInteractionPermissionsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: GuildInteractionPermissionsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GuildInteractionPermissionsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GuildInteractionPermissionsMaxAggregateInputType
+  }
+
+  export type GetGuildInteractionPermissionsAggregateType<T extends GuildInteractionPermissionsAggregateArgs> = {
+        [P in keyof T & keyof AggregateGuildInteractionPermissions]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGuildInteractionPermissions[P]>
+      : GetScalarType<T[P], AggregateGuildInteractionPermissions[P]>
+  }
+
+
+
+
+  export type GuildInteractionPermissionsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GuildInteractionPermissionsWhereInput
+    orderBy?: GuildInteractionPermissionsOrderByWithAggregationInput | GuildInteractionPermissionsOrderByWithAggregationInput[]
+    by: GuildInteractionPermissionsScalarFieldEnum[] | GuildInteractionPermissionsScalarFieldEnum
+    having?: GuildInteractionPermissionsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GuildInteractionPermissionsCountAggregateInputType | true
+    _avg?: GuildInteractionPermissionsAvgAggregateInputType
+    _sum?: GuildInteractionPermissionsSumAggregateInputType
+    _min?: GuildInteractionPermissionsMinAggregateInputType
+    _max?: GuildInteractionPermissionsMaxAggregateInputType
+  }
+
+  export type GuildInteractionPermissionsGroupByOutputType = {
+    id: string
+    UUID: string
+    RoleIds: string[]
+    UserIds: string[]
+    ChannelIds: string[]
+    CustomId: string | null
+    CommandName: string | null
+    Type: string
+    DisableInternalUserPermission: boolean | null
+    NeedsGuildOwner: boolean | null
+    Cooldown: number | null
+    GuildId: string
+    _count: GuildInteractionPermissionsCountAggregateOutputType | null
+    _avg: GuildInteractionPermissionsAvgAggregateOutputType | null
+    _sum: GuildInteractionPermissionsSumAggregateOutputType | null
+    _min: GuildInteractionPermissionsMinAggregateOutputType | null
+    _max: GuildInteractionPermissionsMaxAggregateOutputType | null
+  }
+
+  type GetGuildInteractionPermissionsGroupByPayload<T extends GuildInteractionPermissionsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GuildInteractionPermissionsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GuildInteractionPermissionsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GuildInteractionPermissionsGroupByOutputType[P]>
+            : GetScalarType<T[P], GuildInteractionPermissionsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type GuildInteractionPermissionsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    UUID?: boolean
+    RoleIds?: boolean
+    UserIds?: boolean
+    ChannelIds?: boolean
+    CustomId?: boolean
+    CommandName?: boolean
+    Type?: boolean
+    DisableInternalUserPermission?: boolean
+    NeedsGuildOwner?: boolean
+    Cooldown?: boolean
+    GuildId?: boolean
+    Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["guildInteractionPermissions"]>
+
+
+
+  export type GuildInteractionPermissionsSelectScalar = {
+    id?: boolean
+    UUID?: boolean
+    RoleIds?: boolean
+    UserIds?: boolean
+    ChannelIds?: boolean
+    CustomId?: boolean
+    CommandName?: boolean
+    Type?: boolean
+    DisableInternalUserPermission?: boolean
+    NeedsGuildOwner?: boolean
+    Cooldown?: boolean
+    GuildId?: boolean
+  }
+
+  export type GuildInteractionPermissionsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "UUID" | "RoleIds" | "UserIds" | "ChannelIds" | "CustomId" | "CommandName" | "Type" | "DisableInternalUserPermission" | "NeedsGuildOwner" | "Cooldown" | "GuildId", ExtArgs["result"]["guildInteractionPermissions"]>
+  export type GuildInteractionPermissionsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
+  }
+
+  export type $GuildInteractionPermissionsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "GuildInteractionPermissions"
+    objects: {
+      Guilds: Prisma.$GuildsPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      UUID: string
+      RoleIds: string[]
+      UserIds: string[]
+      ChannelIds: string[]
+      CustomId: string | null
+      CommandName: string | null
+      Type: string
+      DisableInternalUserPermission: boolean | null
+      NeedsGuildOwner: boolean | null
+      Cooldown: number | null
+      GuildId: string
+    }, ExtArgs["result"]["guildInteractionPermissions"]>
+    composites: {}
+  }
+
+  type GuildInteractionPermissionsGetPayload<S extends boolean | null | undefined | GuildInteractionPermissionsDefaultArgs> = $Result.GetResult<Prisma.$GuildInteractionPermissionsPayload, S>
+
+  type GuildInteractionPermissionsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<GuildInteractionPermissionsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: GuildInteractionPermissionsCountAggregateInputType | true
+    }
+
+  export interface GuildInteractionPermissionsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GuildInteractionPermissions'], meta: { name: 'GuildInteractionPermissions' } }
+    /**
+     * Find zero or one GuildInteractionPermissions that matches the filter.
+     * @param {GuildInteractionPermissionsFindUniqueArgs} args - Arguments to find a GuildInteractionPermissions
+     * @example
+     * // Get one GuildInteractionPermissions
+     * const guildInteractionPermissions = await prisma.guildInteractionPermissions.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends GuildInteractionPermissionsFindUniqueArgs>(args: SelectSubset<T, GuildInteractionPermissionsFindUniqueArgs<ExtArgs>>): Prisma__GuildInteractionPermissionsClient<$Result.GetResult<Prisma.$GuildInteractionPermissionsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one GuildInteractionPermissions that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {GuildInteractionPermissionsFindUniqueOrThrowArgs} args - Arguments to find a GuildInteractionPermissions
+     * @example
+     * // Get one GuildInteractionPermissions
+     * const guildInteractionPermissions = await prisma.guildInteractionPermissions.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends GuildInteractionPermissionsFindUniqueOrThrowArgs>(args: SelectSubset<T, GuildInteractionPermissionsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__GuildInteractionPermissionsClient<$Result.GetResult<Prisma.$GuildInteractionPermissionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GuildInteractionPermissions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GuildInteractionPermissionsFindFirstArgs} args - Arguments to find a GuildInteractionPermissions
+     * @example
+     * // Get one GuildInteractionPermissions
+     * const guildInteractionPermissions = await prisma.guildInteractionPermissions.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends GuildInteractionPermissionsFindFirstArgs>(args?: SelectSubset<T, GuildInteractionPermissionsFindFirstArgs<ExtArgs>>): Prisma__GuildInteractionPermissionsClient<$Result.GetResult<Prisma.$GuildInteractionPermissionsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GuildInteractionPermissions that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GuildInteractionPermissionsFindFirstOrThrowArgs} args - Arguments to find a GuildInteractionPermissions
+     * @example
+     * // Get one GuildInteractionPermissions
+     * const guildInteractionPermissions = await prisma.guildInteractionPermissions.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends GuildInteractionPermissionsFindFirstOrThrowArgs>(args?: SelectSubset<T, GuildInteractionPermissionsFindFirstOrThrowArgs<ExtArgs>>): Prisma__GuildInteractionPermissionsClient<$Result.GetResult<Prisma.$GuildInteractionPermissionsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more GuildInteractionPermissions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GuildInteractionPermissionsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all GuildInteractionPermissions
+     * const guildInteractionPermissions = await prisma.guildInteractionPermissions.findMany()
+     * 
+     * // Get first 10 GuildInteractionPermissions
+     * const guildInteractionPermissions = await prisma.guildInteractionPermissions.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const guildInteractionPermissionsWithIdOnly = await prisma.guildInteractionPermissions.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends GuildInteractionPermissionsFindManyArgs>(args?: SelectSubset<T, GuildInteractionPermissionsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuildInteractionPermissionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a GuildInteractionPermissions.
+     * @param {GuildInteractionPermissionsCreateArgs} args - Arguments to create a GuildInteractionPermissions.
+     * @example
+     * // Create one GuildInteractionPermissions
+     * const GuildInteractionPermissions = await prisma.guildInteractionPermissions.create({
+     *   data: {
+     *     // ... data to create a GuildInteractionPermissions
+     *   }
+     * })
+     * 
+     */
+    create<T extends GuildInteractionPermissionsCreateArgs>(args: SelectSubset<T, GuildInteractionPermissionsCreateArgs<ExtArgs>>): Prisma__GuildInteractionPermissionsClient<$Result.GetResult<Prisma.$GuildInteractionPermissionsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many GuildInteractionPermissions.
+     * @param {GuildInteractionPermissionsCreateManyArgs} args - Arguments to create many GuildInteractionPermissions.
+     * @example
+     * // Create many GuildInteractionPermissions
+     * const guildInteractionPermissions = await prisma.guildInteractionPermissions.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends GuildInteractionPermissionsCreateManyArgs>(args?: SelectSubset<T, GuildInteractionPermissionsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a GuildInteractionPermissions.
+     * @param {GuildInteractionPermissionsDeleteArgs} args - Arguments to delete one GuildInteractionPermissions.
+     * @example
+     * // Delete one GuildInteractionPermissions
+     * const GuildInteractionPermissions = await prisma.guildInteractionPermissions.delete({
+     *   where: {
+     *     // ... filter to delete one GuildInteractionPermissions
+     *   }
+     * })
+     * 
+     */
+    delete<T extends GuildInteractionPermissionsDeleteArgs>(args: SelectSubset<T, GuildInteractionPermissionsDeleteArgs<ExtArgs>>): Prisma__GuildInteractionPermissionsClient<$Result.GetResult<Prisma.$GuildInteractionPermissionsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one GuildInteractionPermissions.
+     * @param {GuildInteractionPermissionsUpdateArgs} args - Arguments to update one GuildInteractionPermissions.
+     * @example
+     * // Update one GuildInteractionPermissions
+     * const guildInteractionPermissions = await prisma.guildInteractionPermissions.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends GuildInteractionPermissionsUpdateArgs>(args: SelectSubset<T, GuildInteractionPermissionsUpdateArgs<ExtArgs>>): Prisma__GuildInteractionPermissionsClient<$Result.GetResult<Prisma.$GuildInteractionPermissionsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more GuildInteractionPermissions.
+     * @param {GuildInteractionPermissionsDeleteManyArgs} args - Arguments to filter GuildInteractionPermissions to delete.
+     * @example
+     * // Delete a few GuildInteractionPermissions
+     * const { count } = await prisma.guildInteractionPermissions.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends GuildInteractionPermissionsDeleteManyArgs>(args?: SelectSubset<T, GuildInteractionPermissionsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GuildInteractionPermissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GuildInteractionPermissionsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many GuildInteractionPermissions
+     * const guildInteractionPermissions = await prisma.guildInteractionPermissions.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends GuildInteractionPermissionsUpdateManyArgs>(args: SelectSubset<T, GuildInteractionPermissionsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one GuildInteractionPermissions.
+     * @param {GuildInteractionPermissionsUpsertArgs} args - Arguments to update or create a GuildInteractionPermissions.
+     * @example
+     * // Update or create a GuildInteractionPermissions
+     * const guildInteractionPermissions = await prisma.guildInteractionPermissions.upsert({
+     *   create: {
+     *     // ... data to create a GuildInteractionPermissions
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the GuildInteractionPermissions we want to update
+     *   }
+     * })
+     */
+    upsert<T extends GuildInteractionPermissionsUpsertArgs>(args: SelectSubset<T, GuildInteractionPermissionsUpsertArgs<ExtArgs>>): Prisma__GuildInteractionPermissionsClient<$Result.GetResult<Prisma.$GuildInteractionPermissionsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more GuildInteractionPermissions that matches the filter.
+     * @param {GuildInteractionPermissionsFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const guildInteractionPermissions = await prisma.guildInteractionPermissions.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: GuildInteractionPermissionsFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a GuildInteractionPermissions.
+     * @param {GuildInteractionPermissionsAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const guildInteractionPermissions = await prisma.guildInteractionPermissions.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: GuildInteractionPermissionsAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of GuildInteractionPermissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GuildInteractionPermissionsCountArgs} args - Arguments to filter GuildInteractionPermissions to count.
+     * @example
+     * // Count the number of GuildInteractionPermissions
+     * const count = await prisma.guildInteractionPermissions.count({
+     *   where: {
+     *     // ... the filter for the GuildInteractionPermissions we want to count
+     *   }
+     * })
+    **/
+    count<T extends GuildInteractionPermissionsCountArgs>(
+      args?: Subset<T, GuildInteractionPermissionsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GuildInteractionPermissionsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a GuildInteractionPermissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GuildInteractionPermissionsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GuildInteractionPermissionsAggregateArgs>(args: Subset<T, GuildInteractionPermissionsAggregateArgs>): Prisma.PrismaPromise<GetGuildInteractionPermissionsAggregateType<T>>
+
+    /**
+     * Group by GuildInteractionPermissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GuildInteractionPermissionsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends GuildInteractionPermissionsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: GuildInteractionPermissionsGroupByArgs['orderBy'] }
+        : { orderBy?: GuildInteractionPermissionsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, GuildInteractionPermissionsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGuildInteractionPermissionsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the GuildInteractionPermissions model
+   */
+  readonly fields: GuildInteractionPermissionsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for GuildInteractionPermissions.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__GuildInteractionPermissionsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    Guilds<T extends GuildsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GuildsDefaultArgs<ExtArgs>>): Prisma__GuildsClient<$Result.GetResult<Prisma.$GuildsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the GuildInteractionPermissions model
+   */
+  interface GuildInteractionPermissionsFieldRefs {
+    readonly id: FieldRef<"GuildInteractionPermissions", 'String'>
+    readonly UUID: FieldRef<"GuildInteractionPermissions", 'String'>
+    readonly RoleIds: FieldRef<"GuildInteractionPermissions", 'String[]'>
+    readonly UserIds: FieldRef<"GuildInteractionPermissions", 'String[]'>
+    readonly ChannelIds: FieldRef<"GuildInteractionPermissions", 'String[]'>
+    readonly CustomId: FieldRef<"GuildInteractionPermissions", 'String'>
+    readonly CommandName: FieldRef<"GuildInteractionPermissions", 'String'>
+    readonly Type: FieldRef<"GuildInteractionPermissions", 'String'>
+    readonly DisableInternalUserPermission: FieldRef<"GuildInteractionPermissions", 'Boolean'>
+    readonly NeedsGuildOwner: FieldRef<"GuildInteractionPermissions", 'Boolean'>
+    readonly Cooldown: FieldRef<"GuildInteractionPermissions", 'Int'>
+    readonly GuildId: FieldRef<"GuildInteractionPermissions", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * GuildInteractionPermissions findUnique
+   */
+  export type GuildInteractionPermissionsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuildInteractionPermissions
+     */
+    select?: GuildInteractionPermissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuildInteractionPermissions
+     */
+    omit?: GuildInteractionPermissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuildInteractionPermissionsInclude<ExtArgs> | null
+    /**
+     * Filter, which GuildInteractionPermissions to fetch.
+     */
+    where: GuildInteractionPermissionsWhereUniqueInput
+  }
+
+  /**
+   * GuildInteractionPermissions findUniqueOrThrow
+   */
+  export type GuildInteractionPermissionsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuildInteractionPermissions
+     */
+    select?: GuildInteractionPermissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuildInteractionPermissions
+     */
+    omit?: GuildInteractionPermissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuildInteractionPermissionsInclude<ExtArgs> | null
+    /**
+     * Filter, which GuildInteractionPermissions to fetch.
+     */
+    where: GuildInteractionPermissionsWhereUniqueInput
+  }
+
+  /**
+   * GuildInteractionPermissions findFirst
+   */
+  export type GuildInteractionPermissionsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuildInteractionPermissions
+     */
+    select?: GuildInteractionPermissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuildInteractionPermissions
+     */
+    omit?: GuildInteractionPermissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuildInteractionPermissionsInclude<ExtArgs> | null
+    /**
+     * Filter, which GuildInteractionPermissions to fetch.
+     */
+    where?: GuildInteractionPermissionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GuildInteractionPermissions to fetch.
+     */
+    orderBy?: GuildInteractionPermissionsOrderByWithRelationInput | GuildInteractionPermissionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GuildInteractionPermissions.
+     */
+    cursor?: GuildInteractionPermissionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GuildInteractionPermissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GuildInteractionPermissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GuildInteractionPermissions.
+     */
+    distinct?: GuildInteractionPermissionsScalarFieldEnum | GuildInteractionPermissionsScalarFieldEnum[]
+  }
+
+  /**
+   * GuildInteractionPermissions findFirstOrThrow
+   */
+  export type GuildInteractionPermissionsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuildInteractionPermissions
+     */
+    select?: GuildInteractionPermissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuildInteractionPermissions
+     */
+    omit?: GuildInteractionPermissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuildInteractionPermissionsInclude<ExtArgs> | null
+    /**
+     * Filter, which GuildInteractionPermissions to fetch.
+     */
+    where?: GuildInteractionPermissionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GuildInteractionPermissions to fetch.
+     */
+    orderBy?: GuildInteractionPermissionsOrderByWithRelationInput | GuildInteractionPermissionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GuildInteractionPermissions.
+     */
+    cursor?: GuildInteractionPermissionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GuildInteractionPermissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GuildInteractionPermissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GuildInteractionPermissions.
+     */
+    distinct?: GuildInteractionPermissionsScalarFieldEnum | GuildInteractionPermissionsScalarFieldEnum[]
+  }
+
+  /**
+   * GuildInteractionPermissions findMany
+   */
+  export type GuildInteractionPermissionsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuildInteractionPermissions
+     */
+    select?: GuildInteractionPermissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuildInteractionPermissions
+     */
+    omit?: GuildInteractionPermissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuildInteractionPermissionsInclude<ExtArgs> | null
+    /**
+     * Filter, which GuildInteractionPermissions to fetch.
+     */
+    where?: GuildInteractionPermissionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GuildInteractionPermissions to fetch.
+     */
+    orderBy?: GuildInteractionPermissionsOrderByWithRelationInput | GuildInteractionPermissionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing GuildInteractionPermissions.
+     */
+    cursor?: GuildInteractionPermissionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GuildInteractionPermissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GuildInteractionPermissions.
+     */
+    skip?: number
+    distinct?: GuildInteractionPermissionsScalarFieldEnum | GuildInteractionPermissionsScalarFieldEnum[]
+  }
+
+  /**
+   * GuildInteractionPermissions create
+   */
+  export type GuildInteractionPermissionsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuildInteractionPermissions
+     */
+    select?: GuildInteractionPermissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuildInteractionPermissions
+     */
+    omit?: GuildInteractionPermissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuildInteractionPermissionsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a GuildInteractionPermissions.
+     */
+    data: XOR<GuildInteractionPermissionsCreateInput, GuildInteractionPermissionsUncheckedCreateInput>
+  }
+
+  /**
+   * GuildInteractionPermissions createMany
+   */
+  export type GuildInteractionPermissionsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many GuildInteractionPermissions.
+     */
+    data: GuildInteractionPermissionsCreateManyInput | GuildInteractionPermissionsCreateManyInput[]
+  }
+
+  /**
+   * GuildInteractionPermissions update
+   */
+  export type GuildInteractionPermissionsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuildInteractionPermissions
+     */
+    select?: GuildInteractionPermissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuildInteractionPermissions
+     */
+    omit?: GuildInteractionPermissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuildInteractionPermissionsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a GuildInteractionPermissions.
+     */
+    data: XOR<GuildInteractionPermissionsUpdateInput, GuildInteractionPermissionsUncheckedUpdateInput>
+    /**
+     * Choose, which GuildInteractionPermissions to update.
+     */
+    where: GuildInteractionPermissionsWhereUniqueInput
+  }
+
+  /**
+   * GuildInteractionPermissions updateMany
+   */
+  export type GuildInteractionPermissionsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update GuildInteractionPermissions.
+     */
+    data: XOR<GuildInteractionPermissionsUpdateManyMutationInput, GuildInteractionPermissionsUncheckedUpdateManyInput>
+    /**
+     * Filter which GuildInteractionPermissions to update
+     */
+    where?: GuildInteractionPermissionsWhereInput
+    /**
+     * Limit how many GuildInteractionPermissions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * GuildInteractionPermissions upsert
+   */
+  export type GuildInteractionPermissionsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuildInteractionPermissions
+     */
+    select?: GuildInteractionPermissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuildInteractionPermissions
+     */
+    omit?: GuildInteractionPermissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuildInteractionPermissionsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the GuildInteractionPermissions to update in case it exists.
+     */
+    where: GuildInteractionPermissionsWhereUniqueInput
+    /**
+     * In case the GuildInteractionPermissions found by the `where` argument doesn't exist, create a new GuildInteractionPermissions with this data.
+     */
+    create: XOR<GuildInteractionPermissionsCreateInput, GuildInteractionPermissionsUncheckedCreateInput>
+    /**
+     * In case the GuildInteractionPermissions was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<GuildInteractionPermissionsUpdateInput, GuildInteractionPermissionsUncheckedUpdateInput>
+  }
+
+  /**
+   * GuildInteractionPermissions delete
+   */
+  export type GuildInteractionPermissionsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuildInteractionPermissions
+     */
+    select?: GuildInteractionPermissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuildInteractionPermissions
+     */
+    omit?: GuildInteractionPermissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuildInteractionPermissionsInclude<ExtArgs> | null
+    /**
+     * Filter which GuildInteractionPermissions to delete.
+     */
+    where: GuildInteractionPermissionsWhereUniqueInput
+  }
+
+  /**
+   * GuildInteractionPermissions deleteMany
+   */
+  export type GuildInteractionPermissionsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GuildInteractionPermissions to delete
+     */
+    where?: GuildInteractionPermissionsWhereInput
+    /**
+     * Limit how many GuildInteractionPermissions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * GuildInteractionPermissions findRaw
+   */
+  export type GuildInteractionPermissionsFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * GuildInteractionPermissions aggregateRaw
+   */
+  export type GuildInteractionPermissionsAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * GuildInteractionPermissions without action
+   */
+  export type GuildInteractionPermissionsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuildInteractionPermissions
+     */
+    select?: GuildInteractionPermissionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuildInteractionPermissions
+     */
+    omit?: GuildInteractionPermissionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuildInteractionPermissionsInclude<ExtArgs> | null
   }
 
 
@@ -24514,955 +25525,6 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: MessageTemplatesInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model Permissions
-   */
-
-  export type AggregatePermissions = {
-    _count: PermissionsCountAggregateOutputType | null
-    _min: PermissionsMinAggregateOutputType | null
-    _max: PermissionsMaxAggregateOutputType | null
-  }
-
-  export type PermissionsMinAggregateOutputType = {
-    id: string | null
-    GuildId: string | null
-  }
-
-  export type PermissionsMaxAggregateOutputType = {
-    id: string | null
-    GuildId: string | null
-  }
-
-  export type PermissionsCountAggregateOutputType = {
-    id: number
-    GuildId: number
-    _all: number
-  }
-
-
-  export type PermissionsMinAggregateInputType = {
-    id?: true
-    GuildId?: true
-  }
-
-  export type PermissionsMaxAggregateInputType = {
-    id?: true
-    GuildId?: true
-  }
-
-  export type PermissionsCountAggregateInputType = {
-    id?: true
-    GuildId?: true
-    _all?: true
-  }
-
-  export type PermissionsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Permissions to aggregate.
-     */
-    where?: PermissionsWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Permissions to fetch.
-     */
-    orderBy?: PermissionsOrderByWithRelationInput | PermissionsOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: PermissionsWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Permissions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Permissions.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Permissions
-    **/
-    _count?: true | PermissionsCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: PermissionsMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: PermissionsMaxAggregateInputType
-  }
-
-  export type GetPermissionsAggregateType<T extends PermissionsAggregateArgs> = {
-        [P in keyof T & keyof AggregatePermissions]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregatePermissions[P]>
-      : GetScalarType<T[P], AggregatePermissions[P]>
-  }
-
-
-
-
-  export type PermissionsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PermissionsWhereInput
-    orderBy?: PermissionsOrderByWithAggregationInput | PermissionsOrderByWithAggregationInput[]
-    by: PermissionsScalarFieldEnum[] | PermissionsScalarFieldEnum
-    having?: PermissionsScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: PermissionsCountAggregateInputType | true
-    _min?: PermissionsMinAggregateInputType
-    _max?: PermissionsMaxAggregateInputType
-  }
-
-  export type PermissionsGroupByOutputType = {
-    id: string
-    GuildId: string
-    _count: PermissionsCountAggregateOutputType | null
-    _min: PermissionsMinAggregateOutputType | null
-    _max: PermissionsMaxAggregateOutputType | null
-  }
-
-  type GetPermissionsGroupByPayload<T extends PermissionsGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<PermissionsGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof PermissionsGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], PermissionsGroupByOutputType[P]>
-            : GetScalarType<T[P], PermissionsGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type PermissionsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    Permissions?: boolean | PermissionDataDefaultArgs<ExtArgs>
-    GuildId?: boolean
-    Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["permissions"]>
-
-
-
-  export type PermissionsSelectScalar = {
-    id?: boolean
-    GuildId?: boolean
-  }
-
-  export type PermissionsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "Permissions" | "GuildId", ExtArgs["result"]["permissions"]>
-  export type PermissionsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
-  }
-
-  export type $PermissionsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Permissions"
-    objects: {
-      Guilds: Prisma.$GuildsPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      GuildId: string
-    }, ExtArgs["result"]["permissions"]>
-    composites: {
-      Permissions: Prisma.$PermissionDataPayload[]
-    }
-  }
-
-  type PermissionsGetPayload<S extends boolean | null | undefined | PermissionsDefaultArgs> = $Result.GetResult<Prisma.$PermissionsPayload, S>
-
-  type PermissionsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<PermissionsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: PermissionsCountAggregateInputType | true
-    }
-
-  export interface PermissionsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Permissions'], meta: { name: 'Permissions' } }
-    /**
-     * Find zero or one Permissions that matches the filter.
-     * @param {PermissionsFindUniqueArgs} args - Arguments to find a Permissions
-     * @example
-     * // Get one Permissions
-     * const permissions = await prisma.permissions.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends PermissionsFindUniqueArgs>(args: SelectSubset<T, PermissionsFindUniqueArgs<ExtArgs>>): Prisma__PermissionsClient<$Result.GetResult<Prisma.$PermissionsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Permissions that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {PermissionsFindUniqueOrThrowArgs} args - Arguments to find a Permissions
-     * @example
-     * // Get one Permissions
-     * const permissions = await prisma.permissions.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends PermissionsFindUniqueOrThrowArgs>(args: SelectSubset<T, PermissionsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PermissionsClient<$Result.GetResult<Prisma.$PermissionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Permissions that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PermissionsFindFirstArgs} args - Arguments to find a Permissions
-     * @example
-     * // Get one Permissions
-     * const permissions = await prisma.permissions.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends PermissionsFindFirstArgs>(args?: SelectSubset<T, PermissionsFindFirstArgs<ExtArgs>>): Prisma__PermissionsClient<$Result.GetResult<Prisma.$PermissionsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Permissions that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PermissionsFindFirstOrThrowArgs} args - Arguments to find a Permissions
-     * @example
-     * // Get one Permissions
-     * const permissions = await prisma.permissions.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends PermissionsFindFirstOrThrowArgs>(args?: SelectSubset<T, PermissionsFindFirstOrThrowArgs<ExtArgs>>): Prisma__PermissionsClient<$Result.GetResult<Prisma.$PermissionsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Permissions that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PermissionsFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Permissions
-     * const permissions = await prisma.permissions.findMany()
-     * 
-     * // Get first 10 Permissions
-     * const permissions = await prisma.permissions.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const permissionsWithIdOnly = await prisma.permissions.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends PermissionsFindManyArgs>(args?: SelectSubset<T, PermissionsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PermissionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Permissions.
-     * @param {PermissionsCreateArgs} args - Arguments to create a Permissions.
-     * @example
-     * // Create one Permissions
-     * const Permissions = await prisma.permissions.create({
-     *   data: {
-     *     // ... data to create a Permissions
-     *   }
-     * })
-     * 
-     */
-    create<T extends PermissionsCreateArgs>(args: SelectSubset<T, PermissionsCreateArgs<ExtArgs>>): Prisma__PermissionsClient<$Result.GetResult<Prisma.$PermissionsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Permissions.
-     * @param {PermissionsCreateManyArgs} args - Arguments to create many Permissions.
-     * @example
-     * // Create many Permissions
-     * const permissions = await prisma.permissions.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends PermissionsCreateManyArgs>(args?: SelectSubset<T, PermissionsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a Permissions.
-     * @param {PermissionsDeleteArgs} args - Arguments to delete one Permissions.
-     * @example
-     * // Delete one Permissions
-     * const Permissions = await prisma.permissions.delete({
-     *   where: {
-     *     // ... filter to delete one Permissions
-     *   }
-     * })
-     * 
-     */
-    delete<T extends PermissionsDeleteArgs>(args: SelectSubset<T, PermissionsDeleteArgs<ExtArgs>>): Prisma__PermissionsClient<$Result.GetResult<Prisma.$PermissionsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Permissions.
-     * @param {PermissionsUpdateArgs} args - Arguments to update one Permissions.
-     * @example
-     * // Update one Permissions
-     * const permissions = await prisma.permissions.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends PermissionsUpdateArgs>(args: SelectSubset<T, PermissionsUpdateArgs<ExtArgs>>): Prisma__PermissionsClient<$Result.GetResult<Prisma.$PermissionsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Permissions.
-     * @param {PermissionsDeleteManyArgs} args - Arguments to filter Permissions to delete.
-     * @example
-     * // Delete a few Permissions
-     * const { count } = await prisma.permissions.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends PermissionsDeleteManyArgs>(args?: SelectSubset<T, PermissionsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Permissions.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PermissionsUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Permissions
-     * const permissions = await prisma.permissions.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends PermissionsUpdateManyArgs>(args: SelectSubset<T, PermissionsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one Permissions.
-     * @param {PermissionsUpsertArgs} args - Arguments to update or create a Permissions.
-     * @example
-     * // Update or create a Permissions
-     * const permissions = await prisma.permissions.upsert({
-     *   create: {
-     *     // ... data to create a Permissions
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Permissions we want to update
-     *   }
-     * })
-     */
-    upsert<T extends PermissionsUpsertArgs>(args: SelectSubset<T, PermissionsUpsertArgs<ExtArgs>>): Prisma__PermissionsClient<$Result.GetResult<Prisma.$PermissionsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Permissions that matches the filter.
-     * @param {PermissionsFindRawArgs} args - Select which filters you would like to apply.
-     * @example
-     * const permissions = await prisma.permissions.findRaw({
-     *   filter: { age: { $gt: 25 } }
-     * })
-     */
-    findRaw(args?: PermissionsFindRawArgs): Prisma.PrismaPromise<JsonObject>
-
-    /**
-     * Perform aggregation operations on a Permissions.
-     * @param {PermissionsAggregateRawArgs} args - Select which aggregations you would like to apply.
-     * @example
-     * const permissions = await prisma.permissions.aggregateRaw({
-     *   pipeline: [
-     *     { $match: { status: "registered" } },
-     *     { $group: { _id: "$country", total: { $sum: 1 } } }
-     *   ]
-     * })
-     */
-    aggregateRaw(args?: PermissionsAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
-
-
-    /**
-     * Count the number of Permissions.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PermissionsCountArgs} args - Arguments to filter Permissions to count.
-     * @example
-     * // Count the number of Permissions
-     * const count = await prisma.permissions.count({
-     *   where: {
-     *     // ... the filter for the Permissions we want to count
-     *   }
-     * })
-    **/
-    count<T extends PermissionsCountArgs>(
-      args?: Subset<T, PermissionsCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], PermissionsCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Permissions.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PermissionsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends PermissionsAggregateArgs>(args: Subset<T, PermissionsAggregateArgs>): Prisma.PrismaPromise<GetPermissionsAggregateType<T>>
-
-    /**
-     * Group by Permissions.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PermissionsGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends PermissionsGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: PermissionsGroupByArgs['orderBy'] }
-        : { orderBy?: PermissionsGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, PermissionsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPermissionsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Permissions model
-   */
-  readonly fields: PermissionsFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Permissions.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__PermissionsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    Guilds<T extends GuildsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GuildsDefaultArgs<ExtArgs>>): Prisma__GuildsClient<$Result.GetResult<Prisma.$GuildsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Permissions model
-   */
-  interface PermissionsFieldRefs {
-    readonly id: FieldRef<"Permissions", 'String'>
-    readonly GuildId: FieldRef<"Permissions", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Permissions findUnique
-   */
-  export type PermissionsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Permissions
-     */
-    select?: PermissionsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Permissions
-     */
-    omit?: PermissionsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PermissionsInclude<ExtArgs> | null
-    /**
-     * Filter, which Permissions to fetch.
-     */
-    where: PermissionsWhereUniqueInput
-  }
-
-  /**
-   * Permissions findUniqueOrThrow
-   */
-  export type PermissionsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Permissions
-     */
-    select?: PermissionsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Permissions
-     */
-    omit?: PermissionsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PermissionsInclude<ExtArgs> | null
-    /**
-     * Filter, which Permissions to fetch.
-     */
-    where: PermissionsWhereUniqueInput
-  }
-
-  /**
-   * Permissions findFirst
-   */
-  export type PermissionsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Permissions
-     */
-    select?: PermissionsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Permissions
-     */
-    omit?: PermissionsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PermissionsInclude<ExtArgs> | null
-    /**
-     * Filter, which Permissions to fetch.
-     */
-    where?: PermissionsWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Permissions to fetch.
-     */
-    orderBy?: PermissionsOrderByWithRelationInput | PermissionsOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Permissions.
-     */
-    cursor?: PermissionsWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Permissions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Permissions.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Permissions.
-     */
-    distinct?: PermissionsScalarFieldEnum | PermissionsScalarFieldEnum[]
-  }
-
-  /**
-   * Permissions findFirstOrThrow
-   */
-  export type PermissionsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Permissions
-     */
-    select?: PermissionsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Permissions
-     */
-    omit?: PermissionsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PermissionsInclude<ExtArgs> | null
-    /**
-     * Filter, which Permissions to fetch.
-     */
-    where?: PermissionsWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Permissions to fetch.
-     */
-    orderBy?: PermissionsOrderByWithRelationInput | PermissionsOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Permissions.
-     */
-    cursor?: PermissionsWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Permissions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Permissions.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Permissions.
-     */
-    distinct?: PermissionsScalarFieldEnum | PermissionsScalarFieldEnum[]
-  }
-
-  /**
-   * Permissions findMany
-   */
-  export type PermissionsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Permissions
-     */
-    select?: PermissionsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Permissions
-     */
-    omit?: PermissionsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PermissionsInclude<ExtArgs> | null
-    /**
-     * Filter, which Permissions to fetch.
-     */
-    where?: PermissionsWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Permissions to fetch.
-     */
-    orderBy?: PermissionsOrderByWithRelationInput | PermissionsOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Permissions.
-     */
-    cursor?: PermissionsWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Permissions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Permissions.
-     */
-    skip?: number
-    distinct?: PermissionsScalarFieldEnum | PermissionsScalarFieldEnum[]
-  }
-
-  /**
-   * Permissions create
-   */
-  export type PermissionsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Permissions
-     */
-    select?: PermissionsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Permissions
-     */
-    omit?: PermissionsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PermissionsInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Permissions.
-     */
-    data: XOR<PermissionsCreateInput, PermissionsUncheckedCreateInput>
-  }
-
-  /**
-   * Permissions createMany
-   */
-  export type PermissionsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Permissions.
-     */
-    data: PermissionsCreateManyInput | PermissionsCreateManyInput[]
-  }
-
-  /**
-   * Permissions update
-   */
-  export type PermissionsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Permissions
-     */
-    select?: PermissionsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Permissions
-     */
-    omit?: PermissionsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PermissionsInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Permissions.
-     */
-    data: XOR<PermissionsUpdateInput, PermissionsUncheckedUpdateInput>
-    /**
-     * Choose, which Permissions to update.
-     */
-    where: PermissionsWhereUniqueInput
-  }
-
-  /**
-   * Permissions updateMany
-   */
-  export type PermissionsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Permissions.
-     */
-    data: XOR<PermissionsUpdateManyMutationInput, PermissionsUncheckedUpdateManyInput>
-    /**
-     * Filter which Permissions to update
-     */
-    where?: PermissionsWhereInput
-    /**
-     * Limit how many Permissions to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Permissions upsert
-   */
-  export type PermissionsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Permissions
-     */
-    select?: PermissionsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Permissions
-     */
-    omit?: PermissionsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PermissionsInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Permissions to update in case it exists.
-     */
-    where: PermissionsWhereUniqueInput
-    /**
-     * In case the Permissions found by the `where` argument doesn't exist, create a new Permissions with this data.
-     */
-    create: XOR<PermissionsCreateInput, PermissionsUncheckedCreateInput>
-    /**
-     * In case the Permissions was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<PermissionsUpdateInput, PermissionsUncheckedUpdateInput>
-  }
-
-  /**
-   * Permissions delete
-   */
-  export type PermissionsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Permissions
-     */
-    select?: PermissionsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Permissions
-     */
-    omit?: PermissionsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PermissionsInclude<ExtArgs> | null
-    /**
-     * Filter which Permissions to delete.
-     */
-    where: PermissionsWhereUniqueInput
-  }
-
-  /**
-   * Permissions deleteMany
-   */
-  export type PermissionsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Permissions to delete
-     */
-    where?: PermissionsWhereInput
-    /**
-     * Limit how many Permissions to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Permissions findRaw
-   */
-  export type PermissionsFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
-     */
-    filter?: InputJsonValue
-    /**
-     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
-     */
-    options?: InputJsonValue
-  }
-
-  /**
-   * Permissions aggregateRaw
-   */
-  export type PermissionsAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
-     */
-    pipeline?: InputJsonValue[]
-    /**
-     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
-     */
-    options?: InputJsonValue
-  }
-
-  /**
-   * Permissions without action
-   */
-  export type PermissionsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Permissions
-     */
-    select?: PermissionsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Permissions
-     */
-    omit?: PermissionsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PermissionsInclude<ExtArgs> | null
   }
 
 
@@ -44731,6 +44793,8 @@ export namespace Prisma {
     Host: string | null
     GuildId: string | null
     Invite: string | null
+    InDiscovery: boolean | null
+    IsBannedFromDiscover: boolean | null
     CreatedAt: Date | null
     UserId: string | null
   }
@@ -44742,6 +44806,8 @@ export namespace Prisma {
     Host: string | null
     GuildId: string | null
     Invite: string | null
+    InDiscovery: boolean | null
+    IsBannedFromDiscover: boolean | null
     CreatedAt: Date | null
     UserId: string | null
   }
@@ -44753,6 +44819,8 @@ export namespace Prisma {
     Host: number
     GuildId: number
     Invite: number
+    InDiscovery: number
+    IsBannedFromDiscover: number
     CreatedAt: number
     UserId: number
     _all: number
@@ -44766,6 +44834,8 @@ export namespace Prisma {
     Host?: true
     GuildId?: true
     Invite?: true
+    InDiscovery?: true
+    IsBannedFromDiscover?: true
     CreatedAt?: true
     UserId?: true
   }
@@ -44777,6 +44847,8 @@ export namespace Prisma {
     Host?: true
     GuildId?: true
     Invite?: true
+    InDiscovery?: true
+    IsBannedFromDiscover?: true
     CreatedAt?: true
     UserId?: true
   }
@@ -44788,6 +44860,8 @@ export namespace Prisma {
     Host?: true
     GuildId?: true
     Invite?: true
+    InDiscovery?: true
+    IsBannedFromDiscover?: true
     CreatedAt?: true
     UserId?: true
     _all?: true
@@ -44872,6 +44946,8 @@ export namespace Prisma {
     Host: string
     GuildId: string
     Invite: string
+    InDiscovery: boolean | null
+    IsBannedFromDiscover: boolean | null
     CreatedAt: Date
     UserId: string
     _count: VanitysCountAggregateOutputType | null
@@ -44900,6 +44976,8 @@ export namespace Prisma {
     Host?: boolean
     GuildId?: boolean
     Invite?: boolean
+    InDiscovery?: boolean
+    IsBannedFromDiscover?: boolean
     CreatedAt?: boolean
     UserId?: boolean
     Analytics?: boolean | Vanitys$AnalyticsArgs<ExtArgs>
@@ -44916,11 +44994,13 @@ export namespace Prisma {
     Host?: boolean
     GuildId?: boolean
     Invite?: boolean
+    InDiscovery?: boolean
+    IsBannedFromDiscover?: boolean
     CreatedAt?: boolean
     UserId?: boolean
   }
 
-  export type VanitysOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "UUID" | "Slug" | "Host" | "GuildId" | "Invite" | "CreatedAt" | "UserId", ExtArgs["result"]["vanitys"]>
+  export type VanitysOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "UUID" | "Slug" | "Host" | "GuildId" | "Invite" | "InDiscovery" | "IsBannedFromDiscover" | "CreatedAt" | "UserId", ExtArgs["result"]["vanitys"]>
   export type VanitysInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Analytics?: boolean | Vanitys$AnalyticsArgs<ExtArgs>
     Embed?: boolean | Vanitys$EmbedArgs<ExtArgs>
@@ -44941,6 +45021,8 @@ export namespace Prisma {
       Host: string
       GuildId: string
       Invite: string
+      InDiscovery: boolean | null
+      IsBannedFromDiscover: boolean | null
       CreatedAt: Date
       UserId: string
     }, ExtArgs["result"]["vanitys"]>
@@ -45344,6 +45426,8 @@ export namespace Prisma {
     readonly Host: FieldRef<"Vanitys", 'String'>
     readonly GuildId: FieldRef<"Vanitys", 'String'>
     readonly Invite: FieldRef<"Vanitys", 'String'>
+    readonly InDiscovery: FieldRef<"Vanitys", 'Boolean'>
+    readonly IsBannedFromDiscover: FieldRef<"Vanitys", 'Boolean'>
     readonly CreatedAt: FieldRef<"Vanitys", 'DateTime'>
     readonly UserId: FieldRef<"Vanitys", 'String'>
   }
@@ -52792,6 +52876,24 @@ export namespace Prisma {
   export type GuildsScalarFieldEnum = (typeof GuildsScalarFieldEnum)[keyof typeof GuildsScalarFieldEnum]
 
 
+  export const GuildInteractionPermissionsScalarFieldEnum: {
+    id: 'id',
+    UUID: 'UUID',
+    RoleIds: 'RoleIds',
+    UserIds: 'UserIds',
+    ChannelIds: 'ChannelIds',
+    CustomId: 'CustomId',
+    CommandName: 'CommandName',
+    Type: 'Type',
+    DisableInternalUserPermission: 'DisableInternalUserPermission',
+    NeedsGuildOwner: 'NeedsGuildOwner',
+    Cooldown: 'Cooldown',
+    GuildId: 'GuildId'
+  };
+
+  export type GuildInteractionPermissionsScalarFieldEnum = (typeof GuildInteractionPermissionsScalarFieldEnum)[keyof typeof GuildInteractionPermissionsScalarFieldEnum]
+
+
   export const AutoDeletesScalarFieldEnum: {
     id: 'id',
     ChannelId: 'ChannelId',
@@ -53024,14 +53126,6 @@ export namespace Prisma {
   };
 
   export type MessageTemplatesScalarFieldEnum = (typeof MessageTemplatesScalarFieldEnum)[keyof typeof MessageTemplatesScalarFieldEnum]
-
-
-  export const PermissionsScalarFieldEnum: {
-    id: 'id',
-    GuildId: 'GuildId'
-  };
-
-  export type PermissionsScalarFieldEnum = (typeof PermissionsScalarFieldEnum)[keyof typeof PermissionsScalarFieldEnum]
 
 
   export const ReactionRolesScalarFieldEnum: {
@@ -53341,6 +53435,8 @@ export namespace Prisma {
     Host: 'Host',
     GuildId: 'GuildId',
     Invite: 'Invite',
+    InDiscovery: 'InDiscovery',
+    IsBannedFromDiscover: 'IsBannedFromDiscover',
     CreatedAt: 'CreatedAt',
     UserId: 'UserId'
   };
@@ -53475,20 +53571,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'DateTime'
-   */
-  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
-    
-
-
-  /**
-   * Reference to a field of type 'DateTime[]'
-   */
-  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -53499,6 +53581,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
 
 
@@ -53561,7 +53657,6 @@ export namespace Prisma {
     GuildLeaveSetup?: XOR<GuildLeaveSetupsNullableScalarRelationFilter, GuildLeaveSetupsWhereInput> | null
     GuildLogging?: XOR<GuildLoggingsNullableScalarRelationFilter, GuildLoggingsWhereInput> | null
     MessageTemplates?: MessageTemplatesListRelationFilter
-    Permissions?: XOR<PermissionsNullableScalarRelationFilter, PermissionsWhereInput> | null
     ReactionRole?: ReactionRolesListRelationFilter
     Security?: XOR<SecuritysNullableScalarRelationFilter, SecuritysWhereInput> | null
     SpotifyNotifications?: SpotifyNotificationsListRelationFilter
@@ -53572,6 +53667,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: XOR<GuildWelcomeSetupsNullableScalarRelationFilter, GuildWelcomeSetupsWhereInput> | null
     YoutubeNotifications?: YoutubeNotificationsListRelationFilter
     GuildLoggers?: GuildLoggersListRelationFilter
+    GuildInteractionPermissions?: GuildInteractionPermissionsListRelationFilter
   }
 
   export type GuildsOrderByWithRelationInput = {
@@ -53592,7 +53688,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsOrderByWithRelationInput
     GuildLogging?: GuildLoggingsOrderByWithRelationInput
     MessageTemplates?: MessageTemplatesOrderByRelationAggregateInput
-    Permissions?: PermissionsOrderByWithRelationInput
     ReactionRole?: ReactionRolesOrderByRelationAggregateInput
     Security?: SecuritysOrderByWithRelationInput
     SpotifyNotifications?: SpotifyNotificationsOrderByRelationAggregateInput
@@ -53603,6 +53698,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsOrderByWithRelationInput
     YoutubeNotifications?: YoutubeNotificationsOrderByRelationAggregateInput
     GuildLoggers?: GuildLoggersOrderByRelationAggregateInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsOrderByRelationAggregateInput
   }
 
   export type GuildsWhereUniqueInput = Prisma.AtLeast<{
@@ -53626,7 +53722,6 @@ export namespace Prisma {
     GuildLeaveSetup?: XOR<GuildLeaveSetupsNullableScalarRelationFilter, GuildLeaveSetupsWhereInput> | null
     GuildLogging?: XOR<GuildLoggingsNullableScalarRelationFilter, GuildLoggingsWhereInput> | null
     MessageTemplates?: MessageTemplatesListRelationFilter
-    Permissions?: XOR<PermissionsNullableScalarRelationFilter, PermissionsWhereInput> | null
     ReactionRole?: ReactionRolesListRelationFilter
     Security?: XOR<SecuritysNullableScalarRelationFilter, SecuritysWhereInput> | null
     SpotifyNotifications?: SpotifyNotificationsListRelationFilter
@@ -53637,6 +53732,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: XOR<GuildWelcomeSetupsNullableScalarRelationFilter, GuildWelcomeSetupsWhereInput> | null
     YoutubeNotifications?: YoutubeNotificationsListRelationFilter
     GuildLoggers?: GuildLoggersListRelationFilter
+    GuildInteractionPermissions?: GuildInteractionPermissionsListRelationFilter
   }, "id" | "GuildId">
 
   export type GuildsOrderByWithAggregationInput = {
@@ -53657,6 +53753,98 @@ export namespace Prisma {
     GuildId?: StringWithAggregatesFilter<"Guilds"> | string
     GuildName?: StringWithAggregatesFilter<"Guilds"> | string
     GuildOwner?: StringWithAggregatesFilter<"Guilds"> | string
+  }
+
+  export type GuildInteractionPermissionsWhereInput = {
+    AND?: GuildInteractionPermissionsWhereInput | GuildInteractionPermissionsWhereInput[]
+    OR?: GuildInteractionPermissionsWhereInput[]
+    NOT?: GuildInteractionPermissionsWhereInput | GuildInteractionPermissionsWhereInput[]
+    id?: StringFilter<"GuildInteractionPermissions"> | string
+    UUID?: StringFilter<"GuildInteractionPermissions"> | string
+    RoleIds?: StringNullableListFilter<"GuildInteractionPermissions">
+    UserIds?: StringNullableListFilter<"GuildInteractionPermissions">
+    ChannelIds?: StringNullableListFilter<"GuildInteractionPermissions">
+    CustomId?: StringNullableFilter<"GuildInteractionPermissions"> | string | null
+    CommandName?: StringNullableFilter<"GuildInteractionPermissions"> | string | null
+    Type?: StringFilter<"GuildInteractionPermissions"> | string
+    DisableInternalUserPermission?: BoolNullableFilter<"GuildInteractionPermissions"> | boolean | null
+    NeedsGuildOwner?: BoolNullableFilter<"GuildInteractionPermissions"> | boolean | null
+    Cooldown?: IntNullableFilter<"GuildInteractionPermissions"> | number | null
+    GuildId?: StringFilter<"GuildInteractionPermissions"> | string
+    Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
+  }
+
+  export type GuildInteractionPermissionsOrderByWithRelationInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    RoleIds?: SortOrder
+    UserIds?: SortOrder
+    ChannelIds?: SortOrder
+    CustomId?: SortOrder
+    CommandName?: SortOrder
+    Type?: SortOrder
+    DisableInternalUserPermission?: SortOrder
+    NeedsGuildOwner?: SortOrder
+    Cooldown?: SortOrder
+    GuildId?: SortOrder
+    Guilds?: GuildsOrderByWithRelationInput
+  }
+
+  export type GuildInteractionPermissionsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    UUID?: string
+    AND?: GuildInteractionPermissionsWhereInput | GuildInteractionPermissionsWhereInput[]
+    OR?: GuildInteractionPermissionsWhereInput[]
+    NOT?: GuildInteractionPermissionsWhereInput | GuildInteractionPermissionsWhereInput[]
+    RoleIds?: StringNullableListFilter<"GuildInteractionPermissions">
+    UserIds?: StringNullableListFilter<"GuildInteractionPermissions">
+    ChannelIds?: StringNullableListFilter<"GuildInteractionPermissions">
+    CustomId?: StringNullableFilter<"GuildInteractionPermissions"> | string | null
+    CommandName?: StringNullableFilter<"GuildInteractionPermissions"> | string | null
+    Type?: StringFilter<"GuildInteractionPermissions"> | string
+    DisableInternalUserPermission?: BoolNullableFilter<"GuildInteractionPermissions"> | boolean | null
+    NeedsGuildOwner?: BoolNullableFilter<"GuildInteractionPermissions"> | boolean | null
+    Cooldown?: IntNullableFilter<"GuildInteractionPermissions"> | number | null
+    GuildId?: StringFilter<"GuildInteractionPermissions"> | string
+    Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
+  }, "id" | "UUID">
+
+  export type GuildInteractionPermissionsOrderByWithAggregationInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    RoleIds?: SortOrder
+    UserIds?: SortOrder
+    ChannelIds?: SortOrder
+    CustomId?: SortOrder
+    CommandName?: SortOrder
+    Type?: SortOrder
+    DisableInternalUserPermission?: SortOrder
+    NeedsGuildOwner?: SortOrder
+    Cooldown?: SortOrder
+    GuildId?: SortOrder
+    _count?: GuildInteractionPermissionsCountOrderByAggregateInput
+    _avg?: GuildInteractionPermissionsAvgOrderByAggregateInput
+    _max?: GuildInteractionPermissionsMaxOrderByAggregateInput
+    _min?: GuildInteractionPermissionsMinOrderByAggregateInput
+    _sum?: GuildInteractionPermissionsSumOrderByAggregateInput
+  }
+
+  export type GuildInteractionPermissionsScalarWhereWithAggregatesInput = {
+    AND?: GuildInteractionPermissionsScalarWhereWithAggregatesInput | GuildInteractionPermissionsScalarWhereWithAggregatesInput[]
+    OR?: GuildInteractionPermissionsScalarWhereWithAggregatesInput[]
+    NOT?: GuildInteractionPermissionsScalarWhereWithAggregatesInput | GuildInteractionPermissionsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"GuildInteractionPermissions"> | string
+    UUID?: StringWithAggregatesFilter<"GuildInteractionPermissions"> | string
+    RoleIds?: StringNullableListFilter<"GuildInteractionPermissions">
+    UserIds?: StringNullableListFilter<"GuildInteractionPermissions">
+    ChannelIds?: StringNullableListFilter<"GuildInteractionPermissions">
+    CustomId?: StringNullableWithAggregatesFilter<"GuildInteractionPermissions"> | string | null
+    CommandName?: StringNullableWithAggregatesFilter<"GuildInteractionPermissions"> | string | null
+    Type?: StringWithAggregatesFilter<"GuildInteractionPermissions"> | string
+    DisableInternalUserPermission?: BoolNullableWithAggregatesFilter<"GuildInteractionPermissions"> | boolean | null
+    NeedsGuildOwner?: BoolNullableWithAggregatesFilter<"GuildInteractionPermissions"> | boolean | null
+    Cooldown?: IntNullableWithAggregatesFilter<"GuildInteractionPermissions"> | number | null
+    GuildId?: StringWithAggregatesFilter<"GuildInteractionPermissions"> | string
   }
 
   export type AutoDeletesWhereInput = {
@@ -54843,49 +55031,6 @@ export namespace Prisma {
     OtherEmbeds?: StringNullableListFilter<"MessageTemplates">
     Name?: StringWithAggregatesFilter<"MessageTemplates"> | string
     GuildId?: StringWithAggregatesFilter<"MessageTemplates"> | string
-  }
-
-  export type PermissionsWhereInput = {
-    AND?: PermissionsWhereInput | PermissionsWhereInput[]
-    OR?: PermissionsWhereInput[]
-    NOT?: PermissionsWhereInput | PermissionsWhereInput[]
-    id?: StringFilter<"Permissions"> | string
-    Permissions?: PermissionDataCompositeListFilter | PermissionDataObjectEqualityInput[]
-    GuildId?: StringFilter<"Permissions"> | string
-    Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
-  }
-
-  export type PermissionsOrderByWithRelationInput = {
-    id?: SortOrder
-    Permissions?: PermissionDataOrderByCompositeAggregateInput
-    GuildId?: SortOrder
-    Guilds?: GuildsOrderByWithRelationInput
-  }
-
-  export type PermissionsWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    GuildId?: string
-    AND?: PermissionsWhereInput | PermissionsWhereInput[]
-    OR?: PermissionsWhereInput[]
-    NOT?: PermissionsWhereInput | PermissionsWhereInput[]
-    Permissions?: PermissionDataCompositeListFilter | PermissionDataObjectEqualityInput[]
-    Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
-  }, "id" | "GuildId">
-
-  export type PermissionsOrderByWithAggregationInput = {
-    id?: SortOrder
-    GuildId?: SortOrder
-    _count?: PermissionsCountOrderByAggregateInput
-    _max?: PermissionsMaxOrderByAggregateInput
-    _min?: PermissionsMinOrderByAggregateInput
-  }
-
-  export type PermissionsScalarWhereWithAggregatesInput = {
-    AND?: PermissionsScalarWhereWithAggregatesInput | PermissionsScalarWhereWithAggregatesInput[]
-    OR?: PermissionsScalarWhereWithAggregatesInput[]
-    NOT?: PermissionsScalarWhereWithAggregatesInput | PermissionsScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Permissions"> | string
-    GuildId?: StringWithAggregatesFilter<"Permissions"> | string
   }
 
   export type ReactionRolesWhereInput = {
@@ -56451,6 +56596,8 @@ export namespace Prisma {
     Host?: StringFilter<"Vanitys"> | string
     GuildId?: StringFilter<"Vanitys"> | string
     Invite?: StringFilter<"Vanitys"> | string
+    InDiscovery?: BoolNullableFilter<"Vanitys"> | boolean | null
+    IsBannedFromDiscover?: BoolNullableFilter<"Vanitys"> | boolean | null
     CreatedAt?: DateTimeFilter<"Vanitys"> | Date | string
     UserId?: StringFilter<"Vanitys"> | string
     Analytics?: XOR<VanityAnalyticsNullableScalarRelationFilter, VanityAnalyticsWhereInput> | null
@@ -56465,6 +56612,8 @@ export namespace Prisma {
     Host?: SortOrder
     GuildId?: SortOrder
     Invite?: SortOrder
+    InDiscovery?: SortOrder
+    IsBannedFromDiscover?: SortOrder
     CreatedAt?: SortOrder
     UserId?: SortOrder
     Analytics?: VanityAnalyticsOrderByWithRelationInput
@@ -56482,6 +56631,8 @@ export namespace Prisma {
     Host?: StringFilter<"Vanitys"> | string
     GuildId?: StringFilter<"Vanitys"> | string
     Invite?: StringFilter<"Vanitys"> | string
+    InDiscovery?: BoolNullableFilter<"Vanitys"> | boolean | null
+    IsBannedFromDiscover?: BoolNullableFilter<"Vanitys"> | boolean | null
     CreatedAt?: DateTimeFilter<"Vanitys"> | Date | string
     UserId?: StringFilter<"Vanitys"> | string
     Analytics?: XOR<VanityAnalyticsNullableScalarRelationFilter, VanityAnalyticsWhereInput> | null
@@ -56496,6 +56647,8 @@ export namespace Prisma {
     Host?: SortOrder
     GuildId?: SortOrder
     Invite?: SortOrder
+    InDiscovery?: SortOrder
+    IsBannedFromDiscover?: SortOrder
     CreatedAt?: SortOrder
     UserId?: SortOrder
     _count?: VanitysCountOrderByAggregateInput
@@ -56513,6 +56666,8 @@ export namespace Prisma {
     Host?: StringWithAggregatesFilter<"Vanitys"> | string
     GuildId?: StringWithAggregatesFilter<"Vanitys"> | string
     Invite?: StringWithAggregatesFilter<"Vanitys"> | string
+    InDiscovery?: BoolNullableWithAggregatesFilter<"Vanitys"> | boolean | null
+    IsBannedFromDiscover?: BoolNullableWithAggregatesFilter<"Vanitys"> | boolean | null
     CreatedAt?: DateTimeWithAggregatesFilter<"Vanitys"> | Date | string
     UserId?: StringWithAggregatesFilter<"Vanitys"> | string
   }
@@ -56962,7 +57117,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: SecuritysCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsCreateNestedManyWithoutGuildsInput
@@ -56973,6 +57127,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateInput = {
@@ -56993,7 +57148,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsUncheckedCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsUncheckedCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: SecuritysUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -57004,6 +57158,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersUncheckedCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUpdateInput = {
@@ -57023,7 +57178,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUpdateManyWithoutGuildsNestedInput
@@ -57034,6 +57188,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateInput = {
@@ -57053,7 +57208,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUncheckedUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUncheckedUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -57064,6 +57218,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateManyInput = {
@@ -57083,6 +57238,106 @@ export namespace Prisma {
     GuildId?: StringFieldUpdateOperationsInput | string
     GuildName?: StringFieldUpdateOperationsInput | string
     GuildOwner?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type GuildInteractionPermissionsCreateInput = {
+    id?: string
+    UUID: string
+    RoleIds?: GuildInteractionPermissionsCreateRoleIdsInput | string[]
+    UserIds?: GuildInteractionPermissionsCreateUserIdsInput | string[]
+    ChannelIds?: GuildInteractionPermissionsCreateChannelIdsInput | string[]
+    CustomId?: string | null
+    CommandName?: string | null
+    Type: string
+    DisableInternalUserPermission?: boolean | null
+    NeedsGuildOwner?: boolean | null
+    Cooldown?: number | null
+    Guilds: GuildsCreateNestedOneWithoutGuildInteractionPermissionsInput
+  }
+
+  export type GuildInteractionPermissionsUncheckedCreateInput = {
+    id?: string
+    UUID: string
+    RoleIds?: GuildInteractionPermissionsCreateRoleIdsInput | string[]
+    UserIds?: GuildInteractionPermissionsCreateUserIdsInput | string[]
+    ChannelIds?: GuildInteractionPermissionsCreateChannelIdsInput | string[]
+    CustomId?: string | null
+    CommandName?: string | null
+    Type: string
+    DisableInternalUserPermission?: boolean | null
+    NeedsGuildOwner?: boolean | null
+    Cooldown?: number | null
+    GuildId: string
+  }
+
+  export type GuildInteractionPermissionsUpdateInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    RoleIds?: GuildInteractionPermissionsUpdateRoleIdsInput | string[]
+    UserIds?: GuildInteractionPermissionsUpdateUserIdsInput | string[]
+    ChannelIds?: GuildInteractionPermissionsUpdateChannelIdsInput | string[]
+    CustomId?: NullableStringFieldUpdateOperationsInput | string | null
+    CommandName?: NullableStringFieldUpdateOperationsInput | string | null
+    Type?: StringFieldUpdateOperationsInput | string
+    DisableInternalUserPermission?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    NeedsGuildOwner?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Cooldown?: NullableIntFieldUpdateOperationsInput | number | null
+    Guilds?: GuildsUpdateOneRequiredWithoutGuildInteractionPermissionsNestedInput
+  }
+
+  export type GuildInteractionPermissionsUncheckedUpdateInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    RoleIds?: GuildInteractionPermissionsUpdateRoleIdsInput | string[]
+    UserIds?: GuildInteractionPermissionsUpdateUserIdsInput | string[]
+    ChannelIds?: GuildInteractionPermissionsUpdateChannelIdsInput | string[]
+    CustomId?: NullableStringFieldUpdateOperationsInput | string | null
+    CommandName?: NullableStringFieldUpdateOperationsInput | string | null
+    Type?: StringFieldUpdateOperationsInput | string
+    DisableInternalUserPermission?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    NeedsGuildOwner?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Cooldown?: NullableIntFieldUpdateOperationsInput | number | null
+    GuildId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type GuildInteractionPermissionsCreateManyInput = {
+    id?: string
+    UUID: string
+    RoleIds?: GuildInteractionPermissionsCreateRoleIdsInput | string[]
+    UserIds?: GuildInteractionPermissionsCreateUserIdsInput | string[]
+    ChannelIds?: GuildInteractionPermissionsCreateChannelIdsInput | string[]
+    CustomId?: string | null
+    CommandName?: string | null
+    Type: string
+    DisableInternalUserPermission?: boolean | null
+    NeedsGuildOwner?: boolean | null
+    Cooldown?: number | null
+    GuildId: string
+  }
+
+  export type GuildInteractionPermissionsUpdateManyMutationInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    RoleIds?: GuildInteractionPermissionsUpdateRoleIdsInput | string[]
+    UserIds?: GuildInteractionPermissionsUpdateUserIdsInput | string[]
+    ChannelIds?: GuildInteractionPermissionsUpdateChannelIdsInput | string[]
+    CustomId?: NullableStringFieldUpdateOperationsInput | string | null
+    CommandName?: NullableStringFieldUpdateOperationsInput | string | null
+    Type?: StringFieldUpdateOperationsInput | string
+    DisableInternalUserPermission?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    NeedsGuildOwner?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Cooldown?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type GuildInteractionPermissionsUncheckedUpdateManyInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    RoleIds?: GuildInteractionPermissionsUpdateRoleIdsInput | string[]
+    UserIds?: GuildInteractionPermissionsUpdateUserIdsInput | string[]
+    ChannelIds?: GuildInteractionPermissionsUpdateChannelIdsInput | string[]
+    CustomId?: NullableStringFieldUpdateOperationsInput | string | null
+    CommandName?: NullableStringFieldUpdateOperationsInput | string | null
+    Type?: StringFieldUpdateOperationsInput | string
+    DisableInternalUserPermission?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    NeedsGuildOwner?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Cooldown?: NullableIntFieldUpdateOperationsInput | number | null
+    GuildId?: StringFieldUpdateOperationsInput | string
   }
 
   export type AutoDeletesCreateInput = {
@@ -58300,43 +58555,6 @@ export namespace Prisma {
     EmbedJSON?: NullableStringFieldUpdateOperationsInput | string | null
     OtherEmbeds?: MessageTemplatesUpdateOtherEmbedsInput | string[]
     Name?: StringFieldUpdateOperationsInput | string
-    GuildId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type PermissionsCreateInput = {
-    id?: string
-    Permissions?: XOR<PermissionDataListCreateEnvelopeInput, PermissionDataCreateInput> | PermissionDataCreateInput[]
-    Guilds: GuildsCreateNestedOneWithoutPermissionsInput
-  }
-
-  export type PermissionsUncheckedCreateInput = {
-    id?: string
-    Permissions?: XOR<PermissionDataListCreateEnvelopeInput, PermissionDataCreateInput> | PermissionDataCreateInput[]
-    GuildId: string
-  }
-
-  export type PermissionsUpdateInput = {
-    Permissions?: XOR<PermissionDataListUpdateEnvelopeInput, PermissionDataCreateInput> | PermissionDataCreateInput[]
-    Guilds?: GuildsUpdateOneRequiredWithoutPermissionsNestedInput
-  }
-
-  export type PermissionsUncheckedUpdateInput = {
-    Permissions?: XOR<PermissionDataListUpdateEnvelopeInput, PermissionDataCreateInput> | PermissionDataCreateInput[]
-    GuildId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type PermissionsCreateManyInput = {
-    id?: string
-    Permissions?: XOR<PermissionDataListCreateEnvelopeInput, PermissionDataCreateInput> | PermissionDataCreateInput[]
-    GuildId: string
-  }
-
-  export type PermissionsUpdateManyMutationInput = {
-    Permissions?: XOR<PermissionDataListUpdateEnvelopeInput, PermissionDataCreateInput> | PermissionDataCreateInput[]
-  }
-
-  export type PermissionsUncheckedUpdateManyInput = {
-    Permissions?: XOR<PermissionDataListUpdateEnvelopeInput, PermissionDataCreateInput> | PermissionDataCreateInput[]
     GuildId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -60045,6 +60263,8 @@ export namespace Prisma {
     Host: string
     GuildId: string
     Invite: string
+    InDiscovery?: boolean | null
+    IsBannedFromDiscover?: boolean | null
     CreatedAt: Date | string
     Analytics?: VanityAnalyticsCreateNestedOneWithoutVanitysInput
     Embed?: VanityEmbedsCreateNestedOneWithoutVanitysInput
@@ -60058,6 +60278,8 @@ export namespace Prisma {
     Host: string
     GuildId: string
     Invite: string
+    InDiscovery?: boolean | null
+    IsBannedFromDiscover?: boolean | null
     CreatedAt: Date | string
     UserId: string
     Analytics?: VanityAnalyticsUncheckedCreateNestedOneWithoutVanitysInput
@@ -60070,6 +60292,8 @@ export namespace Prisma {
     Host?: StringFieldUpdateOperationsInput | string
     GuildId?: StringFieldUpdateOperationsInput | string
     Invite?: StringFieldUpdateOperationsInput | string
+    InDiscovery?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsBannedFromDiscover?: NullableBoolFieldUpdateOperationsInput | boolean | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Analytics?: VanityAnalyticsUpdateOneWithoutVanitysNestedInput
     Embed?: VanityEmbedsUpdateOneWithoutVanitysNestedInput
@@ -60082,6 +60306,8 @@ export namespace Prisma {
     Host?: StringFieldUpdateOperationsInput | string
     GuildId?: StringFieldUpdateOperationsInput | string
     Invite?: StringFieldUpdateOperationsInput | string
+    InDiscovery?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsBannedFromDiscover?: NullableBoolFieldUpdateOperationsInput | boolean | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UserId?: StringFieldUpdateOperationsInput | string
     Analytics?: VanityAnalyticsUncheckedUpdateOneWithoutVanitysNestedInput
@@ -60095,6 +60321,8 @@ export namespace Prisma {
     Host: string
     GuildId: string
     Invite: string
+    InDiscovery?: boolean | null
+    IsBannedFromDiscover?: boolean | null
     CreatedAt: Date | string
     UserId: string
   }
@@ -60105,6 +60333,8 @@ export namespace Prisma {
     Host?: StringFieldUpdateOperationsInput | string
     GuildId?: StringFieldUpdateOperationsInput | string
     Invite?: StringFieldUpdateOperationsInput | string
+    InDiscovery?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsBannedFromDiscover?: NullableBoolFieldUpdateOperationsInput | boolean | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -60114,6 +60344,8 @@ export namespace Prisma {
     Host?: StringFieldUpdateOperationsInput | string
     GuildId?: StringFieldUpdateOperationsInput | string
     Invite?: StringFieldUpdateOperationsInput | string
+    InDiscovery?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsBannedFromDiscover?: NullableBoolFieldUpdateOperationsInput | boolean | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UserId?: StringFieldUpdateOperationsInput | string
   }
@@ -60629,11 +60861,6 @@ export namespace Prisma {
     none?: MessageTemplatesWhereInput
   }
 
-  export type PermissionsNullableScalarRelationFilter = {
-    is?: PermissionsWhereInput | null
-    isNot?: PermissionsWhereInput | null
-  }
-
   export type ReactionRolesListRelationFilter = {
     every?: ReactionRolesWhereInput
     some?: ReactionRolesWhereInput
@@ -60689,6 +60916,12 @@ export namespace Prisma {
     every?: GuildLoggersWhereInput
     some?: GuildLoggersWhereInput
     none?: GuildLoggersWhereInput
+  }
+
+  export type GuildInteractionPermissionsListRelationFilter = {
+    every?: GuildInteractionPermissionsWhereInput
+    some?: GuildInteractionPermissionsWhereInput
+    none?: GuildInteractionPermissionsWhereInput
   }
 
   export type AutoDeletesOrderByRelationAggregateInput = {
@@ -60751,6 +60984,10 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type GuildInteractionPermissionsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type GuildsCountOrderByAggregateInput = {
     id?: SortOrder
     GuildId?: SortOrder
@@ -60790,6 +61027,14 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -60812,17 +61057,113 @@ export namespace Prisma {
     isSet?: boolean
   }
 
-  export type StringNullableListFilter<$PrismaModel = never> = {
-    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    has?: string | StringFieldRefInput<$PrismaModel> | null
-    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
-    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
-    isEmpty?: boolean
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+    isSet?: boolean
   }
 
   export type GuildsScalarRelationFilter = {
     is?: GuildsWhereInput
     isNot?: GuildsWhereInput
+  }
+
+  export type GuildInteractionPermissionsCountOrderByAggregateInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    RoleIds?: SortOrder
+    UserIds?: SortOrder
+    ChannelIds?: SortOrder
+    CustomId?: SortOrder
+    CommandName?: SortOrder
+    Type?: SortOrder
+    DisableInternalUserPermission?: SortOrder
+    NeedsGuildOwner?: SortOrder
+    Cooldown?: SortOrder
+    GuildId?: SortOrder
+  }
+
+  export type GuildInteractionPermissionsAvgOrderByAggregateInput = {
+    Cooldown?: SortOrder
+  }
+
+  export type GuildInteractionPermissionsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    CustomId?: SortOrder
+    CommandName?: SortOrder
+    Type?: SortOrder
+    DisableInternalUserPermission?: SortOrder
+    NeedsGuildOwner?: SortOrder
+    Cooldown?: SortOrder
+    GuildId?: SortOrder
+  }
+
+  export type GuildInteractionPermissionsMinOrderByAggregateInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    CustomId?: SortOrder
+    CommandName?: SortOrder
+    Type?: SortOrder
+    DisableInternalUserPermission?: SortOrder
+    NeedsGuildOwner?: SortOrder
+    Cooldown?: SortOrder
+    GuildId?: SortOrder
+  }
+
+  export type GuildInteractionPermissionsSumOrderByAggregateInput = {
+    Cooldown?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+    isSet?: boolean
+  }
+
+  export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
+    isSet?: boolean
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+    isSet?: boolean
   }
 
   export type AutoDeletesCountOrderByAggregateInput = {
@@ -60853,34 +61194,6 @@ export namespace Prisma {
     Time?: SortOrder
     UUID?: SortOrder
     GuildId?: SortOrder
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-    isSet?: boolean
-  }
-
-  export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedBoolNullableFilter<$PrismaModel>
-    _max?: NestedBoolNullableFilter<$PrismaModel>
-    isSet?: boolean
   }
 
   export type AutoPublishCountOrderByAggregateInput = {
@@ -61541,39 +61854,6 @@ export namespace Prisma {
     GuildId?: SortOrder
   }
 
-  export type PermissionDataCompositeListFilter = {
-    equals?: PermissionDataObjectEqualityInput[]
-    every?: PermissionDataWhereInput
-    some?: PermissionDataWhereInput
-    none?: PermissionDataWhereInput
-    isEmpty?: boolean
-    isSet?: boolean
-  }
-
-  export type PermissionDataObjectEqualityInput = {
-    RoleId: string
-    Type: string
-  }
-
-  export type PermissionDataOrderByCompositeAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type PermissionsCountOrderByAggregateInput = {
-    id?: SortOrder
-    GuildId?: SortOrder
-  }
-
-  export type PermissionsMaxOrderByAggregateInput = {
-    id?: SortOrder
-    GuildId?: SortOrder
-  }
-
-  export type PermissionsMinOrderByAggregateInput = {
-    id?: SortOrder
-    GuildId?: SortOrder
-  }
-
   export type ReactionRoleButtonNullableCompositeFilter = {
     equals?: ReactionRoleButtonObjectEqualityInput | null
     is?: ReactionRoleButtonWhereInput | null
@@ -61646,18 +61926,6 @@ export namespace Prisma {
     GuildId?: SortOrder
   }
 
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-    isSet?: boolean
-  }
-
   export type VerificationGatesListRelationFilter = {
     every?: VerificationGatesWhereInput
     some?: VerificationGatesWhereInput
@@ -61695,23 +61963,6 @@ export namespace Prisma {
 
   export type SecuritysSumOrderByAggregateInput = {
     MaxAccountAge?: SortOrder
-  }
-
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-    isSet?: boolean
   }
 
   export type VerificationGatesPermissionListRelationFilter = {
@@ -62629,6 +62880,8 @@ export namespace Prisma {
     Host?: SortOrder
     GuildId?: SortOrder
     Invite?: SortOrder
+    InDiscovery?: SortOrder
+    IsBannedFromDiscover?: SortOrder
     CreatedAt?: SortOrder
     UserId?: SortOrder
   }
@@ -62640,6 +62893,8 @@ export namespace Prisma {
     Host?: SortOrder
     GuildId?: SortOrder
     Invite?: SortOrder
+    InDiscovery?: SortOrder
+    IsBannedFromDiscover?: SortOrder
     CreatedAt?: SortOrder
     UserId?: SortOrder
   }
@@ -62651,6 +62906,8 @@ export namespace Prisma {
     Host?: SortOrder
     GuildId?: SortOrder
     Invite?: SortOrder
+    InDiscovery?: SortOrder
+    IsBannedFromDiscover?: SortOrder
     CreatedAt?: SortOrder
     UserId?: SortOrder
   }
@@ -63004,12 +63261,6 @@ export namespace Prisma {
     connect?: MessageTemplatesWhereUniqueInput | MessageTemplatesWhereUniqueInput[]
   }
 
-  export type PermissionsCreateNestedOneWithoutGuildsInput = {
-    create?: XOR<PermissionsCreateWithoutGuildsInput, PermissionsUncheckedCreateWithoutGuildsInput>
-    connectOrCreate?: PermissionsCreateOrConnectWithoutGuildsInput
-    connect?: PermissionsWhereUniqueInput
-  }
-
   export type ReactionRolesCreateNestedManyWithoutGuildsInput = {
     create?: XOR<ReactionRolesCreateWithoutGuildsInput, ReactionRolesUncheckedCreateWithoutGuildsInput> | ReactionRolesCreateWithoutGuildsInput[] | ReactionRolesUncheckedCreateWithoutGuildsInput[]
     connectOrCreate?: ReactionRolesCreateOrConnectWithoutGuildsInput | ReactionRolesCreateOrConnectWithoutGuildsInput[]
@@ -63075,6 +63326,13 @@ export namespace Prisma {
     connectOrCreate?: GuildLoggersCreateOrConnectWithoutGuildsInput | GuildLoggersCreateOrConnectWithoutGuildsInput[]
     createMany?: GuildLoggersCreateManyGuildsInputEnvelope
     connect?: GuildLoggersWhereUniqueInput | GuildLoggersWhereUniqueInput[]
+  }
+
+  export type GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput = {
+    create?: XOR<GuildInteractionPermissionsCreateWithoutGuildsInput, GuildInteractionPermissionsUncheckedCreateWithoutGuildsInput> | GuildInteractionPermissionsCreateWithoutGuildsInput[] | GuildInteractionPermissionsUncheckedCreateWithoutGuildsInput[]
+    connectOrCreate?: GuildInteractionPermissionsCreateOrConnectWithoutGuildsInput | GuildInteractionPermissionsCreateOrConnectWithoutGuildsInput[]
+    createMany?: GuildInteractionPermissionsCreateManyGuildsInputEnvelope
+    connect?: GuildInteractionPermissionsWhereUniqueInput | GuildInteractionPermissionsWhereUniqueInput[]
   }
 
   export type AutoDeletesUncheckedCreateNestedManyWithoutGuildsInput = {
@@ -63163,12 +63421,6 @@ export namespace Prisma {
     connect?: MessageTemplatesWhereUniqueInput | MessageTemplatesWhereUniqueInput[]
   }
 
-  export type PermissionsUncheckedCreateNestedOneWithoutGuildsInput = {
-    create?: XOR<PermissionsCreateWithoutGuildsInput, PermissionsUncheckedCreateWithoutGuildsInput>
-    connectOrCreate?: PermissionsCreateOrConnectWithoutGuildsInput
-    connect?: PermissionsWhereUniqueInput
-  }
-
   export type ReactionRolesUncheckedCreateNestedManyWithoutGuildsInput = {
     create?: XOR<ReactionRolesCreateWithoutGuildsInput, ReactionRolesUncheckedCreateWithoutGuildsInput> | ReactionRolesCreateWithoutGuildsInput[] | ReactionRolesUncheckedCreateWithoutGuildsInput[]
     connectOrCreate?: ReactionRolesCreateOrConnectWithoutGuildsInput | ReactionRolesCreateOrConnectWithoutGuildsInput[]
@@ -63234,6 +63486,13 @@ export namespace Prisma {
     connectOrCreate?: GuildLoggersCreateOrConnectWithoutGuildsInput | GuildLoggersCreateOrConnectWithoutGuildsInput[]
     createMany?: GuildLoggersCreateManyGuildsInputEnvelope
     connect?: GuildLoggersWhereUniqueInput | GuildLoggersWhereUniqueInput[]
+  }
+
+  export type GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput = {
+    create?: XOR<GuildInteractionPermissionsCreateWithoutGuildsInput, GuildInteractionPermissionsUncheckedCreateWithoutGuildsInput> | GuildInteractionPermissionsCreateWithoutGuildsInput[] | GuildInteractionPermissionsUncheckedCreateWithoutGuildsInput[]
+    connectOrCreate?: GuildInteractionPermissionsCreateOrConnectWithoutGuildsInput | GuildInteractionPermissionsCreateOrConnectWithoutGuildsInput[]
+    createMany?: GuildInteractionPermissionsCreateManyGuildsInputEnvelope
+    connect?: GuildInteractionPermissionsWhereUniqueInput | GuildInteractionPermissionsWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -63402,16 +63661,6 @@ export namespace Prisma {
     deleteMany?: MessageTemplatesScalarWhereInput | MessageTemplatesScalarWhereInput[]
   }
 
-  export type PermissionsUpdateOneWithoutGuildsNestedInput = {
-    create?: XOR<PermissionsCreateWithoutGuildsInput, PermissionsUncheckedCreateWithoutGuildsInput>
-    connectOrCreate?: PermissionsCreateOrConnectWithoutGuildsInput
-    upsert?: PermissionsUpsertWithoutGuildsInput
-    disconnect?: PermissionsWhereInput | boolean
-    delete?: PermissionsWhereInput | boolean
-    connect?: PermissionsWhereUniqueInput
-    update?: XOR<XOR<PermissionsUpdateToOneWithWhereWithoutGuildsInput, PermissionsUpdateWithoutGuildsInput>, PermissionsUncheckedUpdateWithoutGuildsInput>
-  }
-
   export type ReactionRolesUpdateManyWithoutGuildsNestedInput = {
     create?: XOR<ReactionRolesCreateWithoutGuildsInput, ReactionRolesUncheckedCreateWithoutGuildsInput> | ReactionRolesCreateWithoutGuildsInput[] | ReactionRolesUncheckedCreateWithoutGuildsInput[]
     connectOrCreate?: ReactionRolesCreateOrConnectWithoutGuildsInput | ReactionRolesCreateOrConnectWithoutGuildsInput[]
@@ -63538,6 +63787,20 @@ export namespace Prisma {
     update?: GuildLoggersUpdateWithWhereUniqueWithoutGuildsInput | GuildLoggersUpdateWithWhereUniqueWithoutGuildsInput[]
     updateMany?: GuildLoggersUpdateManyWithWhereWithoutGuildsInput | GuildLoggersUpdateManyWithWhereWithoutGuildsInput[]
     deleteMany?: GuildLoggersScalarWhereInput | GuildLoggersScalarWhereInput[]
+  }
+
+  export type GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput = {
+    create?: XOR<GuildInteractionPermissionsCreateWithoutGuildsInput, GuildInteractionPermissionsUncheckedCreateWithoutGuildsInput> | GuildInteractionPermissionsCreateWithoutGuildsInput[] | GuildInteractionPermissionsUncheckedCreateWithoutGuildsInput[]
+    connectOrCreate?: GuildInteractionPermissionsCreateOrConnectWithoutGuildsInput | GuildInteractionPermissionsCreateOrConnectWithoutGuildsInput[]
+    upsert?: GuildInteractionPermissionsUpsertWithWhereUniqueWithoutGuildsInput | GuildInteractionPermissionsUpsertWithWhereUniqueWithoutGuildsInput[]
+    createMany?: GuildInteractionPermissionsCreateManyGuildsInputEnvelope
+    set?: GuildInteractionPermissionsWhereUniqueInput | GuildInteractionPermissionsWhereUniqueInput[]
+    disconnect?: GuildInteractionPermissionsWhereUniqueInput | GuildInteractionPermissionsWhereUniqueInput[]
+    delete?: GuildInteractionPermissionsWhereUniqueInput | GuildInteractionPermissionsWhereUniqueInput[]
+    connect?: GuildInteractionPermissionsWhereUniqueInput | GuildInteractionPermissionsWhereUniqueInput[]
+    update?: GuildInteractionPermissionsUpdateWithWhereUniqueWithoutGuildsInput | GuildInteractionPermissionsUpdateWithWhereUniqueWithoutGuildsInput[]
+    updateMany?: GuildInteractionPermissionsUpdateManyWithWhereWithoutGuildsInput | GuildInteractionPermissionsUpdateManyWithWhereWithoutGuildsInput[]
+    deleteMany?: GuildInteractionPermissionsScalarWhereInput | GuildInteractionPermissionsScalarWhereInput[]
   }
 
   export type AutoDeletesUncheckedUpdateManyWithoutGuildsNestedInput = {
@@ -63702,16 +63965,6 @@ export namespace Prisma {
     deleteMany?: MessageTemplatesScalarWhereInput | MessageTemplatesScalarWhereInput[]
   }
 
-  export type PermissionsUncheckedUpdateOneWithoutGuildsNestedInput = {
-    create?: XOR<PermissionsCreateWithoutGuildsInput, PermissionsUncheckedCreateWithoutGuildsInput>
-    connectOrCreate?: PermissionsCreateOrConnectWithoutGuildsInput
-    upsert?: PermissionsUpsertWithoutGuildsInput
-    disconnect?: PermissionsWhereInput | boolean
-    delete?: PermissionsWhereInput | boolean
-    connect?: PermissionsWhereUniqueInput
-    update?: XOR<XOR<PermissionsUpdateToOneWithWhereWithoutGuildsInput, PermissionsUpdateWithoutGuildsInput>, PermissionsUncheckedUpdateWithoutGuildsInput>
-  }
-
   export type ReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput = {
     create?: XOR<ReactionRolesCreateWithoutGuildsInput, ReactionRolesUncheckedCreateWithoutGuildsInput> | ReactionRolesCreateWithoutGuildsInput[] | ReactionRolesUncheckedCreateWithoutGuildsInput[]
     connectOrCreate?: ReactionRolesCreateOrConnectWithoutGuildsInput | ReactionRolesCreateOrConnectWithoutGuildsInput[]
@@ -63840,6 +64093,80 @@ export namespace Prisma {
     deleteMany?: GuildLoggersScalarWhereInput | GuildLoggersScalarWhereInput[]
   }
 
+  export type GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput = {
+    create?: XOR<GuildInteractionPermissionsCreateWithoutGuildsInput, GuildInteractionPermissionsUncheckedCreateWithoutGuildsInput> | GuildInteractionPermissionsCreateWithoutGuildsInput[] | GuildInteractionPermissionsUncheckedCreateWithoutGuildsInput[]
+    connectOrCreate?: GuildInteractionPermissionsCreateOrConnectWithoutGuildsInput | GuildInteractionPermissionsCreateOrConnectWithoutGuildsInput[]
+    upsert?: GuildInteractionPermissionsUpsertWithWhereUniqueWithoutGuildsInput | GuildInteractionPermissionsUpsertWithWhereUniqueWithoutGuildsInput[]
+    createMany?: GuildInteractionPermissionsCreateManyGuildsInputEnvelope
+    set?: GuildInteractionPermissionsWhereUniqueInput | GuildInteractionPermissionsWhereUniqueInput[]
+    disconnect?: GuildInteractionPermissionsWhereUniqueInput | GuildInteractionPermissionsWhereUniqueInput[]
+    delete?: GuildInteractionPermissionsWhereUniqueInput | GuildInteractionPermissionsWhereUniqueInput[]
+    connect?: GuildInteractionPermissionsWhereUniqueInput | GuildInteractionPermissionsWhereUniqueInput[]
+    update?: GuildInteractionPermissionsUpdateWithWhereUniqueWithoutGuildsInput | GuildInteractionPermissionsUpdateWithWhereUniqueWithoutGuildsInput[]
+    updateMany?: GuildInteractionPermissionsUpdateManyWithWhereWithoutGuildsInput | GuildInteractionPermissionsUpdateManyWithWhereWithoutGuildsInput[]
+    deleteMany?: GuildInteractionPermissionsScalarWhereInput | GuildInteractionPermissionsScalarWhereInput[]
+  }
+
+  export type GuildInteractionPermissionsCreateRoleIdsInput = {
+    set: string[]
+  }
+
+  export type GuildInteractionPermissionsCreateUserIdsInput = {
+    set: string[]
+  }
+
+  export type GuildInteractionPermissionsCreateChannelIdsInput = {
+    set: string[]
+  }
+
+  export type GuildsCreateNestedOneWithoutGuildInteractionPermissionsInput = {
+    create?: XOR<GuildsCreateWithoutGuildInteractionPermissionsInput, GuildsUncheckedCreateWithoutGuildInteractionPermissionsInput>
+    connectOrCreate?: GuildsCreateOrConnectWithoutGuildInteractionPermissionsInput
+    connect?: GuildsWhereUniqueInput
+  }
+
+  export type GuildInteractionPermissionsUpdateRoleIdsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type GuildInteractionPermissionsUpdateUserIdsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type GuildInteractionPermissionsUpdateChannelIdsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+    unset?: boolean
+  }
+
+  export type NullableBoolFieldUpdateOperationsInput = {
+    set?: boolean | null
+    unset?: boolean
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+    unset?: boolean
+  }
+
+  export type GuildsUpdateOneRequiredWithoutGuildInteractionPermissionsNestedInput = {
+    create?: XOR<GuildsCreateWithoutGuildInteractionPermissionsInput, GuildsUncheckedCreateWithoutGuildInteractionPermissionsInput>
+    connectOrCreate?: GuildsCreateOrConnectWithoutGuildInteractionPermissionsInput
+    upsert?: GuildsUpsertWithoutGuildInteractionPermissionsInput
+    connect?: GuildsWhereUniqueInput
+    update?: XOR<XOR<GuildsUpdateToOneWithWhereWithoutGuildInteractionPermissionsInput, GuildsUpdateWithoutGuildInteractionPermissionsInput>, GuildsUncheckedUpdateWithoutGuildInteractionPermissionsInput>
+  }
+
   export type AutoDeletesCreateWhitelistedMessagesInput = {
     set: string[]
   }
@@ -63856,16 +64183,6 @@ export namespace Prisma {
     create?: XOR<GuildsCreateWithoutAutoAutoDeletesInput, GuildsUncheckedCreateWithoutAutoAutoDeletesInput>
     connectOrCreate?: GuildsCreateOrConnectWithoutAutoAutoDeletesInput
     connect?: GuildsWhereUniqueInput
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-    unset?: boolean
-  }
-
-  export type NullableBoolFieldUpdateOperationsInput = {
-    set?: boolean | null
-    unset?: boolean
   }
 
   export type AutoDeletesUpdateWhitelistedMessagesInput = {
@@ -64366,36 +64683,6 @@ export namespace Prisma {
     update?: XOR<XOR<GuildsUpdateToOneWithWhereWithoutMessageTemplatesInput, GuildsUpdateWithoutMessageTemplatesInput>, GuildsUncheckedUpdateWithoutMessageTemplatesInput>
   }
 
-  export type PermissionDataListCreateEnvelopeInput = {
-    set?: PermissionDataCreateInput | PermissionDataCreateInput[]
-  }
-
-  export type PermissionDataCreateInput = {
-    RoleId: string
-    Type: string
-  }
-
-  export type GuildsCreateNestedOneWithoutPermissionsInput = {
-    create?: XOR<GuildsCreateWithoutPermissionsInput, GuildsUncheckedCreateWithoutPermissionsInput>
-    connectOrCreate?: GuildsCreateOrConnectWithoutPermissionsInput
-    connect?: GuildsWhereUniqueInput
-  }
-
-  export type PermissionDataListUpdateEnvelopeInput = {
-    set?: PermissionDataCreateInput | PermissionDataCreateInput[]
-    push?: PermissionDataCreateInput | PermissionDataCreateInput[]
-    updateMany?: PermissionDataUpdateManyInput
-    deleteMany?: PermissionDataDeleteManyInput
-  }
-
-  export type GuildsUpdateOneRequiredWithoutPermissionsNestedInput = {
-    create?: XOR<GuildsCreateWithoutPermissionsInput, GuildsUncheckedCreateWithoutPermissionsInput>
-    connectOrCreate?: GuildsCreateOrConnectWithoutPermissionsInput
-    upsert?: GuildsUpsertWithoutPermissionsInput
-    connect?: GuildsWhereUniqueInput
-    update?: XOR<XOR<GuildsUpdateToOneWithWhereWithoutPermissionsInput, GuildsUpdateWithoutPermissionsInput>, GuildsUncheckedUpdateWithoutPermissionsInput>
-  }
-
   export type ReactionRolesCreateRolesInput = {
     set: string[]
   }
@@ -64469,15 +64756,6 @@ export namespace Prisma {
     connectOrCreate?: VerificationGatesCreateOrConnectWithoutVerificationGatesInput | VerificationGatesCreateOrConnectWithoutVerificationGatesInput[]
     createMany?: VerificationGatesCreateManyVerificationGatesInputEnvelope
     connect?: VerificationGatesWhereUniqueInput | VerificationGatesWhereUniqueInput[]
-  }
-
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-    unset?: boolean
   }
 
   export type VerificationGatesUpdateManyWithoutVerificationGatesNestedInput = {
@@ -65631,6 +65909,18 @@ export namespace Prisma {
     isSet?: boolean
   }
 
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+    isSet?: boolean
+  }
+
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -65649,7 +65939,16 @@ export namespace Prisma {
     isSet?: boolean
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
+  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
+    isSet?: boolean
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -65657,16 +65956,24 @@ export namespace Prisma {
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
     isSet?: boolean
   }
 
-  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedBoolNullableFilter<$PrismaModel>
-    _max?: NestedBoolNullableFilter<$PrismaModel>
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
     isSet?: boolean
   }
 
@@ -65775,14 +66082,6 @@ export namespace Prisma {
     Gradient?: StringFilter<"WelcomeLeaveImageData"> | string
   }
 
-  export type PermissionDataWhereInput = {
-    AND?: PermissionDataWhereInput | PermissionDataWhereInput[]
-    OR?: PermissionDataWhereInput[]
-    NOT?: PermissionDataWhereInput | PermissionDataWhereInput[]
-    RoleId?: StringFilter<"PermissionData"> | string
-    Type?: StringFilter<"PermissionData"> | string
-  }
-
   export type ReactionRoleButtonWhereInput = {
     AND?: ReactionRoleButtonWhereInput | ReactionRoleButtonWhereInput[]
     OR?: ReactionRoleButtonWhereInput[]
@@ -65799,35 +66098,6 @@ export namespace Prisma {
     Emoji?: StringFilter<"ReactionRoleSelectmenu"> | string
     Label?: StringFilter<"ReactionRoleSelectmenu"> | string
     Description?: StringFilter<"ReactionRoleSelectmenu"> | string
-  }
-
-  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-    isSet?: boolean
-  }
-
-  export type NestedFloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-    isSet?: boolean
   }
 
   export type NestedBigIntNullableFilter<$PrismaModel = never> = {
@@ -66270,21 +66540,6 @@ export namespace Prisma {
     data: MessageTemplatesCreateManyGuildsInput | MessageTemplatesCreateManyGuildsInput[]
   }
 
-  export type PermissionsCreateWithoutGuildsInput = {
-    id?: string
-    Permissions?: XOR<PermissionDataListCreateEnvelopeInput, PermissionDataCreateInput> | PermissionDataCreateInput[]
-  }
-
-  export type PermissionsUncheckedCreateWithoutGuildsInput = {
-    id?: string
-    Permissions?: XOR<PermissionDataListCreateEnvelopeInput, PermissionDataCreateInput> | PermissionDataCreateInput[]
-  }
-
-  export type PermissionsCreateOrConnectWithoutGuildsInput = {
-    where: PermissionsWhereUniqueInput
-    create: XOR<PermissionsCreateWithoutGuildsInput, PermissionsUncheckedCreateWithoutGuildsInput>
-  }
-
   export type ReactionRolesCreateWithoutGuildsInput = {
     id?: string
     UUID: string
@@ -66619,6 +66874,43 @@ export namespace Prisma {
 
   export type GuildLoggersCreateManyGuildsInputEnvelope = {
     data: GuildLoggersCreateManyGuildsInput | GuildLoggersCreateManyGuildsInput[]
+  }
+
+  export type GuildInteractionPermissionsCreateWithoutGuildsInput = {
+    id?: string
+    UUID: string
+    RoleIds?: GuildInteractionPermissionsCreateRoleIdsInput | string[]
+    UserIds?: GuildInteractionPermissionsCreateUserIdsInput | string[]
+    ChannelIds?: GuildInteractionPermissionsCreateChannelIdsInput | string[]
+    CustomId?: string | null
+    CommandName?: string | null
+    Type: string
+    DisableInternalUserPermission?: boolean | null
+    NeedsGuildOwner?: boolean | null
+    Cooldown?: number | null
+  }
+
+  export type GuildInteractionPermissionsUncheckedCreateWithoutGuildsInput = {
+    id?: string
+    UUID: string
+    RoleIds?: GuildInteractionPermissionsCreateRoleIdsInput | string[]
+    UserIds?: GuildInteractionPermissionsCreateUserIdsInput | string[]
+    ChannelIds?: GuildInteractionPermissionsCreateChannelIdsInput | string[]
+    CustomId?: string | null
+    CommandName?: string | null
+    Type: string
+    DisableInternalUserPermission?: boolean | null
+    NeedsGuildOwner?: boolean | null
+    Cooldown?: number | null
+  }
+
+  export type GuildInteractionPermissionsCreateOrConnectWithoutGuildsInput = {
+    where: GuildInteractionPermissionsWhereUniqueInput
+    create: XOR<GuildInteractionPermissionsCreateWithoutGuildsInput, GuildInteractionPermissionsUncheckedCreateWithoutGuildsInput>
+  }
+
+  export type GuildInteractionPermissionsCreateManyGuildsInputEnvelope = {
+    data: GuildInteractionPermissionsCreateManyGuildsInput | GuildInteractionPermissionsCreateManyGuildsInput[]
   }
 
   export type AutoDeletesUpsertWithWhereUniqueWithoutGuildsInput = {
@@ -67015,25 +67307,6 @@ export namespace Prisma {
     GuildId?: StringFilter<"MessageTemplates"> | string
   }
 
-  export type PermissionsUpsertWithoutGuildsInput = {
-    update: XOR<PermissionsUpdateWithoutGuildsInput, PermissionsUncheckedUpdateWithoutGuildsInput>
-    create: XOR<PermissionsCreateWithoutGuildsInput, PermissionsUncheckedCreateWithoutGuildsInput>
-    where?: PermissionsWhereInput
-  }
-
-  export type PermissionsUpdateToOneWithWhereWithoutGuildsInput = {
-    where?: PermissionsWhereInput
-    data: XOR<PermissionsUpdateWithoutGuildsInput, PermissionsUncheckedUpdateWithoutGuildsInput>
-  }
-
-  export type PermissionsUpdateWithoutGuildsInput = {
-    Permissions?: XOR<PermissionDataListUpdateEnvelopeInput, PermissionDataCreateInput> | PermissionDataCreateInput[]
-  }
-
-  export type PermissionsUncheckedUpdateWithoutGuildsInput = {
-    Permissions?: XOR<PermissionDataListUpdateEnvelopeInput, PermissionDataCreateInput> | PermissionDataCreateInput[]
-  }
-
   export type ReactionRolesUpsertWithWhereUniqueWithoutGuildsInput = {
     where: ReactionRolesWhereUniqueInput
     update: XOR<ReactionRolesUpdateWithoutGuildsInput, ReactionRolesUncheckedUpdateWithoutGuildsInput>
@@ -67356,6 +67629,174 @@ export namespace Prisma {
     GuildId?: StringFilter<"GuildLoggers"> | string
   }
 
+  export type GuildInteractionPermissionsUpsertWithWhereUniqueWithoutGuildsInput = {
+    where: GuildInteractionPermissionsWhereUniqueInput
+    update: XOR<GuildInteractionPermissionsUpdateWithoutGuildsInput, GuildInteractionPermissionsUncheckedUpdateWithoutGuildsInput>
+    create: XOR<GuildInteractionPermissionsCreateWithoutGuildsInput, GuildInteractionPermissionsUncheckedCreateWithoutGuildsInput>
+  }
+
+  export type GuildInteractionPermissionsUpdateWithWhereUniqueWithoutGuildsInput = {
+    where: GuildInteractionPermissionsWhereUniqueInput
+    data: XOR<GuildInteractionPermissionsUpdateWithoutGuildsInput, GuildInteractionPermissionsUncheckedUpdateWithoutGuildsInput>
+  }
+
+  export type GuildInteractionPermissionsUpdateManyWithWhereWithoutGuildsInput = {
+    where: GuildInteractionPermissionsScalarWhereInput
+    data: XOR<GuildInteractionPermissionsUpdateManyMutationInput, GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsInput>
+  }
+
+  export type GuildInteractionPermissionsScalarWhereInput = {
+    AND?: GuildInteractionPermissionsScalarWhereInput | GuildInteractionPermissionsScalarWhereInput[]
+    OR?: GuildInteractionPermissionsScalarWhereInput[]
+    NOT?: GuildInteractionPermissionsScalarWhereInput | GuildInteractionPermissionsScalarWhereInput[]
+    id?: StringFilter<"GuildInteractionPermissions"> | string
+    UUID?: StringFilter<"GuildInteractionPermissions"> | string
+    RoleIds?: StringNullableListFilter<"GuildInteractionPermissions">
+    UserIds?: StringNullableListFilter<"GuildInteractionPermissions">
+    ChannelIds?: StringNullableListFilter<"GuildInteractionPermissions">
+    CustomId?: StringNullableFilter<"GuildInteractionPermissions"> | string | null
+    CommandName?: StringNullableFilter<"GuildInteractionPermissions"> | string | null
+    Type?: StringFilter<"GuildInteractionPermissions"> | string
+    DisableInternalUserPermission?: BoolNullableFilter<"GuildInteractionPermissions"> | boolean | null
+    NeedsGuildOwner?: BoolNullableFilter<"GuildInteractionPermissions"> | boolean | null
+    Cooldown?: IntNullableFilter<"GuildInteractionPermissions"> | number | null
+    GuildId?: StringFilter<"GuildInteractionPermissions"> | string
+  }
+
+  export type GuildsCreateWithoutGuildInteractionPermissionsInput = {
+    id?: string
+    GuildId: string
+    GuildName: string
+    GuildOwner: string
+    AutoAutoDeletes?: AutoDeletesCreateNestedManyWithoutGuildsInput
+    AutoPublish?: AutoPublishCreateNestedOneWithoutGuildsInput
+    AutoReacts?: AutoReactsCreateNestedManyWithoutGuildsInput
+    AutoRoles?: AutoRolesCreateNestedManyWithoutGuildsInput
+    GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
+    ChatModerations?: ChatModerationsCreateNestedOneWithoutGuildsInput
+    ChannelLinks?: ChannelLinksCreateNestedManyWithoutGuildsInput
+    DiscordAddons?: DiscordAddonsCreateNestedOneWithoutGuildsInput
+    Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
+    GuildLeaveSetup?: GuildLeaveSetupsCreateNestedOneWithoutGuildsInput
+    GuildLogging?: GuildLoggingsCreateNestedOneWithoutGuildsInput
+    MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
+    ReactionRole?: ReactionRolesCreateNestedManyWithoutGuildsInput
+    Security?: SecuritysCreateNestedOneWithoutGuildsInput
+    SpotifyNotifications?: SpotifyNotificationsCreateNestedManyWithoutGuildsInput
+    Tags?: TagsCreateNestedManyWithoutGuildsInput
+    TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
+    GuildFeatureToggle?: GuildFeatureTogglesCreateNestedOneWithoutGuildsInput
+    TwitchNotifications?: TwitchNotificationsCreateNestedManyWithoutGuildsInput
+    GuildWelcomeSetup?: GuildWelcomeSetupsCreateNestedOneWithoutGuildsInput
+    YoutubeNotifications?: YoutubeNotificationsCreateNestedManyWithoutGuildsInput
+    GuildLoggers?: GuildLoggersCreateNestedManyWithoutGuildsInput
+  }
+
+  export type GuildsUncheckedCreateWithoutGuildInteractionPermissionsInput = {
+    id?: string
+    GuildId: string
+    GuildName: string
+    GuildOwner: string
+    AutoAutoDeletes?: AutoDeletesUncheckedCreateNestedManyWithoutGuildsInput
+    AutoPublish?: AutoPublishUncheckedCreateNestedOneWithoutGuildsInput
+    AutoReacts?: AutoReactsUncheckedCreateNestedManyWithoutGuildsInput
+    AutoRoles?: AutoRolesUncheckedCreateNestedManyWithoutGuildsInput
+    GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
+    ChatModerations?: ChatModerationsUncheckedCreateNestedOneWithoutGuildsInput
+    ChannelLinks?: ChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    DiscordAddons?: DiscordAddonsUncheckedCreateNestedOneWithoutGuildsInput
+    Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
+    GuildLeaveSetup?: GuildLeaveSetupsUncheckedCreateNestedOneWithoutGuildsInput
+    GuildLogging?: GuildLoggingsUncheckedCreateNestedOneWithoutGuildsInput
+    MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
+    ReactionRole?: ReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
+    Security?: SecuritysUncheckedCreateNestedOneWithoutGuildsInput
+    SpotifyNotifications?: SpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
+    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
+    TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
+    GuildFeatureToggle?: GuildFeatureTogglesUncheckedCreateNestedOneWithoutGuildsInput
+    TwitchNotifications?: TwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
+    GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedCreateNestedOneWithoutGuildsInput
+    YoutubeNotifications?: YoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
+    GuildLoggers?: GuildLoggersUncheckedCreateNestedManyWithoutGuildsInput
+  }
+
+  export type GuildsCreateOrConnectWithoutGuildInteractionPermissionsInput = {
+    where: GuildsWhereUniqueInput
+    create: XOR<GuildsCreateWithoutGuildInteractionPermissionsInput, GuildsUncheckedCreateWithoutGuildInteractionPermissionsInput>
+  }
+
+  export type GuildsUpsertWithoutGuildInteractionPermissionsInput = {
+    update: XOR<GuildsUpdateWithoutGuildInteractionPermissionsInput, GuildsUncheckedUpdateWithoutGuildInteractionPermissionsInput>
+    create: XOR<GuildsCreateWithoutGuildInteractionPermissionsInput, GuildsUncheckedCreateWithoutGuildInteractionPermissionsInput>
+    where?: GuildsWhereInput
+  }
+
+  export type GuildsUpdateToOneWithWhereWithoutGuildInteractionPermissionsInput = {
+    where?: GuildsWhereInput
+    data: XOR<GuildsUpdateWithoutGuildInteractionPermissionsInput, GuildsUncheckedUpdateWithoutGuildInteractionPermissionsInput>
+  }
+
+  export type GuildsUpdateWithoutGuildInteractionPermissionsInput = {
+    GuildId?: StringFieldUpdateOperationsInput | string
+    GuildName?: StringFieldUpdateOperationsInput | string
+    GuildOwner?: StringFieldUpdateOperationsInput | string
+    AutoAutoDeletes?: AutoDeletesUpdateManyWithoutGuildsNestedInput
+    AutoPublish?: AutoPublishUpdateOneWithoutGuildsNestedInput
+    AutoReacts?: AutoReactsUpdateManyWithoutGuildsNestedInput
+    AutoRoles?: AutoRolesUpdateManyWithoutGuildsNestedInput
+    GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
+    ChatModerations?: ChatModerationsUpdateOneWithoutGuildsNestedInput
+    ChannelLinks?: ChannelLinksUpdateManyWithoutGuildsNestedInput
+    DiscordAddons?: DiscordAddonsUpdateOneWithoutGuildsNestedInput
+    Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
+    GuildLeaveSetup?: GuildLeaveSetupsUpdateOneWithoutGuildsNestedInput
+    GuildLogging?: GuildLoggingsUpdateOneWithoutGuildsNestedInput
+    MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
+    ReactionRole?: ReactionRolesUpdateManyWithoutGuildsNestedInput
+    Security?: SecuritysUpdateOneWithoutGuildsNestedInput
+    SpotifyNotifications?: SpotifyNotificationsUpdateManyWithoutGuildsNestedInput
+    Tags?: TagsUpdateManyWithoutGuildsNestedInput
+    TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
+    GuildFeatureToggle?: GuildFeatureTogglesUpdateOneWithoutGuildsNestedInput
+    TwitchNotifications?: TwitchNotificationsUpdateManyWithoutGuildsNestedInput
+    GuildWelcomeSetup?: GuildWelcomeSetupsUpdateOneWithoutGuildsNestedInput
+    YoutubeNotifications?: YoutubeNotificationsUpdateManyWithoutGuildsNestedInput
+    GuildLoggers?: GuildLoggersUpdateManyWithoutGuildsNestedInput
+  }
+
+  export type GuildsUncheckedUpdateWithoutGuildInteractionPermissionsInput = {
+    GuildId?: StringFieldUpdateOperationsInput | string
+    GuildName?: StringFieldUpdateOperationsInput | string
+    GuildOwner?: StringFieldUpdateOperationsInput | string
+    AutoAutoDeletes?: AutoDeletesUncheckedUpdateManyWithoutGuildsNestedInput
+    AutoPublish?: AutoPublishUncheckedUpdateOneWithoutGuildsNestedInput
+    AutoReacts?: AutoReactsUncheckedUpdateManyWithoutGuildsNestedInput
+    AutoRoles?: AutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
+    ChatModerations?: ChatModerationsUncheckedUpdateOneWithoutGuildsNestedInput
+    ChannelLinks?: ChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    DiscordAddons?: DiscordAddonsUncheckedUpdateOneWithoutGuildsNestedInput
+    Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildLeaveSetup?: GuildLeaveSetupsUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildLogging?: GuildLoggingsUncheckedUpdateOneWithoutGuildsNestedInput
+    MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
+    ReactionRole?: ReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
+    Security?: SecuritysUncheckedUpdateOneWithoutGuildsNestedInput
+    SpotifyNotifications?: SpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
+    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
+    TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildFeatureToggle?: GuildFeatureTogglesUncheckedUpdateOneWithoutGuildsNestedInput
+    TwitchNotifications?: TwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedUpdateOneWithoutGuildsNestedInput
+    YoutubeNotifications?: YoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildLoggers?: GuildLoggersUncheckedUpdateManyWithoutGuildsNestedInput
+  }
+
   export type GuildsCreateWithoutAutoAutoDeletesInput = {
     id?: string
     GuildId: string
@@ -67373,7 +67814,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: SecuritysCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsCreateNestedManyWithoutGuildsInput
@@ -67384,6 +67824,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutAutoAutoDeletesInput = {
@@ -67403,7 +67844,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsUncheckedCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsUncheckedCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: SecuritysUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -67414,6 +67854,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersUncheckedCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutAutoAutoDeletesInput = {
@@ -67448,7 +67889,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUpdateManyWithoutGuildsNestedInput
@@ -67459,6 +67899,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutAutoAutoDeletesInput = {
@@ -67477,7 +67918,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUncheckedUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUncheckedUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -67488,6 +67928,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutAutoPublishInput = {
@@ -67507,7 +67948,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: SecuritysCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsCreateNestedManyWithoutGuildsInput
@@ -67518,6 +67958,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutAutoPublishInput = {
@@ -67537,7 +67978,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsUncheckedCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsUncheckedCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: SecuritysUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -67548,6 +67988,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersUncheckedCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutAutoPublishInput = {
@@ -67582,7 +68023,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUpdateManyWithoutGuildsNestedInput
@@ -67593,6 +68033,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutAutoPublishInput = {
@@ -67611,7 +68052,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUncheckedUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUncheckedUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -67622,6 +68062,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutAutoReactsInput = {
@@ -67641,7 +68082,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: SecuritysCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsCreateNestedManyWithoutGuildsInput
@@ -67652,6 +68092,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutAutoReactsInput = {
@@ -67671,7 +68112,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsUncheckedCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsUncheckedCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: SecuritysUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -67682,6 +68122,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersUncheckedCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutAutoReactsInput = {
@@ -67716,7 +68157,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUpdateManyWithoutGuildsNestedInput
@@ -67727,6 +68167,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutAutoReactsInput = {
@@ -67745,7 +68186,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUncheckedUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUncheckedUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -67756,6 +68196,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutAutoRolesInput = {
@@ -67775,7 +68216,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: SecuritysCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsCreateNestedManyWithoutGuildsInput
@@ -67786,6 +68226,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutAutoRolesInput = {
@@ -67805,7 +68246,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsUncheckedCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsUncheckedCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: SecuritysUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -67816,6 +68256,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersUncheckedCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutAutoRolesInput = {
@@ -67850,7 +68291,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUpdateManyWithoutGuildsNestedInput
@@ -67861,6 +68301,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutAutoRolesInput = {
@@ -67879,7 +68320,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUncheckedUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUncheckedUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -67890,6 +68330,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutGuildBansInput = {
@@ -67909,7 +68350,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: SecuritysCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsCreateNestedManyWithoutGuildsInput
@@ -67920,6 +68360,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildBansInput = {
@@ -67939,7 +68380,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsUncheckedCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsUncheckedCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: SecuritysUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -67950,6 +68390,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersUncheckedCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildBansInput = {
@@ -67984,7 +68425,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUpdateManyWithoutGuildsNestedInput
@@ -67995,6 +68435,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildBansInput = {
@@ -68013,7 +68454,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUncheckedUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUncheckedUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -68024,6 +68464,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutChatModerationsInput = {
@@ -68043,7 +68484,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: SecuritysCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsCreateNestedManyWithoutGuildsInput
@@ -68054,6 +68494,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutChatModerationsInput = {
@@ -68073,7 +68514,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsUncheckedCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsUncheckedCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: SecuritysUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -68084,6 +68524,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersUncheckedCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutChatModerationsInput = {
@@ -68118,7 +68559,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUpdateManyWithoutGuildsNestedInput
@@ -68129,6 +68569,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutChatModerationsInput = {
@@ -68147,7 +68588,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUncheckedUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUncheckedUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -68158,6 +68598,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type SyncedChannelLinkMessagesCreateWithoutChannelLinksInput = {
@@ -68204,7 +68645,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: SecuritysCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsCreateNestedManyWithoutGuildsInput
@@ -68215,6 +68655,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutChannelLinksInput = {
@@ -68234,7 +68675,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsUncheckedCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsUncheckedCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: SecuritysUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -68245,6 +68685,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersUncheckedCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutChannelLinksInput = {
@@ -68308,7 +68749,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUpdateManyWithoutGuildsNestedInput
@@ -68319,6 +68759,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutChannelLinksInput = {
@@ -68337,7 +68778,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUncheckedUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUncheckedUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -68348,6 +68788,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type ChannelLinksCreateWithoutSyncedChannelLinkMessageInput = {
@@ -68413,7 +68854,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: SecuritysCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsCreateNestedManyWithoutGuildsInput
@@ -68424,6 +68864,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutDiscordAddonsInput = {
@@ -68443,7 +68884,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsUncheckedCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsUncheckedCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: SecuritysUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -68454,6 +68894,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersUncheckedCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutDiscordAddonsInput = {
@@ -68488,7 +68929,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUpdateManyWithoutGuildsNestedInput
@@ -68499,6 +68939,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutDiscordAddonsInput = {
@@ -68517,7 +68958,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUncheckedUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUncheckedUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -68528,6 +68968,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutGiveawaysInput = {
@@ -68547,7 +68988,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: SecuritysCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsCreateNestedManyWithoutGuildsInput
@@ -68558,6 +68998,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGiveawaysInput = {
@@ -68577,7 +69018,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsUncheckedCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsUncheckedCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: SecuritysUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -68588,6 +69028,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersUncheckedCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGiveawaysInput = {
@@ -68622,7 +69063,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUpdateManyWithoutGuildsNestedInput
@@ -68633,6 +69073,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGiveawaysInput = {
@@ -68651,7 +69092,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUncheckedUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUncheckedUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -68662,6 +69102,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type TempVoiceChannelsCreateWithoutTempVoicesInput = {
@@ -68704,7 +69145,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: SecuritysCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsCreateNestedManyWithoutGuildsInput
@@ -68715,6 +69155,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutTempVoicesInput = {
@@ -68734,7 +69175,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsUncheckedCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsUncheckedCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: SecuritysUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -68745,6 +69185,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersUncheckedCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutTempVoicesInput = {
@@ -68806,7 +69247,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUpdateManyWithoutGuildsNestedInput
@@ -68817,6 +69257,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutTempVoicesInput = {
@@ -68835,7 +69276,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUncheckedUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUncheckedUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -68846,6 +69286,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type TempVoicesCreateWithoutTempVoiceChannelsInput = {
@@ -68923,7 +69364,6 @@ export namespace Prisma {
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     GuildLogging?: GuildLoggingsCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: SecuritysCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsCreateNestedManyWithoutGuildsInput
@@ -68934,6 +69374,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildLeaveSetupInput = {
@@ -68953,7 +69394,6 @@ export namespace Prisma {
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     GuildLogging?: GuildLoggingsUncheckedCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsUncheckedCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: SecuritysUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -68964,6 +69404,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersUncheckedCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildLeaveSetupInput = {
@@ -69003,7 +69444,6 @@ export namespace Prisma {
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUpdateManyWithoutGuildsNestedInput
@@ -69014,6 +69454,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildLeaveSetupInput = {
@@ -69032,7 +69473,6 @@ export namespace Prisma {
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUncheckedUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUncheckedUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -69043,6 +69483,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutGuildWelcomeSetupInput = {
@@ -69063,7 +69504,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: SecuritysCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsCreateNestedManyWithoutGuildsInput
@@ -69073,6 +69513,7 @@ export namespace Prisma {
     TwitchNotifications?: TwitchNotificationsCreateNestedManyWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildWelcomeSetupInput = {
@@ -69093,7 +69534,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsUncheckedCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsUncheckedCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: SecuritysUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -69103,6 +69543,7 @@ export namespace Prisma {
     TwitchNotifications?: TwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersUncheckedCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildWelcomeSetupInput = {
@@ -69148,7 +69589,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUpdateManyWithoutGuildsNestedInput
@@ -69158,6 +69598,7 @@ export namespace Prisma {
     TwitchNotifications?: TwitchNotificationsUpdateManyWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildWelcomeSetupInput = {
@@ -69177,7 +69618,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUncheckedUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUncheckedUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -69187,6 +69627,7 @@ export namespace Prisma {
     TwitchNotifications?: TwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutGuildLoggingInput = {
@@ -69206,7 +69647,6 @@ export namespace Prisma {
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     GuildLeaveSetup?: GuildLeaveSetupsCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: SecuritysCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsCreateNestedManyWithoutGuildsInput
@@ -69217,6 +69657,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildLoggingInput = {
@@ -69236,7 +69677,6 @@ export namespace Prisma {
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsUncheckedCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: SecuritysUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -69247,6 +69687,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersUncheckedCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildLoggingInput = {
@@ -69281,7 +69722,6 @@ export namespace Prisma {
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     GuildLeaveSetup?: GuildLeaveSetupsUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUpdateManyWithoutGuildsNestedInput
@@ -69292,6 +69732,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildLoggingInput = {
@@ -69310,7 +69751,6 @@ export namespace Prisma {
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUncheckedUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -69321,6 +69761,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutGuildLoggersInput = {
@@ -69341,7 +69782,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: SecuritysCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsCreateNestedManyWithoutGuildsInput
@@ -69351,6 +69791,7 @@ export namespace Prisma {
     TwitchNotifications?: TwitchNotificationsCreateNestedManyWithoutGuildsInput
     GuildWelcomeSetup?: GuildWelcomeSetupsCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildLoggersInput = {
@@ -69371,7 +69812,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsUncheckedCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsUncheckedCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: SecuritysUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -69381,6 +69821,7 @@ export namespace Prisma {
     TwitchNotifications?: TwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildLoggersInput = {
@@ -69416,7 +69857,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUpdateManyWithoutGuildsNestedInput
@@ -69426,6 +69866,7 @@ export namespace Prisma {
     TwitchNotifications?: TwitchNotificationsUpdateManyWithoutGuildsNestedInput
     GuildWelcomeSetup?: GuildWelcomeSetupsUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildLoggersInput = {
@@ -69445,7 +69886,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUncheckedUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUncheckedUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -69455,6 +69895,7 @@ export namespace Prisma {
     TwitchNotifications?: TwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutMessageTemplatesInput = {
@@ -69474,7 +69915,6 @@ export namespace Prisma {
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     GuildLeaveSetup?: GuildLeaveSetupsCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsCreateNestedOneWithoutGuildsInput
-    Permissions?: PermissionsCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: SecuritysCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsCreateNestedManyWithoutGuildsInput
@@ -69485,6 +69925,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutMessageTemplatesInput = {
@@ -69504,7 +69945,6 @@ export namespace Prisma {
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsUncheckedCreateNestedOneWithoutGuildsInput
-    Permissions?: PermissionsUncheckedCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: SecuritysUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -69515,6 +69955,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersUncheckedCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutMessageTemplatesInput = {
@@ -69549,7 +69990,6 @@ export namespace Prisma {
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     GuildLeaveSetup?: GuildLeaveSetupsUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUpdateOneWithoutGuildsNestedInput
-    Permissions?: PermissionsUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUpdateManyWithoutGuildsNestedInput
@@ -69560,6 +70000,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutMessageTemplatesInput = {
@@ -69578,7 +70019,6 @@ export namespace Prisma {
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUncheckedUpdateOneWithoutGuildsNestedInput
-    Permissions?: PermissionsUncheckedUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -69589,149 +70029,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUncheckedUpdateManyWithoutGuildsNestedInput
-  }
-
-  export type GuildsCreateWithoutPermissionsInput = {
-    id?: string
-    GuildId: string
-    GuildName: string
-    GuildOwner: string
-    AutoAutoDeletes?: AutoDeletesCreateNestedManyWithoutGuildsInput
-    AutoPublish?: AutoPublishCreateNestedOneWithoutGuildsInput
-    AutoReacts?: AutoReactsCreateNestedManyWithoutGuildsInput
-    AutoRoles?: AutoRolesCreateNestedManyWithoutGuildsInput
-    GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
-    ChatModerations?: ChatModerationsCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: ChannelLinksCreateNestedManyWithoutGuildsInput
-    DiscordAddons?: DiscordAddonsCreateNestedOneWithoutGuildsInput
-    Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
-    GuildLeaveSetup?: GuildLeaveSetupsCreateNestedOneWithoutGuildsInput
-    GuildLogging?: GuildLoggingsCreateNestedOneWithoutGuildsInput
-    MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
-    ReactionRole?: ReactionRolesCreateNestedManyWithoutGuildsInput
-    Security?: SecuritysCreateNestedOneWithoutGuildsInput
-    SpotifyNotifications?: SpotifyNotificationsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
-    TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
-    GuildFeatureToggle?: GuildFeatureTogglesCreateNestedOneWithoutGuildsInput
-    TwitchNotifications?: TwitchNotificationsCreateNestedManyWithoutGuildsInput
-    GuildWelcomeSetup?: GuildWelcomeSetupsCreateNestedOneWithoutGuildsInput
-    YoutubeNotifications?: YoutubeNotificationsCreateNestedManyWithoutGuildsInput
-    GuildLoggers?: GuildLoggersCreateNestedManyWithoutGuildsInput
-  }
-
-  export type GuildsUncheckedCreateWithoutPermissionsInput = {
-    id?: string
-    GuildId: string
-    GuildName: string
-    GuildOwner: string
-    AutoAutoDeletes?: AutoDeletesUncheckedCreateNestedManyWithoutGuildsInput
-    AutoPublish?: AutoPublishUncheckedCreateNestedOneWithoutGuildsInput
-    AutoReacts?: AutoReactsUncheckedCreateNestedManyWithoutGuildsInput
-    AutoRoles?: AutoRolesUncheckedCreateNestedManyWithoutGuildsInput
-    GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
-    ChatModerations?: ChatModerationsUncheckedCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: ChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
-    DiscordAddons?: DiscordAddonsUncheckedCreateNestedOneWithoutGuildsInput
-    Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
-    GuildLeaveSetup?: GuildLeaveSetupsUncheckedCreateNestedOneWithoutGuildsInput
-    GuildLogging?: GuildLoggingsUncheckedCreateNestedOneWithoutGuildsInput
-    MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
-    ReactionRole?: ReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
-    Security?: SecuritysUncheckedCreateNestedOneWithoutGuildsInput
-    SpotifyNotifications?: SpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
-    TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
-    GuildFeatureToggle?: GuildFeatureTogglesUncheckedCreateNestedOneWithoutGuildsInput
-    TwitchNotifications?: TwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
-    GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedCreateNestedOneWithoutGuildsInput
-    YoutubeNotifications?: YoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
-    GuildLoggers?: GuildLoggersUncheckedCreateNestedManyWithoutGuildsInput
-  }
-
-  export type GuildsCreateOrConnectWithoutPermissionsInput = {
-    where: GuildsWhereUniqueInput
-    create: XOR<GuildsCreateWithoutPermissionsInput, GuildsUncheckedCreateWithoutPermissionsInput>
-  }
-
-  export type PermissionDataUpdateManyInput = {
-    where: PermissionDataWhereInput
-    data: PermissionDataUpdateInput
-  }
-
-  export type PermissionDataDeleteManyInput = {
-    where: PermissionDataWhereInput
-  }
-
-  export type GuildsUpsertWithoutPermissionsInput = {
-    update: XOR<GuildsUpdateWithoutPermissionsInput, GuildsUncheckedUpdateWithoutPermissionsInput>
-    create: XOR<GuildsCreateWithoutPermissionsInput, GuildsUncheckedCreateWithoutPermissionsInput>
-    where?: GuildsWhereInput
-  }
-
-  export type GuildsUpdateToOneWithWhereWithoutPermissionsInput = {
-    where?: GuildsWhereInput
-    data: XOR<GuildsUpdateWithoutPermissionsInput, GuildsUncheckedUpdateWithoutPermissionsInput>
-  }
-
-  export type GuildsUpdateWithoutPermissionsInput = {
-    GuildId?: StringFieldUpdateOperationsInput | string
-    GuildName?: StringFieldUpdateOperationsInput | string
-    GuildOwner?: StringFieldUpdateOperationsInput | string
-    AutoAutoDeletes?: AutoDeletesUpdateManyWithoutGuildsNestedInput
-    AutoPublish?: AutoPublishUpdateOneWithoutGuildsNestedInput
-    AutoReacts?: AutoReactsUpdateManyWithoutGuildsNestedInput
-    AutoRoles?: AutoRolesUpdateManyWithoutGuildsNestedInput
-    GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
-    ChatModerations?: ChatModerationsUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: ChannelLinksUpdateManyWithoutGuildsNestedInput
-    DiscordAddons?: DiscordAddonsUpdateOneWithoutGuildsNestedInput
-    Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
-    GuildLeaveSetup?: GuildLeaveSetupsUpdateOneWithoutGuildsNestedInput
-    GuildLogging?: GuildLoggingsUpdateOneWithoutGuildsNestedInput
-    MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
-    ReactionRole?: ReactionRolesUpdateManyWithoutGuildsNestedInput
-    Security?: SecuritysUpdateOneWithoutGuildsNestedInput
-    SpotifyNotifications?: SpotifyNotificationsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
-    TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
-    GuildFeatureToggle?: GuildFeatureTogglesUpdateOneWithoutGuildsNestedInput
-    TwitchNotifications?: TwitchNotificationsUpdateManyWithoutGuildsNestedInput
-    GuildWelcomeSetup?: GuildWelcomeSetupsUpdateOneWithoutGuildsNestedInput
-    YoutubeNotifications?: YoutubeNotificationsUpdateManyWithoutGuildsNestedInput
-    GuildLoggers?: GuildLoggersUpdateManyWithoutGuildsNestedInput
-  }
-
-  export type GuildsUncheckedUpdateWithoutPermissionsInput = {
-    GuildId?: StringFieldUpdateOperationsInput | string
-    GuildName?: StringFieldUpdateOperationsInput | string
-    GuildOwner?: StringFieldUpdateOperationsInput | string
-    AutoAutoDeletes?: AutoDeletesUncheckedUpdateManyWithoutGuildsNestedInput
-    AutoPublish?: AutoPublishUncheckedUpdateOneWithoutGuildsNestedInput
-    AutoReacts?: AutoReactsUncheckedUpdateManyWithoutGuildsNestedInput
-    AutoRoles?: AutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
-    GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
-    ChatModerations?: ChatModerationsUncheckedUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: ChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
-    DiscordAddons?: DiscordAddonsUncheckedUpdateOneWithoutGuildsNestedInput
-    Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
-    GuildLeaveSetup?: GuildLeaveSetupsUncheckedUpdateOneWithoutGuildsNestedInput
-    GuildLogging?: GuildLoggingsUncheckedUpdateOneWithoutGuildsNestedInput
-    MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
-    ReactionRole?: ReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
-    Security?: SecuritysUncheckedUpdateOneWithoutGuildsNestedInput
-    SpotifyNotifications?: SpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
-    TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
-    GuildFeatureToggle?: GuildFeatureTogglesUncheckedUpdateOneWithoutGuildsNestedInput
-    TwitchNotifications?: TwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
-    GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedUpdateOneWithoutGuildsNestedInput
-    YoutubeNotifications?: YoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
-    GuildLoggers?: GuildLoggersUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutReactionRoleInput = {
@@ -69752,7 +70050,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsCreateNestedOneWithoutGuildsInput
     Security?: SecuritysCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsCreateNestedManyWithoutGuildsInput
     Tags?: TagsCreateNestedManyWithoutGuildsInput
@@ -69762,6 +70059,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutReactionRoleInput = {
@@ -69782,7 +70080,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsUncheckedCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsUncheckedCreateNestedOneWithoutGuildsInput
     Security?: SecuritysUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
@@ -69792,6 +70089,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersUncheckedCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutReactionRoleInput = {
@@ -69837,7 +70135,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUpdateOneWithoutGuildsNestedInput
     Security?: SecuritysUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     Tags?: TagsUpdateManyWithoutGuildsNestedInput
@@ -69847,6 +70144,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutReactionRoleInput = {
@@ -69866,7 +70164,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUncheckedUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUncheckedUpdateOneWithoutGuildsNestedInput
     Security?: SecuritysUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -69876,6 +70173,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type VerificationGatesCreateWithoutVerificationGatesInput = {
@@ -69933,7 +70231,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesCreateNestedManyWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsCreateNestedManyWithoutGuildsInput
     Tags?: TagsCreateNestedManyWithoutGuildsInput
@@ -69943,6 +70240,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutSecurityInput = {
@@ -69963,7 +70261,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsUncheckedCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsUncheckedCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
@@ -69973,6 +70270,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersUncheckedCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutSecurityInput = {
@@ -70041,7 +70339,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUpdateManyWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     Tags?: TagsUpdateManyWithoutGuildsNestedInput
@@ -70051,6 +70348,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutSecurityInput = {
@@ -70070,7 +70368,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUncheckedUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUncheckedUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -70080,6 +70377,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type VerificationGatesPermissionCreateWithoutVerificationGatesInput = {
@@ -70259,7 +70557,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: SecuritysCreateNestedOneWithoutGuildsInput
     Tags?: TagsCreateNestedManyWithoutGuildsInput
@@ -70269,6 +70566,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutSpotifyNotificationsInput = {
@@ -70289,7 +70587,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsUncheckedCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsUncheckedCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: SecuritysUncheckedCreateNestedOneWithoutGuildsInput
     Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
@@ -70299,6 +70596,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersUncheckedCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutSpotifyNotificationsInput = {
@@ -70334,7 +70632,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUpdateOneWithoutGuildsNestedInput
     Tags?: TagsUpdateManyWithoutGuildsNestedInput
@@ -70344,6 +70641,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutSpotifyNotificationsInput = {
@@ -70363,7 +70661,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUncheckedUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUncheckedUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUncheckedUpdateOneWithoutGuildsNestedInput
     Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -70373,6 +70670,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutTagsInput = {
@@ -70393,7 +70691,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: SecuritysCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsCreateNestedManyWithoutGuildsInput
@@ -70403,6 +70700,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutTagsInput = {
@@ -70423,7 +70721,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsUncheckedCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsUncheckedCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: SecuritysUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -70433,6 +70730,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersUncheckedCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutTagsInput = {
@@ -70468,7 +70766,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUpdateManyWithoutGuildsNestedInput
@@ -70478,6 +70775,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutTagsInput = {
@@ -70497,7 +70795,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUncheckedUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUncheckedUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -70507,6 +70804,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type TicketPermissionsCreateWithoutTicketSetupInput = {
@@ -70591,7 +70889,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: SecuritysCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsCreateNestedManyWithoutGuildsInput
@@ -70601,6 +70898,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutTicketSetupsInput = {
@@ -70621,7 +70919,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsUncheckedCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsUncheckedCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: SecuritysUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -70631,6 +70928,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersUncheckedCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutTicketSetupsInput = {
@@ -70810,7 +71108,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUpdateManyWithoutGuildsNestedInput
@@ -70820,6 +71117,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutTicketSetupsInput = {
@@ -70839,7 +71137,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUncheckedUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUncheckedUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -70849,6 +71146,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type TicketsUpsertWithWhereUniqueWithoutTicketSetupInput = {
@@ -71566,7 +71864,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: SecuritysCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsCreateNestedManyWithoutGuildsInput
@@ -71576,6 +71873,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildFeatureToggleInput = {
@@ -71596,7 +71894,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsUncheckedCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsUncheckedCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: SecuritysUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -71606,6 +71903,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersUncheckedCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildFeatureToggleInput = {
@@ -71641,7 +71939,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUpdateManyWithoutGuildsNestedInput
@@ -71651,6 +71948,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildFeatureToggleInput = {
@@ -71670,7 +71968,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUncheckedUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUncheckedUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -71680,6 +71977,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutTwitchNotificationsInput = {
@@ -71700,7 +71998,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: SecuritysCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsCreateNestedManyWithoutGuildsInput
@@ -71710,6 +72007,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutTwitchNotificationsInput = {
@@ -71730,7 +72028,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsUncheckedCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsUncheckedCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: SecuritysUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -71740,6 +72037,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedCreateNestedOneWithoutGuildsInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     GuildLoggers?: GuildLoggersUncheckedCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutTwitchNotificationsInput = {
@@ -71775,7 +72073,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUpdateManyWithoutGuildsNestedInput
@@ -71785,6 +72082,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutTwitchNotificationsInput = {
@@ -71804,7 +72102,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUncheckedUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUncheckedUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -71814,6 +72111,7 @@ export namespace Prisma {
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     YoutubeNotifications?: YoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutYoutubeNotificationsInput = {
@@ -71834,7 +72132,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: SecuritysCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsCreateNestedManyWithoutGuildsInput
@@ -71844,6 +72141,7 @@ export namespace Prisma {
     TwitchNotifications?: TwitchNotificationsCreateNestedManyWithoutGuildsInput
     GuildWelcomeSetup?: GuildWelcomeSetupsCreateNestedOneWithoutGuildsInput
     GuildLoggers?: GuildLoggersCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutYoutubeNotificationsInput = {
@@ -71864,7 +72162,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingsUncheckedCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
-    Permissions?: PermissionsUncheckedCreateNestedOneWithoutGuildsInput
     ReactionRole?: ReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: SecuritysUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -71874,6 +72171,7 @@ export namespace Prisma {
     TwitchNotifications?: TwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedCreateNestedOneWithoutGuildsInput
     GuildLoggers?: GuildLoggersUncheckedCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutYoutubeNotificationsInput = {
@@ -71909,7 +72207,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUpdateManyWithoutGuildsNestedInput
@@ -71919,6 +72216,7 @@ export namespace Prisma {
     TwitchNotifications?: TwitchNotificationsUpdateManyWithoutGuildsNestedInput
     GuildWelcomeSetup?: GuildWelcomeSetupsUpdateOneWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutYoutubeNotificationsInput = {
@@ -71938,7 +72236,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingsUncheckedUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
-    Permissions?: PermissionsUncheckedUpdateOneWithoutGuildsNestedInput
     ReactionRole?: ReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: SecuritysUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: SpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -71948,6 +72245,7 @@ export namespace Prisma {
     TwitchNotifications?: TwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildWelcomeSetup?: GuildWelcomeSetupsUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLoggers?: GuildLoggersUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type ApisCreateWithoutUsersInput = {
@@ -72061,6 +72359,8 @@ export namespace Prisma {
     Host: string
     GuildId: string
     Invite: string
+    InDiscovery?: boolean | null
+    IsBannedFromDiscover?: boolean | null
     CreatedAt: Date | string
     Analytics?: VanityAnalyticsCreateNestedOneWithoutVanitysInput
     Embed?: VanityEmbedsCreateNestedOneWithoutVanitysInput
@@ -72073,6 +72373,8 @@ export namespace Prisma {
     Host: string
     GuildId: string
     Invite: string
+    InDiscovery?: boolean | null
+    IsBannedFromDiscover?: boolean | null
     CreatedAt: Date | string
     Analytics?: VanityAnalyticsUncheckedCreateNestedOneWithoutVanitysInput
     Embed?: VanityEmbedsUncheckedCreateNestedOneWithoutVanitysInput
@@ -72225,6 +72527,8 @@ export namespace Prisma {
     Host?: StringFilter<"Vanitys"> | string
     GuildId?: StringFilter<"Vanitys"> | string
     Invite?: StringFilter<"Vanitys"> | string
+    InDiscovery?: BoolNullableFilter<"Vanitys"> | boolean | null
+    IsBannedFromDiscover?: BoolNullableFilter<"Vanitys"> | boolean | null
     CreatedAt?: DateTimeFilter<"Vanitys"> | Date | string
     UserId?: StringFilter<"Vanitys"> | string
   }
@@ -72658,6 +72962,8 @@ export namespace Prisma {
     Host: string
     GuildId: string
     Invite: string
+    InDiscovery?: boolean | null
+    IsBannedFromDiscover?: boolean | null
     CreatedAt: Date | string
     Analytics?: VanityAnalyticsCreateNestedOneWithoutVanitysInput
     Users: UsersCreateNestedOneWithoutVanitysInput
@@ -72670,6 +72976,8 @@ export namespace Prisma {
     Host: string
     GuildId: string
     Invite: string
+    InDiscovery?: boolean | null
+    IsBannedFromDiscover?: boolean | null
     CreatedAt: Date | string
     UserId: string
     Analytics?: VanityAnalyticsUncheckedCreateNestedOneWithoutVanitysInput
@@ -72720,6 +73028,8 @@ export namespace Prisma {
     Host?: StringFieldUpdateOperationsInput | string
     GuildId?: StringFieldUpdateOperationsInput | string
     Invite?: StringFieldUpdateOperationsInput | string
+    InDiscovery?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsBannedFromDiscover?: NullableBoolFieldUpdateOperationsInput | boolean | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Analytics?: VanityAnalyticsUpdateOneWithoutVanitysNestedInput
     Users?: UsersUpdateOneRequiredWithoutVanitysNestedInput
@@ -72731,6 +73041,8 @@ export namespace Prisma {
     Host?: StringFieldUpdateOperationsInput | string
     GuildId?: StringFieldUpdateOperationsInput | string
     Invite?: StringFieldUpdateOperationsInput | string
+    InDiscovery?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsBannedFromDiscover?: NullableBoolFieldUpdateOperationsInput | boolean | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UserId?: StringFieldUpdateOperationsInput | string
     Analytics?: VanityAnalyticsUncheckedUpdateOneWithoutVanitysNestedInput
@@ -72818,6 +73130,8 @@ export namespace Prisma {
     Host: string
     GuildId: string
     Invite: string
+    InDiscovery?: boolean | null
+    IsBannedFromDiscover?: boolean | null
     CreatedAt: Date | string
     Embed?: VanityEmbedsCreateNestedOneWithoutVanitysInput
     Users: UsersCreateNestedOneWithoutVanitysInput
@@ -72830,6 +73144,8 @@ export namespace Prisma {
     Host: string
     GuildId: string
     Invite: string
+    InDiscovery?: boolean | null
+    IsBannedFromDiscover?: boolean | null
     CreatedAt: Date | string
     UserId: string
     Embed?: VanityEmbedsUncheckedCreateNestedOneWithoutVanitysInput
@@ -72882,6 +73198,8 @@ export namespace Prisma {
     Host?: StringFieldUpdateOperationsInput | string
     GuildId?: StringFieldUpdateOperationsInput | string
     Invite?: StringFieldUpdateOperationsInput | string
+    InDiscovery?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsBannedFromDiscover?: NullableBoolFieldUpdateOperationsInput | boolean | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Embed?: VanityEmbedsUpdateOneWithoutVanitysNestedInput
     Users?: UsersUpdateOneRequiredWithoutVanitysNestedInput
@@ -72893,6 +73211,8 @@ export namespace Prisma {
     Host?: StringFieldUpdateOperationsInput | string
     GuildId?: StringFieldUpdateOperationsInput | string
     Invite?: StringFieldUpdateOperationsInput | string
+    InDiscovery?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsBannedFromDiscover?: NullableBoolFieldUpdateOperationsInput | boolean | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UserId?: StringFieldUpdateOperationsInput | string
     Embed?: VanityEmbedsUncheckedUpdateOneWithoutVanitysNestedInput
@@ -73215,6 +73535,20 @@ export namespace Prisma {
     Notes?: GuildLoggersCreateNotesInput | string[]
     LogMessage: string
     LogJSON: string
+  }
+
+  export type GuildInteractionPermissionsCreateManyGuildsInput = {
+    id?: string
+    UUID: string
+    RoleIds?: GuildInteractionPermissionsCreateRoleIdsInput | string[]
+    UserIds?: GuildInteractionPermissionsCreateUserIdsInput | string[]
+    ChannelIds?: GuildInteractionPermissionsCreateChannelIdsInput | string[]
+    CustomId?: string | null
+    CommandName?: string | null
+    Type: string
+    DisableInternalUserPermission?: boolean | null
+    NeedsGuildOwner?: boolean | null
+    Cooldown?: number | null
   }
 
   export type AutoDeletesUpdateWithoutGuildsInput = {
@@ -73716,6 +74050,45 @@ export namespace Prisma {
     LogJSON?: StringFieldUpdateOperationsInput | string
   }
 
+  export type GuildInteractionPermissionsUpdateWithoutGuildsInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    RoleIds?: GuildInteractionPermissionsUpdateRoleIdsInput | string[]
+    UserIds?: GuildInteractionPermissionsUpdateUserIdsInput | string[]
+    ChannelIds?: GuildInteractionPermissionsUpdateChannelIdsInput | string[]
+    CustomId?: NullableStringFieldUpdateOperationsInput | string | null
+    CommandName?: NullableStringFieldUpdateOperationsInput | string | null
+    Type?: StringFieldUpdateOperationsInput | string
+    DisableInternalUserPermission?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    NeedsGuildOwner?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Cooldown?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type GuildInteractionPermissionsUncheckedUpdateWithoutGuildsInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    RoleIds?: GuildInteractionPermissionsUpdateRoleIdsInput | string[]
+    UserIds?: GuildInteractionPermissionsUpdateUserIdsInput | string[]
+    ChannelIds?: GuildInteractionPermissionsUpdateChannelIdsInput | string[]
+    CustomId?: NullableStringFieldUpdateOperationsInput | string | null
+    CommandName?: NullableStringFieldUpdateOperationsInput | string | null
+    Type?: StringFieldUpdateOperationsInput | string
+    DisableInternalUserPermission?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    NeedsGuildOwner?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Cooldown?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    RoleIds?: GuildInteractionPermissionsUpdateRoleIdsInput | string[]
+    UserIds?: GuildInteractionPermissionsUpdateUserIdsInput | string[]
+    ChannelIds?: GuildInteractionPermissionsUpdateChannelIdsInput | string[]
+    CustomId?: NullableStringFieldUpdateOperationsInput | string | null
+    CommandName?: NullableStringFieldUpdateOperationsInput | string | null
+    Type?: StringFieldUpdateOperationsInput | string
+    DisableInternalUserPermission?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    NeedsGuildOwner?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Cooldown?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
   export type SyncedChannelLinkMessagesCreateManyChannelLinksInput = {
     id?: string
     GuildId: string
@@ -73772,11 +74145,6 @@ export namespace Prisma {
     GuildId?: StringFieldUpdateOperationsInput | string
     ChannelId?: StringFieldUpdateOperationsInput | string
     OwnerId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type PermissionDataUpdateInput = {
-    RoleId?: StringFieldUpdateOperationsInput | string
-    Type?: StringFieldUpdateOperationsInput | string
   }
 
   export type ReactionRoleButtonUpdateInput = {
@@ -74123,6 +74491,8 @@ export namespace Prisma {
     Host: string
     GuildId: string
     Invite: string
+    InDiscovery?: boolean | null
+    IsBannedFromDiscover?: boolean | null
     CreatedAt: Date | string
   }
 
@@ -74207,6 +74577,8 @@ export namespace Prisma {
     Host?: StringFieldUpdateOperationsInput | string
     GuildId?: StringFieldUpdateOperationsInput | string
     Invite?: StringFieldUpdateOperationsInput | string
+    InDiscovery?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsBannedFromDiscover?: NullableBoolFieldUpdateOperationsInput | boolean | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Analytics?: VanityAnalyticsUpdateOneWithoutVanitysNestedInput
     Embed?: VanityEmbedsUpdateOneWithoutVanitysNestedInput
@@ -74218,6 +74590,8 @@ export namespace Prisma {
     Host?: StringFieldUpdateOperationsInput | string
     GuildId?: StringFieldUpdateOperationsInput | string
     Invite?: StringFieldUpdateOperationsInput | string
+    InDiscovery?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsBannedFromDiscover?: NullableBoolFieldUpdateOperationsInput | boolean | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Analytics?: VanityAnalyticsUncheckedUpdateOneWithoutVanitysNestedInput
     Embed?: VanityEmbedsUncheckedUpdateOneWithoutVanitysNestedInput
@@ -74229,6 +74603,8 @@ export namespace Prisma {
     Host?: StringFieldUpdateOperationsInput | string
     GuildId?: StringFieldUpdateOperationsInput | string
     Invite?: StringFieldUpdateOperationsInput | string
+    InDiscovery?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    IsBannedFromDiscover?: NullableBoolFieldUpdateOperationsInput | boolean | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

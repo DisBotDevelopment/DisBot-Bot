@@ -27,46 +27,7 @@ export default {
         )
         .addSubcommand((subcommand) =>
             subcommand.setName("api").setDescription("Create an API Key")
-        )
-        .addSubcommandGroup((group) =>
-            group
-                .setName("permissions")
-                .setDescription("Manage the Bot Permissions")
-                .addSubcommand((subcommand) =>
-                    subcommand.setName("list").setDescription("List the Bot Permissions")
-                )
-                .addSubcommand((subcommand) =>
-                    subcommand
-                        .setName("reset")
-                        .setDescription("Reset the Bot Permissions from the systems from DisBot")
-                        .addStringOption((option) =>
-                            option
-                                .setName("system")
-                                .setDescription("Select the System")
-                                .setRequired(true)
-                                .setAutocomplete(true)
-                        )
-                )
-                .addSubcommand((subcommand) =>
-                    subcommand
-                        .setName("set")
-                        .setDescription("Set the Bot Permissions")
-                        .addStringOption((option) =>
-                            option
-                                .setName("system")
-                                .setDescription("Select the System")
-                                .setRequired(true)
-                                .setAutocomplete(true)
-                        )
-                        .addRoleOption((option) =>
-                            option
-                                .setName("role")
-                                .setDescription("Select the Role")
-                                .setRequired(true)
-                        )
-                )
         ),
-
     async autocomplete(interaction: AutocompleteInteraction) {
         const focusedValue = interaction.options.getFocused();
 

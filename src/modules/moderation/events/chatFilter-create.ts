@@ -50,25 +50,7 @@ export default {
                 console.log("yes")
 
                 const logChannel = client.channels.cache.get(chatfilterData.LogChannelId) as TextChannel;
-
-                const embed = new EmbedBuilder()
-                    .setTitle("ChatFilter Triggered")
-                    .setColor("#2B2D31")
-                    .setDescription([
-                        `> Channel: ${channel}`,
-                        `> Message: \`${message.cleanContent}\``,
-                        `> User: ${message.author}`,
-                        ``,
-                        `**Message ID:** \`${message.id}\``,
-                        `**Channel ID:** \`${channel.id}\``,
-                        `**User ID:** \`${message.author.id}\``
-                    ].join("\n"))
-                    .setFooter({
-                        text: `@${message.author.username}`,
-                        iconURL: message.author.displayAvatarURL()
-                    })
-                    .setTimestamp();
-
+                
                 if (logChannel) {
 
                     let webhook;

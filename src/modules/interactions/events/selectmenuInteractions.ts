@@ -1,6 +1,6 @@
-import {AnySelectMenuInteraction, Events, Guild, GuildMember,} from "discord.js";
+import {AnySelectMenuInteraction, Events, Guild, GuildMember, MessageFlags,} from "discord.js";
 import {DisBotInteractionType} from "../../../enums/disBotInteractionType.js";
-import {PermissionType} from "../../../enums/permissionType.js";
+import {GuildPermissionType, PermissionType} from "../../../enums/permissionType.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {errorHandler} from "../../../helper/errorHelper.js";
 import {InteractionHelper} from "../../../helper/InteractionHelper.js";
@@ -8,6 +8,8 @@ import {Logger} from "../../../main/logger.js";
 import {LoggingAction} from "../../../enums/loggingTypes.js";
 import {initUsersToDatabase} from "../../../helper/databaseHelper.js";
 import {Config} from "../../../main/config.js";
+import {database} from "../../../main/database.js";
+import {convertToEmojiPng} from "../../../helper/emojis.js";
 
 export default {
     name: Events.InteractionCreate,
@@ -55,54 +57,82 @@ export default {
                 }
             );
 
-            if (selectmenu?.options) {
-                if ((selectmenu.options.cooldown ?? 0) >= 1) {
-                    await InteractionHelper.cooldownCheck(
-                        selectmenu.options.cooldown as number,
-                        interaction,
-                        client,
-                        selectmenu.type as DisBotInteractionType
-                    );
+            const interactionPermission = await database.guildInteractionPermissions.findFirst({
+                where: {
+                    CustomId: interaction.customId,
+                    Type: GuildPermissionType.SELECTMENU
                 }
-                if ((selectmenu.options.botPermissions?.length ?? 0) > 0) {
-                    await InteractionHelper.checkBotPermissions(
-                        interaction,
-                        client,
-                        selectmenu.options.botPermissions
-                    );
-                }
-                if (selectmenu.options.isGuildOwner) {
-                    await InteractionHelper.checkGuildOwner(
-                        interaction,
-                        client,
-                    );
-                }
-                if (!selectmenu.options.userHasOnePermission) {
-                    if ((selectmenu.options.permission?.length ?? 0) > 0) {
-                        await InteractionHelper.getPermissionType(
-                            selectmenu.options.permission as PermissionType,
-                            interaction.guild as Guild,
-                            interaction.member as GuildMember,
-                            client,
-                            interaction
-                        );
-                    }
-                    if ((selectmenu.options.userPermissions?.length ?? 0) > 0) {
-                        await InteractionHelper.checkUserPermissions(
+            })
+
+            if (interactionPermission) {
+                const allowedToUse: boolean[] = []
+                if (interactionPermission?.UserIds.length >= 1) {
+                    allowedToUse.push(await InteractionHelper.userRequirements(
                             interaction,
                             client,
-                            selectmenu.options.userPermissions
-                        );
-                    }
-                } else {
-                    if ((selectmenu.options.userPermissions?.length ?? 0) > 0) {
-                        await InteractionHelper.checkUserHasOnePermission(
-                            interaction,
-                            selectmenu.options.userPermissions,
-                            selectmenu.options.permission as PermissionType,
-                        );
+                            interactionPermission.UserIds
+                        )
+                    )
+                }
+                if (interactionPermission?.ChannelIds.length >= 1) {
+                    if (await InteractionHelper.channelRequirements(
+                        interaction,
+                        client,
+                        interactionPermission.ChannelIds
+                    )) {
+                        return await (interaction as any).reply({
+                            flags: MessageFlags.Ephemeral,
+                            content: `## ${await convertToEmojiPng("permission", client.user.id)} You can't perform this interaction!`
+                        })
                     }
                 }
+                if (interactionPermission?.RoleIds.length >= 1) {
+                    allowedToUse.push(await InteractionHelper.roleRequirements(
+                        interaction,
+                        client,
+                        interactionPermission.RoleIds
+                    ))
+                }
+                if (!allowedToUse.some((a) => a == true)) {
+                    return await (interaction as any).reply({
+                        flags: MessageFlags.Ephemeral,
+                        content: `## ${await convertToEmojiPng("permission", client.user.id)} You can't perform this interaction!`
+                    })
+                }
+            }
+
+            if (interactionPermission?.Cooldown ?? selectmenu?.options?.cooldown) {
+                await InteractionHelper.cooldownCheck(
+                    interactionPermission.Cooldown ?? selectmenu.options.cooldown as number,
+                    interaction,
+                    client,
+                    selectmenu.type as DisBotInteractionType
+                );
+            }
+            if ((selectmenu?.options?.botPermissions?.length ?? 0) > 0) {
+                await InteractionHelper.checkBotPermissions(
+                    interaction,
+                    client,
+                    selectmenu.options.botPermissions
+                );
+            }
+            if (interactionPermission?.NeedsGuildOwner) {
+                await InteractionHelper.checkGuildOwner(
+                    interaction,
+                    client,
+                );
+            } else if (selectmenu?.options?.isGuildOwner && interactionPermission?.NeedsGuildOwner == null) {
+                await InteractionHelper.checkGuildOwner(
+                    interaction,
+                    client,
+                );
+            }
+            if ((selectmenu?.options?.userPermissions?.length ?? 0) > 0 && !interactionPermission?.DisableInternalUserPermission) {
+                await InteractionHelper.checkUserPermissions(
+                    interaction,
+                    client,
+                    selectmenu.options.userPermissions
+                );
             }
 
             await selectmenu?.execute(interaction, client);

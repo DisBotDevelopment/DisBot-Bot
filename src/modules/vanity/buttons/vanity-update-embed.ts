@@ -47,6 +47,14 @@ export default {
                 .setEmoji("<:color:1321938714741440552>")
         )
 
+        const row2 = new ActionRowBuilder<ButtonBuilder>().addComponents(
+            new ButtonBuilder()
+                .setLabel("Add to Discovery")
+                .setCustomId(`vanity-update-discover:${data?.UUID}`)
+                .setStyle(ButtonStyle.Secondary)
+                .setEmoji("<:toggleon:1301864515838672908>"),
+        )
+
 
         await interaction.deferReply({flags: MessageFlags.Ephemeral})
         if (!client.user) throw new Error("Client is not ready");

@@ -1,7 +1,7 @@
-import {ButtonInteraction, Events, Guild, GuildMember,} from "discord.js";
+import {ButtonInteraction, Events, Guild, GuildMember, MessageFlags,} from "discord.js";
 import {Error} from "mongoose";
 import {DisBotInteractionType} from "../../../enums/disBotInteractionType.js";
-import {PermissionType} from "../../../enums/permissionType.js";
+import {GuildPermissionType, PermissionType} from "../../../enums/permissionType.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {errorHandler} from "../../../helper/errorHelper.js";
 import {InteractionHelper} from "../../../helper/InteractionHelper.js";
@@ -10,6 +10,7 @@ import {LoggingAction} from "../../../enums/loggingTypes.js";
 import {initUsersToDatabase} from "../../../helper/databaseHelper.js";
 import {Config} from "../../../main/config.js";
 import {database} from "../../../main/database.js";
+import {convertToEmojiPng} from "../../../helper/emojis.js";
 
 export default {
     name: Events.InteractionCreate,
@@ -63,56 +64,84 @@ export default {
                 }
             );
 
-            if (buttonHandler?.options) {
-                if ((buttonHandler.options.cooldown ?? 0) >= 1) {
-                    await InteractionHelper.cooldownCheck(
-                        buttonHandler.options.cooldown as number,
-                        interaction,
-                        client,
-                        buttonHandler.type as DisBotInteractionType
-                    );
+            const interactionPermission = await database.guildInteractionPermissions.findFirst({
+                where: {
+                    CustomId: interaction.customId,
+                    Type: GuildPermissionType.BUTTON
                 }
-                if ((buttonHandler.options.botPermissions?.length ?? 0) > 0) {
-                    await InteractionHelper.checkBotPermissions(
-                        interaction,
-                        client,
-                        buttonHandler.options.botPermissions
-                    );
-                }
-                if (buttonHandler.options.isGuildOwner) {
-                    await InteractionHelper.checkGuildOwner(
-                        interaction,
-                        client,
-                    );
-                }
-                if (!buttonHandler.options.userHasOnePermission) {
-                    if ((buttonHandler.options.permission?.length ?? 0) > 0) {
-                        await InteractionHelper.getPermissionType(
-                            buttonHandler.options.permission as PermissionType,
-                            interaction.guild as Guild,
-                            interaction.member as GuildMember,
-                            client,
-                            interaction
-                        );
-                    }
+            })
 
-                    if ((buttonHandler.options.userPermissions?.length ?? 0) > 0) {
-                        await InteractionHelper.checkUserPermissions(
+            if (interactionPermission) {
+                const allowedToUse: boolean[] = []
+                if (interactionPermission?.UserIds.length >= 1) {
+                    allowedToUse.push(await InteractionHelper.userRequirements(
                             interaction,
                             client,
-                            buttonHandler.options.userPermissions
-                        );
+                            interactionPermission.UserIds
+                        )
+                    )
+                }
+                if (interactionPermission?.ChannelIds.length >= 1) {
+                    if (await InteractionHelper.channelRequirements(
+                        interaction,
+                        client,
+                        interactionPermission.ChannelIds
+                    )) {
+                        return await (interaction as any).reply({
+                            flags: MessageFlags.Ephemeral,
+                            content: `## ${await convertToEmojiPng("permission", client.user.id)} You can't perform this interaction!`
+                        })
                     }
-                } else {
-                    if ((buttonHandler.options.userPermissions?.length ?? 0) > 0) {
-                        await InteractionHelper.checkUserHasOnePermission(
-                            interaction,
-                            buttonHandler.options.userPermissions,
-                            buttonHandler.options.permission as PermissionType,
-                        );
-                    }
+                }
+                if (interactionPermission?.RoleIds.length >= 1) {
+                    allowedToUse.push(await InteractionHelper.roleRequirements(
+                        interaction,
+                        client,
+                        interactionPermission.RoleIds
+                    ))
+                }
+                if (!allowedToUse.some((a) => a == true)) {
+                    return await (interaction as any).reply({
+                        flags: MessageFlags.Ephemeral,
+                        content: `## ${await convertToEmojiPng("permission", client.user.id)} You can't perform this interaction!`
+                    })
                 }
             }
+
+            if (interactionPermission?.Cooldown ?? buttonHandler?.options?.cooldown) {
+                await InteractionHelper.cooldownCheck(
+                    interactionPermission.Cooldown ?? buttonHandler.options.cooldown as number,
+                    interaction,
+                    client,
+                    buttonHandler.type as DisBotInteractionType
+                );
+            }
+            if ((buttonHandler?.options?.botPermissions?.length ?? 0) > 0) {
+                await InteractionHelper.checkBotPermissions(
+                    interaction,
+                    client,
+                    buttonHandler.options.botPermissions
+                );
+            }
+            if (interactionPermission?.NeedsGuildOwner) {
+                await InteractionHelper.checkGuildOwner(
+                    interaction,
+                    client,
+                );
+            } else if (buttonHandler?.options?.isGuildOwner && interactionPermission?.NeedsGuildOwner == null) {
+                await InteractionHelper.checkGuildOwner(
+                    interaction,
+                    client,
+                );
+            }
+            if ((buttonHandler?.options?.userPermissions?.length ?? 0) > 0 && !interactionPermission?.DisableInternalUserPermission) {
+                await InteractionHelper.checkUserPermissions(
+                    interaction,
+                    client,
+                    buttonHandler.options.userPermissions
+                );
+            }
+
             await buttonHandler?.execute(interaction, client);
         } catch (error) {
             errorHandler(interaction, client, error as Error);

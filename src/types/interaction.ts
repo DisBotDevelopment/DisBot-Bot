@@ -4,6 +4,8 @@ import type {PermissionType} from "../enums/permissionType.js";
 import type {ExtendedClient} from "./client.js";
 
 export interface DisBotInteraction {
+    interactionName: string;
+    interactionDescription?: string;
     execute: (any: any, client: ExtendedClient) => Promise<void>;
     autocomplete: any;
     name?: string;
@@ -14,11 +16,9 @@ export interface DisBotInteraction {
     type: DisBotInteractionType;
     options: {
         once?: boolean;
-        permission: PermissionType | null;
         cooldown?: number | 0;
         botPermissions: PermissionResolvable[];
         userPermissions: PermissionResolvable[];
-        userHasOnePermission: boolean | false;
         isGuildOwner: boolean | false;
     },
     help: {
