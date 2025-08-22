@@ -12,6 +12,7 @@ env:
   SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
 jobs:
   build:
+    name: " Build DisBot Docker Image (EntryPoint)"
     if: "!contains(github.ref, '-dev')"
     permissions:
       contents: read

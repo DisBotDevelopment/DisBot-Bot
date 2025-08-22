@@ -11,7 +11,7 @@ env:
   SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
 jobs:
   push:
-    name: "DisBot Builder"
+    name: "Build DisBot Dev Image (DisBot)"
     runs-on: ubuntu-latest
     permissions:
       contents: read

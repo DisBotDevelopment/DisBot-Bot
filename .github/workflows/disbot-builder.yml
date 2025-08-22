@@ -11,6 +11,7 @@ env:
   SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
 jobs:    
   build:
+    name: " Build DisBot Docker Image (DisBot)"
     if: "!contains(github.ref, '-dev')"
     runs-on: ubuntu-latest
     permissions:
