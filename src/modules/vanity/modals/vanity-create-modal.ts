@@ -61,6 +61,18 @@ export default {
                                     Title: interaction.guild.name ?? "N/A",
                                     Description: interaction.guild.description ?? "N/A",
                                     Color: "#282b30",
+                                    Author: {
+                                        connectOrCreate: {
+                                            where: {
+                                                VanityEmbedsId: uuid
+                                            },
+                                            create: {
+                                                Name: interaction.guild.name,
+                                                URL: `https://dchat.link/${query}`,
+                                                IconURL: interaction.guild.iconURL()
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         },
