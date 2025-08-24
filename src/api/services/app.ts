@@ -121,10 +121,9 @@ export async function app(client: ExtendedClient) {
                 return
             }
             for (const roleId of gate.Roles) {
-                const role = guild.roles.cache.get(roleId);
+                const role = await guild.roles.fetch(roleId);
                 if (!role) {
-                    res.status(404).json({error: `Role with ID ${roleId} not found`});
-                    return
+                    continue
                 }
                 await guildMemeber.roles.add(role).catch(() => null);
             }
@@ -155,10 +154,9 @@ export async function app(client: ExtendedClient) {
                 return
             }
             for (const permission of gate.ChannelPermissions) {
-                const channel = guild.channels.cache.get(permission.ChannelId);
+                const channel = await guild.channels.fetch(permission.ChannelId);
                 if (!channel) {
-                    res.status(404).json({error: `Channel with ID ${permission.ChannelId} not found`});
-                    return
+                    continue
                 }
                 await (channel as GuildChannel).permissionOverwrites.create(guildMemeber, {
                     [String(permission.Permission)]: true,
