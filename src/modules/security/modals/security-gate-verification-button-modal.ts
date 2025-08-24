@@ -93,20 +93,20 @@ export default {
             //     });
             // }
 
-            message?.edit({
+            await message?.edit({
                 components: [
                     new ActionRowBuilder<ButtonBuilder>().addComponents(
                         (() => {
                             const button = new ButtonBuilder()
-                                .setCustomId(`security-gate-verification-verify:${data?.UUID}`)
                                 .setLabel(label)
                                 .setStyle(styleNumber ?? ButtonStyle.Secondary);
                             if (emoji) {
                                 button.setEmoji(emoji);
                             }
-                            // TODO: Replace with actual URL if needed
                             if (data.ActionType == VerificationActionType.Authorize) {
                                 button.setURL(Config.Modules.Verification.VerifyAuthUrl + "&state=" + data.UUID);
+                            } else {
+                                button.setCustomId(`security-gate-verification-verify:${data?.UUID}`)
                             }
                             return button;
                         })()

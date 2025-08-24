@@ -18,15 +18,6 @@ import {database} from "../../../main/database.js";
 export default {
     id: "security-gate-verification-action-role-select",
     type: DisBotInteractionType.SelectMenu,
-    options: {
-        once: false,
-        permission: PermissionType.SecurityGate,
-        cooldown: 3000, // 3 seconds
-        botPermissions: [],
-        userPermissions: [PermissionFlagsBits.ManageGuild],
-        userHasOnePermission: true,
-        isGuildOwner: false
-    },
 
     /**
      * @param {AnySelectMenuInteraction} interaction
@@ -43,12 +34,12 @@ export default {
             const data = await database.verificationGates.findFirst
             ({
                 where: {
-                    UUID: value
+                    UUID: uuid
                 }
             });
 
             if (!data) {
-                return interaction.reply({
+                return await interaction.reply({
                     content: `## ${await convertToEmojiPng("error", client.user.id)} Verification Gate not found`,
                     flags: MessageFlags.Ephemeral
                 });
@@ -62,7 +53,7 @@ export default {
             await database.verificationGates.update(
                 {
                     where: {
-                        UUID: value
+                        UUID: uuid
                     },
                     data: {
                         Roles: data.Roles
@@ -70,7 +61,7 @@ export default {
                 }
             );
 
-            interaction.update({
+            await interaction.update({
                 content: `## ${await convertToEmojiPng("check", client.user.id)} Role has been ${data.Roles.includes(value) ? "added" : "removed"} to the security gate verification action.`,
             })
         }
