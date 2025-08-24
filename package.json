@@ -3,7 +3,7 @@
   "main": "./.build/startup.js",
   "version": "1.6.2",
   "scripts": {
-    "disbot": "cd /bot && node ./.build/src/main/startup.js",
+    "disbot": "node ./.build/src/main/startup.js",
     "customer": "cd /home/disbot && node ./.build/src/main/startup.js",
     "customerdev": "bun run build && node ./.build/src/main/startup.js",
     "disbotdev": "bun run build && node ./.build/src/main/startup.js",

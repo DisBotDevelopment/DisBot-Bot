@@ -35,18 +35,6 @@ export async function configStartup() {
                     VerifyRedirectUrl: "",
                     VerifyAuthUrl: "",
                 },
-                Bot: {
-                    NewsChannel1: "",
-                    NewsChannel2: "",
-                    NewsChannel3: "",
-                    NewsChannel4: "",
-                },
-                Customer: {
-                    PelicanApi: "",
-                    PelicanClientApiToken: "",
-                    PelicanClientApi: "",
-                    PelicanApplicationApi: "",
-                },
                 Notifications: {
                     SpotifyClientId: "",
                     SpotifyClientSecret: "",
@@ -64,11 +52,6 @@ export async function configStartup() {
                     VotePort: 0,
                 },
                 AppPort: 0,
-                EventsApi: {
-                    ApiKey: "",
-                    ApiPort: 0,
-                    WsPort: 0,
-                },
                 API: {
                     ApiPort: 0,
                     ApiKey: "",
@@ -85,7 +68,7 @@ export async function configStartup() {
 
         const doc = new YAML.Document(configData);
 
-        doc.commentBefore = ` DisBot Config v${botData.configVersion} of version ${botData.version}\n Read more: https://doc.xyzhub.link/s/disbot/doc/config-yXEob11woF`;
+        doc.commentBefore = ` DisBot Config v${botData.configVersion} of version ${botData.version}.`;
 
         generateConfigCommentBeforeIn(doc, ["Bot", "DiscordBotToken"], " Discord Bot Token from https://discord.com/developers/applications/<bot-id>/bot")
         generateConfigCommentBeforeIn(doc, ["Bot", "DiscordApplicationId"], " Discord Bot Token from https://discord.com/developers/applications/<bot-id>/information")

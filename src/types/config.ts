@@ -18,18 +18,6 @@ export type DisBotConfigData = {
             VerifyRedirectUrl: string;
             VerifyAuthUrl: string;
         };
-        Bot: {
-            NewsChannel1: string;
-            NewsChannel2: string;
-            NewsChannel3: string;
-            NewsChannel4: string;
-        };
-        Customer: {
-            PelicanApi: string;
-            PelicanClientApiToken: string;
-            PelicanClientApi: string;
-            PelicanApplicationApi: string;
-        };
         Notifications: {
             SpotifyClientId: string;
             SpotifyClientSecret: string;
@@ -48,11 +36,6 @@ export type DisBotConfigData = {
             VotePort: number;
         };
         AppPort: number;
-        EventsApi: {
-            ApiKey: string;
-            ApiPort: number;
-            WsPort: number;
-        };
         API: {
             ApiPort: number;
             ApiKey: string;

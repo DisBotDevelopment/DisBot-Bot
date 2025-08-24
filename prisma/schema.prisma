@@ -215,11 +215,11 @@ model Giveaways {
 model TempVoices {
   id                   String              @id @default(auto()) @map("_id") @db.ObjectId
   UUID                 String              @unique
-  Name                 String
+  Name                 String?
   JointoCreateChannel  String
   JointoCreateCategory String
   Manage               Boolean
-  PresetLimit          Int
+  PresetLimit          Int?
   TempVoiceChannels    TempVoiceChannels[]
   GuildId              String
   Guilds               Guilds              @relation(fields: [GuildId], references: [GuildId])

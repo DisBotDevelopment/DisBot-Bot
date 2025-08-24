@@ -79,13 +79,24 @@ export default {
 
                 await database.tempVoices.create({
                     data: {
-                        GuildId: interaction.guild.id,
                         JointoCreateChannel: channel?.id,
                         JointoCreateCategory: category?.id,
                         Manage: false,
-                        PresetLimit: getLimit,
-                        Name: getName,
+                        PresetLimit: getLimit ?? null,
+                        Name: getName ?? null,
                         UUID: randomUUID(),
+                        Guilds: {
+                            connectOrCreate: {
+                                where: {
+                                    GuildId: interaction.guild.id
+                                },
+                                create: {
+                                    GuildId: interaction.guild.id,
+                                    GuildName: interaction.guild.name,
+                                    GuildOwner: interaction.guild.ownerId
+                                }
+                            }
+                        }
                     }
                 });
 

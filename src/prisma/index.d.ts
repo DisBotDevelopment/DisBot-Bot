@@ -21521,11 +21521,11 @@ export namespace Prisma {
   export type TempVoicesGroupByOutputType = {
     id: string
     UUID: string
-    Name: string
+    Name: string | null
     JointoCreateChannel: string
     JointoCreateCategory: string
     Manage: boolean
-    PresetLimit: number
+    PresetLimit: number | null
     GuildId: string
     _count: TempVoicesCountAggregateOutputType | null
     _avg: TempVoicesAvgAggregateOutputType | null
@@ -21591,11 +21591,11 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       UUID: string
-      Name: string
+      Name: string | null
       JointoCreateChannel: string
       JointoCreateCategory: string
       Manage: boolean
-      PresetLimit: number
+      PresetLimit: number | null
       GuildId: string
     }, ExtArgs["result"]["tempVoices"]>
     composites: {}
@@ -54720,11 +54720,11 @@ export namespace Prisma {
     NOT?: TempVoicesWhereInput | TempVoicesWhereInput[]
     id?: StringFilter<"TempVoices"> | string
     UUID?: StringFilter<"TempVoices"> | string
-    Name?: StringFilter<"TempVoices"> | string
+    Name?: StringNullableFilter<"TempVoices"> | string | null
     JointoCreateChannel?: StringFilter<"TempVoices"> | string
     JointoCreateCategory?: StringFilter<"TempVoices"> | string
     Manage?: BoolFilter<"TempVoices"> | boolean
-    PresetLimit?: IntFilter<"TempVoices"> | number
+    PresetLimit?: IntNullableFilter<"TempVoices"> | number | null
     GuildId?: StringFilter<"TempVoices"> | string
     TempVoiceChannels?: TempVoiceChannelsListRelationFilter
     Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
@@ -54749,11 +54749,11 @@ export namespace Prisma {
     AND?: TempVoicesWhereInput | TempVoicesWhereInput[]
     OR?: TempVoicesWhereInput[]
     NOT?: TempVoicesWhereInput | TempVoicesWhereInput[]
-    Name?: StringFilter<"TempVoices"> | string
+    Name?: StringNullableFilter<"TempVoices"> | string | null
     JointoCreateChannel?: StringFilter<"TempVoices"> | string
     JointoCreateCategory?: StringFilter<"TempVoices"> | string
     Manage?: BoolFilter<"TempVoices"> | boolean
-    PresetLimit?: IntFilter<"TempVoices"> | number
+    PresetLimit?: IntNullableFilter<"TempVoices"> | number | null
     GuildId?: StringFilter<"TempVoices"> | string
     TempVoiceChannels?: TempVoiceChannelsListRelationFilter
     Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
@@ -54781,11 +54781,11 @@ export namespace Prisma {
     NOT?: TempVoicesScalarWhereWithAggregatesInput | TempVoicesScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"TempVoices"> | string
     UUID?: StringWithAggregatesFilter<"TempVoices"> | string
-    Name?: StringWithAggregatesFilter<"TempVoices"> | string
+    Name?: StringNullableWithAggregatesFilter<"TempVoices"> | string | null
     JointoCreateChannel?: StringWithAggregatesFilter<"TempVoices"> | string
     JointoCreateCategory?: StringWithAggregatesFilter<"TempVoices"> | string
     Manage?: BoolWithAggregatesFilter<"TempVoices"> | boolean
-    PresetLimit?: IntWithAggregatesFilter<"TempVoices"> | number
+    PresetLimit?: IntNullableWithAggregatesFilter<"TempVoices"> | number | null
     GuildId?: StringWithAggregatesFilter<"TempVoices"> | string
   }
 
@@ -58219,11 +58219,11 @@ export namespace Prisma {
   export type TempVoicesCreateInput = {
     id?: string
     UUID: string
-    Name: string
+    Name?: string | null
     JointoCreateChannel: string
     JointoCreateCategory: string
     Manage: boolean
-    PresetLimit: number
+    PresetLimit?: number | null
     TempVoiceChannels?: TempVoiceChannelsCreateNestedManyWithoutTempVoicesInput
     Guilds: GuildsCreateNestedOneWithoutTempVoicesInput
   }
@@ -58231,33 +58231,33 @@ export namespace Prisma {
   export type TempVoicesUncheckedCreateInput = {
     id?: string
     UUID: string
-    Name: string
+    Name?: string | null
     JointoCreateChannel: string
     JointoCreateCategory: string
     Manage: boolean
-    PresetLimit: number
+    PresetLimit?: number | null
     GuildId: string
     TempVoiceChannels?: TempVoiceChannelsUncheckedCreateNestedManyWithoutTempVoicesInput
   }
 
   export type TempVoicesUpdateInput = {
     UUID?: StringFieldUpdateOperationsInput | string
-    Name?: StringFieldUpdateOperationsInput | string
+    Name?: NullableStringFieldUpdateOperationsInput | string | null
     JointoCreateChannel?: StringFieldUpdateOperationsInput | string
     JointoCreateCategory?: StringFieldUpdateOperationsInput | string
     Manage?: BoolFieldUpdateOperationsInput | boolean
-    PresetLimit?: IntFieldUpdateOperationsInput | number
+    PresetLimit?: NullableIntFieldUpdateOperationsInput | number | null
     TempVoiceChannels?: TempVoiceChannelsUpdateManyWithoutTempVoicesNestedInput
     Guilds?: GuildsUpdateOneRequiredWithoutTempVoicesNestedInput
   }
 
   export type TempVoicesUncheckedUpdateInput = {
     UUID?: StringFieldUpdateOperationsInput | string
-    Name?: StringFieldUpdateOperationsInput | string
+    Name?: NullableStringFieldUpdateOperationsInput | string | null
     JointoCreateChannel?: StringFieldUpdateOperationsInput | string
     JointoCreateCategory?: StringFieldUpdateOperationsInput | string
     Manage?: BoolFieldUpdateOperationsInput | boolean
-    PresetLimit?: IntFieldUpdateOperationsInput | number
+    PresetLimit?: NullableIntFieldUpdateOperationsInput | number | null
     GuildId?: StringFieldUpdateOperationsInput | string
     TempVoiceChannels?: TempVoiceChannelsUncheckedUpdateManyWithoutTempVoicesNestedInput
   }
@@ -58265,30 +58265,30 @@ export namespace Prisma {
   export type TempVoicesCreateManyInput = {
     id?: string
     UUID: string
-    Name: string
+    Name?: string | null
     JointoCreateChannel: string
     JointoCreateCategory: string
     Manage: boolean
-    PresetLimit: number
+    PresetLimit?: number | null
     GuildId: string
   }
 
   export type TempVoicesUpdateManyMutationInput = {
     UUID?: StringFieldUpdateOperationsInput | string
-    Name?: StringFieldUpdateOperationsInput | string
+    Name?: NullableStringFieldUpdateOperationsInput | string | null
     JointoCreateChannel?: StringFieldUpdateOperationsInput | string
     JointoCreateCategory?: StringFieldUpdateOperationsInput | string
     Manage?: BoolFieldUpdateOperationsInput | boolean
-    PresetLimit?: IntFieldUpdateOperationsInput | number
+    PresetLimit?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type TempVoicesUncheckedUpdateManyInput = {
     UUID?: StringFieldUpdateOperationsInput | string
-    Name?: StringFieldUpdateOperationsInput | string
+    Name?: NullableStringFieldUpdateOperationsInput | string | null
     JointoCreateChannel?: StringFieldUpdateOperationsInput | string
     JointoCreateCategory?: StringFieldUpdateOperationsInput | string
     Manage?: BoolFieldUpdateOperationsInput | boolean
-    PresetLimit?: IntFieldUpdateOperationsInput | number
+    PresetLimit?: NullableIntFieldUpdateOperationsInput | number | null
     GuildId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -66474,22 +66474,22 @@ export namespace Prisma {
   export type TempVoicesCreateWithoutGuildsInput = {
     id?: string
     UUID: string
-    Name: string
+    Name?: string | null
     JointoCreateChannel: string
     JointoCreateCategory: string
     Manage: boolean
-    PresetLimit: number
+    PresetLimit?: number | null
     TempVoiceChannels?: TempVoiceChannelsCreateNestedManyWithoutTempVoicesInput
   }
 
   export type TempVoicesUncheckedCreateWithoutGuildsInput = {
     id?: string
     UUID: string
-    Name: string
+    Name?: string | null
     JointoCreateChannel: string
     JointoCreateCategory: string
     Manage: boolean
-    PresetLimit: number
+    PresetLimit?: number | null
     TempVoiceChannels?: TempVoiceChannelsUncheckedCreateNestedManyWithoutTempVoicesInput
   }
 
@@ -67292,11 +67292,11 @@ export namespace Prisma {
     NOT?: TempVoicesScalarWhereInput | TempVoicesScalarWhereInput[]
     id?: StringFilter<"TempVoices"> | string
     UUID?: StringFilter<"TempVoices"> | string
-    Name?: StringFilter<"TempVoices"> | string
+    Name?: StringNullableFilter<"TempVoices"> | string | null
     JointoCreateChannel?: StringFilter<"TempVoices"> | string
     JointoCreateCategory?: StringFilter<"TempVoices"> | string
     Manage?: BoolFilter<"TempVoices"> | boolean
-    PresetLimit?: IntFilter<"TempVoices"> | number
+    PresetLimit?: IntNullableFilter<"TempVoices"> | number | null
     GuildId?: StringFilter<"TempVoices"> | string
   }
 
@@ -69928,22 +69928,22 @@ export namespace Prisma {
   export type TempVoicesCreateWithoutTempVoiceChannelsInput = {
     id?: string
     UUID: string
-    Name: string
+    Name?: string | null
     JointoCreateChannel: string
     JointoCreateCategory: string
     Manage: boolean
-    PresetLimit: number
+    PresetLimit?: number | null
     Guilds: GuildsCreateNestedOneWithoutTempVoicesInput
   }
 
   export type TempVoicesUncheckedCreateWithoutTempVoiceChannelsInput = {
     id?: string
     UUID: string
-    Name: string
+    Name?: string | null
     JointoCreateChannel: string
     JointoCreateCategory: string
     Manage: boolean
-    PresetLimit: number
+    PresetLimit?: number | null
     GuildId: string
   }
 
@@ -69965,21 +69965,21 @@ export namespace Prisma {
 
   export type TempVoicesUpdateWithoutTempVoiceChannelsInput = {
     UUID?: StringFieldUpdateOperationsInput | string
-    Name?: StringFieldUpdateOperationsInput | string
+    Name?: NullableStringFieldUpdateOperationsInput | string | null
     JointoCreateChannel?: StringFieldUpdateOperationsInput | string
     JointoCreateCategory?: StringFieldUpdateOperationsInput | string
     Manage?: BoolFieldUpdateOperationsInput | boolean
-    PresetLimit?: IntFieldUpdateOperationsInput | number
+    PresetLimit?: NullableIntFieldUpdateOperationsInput | number | null
     Guilds?: GuildsUpdateOneRequiredWithoutTempVoicesNestedInput
   }
 
   export type TempVoicesUncheckedUpdateWithoutTempVoiceChannelsInput = {
     UUID?: StringFieldUpdateOperationsInput | string
-    Name?: StringFieldUpdateOperationsInput | string
+    Name?: NullableStringFieldUpdateOperationsInput | string | null
     JointoCreateChannel?: StringFieldUpdateOperationsInput | string
     JointoCreateCategory?: StringFieldUpdateOperationsInput | string
     Manage?: BoolFieldUpdateOperationsInput | boolean
-    PresetLimit?: IntFieldUpdateOperationsInput | number
+    PresetLimit?: NullableIntFieldUpdateOperationsInput | number | null
     GuildId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -73886,11 +73886,11 @@ export namespace Prisma {
   export type TempVoicesCreateManyGuildsInput = {
     id?: string
     UUID: string
-    Name: string
+    Name?: string | null
     JointoCreateChannel: string
     JointoCreateCategory: string
     Manage: boolean
-    PresetLimit: number
+    PresetLimit?: number | null
   }
 
   export type MessageTemplatesCreateManyGuildsInput = {
@@ -74191,31 +74191,31 @@ export namespace Prisma {
 
   export type TempVoicesUpdateWithoutGuildsInput = {
     UUID?: StringFieldUpdateOperationsInput | string
-    Name?: StringFieldUpdateOperationsInput | string
+    Name?: NullableStringFieldUpdateOperationsInput | string | null
     JointoCreateChannel?: StringFieldUpdateOperationsInput | string
     JointoCreateCategory?: StringFieldUpdateOperationsInput | string
     Manage?: BoolFieldUpdateOperationsInput | boolean
-    PresetLimit?: IntFieldUpdateOperationsInput | number
+    PresetLimit?: NullableIntFieldUpdateOperationsInput | number | null
     TempVoiceChannels?: TempVoiceChannelsUpdateManyWithoutTempVoicesNestedInput
   }
 
   export type TempVoicesUncheckedUpdateWithoutGuildsInput = {
     UUID?: StringFieldUpdateOperationsInput | string
-    Name?: StringFieldUpdateOperationsInput | string
+    Name?: NullableStringFieldUpdateOperationsInput | string | null
     JointoCreateChannel?: StringFieldUpdateOperationsInput | string
     JointoCreateCategory?: StringFieldUpdateOperationsInput | string
     Manage?: BoolFieldUpdateOperationsInput | boolean
-    PresetLimit?: IntFieldUpdateOperationsInput | number
+    PresetLimit?: NullableIntFieldUpdateOperationsInput | number | null
     TempVoiceChannels?: TempVoiceChannelsUncheckedUpdateManyWithoutTempVoicesNestedInput
   }
 
   export type TempVoicesUncheckedUpdateManyWithoutGuildsInput = {
     UUID?: StringFieldUpdateOperationsInput | string
-    Name?: StringFieldUpdateOperationsInput | string
+    Name?: NullableStringFieldUpdateOperationsInput | string | null
     JointoCreateChannel?: StringFieldUpdateOperationsInput | string
     JointoCreateCategory?: StringFieldUpdateOperationsInput | string
     Manage?: BoolFieldUpdateOperationsInput | boolean
-    PresetLimit?: IntFieldUpdateOperationsInput | number
+    PresetLimit?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type MessageTemplatesUpdateWithoutGuildsInput = {
