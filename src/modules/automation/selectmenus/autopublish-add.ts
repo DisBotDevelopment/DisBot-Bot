@@ -17,14 +17,14 @@ export default {
         for (const value of interaction.values) {
 
 
-            const data = await database.autoPublish.findFirst({
+            const data = await database.guildAutoPublish.findFirst({
                 where: {
                     GuildId: interaction.guildId
                 }
             });
 
             if (!data) {
-                await database.autoPublish.create({
+                await database.guildAutoPublish.create({
                     data: {
                         GuildId: interaction.guild?.id,
                         Channels: [value],
@@ -32,7 +32,7 @@ export default {
                 });
             }
 
-            await database.autoPublish.update(
+            await database.guildAutoPublish.update(
                 {
                     where: {
                         GuildId: interaction.guild?.id,

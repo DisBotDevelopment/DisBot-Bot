@@ -26,7 +26,7 @@ export default {
 
             const uuid = interaction.customId.split(":")[1];
 
-            const data = await database.autoDeletes.findFirst({
+            const data = await database.guildAutoDeletes.findFirst({
                 where: {
                     UUID: uuid
                 }
@@ -43,7 +43,7 @@ export default {
             }
 
             if (data.WhitelistedRoles.includes(value)) {
-                await database.autoDeletes.updateMany(
+                await database.guildAutoDeletes.updateMany(
                     {
                         where: {
                             UUID: uuid
@@ -64,7 +64,7 @@ export default {
             } else {
 
                 const newRoles = [...data.WhitelistedRoles, value];
-                await database.autoDeletes.update(
+                await database.guildAutoDeletes.update(
                     {
                         where: {
                             UUID: uuid

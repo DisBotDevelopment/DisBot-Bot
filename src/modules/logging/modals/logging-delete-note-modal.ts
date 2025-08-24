@@ -27,7 +27,7 @@ export default {
         const message = interaction.fields.getTextInputValue("message")
         const number = Number(message)
 
-        const data = await database.guildLoggers.findFirst({
+        const data = await database.guildLogs.findFirst({
             where: {
                 UUID: uuid,
             }
@@ -42,7 +42,7 @@ export default {
         const newNotes = [...data.Notes]
         newNotes.splice(number - 1, 1)
 
-        await database.guildLoggers.update({
+        await database.guildLogs.update({
             where: {
                 UUID: uuid
             },
@@ -53,7 +53,7 @@ export default {
             }
         })
 
-        await database.guildLoggers.update({
+        await database.guildLogs.update({
             where: {
                 UUID: uuid
             },

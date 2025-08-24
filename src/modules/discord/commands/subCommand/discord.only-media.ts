@@ -34,13 +34,13 @@ export default {
             }
         )
 
-        const data = await database.discordAddons.findFirst({
+        const data = await database.discordGuildAddon.findFirst({
             where: {
                 GuildId: interaction.guild?.id
             }
         })
         if (!data) {
-            await database.discordAddons.create({
+            await database.discordGuildAddon.create({
                 data: {
                     NoLinkEmbeds: [],
                     InvitesPaused: false,
@@ -51,7 +51,7 @@ export default {
         }
 
         if (data?.OnlyMedia.includes(channel.id)) {
-            await database.discordAddons.update({
+            await database.discordGuildAddon.update({
                 where: {
                     GuildId: interaction.guild?.id,
                 },
@@ -65,7 +65,7 @@ export default {
                 content: `## ${await convertToEmojiPng("error", client.user.id)} This channel is already disabled for media only and will be removed from the list!`
             })
         } else {
-            await database.discordAddons.update({
+            await database.discordGuildAddon.update({
                 where: {
                     GuildId: interaction.guild?.id,
                 },

@@ -36,7 +36,7 @@ export default {
 
         const uuid = interaction.customId.split(":")[1]
 
-        const data = await database.guildLoggers.findFirst({
+        const data = await database.guildLogs.findFirst({
             where: {
                 UUID: uuid
             }

@@ -14,7 +14,7 @@ export default {
     async execute(interaction: ModalSubmitInteraction, client: ExtendedClient) {
         const uuid = interaction.customId.split(":")[1];
 
-        const reactData = await database.reactionRoles.findFirst({
+        const reactData = await database.guildReactionRoles.findFirst({
             where: {
                 UUID: uuid
             }
@@ -42,7 +42,7 @@ export default {
                         content: `## ${await convertToEmojiPng("error", client.user.id)} You can't use the same emoji again.`
                     })
 
-        await database.reactionRoles.update(
+        await database.guildReactionRoles.update(
             {
                 where: { UUID: uuid },
                 data: {
@@ -53,7 +53,7 @@ export default {
             }
         );
 
-        const data = await database.reactionRoles.findFirst({
+        const data = await database.guildReactionRoles.findFirst({
             where: {
                 UUID: uuid
             }

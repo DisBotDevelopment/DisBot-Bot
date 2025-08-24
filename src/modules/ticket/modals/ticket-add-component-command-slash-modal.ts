@@ -26,7 +26,7 @@ export default {
             where: {CustomId: interaction.customId.split(":")[1]}
         })
 
-        const commandNames = interaction.guild.commands.cache.map((c) => c.name)
+        const commandNames = await client.application.commands.fetch()
 
         if (!text && data.SlashCommandId) {
             await database.ticketSetups.update(
@@ -46,14 +46,16 @@ export default {
             })
         }
 
-        for (const commandName of commandNames) {
-            if (commandName === text) {
-                return await interaction.reply({
-                    flags: MessageFlags.Ephemeral,
-                    content: `## ${await convertToEmojiPng("error", client.user.id)} This name is already taken from a Slash Command.`,
-                })
+        commandNames.forEach(async (commandName) => {
+                if (commandName.name === text) {
+                    return await interaction.reply({
+                        flags: MessageFlags.Ephemeral,
+                        content: `## ${await convertToEmojiPng("error", client.user.id)} This name is already taken from a Slash Command.`,
+                    })
+
+                }
             }
-        }
+        )
 
         if (data.SlashCommandId) {
             const isCommand = interaction.guild.commands.cache.get(data.SlashCommandId)

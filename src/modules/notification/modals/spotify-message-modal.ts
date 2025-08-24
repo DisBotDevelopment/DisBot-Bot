@@ -32,7 +32,7 @@ export default {
             return;
         }
 
-        await database.spotifyNotifications.update(
+        await database.guildSpotifyNotifications.update(
             {
                 where: {UUID: id},
                 data: {

@@ -10,7 +10,6 @@ import {
     PresenceStatusData,
     PresenceUpdateStatus
 } from "discord.js";
-import {loadEventsAPI} from "../api/eventsAPI/EventsAPI.js";
 import {loadButtons} from "../handler/files/buttons.js";
 import {loadCommands} from "../handler/files/commands.js";
 import {loadEvents} from "../handler/files/events.js";
@@ -143,8 +142,6 @@ async function initializeClient() {
 
     await CommandHelper.loadCommands(client);
     await CommandHelper.guildLoadCommands(client);
-
-    await loadEventsAPI(client);
 }
 
 initializeClient()

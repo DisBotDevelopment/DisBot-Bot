@@ -16,7 +16,7 @@ export default {
 
         const uuid = interaction.customId.split(":")[1];
 
-        const data = await database.spotifyNotifications.findFirst({
+        const data = await database.guildSpotifyNotifications.findFirst({
             where: {
                 UUID: uuid
             }
@@ -29,7 +29,7 @@ export default {
             });
         }
 
-        await database.spotifyNotifications.delete({
+        await database.guildSpotifyNotifications.delete({
             where: {
                 UUID: uuid
             }

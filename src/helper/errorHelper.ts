@@ -59,7 +59,7 @@ export async function errorHandler(interaction: Interaction, client: any, error:
                                         `> ### ${await convertToEmojiPng("info", client.user?.id)} What will happen if you do it.`,
                                         `> -# You will share you public user ID`,
                                         `> -# You will send an Error stack trace`,
-                                        `> -# You will Interaction Related data`,
+                                        `> -# You will send Interaction related data`,
                                         `> -# \"Public Database Id's\" like uuids of you setup and or a not sensitive ID`,
                                         `> -# You will send a contact for the devs to contact you!`,
                                     ].join("\n"))

@@ -86,7 +86,7 @@ export default {
             }
         }
 
-        await database.reactionRoles.create({
+        await database.guildReactionRoles.create({
             data: {
                 UUID: uuids,
                 Guilds: {

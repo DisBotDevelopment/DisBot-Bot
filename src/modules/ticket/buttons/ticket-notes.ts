@@ -16,7 +16,7 @@ import {handleCloseAction, hasTicketPermission, ticketErrorMessage} from "../../
 import {convertToEmojiPng} from "../../../helper/emojis.js";
 import {cli} from "winston/lib/winston/config/index.js";
 import {PaginationData} from "../../../types/pagination.js";
-import {PaginationBuilder} from "../../../helper/pagination.js";
+import {PaginationBuilder} from "../../../helper/paginationHelper.js";
 
 export default {
     id: "ticket-notes",

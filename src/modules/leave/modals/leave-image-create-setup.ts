@@ -23,13 +23,13 @@ export default {
             "leave-image-create-color"
         );
 
-        const data = await database.guildLeaveSetups.findFirst({
+        const data = await database.guildLeaveSetup.findFirst({
             where: {
                 GuildId: interaction.guild?.id
             }
         });
 
-        await database.guildLeaveSetups.update(
+        await database.guildLeaveSetup.update(
             {
                 where: {
                     GuildId: interaction.guild?.id

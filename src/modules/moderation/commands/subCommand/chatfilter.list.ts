@@ -24,7 +24,7 @@ export default {
 
         const {guildId} = interaction;
 
-        const chatFilterData = await database.chatModerations.findFirst({
+        const chatFilterData = await database.guildChatModeration.findFirst({
             where: {
                 GuildId: guildId
             }

@@ -13,14 +13,14 @@ export default {
      */
 
     async execute(interaction: ModalSubmitInteraction, client: ExtendedClient) {
-        const data = await database.guildWelcomeSetups.findFirst({
+        const data = await database.guildWelcomeSetup.findFirst({
             where: {
                 GuildId: interaction.guild?.id
             }
         });
 
         if (!data) {
-            await database.guildWelcomeSetups.create({
+            await database.guildWelcomeSetup.create({
                 data: {
                     GuildId: interaction.guild?.id,
                     MessageTemplateId: interaction.fields.getTextInputValue(
@@ -35,7 +35,7 @@ export default {
             });
         }
 
-        await database.guildWelcomeSetups.update({
+        await database.guildWelcomeSetup.update({
                 where: {
                     GuildId: interaction.guild?.id
                 },

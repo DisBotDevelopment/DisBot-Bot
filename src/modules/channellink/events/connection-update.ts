@@ -19,7 +19,7 @@ export default {
         client: ExtendedClient
     ) {
 
-        const data = await database.channelLinks.findMany();
+        const data = await database.guildChannelLinks.findMany();
 
         const toggledata = await database.guildFeatureToggles.findFirst({
             where: {

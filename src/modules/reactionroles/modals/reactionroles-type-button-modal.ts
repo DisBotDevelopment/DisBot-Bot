@@ -33,7 +33,7 @@ export default {
         if (style == "Secondary") styleId = 2;
         if (style == "Success") styleId = 3;
 
-        const reactData = await database.reactionRoles.findFirst({
+        const reactData = await database.guildReactionRoles.findFirst({
             where: {
                 UUID: uuid
             }
@@ -52,7 +52,7 @@ export default {
             });
         }
 
-        await database.reactionRoles.update(
+        await database.guildReactionRoles.update(
             {
                 where: {UUID: uuid},
                 data: {
@@ -73,7 +73,7 @@ export default {
             }
         );
 
-        const data = await database.reactionRoles.findFirst({
+        const data = await database.guildReactionRoles.findFirst({
             where: {
                 UUID: uuid
             }

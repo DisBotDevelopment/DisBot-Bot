@@ -13,7 +13,7 @@ import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
 export default {
-    id: "autoroles-refresh",
+    id: "guildAutoRoles-refresh",
 
     /**
      *
@@ -28,13 +28,13 @@ export default {
                 GuildId: interaction.guild?.id,
             }
         });
-        const autorolesData = await database.autoRoles.findMany({
+        const guildAutoRolesData = await database.guildAutoRoles.findMany({
             where: {
                 GuildId: interaction.guild?.id
             }
         });
 
-        const allRoles = autorolesData.map(role => {
+        const allRoles = guildAutoRolesData.map(role => {
             return {
                 id: role.RoleId,
             }
@@ -44,9 +44,9 @@ export default {
             flags: MessageFlags.IsComponentsV2,
             components: [
                 new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent([
-                    `## ${await convertToEmojiPng("packageplus", client.user?.id)} Autoroles`,
+                    `## ${await convertToEmojiPng("packageplus", client.user?.id)} guildAutoRoles`,
                     ``,
-                    `### **Manage all autoroles**`,
+                    `### **Manage all guildAutoRoles**`,
                     `> Toggle the automation on or off`,
                     `> Add Roles to the automation`,
                     `> Remove Roles from the automation`,
@@ -57,18 +57,18 @@ export default {
                 ].join("\n"))).addActionRowComponents(
                     new ActionRowBuilder<ButtonBuilder>().addComponents(
                         new ButtonBuilder()
-                            .setCustomId("autoroles-toggle")
+                            .setCustomId("guildAutoRoles-toggle")
                             .setLabel(toggleData?.AutorolesEnabled ? "Disable" : "Enable")
                             .setStyle(ButtonStyle.Secondary)
                             .setEmoji(toggleData?.AutorolesEnabled ? "<:toggleon:1301864515838672908>" : "<:toggleoff:1301864526848987196>"),
                         new ButtonBuilder()
-                            .setCustomId("autoroles-refresh")
+                            .setCustomId("guildAutoRoles-refresh")
                             .setStyle(ButtonStyle.Secondary)
                             .setEmoji("<:refresh:1260140823106813953>"),
                     )).addActionRowComponents(
                     new ActionRowBuilder<RoleSelectMenuBuilder>().addComponents(
                         new RoleSelectMenuBuilder()
-                            .setCustomId("autoroles-add")
+                            .setCustomId("guildAutoRoles-add")
                             .setPlaceholder("Add Roles to the automation")
                             .setMinValues(1)
                             .setMaxValues(25)
@@ -77,7 +77,7 @@ export default {
                     .addActionRowComponents(
                         new ActionRowBuilder<RoleSelectMenuBuilder>().addComponents(
                             new RoleSelectMenuBuilder()
-                                .setCustomId("autoroles-remove")
+                                .setCustomId("guildAutoRoles-remove")
                                 .setPlaceholder("Remove Roles to the automation")
                                 .setMinValues(1)
                                 .setMaxValues(25)

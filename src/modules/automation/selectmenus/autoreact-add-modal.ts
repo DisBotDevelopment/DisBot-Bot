@@ -20,7 +20,7 @@ export default {
             });
             ;
         }
-        const data = await database.autoReacts.findFirst({
+        const data = await database.guildAutoReacts.findFirst({
             where: {
                 GuildId: guild.id,
                 ChannelId: channel,
@@ -35,7 +35,7 @@ export default {
             });
         }
 
-        await database.autoReacts.create({
+        await database.guildAutoReacts.create({
             data: {
                 GuildId: guild.id,
                 ChannelId: channel,

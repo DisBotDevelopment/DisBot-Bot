@@ -21,7 +21,7 @@ export default {
     async execute(interaction: ButtonInteraction, client: ExtendedClient) {
         const uuid = interaction.customId.split(":")[1];
 
-        const data = await database.reactionRoles.findFirst({
+        const data = await database.guildReactionRoles.findFirst({
             where: {
                 UUID: uuid
             }

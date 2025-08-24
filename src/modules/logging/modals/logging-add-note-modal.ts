@@ -25,7 +25,7 @@ export default {
         const uuid = interaction.customId.split(":")[1]
         const message = interaction.fields.getTextInputValue("message")
 
-        const data = await database.guildLoggers.findFirst({
+        const data = await database.guildLogs.findFirst({
             where: {
                 UUID: uuid,
             }
@@ -36,7 +36,7 @@ export default {
             flags: MessageFlags.Ephemeral,
         })
 
-        await database.guildLoggers.update({
+        await database.guildLogs.update({
             where: {
                 UUID: uuid
             },

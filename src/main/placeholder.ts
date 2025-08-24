@@ -1,3 +1,5 @@
+import {handleCloseAction} from "../helper/ticketHelper.js";
+
 export const URL_PLACEHOLDER = {
     "{stream.url}": "https://twitch.tv/streamurl",
     "{link}": "https://youtube.com/@yourname",

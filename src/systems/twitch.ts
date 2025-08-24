@@ -1,7 +1,7 @@
-import { ExtendedClient } from "../types/client.js";
+import {ExtendedClient} from "../types/client.js";
 import axios from "axios";
-import { EmbedBuilder, Guild, NewsChannel, TextChannel, ThreadChannel, } from "discord.js";
-import { database } from "../main/database.js";
+import {EmbedBuilder, Guild, NewsChannel, TextChannel, ThreadChannel,} from "discord.js";
+import {database} from "../main/database.js";
 
 /**
  *
@@ -9,8 +9,8 @@ import { database } from "../main/database.js";
  */
 export async function checkTwitch(client: ExtendedClient) {
 
-    const config = await database.disBot.findFirst({ where: { GetConf: "config" } });
-    const twitchdata = await database.twitchNotifications.findMany()
+    const config = await database.disBot.findFirst({where: {GetConf: "config"}});
+    const twitchdata = await database.guildTwitchNotifications.findMany()
 
     if (!twitchdata) return;
 
@@ -29,7 +29,7 @@ export async function checkTwitch(client: ExtendedClient) {
             const channelData = isChannel.data?.data;
 
             if (!channelData || channelData.length == 0) {
-                await database.twitchNotifications.deleteMany({
+                await database.guildTwitchNotifications.deleteMany({
                     where: {
                         id: twitchDocument.id,
                     }
@@ -50,13 +50,13 @@ export async function checkTwitch(client: ExtendedClient) {
             const stream = response.data.data[0];
 
             if (!stream) {
-                await database.twitchNotifications.updateMany(
+                await database.guildTwitchNotifications.updateMany(
                     {
                         where: {
                             TwitchChannelName: twitchDocument.TwitchChannelName,
                             GuildId: twitchDocument.GuildId,
                         },
-                        data: { Live: false }
+                        data: {Live: false}
                     }
                 );
 
@@ -98,13 +98,13 @@ export async function checkTwitch(client: ExtendedClient) {
                     const streamUrl = `https://www.twitch.tv/${twitchDocument.TwitchChannelName}`;
                     const thumbnailUrl = `https://static-cdn.jtvnw.net/previews-ttv/live_user_${twitchDocument.TwitchChannelName}-1920x1080.jpg`;
 
-                    await database.twitchNotifications.updateMany(
+                    await database.guildTwitchNotifications.updateMany(
                         {
                             where: {
                                 TwitchChannelName: twitchDocument.TwitchChannelName,
                                 GuildId: twitchDocument.GuildId,
                             },
-                            data: { Live: true }
+                            data: {Live: true}
                         }
                     );
 
@@ -162,7 +162,7 @@ export async function checkTwitch(client: ExtendedClient) {
                                             `${stream.user_name}`
                                         )
                                     : ""
-                                    }`,
+                                }`,
                             });
 
                             continue;
@@ -201,7 +201,7 @@ export async function checkTwitch(client: ExtendedClient) {
                                             `${stream.user_name}`
                                         )
                                     : ""
-                                    }`,
+                                }`,
                             });
                         }
                     } else {
@@ -257,7 +257,7 @@ export async function checkTwitch(client: ExtendedClient) {
                                             `${stream.user_name}`
                                         )
                                     : ""
-                                    }`,
+                                }`,
                             });
 
                             continue;
@@ -298,7 +298,7 @@ export async function checkTwitch(client: ExtendedClient) {
                                             `${stream.user_name}`
                                         )
                                     : ""
-                                    }`,
+                                }`,
                             });
                         }
                     }

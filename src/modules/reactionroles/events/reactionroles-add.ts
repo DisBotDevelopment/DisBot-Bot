@@ -12,7 +12,7 @@ export default {
         client: ExtendedClient
     ) {
 
-        const reactionroles = await database.reactionRoles.findFirst({
+        const reactionroles = await database.guildReactionRoles.findFirst({
             where: {
                 Emoji: reaction.emoji.name,
                 MessageId: reaction.message.id,

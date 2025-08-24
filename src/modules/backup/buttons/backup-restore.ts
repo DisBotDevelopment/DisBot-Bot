@@ -12,7 +12,7 @@ import { BackupData } from "../../../systems/backup/types/BackupData.js";
 import { ExtendedClient } from "../../../types/client.js";
 import { database } from "../../../main/database.js";
 import { PaginationData } from "../../../types/pagination.js";
-import { PaginationBuilder } from "../../../helper/pagination.js";
+import { PaginationBuilder } from "../../../helper/paginationHelper.js";
 
 export default {
     id: "backup-restore",

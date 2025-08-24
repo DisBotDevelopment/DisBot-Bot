@@ -5,7 +5,7 @@ import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
 export default {
-    id: "autoroles-add",
+    id: "guildAutoRoles-add",
 
     async execute(
         interaction: StringSelectMenuInteraction,
@@ -39,7 +39,7 @@ export default {
 
             }
 
-            const data = await database.autoRoles.findFirst({
+            const data = await database.guildAutoRoles.findFirst({
                 where: {
                     GuildId: interaction.guild?.id,
                     RoleId: value
@@ -52,7 +52,7 @@ export default {
                 })
             }
 
-            await database.autoRoles.create(
+            await database.guildAutoRoles.create(
                 {
                     data: {
                         GuildId: interaction.guildId,
@@ -64,7 +64,7 @@ export default {
 
         if (!client.user) throw new Error("Client user is not cached.");
         return await interaction.editReply({
-            content: `## ${await convertToEmojiPng("check", client.user?.id)} Role(s) added to autoroles successfully (${interaction.values.length} roles)`,
+            content: `## ${await convertToEmojiPng("check", client.user?.id)} Role(s) added to guildAutoRoles successfully (${interaction.values.length} roles)`,
         });
 
     },

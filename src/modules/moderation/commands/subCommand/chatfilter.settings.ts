@@ -32,23 +32,23 @@ export default {
         const {options, guildId, guild} = interaction;
         const getChannel = options.getChannel("channel")?.id || null;
 
-        const chatFilterData = await database.chatModerations.findFirst({
+        const chatFilterData = await database.guildChatModeration.findFirst({
             where: {
                 GuildId: guildId
             }
         });
 
         if (!chatFilterData)
-            await database.chatModerations.create({
+            await database.guildChatModeration.create({
                 data: {
                     GuildId: guildId,
                     LogChannelId: getChannel,
-                    WhiteListChannel: [],
-                    WhiteListRole: []
+                    WhiteListChannelIds: [],
+                    WhiteListRoleIds: []
                 }
             });
         else if (chatFilterData.LogChannelId != null) {
-            await database.chatModerations.update(
+            await database.guildChatModeration.update(
                 {
                     where: {
                         GuildId: guildId,
@@ -62,7 +62,7 @@ export default {
                 content: `You have removed the Log Channel`
             });
         }
-        await database.chatModerations.update(
+        await database.guildChatModeration.update(
             {
                 where: {
                     GuildId: guildId,

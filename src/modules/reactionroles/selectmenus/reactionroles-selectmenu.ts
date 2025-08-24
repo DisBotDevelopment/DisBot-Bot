@@ -16,7 +16,7 @@ export default {
     ) {
         for (const value of interaction.values) {
             await interaction.deferReply({flags: MessageFlags.Ephemeral});
-            const reactionroles = await database.reactionRoles.findFirst({
+            const reactionroles = await database.guildReactionRoles.findFirst({
                 where: {
                     UUID: value
                 }

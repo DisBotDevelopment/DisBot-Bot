@@ -9,8 +9,8 @@ import {
     ReactionType,
     User
 } from "discord.js";
-import { ExtendedClient } from "../../../types/client.js";
-import { database } from "../../../main/database.js";
+import {ExtendedClient} from "../../../types/client.js";
+import {database} from "../../../main/database.js";
 
 export default {
     name: Events.MessageReactionRemove,
@@ -22,7 +22,7 @@ export default {
         client: ExtendedClient
     ) {
 
-        const reactionroles = await database.reactionRoles.findFirst({
+        const reactionroles = await database.guildReactionRoles.findFirst({
             where: {
                 Emoji: reaction.emoji.name,
                 MessageId: reaction.message.id,
@@ -62,7 +62,6 @@ export default {
             content: string;
             embeds?: EmbedBuilder[];
         };
-
 
 
         if (Array.isArray(reactionroles.Roles) && reactionroles.Roles.length > 0) {

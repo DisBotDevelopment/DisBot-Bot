@@ -31,7 +31,7 @@ export async function spotify(client: ExtendedClient) {
         },
     );
 
-    const spotify = await database.spotifyNotifications.findMany()
+    const spotify = await database.guildSpotifyNotifications.findMany()
     const conf = await database.disBot.findFirst({
         where: {
             GetConf: "config"
@@ -95,7 +95,7 @@ export async function spotify(client: ExtendedClient) {
             })
         }
 
-        await database.spotifyNotifications.update({
+        await database.guildSpotifyNotifications.update({
             where: {
                 UUID: s.UUID
             },

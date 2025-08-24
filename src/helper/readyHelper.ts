@@ -1,4 +1,4 @@
-import {setupSocketIO} from "../api/eventsAPI/server.js";
+
 import {api} from "../api/restAPI/api.js";
 import {app} from "../api/services/app.js";
 import {emojiCache} from "../api/services/emojiCache.js";
@@ -49,7 +49,6 @@ export async function clientReady(client: ExtendedClient) {
 
         // API
         await api(client);
-        await setupSocketIO(client);
         await emojiCache(client);
 
 

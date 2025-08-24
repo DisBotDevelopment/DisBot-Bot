@@ -29,7 +29,7 @@ export default {
         });
         const {guild, member} = interaction;
 
-        const willkommenData = await database.guildWelcomeSetups.findFirst({
+        const willkommenData = await database.guildWelcomeSetup.findFirst({
             where: {
                 GuildId: guild?.id
             }
@@ -43,7 +43,7 @@ export default {
                 )} There is no welcome message set for this server.`
             });
 
-        await database.guildWelcomeSetups.delete({
+        await database.guildWelcomeSetup.delete({
             where: {
                 GuildId: guild?.id
             }

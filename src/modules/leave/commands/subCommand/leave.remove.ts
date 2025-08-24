@@ -32,7 +32,7 @@ export default {
         if (!interaction.member) throw new Error("Member not found");
 
         const {guild} = interaction;
-        await database.guildLeaveSetups.delete({
+        await database.guildLeaveSetup.delete({
             where: {
                 GuildId: guild.id
             }

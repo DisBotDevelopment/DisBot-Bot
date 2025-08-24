@@ -37,7 +37,7 @@ export default {
         if (!enabled?.LoggingEnabled) return;
 
         // Prisma: URL holen
-        const data = await database.guildLoggings.findFirst({
+        const data = await database.guildLogging.findFirst({
             where: {GuildId: guildId}
         });
 

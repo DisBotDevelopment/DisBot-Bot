@@ -32,7 +32,7 @@ export default {
         if (!enabled || !enabled.LoggingEnabled) return;
 
         // Hole Logging-Konfiguration (Webhook-URL) via Prisma
-        const loggingData = await database.guildLoggings.findFirst({
+        const loggingData = await database.guildLogging.findFirst({
             where: {
                 GuildId: guildId
             }

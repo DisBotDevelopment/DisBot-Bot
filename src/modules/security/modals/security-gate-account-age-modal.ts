@@ -25,7 +25,7 @@ export default {
             })
         }
 
-        await database.securitys.update
+        await database.guildSecurity.update
         ({
             where: {
                 GuildId: interaction.guildId,

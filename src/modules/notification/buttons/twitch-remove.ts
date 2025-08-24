@@ -12,7 +12,7 @@ export default {
      * @param {ExtendedClient} client
      */
     async execute(interaction: ButtonInteraction, client: ExtendedClient) {
-        const data = await database.twitchNotifications.findFirst({
+        const data = await database.guildTwitchNotifications.findFirst({
             where: {
                 GuildId: interaction.guild?.id,
                 UUID: interaction.customId.split(":")[1]
@@ -28,7 +28,7 @@ export default {
             });
         }
 
-        await database.twitchNotifications.deleteMany({
+        await database.guildTwitchNotifications.deleteMany({
             where: {
                 GuildId: interaction.guild?.id,
                 UUID: interaction.customId.split(":")[1]

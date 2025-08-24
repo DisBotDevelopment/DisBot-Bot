@@ -24,7 +24,7 @@ export default {
             "twitch-add-channelname"
         );
 
-        const data = await database.twitchNotifications.findFirst({
+        const data = await database.guildTwitchNotifications.findFirst({
             where: {
                 GuildId: interaction.guild?.id,
                 TwitchChannelName: getChannelName
@@ -43,7 +43,7 @@ export default {
             });
         }
 
-        await database.twitchNotifications.create({
+        await database.guildTwitchNotifications.create({
             data: {
                 GuildId: interaction.guild?.id,
                 TwitchChannelName: getChannelName,

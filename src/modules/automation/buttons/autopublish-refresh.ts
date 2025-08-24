@@ -30,7 +30,7 @@ export default {
                 GuildId: interaction.guild?.id,
             }
         });
-        const autoPublishData = await database.autoPublish.findFirst({
+        const autoPublishData = await database.guildAutoPublish.findFirst({
             where: {
                 GuildId: interaction.guild.id
             }

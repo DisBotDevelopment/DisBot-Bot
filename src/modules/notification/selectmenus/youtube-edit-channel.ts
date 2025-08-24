@@ -22,7 +22,7 @@ export default {
         for (const value of interaction.values) {
             const channel = interaction.guild?.channels.cache.get(value);
 
-            await database.youtubeNotifications.updateMany(
+            await database.guildYoutubeNotifications.updateMany(
                 {
                     where: {
                         UUID: interaction.customId.split(":")[1]

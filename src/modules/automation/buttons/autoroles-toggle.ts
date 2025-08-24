@@ -5,7 +5,7 @@ import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
 export default {
-    id: "autoroles-toggle",
+    id: "guildAutoRoles-toggle",
 
     /**
      *
@@ -39,7 +39,7 @@ export default {
                     }
                 })
                 await interaction.reply({
-                    content: `## ${await convertToEmojiPng("check", client.user?.id)} Autoroles successfully disabled`,
+                    content: `## ${await convertToEmojiPng("check", client.user?.id)} guildAutoRoles successfully disabled`,
                     flags: MessageFlags.Ephemeral,
                 });
             } else {
@@ -52,7 +52,7 @@ export default {
                     }
                 })
                 await interaction.reply({
-                    content: `## ${await convertToEmojiPng("check", client.user?.id)} Autoroles successfully enabled`,
+                    content: `## ${await convertToEmojiPng("check", client.user?.id)} guildAutoRoles successfully enabled`,
                     flags: MessageFlags.Ephemeral,
                 });
             }

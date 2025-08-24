@@ -28,7 +28,7 @@ export default {
         });
 
         // Prisma: Logging-Config (Webhook URL) abfragen
-        const loggingData = await database.guildLoggings.findFirst({
+        const loggingData = await database.guildLogging.findFirst({
             where: {
                 GuildId: guild.id,
             },

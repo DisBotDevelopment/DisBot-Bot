@@ -34,14 +34,14 @@ export default {
 
             if (!enabled?.LoggingEnabled) return;
 
-            const loggingData = await database.guildLoggings.findFirst({
+            const loggingData = await database.guildLogging.findFirst({
                 where: {
                     GuildId: guild.id
                 }
             });
 
             if (!loggingData?.Message) return;
-
+            
             const webhook = new WebhookClient({url: loggingData.Message});
 
             const executor = auditLogEntry.executor;

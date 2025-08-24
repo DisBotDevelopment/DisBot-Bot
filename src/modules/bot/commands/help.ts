@@ -1,35 +1,44 @@
 import {
     ButtonBuilder,
-    ButtonInteraction,
     ButtonStyle,
-    ContainerBuilder,
+    ChatInputCommandInteraction,
+    ContainerBuilder, InteractionContextType,
     MessageFlags,
-    SeparatorSpacingSize,
+    PermissionFlagsBits, PermissionsBitField,
+    SeparatorSpacingSize, SlashCommandBuilder,
     TextDisplayBuilder
 } from "discord.js";
-import { convertToEmojiPng } from "../../../helper/emojis.js";
-import { ExtendedClient } from "../../../types/client.js";
-
+import {ExtendedClient} from "../../../types/client.js";
+import {convertToEmojiPng} from "../../../helper/emojis.js";
 
 export default {
-    id: "bot-help-page",
+    help: {
+        name: 'Help',
+        description: 'Use this command to get help about the bot',
+        usage: '/help',
+        examples: [],
+        aliases: [],
+        docsLink: 'https://docs.disbot.app/docs/commands/help'
+    },
+    data: new SlashCommandBuilder()
+        .setName("help")
+        .setDescription("Use this command to get help about the bot")
+        .setContexts(InteractionContextType.Guild)
+        .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator),
+    async execute(interaction: ChatInputCommandInteraction, client: ExtendedClient) {
+        if (!client.user) throw new Error("Client user not found");
 
-    async execute(interaction: ButtonInteraction, client: ExtendedClient) {
-        try {
-            if (!client.user) throw new Error("Client user not found");
-            await interaction.deferReply({ flags: MessageFlags.Ephemeral })
+        await interaction.deferReply({flags: MessageFlags.Ephemeral});
 
-            const [, pageRaw] = interaction.customId.split(":");
-            const page = Math.max(0, parseInt(pageRaw ?? "0"));
+        const allCommands = [
+            ...(client.commands?.values() ?? []),
+            ...(client.subCommands?.values() ?? [])
+        ].filter(cmd => !!cmd.help)
 
-            const allCommands = [
-                ...(client.commands?.values() ?? []),
-                ...(client.subCommands?.values() ?? [])
-            ].filter(cmd => !!cmd.help);
+        const perPage = 5;
 
-            const perPage = 5;
+        const buildPage = async (page: number) => {
             const totalPages = Math.ceil(allCommands.length / perPage);
-
             const container = new ContainerBuilder();
 
             const start = page * perPage;
@@ -69,10 +78,10 @@ export default {
 
             container.addActionRowComponents(row => row.addComponents(prevButton, nextButton));
 
-            await interaction.editReply({ components: [container], flags: MessageFlags.IsComponentsV2 });
-        } catch (error) {
-            console.error("Error in bot-help-page interaction:", error);
+            return container;
+        };
 
-        }
+        const components = [await buildPage(0)];
+        await interaction.editReply({components, flags: MessageFlags.IsComponentsV2});
     }
 };

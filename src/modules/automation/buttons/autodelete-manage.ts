@@ -1,5 +1,5 @@
 import {ButtonInteraction, MessageFlags, StringSelectMenuBuilder, TextDisplayBuilder} from "discord.js";
-import {PaginationBuilder} from "../../../helper/pagination.js";
+import {PaginationBuilder} from "../../../helper/paginationHelper.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {PaginationData} from "../../../types/pagination.js";
 import {database} from "../../../main/database.js";
@@ -16,7 +16,7 @@ export default {
         const [action, uuid, currentIndexStr] = interaction.customId.split(":");
         const currentIndex = parseInt(currentIndexStr) || 0;
         const pageSize = 5;
-        const data = await database.autoDeletes.findMany({
+        const data = await database.guildAutoDeletes.findMany({
             where: {
                 GuildId: interaction.guildId
             }

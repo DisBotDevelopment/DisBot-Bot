@@ -32,7 +32,7 @@ export default {
         const words = sting?.split(",");
 
         for (const w of words) {
-            const dbdata = await database.chatModerations.findFirst({
+            const dbdata = await database.guildChatModeration.findFirst({
                 where: {
                     GuildId: interaction.guild?.id
                 }
@@ -48,7 +48,7 @@ export default {
                     )} Please use the \`/chafilter settings\` first`
                 });
 
-            await database.chatModerations.update({
+            await database.guildChatModeration.update({
                 where: {
                     GuildId: interaction.guild.id
                 },

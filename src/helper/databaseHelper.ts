@@ -7,6 +7,7 @@ import {LoggingAction} from "../enums/loggingTypes.js";
 import colors from "colors"
 import {User} from "discord.js";
 import {Config} from "../main/config.js";
+import * as process from "node:process";
 
 colors.enable();
 
@@ -14,8 +15,7 @@ export async function setupDisBotConfig(client: ExtendedClient): Promise<void> {
 
     try {
         const fetchTwitchToken = await axios.post(
-            `https://id.twitch.tv/oauth2/token?client_id=${Config.Modules.Notifications.TwitchClientId}&client_secret=${Config.Modules.Notifications.TwitchClientSecret}&grant_type=client_credentials`
-        );
+            `https://id.twitch.tv/oauth2/token?client_id=${Config.Modules.Notifications.TwitchClientId}&client_secret=${Config.Modules.Notifications.TwitchClientSecret}&grant_type=client_credentials`);
 
         const result = await fetch("https://accounts.spotify.com/api/token", {
             method: "POST",
@@ -31,7 +31,7 @@ export async function setupDisBotConfig(client: ExtendedClient): Promise<void> {
         });
         const authData = await result.json() as { access_token: string };
 
-        const twitchAccessToken = fetchTwitchToken.data.access_token;
+        const twitchAccessToken = fetchTwitchToken.data.access_token
 
         const disbotConfig = await database.disBot.findFirst({
             where: {
@@ -49,6 +49,18 @@ export async function setupDisBotConfig(client: ExtendedClient): Promise<void> {
                 }
             })
         }
+
+        await database.disBot.update({
+            where: {
+                GetConf: "config",
+            },
+            data: {
+                Version: botData.version,
+                Logs: [],
+                SpotifyToken: authData.access_token,
+                TwitchToken: twitchAccessToken
+            }
+        })
 
         Logger.info(
             {
@@ -92,6 +104,16 @@ export async function initGuildsToDatabase(client: ExtendedClient) {
                 GuildId: guild.id
             }
         })
+        const guildCommandManagerData = await database.guildCommandManger.findFirst({
+            where: {
+                GuildId: guild.id
+            }
+        })
+        const guildComponentManagerData = await database.guildComponentManager.findFirst({
+            where: {
+                GuildId: guild.id
+            }
+        })
 
         const guildOwner = await client.guilds.fetch(guild.id)
         if (!guildsData) await database.guilds.create({
@@ -101,6 +123,35 @@ export async function initGuildsToDatabase(client: ExtendedClient) {
                 GuildOwner: guildOwner.id
             }
         })
+        if (!guildCommandManagerData) {
+            await database.guildCommandManger.create({
+                data: {
+                    Guilds: {
+                        connect: {
+                            GuildId: guild.id,
+                        }
+                    },
+                    Commands: [],
+                    ContextMenus: [],
+                    SubCommands: [],
+                    SubCommandGroups: [],
+                }
+            })
+        }
+        if (!guildComponentManagerData) {
+            await database.guildComponentManager.create({
+                data: {
+                    Guilds: {
+                        connect: {
+                            GuildId: guild.id,
+                        }
+                    },
+                    Buttons: [],
+                    Modals: [],
+                    Selectmenus: []
+                }
+            })
+        }
     })
 }
 

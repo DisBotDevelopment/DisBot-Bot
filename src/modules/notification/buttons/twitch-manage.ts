@@ -26,7 +26,7 @@ export default {
         const pageSize = 5;
 
         try {
-            const allEmbeds = await database.twitchNotifications
+            const allEmbeds = await database.guildTwitchNotifications
                 .findMany({
                     where: {
                         GuildId: guildId

@@ -59,6 +59,7 @@ export default {
 
             const interactionPermission = await database.guildInteractionPermissions.findFirst({
                 where: {
+                    GuildId: interaction.guildId,
                     CustomId: interaction.customId,
                     Type: GuildPermissionType.SELECTMENU
                 }
@@ -99,16 +100,15 @@ export default {
                         content: `## ${await convertToEmojiPng("permission", client.user.id)} You can't perform this interaction!`
                     })
                 }
-            }
-
-            if (interactionPermission?.Cooldown ?? selectmenu?.options?.cooldown) {
+            const cooldownData = interactionPermission?.Cooldown ?? selectmenu?.options?.cooldown ?? 0
+            if (cooldownData) {
                 await InteractionHelper.cooldownCheck(
                     interactionPermission.Cooldown ?? selectmenu.options.cooldown as number,
                     interaction,
                     client,
                     selectmenu.type as DisBotInteractionType
                 );
-            }
+            }}
             if ((selectmenu?.options?.botPermissions?.length ?? 0) > 0) {
                 await InteractionHelper.checkBotPermissions(
                     interaction,

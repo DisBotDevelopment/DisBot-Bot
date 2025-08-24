@@ -23,13 +23,13 @@ export default {
             }
         )
 
-        const data = await database.discordAddons.findFirst({
+        const data = await database.discordGuildAddon.findFirst({
             where: {
                 GuildId: interaction.guild?.id
             }
         })
         if (!data) {
-            await database.discordAddons.create({
+            await database.discordGuildAddon.create({
                 data: {
                     GuildId: interaction.guild?.id,
                     InvitesPaused: false
@@ -38,7 +38,7 @@ export default {
         }
 
 
-        const isDisabled = await database.discordAddons.findFirst({
+        const isDisabled = await database.discordGuildAddon.findFirst({
             where: {
                 GuildId: interaction.guild?.id,
                 InvitesPaused: true
@@ -47,7 +47,7 @@ export default {
 
         if (isDisabled) {
             await interaction.guild?.disableInvites(false)
-            await database.discordAddons.update({
+            await database.discordGuildAddon.update({
                 where: {
                     GuildId: interaction.guild?.id,
                 },
@@ -60,7 +60,7 @@ export default {
             })
         } else {
             await interaction.guild?.disableInvites(true)
-            await database.discordAddons.update({
+            await database.discordGuildAddon.update({
                 where: {
                     GuildId: interaction.guild?.id
                 },

@@ -20,14 +20,14 @@ export default {
      */
 
     async execute(interaction: ModalSubmitInteraction, client: ExtendedClient) {
-        const data = await database.guildLeaveSetups.findFirst({
+        const data = await database.guildLeaveSetup.findFirst({
             where: {
                 GuildId: interaction.guild?.id
             }
         });
 
         if (!data) {
-            await database.guildLeaveSetups.create({
+            await database.guildLeaveSetup.create({
                 data: {
                     GuildId: interaction.guild?.id,
                     ChannelId: interaction.fields.getTextInputValue(
@@ -53,7 +53,7 @@ export default {
             });
         }
 
-        await database.guildLeaveSetups.update(
+        await database.guildLeaveSetup.update(
             {
                 where: {
                     GuildId: interaction.guild?.id

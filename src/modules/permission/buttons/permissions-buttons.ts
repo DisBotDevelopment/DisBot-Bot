@@ -1,5 +1,5 @@
 import {ButtonInteraction, ChannelType, MessageFlags, StringSelectMenuBuilder, TextDisplayBuilder} from "discord.js";
-import {PaginationBuilder} from "../../../helper/pagination.js";
+import {PaginationBuilder} from "../../../helper/paginationHelper.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {PaginationData} from "../../../types/pagination.js";
 import {database} from "../../../main/database.js";

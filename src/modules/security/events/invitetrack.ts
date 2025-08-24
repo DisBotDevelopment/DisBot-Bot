@@ -13,7 +13,7 @@ export default {
     async execute(member: GuildMember, client: ExtendedClient) {
         if (!client.user) throw new Error("User is not logged in.");
 
-        const data = await database.securitys.findFirst
+        const data = await database.guildSecurity.findFirst
         ({
             where: {
                 GuildId: member.guild.id

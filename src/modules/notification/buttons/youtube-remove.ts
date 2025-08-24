@@ -12,7 +12,7 @@ export default {
      * @param {ExtendedClient} client
      */
     async execute(interaction: ButtonInteraction, client: ExtendedClient) {
-        const youtubeData = await database.youtubeNotifications.findFirst({
+        const youtubeData = await database.guildYoutubeNotifications.findFirst({
             where: {
                 GuildId: interaction.guild?.id,
                 UUID: interaction.customId.split(":")[1]
@@ -30,7 +30,7 @@ export default {
                 flags: MessageFlags.Ephemeral
             });
 
-        await database.youtubeNotifications.deleteMany({
+        await database.guildYoutubeNotifications.deleteMany({
             where: {
                 GuildId: interaction.guild?.id,
                 UUID: interaction.customId.split(":")[1]

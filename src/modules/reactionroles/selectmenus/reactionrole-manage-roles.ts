@@ -16,7 +16,7 @@ export default {
     ) {
         const uuid = interaction.customId.split(":")[1];
 
-        const data = await database.reactionRoles.findFirst({
+        const data = await database.guildReactionRoles.findFirst({
             where: {
                 UUID: uuid
             }
@@ -30,7 +30,7 @@ export default {
             });
         }
 
-        await database.reactionRoles.update(
+        await database.guildReactionRoles.update(
             {
                 where: {
                     UUID: uuid
@@ -56,13 +56,13 @@ export default {
                 interaction.guild.members.me.roles.highest.position
             ) {
                 if (!client.user) throw new Error("Client user is not cached");
-                interaction.update({
+                await interaction.update({
                     content: `## ${await convertToEmojiPng("error", client.user?.id)} I can't use ${guildRole} role because it's higher than my highest role.`,
                     components: []
                 });
             }
 
-            await database.reactionRoles.update(
+            await database.guildReactionRoles.update(
                 {
                     where: {UUID: uuid},
                     data: {

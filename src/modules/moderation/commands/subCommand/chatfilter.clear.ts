@@ -36,7 +36,7 @@ export default {
             GuildID: guildId
         };
 
-        const chatFilterData = await database.chatModerations.findFirst({
+        const chatFilterData = await database.guildChatModeration.findFirst({
             where: {
                 GuildId: interaction.guild.id
             }
@@ -60,7 +60,7 @@ export default {
             });
         }
 
-        await database.chatModerations.delete({
+        await database.guildChatModeration.delete({
             where: {
                 GuildId: guildId
             }

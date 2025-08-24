@@ -15,7 +15,7 @@ export default {
         if (!client.user) throw new Error("Client user is not cached.");
 
 
-        const data = await database.autoDeletes.findFirst({
+        const data = await database.guildAutoDeletes.findFirst({
             where: {
                 UUID: interaction.customId.split(":")[1]
             }
@@ -32,7 +32,7 @@ export default {
         const uuid = data.UUID || interaction.customId.split(":")[1];
         const isActive = data.IsActive;
         const newStatus = !isActive;
-        await database.autoDeletes.update(
+        await database.guildAutoDeletes.update(
             {
                 where: {
                     UUID: uuid

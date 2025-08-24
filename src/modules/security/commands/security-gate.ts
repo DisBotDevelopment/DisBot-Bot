@@ -52,14 +52,14 @@ export default {
             flags: MessageFlags.Ephemeral
         });
 
-        const data = await database.securitys.findFirst
+        const data = await database.guildSecurity.findFirst
         ({
             where: {
                 GuildId: interaction.guildId
             }
         });
 
-        if (!data) await database.securitys.create({
+        if (!data) await database.guildSecurity.create({
             data: {
                 GuildId: interaction.guildId,
             }

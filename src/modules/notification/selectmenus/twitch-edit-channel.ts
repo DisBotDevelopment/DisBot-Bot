@@ -19,10 +19,10 @@ export default {
         client: ExtendedClient
     ) {
         const uuids = uuid();
-        interaction.values.forEach(async (value) => {
+        for (const value of interaction.values) {
             const channel = interaction.guild?.channels.cache.get(value);
 
-            await database.twitchNotifications.updateMany(
+            await database.guildTwitchNotifications.updateMany(
                 {
                     where: {UUID: interaction.customId.split(":")[1]},
                     data: {
@@ -32,7 +32,7 @@ export default {
             );
             if (!client.user) throw new Error("Client User is not defined");
 
-            interaction.update({
+            await interaction.update({
                 content: `## ${await convertToEmojiPng(
                     "check",
                     client.user.id
@@ -40,6 +40,6 @@ export default {
                 components: [],
                 embeds: []
             });
-        });
+        }
     }
 };

@@ -31,7 +31,7 @@ export default {
             })
         }
 
-        await database.twitchNotifications.update({
+        await database.guildTwitchNotifications.update({
             where: {
                 UUID: uuid,
                 GuildId: interaction.guild?.id

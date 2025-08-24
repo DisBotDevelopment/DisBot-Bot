@@ -23,10 +23,10 @@ export default {
         client: ExtendedClient
     ) {
         const uuid = interaction.customId.split(":")[1];
-        interaction.values.forEach(async (role) => {
+        for (const role of interaction.values) {
 
 
-            await database.spotifyNotifications.update(
+            await database.guildSpotifyNotifications.update(
                 {
                     where: {
                         UUID: uuid
@@ -56,6 +56,6 @@ export default {
             await interaction.showModal(modal);
 
 
-        })
+        }
     }
 };

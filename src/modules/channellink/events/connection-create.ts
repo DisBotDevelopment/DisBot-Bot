@@ -19,7 +19,7 @@ export default {
             }
         });
 
-        const data = await database.channelLinks.findMany();
+        const data = await database.guildChannelLinks.findMany();
         if (!toggleData) return;
         if (toggleData.ConnectionsEnabled == false) return;
 
@@ -27,7 +27,7 @@ export default {
 
         if (message.webhookId) return;
 
-        const condata = await database.channelLinks.findMany()
+        const condata = await database.guildChannelLinks.findMany()
         for (const connected of condata) {
             if (connected.ChannelId != message.channel.id) continue;
             const guild = await client.guilds.fetch(connected.GuildId as string);

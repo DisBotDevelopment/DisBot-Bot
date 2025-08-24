@@ -38,7 +38,7 @@ export default {
         switch (getOptions) {
             case "add": {
 
-                const chatFilterData = await database.chatModerations.findFirst({
+                const chatFilterData = await database.guildChatModeration.findFirst({
                     where: {
                         GuildId: guildId
                     }
@@ -55,24 +55,24 @@ export default {
                     });
 
                 if (getRole && getChannel) {
-                    await database.chatModerations.update(
+                    await database.guildChatModeration.update(
                         {
                             where: {
                                 GuildId: interaction.guildId
                             }, data: {
-                                WhiteListRole: {
+                                WhiteListRoleIds: {
                                     push: getRole.id
                                 }
                             }
                         }
                     )
 
-                    await database.chatModerations.update(
+                    await database.guildChatModeration.update(
                         {
                             where: {
                                 GuildId: interaction.guildId
                             }, data: {
-                                WhiteListChannel: {
+                                WhiteListChannelIds: {
                                     push: getChannel.id
                                 }
                             }
@@ -88,12 +88,12 @@ export default {
                 }
 
                 if (getRole) {
-                    await database.chatModerations.update(
+                    await database.guildChatModeration.update(
                         {
                             where: {
                                 GuildId: interaction.guildId
                             }, data: {
-                                WhiteListRole: {
+                                WhiteListRoleIds: {
                                     push: getRole.id
                                 }
                             }
@@ -107,12 +107,12 @@ export default {
                     });
                 } else if (getChannel) {
 
-                    await database.chatModerations.update(
+                    await database.guildChatModeration.update(
                         {
                             where: {
                                 GuildId: interaction.guildId
                             }, data: {
-                                WhiteListChannel: {
+                                WhiteListChannelIds: {
                                     push: getChannel.id
                                 }
                             }
@@ -136,7 +136,7 @@ export default {
                 break;
 
             case "remove": {
-                const chatFilterData = await database.chatModerations.findFirst({
+                const chatFilterData = await database.guildChatModeration.findFirst({
                     where: {
                         GuildId: guildId
                     }
@@ -155,13 +155,13 @@ export default {
                 const channelId = getChannel?.id;
 
                 if (roleId) {
-                    const newRoles = chatFilterData.WhiteListRole.filter((r: string) => r !== roleId);
-                    await database.chatModerations.update({
+                    const newRoles = chatFilterData.WhiteListRoleIds.filter((r: string) => r !== roleId);
+                    await database.guildChatModeration.update({
                         where: {
                             GuildId: interaction.guildId
                         },
                         data: {
-                            WhiteListRole: {
+                            WhiteListRoleIds: {
                                 set: newRoles
                             }
                         }
@@ -169,13 +169,13 @@ export default {
                 }
 
                 if (channelId) {
-                    const newChannels = chatFilterData.WhiteListChannel.filter((c: string) => c !== channelId);
-                    await database.chatModerations.update({
+                    const newChannels = chatFilterData.WhiteListChannelIds.filter((c: string) => c !== channelId);
+                    await database.guildChatModeration.update({
                         where: {
                             GuildId: interaction.guildId
                         },
                         data: {
-                            WhiteListChannel: {
+                            WhiteListChannelIds: {
                                 set: newChannels
                             }
                         }
@@ -203,7 +203,7 @@ export default {
             case "list": {
 
 
-                const chatFilterData = await database.chatModerations.findFirst({
+                const chatFilterData = await database.guildChatModeration.findFirst({
                     where: {
                         GuildId: guildId
                     }
@@ -218,9 +218,9 @@ export default {
                         )} Plase setup the chatfilter first. Use: \`\`\`/chatfilter settings\`\`\``
                     });
                 interaction.editReply({
-                    content: `Channel: ${chatFilterData.WhiteListChannel.map(
+                    content: `Channel: ${chatFilterData.WhiteListChannelIds.map(
                         (c: any) => ` <#${c}> `
-                    )}\nRole: <@&${chatFilterData.WhiteListRole}>`
+                    )}\nRole: <@&${chatFilterData.WhiteListRoleIds}>`
                 });
                 break;
             }

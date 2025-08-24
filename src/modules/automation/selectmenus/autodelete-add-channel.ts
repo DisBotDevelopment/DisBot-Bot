@@ -26,7 +26,7 @@ export default {
 
             const uuid = interaction.customId.split(":")[1];
 
-            const data = await database.autoDeletes.findFirst({
+            const data = await database.guildAutoDeletes.findFirst({
                 where: {
                     UUID: uuid
                 }
@@ -50,7 +50,7 @@ export default {
                 continue;
             }
 
-            await database.autoDeletes.update(
+            await database.guildAutoDeletes.update(
                 {
                     where: {
                         UUID: uuid

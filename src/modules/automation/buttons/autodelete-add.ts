@@ -29,7 +29,7 @@ export default {
 
         const uuid = randomUUID();
 
-        await database.autoDeletes.create({
+        await database.guildAutoDeletes.create({
             data: {
                 UUID: uuid,
                 GuildId: interaction.guildId

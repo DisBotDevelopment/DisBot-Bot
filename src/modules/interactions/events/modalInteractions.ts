@@ -51,6 +51,7 @@ export default {
 
             const interactionPermission = await database.guildInteractionPermissions.findFirst({
                 where: {
+                    GuildId: interaction.guildId,
                     CustomId: interaction.customId,
                     Type: GuildPermissionType.MODAL
                 }
@@ -91,15 +92,16 @@ export default {
                         content: `## ${await convertToEmojiPng("permission", client.user.id)} You can't perform this interaction!`
                     })
                 }
-            }
 
-            if (interactionPermission?.Cooldown ?? modal?.options?.cooldown) {
-                await InteractionHelper.cooldownCheck(
-                    interactionPermission.Cooldown ?? modal.options.cooldown as number,
-                    interaction,
-                    client,
-                    modal.type as DisBotInteractionType
-                );
+                const cooldownData = interactionPermission?.Cooldown ?? modal?.options?.cooldown ?? 0
+                if (cooldownData) {
+                    await InteractionHelper.cooldownCheck(
+                        interactionPermission.Cooldown ?? modal.options.cooldown as number,
+                        interaction,
+                        client,
+                        modal.type as DisBotInteractionType
+                    );
+                }
             }
             if ((modal?.options?.botPermissions?.length ?? 0) > 0) {
                 await InteractionHelper.checkBotPermissions(

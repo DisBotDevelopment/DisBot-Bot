@@ -18,7 +18,7 @@ export default {
         for (const role of interaction.values) {
 
 
-            await database.spotifyNotifications.update(
+            await database.guildSpotifyNotifications.update(
                 {
                     where: {UUID: uuid},
                     data: {
@@ -27,7 +27,7 @@ export default {
                 }
             );
             if (!client.user) throw new Error("Client user not found");
-            interaction.update(
+            await interaction.update(
                 {
                     content: `## ${await convertToEmojiPng("check", client.user?.id)} Update Notification Channel`,
                     embeds: [],

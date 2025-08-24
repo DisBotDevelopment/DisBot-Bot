@@ -25,7 +25,7 @@ export default {
             return;
         }
 
-        const data = await database.autoDeletes.findFirst(
+        const data = await database.guildAutoDeletes.findFirst(
             {
                 where: {
                     GuildId: interaction.guildId,
@@ -41,7 +41,7 @@ export default {
             return;
         }
 
-        await database.autoDeletes.update(
+        await database.guildAutoDeletes.update(
             {
                 where: {
                     UUID: uuid,

@@ -38,7 +38,7 @@ export default {
 
         const getLogType = interaction.options.getString("delete");
 
-        const data = await database.guildLoggings.findFirst({
+        const data = await database.guildLogging.findFirst({
             where: {
                 GuildId: interaction.guild.id
             }
@@ -51,7 +51,7 @@ export default {
         }
 
         const resetLog = async (fieldName: string) => {
-            await database.guildLoggings.updateMany({
+            await database.guildLogging.updateMany({
                 where: {GuildId: interaction.guild.id},
                 data: {[fieldName]: null}
             });
@@ -63,7 +63,7 @@ export default {
 
         switch (getLogType) {
             case "all": {
-                await database.guildLoggings.updateMany({
+                await database.guildLogging.updateMany({
                     where: {GuildId: interaction.guild.id},
                     data: {
                         AutoMod: null,

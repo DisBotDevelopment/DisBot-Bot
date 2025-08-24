@@ -12,14 +12,13 @@ export default {
         const uuid = interaction.customId.split(":")[1];
 
         if (!client.user) throw new Error("Client user is not cached.");
-
-        // Neue Nachrichten aus dem Input holen
+        
         const newMessages = interaction.fields.getTextInputValue("autodelete-add-message-input")
             .split(",")
             .map(msg => msg.trim())
-            .filter(msg => msg.length > 0); // Leere Strings filtern
+            .filter(msg => msg.length > 0);
 
-        await database.autoDeletes.update(
+        await database.guildAutoDeletes.update(
             {
                 where: {
                     UUID: uuid

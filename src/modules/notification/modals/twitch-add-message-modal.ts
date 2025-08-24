@@ -34,7 +34,7 @@ export default {
             });
         }
 
-        await database.twitchNotifications.update(
+        await database.guildTwitchNotifications.update(
             {
                 where: {
                     UUID: interaction.customId.split(":")[1]

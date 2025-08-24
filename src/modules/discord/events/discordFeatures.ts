@@ -15,7 +15,7 @@ export default {
         if (message.author.bot) return;
         if (!client.user) throw new Error("User is not logged in.");
 
-        const data = await database.discordAddons.findFirst({
+        const data = await database.discordGuildAddon.findFirst({
             where: {
                 GuildId: message.guild?.id
             }

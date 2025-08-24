@@ -45,7 +45,7 @@ export default {
             ) as TextChannel;
             const message = await channel.messages.fetch(messageURL.split("/")[6]);
 
-            const data = await database.reactionRoles.findFirst({
+            const data = await database.guildReactionRoles.findFirst({
                 where: {
                     GuildId: interaction.guild?.id,
                     UUID: interaction.customId.split(":")[1]

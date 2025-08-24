@@ -15,7 +15,7 @@ export default {
         client: ExtendedClient
     ) {
         for (const value of interaction.values) {
-            await database.youtubeNotifications.updateMany(
+            await database.guildYoutubeNotifications.updateMany(
                 {
                     where: {
                         UUID: interaction.customId.split(":")[1]

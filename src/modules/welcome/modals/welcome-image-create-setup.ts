@@ -23,13 +23,13 @@ export default {
             "welcome-image-create-color"
         );
 
-        const data = await database.guildWelcomeSetups.findFirst({
+        const data = await database.guildWelcomeSetup.findFirst({
             where: {
                 GuildId: interaction.guild?.id
             }
         });
 
-        await database.guildWelcomeSetups.update(
+        await database.guildWelcomeSetup.update(
             {
                 where: {
                     GuildId: interaction.guild?.id

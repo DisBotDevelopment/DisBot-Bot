@@ -26,7 +26,7 @@ export default {
     ) {
         for (const value of interaction.values) {
 
-            const data = await database.autoDeletes.findFirst({
+            const data = await database.guildAutoDeletes.findFirst({
                 where: {
                     UUID: interaction.customId.split(":")[1]
                 }

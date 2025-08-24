@@ -12,7 +12,7 @@ export default {
 
         if (message.channel.type == ChannelType.DM) return;
         if (message.author.bot) return;
-        
+
         const eventChannelId = message.channel.id;
 
         const toggledata = await database.guildFeatureToggles.findFirst({
@@ -24,7 +24,7 @@ export default {
         if (!toggledata) return;
         if (toggledata.AutoreactEnabled == false) return;
 
-        const data = await database.autoReacts.findMany({
+        const data = await database.guildAutoReacts.findMany({
             where: {
                 GuildId: message.guild?.id
             }
@@ -34,7 +34,7 @@ export default {
 
         if (data.length <= 0) return;
 
-        const autodata = await database.autoReacts.findMany({
+        const autodata = await database.guildAutoReacts.findMany({
             where: {
                 GuildId: message.guildId
             }

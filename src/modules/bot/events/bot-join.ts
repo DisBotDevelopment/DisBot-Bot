@@ -15,6 +15,7 @@ import {LoggingAction} from "../../../enums/loggingTypes.js";
 import {Logger} from "../../../main/logger.js";
 import {initGuildsToDatabase, initUsersToDatabase} from "../../../helper/databaseHelper.js";
 import {Config} from "../../../main/config.js";
+import {CommandHelper} from "../../../helper/CommandHelper.js";
 
 
 export default {
@@ -36,6 +37,7 @@ export default {
             botType: Config.BotType.toString() || "Unknown",
             action: LoggingAction.Event,
         });
+        await CommandHelper.loadCommands(client);
         await initGuildsToDatabase(client)
         guild.members.cache.forEach(async (member) => {
             await initUsersToDatabase(client, member.user)

@@ -27,6 +27,7 @@ export default {
             let data = await database.guildInteractionPermissions.findFirst({
                 where: {
                     CommandName: commandName,
+                    GuildId: interaction.guild.id,
                     Type: GuildPermissionType.SUBCOMMANDGROUP
                 }
             })
@@ -46,6 +47,7 @@ export default {
                 })
                 data = await database.guildInteractionPermissions.findFirst({
                     where: {
+                        GuildId: interaction.guild.id,
                         CommandName: commandName,
                         Type: GuildPermissionType.SUBCOMMANDGROUP
                     }

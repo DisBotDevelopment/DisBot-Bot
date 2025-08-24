@@ -19,7 +19,7 @@ export default {
         const messageTemplate = interaction.fields.getTextInputValue("messageTemplate");
         const id = interaction.customId.split(":")[1];
 
-        const data = await database.spotifyNotifications.findFirst({
+        const data = await database.guildSpotifyNotifications.findFirst({
             where: {UUID: id}
         });
 
@@ -37,7 +37,7 @@ export default {
             return;
         }
 
-        await database.spotifyNotifications.update(
+        await database.guildSpotifyNotifications.update(
             {
                 where: {UUID: id},
                 data: {

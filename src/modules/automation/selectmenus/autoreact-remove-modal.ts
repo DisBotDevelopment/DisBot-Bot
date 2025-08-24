@@ -15,7 +15,7 @@ export default {
         const channel = interaction.fields.getTextInputValue("channel");
         const guild = interaction.guild;
 
-        const data = await database.autoReacts.findFirst({
+        const data = await database.guildAutoReacts.findFirst({
             where: {
                 GuildId: guild?.id,
                 ChannelId: channel,
@@ -31,7 +31,7 @@ export default {
             return;
         }
 
-        await database.autoReacts.delete({
+        await database.guildAutoReacts.delete({
             where: {
                 id: data.id,
                 GuildId: guild?.id,

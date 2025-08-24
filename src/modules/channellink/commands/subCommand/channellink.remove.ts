@@ -33,7 +33,7 @@ export default {
         const channel = interaction.options.getChannel("channel");
 
 
-        const data = await database.channelLinks.findFirst({
+        const data = await database.guildChannelLinks.findFirst({
 
             where: {
                 ChannelId: channel?.id,
@@ -55,7 +55,7 @@ export default {
             });
         }
 
-        await database.channelLinks.delete({
+        await database.guildChannelLinks.delete({
             where: {
                 id: data.id,
                 ChannelId: channel?.id,

@@ -74,7 +74,7 @@ export async function loggingHelper(
     const webhookData = await client.fetchWebhook(webhookMessage.webhook_id)
 
 
-    await database.guildLoggers.create({
+    await database.guildLogs.create({
         data: {
             GuildId: webhookData.guildId,
             UUID: uuid,

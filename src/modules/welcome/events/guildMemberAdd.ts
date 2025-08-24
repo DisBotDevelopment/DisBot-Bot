@@ -26,7 +26,7 @@ export default {
         });
         if (!toggleData?.LeaveEnabled) return;
 
-        const data = await database.guildLeaveSetups.findFirst({
+        const data = await database.guildLeaveSetup.findFirst({
             where: {GuildId: guild.id}
         });
         if (!data?.ChannelId) return;

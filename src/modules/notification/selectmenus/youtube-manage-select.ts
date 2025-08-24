@@ -27,7 +27,7 @@ export default {
         for (const uuid of interaction.values) {
             const guildId = interaction.guild?.id;
 
-            const nextEmbed = await database.youtubeNotifications.findFirst({
+            const nextEmbed = await database.guildYoutubeNotifications.findFirst({
                 where: {
                     GuildId: guildId,
                     UUID: uuid.split(":")[0]

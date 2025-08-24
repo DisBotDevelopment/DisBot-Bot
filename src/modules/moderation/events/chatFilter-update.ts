@@ -25,7 +25,7 @@ export default {
 
         if (!toggleData?.ChatfilterEnabled) return;
 
-        const chatfilterData = await database.chatModerations.findFirst({
+        const chatfilterData = await database.guildChatModeration.findFirst({
             where: {GuildId: guild.id}
         });
 
@@ -35,8 +35,8 @@ export default {
         if (!memberCache) return;
 
         // Whitelist Check
-        const isWhitelistedChannel = chatfilterData.WhiteListChannel?.includes(channel.id);
-        const isWhitelistedRole = chatfilterData.WhiteListRole?.some(roleId =>
+        const isWhitelistedChannel = chatfilterData.WhiteListChannelIds?.includes(channel.id);
+        const isWhitelistedRole = chatfilterData.WhiteListRoleIds?.some(roleId =>
             memberCache.roles.cache.has(roleId)
         );
 

@@ -34,7 +34,7 @@ export default {
             });
         }
 
-        await database.youtubeNotifications.update(
+        await database.guildYoutubeNotifications.update(
             {
                 where: {
                     UUID: interaction.customId.split(":")[1]

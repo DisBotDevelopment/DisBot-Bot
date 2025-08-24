@@ -27,8 +27,8 @@ export default {
     ) {
 
         const uuids = uuid();
-        interaction.values.forEach(async (value) => {
-            await database.twitchNotifications.updateMany(
+        for (const value of interaction.values) {
+            await database.guildTwitchNotifications.updateMany(
                 {
                     where: {
                         UUID: interaction.customId.split(":")[1]
@@ -59,6 +59,6 @@ export default {
                     client.user.id
                 )} Use a message template for the message that will be sent to the channel.`, components: [row]
             });
-        });
+        }
     }
 };

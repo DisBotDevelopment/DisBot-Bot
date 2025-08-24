@@ -22,7 +22,7 @@ export default {
         if (!toggledata) return;
         if (toggledata.AutopublishEnabled == false) return;
 
-        const data = await database.autoPublish.findFirst({
+        const data = await database.guildAutoPublish.findFirst({
             where: {
                 GuildId: message.guild?.id
             }

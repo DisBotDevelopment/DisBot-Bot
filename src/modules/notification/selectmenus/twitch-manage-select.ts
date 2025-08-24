@@ -20,7 +20,7 @@ export default {
         for (const uuid of interaction.values) {
             const guildId = interaction.guild?.id;
 
-            const nextEmbed = await database.twitchNotifications.findFirst(
+            const nextEmbed = await database.guildTwitchNotifications.findFirst(
                 {
                     where: {
                         GuildId: guildId,

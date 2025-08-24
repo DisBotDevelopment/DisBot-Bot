@@ -22,17 +22,17 @@ export default {
         if (!toggleData) return;
         if (toggleData.AutorolesEnabled == false) return;
 
-        const autoRolesData = await database.autoRoles.findFirst({
+        const guildAutoRolesData = await database.guildAutoRoles.findFirst({
             where: {
                 GuildId: guild.id
             }
         });
 
-        if (!autoRolesData) return;
-        if (!autoRolesData.RoleId) return;
+        if (!guildAutoRolesData) return;
+        if (!guildAutoRolesData.RoleId) return;
 
         try {
-            await member.roles.add(autoRolesData.RoleId);
+            await member.roles.add(guildAutoRolesData.RoleId);
         } catch {
             return;
         }

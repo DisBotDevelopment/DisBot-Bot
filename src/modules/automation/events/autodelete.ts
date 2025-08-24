@@ -13,7 +13,7 @@ export default {
         if (message.channel.type == ChannelType.DM) return;
         if (message.author.bot) return;
 
-        const deleteSetups = await database.autoDeletes.findMany({
+        const deleteSetups = await database.guildAutoDeletes.findMany({
             where: {
                 GuildId: message.guildId,
                 IsActive: true

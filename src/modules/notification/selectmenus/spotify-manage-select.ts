@@ -24,13 +24,13 @@ export default {
         interaction: UserSelectMenuInteraction,
         client: ExtendedClient
     ) {
-        interaction.values.forEach(async (uuid) => {
+        for (const uuid of interaction.values) {
 
-            const data = await database.spotifyNotifications.findFirst({where: {UUID: uuid}});
+            const data = await database.guildSpotifyNotifications.findFirst({where: {UUID: uuid}});
 
             if (!data) {
                 if (!client.user) throw new Error("Client User is not defined");
-                return interaction.reply({
+                await interaction.reply({
                     content: `## ${await convertToEmojiPng("error", client.user?.id)} Spotify Show Not Found`,
                     flags: MessageFlags.Ephemeral
                 });
@@ -90,6 +90,6 @@ export default {
                 components: [row]
             });
 
-        })
+        }
     }
 };

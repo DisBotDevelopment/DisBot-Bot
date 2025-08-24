@@ -35,7 +35,7 @@ export default {
             }
         )
 
-        const data = await database.spotifyNotifications.findFirst({
+        const data = await database.guildSpotifyNotifications.findFirst({
             where: {
                 ShowId: channelName
             }
@@ -56,7 +56,7 @@ export default {
         }
         const uuids = uuid();
 
-        await database.spotifyNotifications.create({
+        await database.guildSpotifyNotifications.create({
             data: {
                 GuildId: interaction.guild?.id,
                 ChannelId: null,

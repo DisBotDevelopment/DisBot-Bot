@@ -8,6 +8,8 @@ import {LoggingAction} from "../enums/loggingTypes.js";
 import {getFilesRecursively} from "./fileHelper.js";
 import {Logger} from "../main/logger.js";
 import {Config} from "../main/config.js";
+import {database} from "../main/database.js";
+import {cli} from "winston/lib/winston/config/index.js";
 
 colors.enable();
 
@@ -22,7 +24,7 @@ export class CommandHelper {
             action: LoggingAction.Command,
         });
 
-        const cmdlist: any[] = [];
+        let cmdlist: any[] = [];
         const stats = {
             commands: 0,
             userInstall: 0,
@@ -130,16 +132,48 @@ export class CommandHelper {
 
         const restClient = new REST({version: "10"}).setToken(Config.Bot.DiscordBotToken);
 
-        try {
-            await restClient.put(Routes.applicationCommands(Config.Bot.DiscordApplicationId), {
-                body: cmdlist,
-            });
+        // Clear application command
+        await restClient.put(Routes.applicationCommands(Config.Bot.DiscordApplicationId), {
+            body: [],
+        });
 
+        try {
+            const allGuilds = await client.guilds.fetch();
+            for (const guild of allGuilds.values()) {
+                const buildInCommandOverrides = await database.buildInCommands.findMany({
+                    where: {
+                        GuildCommandMangerId: guild.id
+                    }
+                })
+
+                cmdlist = cmdlist
+                    .filter(cmd => {
+                        const override = buildInCommandOverrides.find(o => o.CodeName === cmd.name);
+                        return !(override && override.IsEnabled === false);
+                    })
+                    .map(cmd => {
+                        const override = buildInCommandOverrides.find(o => o.CodeName === cmd.name);
+                        if (override) {
+                            return {
+                                ...cmd,
+                                name: override.CustomName,
+                                description: override.Description ?? client.commands.get(override.CodeName).data.description,
+                                default_member_permissions: override.Permissions ?? client.commands.get(override.CodeName).data.default_member_permissions
+                            };
+                        }
+                        return cmd;
+                    });
+
+
+                await restClient.put(Routes.applicationGuildCommands(Config.Bot.DiscordApplicationId, guild.id), {
+                    body: cmdlist,
+                });
+            }
             Logger.info({
                 timestamp: new Date().toISOString(),
                 level: "info",
                 label: "CommandHelper",
-                message: `Discord added ${cmdlist.length} commands (${stats.subCommands} subCommands, ${stats.subCommandGroups} subCommandGroups), ${stats.userInstall} userInstall commands, ${stats.contextMenus} context menu commands from ${moduleDirectories.length} module(s)`,
+                message: `Discord added ${cmdlist.length} commands (${stats.subCommands} subCommands, ${stats.subCommandGroups} subCommandGroups), ${stats.userInstall} userInstall commands, ${stats.contextMenus} context menu commands from ${moduleDirectories.length} module(s) for ${allGuilds.size} Guilds`,
                 botType: Config.BotType.toString() || "Unknown",
                 action: LoggingAction.Command,
             });

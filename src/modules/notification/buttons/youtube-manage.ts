@@ -27,7 +27,7 @@ export default {
         const pageSize = 5;
 
         try {
-            const allEmbeds = await database.youtubeNotifications
+            const allEmbeds = await database.guildYoutubeNotifications
                 .findMany({
                     where: {
                         GuildId: guildId

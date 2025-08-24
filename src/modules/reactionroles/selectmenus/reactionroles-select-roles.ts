@@ -24,7 +24,7 @@ export default {
     ) {
         const uuid = interaction.customId.split(":")[1];
 
-        const data = await database.reactionRoles.findFirst({
+        const data = await database.guildReactionRoles.findFirst({
             where: {
                 UUID: uuid
             }
@@ -82,7 +82,7 @@ export default {
                 });
             }
 
-            await database.reactionRoles.update(
+            await database.guildReactionRoles.update(
                 {
                     where: {UUID: uuid},
                     data: {

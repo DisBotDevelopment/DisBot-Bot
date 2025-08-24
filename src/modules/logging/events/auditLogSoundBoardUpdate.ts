@@ -29,7 +29,7 @@ export default {
         });
         if (!enabled) return;
 
-        const loggingData = await database.guildLoggings.findFirst({
+        const loggingData = await database.guildLogging.findFirst({
             where: {GuildId: guildId}
         });
         if (!loggingData || !loggingData.Integration) return;

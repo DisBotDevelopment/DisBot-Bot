@@ -29,7 +29,7 @@ export default {
                 GuildId: interaction.guild?.id,
             }
         });
-        const autoreactData = await database.autoReacts.findMany({
+        const autoreactData = await database.guildAutoReacts.findMany({
             where: {
                 GuildId: interaction.guild?.id,
             }

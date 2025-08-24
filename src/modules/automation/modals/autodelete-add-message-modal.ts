@@ -18,7 +18,7 @@ export default {
             .map(msg => msg.trim())
             .filter(msg => msg.length > 0);
 
-        await database.autoDeletes.update(
+        await database.guildAutoDeletes.update(
             {
                 where: {
                     UUID: uuid

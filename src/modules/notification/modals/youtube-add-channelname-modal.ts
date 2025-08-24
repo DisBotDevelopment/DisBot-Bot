@@ -24,7 +24,7 @@ export default {
             "youtube-add-channelname"
         );
 
-        const data = await database.youtubeNotifications.findFirst({
+        const data = await database.guildYoutubeNotifications.findFirst({
             where: {
                 GuildId: interaction.guild?.id,
                 YoutubeChannelId: getChannelName
@@ -43,7 +43,7 @@ export default {
             });
         }
 
-        await database.youtubeNotifications.create({
+        await database.guildYoutubeNotifications.create({
             data: {
                 GuildId: interaction.guild?.id,
                 YoutubeChannelId: getChannelName,

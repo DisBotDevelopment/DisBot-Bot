@@ -21,7 +21,7 @@ export default {
         for (const uuid of interaction.values) {
             const guildId = interaction.guild?.id;
 
-            const nextEmbed = await database.reactionRoles.findFirst({
+            const nextEmbed = await database.guildReactionRoles.findFirst({
                 where: {
                     GuildId: guildId,
                     UUID: uuid

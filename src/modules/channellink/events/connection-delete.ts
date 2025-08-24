@@ -3,7 +3,6 @@ import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
 
-
 export default {
     name: Events.MessageDelete,
 
@@ -19,7 +18,7 @@ export default {
         client: ExtendedClient
     ) {
 
-        const data = await database.channelLinks.findMany();
+        const data = await database.guildChannelLinks.findMany();
 
         const toggledata = await database.guildFeatureToggles.findFirst({
             where: {

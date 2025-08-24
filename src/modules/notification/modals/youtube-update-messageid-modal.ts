@@ -30,7 +30,7 @@ export default {
             });
         }
 
-        await database.youtubeNotifications.updateMany(
+        await database.guildYoutubeNotifications.updateMany(
             {
                 where: {
                     UUID: uuid,

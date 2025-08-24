@@ -1,8 +1,8 @@
 import colors from "colors";
-import { EmbedBuilder, NewsChannel, TextChannel, ThreadChannel } from "discord.js";
+import {EmbedBuilder, NewsChannel, TextChannel, ThreadChannel} from "discord.js";
 import Parser from "rss-parser";
-import { ExtendedClient } from "../types/client.js";
-import { database } from "../main/database.js";
+import {ExtendedClient} from "../types/client.js";
+import {database} from "../main/database.js";
 
 const parser = new Parser();
 colors.enable();
@@ -12,9 +12,9 @@ colors.enable();
  * @param {Client} client
  */
 export async function checkYoutube(client: ExtendedClient) {
-    const { guilds, channels } = client;
+    const {guilds, channels} = client;
 
-    const youtubeData = await database.youtubeNotifications.findMany();
+    const youtubeData = await database.guildYoutubeNotifications.findMany();
 
     if (!youtubeData) return;
 
@@ -41,15 +41,15 @@ export async function checkYoutube(client: ExtendedClient) {
             const twitchChannel = channels.cache.get(`${data.ChannelId}`);
             if (!twitchChannel) throw new Error("twitchChannel not found");
 
-            let { link, author, title, id } = videodata.items[0];
+            let {link, author, title, id} = videodata.items[0];
 
             const thumbnail = `https://img.youtube.com/vi/${id.split(":")[2]
-                }/0.jpg`;
+            }/0.jpg`;
 
             if (data.Latest && (data.Latest as unknown as string).includes(id))
                 continue;
             else {
-                await database.youtubeNotifications.updateMany({
+                await database.guildYoutubeNotifications.updateMany({
                     where: {
                         GuildId: data.GuildId,
                         YoutubeChannelId: data.YoutubeChannelId
@@ -103,7 +103,7 @@ export async function checkYoutube(client: ExtendedClient) {
                                 .replace("{thumbnail}", thumbnail)
                                 .replace("{pingrole}", `<@&${pingrole}>`)
                             : ""
-                            }`
+                        }`
                     });
 
                     continue;
@@ -124,7 +124,7 @@ export async function checkYoutube(client: ExtendedClient) {
                                 .replace("{thumbnail}", thumbnail)
                                 .replace("{pingrole}", `<@&${pingrole}>`)
                             : ""
-                            }`
+                        }`
                     });
                 }
             } else {
@@ -152,7 +152,7 @@ export async function checkYoutube(client: ExtendedClient) {
                                 .replace("{thumbnail}", thumbnail)
                                 .replace("{pingrole}", `<@&${pingrole}>`)
                             : ""
-                            }`
+                        }`
                     });
 
                     continue;
@@ -173,7 +173,7 @@ export async function checkYoutube(client: ExtendedClient) {
                                 .replace("{thumbnail}", thumbnail)
                                 .replace("{pingrole}", `<@&${pingrole}>`)
                             : ""
-                            }`
+                        }`
                     });
                 }
 

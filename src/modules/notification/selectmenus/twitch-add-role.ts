@@ -16,10 +16,10 @@ export default {
 
         const uuids = uuid();
 
-        interaction.values.forEach(async (value) => {
+        for (const value of interaction.values) {
             const role = interaction.guild?.roles.cache.get(value);
 
-            await database.twitchNotifications.updateMany(
+            await database.guildTwitchNotifications.updateMany(
                 {
                     where: {UUID: interaction.customId.split(":")[1]},
                     data: {
@@ -53,6 +53,6 @@ export default {
                     client.user.id
                 )} Please select a Channel/Thread to send the message.`, components: [row]
             });
-        });
+        }
     }
 };

@@ -35,7 +35,7 @@ export default {
         if (!enabled?.LoggingEnabled) return;
 
         // Logging-URLs abrufen
-        const data = await database.guildLoggings.findFirst({
+        const data = await database.guildLogging.findFirst({
             where: {GuildId: guildId}
         });
         if (!data?.SoundBoard) return;

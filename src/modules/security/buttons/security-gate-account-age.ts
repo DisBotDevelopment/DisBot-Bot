@@ -20,7 +20,7 @@ export default {
     async execute(interaction: ButtonInteraction, client: ExtendedClient) {
         if (!client.user) throw new Error("User is not logged in.");
 
-        const data = await database.securitys.findFirst({
+        const data = await database.guildSecurity.findFirst({
             where: {GuildId: interaction.guildId}
         })
 

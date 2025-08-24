@@ -40,7 +40,7 @@ export default {
 
         switch (getOptions) {
             case "add": {
-                const chatFilterData = await database.chatModerations.findFirst({
+                const chatFilterData = await database.guildChatModeration.findFirst({
                     where: {
                         GuildId: interaction.guild.id
                     }
@@ -60,7 +60,7 @@ export default {
                 for (const w of getWords) {
                     if (chatFilterData.Words.includes(w)) continue;
                     newWords.push(w);
-                    await database.chatModerations.update({
+                    await database.guildChatModeration.update({
                         where: {
                             GuildId: interaction.guild.id
                         },
@@ -82,7 +82,7 @@ export default {
             }
             case "remove": {
 
-                const chatFilterData = await database.chatModerations.findFirst({
+                const chatFilterData = await database.guildChatModeration.findFirst({
                     where: {
                         GuildId: interaction.guild.id
                     }
@@ -110,7 +110,7 @@ export default {
                         1
                     );
                     removedWords.push(w);
-                    await database.chatModerations.update({
+                    await database.guildChatModeration.update({
                         where: {
                             GuildId: interaction.guild.id
                         }, data: {

@@ -25,18 +25,18 @@ export default {
         for (const role of interaction.values) {
 
 
-            const data = await database.spotifyNotifications.findFirst({
+            const data = await database.guildSpotifyNotifications.findFirst({
                 where: {
                     UUID: uuid
                 }
             });
 
-            await database.spotifyNotifications.update(
+            await database.guildSpotifyNotifications.update(
                 {
                     where: {UUID: uuid},
                     data: {
-                        PingRoles:{
-                            set:  [role]
+                        PingRoles: {
+                            set: [role]
                         },
                     }
                 }

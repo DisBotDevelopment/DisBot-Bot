@@ -40,11 +40,11 @@ If you have questions or ideas, feel free to open an issue.
 Want to use DisBot? It’s simple!  
 There are three options:
 
-- 🔧 [Self Hosted](https://docs.disbot.app/docs/usage/selfhost) – Host DisBot yourself using Docker, etc.  
+- 🔧 [Self Hosted](https://doc.xyzhub.link/s/disbot/doc/selfhost-rNINzgPeHk) – Host DisBot yourself using Docker, etc.  
 - 🤖 [DisBot (Public)](https://disbot.app/invite) – Use the hosted version on your server  
 - 💎 [DisBot Ultra](https://disbot.app/ultra) – Hosted with Custom Branding (COMING SOON)
 
-More information is available in the [Documentation](https://docs.disbot.app/docs/usage), including the differences between the versions.
+More information is available in the [Documentation](https://doc.xyzhub.link/s/disbot/doc/usage-2BcJNRkxpX), including the differences between the versions.
 
 ---
 

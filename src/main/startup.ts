@@ -3,7 +3,7 @@ import "dotenv/config";
 import colors from "colors";
 import {ShardingManager} from "discord.js";
 import {Logger} from "./logger.js";
-import {Config, configStartup} from "./config.js";
+import {Config, configStartup} from "./config.js"
 
 colors.enable();
 

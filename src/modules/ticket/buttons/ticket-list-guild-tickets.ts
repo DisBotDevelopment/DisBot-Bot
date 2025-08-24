@@ -17,7 +17,7 @@ import {
 } from "../../../helper/ticketHelper.js";
 import {convertToEmojiPng} from "../../../helper/emojis.js";
 import {PaginationData} from "../../../types/pagination.js";
-import {PaginationBuilder} from "../../../helper/pagination.js";
+import {PaginationBuilder} from "../../../helper/paginationHelper.js";
 
 export default {
     id: "ticket-list-guild-tickets",

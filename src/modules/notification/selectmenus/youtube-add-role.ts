@@ -22,7 +22,7 @@ export default {
         for (const value of interaction.values) {
             const role = interaction.guild?.roles.cache.get(value);
 
-            await database.youtubeNotifications.updateMany(
+            await database.guildYoutubeNotifications.updateMany(
                 {
                     where: {
                         UUID: interaction.customId.split(":")[1]

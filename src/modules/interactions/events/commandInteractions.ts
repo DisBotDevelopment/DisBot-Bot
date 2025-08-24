@@ -20,12 +20,20 @@ export default {
 
             const commandName = interaction.commandName;
 
+            const buildInCommandOverrides = await database.buildInCommands.findFirst({
+                where: {
+                    GuildCommandMangerId: interaction.guild.id,
+                    CustomName: commandName
+                }
+            })
+
             const subCommand = (interaction?.options as ChatInputCommandInteraction["options"])?.getSubcommand(false);
             const subCommandGroup = (interaction?.options as ChatInputCommandInteraction["options"])?.getSubcommandGroup(false);
 
-            const command = client.commands?.get(commandName) ?? client.guildCommands?.get(commandName);
-            const subCommandFile = client.subCommands?.get(`${commandName}.${subCommand}`) ?? client.guildSubCommands?.get(`${commandName}.${subCommand}`);
-            const subCommandGroupFile = client.subCommandGroups?.get(`${commandName}.${subCommandGroup}.${subCommand}`);
+            const codeName = buildInCommandOverrides ? buildInCommandOverrides.CodeName : commandName
+            const command = client.commands?.get(codeName) ?? client.guildCommands?.get(commandName);
+            const subCommandFile = client.subCommands?.get(`${codeName}.${subCommand}`) ?? client.guildSubCommands?.get(`${commandName}.${subCommand}`);
+            const subCommandGroupFile = client.subCommandGroups?.get(`${codeName}.${subCommandGroup}.${subCommand}`);
 
             const activeHandler = subCommandGroupFile ?? subCommandFile ?? command;
 
@@ -56,6 +64,7 @@ export default {
 
             const interactionPermission = await database.guildInteractionPermissions.findFirst({
                 where: {
+                    GuildId: interaction.guildId,
                     CommandName: activeHandler?.data?.name ? activeHandler.data.name : activeHandler.subCommand ? activeHandler.subCommand : activeHandler.subCommandGroup,
                     Type: activeHandler?.data?.name ? GuildPermissionType.COMMAND : activeHandler.subCommand ? GuildPermissionType.SUBCOMMAND : GuildPermissionType.SUBCOMMANDGROUP
                 }
@@ -96,15 +105,16 @@ export default {
                         content: `## ${await convertToEmojiPng("permission", client.user.id)} You can't perform this interaction!`
                     })
                 }
-            }
 
-            if (interactionPermission?.Cooldown ?? activeHandler?.options?.cooldown) {
-                await InteractionHelper.cooldownCheck(
-                    interactionPermission.Cooldown ?? activeHandler.options.cooldown as number,
-                    interaction,
-                    client,
-                    activeHandler.type as DisBotInteractionType
-                );
+                const cooldownData = interactionPermission?.Cooldown ?? activeHandler?.options?.cooldown ?? 0
+                if (cooldownData) {
+                    await InteractionHelper.cooldownCheck(
+                        interactionPermission.Cooldown ?? activeHandler.options.cooldown as number,
+                        interaction,
+                        client,
+                        activeHandler.type as DisBotInteractionType
+                    );
+                }
             }
             if ((activeHandler?.options?.botPermissions?.length ?? 0) > 0) {
                 await InteractionHelper.checkBotPermissions(

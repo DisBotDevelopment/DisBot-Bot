@@ -1,7 +1,7 @@
-import { ButtonInteraction, ContainerBuilder, MessageFlags, TextDisplayBuilder } from "discord.js";
-import { convertToEmojiPng } from "../../../helper/emojis.js";
-import { ExtendedClient } from "../../../types/client.js";
-import { database } from "../../../main/database.js";
+import {ButtonInteraction, ContainerBuilder, MessageFlags, TextDisplayBuilder} from "discord.js";
+import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {ExtendedClient} from "../../../types/client.js";
+import {database} from "../../../main/database.js";
 
 export default {
     id: "autodelete-add-save",
@@ -17,7 +17,7 @@ export default {
 
         const uuid = interaction.customId.split(":")[1];
 
-        const data = await database.autoDeletes.findFirst({
+        const data = await database.guildAutoDeletes.findFirst({
             where: {
                 UUID: uuid
             }
@@ -49,7 +49,7 @@ export default {
         }
 
 
-        await database.autoDeletes.update(
+        await database.guildAutoDeletes.update(
             {
                 where: {
                     UUID: uuid

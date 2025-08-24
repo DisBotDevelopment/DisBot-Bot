@@ -43,13 +43,13 @@ export default {
         const getLogType = interaction.options.getString("logtype");
         const guildId = interaction.guild.id;
 
-        let data = await database.guildLoggings.findFirst({where: {GuildId: guildId}});
+        let data = await database.guildLogging.findFirst({where: {GuildId: guildId}});
         if (!data) {
-            data = await database.guildLoggings.create({data: {GuildId: guildId}});
+            data = await database.guildLogging.create({data: {GuildId: guildId}});
         }
 
         const updateLogging = async (fields: Partial<typeof data>) => {
-            await database.guildLoggings.update({
+            await database.guildLogging.update({
                 where: {GuildId: guildId},
                 data: fields,
             });

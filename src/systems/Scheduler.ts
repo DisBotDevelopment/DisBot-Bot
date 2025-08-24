@@ -48,7 +48,7 @@ export class Scheduler {
     }
 
     public static async deleteMessagesFromAutoDelete(client: ExtendedClient) {
-        const autoDeletes = await database.autoDeletes.findMany()
+        const autoDeletes = await database.guildAutoDeletes.findMany()
 
         for (const data of autoDeletes) {
 

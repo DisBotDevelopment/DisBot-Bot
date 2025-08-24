@@ -30,7 +30,7 @@ export default {
         const pageSize = 5;
 
         try {
-            const allEmbeds = await database.spotifyNotifications
+            const allEmbeds = await database.guildSpotifyNotifications
                 .findMany({
                     where: {
                         GuildId: guildId

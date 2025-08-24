@@ -120,6 +120,34 @@ exports.Prisma.GuildsScalarFieldEnum = {
   GuildOwner: 'GuildOwner'
 };
 
+exports.Prisma.GuildCommandMangerScalarFieldEnum = {
+  id: 'id',
+  Commands: 'Commands',
+  SubCommands: 'SubCommands',
+  SubCommandGroups: 'SubCommandGroups',
+  ContextMenus: 'ContextMenus',
+  GuildId: 'GuildId'
+};
+
+exports.Prisma.BuildInCommandsScalarFieldEnum = {
+  id: 'id',
+  UUID: 'UUID',
+  CustomName: 'CustomName',
+  Description: 'Description',
+  Permissions: 'Permissions',
+  IsEnabled: 'IsEnabled',
+  CodeName: 'CodeName',
+  GuildCommandMangerId: 'GuildCommandMangerId'
+};
+
+exports.Prisma.GuildComponentManagerScalarFieldEnum = {
+  id: 'id',
+  Selectmenus: 'Selectmenus',
+  Buttons: 'Buttons',
+  Modals: 'Modals',
+  GuildId: 'GuildId'
+};
+
 exports.Prisma.GuildInteractionPermissionsScalarFieldEnum = {
   id: 'id',
   UUID: 'UUID',
@@ -135,7 +163,7 @@ exports.Prisma.GuildInteractionPermissionsScalarFieldEnum = {
   GuildId: 'GuildId'
 };
 
-exports.Prisma.AutoDeletesScalarFieldEnum = {
+exports.Prisma.GuildAutoDeletesScalarFieldEnum = {
   id: 'id',
   ChannelId: 'ChannelId',
   IsActive: 'IsActive',
@@ -147,20 +175,20 @@ exports.Prisma.AutoDeletesScalarFieldEnum = {
   GuildId: 'GuildId'
 };
 
-exports.Prisma.AutoPublishScalarFieldEnum = {
+exports.Prisma.GuildAutoPublishScalarFieldEnum = {
   id: 'id',
   Channels: 'Channels',
   GuildId: 'GuildId'
 };
 
-exports.Prisma.AutoReactsScalarFieldEnum = {
+exports.Prisma.GuildAutoReactsScalarFieldEnum = {
   id: 'id',
   ChannelId: 'ChannelId',
   Emoji: 'Emoji',
   GuildId: 'GuildId'
 };
 
-exports.Prisma.AutoRolesScalarFieldEnum = {
+exports.Prisma.GuildAutoRolesScalarFieldEnum = {
   id: 'id',
   RoleId: 'RoleId',
   GuildId: 'GuildId'
@@ -179,16 +207,16 @@ exports.Prisma.GuildBansScalarFieldEnum = {
   GuildId: 'GuildId'
 };
 
-exports.Prisma.ChatModerationsScalarFieldEnum = {
+exports.Prisma.GuildChatModerationScalarFieldEnum = {
   id: 'id',
   LogChannelId: 'LogChannelId',
   Words: 'Words',
-  WhiteListRole: 'WhiteListRole',
-  WhiteListChannel: 'WhiteListChannel',
+  WhiteListRoleIds: 'WhiteListRoleIds',
+  WhiteListChannelIds: 'WhiteListChannelIds',
   GuildId: 'GuildId'
 };
 
-exports.Prisma.ChannelLinksScalarFieldEnum = {
+exports.Prisma.GuildChannelLinksScalarFieldEnum = {
   id: 'id',
   UUID: 'UUID',
   ChannelId: 'ChannelId',
@@ -206,7 +234,7 @@ exports.Prisma.SyncedChannelLinkMessagesScalarFieldEnum = {
   ChannelLinkId: 'ChannelLinkId'
 };
 
-exports.Prisma.DiscordAddonsScalarFieldEnum = {
+exports.Prisma.DiscordGuildAddonScalarFieldEnum = {
   id: 'id',
   OnlyMedia: 'OnlyMedia',
   NoLinkEmbeds: 'NoLinkEmbeds',
@@ -258,7 +286,7 @@ exports.Prisma.TempVoiceChannelsScalarFieldEnum = {
   TempVoiceId: 'TempVoiceId'
 };
 
-exports.Prisma.GuildLeaveSetupsScalarFieldEnum = {
+exports.Prisma.GuildLeaveSetupScalarFieldEnum = {
   id: 'id',
   MessageTemplateId: 'MessageTemplateId',
   ChannelId: 'ChannelId',
@@ -266,7 +294,7 @@ exports.Prisma.GuildLeaveSetupsScalarFieldEnum = {
   GuildId: 'GuildId'
 };
 
-exports.Prisma.GuildWelcomeSetupsScalarFieldEnum = {
+exports.Prisma.GuildWelcomeSetupScalarFieldEnum = {
   id: 'id',
   MessageTemplateId: 'MessageTemplateId',
   ChannelId: 'ChannelId',
@@ -274,7 +302,7 @@ exports.Prisma.GuildWelcomeSetupsScalarFieldEnum = {
   GuildId: 'GuildId'
 };
 
-exports.Prisma.GuildLoggingsScalarFieldEnum = {
+exports.Prisma.GuildLoggingScalarFieldEnum = {
   id: 'id',
   AutoMod: 'AutoMod',
   Channel: 'Channel',
@@ -300,7 +328,7 @@ exports.Prisma.GuildLoggingsScalarFieldEnum = {
   GuildId: 'GuildId'
 };
 
-exports.Prisma.GuildLoggersScalarFieldEnum = {
+exports.Prisma.GuildLogsScalarFieldEnum = {
   id: 'id',
   UUID: 'UUID',
   Notes: 'Notes',
@@ -318,7 +346,7 @@ exports.Prisma.MessageTemplatesScalarFieldEnum = {
   GuildId: 'GuildId'
 };
 
-exports.Prisma.ReactionRolesScalarFieldEnum = {
+exports.Prisma.GuildReactionRolesScalarFieldEnum = {
   id: 'id',
   UUID: 'UUID',
   Roles: 'Roles',
@@ -330,7 +358,7 @@ exports.Prisma.ReactionRolesScalarFieldEnum = {
   GuildId: 'GuildId'
 };
 
-exports.Prisma.SecuritysScalarFieldEnum = {
+exports.Prisma.GuildSecurityScalarFieldEnum = {
   id: 'id',
   InviteLoggingActive: 'InviteLoggingActive',
   MaxAccountAge: 'MaxAccountAge',
@@ -358,7 +386,7 @@ exports.Prisma.VerificationGatesPermissionScalarFieldEnum = {
   VerificationGateId: 'VerificationGateId'
 };
 
-exports.Prisma.SpotifyNotificationsScalarFieldEnum = {
+exports.Prisma.GuildSpotifyNotificationsScalarFieldEnum = {
   id: 'id',
   ShowId: 'ShowId',
   ChannelId: 'ChannelId',
@@ -502,7 +530,7 @@ exports.Prisma.GuildFeatureTogglesScalarFieldEnum = {
   GuildId: 'GuildId'
 };
 
-exports.Prisma.TwitchNotificationsScalarFieldEnum = {
+exports.Prisma.GuildTwitchNotificationsScalarFieldEnum = {
   id: 'id',
   UUID: 'UUID',
   TwitchChannelName: 'TwitchChannelName',
@@ -513,7 +541,7 @@ exports.Prisma.TwitchNotificationsScalarFieldEnum = {
   GuildId: 'GuildId'
 };
 
-exports.Prisma.YoutubeNotificationsScalarFieldEnum = {
+exports.Prisma.GuildYoutubeNotificationsScalarFieldEnum = {
   id: 'id',
   YoutubeChannelId: 'YoutubeChannelId',
   ChannelId: 'ChannelId',
@@ -537,7 +565,7 @@ exports.Prisma.UsersScalarFieldEnum = {
 exports.Prisma.ApisScalarFieldEnum = {
   id: 'id',
   Flags: 'Flags',
-  Guilds: 'Guilds',
+  AccessibleGuilds: 'AccessibleGuilds',
   Key: 'Key',
   UserId: 'UserId'
 };
@@ -549,18 +577,6 @@ exports.Prisma.GuildBackupsScalarFieldEnum = {
   UUID: 'UUID',
   Name: 'Name',
   GuildId: 'GuildId',
-  UserId: 'UserId'
-};
-
-exports.Prisma.CustomersScalarFieldEnum = {
-  id: 'id',
-  ExternalUUID: 'ExternalUUID',
-  RealUUID: 'RealUUID',
-  Application: 'Application',
-  DisplayName: 'DisplayName',
-  GuildIds: 'GuildIds',
-  ServerPort: 'ServerPort',
-  WSAPI: 'WSAPI',
   UserId: 'UserId'
 };
 
@@ -616,28 +632,12 @@ exports.Prisma.AnalyticsLatest30DaysScalarFieldEnum = {
   VanityAnalyticsId: 'VanityAnalyticsId'
 };
 
-exports.Prisma.DisBotUserNotificationsScalarFieldEnum = {
-  id: 'id',
-  Updates: 'Updates',
-  Status: 'Status',
-  Announcements: 'Announcements',
-  Customer: 'Customer',
-  UserId: 'UserId'
-};
-
 exports.Prisma.DisBotScalarFieldEnum = {
   id: 'id',
   SpotifyToken: 'SpotifyToken',
   TwitchToken: 'TwitchToken',
   Version: 'Version',
   GetConf: 'GetConf'
-};
-
-exports.Prisma.ImageApisScalarFieldEnum = {
-  id: 'id',
-  UUID: 'UUID',
-  ImageBase64: 'ImageBase64',
-  URL: 'URL'
 };
 
 exports.Prisma.SortOrder = {
@@ -653,29 +653,32 @@ exports.Prisma.QueryMode = {
 
 exports.Prisma.ModelName = {
   Guilds: 'Guilds',
+  GuildCommandManger: 'GuildCommandManger',
+  BuildInCommands: 'BuildInCommands',
+  GuildComponentManager: 'GuildComponentManager',
   GuildInteractionPermissions: 'GuildInteractionPermissions',
-  AutoDeletes: 'AutoDeletes',
-  AutoPublish: 'AutoPublish',
-  AutoReacts: 'AutoReacts',
-  AutoRoles: 'AutoRoles',
+  GuildAutoDeletes: 'GuildAutoDeletes',
+  GuildAutoPublish: 'GuildAutoPublish',
+  GuildAutoReacts: 'GuildAutoReacts',
+  GuildAutoRoles: 'GuildAutoRoles',
   GuildBans: 'GuildBans',
-  ChatModerations: 'ChatModerations',
-  ChannelLinks: 'ChannelLinks',
+  GuildChatModeration: 'GuildChatModeration',
+  GuildChannelLinks: 'GuildChannelLinks',
   SyncedChannelLinkMessages: 'SyncedChannelLinkMessages',
-  DiscordAddons: 'DiscordAddons',
+  DiscordGuildAddon: 'DiscordGuildAddon',
   Giveaways: 'Giveaways',
   TempVoices: 'TempVoices',
   TempVoiceChannels: 'TempVoiceChannels',
-  GuildLeaveSetups: 'GuildLeaveSetups',
-  GuildWelcomeSetups: 'GuildWelcomeSetups',
-  GuildLoggings: 'GuildLoggings',
-  GuildLoggers: 'GuildLoggers',
+  GuildLeaveSetup: 'GuildLeaveSetup',
+  GuildWelcomeSetup: 'GuildWelcomeSetup',
+  GuildLogging: 'GuildLogging',
+  GuildLogs: 'GuildLogs',
   MessageTemplates: 'MessageTemplates',
-  ReactionRoles: 'ReactionRoles',
-  Securitys: 'Securitys',
+  GuildReactionRoles: 'GuildReactionRoles',
+  GuildSecurity: 'GuildSecurity',
   VerificationGates: 'VerificationGates',
   VerificationGatesPermission: 'VerificationGatesPermission',
-  SpotifyNotifications: 'SpotifyNotifications',
+  GuildSpotifyNotifications: 'GuildSpotifyNotifications',
   Tags: 'Tags',
   TicketSetups: 'TicketSetups',
   TicketModalData: 'TicketModalData',
@@ -683,20 +686,17 @@ exports.Prisma.ModelName = {
   Tickets: 'Tickets',
   TicketFeedback: 'TicketFeedback',
   GuildFeatureToggles: 'GuildFeatureToggles',
-  TwitchNotifications: 'TwitchNotifications',
-  YoutubeNotifications: 'YoutubeNotifications',
+  GuildTwitchNotifications: 'GuildTwitchNotifications',
+  GuildYoutubeNotifications: 'GuildYoutubeNotifications',
   Users: 'Users',
   Apis: 'Apis',
   GuildBackups: 'GuildBackups',
-  Customers: 'Customers',
   Vanitys: 'Vanitys',
   VanityEmbeds: 'VanityEmbeds',
   VanityEmbedAuthors: 'VanityEmbedAuthors',
   VanityAnalytics: 'VanityAnalytics',
   AnalyticsLatest30Days: 'AnalyticsLatest30Days',
-  DisBotUserNotifications: 'DisBotUserNotifications',
-  DisBot: 'DisBot',
-  ImageApis: 'ImageApis'
+  DisBot: 'DisBot'
 };
 
 /**
