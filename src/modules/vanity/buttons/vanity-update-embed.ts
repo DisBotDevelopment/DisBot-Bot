@@ -53,6 +53,11 @@ export default {
                 .setCustomId(`vanity-update-discover:${data?.UUID}`)
                 .setStyle(ButtonStyle.Secondary)
                 .setEmoji("<:toggleon:1301864515838672908>"),
+            new ButtonBuilder()
+                .setLabel("Show Embed")
+                .setCustomId(`vanity-show-embed:${data?.UUID}`)
+                .setStyle(ButtonStyle.Secondary)
+                .setEmoji("<:preview:1288230393757171825>"),
         )
 
 

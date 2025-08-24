@@ -56732,10 +56732,10 @@ export namespace Prisma {
   export type VanitysWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     UUID?: string
+    Slug?: string
     AND?: VanitysWhereInput | VanitysWhereInput[]
     OR?: VanitysWhereInput[]
     NOT?: VanitysWhereInput | VanitysWhereInput[]
-    Slug?: StringFilter<"Vanitys"> | string
     Host?: StringFilter<"Vanitys"> | string
     GuildId?: StringFilter<"Vanitys"> | string
     Invite?: StringFilter<"Vanitys"> | string
@@ -56746,7 +56746,7 @@ export namespace Prisma {
     Analytics?: XOR<VanityAnalyticNullableScalarRelationFilter, VanityAnalyticWhereInput> | null
     Embed?: XOR<VanityEmbedNullableScalarRelationFilter, VanityEmbedWhereInput> | null
     Users?: XOR<UsersScalarRelationFilter, UsersWhereInput>
-  }, "id" | "UUID">
+  }, "id" | "UUID" | "Slug">
 
   export type VanitysOrderByWithAggregationInput = {
     id?: SortOrder

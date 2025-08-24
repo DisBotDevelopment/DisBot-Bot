@@ -17,11 +17,12 @@ export default {
             flags: MessageFlags.Ephemeral
         });
 
-        const data = await database.vanitys.findFirst({
+        const data = await database.vanityEmbed.findFirst({
             where: {
-                UUID: interaction.customId.split(":")[1]
+                VanityId: interaction.customId.split(":")[1]
             }
         });
+
 
         const newSlug = interaction.fields.getTextInputValue("vanity-update-author-input");
         const icon = interaction.fields.getTextInputValue("vanity-update-author-icon-input");
@@ -51,7 +52,6 @@ export default {
         await database.vanityEmbedAuthor.update({
                 where: {
                     id: data.id,
-                    VanityEmbedsId: interaction.customId.split(":")[1]
                 },
                 data: {
                     Name: newSlug,

@@ -17,9 +17,9 @@ export default {
             flags: MessageFlags.Ephemeral
         });
 
-        const data = await database.vanitys.findFirst({
+        const data = await database.vanityEmbed.findFirst({
             where: {
-                UUID: interaction.customId.split(":")[1]
+                VanityId: interaction.customId.split(":")[1]
             }
         });
 
@@ -35,7 +35,6 @@ export default {
         await database.vanityEmbed.update({
             where: {
                 id: data.id,
-                VanityId: interaction.customId.split(":")[1]
             },
             data: {
                 Title: newSlug

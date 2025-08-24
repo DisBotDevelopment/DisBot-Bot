@@ -17,7 +17,7 @@ export default {
                 Analytics: true
             },
             where: {
-                UUID: interaction.customId
+                UUID: interaction.customId.split(":")[1]
             }
         })
         for (const value of interaction.values) {
@@ -26,6 +26,7 @@ export default {
             if (!data) {
                 await interaction.reply({
                     content: `## ${await convertToEmojiPng("error", client.user.id)}  No vanity data found for this UUID.`,
+                    flags: MessageFlags.Ephemeral
                 })
             }
 
@@ -33,6 +34,7 @@ export default {
             if (!channel) {
                 await interaction.reply({
                     content: `## ${await convertToEmojiPng("error", client.user.id)}  Channel not found.`,
+                    flags: MessageFlags.Ephemeral
                 });
                 return;
             }

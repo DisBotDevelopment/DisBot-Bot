@@ -32,7 +32,7 @@ export default {
             return;
         }
 
-        if (data.Slug === newSlug) {
+        if (data.Slug == newSlug) {
             await interaction.editReply({
                 content: `## ${await convertToEmojiPng("error", client.user.id)} The new slug is the same as the old one.`
             });
@@ -48,7 +48,7 @@ export default {
 
         const isSlug = await database.vanitys.findFirst({
             where: {
-                Slug: data.Slug
+                Slug: newSlug
             }
         })
 

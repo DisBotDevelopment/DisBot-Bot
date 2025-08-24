@@ -28,6 +28,7 @@ export default {
 
         const isOneGuild = await database.vanitys.findMany({
             where: {
+                InDiscovery: true,
                 GuildId: interaction.guildId
             }
         });
@@ -36,7 +37,7 @@ export default {
             return await interaction.reply(
                 {
                     flags: MessageFlags.Ephemeral,
-                    content: `## ${await convertToEmojiPng("error", client.user.id)} You only can this guild once in the Discovery!`,
+                    content: `## ${await convertToEmojiPng("error", client.user.id)} You only can have this guild once in the Discovery!`,
                 }
             )
         }

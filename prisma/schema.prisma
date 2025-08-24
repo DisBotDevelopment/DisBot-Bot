@@ -599,7 +599,7 @@ model GuildBackups {
 model Vanitys {
   id                   String          @id @default(auto()) @map("_id") @db.ObjectId
   UUID                 String          @unique
-  Slug                 String
+  Slug                 String          @unique
   Host                 String
   GuildId              String
   Invite               String
