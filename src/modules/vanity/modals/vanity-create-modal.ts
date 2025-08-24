@@ -58,8 +58,8 @@ export default {
                                     VanityId: uuid
                                 },
                                 create: {
-                                    Title: interaction.guild.name,
-                                    Description: interaction.guild.description,
+                                    Title: interaction.guild.name ?? "N/A",
+                                    Description: interaction.guild.description ?? "N/A",
                                     Color: "#282b30",
                                 }
                             }
