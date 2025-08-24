@@ -71,12 +71,16 @@ export default {
                         }
                     )
 
-                    await interaction.reply({
+                    return await interaction.reply({
                         flags: MessageFlags.Ephemeral,
                         content: `## ${await convertToEmojiPng("check", client.user.id)} Added command to the guild.`
                     })
 
-                } else {
+                } else if (
+                    command.name == data.CustomName &&
+                    command.guildId == interaction.guild?.id
+                ) {
+                    
                     await interaction.guild.commands.delete(command.id)
                     await database.buildInCommands.update({
                         where: {
@@ -86,14 +90,14 @@ export default {
                             IsEnabled: false
                         }
                     })
-                    await interaction.reply({
+                    return await interaction.reply({
                         flags: MessageFlags.Ephemeral,
                         content: `## ${await convertToEmojiPng("check", client.user.id)} Removed command successfully!`
                     })
                 }
             }
         } catch (error) {
-            await interaction.reply({
+            return await interaction.reply({
                 flags: MessageFlags.Ephemeral,
                 content: `## ${await convertToEmojiPng("error", client.user.id)} Can't remove this command from the Guild!`
             })

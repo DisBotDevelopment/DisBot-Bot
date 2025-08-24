@@ -48,8 +48,9 @@ export default {
         }
 
 
-        await database.vanityEmbeds.update({
+        await database.vanityEmbed.update({
             where: {
+                id: data.id,
                 VanityId: interaction.customId.split(":")[1]
             },
             data: {

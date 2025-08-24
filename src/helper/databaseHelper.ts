@@ -114,9 +114,6 @@ export async function initGuildsToDatabase(client: ExtendedClient) {
                 GuildId: guild.id
             }
         })
-
-        console.log(guildsData)
-        
         const guildOwner = await client.guilds.fetch(guild.id)
         if (!guildsData) {
             await database.guilds.create({

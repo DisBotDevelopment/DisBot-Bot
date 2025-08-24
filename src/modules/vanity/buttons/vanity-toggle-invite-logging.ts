@@ -39,7 +39,7 @@ export default {
         }
 
         if (data.Analytics?.TrackInviteWithLog) {
-            await database.vanityAnalytics.update(
+            await database.vanityAnalytic.update(
                 {
                     where: {VanityId: data.UUID},
                     data: {

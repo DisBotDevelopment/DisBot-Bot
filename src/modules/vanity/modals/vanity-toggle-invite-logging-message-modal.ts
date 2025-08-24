@@ -42,7 +42,7 @@ export default {
             content: `## ${await convertToEmojiPng("error", client.user.id)} No message template found for this vanity URL.`,
         })
 
-        await database.vanityAnalytics.update(
+        await database.vanityAnalytic.update(
             {
                 where: {
                     VanityId: data.UUID

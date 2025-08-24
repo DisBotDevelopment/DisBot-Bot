@@ -47,7 +47,7 @@ export default {
                         `${await convertToEmojiPng("status", client.user.id)} **Host**: \`${data?.Host}\``,
                         `${await convertToEmojiPng("group", client.user.id)} **Guild**: ${await client.guilds.fetch(data?.GuildId as string).then(g => g.name)} (\`${data?.GuildId}\`)`,
                         `${await convertToEmojiPng("link", client.user.id)} **Invite**: [Invite](${data?.Invite})`,
-                        `${await convertToEmojiPng("link", client.user.id)} **Vanity-Link**: [Vanity Link](https://dchat.click/${data?.Slug})`,
+                        `${await convertToEmojiPng("link", client.user.id)} **Vanity-Link**: [Vanity Link](https://dchat.link/${data?.Slug})`,
                         `${await convertToEmojiPng("uuid", client.user.id)} **UUID**: \`\`\`${data?.UUID}\`\`\``
                     ].join("\n")
                 );

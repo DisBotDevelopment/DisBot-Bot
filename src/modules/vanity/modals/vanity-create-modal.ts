@@ -44,12 +44,26 @@ export default {
                 await database.vanitys.create({
                     data: {
                         Slug: query,
-                        Host: "dchat.click",
+                        Host: "dchat.link",
                         UserId: interaction.user.id,
-                        UUID: randomUUID(),
+                        UUID: uuid,
                         Invite: invite.url,
                         GuildId: interaction.guildId,
                         CreatedAt: new Date(),
+                        InDiscovery: false,
+                        IsBannedFromDiscover: false,
+                        Embed: {
+                            connectOrCreate: {
+                                where: {
+                                    VanityId: uuid
+                                },
+                                create: {
+                                    Title: interaction.guild.name,
+                                    Description: interaction.guild.description,
+                                    Color: "#282b30",
+                                }
+                            }
+                        },
                         Analytics: {
                             connectOrCreate: {
                                 create: {
@@ -83,7 +97,7 @@ export default {
                 });
 
                 return interaction.editReply({
-                    content: `## ${await convertToEmojiPng("link", client.user.id)}Your Vanity URL has been created. - [dchat.click/${query}](https://dchat.click/${query})`
+                    content: `## ${await convertToEmojiPng("link", client.user.id)}Your Vanity URL has been created. - [dchat.link/${query}](https://dchat.link/${query})`
                 });
             });
     }

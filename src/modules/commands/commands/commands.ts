@@ -72,7 +72,7 @@ export default {
                         ``,
                         `**Create Commands** - Create a new Commands.`,
                         `**Manage Commands** - Manage your Commands.`,
-                        `**Use Command Manager** - Edit Build-in Command from the Bot.`,
+                        `**Use Command Manager** - Edit Build-in Command from the Bot. (Not work for all commands!)`,
                         ``,
                     ].join("\n")
                 )).addActionRowComponents(row)

@@ -66,8 +66,8 @@ export default {
             return;
         }
 
-        interaction.editReply({
-            components: [row]
+        await interaction.editReply({
+            components: [row, row2]
         })
     }
 };

@@ -32,7 +32,7 @@ export class Scheduler {
                 new Date().getTime() - new Date(value.Analytics.Latest30Days.Date).getTime() > THIRTY_DAYS_MS;
 
             if (needsReset) {
-                await database.analyticsLatest30Days.updateMany({
+                await database.vanityAnalyticsLatest30Day.updateMany({
                     where: {
                         VanityAnalyticsId: value.UUID
                     },

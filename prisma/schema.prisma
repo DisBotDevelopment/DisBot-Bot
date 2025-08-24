@@ -597,64 +597,64 @@ model GuildBackups {
 }
 
 model Vanitys {
-  id                   String           @id @default(auto()) @map("_id") @db.ObjectId
-  UUID                 String           @unique
+  id                   String          @id @default(auto()) @map("_id") @db.ObjectId
+  UUID                 String          @unique
   Slug                 String
   Host                 String
   GuildId              String
   Invite               String
-  InDiscovery          Boolean?         @default(false)
-  IsBannedFromDiscover Boolean?         @default(false)
-  Analytics            VanityAnalytics?
+  InDiscovery          Boolean?        @default(false)
+  IsBannedFromDiscover Boolean?        @default(false)
+  Analytics            VanityAnalytic?
   CreatedAt            DateTime
-  Embed                VanityEmbeds?
+  Embed                VanityEmbed?
   UserId               String
-  Users                Users            @relation(fields: [UserId], references: [UserId])
+  Users                Users           @relation(fields: [UserId], references: [UserId])
 }
 
-model VanityEmbeds {
-  id           String              @id @default(auto()) @map("_id") @db.ObjectId
+model VanityEmbed {
+  id           String             @id @default(auto()) @map("_id") @db.ObjectId
   Title        String
   Description  String
   Color        String
-  Author       VanityEmbedAuthors?
-  ImageUrl     String
-  ThumbnailUrl String
-  VanityId     String              @unique
-  Vanitys      Vanitys             @relation(fields: [VanityId], references: [UUID])
+  Author       VanityEmbedAuthor?
+  ImageUrl     String?
+  ThumbnailUrl String?
+  VanityId     String             @unique
+  Vanitys      Vanitys            @relation(fields: [VanityId], references: [UUID])
 }
 
-model VanityEmbedAuthors {
-  id             String       @id @default(auto()) @map("_id") @db.ObjectId
-  Name           String
-  URL            String
-  IconURL        String
-  VanityEmbedsId String       @unique
-  VanityEmbeds   VanityEmbeds @relation(fields: [VanityEmbedsId], references: [VanityId])
+model VanityEmbedAuthor {
+  id             String      @id @default(auto()) @map("_id") @db.ObjectId
+  Name           String?
+  URL            String?
+  IconURL        String?
+  VanityEmbedsId String      @unique
+  VanityEmbeds   VanityEmbed @relation(fields: [VanityEmbedsId], references: [VanityId])
 }
 
-model VanityAnalytics {
-  id                 String                 @id @default(auto()) @map("_id") @db.ObjectId
+model VanityAnalytic {
+  id                 String                      @id @default(auto()) @map("_id") @db.ObjectId
   Click              Int
   TrackInviteWithLog String?
   TrackMessageId     String?
-  Latest30Days       AnalyticsLatest30Days?
+  Latest30Days       VanityAnalyticsLatest30Day?
   Update             DateTime?
   UniqueClick        Int?
   JoinedWithCode     Int?
   LoggedIPs          String[]
-  VanityId           String                 @unique
-  Vanitys            Vanitys                @relation(fields: [VanityId], references: [UUID])
+  VanityId           String                      @unique
+  Vanitys            Vanitys                     @relation(fields: [VanityId], references: [UUID])
 }
 
-model AnalyticsLatest30Days {
-  id                String          @id @default(auto()) @map("_id") @db.ObjectId
+model VanityAnalyticsLatest30Day {
+  id                String         @id @default(auto()) @map("_id") @db.ObjectId
   Click             Int?
   UniqueClick       Int?
   Date              DateTime?
   JoinedWithCode    Int?
-  VanityAnalyticsId String          @unique
-  VanityAnalytics   VanityAnalytics @relation(fields: [VanityAnalyticsId], references: [VanityId])
+  VanityAnalyticsId String         @unique
+  VanityAnalytics   VanityAnalytic @relation(fields: [VanityAnalyticsId], references: [VanityId])
 }
 
 // DisBot

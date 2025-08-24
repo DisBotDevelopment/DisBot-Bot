@@ -234,25 +234,25 @@ export type GuildBackups = $Result.DefaultSelection<Prisma.$GuildBackupsPayload>
  */
 export type Vanitys = $Result.DefaultSelection<Prisma.$VanitysPayload>
 /**
- * Model VanityEmbeds
+ * Model VanityEmbed
  * 
  */
-export type VanityEmbeds = $Result.DefaultSelection<Prisma.$VanityEmbedsPayload>
+export type VanityEmbed = $Result.DefaultSelection<Prisma.$VanityEmbedPayload>
 /**
- * Model VanityEmbedAuthors
+ * Model VanityEmbedAuthor
  * 
  */
-export type VanityEmbedAuthors = $Result.DefaultSelection<Prisma.$VanityEmbedAuthorsPayload>
+export type VanityEmbedAuthor = $Result.DefaultSelection<Prisma.$VanityEmbedAuthorPayload>
 /**
- * Model VanityAnalytics
+ * Model VanityAnalytic
  * 
  */
-export type VanityAnalytics = $Result.DefaultSelection<Prisma.$VanityAnalyticsPayload>
+export type VanityAnalytic = $Result.DefaultSelection<Prisma.$VanityAnalyticPayload>
 /**
- * Model AnalyticsLatest30Days
+ * Model VanityAnalyticsLatest30Day
  * 
  */
-export type AnalyticsLatest30Days = $Result.DefaultSelection<Prisma.$AnalyticsLatest30DaysPayload>
+export type VanityAnalyticsLatest30Day = $Result.DefaultSelection<Prisma.$VanityAnalyticsLatest30DayPayload>
 /**
  * Model DisBot
  * 
@@ -745,44 +745,44 @@ export class PrismaClient<
   get vanitys(): Prisma.VanitysDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.vanityEmbeds`: Exposes CRUD operations for the **VanityEmbeds** model.
+   * `prisma.vanityEmbed`: Exposes CRUD operations for the **VanityEmbed** model.
     * Example usage:
     * ```ts
     * // Fetch zero or more VanityEmbeds
-    * const vanityEmbeds = await prisma.vanityEmbeds.findMany()
+    * const vanityEmbeds = await prisma.vanityEmbed.findMany()
     * ```
     */
-  get vanityEmbeds(): Prisma.VanityEmbedsDelegate<ExtArgs, ClientOptions>;
+  get vanityEmbed(): Prisma.VanityEmbedDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.vanityEmbedAuthors`: Exposes CRUD operations for the **VanityEmbedAuthors** model.
+   * `prisma.vanityEmbedAuthor`: Exposes CRUD operations for the **VanityEmbedAuthor** model.
     * Example usage:
     * ```ts
     * // Fetch zero or more VanityEmbedAuthors
-    * const vanityEmbedAuthors = await prisma.vanityEmbedAuthors.findMany()
+    * const vanityEmbedAuthors = await prisma.vanityEmbedAuthor.findMany()
     * ```
     */
-  get vanityEmbedAuthors(): Prisma.VanityEmbedAuthorsDelegate<ExtArgs, ClientOptions>;
+  get vanityEmbedAuthor(): Prisma.VanityEmbedAuthorDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.vanityAnalytics`: Exposes CRUD operations for the **VanityAnalytics** model.
+   * `prisma.vanityAnalytic`: Exposes CRUD operations for the **VanityAnalytic** model.
     * Example usage:
     * ```ts
     * // Fetch zero or more VanityAnalytics
-    * const vanityAnalytics = await prisma.vanityAnalytics.findMany()
+    * const vanityAnalytics = await prisma.vanityAnalytic.findMany()
     * ```
     */
-  get vanityAnalytics(): Prisma.VanityAnalyticsDelegate<ExtArgs, ClientOptions>;
+  get vanityAnalytic(): Prisma.VanityAnalyticDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.analyticsLatest30Days`: Exposes CRUD operations for the **AnalyticsLatest30Days** model.
+   * `prisma.vanityAnalyticsLatest30Day`: Exposes CRUD operations for the **VanityAnalyticsLatest30Day** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more AnalyticsLatest30Days
-    * const analyticsLatest30Days = await prisma.analyticsLatest30Days.findMany()
+    * // Fetch zero or more VanityAnalyticsLatest30Days
+    * const vanityAnalyticsLatest30Days = await prisma.vanityAnalyticsLatest30Day.findMany()
     * ```
     */
-  get analyticsLatest30Days(): Prisma.AnalyticsLatest30DaysDelegate<ExtArgs, ClientOptions>;
+  get vanityAnalyticsLatest30Day(): Prisma.VanityAnalyticsLatest30DayDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.disBot`: Exposes CRUD operations for the **DisBot** model.
@@ -1273,10 +1273,10 @@ export namespace Prisma {
     Apis: 'Apis',
     GuildBackups: 'GuildBackups',
     Vanitys: 'Vanitys',
-    VanityEmbeds: 'VanityEmbeds',
-    VanityEmbedAuthors: 'VanityEmbedAuthors',
-    VanityAnalytics: 'VanityAnalytics',
-    AnalyticsLatest30Days: 'AnalyticsLatest30Days',
+    VanityEmbed: 'VanityEmbed',
+    VanityEmbedAuthor: 'VanityEmbedAuthor',
+    VanityAnalytic: 'VanityAnalytic',
+    VanityAnalyticsLatest30Day: 'VanityAnalyticsLatest30Day',
     DisBot: 'DisBot'
   };
 
@@ -1296,7 +1296,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "guilds" | "guildCommandManger" | "buildInCommands" | "guildComponentManager" | "guildInteractionPermissions" | "guildAutoDeletes" | "guildAutoPublish" | "guildAutoReacts" | "guildAutoRoles" | "guildBans" | "guildChatModeration" | "guildChannelLinks" | "syncedChannelLinkMessages" | "discordGuildAddon" | "giveaways" | "tempVoices" | "tempVoiceChannels" | "guildLeaveSetup" | "guildWelcomeSetup" | "guildLogging" | "guildLogs" | "messageTemplates" | "guildReactionRoles" | "guildSecurity" | "verificationGates" | "verificationGatesPermission" | "guildSpotifyNotifications" | "tags" | "ticketSetups" | "ticketModalData" | "ticketPermissions" | "tickets" | "ticketFeedback" | "guildFeatureToggles" | "guildTwitchNotifications" | "guildYoutubeNotifications" | "users" | "apis" | "guildBackups" | "vanitys" | "vanityEmbeds" | "vanityEmbedAuthors" | "vanityAnalytics" | "analyticsLatest30Days" | "disBot"
+      modelProps: "guilds" | "guildCommandManger" | "buildInCommands" | "guildComponentManager" | "guildInteractionPermissions" | "guildAutoDeletes" | "guildAutoPublish" | "guildAutoReacts" | "guildAutoRoles" | "guildBans" | "guildChatModeration" | "guildChannelLinks" | "syncedChannelLinkMessages" | "discordGuildAddon" | "giveaways" | "tempVoices" | "tempVoiceChannels" | "guildLeaveSetup" | "guildWelcomeSetup" | "guildLogging" | "guildLogs" | "messageTemplates" | "guildReactionRoles" | "guildSecurity" | "verificationGates" | "verificationGatesPermission" | "guildSpotifyNotifications" | "tags" | "ticketSetups" | "ticketModalData" | "ticketPermissions" | "tickets" | "ticketFeedback" | "guildFeatureToggles" | "guildTwitchNotifications" | "guildYoutubeNotifications" | "users" | "apis" | "guildBackups" | "vanitys" | "vanityEmbed" | "vanityEmbedAuthor" | "vanityAnalytic" | "vanityAnalyticsLatest30Day" | "disBot"
       txIsolationLevel: never
     }
     model: {
@@ -4260,299 +4260,299 @@ export namespace Prisma {
           }
         }
       }
-      VanityEmbeds: {
-        payload: Prisma.$VanityEmbedsPayload<ExtArgs>
-        fields: Prisma.VanityEmbedsFieldRefs
+      VanityEmbed: {
+        payload: Prisma.$VanityEmbedPayload<ExtArgs>
+        fields: Prisma.VanityEmbedFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.VanityEmbedsFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VanityEmbedsPayload> | null
+            args: Prisma.VanityEmbedFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityEmbedPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.VanityEmbedsFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VanityEmbedsPayload>
+            args: Prisma.VanityEmbedFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityEmbedPayload>
           }
           findFirst: {
-            args: Prisma.VanityEmbedsFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VanityEmbedsPayload> | null
+            args: Prisma.VanityEmbedFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityEmbedPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.VanityEmbedsFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VanityEmbedsPayload>
+            args: Prisma.VanityEmbedFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityEmbedPayload>
           }
           findMany: {
-            args: Prisma.VanityEmbedsFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VanityEmbedsPayload>[]
+            args: Prisma.VanityEmbedFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityEmbedPayload>[]
           }
           create: {
-            args: Prisma.VanityEmbedsCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VanityEmbedsPayload>
+            args: Prisma.VanityEmbedCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityEmbedPayload>
           }
           createMany: {
-            args: Prisma.VanityEmbedsCreateManyArgs<ExtArgs>
+            args: Prisma.VanityEmbedCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           delete: {
-            args: Prisma.VanityEmbedsDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VanityEmbedsPayload>
+            args: Prisma.VanityEmbedDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityEmbedPayload>
           }
           update: {
-            args: Prisma.VanityEmbedsUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VanityEmbedsPayload>
+            args: Prisma.VanityEmbedUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityEmbedPayload>
           }
           deleteMany: {
-            args: Prisma.VanityEmbedsDeleteManyArgs<ExtArgs>
+            args: Prisma.VanityEmbedDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.VanityEmbedsUpdateManyArgs<ExtArgs>
+            args: Prisma.VanityEmbedUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           upsert: {
-            args: Prisma.VanityEmbedsUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VanityEmbedsPayload>
+            args: Prisma.VanityEmbedUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityEmbedPayload>
           }
           aggregate: {
-            args: Prisma.VanityEmbedsAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateVanityEmbeds>
+            args: Prisma.VanityEmbedAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateVanityEmbed>
           }
           groupBy: {
-            args: Prisma.VanityEmbedsGroupByArgs<ExtArgs>
-            result: $Utils.Optional<VanityEmbedsGroupByOutputType>[]
+            args: Prisma.VanityEmbedGroupByArgs<ExtArgs>
+            result: $Utils.Optional<VanityEmbedGroupByOutputType>[]
           }
           findRaw: {
-            args: Prisma.VanityEmbedsFindRawArgs<ExtArgs>
+            args: Prisma.VanityEmbedFindRawArgs<ExtArgs>
             result: JsonObject
           }
           aggregateRaw: {
-            args: Prisma.VanityEmbedsAggregateRawArgs<ExtArgs>
+            args: Prisma.VanityEmbedAggregateRawArgs<ExtArgs>
             result: JsonObject
           }
           count: {
-            args: Prisma.VanityEmbedsCountArgs<ExtArgs>
-            result: $Utils.Optional<VanityEmbedsCountAggregateOutputType> | number
+            args: Prisma.VanityEmbedCountArgs<ExtArgs>
+            result: $Utils.Optional<VanityEmbedCountAggregateOutputType> | number
           }
         }
       }
-      VanityEmbedAuthors: {
-        payload: Prisma.$VanityEmbedAuthorsPayload<ExtArgs>
-        fields: Prisma.VanityEmbedAuthorsFieldRefs
+      VanityEmbedAuthor: {
+        payload: Prisma.$VanityEmbedAuthorPayload<ExtArgs>
+        fields: Prisma.VanityEmbedAuthorFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.VanityEmbedAuthorsFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VanityEmbedAuthorsPayload> | null
+            args: Prisma.VanityEmbedAuthorFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityEmbedAuthorPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.VanityEmbedAuthorsFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VanityEmbedAuthorsPayload>
+            args: Prisma.VanityEmbedAuthorFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityEmbedAuthorPayload>
           }
           findFirst: {
-            args: Prisma.VanityEmbedAuthorsFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VanityEmbedAuthorsPayload> | null
+            args: Prisma.VanityEmbedAuthorFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityEmbedAuthorPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.VanityEmbedAuthorsFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VanityEmbedAuthorsPayload>
+            args: Prisma.VanityEmbedAuthorFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityEmbedAuthorPayload>
           }
           findMany: {
-            args: Prisma.VanityEmbedAuthorsFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VanityEmbedAuthorsPayload>[]
+            args: Prisma.VanityEmbedAuthorFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityEmbedAuthorPayload>[]
           }
           create: {
-            args: Prisma.VanityEmbedAuthorsCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VanityEmbedAuthorsPayload>
+            args: Prisma.VanityEmbedAuthorCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityEmbedAuthorPayload>
           }
           createMany: {
-            args: Prisma.VanityEmbedAuthorsCreateManyArgs<ExtArgs>
+            args: Prisma.VanityEmbedAuthorCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           delete: {
-            args: Prisma.VanityEmbedAuthorsDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VanityEmbedAuthorsPayload>
+            args: Prisma.VanityEmbedAuthorDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityEmbedAuthorPayload>
           }
           update: {
-            args: Prisma.VanityEmbedAuthorsUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VanityEmbedAuthorsPayload>
+            args: Prisma.VanityEmbedAuthorUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityEmbedAuthorPayload>
           }
           deleteMany: {
-            args: Prisma.VanityEmbedAuthorsDeleteManyArgs<ExtArgs>
+            args: Prisma.VanityEmbedAuthorDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.VanityEmbedAuthorsUpdateManyArgs<ExtArgs>
+            args: Prisma.VanityEmbedAuthorUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           upsert: {
-            args: Prisma.VanityEmbedAuthorsUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VanityEmbedAuthorsPayload>
+            args: Prisma.VanityEmbedAuthorUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityEmbedAuthorPayload>
           }
           aggregate: {
-            args: Prisma.VanityEmbedAuthorsAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateVanityEmbedAuthors>
+            args: Prisma.VanityEmbedAuthorAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateVanityEmbedAuthor>
           }
           groupBy: {
-            args: Prisma.VanityEmbedAuthorsGroupByArgs<ExtArgs>
-            result: $Utils.Optional<VanityEmbedAuthorsGroupByOutputType>[]
+            args: Prisma.VanityEmbedAuthorGroupByArgs<ExtArgs>
+            result: $Utils.Optional<VanityEmbedAuthorGroupByOutputType>[]
           }
           findRaw: {
-            args: Prisma.VanityEmbedAuthorsFindRawArgs<ExtArgs>
+            args: Prisma.VanityEmbedAuthorFindRawArgs<ExtArgs>
             result: JsonObject
           }
           aggregateRaw: {
-            args: Prisma.VanityEmbedAuthorsAggregateRawArgs<ExtArgs>
+            args: Prisma.VanityEmbedAuthorAggregateRawArgs<ExtArgs>
             result: JsonObject
           }
           count: {
-            args: Prisma.VanityEmbedAuthorsCountArgs<ExtArgs>
-            result: $Utils.Optional<VanityEmbedAuthorsCountAggregateOutputType> | number
+            args: Prisma.VanityEmbedAuthorCountArgs<ExtArgs>
+            result: $Utils.Optional<VanityEmbedAuthorCountAggregateOutputType> | number
           }
         }
       }
-      VanityAnalytics: {
-        payload: Prisma.$VanityAnalyticsPayload<ExtArgs>
-        fields: Prisma.VanityAnalyticsFieldRefs
+      VanityAnalytic: {
+        payload: Prisma.$VanityAnalyticPayload<ExtArgs>
+        fields: Prisma.VanityAnalyticFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.VanityAnalyticsFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VanityAnalyticsPayload> | null
+            args: Prisma.VanityAnalyticFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityAnalyticPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.VanityAnalyticsFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VanityAnalyticsPayload>
+            args: Prisma.VanityAnalyticFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityAnalyticPayload>
           }
           findFirst: {
-            args: Prisma.VanityAnalyticsFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VanityAnalyticsPayload> | null
+            args: Prisma.VanityAnalyticFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityAnalyticPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.VanityAnalyticsFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VanityAnalyticsPayload>
+            args: Prisma.VanityAnalyticFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityAnalyticPayload>
           }
           findMany: {
-            args: Prisma.VanityAnalyticsFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VanityAnalyticsPayload>[]
+            args: Prisma.VanityAnalyticFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityAnalyticPayload>[]
           }
           create: {
-            args: Prisma.VanityAnalyticsCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VanityAnalyticsPayload>
+            args: Prisma.VanityAnalyticCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityAnalyticPayload>
           }
           createMany: {
-            args: Prisma.VanityAnalyticsCreateManyArgs<ExtArgs>
+            args: Prisma.VanityAnalyticCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           delete: {
-            args: Prisma.VanityAnalyticsDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VanityAnalyticsPayload>
+            args: Prisma.VanityAnalyticDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityAnalyticPayload>
           }
           update: {
-            args: Prisma.VanityAnalyticsUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VanityAnalyticsPayload>
+            args: Prisma.VanityAnalyticUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityAnalyticPayload>
           }
           deleteMany: {
-            args: Prisma.VanityAnalyticsDeleteManyArgs<ExtArgs>
+            args: Prisma.VanityAnalyticDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.VanityAnalyticsUpdateManyArgs<ExtArgs>
+            args: Prisma.VanityAnalyticUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           upsert: {
-            args: Prisma.VanityAnalyticsUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VanityAnalyticsPayload>
+            args: Prisma.VanityAnalyticUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityAnalyticPayload>
           }
           aggregate: {
-            args: Prisma.VanityAnalyticsAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateVanityAnalytics>
+            args: Prisma.VanityAnalyticAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateVanityAnalytic>
           }
           groupBy: {
-            args: Prisma.VanityAnalyticsGroupByArgs<ExtArgs>
-            result: $Utils.Optional<VanityAnalyticsGroupByOutputType>[]
+            args: Prisma.VanityAnalyticGroupByArgs<ExtArgs>
+            result: $Utils.Optional<VanityAnalyticGroupByOutputType>[]
           }
           findRaw: {
-            args: Prisma.VanityAnalyticsFindRawArgs<ExtArgs>
+            args: Prisma.VanityAnalyticFindRawArgs<ExtArgs>
             result: JsonObject
           }
           aggregateRaw: {
-            args: Prisma.VanityAnalyticsAggregateRawArgs<ExtArgs>
+            args: Prisma.VanityAnalyticAggregateRawArgs<ExtArgs>
             result: JsonObject
           }
           count: {
-            args: Prisma.VanityAnalyticsCountArgs<ExtArgs>
-            result: $Utils.Optional<VanityAnalyticsCountAggregateOutputType> | number
+            args: Prisma.VanityAnalyticCountArgs<ExtArgs>
+            result: $Utils.Optional<VanityAnalyticCountAggregateOutputType> | number
           }
         }
       }
-      AnalyticsLatest30Days: {
-        payload: Prisma.$AnalyticsLatest30DaysPayload<ExtArgs>
-        fields: Prisma.AnalyticsLatest30DaysFieldRefs
+      VanityAnalyticsLatest30Day: {
+        payload: Prisma.$VanityAnalyticsLatest30DayPayload<ExtArgs>
+        fields: Prisma.VanityAnalyticsLatest30DayFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.AnalyticsLatest30DaysFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AnalyticsLatest30DaysPayload> | null
+            args: Prisma.VanityAnalyticsLatest30DayFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityAnalyticsLatest30DayPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.AnalyticsLatest30DaysFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AnalyticsLatest30DaysPayload>
+            args: Prisma.VanityAnalyticsLatest30DayFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityAnalyticsLatest30DayPayload>
           }
           findFirst: {
-            args: Prisma.AnalyticsLatest30DaysFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AnalyticsLatest30DaysPayload> | null
+            args: Prisma.VanityAnalyticsLatest30DayFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityAnalyticsLatest30DayPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.AnalyticsLatest30DaysFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AnalyticsLatest30DaysPayload>
+            args: Prisma.VanityAnalyticsLatest30DayFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityAnalyticsLatest30DayPayload>
           }
           findMany: {
-            args: Prisma.AnalyticsLatest30DaysFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AnalyticsLatest30DaysPayload>[]
+            args: Prisma.VanityAnalyticsLatest30DayFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityAnalyticsLatest30DayPayload>[]
           }
           create: {
-            args: Prisma.AnalyticsLatest30DaysCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AnalyticsLatest30DaysPayload>
+            args: Prisma.VanityAnalyticsLatest30DayCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityAnalyticsLatest30DayPayload>
           }
           createMany: {
-            args: Prisma.AnalyticsLatest30DaysCreateManyArgs<ExtArgs>
+            args: Prisma.VanityAnalyticsLatest30DayCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           delete: {
-            args: Prisma.AnalyticsLatest30DaysDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AnalyticsLatest30DaysPayload>
+            args: Prisma.VanityAnalyticsLatest30DayDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityAnalyticsLatest30DayPayload>
           }
           update: {
-            args: Prisma.AnalyticsLatest30DaysUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AnalyticsLatest30DaysPayload>
+            args: Prisma.VanityAnalyticsLatest30DayUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityAnalyticsLatest30DayPayload>
           }
           deleteMany: {
-            args: Prisma.AnalyticsLatest30DaysDeleteManyArgs<ExtArgs>
+            args: Prisma.VanityAnalyticsLatest30DayDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.AnalyticsLatest30DaysUpdateManyArgs<ExtArgs>
+            args: Prisma.VanityAnalyticsLatest30DayUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           upsert: {
-            args: Prisma.AnalyticsLatest30DaysUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AnalyticsLatest30DaysPayload>
+            args: Prisma.VanityAnalyticsLatest30DayUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VanityAnalyticsLatest30DayPayload>
           }
           aggregate: {
-            args: Prisma.AnalyticsLatest30DaysAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateAnalyticsLatest30Days>
+            args: Prisma.VanityAnalyticsLatest30DayAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateVanityAnalyticsLatest30Day>
           }
           groupBy: {
-            args: Prisma.AnalyticsLatest30DaysGroupByArgs<ExtArgs>
-            result: $Utils.Optional<AnalyticsLatest30DaysGroupByOutputType>[]
+            args: Prisma.VanityAnalyticsLatest30DayGroupByArgs<ExtArgs>
+            result: $Utils.Optional<VanityAnalyticsLatest30DayGroupByOutputType>[]
           }
           findRaw: {
-            args: Prisma.AnalyticsLatest30DaysFindRawArgs<ExtArgs>
+            args: Prisma.VanityAnalyticsLatest30DayFindRawArgs<ExtArgs>
             result: JsonObject
           }
           aggregateRaw: {
-            args: Prisma.AnalyticsLatest30DaysAggregateRawArgs<ExtArgs>
+            args: Prisma.VanityAnalyticsLatest30DayAggregateRawArgs<ExtArgs>
             result: JsonObject
           }
           count: {
-            args: Prisma.AnalyticsLatest30DaysCountArgs<ExtArgs>
-            result: $Utils.Optional<AnalyticsLatest30DaysCountAggregateOutputType> | number
+            args: Prisma.VanityAnalyticsLatest30DayCountArgs<ExtArgs>
+            result: $Utils.Optional<VanityAnalyticsLatest30DayCountAggregateOutputType> | number
           }
         }
       }
@@ -4749,10 +4749,10 @@ export namespace Prisma {
     apis?: ApisOmit
     guildBackups?: GuildBackupsOmit
     vanitys?: VanitysOmit
-    vanityEmbeds?: VanityEmbedsOmit
-    vanityEmbedAuthors?: VanityEmbedAuthorsOmit
-    vanityAnalytics?: VanityAnalyticsOmit
-    analyticsLatest30Days?: AnalyticsLatest30DaysOmit
+    vanityEmbed?: VanityEmbedOmit
+    vanityEmbedAuthor?: VanityEmbedAuthorOmit
+    vanityAnalytic?: VanityAnalyticOmit
+    vanityAnalyticsLatest30Day?: VanityAnalyticsLatest30DayOmit
     disBot?: DisBotOmit
   }
 
@@ -46912,8 +46912,8 @@ export namespace Prisma {
   export type $VanitysPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Vanitys"
     objects: {
-      Analytics: Prisma.$VanityAnalyticsPayload<ExtArgs> | null
-      Embed: Prisma.$VanityEmbedsPayload<ExtArgs> | null
+      Analytics: Prisma.$VanityAnalyticPayload<ExtArgs> | null
+      Embed: Prisma.$VanityEmbedPayload<ExtArgs> | null
       Users: Prisma.$UsersPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -47290,8 +47290,8 @@ export namespace Prisma {
    */
   export interface Prisma__VanitysClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Analytics<T extends Vanitys$AnalyticsArgs<ExtArgs> = {}>(args?: Subset<T, Vanitys$AnalyticsArgs<ExtArgs>>): Prisma__VanityAnalyticsClient<$Result.GetResult<Prisma.$VanityAnalyticsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    Embed<T extends Vanitys$EmbedArgs<ExtArgs> = {}>(args?: Subset<T, Vanitys$EmbedArgs<ExtArgs>>): Prisma__VanityEmbedsClient<$Result.GetResult<Prisma.$VanityEmbedsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    Analytics<T extends Vanitys$AnalyticsArgs<ExtArgs> = {}>(args?: Subset<T, Vanitys$AnalyticsArgs<ExtArgs>>): Prisma__VanityAnalyticClient<$Result.GetResult<Prisma.$VanityAnalyticPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    Embed<T extends Vanitys$EmbedArgs<ExtArgs> = {}>(args?: Subset<T, Vanitys$EmbedArgs<ExtArgs>>): Prisma__VanityEmbedClient<$Result.GetResult<Prisma.$VanityEmbedPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     Users<T extends UsersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsersDefaultArgs<ExtArgs>>): Prisma__UsersClient<$Result.GetResult<Prisma.$UsersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -47706,18 +47706,18 @@ export namespace Prisma {
    */
   export type Vanitys$AnalyticsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityAnalytics
+     * Select specific fields to fetch from the VanityAnalytic
      */
-    select?: VanityAnalyticsSelect<ExtArgs> | null
+    select?: VanityAnalyticSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityAnalytics
+     * Omit specific fields from the VanityAnalytic
      */
-    omit?: VanityAnalyticsOmit<ExtArgs> | null
+    omit?: VanityAnalyticOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityAnalyticsInclude<ExtArgs> | null
-    where?: VanityAnalyticsWhereInput
+    include?: VanityAnalyticInclude<ExtArgs> | null
+    where?: VanityAnalyticWhereInput
   }
 
   /**
@@ -47725,18 +47725,18 @@ export namespace Prisma {
    */
   export type Vanitys$EmbedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityEmbeds
+     * Select specific fields to fetch from the VanityEmbed
      */
-    select?: VanityEmbedsSelect<ExtArgs> | null
+    select?: VanityEmbedSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityEmbeds
+     * Omit specific fields from the VanityEmbed
      */
-    omit?: VanityEmbedsOmit<ExtArgs> | null
+    omit?: VanityEmbedOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityEmbedsInclude<ExtArgs> | null
-    where?: VanityEmbedsWhereInput
+    include?: VanityEmbedInclude<ExtArgs> | null
+    where?: VanityEmbedWhereInput
   }
 
   /**
@@ -47759,16 +47759,16 @@ export namespace Prisma {
 
 
   /**
-   * Model VanityEmbeds
+   * Model VanityEmbed
    */
 
-  export type AggregateVanityEmbeds = {
-    _count: VanityEmbedsCountAggregateOutputType | null
-    _min: VanityEmbedsMinAggregateOutputType | null
-    _max: VanityEmbedsMaxAggregateOutputType | null
+  export type AggregateVanityEmbed = {
+    _count: VanityEmbedCountAggregateOutputType | null
+    _min: VanityEmbedMinAggregateOutputType | null
+    _max: VanityEmbedMaxAggregateOutputType | null
   }
 
-  export type VanityEmbedsMinAggregateOutputType = {
+  export type VanityEmbedMinAggregateOutputType = {
     id: string | null
     Title: string | null
     Description: string | null
@@ -47778,7 +47778,7 @@ export namespace Prisma {
     VanityId: string | null
   }
 
-  export type VanityEmbedsMaxAggregateOutputType = {
+  export type VanityEmbedMaxAggregateOutputType = {
     id: string | null
     Title: string | null
     Description: string | null
@@ -47788,7 +47788,7 @@ export namespace Prisma {
     VanityId: string | null
   }
 
-  export type VanityEmbedsCountAggregateOutputType = {
+  export type VanityEmbedCountAggregateOutputType = {
     id: number
     Title: number
     Description: number
@@ -47800,7 +47800,7 @@ export namespace Prisma {
   }
 
 
-  export type VanityEmbedsMinAggregateInputType = {
+  export type VanityEmbedMinAggregateInputType = {
     id?: true
     Title?: true
     Description?: true
@@ -47810,7 +47810,7 @@ export namespace Prisma {
     VanityId?: true
   }
 
-  export type VanityEmbedsMaxAggregateInputType = {
+  export type VanityEmbedMaxAggregateInputType = {
     id?: true
     Title?: true
     Description?: true
@@ -47820,7 +47820,7 @@ export namespace Prisma {
     VanityId?: true
   }
 
-  export type VanityEmbedsCountAggregateInputType = {
+  export type VanityEmbedCountAggregateInputType = {
     id?: true
     Title?: true
     Description?: true
@@ -47831,23 +47831,23 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type VanityEmbedsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which VanityEmbeds to aggregate.
+     * Filter which VanityEmbed to aggregate.
      */
-    where?: VanityEmbedsWhereInput
+    where?: VanityEmbedWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of VanityEmbeds to fetch.
      */
-    orderBy?: VanityEmbedsOrderByWithRelationInput | VanityEmbedsOrderByWithRelationInput[]
+    orderBy?: VanityEmbedOrderByWithRelationInput | VanityEmbedOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: VanityEmbedsWhereUniqueInput
+    cursor?: VanityEmbedWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
@@ -47865,72 +47865,72 @@ export namespace Prisma {
      * 
      * Count returned VanityEmbeds
     **/
-    _count?: true | VanityEmbedsCountAggregateInputType
+    _count?: true | VanityEmbedCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: VanityEmbedsMinAggregateInputType
+    _min?: VanityEmbedMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: VanityEmbedsMaxAggregateInputType
+    _max?: VanityEmbedMaxAggregateInputType
   }
 
-  export type GetVanityEmbedsAggregateType<T extends VanityEmbedsAggregateArgs> = {
-        [P in keyof T & keyof AggregateVanityEmbeds]: P extends '_count' | 'count'
+  export type GetVanityEmbedAggregateType<T extends VanityEmbedAggregateArgs> = {
+        [P in keyof T & keyof AggregateVanityEmbed]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateVanityEmbeds[P]>
-      : GetScalarType<T[P], AggregateVanityEmbeds[P]>
+        : GetScalarType<T[P], AggregateVanityEmbed[P]>
+      : GetScalarType<T[P], AggregateVanityEmbed[P]>
   }
 
 
 
 
-  export type VanityEmbedsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: VanityEmbedsWhereInput
-    orderBy?: VanityEmbedsOrderByWithAggregationInput | VanityEmbedsOrderByWithAggregationInput[]
-    by: VanityEmbedsScalarFieldEnum[] | VanityEmbedsScalarFieldEnum
-    having?: VanityEmbedsScalarWhereWithAggregatesInput
+  export type VanityEmbedGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VanityEmbedWhereInput
+    orderBy?: VanityEmbedOrderByWithAggregationInput | VanityEmbedOrderByWithAggregationInput[]
+    by: VanityEmbedScalarFieldEnum[] | VanityEmbedScalarFieldEnum
+    having?: VanityEmbedScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: VanityEmbedsCountAggregateInputType | true
-    _min?: VanityEmbedsMinAggregateInputType
-    _max?: VanityEmbedsMaxAggregateInputType
+    _count?: VanityEmbedCountAggregateInputType | true
+    _min?: VanityEmbedMinAggregateInputType
+    _max?: VanityEmbedMaxAggregateInputType
   }
 
-  export type VanityEmbedsGroupByOutputType = {
+  export type VanityEmbedGroupByOutputType = {
     id: string
     Title: string
     Description: string
     Color: string
-    ImageUrl: string
-    ThumbnailUrl: string
+    ImageUrl: string | null
+    ThumbnailUrl: string | null
     VanityId: string
-    _count: VanityEmbedsCountAggregateOutputType | null
-    _min: VanityEmbedsMinAggregateOutputType | null
-    _max: VanityEmbedsMaxAggregateOutputType | null
+    _count: VanityEmbedCountAggregateOutputType | null
+    _min: VanityEmbedMinAggregateOutputType | null
+    _max: VanityEmbedMaxAggregateOutputType | null
   }
 
-  type GetVanityEmbedsGroupByPayload<T extends VanityEmbedsGroupByArgs> = Prisma.PrismaPromise<
+  type GetVanityEmbedGroupByPayload<T extends VanityEmbedGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<VanityEmbedsGroupByOutputType, T['by']> &
+      PickEnumerable<VanityEmbedGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof VanityEmbedsGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof VanityEmbedGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], VanityEmbedsGroupByOutputType[P]>
-            : GetScalarType<T[P], VanityEmbedsGroupByOutputType[P]>
+              : GetScalarType<T[P], VanityEmbedGroupByOutputType[P]>
+            : GetScalarType<T[P], VanityEmbedGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type VanityEmbedsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type VanityEmbedSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     Title?: boolean
     Description?: boolean
@@ -47938,13 +47938,13 @@ export namespace Prisma {
     ImageUrl?: boolean
     ThumbnailUrl?: boolean
     VanityId?: boolean
-    Author?: boolean | VanityEmbeds$AuthorArgs<ExtArgs>
+    Author?: boolean | VanityEmbed$AuthorArgs<ExtArgs>
     Vanitys?: boolean | VanitysDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["vanityEmbeds"]>
+  }, ExtArgs["result"]["vanityEmbed"]>
 
 
 
-  export type VanityEmbedsSelectScalar = {
+  export type VanityEmbedSelectScalar = {
     id?: boolean
     Title?: boolean
     Description?: boolean
@@ -47954,16 +47954,16 @@ export namespace Prisma {
     VanityId?: boolean
   }
 
-  export type VanityEmbedsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "Title" | "Description" | "Color" | "ImageUrl" | "ThumbnailUrl" | "VanityId", ExtArgs["result"]["vanityEmbeds"]>
-  export type VanityEmbedsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Author?: boolean | VanityEmbeds$AuthorArgs<ExtArgs>
+  export type VanityEmbedOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "Title" | "Description" | "Color" | "ImageUrl" | "ThumbnailUrl" | "VanityId", ExtArgs["result"]["vanityEmbed"]>
+  export type VanityEmbedInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Author?: boolean | VanityEmbed$AuthorArgs<ExtArgs>
     Vanitys?: boolean | VanitysDefaultArgs<ExtArgs>
   }
 
-  export type $VanityEmbedsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "VanityEmbeds"
+  export type $VanityEmbedPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "VanityEmbed"
     objects: {
-      Author: Prisma.$VanityEmbedAuthorsPayload<ExtArgs> | null
+      Author: Prisma.$VanityEmbedAuthorPayload<ExtArgs> | null
       Vanitys: Prisma.$VanitysPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -47971,146 +47971,146 @@ export namespace Prisma {
       Title: string
       Description: string
       Color: string
-      ImageUrl: string
-      ThumbnailUrl: string
+      ImageUrl: string | null
+      ThumbnailUrl: string | null
       VanityId: string
-    }, ExtArgs["result"]["vanityEmbeds"]>
+    }, ExtArgs["result"]["vanityEmbed"]>
     composites: {}
   }
 
-  type VanityEmbedsGetPayload<S extends boolean | null | undefined | VanityEmbedsDefaultArgs> = $Result.GetResult<Prisma.$VanityEmbedsPayload, S>
+  type VanityEmbedGetPayload<S extends boolean | null | undefined | VanityEmbedDefaultArgs> = $Result.GetResult<Prisma.$VanityEmbedPayload, S>
 
-  type VanityEmbedsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<VanityEmbedsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: VanityEmbedsCountAggregateInputType | true
+  type VanityEmbedCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<VanityEmbedFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: VanityEmbedCountAggregateInputType | true
     }
 
-  export interface VanityEmbedsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['VanityEmbeds'], meta: { name: 'VanityEmbeds' } }
+  export interface VanityEmbedDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['VanityEmbed'], meta: { name: 'VanityEmbed' } }
     /**
-     * Find zero or one VanityEmbeds that matches the filter.
-     * @param {VanityEmbedsFindUniqueArgs} args - Arguments to find a VanityEmbeds
+     * Find zero or one VanityEmbed that matches the filter.
+     * @param {VanityEmbedFindUniqueArgs} args - Arguments to find a VanityEmbed
      * @example
-     * // Get one VanityEmbeds
-     * const vanityEmbeds = await prisma.vanityEmbeds.findUnique({
+     * // Get one VanityEmbed
+     * const vanityEmbed = await prisma.vanityEmbed.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends VanityEmbedsFindUniqueArgs>(args: SelectSubset<T, VanityEmbedsFindUniqueArgs<ExtArgs>>): Prisma__VanityEmbedsClient<$Result.GetResult<Prisma.$VanityEmbedsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends VanityEmbedFindUniqueArgs>(args: SelectSubset<T, VanityEmbedFindUniqueArgs<ExtArgs>>): Prisma__VanityEmbedClient<$Result.GetResult<Prisma.$VanityEmbedPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one VanityEmbeds that matches the filter or throw an error with `error.code='P2025'`
+     * Find one VanityEmbed that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {VanityEmbedsFindUniqueOrThrowArgs} args - Arguments to find a VanityEmbeds
+     * @param {VanityEmbedFindUniqueOrThrowArgs} args - Arguments to find a VanityEmbed
      * @example
-     * // Get one VanityEmbeds
-     * const vanityEmbeds = await prisma.vanityEmbeds.findUniqueOrThrow({
+     * // Get one VanityEmbed
+     * const vanityEmbed = await prisma.vanityEmbed.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends VanityEmbedsFindUniqueOrThrowArgs>(args: SelectSubset<T, VanityEmbedsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VanityEmbedsClient<$Result.GetResult<Prisma.$VanityEmbedsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends VanityEmbedFindUniqueOrThrowArgs>(args: SelectSubset<T, VanityEmbedFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VanityEmbedClient<$Result.GetResult<Prisma.$VanityEmbedPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first VanityEmbeds that matches the filter.
+     * Find the first VanityEmbed that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {VanityEmbedsFindFirstArgs} args - Arguments to find a VanityEmbeds
+     * @param {VanityEmbedFindFirstArgs} args - Arguments to find a VanityEmbed
      * @example
-     * // Get one VanityEmbeds
-     * const vanityEmbeds = await prisma.vanityEmbeds.findFirst({
+     * // Get one VanityEmbed
+     * const vanityEmbed = await prisma.vanityEmbed.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends VanityEmbedsFindFirstArgs>(args?: SelectSubset<T, VanityEmbedsFindFirstArgs<ExtArgs>>): Prisma__VanityEmbedsClient<$Result.GetResult<Prisma.$VanityEmbedsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends VanityEmbedFindFirstArgs>(args?: SelectSubset<T, VanityEmbedFindFirstArgs<ExtArgs>>): Prisma__VanityEmbedClient<$Result.GetResult<Prisma.$VanityEmbedPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first VanityEmbeds that matches the filter or
+     * Find the first VanityEmbed that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {VanityEmbedsFindFirstOrThrowArgs} args - Arguments to find a VanityEmbeds
+     * @param {VanityEmbedFindFirstOrThrowArgs} args - Arguments to find a VanityEmbed
      * @example
-     * // Get one VanityEmbeds
-     * const vanityEmbeds = await prisma.vanityEmbeds.findFirstOrThrow({
+     * // Get one VanityEmbed
+     * const vanityEmbed = await prisma.vanityEmbed.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends VanityEmbedsFindFirstOrThrowArgs>(args?: SelectSubset<T, VanityEmbedsFindFirstOrThrowArgs<ExtArgs>>): Prisma__VanityEmbedsClient<$Result.GetResult<Prisma.$VanityEmbedsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends VanityEmbedFindFirstOrThrowArgs>(args?: SelectSubset<T, VanityEmbedFindFirstOrThrowArgs<ExtArgs>>): Prisma__VanityEmbedClient<$Result.GetResult<Prisma.$VanityEmbedPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more VanityEmbeds that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {VanityEmbedsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {VanityEmbedFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all VanityEmbeds
-     * const vanityEmbeds = await prisma.vanityEmbeds.findMany()
+     * const vanityEmbeds = await prisma.vanityEmbed.findMany()
      * 
      * // Get first 10 VanityEmbeds
-     * const vanityEmbeds = await prisma.vanityEmbeds.findMany({ take: 10 })
+     * const vanityEmbeds = await prisma.vanityEmbed.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const vanityEmbedsWithIdOnly = await prisma.vanityEmbeds.findMany({ select: { id: true } })
+     * const vanityEmbedWithIdOnly = await prisma.vanityEmbed.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends VanityEmbedsFindManyArgs>(args?: SelectSubset<T, VanityEmbedsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VanityEmbedsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends VanityEmbedFindManyArgs>(args?: SelectSubset<T, VanityEmbedFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VanityEmbedPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a VanityEmbeds.
-     * @param {VanityEmbedsCreateArgs} args - Arguments to create a VanityEmbeds.
+     * Create a VanityEmbed.
+     * @param {VanityEmbedCreateArgs} args - Arguments to create a VanityEmbed.
      * @example
-     * // Create one VanityEmbeds
-     * const VanityEmbeds = await prisma.vanityEmbeds.create({
+     * // Create one VanityEmbed
+     * const VanityEmbed = await prisma.vanityEmbed.create({
      *   data: {
-     *     // ... data to create a VanityEmbeds
+     *     // ... data to create a VanityEmbed
      *   }
      * })
      * 
      */
-    create<T extends VanityEmbedsCreateArgs>(args: SelectSubset<T, VanityEmbedsCreateArgs<ExtArgs>>): Prisma__VanityEmbedsClient<$Result.GetResult<Prisma.$VanityEmbedsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends VanityEmbedCreateArgs>(args: SelectSubset<T, VanityEmbedCreateArgs<ExtArgs>>): Prisma__VanityEmbedClient<$Result.GetResult<Prisma.$VanityEmbedPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many VanityEmbeds.
-     * @param {VanityEmbedsCreateManyArgs} args - Arguments to create many VanityEmbeds.
+     * @param {VanityEmbedCreateManyArgs} args - Arguments to create many VanityEmbeds.
      * @example
      * // Create many VanityEmbeds
-     * const vanityEmbeds = await prisma.vanityEmbeds.createMany({
+     * const vanityEmbed = await prisma.vanityEmbed.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends VanityEmbedsCreateManyArgs>(args?: SelectSubset<T, VanityEmbedsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends VanityEmbedCreateManyArgs>(args?: SelectSubset<T, VanityEmbedCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a VanityEmbeds.
-     * @param {VanityEmbedsDeleteArgs} args - Arguments to delete one VanityEmbeds.
+     * Delete a VanityEmbed.
+     * @param {VanityEmbedDeleteArgs} args - Arguments to delete one VanityEmbed.
      * @example
-     * // Delete one VanityEmbeds
-     * const VanityEmbeds = await prisma.vanityEmbeds.delete({
+     * // Delete one VanityEmbed
+     * const VanityEmbed = await prisma.vanityEmbed.delete({
      *   where: {
-     *     // ... filter to delete one VanityEmbeds
+     *     // ... filter to delete one VanityEmbed
      *   }
      * })
      * 
      */
-    delete<T extends VanityEmbedsDeleteArgs>(args: SelectSubset<T, VanityEmbedsDeleteArgs<ExtArgs>>): Prisma__VanityEmbedsClient<$Result.GetResult<Prisma.$VanityEmbedsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends VanityEmbedDeleteArgs>(args: SelectSubset<T, VanityEmbedDeleteArgs<ExtArgs>>): Prisma__VanityEmbedClient<$Result.GetResult<Prisma.$VanityEmbedPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one VanityEmbeds.
-     * @param {VanityEmbedsUpdateArgs} args - Arguments to update one VanityEmbeds.
+     * Update one VanityEmbed.
+     * @param {VanityEmbedUpdateArgs} args - Arguments to update one VanityEmbed.
      * @example
-     * // Update one VanityEmbeds
-     * const vanityEmbeds = await prisma.vanityEmbeds.update({
+     * // Update one VanityEmbed
+     * const vanityEmbed = await prisma.vanityEmbed.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -48120,30 +48120,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends VanityEmbedsUpdateArgs>(args: SelectSubset<T, VanityEmbedsUpdateArgs<ExtArgs>>): Prisma__VanityEmbedsClient<$Result.GetResult<Prisma.$VanityEmbedsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends VanityEmbedUpdateArgs>(args: SelectSubset<T, VanityEmbedUpdateArgs<ExtArgs>>): Prisma__VanityEmbedClient<$Result.GetResult<Prisma.$VanityEmbedPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more VanityEmbeds.
-     * @param {VanityEmbedsDeleteManyArgs} args - Arguments to filter VanityEmbeds to delete.
+     * @param {VanityEmbedDeleteManyArgs} args - Arguments to filter VanityEmbeds to delete.
      * @example
      * // Delete a few VanityEmbeds
-     * const { count } = await prisma.vanityEmbeds.deleteMany({
+     * const { count } = await prisma.vanityEmbed.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends VanityEmbedsDeleteManyArgs>(args?: SelectSubset<T, VanityEmbedsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends VanityEmbedDeleteManyArgs>(args?: SelectSubset<T, VanityEmbedDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more VanityEmbeds.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {VanityEmbedsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {VanityEmbedUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
      * // Update many VanityEmbeds
-     * const vanityEmbeds = await prisma.vanityEmbeds.updateMany({
+     * const vanityEmbed = await prisma.vanityEmbed.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -48153,79 +48153,79 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends VanityEmbedsUpdateManyArgs>(args: SelectSubset<T, VanityEmbedsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends VanityEmbedUpdateManyArgs>(args: SelectSubset<T, VanityEmbedUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one VanityEmbeds.
-     * @param {VanityEmbedsUpsertArgs} args - Arguments to update or create a VanityEmbeds.
+     * Create or update one VanityEmbed.
+     * @param {VanityEmbedUpsertArgs} args - Arguments to update or create a VanityEmbed.
      * @example
-     * // Update or create a VanityEmbeds
-     * const vanityEmbeds = await prisma.vanityEmbeds.upsert({
+     * // Update or create a VanityEmbed
+     * const vanityEmbed = await prisma.vanityEmbed.upsert({
      *   create: {
-     *     // ... data to create a VanityEmbeds
+     *     // ... data to create a VanityEmbed
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the VanityEmbeds we want to update
+     *     // ... the filter for the VanityEmbed we want to update
      *   }
      * })
      */
-    upsert<T extends VanityEmbedsUpsertArgs>(args: SelectSubset<T, VanityEmbedsUpsertArgs<ExtArgs>>): Prisma__VanityEmbedsClient<$Result.GetResult<Prisma.$VanityEmbedsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends VanityEmbedUpsertArgs>(args: SelectSubset<T, VanityEmbedUpsertArgs<ExtArgs>>): Prisma__VanityEmbedClient<$Result.GetResult<Prisma.$VanityEmbedPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more VanityEmbeds that matches the filter.
-     * @param {VanityEmbedsFindRawArgs} args - Select which filters you would like to apply.
+     * @param {VanityEmbedFindRawArgs} args - Select which filters you would like to apply.
      * @example
-     * const vanityEmbeds = await prisma.vanityEmbeds.findRaw({
+     * const vanityEmbed = await prisma.vanityEmbed.findRaw({
      *   filter: { age: { $gt: 25 } }
      * })
      */
-    findRaw(args?: VanityEmbedsFindRawArgs): Prisma.PrismaPromise<JsonObject>
+    findRaw(args?: VanityEmbedFindRawArgs): Prisma.PrismaPromise<JsonObject>
 
     /**
-     * Perform aggregation operations on a VanityEmbeds.
-     * @param {VanityEmbedsAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * Perform aggregation operations on a VanityEmbed.
+     * @param {VanityEmbedAggregateRawArgs} args - Select which aggregations you would like to apply.
      * @example
-     * const vanityEmbeds = await prisma.vanityEmbeds.aggregateRaw({
+     * const vanityEmbed = await prisma.vanityEmbed.aggregateRaw({
      *   pipeline: [
      *     { $match: { status: "registered" } },
      *     { $group: { _id: "$country", total: { $sum: 1 } } }
      *   ]
      * })
      */
-    aggregateRaw(args?: VanityEmbedsAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+    aggregateRaw(args?: VanityEmbedAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
 
 
     /**
      * Count the number of VanityEmbeds.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {VanityEmbedsCountArgs} args - Arguments to filter VanityEmbeds to count.
+     * @param {VanityEmbedCountArgs} args - Arguments to filter VanityEmbeds to count.
      * @example
      * // Count the number of VanityEmbeds
-     * const count = await prisma.vanityEmbeds.count({
+     * const count = await prisma.vanityEmbed.count({
      *   where: {
      *     // ... the filter for the VanityEmbeds we want to count
      *   }
      * })
     **/
-    count<T extends VanityEmbedsCountArgs>(
-      args?: Subset<T, VanityEmbedsCountArgs>,
+    count<T extends VanityEmbedCountArgs>(
+      args?: Subset<T, VanityEmbedCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], VanityEmbedsCountAggregateOutputType>
+          : GetScalarType<T['select'], VanityEmbedCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a VanityEmbeds.
+     * Allows you to perform aggregations operations on a VanityEmbed.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {VanityEmbedsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {VanityEmbedAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -48245,13 +48245,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends VanityEmbedsAggregateArgs>(args: Subset<T, VanityEmbedsAggregateArgs>): Prisma.PrismaPromise<GetVanityEmbedsAggregateType<T>>
+    aggregate<T extends VanityEmbedAggregateArgs>(args: Subset<T, VanityEmbedAggregateArgs>): Prisma.PrismaPromise<GetVanityEmbedAggregateType<T>>
 
     /**
-     * Group by VanityEmbeds.
+     * Group by VanityEmbed.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {VanityEmbedsGroupByArgs} args - Group by arguments.
+     * @param {VanityEmbedGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -48266,14 +48266,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends VanityEmbedsGroupByArgs,
+      T extends VanityEmbedGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: VanityEmbedsGroupByArgs['orderBy'] }
-        : { orderBy?: VanityEmbedsGroupByArgs['orderBy'] },
+        ? { orderBy: VanityEmbedGroupByArgs['orderBy'] }
+        : { orderBy?: VanityEmbedGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -48322,22 +48322,22 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, VanityEmbedsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVanityEmbedsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, VanityEmbedGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVanityEmbedGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the VanityEmbeds model
+   * Fields of the VanityEmbed model
    */
-  readonly fields: VanityEmbedsFieldRefs;
+  readonly fields: VanityEmbedFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for VanityEmbeds.
+   * The delegate class that acts as a "Promise-like" for VanityEmbed.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__VanityEmbedsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__VanityEmbedClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Author<T extends VanityEmbeds$AuthorArgs<ExtArgs> = {}>(args?: Subset<T, VanityEmbeds$AuthorArgs<ExtArgs>>): Prisma__VanityEmbedAuthorsClient<$Result.GetResult<Prisma.$VanityEmbedAuthorsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    Author<T extends VanityEmbed$AuthorArgs<ExtArgs> = {}>(args?: Subset<T, VanityEmbed$AuthorArgs<ExtArgs>>): Prisma__VanityEmbedAuthorClient<$Result.GetResult<Prisma.$VanityEmbedAuthorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     Vanitys<T extends VanitysDefaultArgs<ExtArgs> = {}>(args?: Subset<T, VanitysDefaultArgs<ExtArgs>>): Prisma__VanitysClient<$Result.GetResult<Prisma.$VanitysPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -48365,96 +48365,96 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the VanityEmbeds model
+   * Fields of the VanityEmbed model
    */
-  interface VanityEmbedsFieldRefs {
-    readonly id: FieldRef<"VanityEmbeds", 'String'>
-    readonly Title: FieldRef<"VanityEmbeds", 'String'>
-    readonly Description: FieldRef<"VanityEmbeds", 'String'>
-    readonly Color: FieldRef<"VanityEmbeds", 'String'>
-    readonly ImageUrl: FieldRef<"VanityEmbeds", 'String'>
-    readonly ThumbnailUrl: FieldRef<"VanityEmbeds", 'String'>
-    readonly VanityId: FieldRef<"VanityEmbeds", 'String'>
+  interface VanityEmbedFieldRefs {
+    readonly id: FieldRef<"VanityEmbed", 'String'>
+    readonly Title: FieldRef<"VanityEmbed", 'String'>
+    readonly Description: FieldRef<"VanityEmbed", 'String'>
+    readonly Color: FieldRef<"VanityEmbed", 'String'>
+    readonly ImageUrl: FieldRef<"VanityEmbed", 'String'>
+    readonly ThumbnailUrl: FieldRef<"VanityEmbed", 'String'>
+    readonly VanityId: FieldRef<"VanityEmbed", 'String'>
   }
     
 
   // Custom InputTypes
   /**
-   * VanityEmbeds findUnique
+   * VanityEmbed findUnique
    */
-  export type VanityEmbedsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityEmbeds
+     * Select specific fields to fetch from the VanityEmbed
      */
-    select?: VanityEmbedsSelect<ExtArgs> | null
+    select?: VanityEmbedSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityEmbeds
+     * Omit specific fields from the VanityEmbed
      */
-    omit?: VanityEmbedsOmit<ExtArgs> | null
+    omit?: VanityEmbedOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityEmbedsInclude<ExtArgs> | null
+    include?: VanityEmbedInclude<ExtArgs> | null
     /**
-     * Filter, which VanityEmbeds to fetch.
+     * Filter, which VanityEmbed to fetch.
      */
-    where: VanityEmbedsWhereUniqueInput
+    where: VanityEmbedWhereUniqueInput
   }
 
   /**
-   * VanityEmbeds findUniqueOrThrow
+   * VanityEmbed findUniqueOrThrow
    */
-  export type VanityEmbedsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityEmbeds
+     * Select specific fields to fetch from the VanityEmbed
      */
-    select?: VanityEmbedsSelect<ExtArgs> | null
+    select?: VanityEmbedSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityEmbeds
+     * Omit specific fields from the VanityEmbed
      */
-    omit?: VanityEmbedsOmit<ExtArgs> | null
+    omit?: VanityEmbedOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityEmbedsInclude<ExtArgs> | null
+    include?: VanityEmbedInclude<ExtArgs> | null
     /**
-     * Filter, which VanityEmbeds to fetch.
+     * Filter, which VanityEmbed to fetch.
      */
-    where: VanityEmbedsWhereUniqueInput
+    where: VanityEmbedWhereUniqueInput
   }
 
   /**
-   * VanityEmbeds findFirst
+   * VanityEmbed findFirst
    */
-  export type VanityEmbedsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityEmbeds
+     * Select specific fields to fetch from the VanityEmbed
      */
-    select?: VanityEmbedsSelect<ExtArgs> | null
+    select?: VanityEmbedSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityEmbeds
+     * Omit specific fields from the VanityEmbed
      */
-    omit?: VanityEmbedsOmit<ExtArgs> | null
+    omit?: VanityEmbedOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityEmbedsInclude<ExtArgs> | null
+    include?: VanityEmbedInclude<ExtArgs> | null
     /**
-     * Filter, which VanityEmbeds to fetch.
+     * Filter, which VanityEmbed to fetch.
      */
-    where?: VanityEmbedsWhereInput
+    where?: VanityEmbedWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of VanityEmbeds to fetch.
      */
-    orderBy?: VanityEmbedsOrderByWithRelationInput | VanityEmbedsOrderByWithRelationInput[]
+    orderBy?: VanityEmbedOrderByWithRelationInput | VanityEmbedOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for VanityEmbeds.
      */
-    cursor?: VanityEmbedsWhereUniqueInput
+    cursor?: VanityEmbedWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
@@ -48472,41 +48472,41 @@ export namespace Prisma {
      * 
      * Filter by unique combinations of VanityEmbeds.
      */
-    distinct?: VanityEmbedsScalarFieldEnum | VanityEmbedsScalarFieldEnum[]
+    distinct?: VanityEmbedScalarFieldEnum | VanityEmbedScalarFieldEnum[]
   }
 
   /**
-   * VanityEmbeds findFirstOrThrow
+   * VanityEmbed findFirstOrThrow
    */
-  export type VanityEmbedsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityEmbeds
+     * Select specific fields to fetch from the VanityEmbed
      */
-    select?: VanityEmbedsSelect<ExtArgs> | null
+    select?: VanityEmbedSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityEmbeds
+     * Omit specific fields from the VanityEmbed
      */
-    omit?: VanityEmbedsOmit<ExtArgs> | null
+    omit?: VanityEmbedOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityEmbedsInclude<ExtArgs> | null
+    include?: VanityEmbedInclude<ExtArgs> | null
     /**
-     * Filter, which VanityEmbeds to fetch.
+     * Filter, which VanityEmbed to fetch.
      */
-    where?: VanityEmbedsWhereInput
+    where?: VanityEmbedWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of VanityEmbeds to fetch.
      */
-    orderBy?: VanityEmbedsOrderByWithRelationInput | VanityEmbedsOrderByWithRelationInput[]
+    orderBy?: VanityEmbedOrderByWithRelationInput | VanityEmbedOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for VanityEmbeds.
      */
-    cursor?: VanityEmbedsWhereUniqueInput
+    cursor?: VanityEmbedWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
@@ -48524,41 +48524,41 @@ export namespace Prisma {
      * 
      * Filter by unique combinations of VanityEmbeds.
      */
-    distinct?: VanityEmbedsScalarFieldEnum | VanityEmbedsScalarFieldEnum[]
+    distinct?: VanityEmbedScalarFieldEnum | VanityEmbedScalarFieldEnum[]
   }
 
   /**
-   * VanityEmbeds findMany
+   * VanityEmbed findMany
    */
-  export type VanityEmbedsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityEmbeds
+     * Select specific fields to fetch from the VanityEmbed
      */
-    select?: VanityEmbedsSelect<ExtArgs> | null
+    select?: VanityEmbedSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityEmbeds
+     * Omit specific fields from the VanityEmbed
      */
-    omit?: VanityEmbedsOmit<ExtArgs> | null
+    omit?: VanityEmbedOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityEmbedsInclude<ExtArgs> | null
+    include?: VanityEmbedInclude<ExtArgs> | null
     /**
      * Filter, which VanityEmbeds to fetch.
      */
-    where?: VanityEmbedsWhereInput
+    where?: VanityEmbedWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of VanityEmbeds to fetch.
      */
-    orderBy?: VanityEmbedsOrderByWithRelationInput | VanityEmbedsOrderByWithRelationInput[]
+    orderBy?: VanityEmbedOrderByWithRelationInput | VanityEmbedOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for listing VanityEmbeds.
      */
-    cursor?: VanityEmbedsWhereUniqueInput
+    cursor?: VanityEmbedWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
@@ -48571,79 +48571,79 @@ export namespace Prisma {
      * Skip the first `n` VanityEmbeds.
      */
     skip?: number
-    distinct?: VanityEmbedsScalarFieldEnum | VanityEmbedsScalarFieldEnum[]
+    distinct?: VanityEmbedScalarFieldEnum | VanityEmbedScalarFieldEnum[]
   }
 
   /**
-   * VanityEmbeds create
+   * VanityEmbed create
    */
-  export type VanityEmbedsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityEmbeds
+     * Select specific fields to fetch from the VanityEmbed
      */
-    select?: VanityEmbedsSelect<ExtArgs> | null
+    select?: VanityEmbedSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityEmbeds
+     * Omit specific fields from the VanityEmbed
      */
-    omit?: VanityEmbedsOmit<ExtArgs> | null
+    omit?: VanityEmbedOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityEmbedsInclude<ExtArgs> | null
+    include?: VanityEmbedInclude<ExtArgs> | null
     /**
-     * The data needed to create a VanityEmbeds.
+     * The data needed to create a VanityEmbed.
      */
-    data: XOR<VanityEmbedsCreateInput, VanityEmbedsUncheckedCreateInput>
+    data: XOR<VanityEmbedCreateInput, VanityEmbedUncheckedCreateInput>
   }
 
   /**
-   * VanityEmbeds createMany
+   * VanityEmbed createMany
    */
-  export type VanityEmbedsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many VanityEmbeds.
      */
-    data: VanityEmbedsCreateManyInput | VanityEmbedsCreateManyInput[]
+    data: VanityEmbedCreateManyInput | VanityEmbedCreateManyInput[]
   }
 
   /**
-   * VanityEmbeds update
+   * VanityEmbed update
    */
-  export type VanityEmbedsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityEmbeds
+     * Select specific fields to fetch from the VanityEmbed
      */
-    select?: VanityEmbedsSelect<ExtArgs> | null
+    select?: VanityEmbedSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityEmbeds
+     * Omit specific fields from the VanityEmbed
      */
-    omit?: VanityEmbedsOmit<ExtArgs> | null
+    omit?: VanityEmbedOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityEmbedsInclude<ExtArgs> | null
+    include?: VanityEmbedInclude<ExtArgs> | null
     /**
-     * The data needed to update a VanityEmbeds.
+     * The data needed to update a VanityEmbed.
      */
-    data: XOR<VanityEmbedsUpdateInput, VanityEmbedsUncheckedUpdateInput>
+    data: XOR<VanityEmbedUpdateInput, VanityEmbedUncheckedUpdateInput>
     /**
-     * Choose, which VanityEmbeds to update.
+     * Choose, which VanityEmbed to update.
      */
-    where: VanityEmbedsWhereUniqueInput
+    where: VanityEmbedWhereUniqueInput
   }
 
   /**
-   * VanityEmbeds updateMany
+   * VanityEmbed updateMany
    */
-  export type VanityEmbedsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to update VanityEmbeds.
      */
-    data: XOR<VanityEmbedsUpdateManyMutationInput, VanityEmbedsUncheckedUpdateManyInput>
+    data: XOR<VanityEmbedUpdateManyMutationInput, VanityEmbedUncheckedUpdateManyInput>
     /**
      * Filter which VanityEmbeds to update
      */
-    where?: VanityEmbedsWhereInput
+    where?: VanityEmbedWhereInput
     /**
      * Limit how many VanityEmbeds to update.
      */
@@ -48651,65 +48651,65 @@ export namespace Prisma {
   }
 
   /**
-   * VanityEmbeds upsert
+   * VanityEmbed upsert
    */
-  export type VanityEmbedsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityEmbeds
+     * Select specific fields to fetch from the VanityEmbed
      */
-    select?: VanityEmbedsSelect<ExtArgs> | null
+    select?: VanityEmbedSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityEmbeds
+     * Omit specific fields from the VanityEmbed
      */
-    omit?: VanityEmbedsOmit<ExtArgs> | null
+    omit?: VanityEmbedOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityEmbedsInclude<ExtArgs> | null
+    include?: VanityEmbedInclude<ExtArgs> | null
     /**
-     * The filter to search for the VanityEmbeds to update in case it exists.
+     * The filter to search for the VanityEmbed to update in case it exists.
      */
-    where: VanityEmbedsWhereUniqueInput
+    where: VanityEmbedWhereUniqueInput
     /**
-     * In case the VanityEmbeds found by the `where` argument doesn't exist, create a new VanityEmbeds with this data.
+     * In case the VanityEmbed found by the `where` argument doesn't exist, create a new VanityEmbed with this data.
      */
-    create: XOR<VanityEmbedsCreateInput, VanityEmbedsUncheckedCreateInput>
+    create: XOR<VanityEmbedCreateInput, VanityEmbedUncheckedCreateInput>
     /**
-     * In case the VanityEmbeds was found with the provided `where` argument, update it with this data.
+     * In case the VanityEmbed was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<VanityEmbedsUpdateInput, VanityEmbedsUncheckedUpdateInput>
+    update: XOR<VanityEmbedUpdateInput, VanityEmbedUncheckedUpdateInput>
   }
 
   /**
-   * VanityEmbeds delete
+   * VanityEmbed delete
    */
-  export type VanityEmbedsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityEmbeds
+     * Select specific fields to fetch from the VanityEmbed
      */
-    select?: VanityEmbedsSelect<ExtArgs> | null
+    select?: VanityEmbedSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityEmbeds
+     * Omit specific fields from the VanityEmbed
      */
-    omit?: VanityEmbedsOmit<ExtArgs> | null
+    omit?: VanityEmbedOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityEmbedsInclude<ExtArgs> | null
+    include?: VanityEmbedInclude<ExtArgs> | null
     /**
-     * Filter which VanityEmbeds to delete.
+     * Filter which VanityEmbed to delete.
      */
-    where: VanityEmbedsWhereUniqueInput
+    where: VanityEmbedWhereUniqueInput
   }
 
   /**
-   * VanityEmbeds deleteMany
+   * VanityEmbed deleteMany
    */
-  export type VanityEmbedsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which VanityEmbeds to delete
      */
-    where?: VanityEmbedsWhereInput
+    where?: VanityEmbedWhereInput
     /**
      * Limit how many VanityEmbeds to delete.
      */
@@ -48717,9 +48717,9 @@ export namespace Prisma {
   }
 
   /**
-   * VanityEmbeds findRaw
+   * VanityEmbed findRaw
    */
-  export type VanityEmbedsFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
      */
@@ -48731,9 +48731,9 @@ export namespace Prisma {
   }
 
   /**
-   * VanityEmbeds aggregateRaw
+   * VanityEmbed aggregateRaw
    */
-  export type VanityEmbedsAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
      */
@@ -48745,54 +48745,54 @@ export namespace Prisma {
   }
 
   /**
-   * VanityEmbeds.Author
+   * VanityEmbed.Author
    */
-  export type VanityEmbeds$AuthorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbed$AuthorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityEmbedAuthors
+     * Select specific fields to fetch from the VanityEmbedAuthor
      */
-    select?: VanityEmbedAuthorsSelect<ExtArgs> | null
+    select?: VanityEmbedAuthorSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityEmbedAuthors
+     * Omit specific fields from the VanityEmbedAuthor
      */
-    omit?: VanityEmbedAuthorsOmit<ExtArgs> | null
+    omit?: VanityEmbedAuthorOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityEmbedAuthorsInclude<ExtArgs> | null
-    where?: VanityEmbedAuthorsWhereInput
+    include?: VanityEmbedAuthorInclude<ExtArgs> | null
+    where?: VanityEmbedAuthorWhereInput
   }
 
   /**
-   * VanityEmbeds without action
+   * VanityEmbed without action
    */
-  export type VanityEmbedsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityEmbeds
+     * Select specific fields to fetch from the VanityEmbed
      */
-    select?: VanityEmbedsSelect<ExtArgs> | null
+    select?: VanityEmbedSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityEmbeds
+     * Omit specific fields from the VanityEmbed
      */
-    omit?: VanityEmbedsOmit<ExtArgs> | null
+    omit?: VanityEmbedOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityEmbedsInclude<ExtArgs> | null
+    include?: VanityEmbedInclude<ExtArgs> | null
   }
 
 
   /**
-   * Model VanityEmbedAuthors
+   * Model VanityEmbedAuthor
    */
 
-  export type AggregateVanityEmbedAuthors = {
-    _count: VanityEmbedAuthorsCountAggregateOutputType | null
-    _min: VanityEmbedAuthorsMinAggregateOutputType | null
-    _max: VanityEmbedAuthorsMaxAggregateOutputType | null
+  export type AggregateVanityEmbedAuthor = {
+    _count: VanityEmbedAuthorCountAggregateOutputType | null
+    _min: VanityEmbedAuthorMinAggregateOutputType | null
+    _max: VanityEmbedAuthorMaxAggregateOutputType | null
   }
 
-  export type VanityEmbedAuthorsMinAggregateOutputType = {
+  export type VanityEmbedAuthorMinAggregateOutputType = {
     id: string | null
     Name: string | null
     URL: string | null
@@ -48800,7 +48800,7 @@ export namespace Prisma {
     VanityEmbedsId: string | null
   }
 
-  export type VanityEmbedAuthorsMaxAggregateOutputType = {
+  export type VanityEmbedAuthorMaxAggregateOutputType = {
     id: string | null
     Name: string | null
     URL: string | null
@@ -48808,7 +48808,7 @@ export namespace Prisma {
     VanityEmbedsId: string | null
   }
 
-  export type VanityEmbedAuthorsCountAggregateOutputType = {
+  export type VanityEmbedAuthorCountAggregateOutputType = {
     id: number
     Name: number
     URL: number
@@ -48818,7 +48818,7 @@ export namespace Prisma {
   }
 
 
-  export type VanityEmbedAuthorsMinAggregateInputType = {
+  export type VanityEmbedAuthorMinAggregateInputType = {
     id?: true
     Name?: true
     URL?: true
@@ -48826,7 +48826,7 @@ export namespace Prisma {
     VanityEmbedsId?: true
   }
 
-  export type VanityEmbedAuthorsMaxAggregateInputType = {
+  export type VanityEmbedAuthorMaxAggregateInputType = {
     id?: true
     Name?: true
     URL?: true
@@ -48834,7 +48834,7 @@ export namespace Prisma {
     VanityEmbedsId?: true
   }
 
-  export type VanityEmbedAuthorsCountAggregateInputType = {
+  export type VanityEmbedAuthorCountAggregateInputType = {
     id?: true
     Name?: true
     URL?: true
@@ -48843,23 +48843,23 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type VanityEmbedAuthorsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedAuthorAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which VanityEmbedAuthors to aggregate.
+     * Filter which VanityEmbedAuthor to aggregate.
      */
-    where?: VanityEmbedAuthorsWhereInput
+    where?: VanityEmbedAuthorWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of VanityEmbedAuthors to fetch.
      */
-    orderBy?: VanityEmbedAuthorsOrderByWithRelationInput | VanityEmbedAuthorsOrderByWithRelationInput[]
+    orderBy?: VanityEmbedAuthorOrderByWithRelationInput | VanityEmbedAuthorOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: VanityEmbedAuthorsWhereUniqueInput
+    cursor?: VanityEmbedAuthorWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
@@ -48877,81 +48877,81 @@ export namespace Prisma {
      * 
      * Count returned VanityEmbedAuthors
     **/
-    _count?: true | VanityEmbedAuthorsCountAggregateInputType
+    _count?: true | VanityEmbedAuthorCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: VanityEmbedAuthorsMinAggregateInputType
+    _min?: VanityEmbedAuthorMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: VanityEmbedAuthorsMaxAggregateInputType
+    _max?: VanityEmbedAuthorMaxAggregateInputType
   }
 
-  export type GetVanityEmbedAuthorsAggregateType<T extends VanityEmbedAuthorsAggregateArgs> = {
-        [P in keyof T & keyof AggregateVanityEmbedAuthors]: P extends '_count' | 'count'
+  export type GetVanityEmbedAuthorAggregateType<T extends VanityEmbedAuthorAggregateArgs> = {
+        [P in keyof T & keyof AggregateVanityEmbedAuthor]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateVanityEmbedAuthors[P]>
-      : GetScalarType<T[P], AggregateVanityEmbedAuthors[P]>
+        : GetScalarType<T[P], AggregateVanityEmbedAuthor[P]>
+      : GetScalarType<T[P], AggregateVanityEmbedAuthor[P]>
   }
 
 
 
 
-  export type VanityEmbedAuthorsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: VanityEmbedAuthorsWhereInput
-    orderBy?: VanityEmbedAuthorsOrderByWithAggregationInput | VanityEmbedAuthorsOrderByWithAggregationInput[]
-    by: VanityEmbedAuthorsScalarFieldEnum[] | VanityEmbedAuthorsScalarFieldEnum
-    having?: VanityEmbedAuthorsScalarWhereWithAggregatesInput
+  export type VanityEmbedAuthorGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VanityEmbedAuthorWhereInput
+    orderBy?: VanityEmbedAuthorOrderByWithAggregationInput | VanityEmbedAuthorOrderByWithAggregationInput[]
+    by: VanityEmbedAuthorScalarFieldEnum[] | VanityEmbedAuthorScalarFieldEnum
+    having?: VanityEmbedAuthorScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: VanityEmbedAuthorsCountAggregateInputType | true
-    _min?: VanityEmbedAuthorsMinAggregateInputType
-    _max?: VanityEmbedAuthorsMaxAggregateInputType
+    _count?: VanityEmbedAuthorCountAggregateInputType | true
+    _min?: VanityEmbedAuthorMinAggregateInputType
+    _max?: VanityEmbedAuthorMaxAggregateInputType
   }
 
-  export type VanityEmbedAuthorsGroupByOutputType = {
+  export type VanityEmbedAuthorGroupByOutputType = {
     id: string
-    Name: string
-    URL: string
-    IconURL: string
+    Name: string | null
+    URL: string | null
+    IconURL: string | null
     VanityEmbedsId: string
-    _count: VanityEmbedAuthorsCountAggregateOutputType | null
-    _min: VanityEmbedAuthorsMinAggregateOutputType | null
-    _max: VanityEmbedAuthorsMaxAggregateOutputType | null
+    _count: VanityEmbedAuthorCountAggregateOutputType | null
+    _min: VanityEmbedAuthorMinAggregateOutputType | null
+    _max: VanityEmbedAuthorMaxAggregateOutputType | null
   }
 
-  type GetVanityEmbedAuthorsGroupByPayload<T extends VanityEmbedAuthorsGroupByArgs> = Prisma.PrismaPromise<
+  type GetVanityEmbedAuthorGroupByPayload<T extends VanityEmbedAuthorGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<VanityEmbedAuthorsGroupByOutputType, T['by']> &
+      PickEnumerable<VanityEmbedAuthorGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof VanityEmbedAuthorsGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof VanityEmbedAuthorGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], VanityEmbedAuthorsGroupByOutputType[P]>
-            : GetScalarType<T[P], VanityEmbedAuthorsGroupByOutputType[P]>
+              : GetScalarType<T[P], VanityEmbedAuthorGroupByOutputType[P]>
+            : GetScalarType<T[P], VanityEmbedAuthorGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type VanityEmbedAuthorsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type VanityEmbedAuthorSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     Name?: boolean
     URL?: boolean
     IconURL?: boolean
     VanityEmbedsId?: boolean
-    VanityEmbeds?: boolean | VanityEmbedsDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["vanityEmbedAuthors"]>
+    VanityEmbeds?: boolean | VanityEmbedDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["vanityEmbedAuthor"]>
 
 
 
-  export type VanityEmbedAuthorsSelectScalar = {
+  export type VanityEmbedAuthorSelectScalar = {
     id?: boolean
     Name?: boolean
     URL?: boolean
@@ -48959,159 +48959,159 @@ export namespace Prisma {
     VanityEmbedsId?: boolean
   }
 
-  export type VanityEmbedAuthorsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "Name" | "URL" | "IconURL" | "VanityEmbedsId", ExtArgs["result"]["vanityEmbedAuthors"]>
-  export type VanityEmbedAuthorsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    VanityEmbeds?: boolean | VanityEmbedsDefaultArgs<ExtArgs>
+  export type VanityEmbedAuthorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "Name" | "URL" | "IconURL" | "VanityEmbedsId", ExtArgs["result"]["vanityEmbedAuthor"]>
+  export type VanityEmbedAuthorInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    VanityEmbeds?: boolean | VanityEmbedDefaultArgs<ExtArgs>
   }
 
-  export type $VanityEmbedAuthorsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "VanityEmbedAuthors"
+  export type $VanityEmbedAuthorPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "VanityEmbedAuthor"
     objects: {
-      VanityEmbeds: Prisma.$VanityEmbedsPayload<ExtArgs>
+      VanityEmbeds: Prisma.$VanityEmbedPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      Name: string
-      URL: string
-      IconURL: string
+      Name: string | null
+      URL: string | null
+      IconURL: string | null
       VanityEmbedsId: string
-    }, ExtArgs["result"]["vanityEmbedAuthors"]>
+    }, ExtArgs["result"]["vanityEmbedAuthor"]>
     composites: {}
   }
 
-  type VanityEmbedAuthorsGetPayload<S extends boolean | null | undefined | VanityEmbedAuthorsDefaultArgs> = $Result.GetResult<Prisma.$VanityEmbedAuthorsPayload, S>
+  type VanityEmbedAuthorGetPayload<S extends boolean | null | undefined | VanityEmbedAuthorDefaultArgs> = $Result.GetResult<Prisma.$VanityEmbedAuthorPayload, S>
 
-  type VanityEmbedAuthorsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<VanityEmbedAuthorsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: VanityEmbedAuthorsCountAggregateInputType | true
+  type VanityEmbedAuthorCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<VanityEmbedAuthorFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: VanityEmbedAuthorCountAggregateInputType | true
     }
 
-  export interface VanityEmbedAuthorsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['VanityEmbedAuthors'], meta: { name: 'VanityEmbedAuthors' } }
+  export interface VanityEmbedAuthorDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['VanityEmbedAuthor'], meta: { name: 'VanityEmbedAuthor' } }
     /**
-     * Find zero or one VanityEmbedAuthors that matches the filter.
-     * @param {VanityEmbedAuthorsFindUniqueArgs} args - Arguments to find a VanityEmbedAuthors
+     * Find zero or one VanityEmbedAuthor that matches the filter.
+     * @param {VanityEmbedAuthorFindUniqueArgs} args - Arguments to find a VanityEmbedAuthor
      * @example
-     * // Get one VanityEmbedAuthors
-     * const vanityEmbedAuthors = await prisma.vanityEmbedAuthors.findUnique({
+     * // Get one VanityEmbedAuthor
+     * const vanityEmbedAuthor = await prisma.vanityEmbedAuthor.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends VanityEmbedAuthorsFindUniqueArgs>(args: SelectSubset<T, VanityEmbedAuthorsFindUniqueArgs<ExtArgs>>): Prisma__VanityEmbedAuthorsClient<$Result.GetResult<Prisma.$VanityEmbedAuthorsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends VanityEmbedAuthorFindUniqueArgs>(args: SelectSubset<T, VanityEmbedAuthorFindUniqueArgs<ExtArgs>>): Prisma__VanityEmbedAuthorClient<$Result.GetResult<Prisma.$VanityEmbedAuthorPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one VanityEmbedAuthors that matches the filter or throw an error with `error.code='P2025'`
+     * Find one VanityEmbedAuthor that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {VanityEmbedAuthorsFindUniqueOrThrowArgs} args - Arguments to find a VanityEmbedAuthors
+     * @param {VanityEmbedAuthorFindUniqueOrThrowArgs} args - Arguments to find a VanityEmbedAuthor
      * @example
-     * // Get one VanityEmbedAuthors
-     * const vanityEmbedAuthors = await prisma.vanityEmbedAuthors.findUniqueOrThrow({
+     * // Get one VanityEmbedAuthor
+     * const vanityEmbedAuthor = await prisma.vanityEmbedAuthor.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends VanityEmbedAuthorsFindUniqueOrThrowArgs>(args: SelectSubset<T, VanityEmbedAuthorsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VanityEmbedAuthorsClient<$Result.GetResult<Prisma.$VanityEmbedAuthorsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends VanityEmbedAuthorFindUniqueOrThrowArgs>(args: SelectSubset<T, VanityEmbedAuthorFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VanityEmbedAuthorClient<$Result.GetResult<Prisma.$VanityEmbedAuthorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first VanityEmbedAuthors that matches the filter.
+     * Find the first VanityEmbedAuthor that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {VanityEmbedAuthorsFindFirstArgs} args - Arguments to find a VanityEmbedAuthors
+     * @param {VanityEmbedAuthorFindFirstArgs} args - Arguments to find a VanityEmbedAuthor
      * @example
-     * // Get one VanityEmbedAuthors
-     * const vanityEmbedAuthors = await prisma.vanityEmbedAuthors.findFirst({
+     * // Get one VanityEmbedAuthor
+     * const vanityEmbedAuthor = await prisma.vanityEmbedAuthor.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends VanityEmbedAuthorsFindFirstArgs>(args?: SelectSubset<T, VanityEmbedAuthorsFindFirstArgs<ExtArgs>>): Prisma__VanityEmbedAuthorsClient<$Result.GetResult<Prisma.$VanityEmbedAuthorsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends VanityEmbedAuthorFindFirstArgs>(args?: SelectSubset<T, VanityEmbedAuthorFindFirstArgs<ExtArgs>>): Prisma__VanityEmbedAuthorClient<$Result.GetResult<Prisma.$VanityEmbedAuthorPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first VanityEmbedAuthors that matches the filter or
+     * Find the first VanityEmbedAuthor that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {VanityEmbedAuthorsFindFirstOrThrowArgs} args - Arguments to find a VanityEmbedAuthors
+     * @param {VanityEmbedAuthorFindFirstOrThrowArgs} args - Arguments to find a VanityEmbedAuthor
      * @example
-     * // Get one VanityEmbedAuthors
-     * const vanityEmbedAuthors = await prisma.vanityEmbedAuthors.findFirstOrThrow({
+     * // Get one VanityEmbedAuthor
+     * const vanityEmbedAuthor = await prisma.vanityEmbedAuthor.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends VanityEmbedAuthorsFindFirstOrThrowArgs>(args?: SelectSubset<T, VanityEmbedAuthorsFindFirstOrThrowArgs<ExtArgs>>): Prisma__VanityEmbedAuthorsClient<$Result.GetResult<Prisma.$VanityEmbedAuthorsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends VanityEmbedAuthorFindFirstOrThrowArgs>(args?: SelectSubset<T, VanityEmbedAuthorFindFirstOrThrowArgs<ExtArgs>>): Prisma__VanityEmbedAuthorClient<$Result.GetResult<Prisma.$VanityEmbedAuthorPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more VanityEmbedAuthors that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {VanityEmbedAuthorsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {VanityEmbedAuthorFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all VanityEmbedAuthors
-     * const vanityEmbedAuthors = await prisma.vanityEmbedAuthors.findMany()
+     * const vanityEmbedAuthors = await prisma.vanityEmbedAuthor.findMany()
      * 
      * // Get first 10 VanityEmbedAuthors
-     * const vanityEmbedAuthors = await prisma.vanityEmbedAuthors.findMany({ take: 10 })
+     * const vanityEmbedAuthors = await prisma.vanityEmbedAuthor.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const vanityEmbedAuthorsWithIdOnly = await prisma.vanityEmbedAuthors.findMany({ select: { id: true } })
+     * const vanityEmbedAuthorWithIdOnly = await prisma.vanityEmbedAuthor.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends VanityEmbedAuthorsFindManyArgs>(args?: SelectSubset<T, VanityEmbedAuthorsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VanityEmbedAuthorsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends VanityEmbedAuthorFindManyArgs>(args?: SelectSubset<T, VanityEmbedAuthorFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VanityEmbedAuthorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a VanityEmbedAuthors.
-     * @param {VanityEmbedAuthorsCreateArgs} args - Arguments to create a VanityEmbedAuthors.
+     * Create a VanityEmbedAuthor.
+     * @param {VanityEmbedAuthorCreateArgs} args - Arguments to create a VanityEmbedAuthor.
      * @example
-     * // Create one VanityEmbedAuthors
-     * const VanityEmbedAuthors = await prisma.vanityEmbedAuthors.create({
+     * // Create one VanityEmbedAuthor
+     * const VanityEmbedAuthor = await prisma.vanityEmbedAuthor.create({
      *   data: {
-     *     // ... data to create a VanityEmbedAuthors
+     *     // ... data to create a VanityEmbedAuthor
      *   }
      * })
      * 
      */
-    create<T extends VanityEmbedAuthorsCreateArgs>(args: SelectSubset<T, VanityEmbedAuthorsCreateArgs<ExtArgs>>): Prisma__VanityEmbedAuthorsClient<$Result.GetResult<Prisma.$VanityEmbedAuthorsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends VanityEmbedAuthorCreateArgs>(args: SelectSubset<T, VanityEmbedAuthorCreateArgs<ExtArgs>>): Prisma__VanityEmbedAuthorClient<$Result.GetResult<Prisma.$VanityEmbedAuthorPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many VanityEmbedAuthors.
-     * @param {VanityEmbedAuthorsCreateManyArgs} args - Arguments to create many VanityEmbedAuthors.
+     * @param {VanityEmbedAuthorCreateManyArgs} args - Arguments to create many VanityEmbedAuthors.
      * @example
      * // Create many VanityEmbedAuthors
-     * const vanityEmbedAuthors = await prisma.vanityEmbedAuthors.createMany({
+     * const vanityEmbedAuthor = await prisma.vanityEmbedAuthor.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends VanityEmbedAuthorsCreateManyArgs>(args?: SelectSubset<T, VanityEmbedAuthorsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends VanityEmbedAuthorCreateManyArgs>(args?: SelectSubset<T, VanityEmbedAuthorCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a VanityEmbedAuthors.
-     * @param {VanityEmbedAuthorsDeleteArgs} args - Arguments to delete one VanityEmbedAuthors.
+     * Delete a VanityEmbedAuthor.
+     * @param {VanityEmbedAuthorDeleteArgs} args - Arguments to delete one VanityEmbedAuthor.
      * @example
-     * // Delete one VanityEmbedAuthors
-     * const VanityEmbedAuthors = await prisma.vanityEmbedAuthors.delete({
+     * // Delete one VanityEmbedAuthor
+     * const VanityEmbedAuthor = await prisma.vanityEmbedAuthor.delete({
      *   where: {
-     *     // ... filter to delete one VanityEmbedAuthors
+     *     // ... filter to delete one VanityEmbedAuthor
      *   }
      * })
      * 
      */
-    delete<T extends VanityEmbedAuthorsDeleteArgs>(args: SelectSubset<T, VanityEmbedAuthorsDeleteArgs<ExtArgs>>): Prisma__VanityEmbedAuthorsClient<$Result.GetResult<Prisma.$VanityEmbedAuthorsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends VanityEmbedAuthorDeleteArgs>(args: SelectSubset<T, VanityEmbedAuthorDeleteArgs<ExtArgs>>): Prisma__VanityEmbedAuthorClient<$Result.GetResult<Prisma.$VanityEmbedAuthorPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one VanityEmbedAuthors.
-     * @param {VanityEmbedAuthorsUpdateArgs} args - Arguments to update one VanityEmbedAuthors.
+     * Update one VanityEmbedAuthor.
+     * @param {VanityEmbedAuthorUpdateArgs} args - Arguments to update one VanityEmbedAuthor.
      * @example
-     * // Update one VanityEmbedAuthors
-     * const vanityEmbedAuthors = await prisma.vanityEmbedAuthors.update({
+     * // Update one VanityEmbedAuthor
+     * const vanityEmbedAuthor = await prisma.vanityEmbedAuthor.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -49121,30 +49121,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends VanityEmbedAuthorsUpdateArgs>(args: SelectSubset<T, VanityEmbedAuthorsUpdateArgs<ExtArgs>>): Prisma__VanityEmbedAuthorsClient<$Result.GetResult<Prisma.$VanityEmbedAuthorsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends VanityEmbedAuthorUpdateArgs>(args: SelectSubset<T, VanityEmbedAuthorUpdateArgs<ExtArgs>>): Prisma__VanityEmbedAuthorClient<$Result.GetResult<Prisma.$VanityEmbedAuthorPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more VanityEmbedAuthors.
-     * @param {VanityEmbedAuthorsDeleteManyArgs} args - Arguments to filter VanityEmbedAuthors to delete.
+     * @param {VanityEmbedAuthorDeleteManyArgs} args - Arguments to filter VanityEmbedAuthors to delete.
      * @example
      * // Delete a few VanityEmbedAuthors
-     * const { count } = await prisma.vanityEmbedAuthors.deleteMany({
+     * const { count } = await prisma.vanityEmbedAuthor.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends VanityEmbedAuthorsDeleteManyArgs>(args?: SelectSubset<T, VanityEmbedAuthorsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends VanityEmbedAuthorDeleteManyArgs>(args?: SelectSubset<T, VanityEmbedAuthorDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more VanityEmbedAuthors.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {VanityEmbedAuthorsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {VanityEmbedAuthorUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
      * // Update many VanityEmbedAuthors
-     * const vanityEmbedAuthors = await prisma.vanityEmbedAuthors.updateMany({
+     * const vanityEmbedAuthor = await prisma.vanityEmbedAuthor.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -49154,79 +49154,79 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends VanityEmbedAuthorsUpdateManyArgs>(args: SelectSubset<T, VanityEmbedAuthorsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends VanityEmbedAuthorUpdateManyArgs>(args: SelectSubset<T, VanityEmbedAuthorUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one VanityEmbedAuthors.
-     * @param {VanityEmbedAuthorsUpsertArgs} args - Arguments to update or create a VanityEmbedAuthors.
+     * Create or update one VanityEmbedAuthor.
+     * @param {VanityEmbedAuthorUpsertArgs} args - Arguments to update or create a VanityEmbedAuthor.
      * @example
-     * // Update or create a VanityEmbedAuthors
-     * const vanityEmbedAuthors = await prisma.vanityEmbedAuthors.upsert({
+     * // Update or create a VanityEmbedAuthor
+     * const vanityEmbedAuthor = await prisma.vanityEmbedAuthor.upsert({
      *   create: {
-     *     // ... data to create a VanityEmbedAuthors
+     *     // ... data to create a VanityEmbedAuthor
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the VanityEmbedAuthors we want to update
+     *     // ... the filter for the VanityEmbedAuthor we want to update
      *   }
      * })
      */
-    upsert<T extends VanityEmbedAuthorsUpsertArgs>(args: SelectSubset<T, VanityEmbedAuthorsUpsertArgs<ExtArgs>>): Prisma__VanityEmbedAuthorsClient<$Result.GetResult<Prisma.$VanityEmbedAuthorsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends VanityEmbedAuthorUpsertArgs>(args: SelectSubset<T, VanityEmbedAuthorUpsertArgs<ExtArgs>>): Prisma__VanityEmbedAuthorClient<$Result.GetResult<Prisma.$VanityEmbedAuthorPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more VanityEmbedAuthors that matches the filter.
-     * @param {VanityEmbedAuthorsFindRawArgs} args - Select which filters you would like to apply.
+     * @param {VanityEmbedAuthorFindRawArgs} args - Select which filters you would like to apply.
      * @example
-     * const vanityEmbedAuthors = await prisma.vanityEmbedAuthors.findRaw({
+     * const vanityEmbedAuthor = await prisma.vanityEmbedAuthor.findRaw({
      *   filter: { age: { $gt: 25 } }
      * })
      */
-    findRaw(args?: VanityEmbedAuthorsFindRawArgs): Prisma.PrismaPromise<JsonObject>
+    findRaw(args?: VanityEmbedAuthorFindRawArgs): Prisma.PrismaPromise<JsonObject>
 
     /**
-     * Perform aggregation operations on a VanityEmbedAuthors.
-     * @param {VanityEmbedAuthorsAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * Perform aggregation operations on a VanityEmbedAuthor.
+     * @param {VanityEmbedAuthorAggregateRawArgs} args - Select which aggregations you would like to apply.
      * @example
-     * const vanityEmbedAuthors = await prisma.vanityEmbedAuthors.aggregateRaw({
+     * const vanityEmbedAuthor = await prisma.vanityEmbedAuthor.aggregateRaw({
      *   pipeline: [
      *     { $match: { status: "registered" } },
      *     { $group: { _id: "$country", total: { $sum: 1 } } }
      *   ]
      * })
      */
-    aggregateRaw(args?: VanityEmbedAuthorsAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+    aggregateRaw(args?: VanityEmbedAuthorAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
 
 
     /**
      * Count the number of VanityEmbedAuthors.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {VanityEmbedAuthorsCountArgs} args - Arguments to filter VanityEmbedAuthors to count.
+     * @param {VanityEmbedAuthorCountArgs} args - Arguments to filter VanityEmbedAuthors to count.
      * @example
      * // Count the number of VanityEmbedAuthors
-     * const count = await prisma.vanityEmbedAuthors.count({
+     * const count = await prisma.vanityEmbedAuthor.count({
      *   where: {
      *     // ... the filter for the VanityEmbedAuthors we want to count
      *   }
      * })
     **/
-    count<T extends VanityEmbedAuthorsCountArgs>(
-      args?: Subset<T, VanityEmbedAuthorsCountArgs>,
+    count<T extends VanityEmbedAuthorCountArgs>(
+      args?: Subset<T, VanityEmbedAuthorCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], VanityEmbedAuthorsCountAggregateOutputType>
+          : GetScalarType<T['select'], VanityEmbedAuthorCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a VanityEmbedAuthors.
+     * Allows you to perform aggregations operations on a VanityEmbedAuthor.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {VanityEmbedAuthorsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {VanityEmbedAuthorAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -49246,13 +49246,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends VanityEmbedAuthorsAggregateArgs>(args: Subset<T, VanityEmbedAuthorsAggregateArgs>): Prisma.PrismaPromise<GetVanityEmbedAuthorsAggregateType<T>>
+    aggregate<T extends VanityEmbedAuthorAggregateArgs>(args: Subset<T, VanityEmbedAuthorAggregateArgs>): Prisma.PrismaPromise<GetVanityEmbedAuthorAggregateType<T>>
 
     /**
-     * Group by VanityEmbedAuthors.
+     * Group by VanityEmbedAuthor.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {VanityEmbedAuthorsGroupByArgs} args - Group by arguments.
+     * @param {VanityEmbedAuthorGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -49267,14 +49267,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends VanityEmbedAuthorsGroupByArgs,
+      T extends VanityEmbedAuthorGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: VanityEmbedAuthorsGroupByArgs['orderBy'] }
-        : { orderBy?: VanityEmbedAuthorsGroupByArgs['orderBy'] },
+        ? { orderBy: VanityEmbedAuthorGroupByArgs['orderBy'] }
+        : { orderBy?: VanityEmbedAuthorGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -49323,22 +49323,22 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, VanityEmbedAuthorsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVanityEmbedAuthorsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, VanityEmbedAuthorGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVanityEmbedAuthorGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the VanityEmbedAuthors model
+   * Fields of the VanityEmbedAuthor model
    */
-  readonly fields: VanityEmbedAuthorsFieldRefs;
+  readonly fields: VanityEmbedAuthorFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for VanityEmbedAuthors.
+   * The delegate class that acts as a "Promise-like" for VanityEmbedAuthor.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__VanityEmbedAuthorsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__VanityEmbedAuthorClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    VanityEmbeds<T extends VanityEmbedsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, VanityEmbedsDefaultArgs<ExtArgs>>): Prisma__VanityEmbedsClient<$Result.GetResult<Prisma.$VanityEmbedsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    VanityEmbeds<T extends VanityEmbedDefaultArgs<ExtArgs> = {}>(args?: Subset<T, VanityEmbedDefaultArgs<ExtArgs>>): Prisma__VanityEmbedClient<$Result.GetResult<Prisma.$VanityEmbedPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -49365,94 +49365,94 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the VanityEmbedAuthors model
+   * Fields of the VanityEmbedAuthor model
    */
-  interface VanityEmbedAuthorsFieldRefs {
-    readonly id: FieldRef<"VanityEmbedAuthors", 'String'>
-    readonly Name: FieldRef<"VanityEmbedAuthors", 'String'>
-    readonly URL: FieldRef<"VanityEmbedAuthors", 'String'>
-    readonly IconURL: FieldRef<"VanityEmbedAuthors", 'String'>
-    readonly VanityEmbedsId: FieldRef<"VanityEmbedAuthors", 'String'>
+  interface VanityEmbedAuthorFieldRefs {
+    readonly id: FieldRef<"VanityEmbedAuthor", 'String'>
+    readonly Name: FieldRef<"VanityEmbedAuthor", 'String'>
+    readonly URL: FieldRef<"VanityEmbedAuthor", 'String'>
+    readonly IconURL: FieldRef<"VanityEmbedAuthor", 'String'>
+    readonly VanityEmbedsId: FieldRef<"VanityEmbedAuthor", 'String'>
   }
     
 
   // Custom InputTypes
   /**
-   * VanityEmbedAuthors findUnique
+   * VanityEmbedAuthor findUnique
    */
-  export type VanityEmbedAuthorsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedAuthorFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityEmbedAuthors
+     * Select specific fields to fetch from the VanityEmbedAuthor
      */
-    select?: VanityEmbedAuthorsSelect<ExtArgs> | null
+    select?: VanityEmbedAuthorSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityEmbedAuthors
+     * Omit specific fields from the VanityEmbedAuthor
      */
-    omit?: VanityEmbedAuthorsOmit<ExtArgs> | null
+    omit?: VanityEmbedAuthorOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityEmbedAuthorsInclude<ExtArgs> | null
+    include?: VanityEmbedAuthorInclude<ExtArgs> | null
     /**
-     * Filter, which VanityEmbedAuthors to fetch.
+     * Filter, which VanityEmbedAuthor to fetch.
      */
-    where: VanityEmbedAuthorsWhereUniqueInput
+    where: VanityEmbedAuthorWhereUniqueInput
   }
 
   /**
-   * VanityEmbedAuthors findUniqueOrThrow
+   * VanityEmbedAuthor findUniqueOrThrow
    */
-  export type VanityEmbedAuthorsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedAuthorFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityEmbedAuthors
+     * Select specific fields to fetch from the VanityEmbedAuthor
      */
-    select?: VanityEmbedAuthorsSelect<ExtArgs> | null
+    select?: VanityEmbedAuthorSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityEmbedAuthors
+     * Omit specific fields from the VanityEmbedAuthor
      */
-    omit?: VanityEmbedAuthorsOmit<ExtArgs> | null
+    omit?: VanityEmbedAuthorOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityEmbedAuthorsInclude<ExtArgs> | null
+    include?: VanityEmbedAuthorInclude<ExtArgs> | null
     /**
-     * Filter, which VanityEmbedAuthors to fetch.
+     * Filter, which VanityEmbedAuthor to fetch.
      */
-    where: VanityEmbedAuthorsWhereUniqueInput
+    where: VanityEmbedAuthorWhereUniqueInput
   }
 
   /**
-   * VanityEmbedAuthors findFirst
+   * VanityEmbedAuthor findFirst
    */
-  export type VanityEmbedAuthorsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedAuthorFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityEmbedAuthors
+     * Select specific fields to fetch from the VanityEmbedAuthor
      */
-    select?: VanityEmbedAuthorsSelect<ExtArgs> | null
+    select?: VanityEmbedAuthorSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityEmbedAuthors
+     * Omit specific fields from the VanityEmbedAuthor
      */
-    omit?: VanityEmbedAuthorsOmit<ExtArgs> | null
+    omit?: VanityEmbedAuthorOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityEmbedAuthorsInclude<ExtArgs> | null
+    include?: VanityEmbedAuthorInclude<ExtArgs> | null
     /**
-     * Filter, which VanityEmbedAuthors to fetch.
+     * Filter, which VanityEmbedAuthor to fetch.
      */
-    where?: VanityEmbedAuthorsWhereInput
+    where?: VanityEmbedAuthorWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of VanityEmbedAuthors to fetch.
      */
-    orderBy?: VanityEmbedAuthorsOrderByWithRelationInput | VanityEmbedAuthorsOrderByWithRelationInput[]
+    orderBy?: VanityEmbedAuthorOrderByWithRelationInput | VanityEmbedAuthorOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for VanityEmbedAuthors.
      */
-    cursor?: VanityEmbedAuthorsWhereUniqueInput
+    cursor?: VanityEmbedAuthorWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
@@ -49470,41 +49470,41 @@ export namespace Prisma {
      * 
      * Filter by unique combinations of VanityEmbedAuthors.
      */
-    distinct?: VanityEmbedAuthorsScalarFieldEnum | VanityEmbedAuthorsScalarFieldEnum[]
+    distinct?: VanityEmbedAuthorScalarFieldEnum | VanityEmbedAuthorScalarFieldEnum[]
   }
 
   /**
-   * VanityEmbedAuthors findFirstOrThrow
+   * VanityEmbedAuthor findFirstOrThrow
    */
-  export type VanityEmbedAuthorsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedAuthorFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityEmbedAuthors
+     * Select specific fields to fetch from the VanityEmbedAuthor
      */
-    select?: VanityEmbedAuthorsSelect<ExtArgs> | null
+    select?: VanityEmbedAuthorSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityEmbedAuthors
+     * Omit specific fields from the VanityEmbedAuthor
      */
-    omit?: VanityEmbedAuthorsOmit<ExtArgs> | null
+    omit?: VanityEmbedAuthorOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityEmbedAuthorsInclude<ExtArgs> | null
+    include?: VanityEmbedAuthorInclude<ExtArgs> | null
     /**
-     * Filter, which VanityEmbedAuthors to fetch.
+     * Filter, which VanityEmbedAuthor to fetch.
      */
-    where?: VanityEmbedAuthorsWhereInput
+    where?: VanityEmbedAuthorWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of VanityEmbedAuthors to fetch.
      */
-    orderBy?: VanityEmbedAuthorsOrderByWithRelationInput | VanityEmbedAuthorsOrderByWithRelationInput[]
+    orderBy?: VanityEmbedAuthorOrderByWithRelationInput | VanityEmbedAuthorOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for VanityEmbedAuthors.
      */
-    cursor?: VanityEmbedAuthorsWhereUniqueInput
+    cursor?: VanityEmbedAuthorWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
@@ -49522,41 +49522,41 @@ export namespace Prisma {
      * 
      * Filter by unique combinations of VanityEmbedAuthors.
      */
-    distinct?: VanityEmbedAuthorsScalarFieldEnum | VanityEmbedAuthorsScalarFieldEnum[]
+    distinct?: VanityEmbedAuthorScalarFieldEnum | VanityEmbedAuthorScalarFieldEnum[]
   }
 
   /**
-   * VanityEmbedAuthors findMany
+   * VanityEmbedAuthor findMany
    */
-  export type VanityEmbedAuthorsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedAuthorFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityEmbedAuthors
+     * Select specific fields to fetch from the VanityEmbedAuthor
      */
-    select?: VanityEmbedAuthorsSelect<ExtArgs> | null
+    select?: VanityEmbedAuthorSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityEmbedAuthors
+     * Omit specific fields from the VanityEmbedAuthor
      */
-    omit?: VanityEmbedAuthorsOmit<ExtArgs> | null
+    omit?: VanityEmbedAuthorOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityEmbedAuthorsInclude<ExtArgs> | null
+    include?: VanityEmbedAuthorInclude<ExtArgs> | null
     /**
      * Filter, which VanityEmbedAuthors to fetch.
      */
-    where?: VanityEmbedAuthorsWhereInput
+    where?: VanityEmbedAuthorWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of VanityEmbedAuthors to fetch.
      */
-    orderBy?: VanityEmbedAuthorsOrderByWithRelationInput | VanityEmbedAuthorsOrderByWithRelationInput[]
+    orderBy?: VanityEmbedAuthorOrderByWithRelationInput | VanityEmbedAuthorOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for listing VanityEmbedAuthors.
      */
-    cursor?: VanityEmbedAuthorsWhereUniqueInput
+    cursor?: VanityEmbedAuthorWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
@@ -49569,79 +49569,79 @@ export namespace Prisma {
      * Skip the first `n` VanityEmbedAuthors.
      */
     skip?: number
-    distinct?: VanityEmbedAuthorsScalarFieldEnum | VanityEmbedAuthorsScalarFieldEnum[]
+    distinct?: VanityEmbedAuthorScalarFieldEnum | VanityEmbedAuthorScalarFieldEnum[]
   }
 
   /**
-   * VanityEmbedAuthors create
+   * VanityEmbedAuthor create
    */
-  export type VanityEmbedAuthorsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedAuthorCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityEmbedAuthors
+     * Select specific fields to fetch from the VanityEmbedAuthor
      */
-    select?: VanityEmbedAuthorsSelect<ExtArgs> | null
+    select?: VanityEmbedAuthorSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityEmbedAuthors
+     * Omit specific fields from the VanityEmbedAuthor
      */
-    omit?: VanityEmbedAuthorsOmit<ExtArgs> | null
+    omit?: VanityEmbedAuthorOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityEmbedAuthorsInclude<ExtArgs> | null
+    include?: VanityEmbedAuthorInclude<ExtArgs> | null
     /**
-     * The data needed to create a VanityEmbedAuthors.
+     * The data needed to create a VanityEmbedAuthor.
      */
-    data: XOR<VanityEmbedAuthorsCreateInput, VanityEmbedAuthorsUncheckedCreateInput>
+    data: XOR<VanityEmbedAuthorCreateInput, VanityEmbedAuthorUncheckedCreateInput>
   }
 
   /**
-   * VanityEmbedAuthors createMany
+   * VanityEmbedAuthor createMany
    */
-  export type VanityEmbedAuthorsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedAuthorCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many VanityEmbedAuthors.
      */
-    data: VanityEmbedAuthorsCreateManyInput | VanityEmbedAuthorsCreateManyInput[]
+    data: VanityEmbedAuthorCreateManyInput | VanityEmbedAuthorCreateManyInput[]
   }
 
   /**
-   * VanityEmbedAuthors update
+   * VanityEmbedAuthor update
    */
-  export type VanityEmbedAuthorsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedAuthorUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityEmbedAuthors
+     * Select specific fields to fetch from the VanityEmbedAuthor
      */
-    select?: VanityEmbedAuthorsSelect<ExtArgs> | null
+    select?: VanityEmbedAuthorSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityEmbedAuthors
+     * Omit specific fields from the VanityEmbedAuthor
      */
-    omit?: VanityEmbedAuthorsOmit<ExtArgs> | null
+    omit?: VanityEmbedAuthorOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityEmbedAuthorsInclude<ExtArgs> | null
+    include?: VanityEmbedAuthorInclude<ExtArgs> | null
     /**
-     * The data needed to update a VanityEmbedAuthors.
+     * The data needed to update a VanityEmbedAuthor.
      */
-    data: XOR<VanityEmbedAuthorsUpdateInput, VanityEmbedAuthorsUncheckedUpdateInput>
+    data: XOR<VanityEmbedAuthorUpdateInput, VanityEmbedAuthorUncheckedUpdateInput>
     /**
-     * Choose, which VanityEmbedAuthors to update.
+     * Choose, which VanityEmbedAuthor to update.
      */
-    where: VanityEmbedAuthorsWhereUniqueInput
+    where: VanityEmbedAuthorWhereUniqueInput
   }
 
   /**
-   * VanityEmbedAuthors updateMany
+   * VanityEmbedAuthor updateMany
    */
-  export type VanityEmbedAuthorsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedAuthorUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to update VanityEmbedAuthors.
      */
-    data: XOR<VanityEmbedAuthorsUpdateManyMutationInput, VanityEmbedAuthorsUncheckedUpdateManyInput>
+    data: XOR<VanityEmbedAuthorUpdateManyMutationInput, VanityEmbedAuthorUncheckedUpdateManyInput>
     /**
      * Filter which VanityEmbedAuthors to update
      */
-    where?: VanityEmbedAuthorsWhereInput
+    where?: VanityEmbedAuthorWhereInput
     /**
      * Limit how many VanityEmbedAuthors to update.
      */
@@ -49649,65 +49649,65 @@ export namespace Prisma {
   }
 
   /**
-   * VanityEmbedAuthors upsert
+   * VanityEmbedAuthor upsert
    */
-  export type VanityEmbedAuthorsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedAuthorUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityEmbedAuthors
+     * Select specific fields to fetch from the VanityEmbedAuthor
      */
-    select?: VanityEmbedAuthorsSelect<ExtArgs> | null
+    select?: VanityEmbedAuthorSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityEmbedAuthors
+     * Omit specific fields from the VanityEmbedAuthor
      */
-    omit?: VanityEmbedAuthorsOmit<ExtArgs> | null
+    omit?: VanityEmbedAuthorOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityEmbedAuthorsInclude<ExtArgs> | null
+    include?: VanityEmbedAuthorInclude<ExtArgs> | null
     /**
-     * The filter to search for the VanityEmbedAuthors to update in case it exists.
+     * The filter to search for the VanityEmbedAuthor to update in case it exists.
      */
-    where: VanityEmbedAuthorsWhereUniqueInput
+    where: VanityEmbedAuthorWhereUniqueInput
     /**
-     * In case the VanityEmbedAuthors found by the `where` argument doesn't exist, create a new VanityEmbedAuthors with this data.
+     * In case the VanityEmbedAuthor found by the `where` argument doesn't exist, create a new VanityEmbedAuthor with this data.
      */
-    create: XOR<VanityEmbedAuthorsCreateInput, VanityEmbedAuthorsUncheckedCreateInput>
+    create: XOR<VanityEmbedAuthorCreateInput, VanityEmbedAuthorUncheckedCreateInput>
     /**
-     * In case the VanityEmbedAuthors was found with the provided `where` argument, update it with this data.
+     * In case the VanityEmbedAuthor was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<VanityEmbedAuthorsUpdateInput, VanityEmbedAuthorsUncheckedUpdateInput>
+    update: XOR<VanityEmbedAuthorUpdateInput, VanityEmbedAuthorUncheckedUpdateInput>
   }
 
   /**
-   * VanityEmbedAuthors delete
+   * VanityEmbedAuthor delete
    */
-  export type VanityEmbedAuthorsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedAuthorDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityEmbedAuthors
+     * Select specific fields to fetch from the VanityEmbedAuthor
      */
-    select?: VanityEmbedAuthorsSelect<ExtArgs> | null
+    select?: VanityEmbedAuthorSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityEmbedAuthors
+     * Omit specific fields from the VanityEmbedAuthor
      */
-    omit?: VanityEmbedAuthorsOmit<ExtArgs> | null
+    omit?: VanityEmbedAuthorOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityEmbedAuthorsInclude<ExtArgs> | null
+    include?: VanityEmbedAuthorInclude<ExtArgs> | null
     /**
-     * Filter which VanityEmbedAuthors to delete.
+     * Filter which VanityEmbedAuthor to delete.
      */
-    where: VanityEmbedAuthorsWhereUniqueInput
+    where: VanityEmbedAuthorWhereUniqueInput
   }
 
   /**
-   * VanityEmbedAuthors deleteMany
+   * VanityEmbedAuthor deleteMany
    */
-  export type VanityEmbedAuthorsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedAuthorDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which VanityEmbedAuthors to delete
      */
-    where?: VanityEmbedAuthorsWhereInput
+    where?: VanityEmbedAuthorWhereInput
     /**
      * Limit how many VanityEmbedAuthors to delete.
      */
@@ -49715,9 +49715,9 @@ export namespace Prisma {
   }
 
   /**
-   * VanityEmbedAuthors findRaw
+   * VanityEmbedAuthor findRaw
    */
-  export type VanityEmbedAuthorsFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedAuthorFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
      */
@@ -49729,9 +49729,9 @@ export namespace Prisma {
   }
 
   /**
-   * VanityEmbedAuthors aggregateRaw
+   * VanityEmbedAuthor aggregateRaw
    */
-  export type VanityEmbedAuthorsAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedAuthorAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
      */
@@ -49743,49 +49743,49 @@ export namespace Prisma {
   }
 
   /**
-   * VanityEmbedAuthors without action
+   * VanityEmbedAuthor without action
    */
-  export type VanityEmbedAuthorsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityEmbedAuthorDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityEmbedAuthors
+     * Select specific fields to fetch from the VanityEmbedAuthor
      */
-    select?: VanityEmbedAuthorsSelect<ExtArgs> | null
+    select?: VanityEmbedAuthorSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityEmbedAuthors
+     * Omit specific fields from the VanityEmbedAuthor
      */
-    omit?: VanityEmbedAuthorsOmit<ExtArgs> | null
+    omit?: VanityEmbedAuthorOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityEmbedAuthorsInclude<ExtArgs> | null
+    include?: VanityEmbedAuthorInclude<ExtArgs> | null
   }
 
 
   /**
-   * Model VanityAnalytics
+   * Model VanityAnalytic
    */
 
-  export type AggregateVanityAnalytics = {
-    _count: VanityAnalyticsCountAggregateOutputType | null
-    _avg: VanityAnalyticsAvgAggregateOutputType | null
-    _sum: VanityAnalyticsSumAggregateOutputType | null
-    _min: VanityAnalyticsMinAggregateOutputType | null
-    _max: VanityAnalyticsMaxAggregateOutputType | null
+  export type AggregateVanityAnalytic = {
+    _count: VanityAnalyticCountAggregateOutputType | null
+    _avg: VanityAnalyticAvgAggregateOutputType | null
+    _sum: VanityAnalyticSumAggregateOutputType | null
+    _min: VanityAnalyticMinAggregateOutputType | null
+    _max: VanityAnalyticMaxAggregateOutputType | null
   }
 
-  export type VanityAnalyticsAvgAggregateOutputType = {
+  export type VanityAnalyticAvgAggregateOutputType = {
     Click: number | null
     UniqueClick: number | null
     JoinedWithCode: number | null
   }
 
-  export type VanityAnalyticsSumAggregateOutputType = {
+  export type VanityAnalyticSumAggregateOutputType = {
     Click: number | null
     UniqueClick: number | null
     JoinedWithCode: number | null
   }
 
-  export type VanityAnalyticsMinAggregateOutputType = {
+  export type VanityAnalyticMinAggregateOutputType = {
     id: string | null
     Click: number | null
     TrackInviteWithLog: string | null
@@ -49796,7 +49796,7 @@ export namespace Prisma {
     VanityId: string | null
   }
 
-  export type VanityAnalyticsMaxAggregateOutputType = {
+  export type VanityAnalyticMaxAggregateOutputType = {
     id: string | null
     Click: number | null
     TrackInviteWithLog: string | null
@@ -49807,7 +49807,7 @@ export namespace Prisma {
     VanityId: string | null
   }
 
-  export type VanityAnalyticsCountAggregateOutputType = {
+  export type VanityAnalyticCountAggregateOutputType = {
     id: number
     Click: number
     TrackInviteWithLog: number
@@ -49821,19 +49821,19 @@ export namespace Prisma {
   }
 
 
-  export type VanityAnalyticsAvgAggregateInputType = {
+  export type VanityAnalyticAvgAggregateInputType = {
     Click?: true
     UniqueClick?: true
     JoinedWithCode?: true
   }
 
-  export type VanityAnalyticsSumAggregateInputType = {
+  export type VanityAnalyticSumAggregateInputType = {
     Click?: true
     UniqueClick?: true
     JoinedWithCode?: true
   }
 
-  export type VanityAnalyticsMinAggregateInputType = {
+  export type VanityAnalyticMinAggregateInputType = {
     id?: true
     Click?: true
     TrackInviteWithLog?: true
@@ -49844,7 +49844,7 @@ export namespace Prisma {
     VanityId?: true
   }
 
-  export type VanityAnalyticsMaxAggregateInputType = {
+  export type VanityAnalyticMaxAggregateInputType = {
     id?: true
     Click?: true
     TrackInviteWithLog?: true
@@ -49855,7 +49855,7 @@ export namespace Prisma {
     VanityId?: true
   }
 
-  export type VanityAnalyticsCountAggregateInputType = {
+  export type VanityAnalyticCountAggregateInputType = {
     id?: true
     Click?: true
     TrackInviteWithLog?: true
@@ -49868,23 +49868,23 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type VanityAnalyticsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which VanityAnalytics to aggregate.
+     * Filter which VanityAnalytic to aggregate.
      */
-    where?: VanityAnalyticsWhereInput
+    where?: VanityAnalyticWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of VanityAnalytics to fetch.
      */
-    orderBy?: VanityAnalyticsOrderByWithRelationInput | VanityAnalyticsOrderByWithRelationInput[]
+    orderBy?: VanityAnalyticOrderByWithRelationInput | VanityAnalyticOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: VanityAnalyticsWhereUniqueInput
+    cursor?: VanityAnalyticWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
@@ -49902,59 +49902,59 @@ export namespace Prisma {
      * 
      * Count returned VanityAnalytics
     **/
-    _count?: true | VanityAnalyticsCountAggregateInputType
+    _count?: true | VanityAnalyticCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: VanityAnalyticsAvgAggregateInputType
+    _avg?: VanityAnalyticAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: VanityAnalyticsSumAggregateInputType
+    _sum?: VanityAnalyticSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: VanityAnalyticsMinAggregateInputType
+    _min?: VanityAnalyticMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: VanityAnalyticsMaxAggregateInputType
+    _max?: VanityAnalyticMaxAggregateInputType
   }
 
-  export type GetVanityAnalyticsAggregateType<T extends VanityAnalyticsAggregateArgs> = {
-        [P in keyof T & keyof AggregateVanityAnalytics]: P extends '_count' | 'count'
+  export type GetVanityAnalyticAggregateType<T extends VanityAnalyticAggregateArgs> = {
+        [P in keyof T & keyof AggregateVanityAnalytic]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateVanityAnalytics[P]>
-      : GetScalarType<T[P], AggregateVanityAnalytics[P]>
+        : GetScalarType<T[P], AggregateVanityAnalytic[P]>
+      : GetScalarType<T[P], AggregateVanityAnalytic[P]>
   }
 
 
 
 
-  export type VanityAnalyticsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: VanityAnalyticsWhereInput
-    orderBy?: VanityAnalyticsOrderByWithAggregationInput | VanityAnalyticsOrderByWithAggregationInput[]
-    by: VanityAnalyticsScalarFieldEnum[] | VanityAnalyticsScalarFieldEnum
-    having?: VanityAnalyticsScalarWhereWithAggregatesInput
+  export type VanityAnalyticGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VanityAnalyticWhereInput
+    orderBy?: VanityAnalyticOrderByWithAggregationInput | VanityAnalyticOrderByWithAggregationInput[]
+    by: VanityAnalyticScalarFieldEnum[] | VanityAnalyticScalarFieldEnum
+    having?: VanityAnalyticScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: VanityAnalyticsCountAggregateInputType | true
-    _avg?: VanityAnalyticsAvgAggregateInputType
-    _sum?: VanityAnalyticsSumAggregateInputType
-    _min?: VanityAnalyticsMinAggregateInputType
-    _max?: VanityAnalyticsMaxAggregateInputType
+    _count?: VanityAnalyticCountAggregateInputType | true
+    _avg?: VanityAnalyticAvgAggregateInputType
+    _sum?: VanityAnalyticSumAggregateInputType
+    _min?: VanityAnalyticMinAggregateInputType
+    _max?: VanityAnalyticMaxAggregateInputType
   }
 
-  export type VanityAnalyticsGroupByOutputType = {
+  export type VanityAnalyticGroupByOutputType = {
     id: string
     Click: number
     TrackInviteWithLog: string | null
@@ -49964,28 +49964,28 @@ export namespace Prisma {
     JoinedWithCode: number | null
     LoggedIPs: string[]
     VanityId: string
-    _count: VanityAnalyticsCountAggregateOutputType | null
-    _avg: VanityAnalyticsAvgAggregateOutputType | null
-    _sum: VanityAnalyticsSumAggregateOutputType | null
-    _min: VanityAnalyticsMinAggregateOutputType | null
-    _max: VanityAnalyticsMaxAggregateOutputType | null
+    _count: VanityAnalyticCountAggregateOutputType | null
+    _avg: VanityAnalyticAvgAggregateOutputType | null
+    _sum: VanityAnalyticSumAggregateOutputType | null
+    _min: VanityAnalyticMinAggregateOutputType | null
+    _max: VanityAnalyticMaxAggregateOutputType | null
   }
 
-  type GetVanityAnalyticsGroupByPayload<T extends VanityAnalyticsGroupByArgs> = Prisma.PrismaPromise<
+  type GetVanityAnalyticGroupByPayload<T extends VanityAnalyticGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<VanityAnalyticsGroupByOutputType, T['by']> &
+      PickEnumerable<VanityAnalyticGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof VanityAnalyticsGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof VanityAnalyticGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], VanityAnalyticsGroupByOutputType[P]>
-            : GetScalarType<T[P], VanityAnalyticsGroupByOutputType[P]>
+              : GetScalarType<T[P], VanityAnalyticGroupByOutputType[P]>
+            : GetScalarType<T[P], VanityAnalyticGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type VanityAnalyticsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type VanityAnalyticSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     Click?: boolean
     TrackInviteWithLog?: boolean
@@ -49995,13 +49995,13 @@ export namespace Prisma {
     JoinedWithCode?: boolean
     LoggedIPs?: boolean
     VanityId?: boolean
-    Latest30Days?: boolean | VanityAnalytics$Latest30DaysArgs<ExtArgs>
+    Latest30Days?: boolean | VanityAnalytic$Latest30DaysArgs<ExtArgs>
     Vanitys?: boolean | VanitysDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["vanityAnalytics"]>
+  }, ExtArgs["result"]["vanityAnalytic"]>
 
 
 
-  export type VanityAnalyticsSelectScalar = {
+  export type VanityAnalyticSelectScalar = {
     id?: boolean
     Click?: boolean
     TrackInviteWithLog?: boolean
@@ -50013,16 +50013,16 @@ export namespace Prisma {
     VanityId?: boolean
   }
 
-  export type VanityAnalyticsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "Click" | "TrackInviteWithLog" | "TrackMessageId" | "Update" | "UniqueClick" | "JoinedWithCode" | "LoggedIPs" | "VanityId", ExtArgs["result"]["vanityAnalytics"]>
-  export type VanityAnalyticsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Latest30Days?: boolean | VanityAnalytics$Latest30DaysArgs<ExtArgs>
+  export type VanityAnalyticOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "Click" | "TrackInviteWithLog" | "TrackMessageId" | "Update" | "UniqueClick" | "JoinedWithCode" | "LoggedIPs" | "VanityId", ExtArgs["result"]["vanityAnalytic"]>
+  export type VanityAnalyticInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Latest30Days?: boolean | VanityAnalytic$Latest30DaysArgs<ExtArgs>
     Vanitys?: boolean | VanitysDefaultArgs<ExtArgs>
   }
 
-  export type $VanityAnalyticsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "VanityAnalytics"
+  export type $VanityAnalyticPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "VanityAnalytic"
     objects: {
-      Latest30Days: Prisma.$AnalyticsLatest30DaysPayload<ExtArgs> | null
+      Latest30Days: Prisma.$VanityAnalyticsLatest30DayPayload<ExtArgs> | null
       Vanitys: Prisma.$VanitysPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -50035,143 +50035,143 @@ export namespace Prisma {
       JoinedWithCode: number | null
       LoggedIPs: string[]
       VanityId: string
-    }, ExtArgs["result"]["vanityAnalytics"]>
+    }, ExtArgs["result"]["vanityAnalytic"]>
     composites: {}
   }
 
-  type VanityAnalyticsGetPayload<S extends boolean | null | undefined | VanityAnalyticsDefaultArgs> = $Result.GetResult<Prisma.$VanityAnalyticsPayload, S>
+  type VanityAnalyticGetPayload<S extends boolean | null | undefined | VanityAnalyticDefaultArgs> = $Result.GetResult<Prisma.$VanityAnalyticPayload, S>
 
-  type VanityAnalyticsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<VanityAnalyticsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: VanityAnalyticsCountAggregateInputType | true
+  type VanityAnalyticCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<VanityAnalyticFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: VanityAnalyticCountAggregateInputType | true
     }
 
-  export interface VanityAnalyticsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['VanityAnalytics'], meta: { name: 'VanityAnalytics' } }
+  export interface VanityAnalyticDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['VanityAnalytic'], meta: { name: 'VanityAnalytic' } }
     /**
-     * Find zero or one VanityAnalytics that matches the filter.
-     * @param {VanityAnalyticsFindUniqueArgs} args - Arguments to find a VanityAnalytics
+     * Find zero or one VanityAnalytic that matches the filter.
+     * @param {VanityAnalyticFindUniqueArgs} args - Arguments to find a VanityAnalytic
      * @example
-     * // Get one VanityAnalytics
-     * const vanityAnalytics = await prisma.vanityAnalytics.findUnique({
+     * // Get one VanityAnalytic
+     * const vanityAnalytic = await prisma.vanityAnalytic.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends VanityAnalyticsFindUniqueArgs>(args: SelectSubset<T, VanityAnalyticsFindUniqueArgs<ExtArgs>>): Prisma__VanityAnalyticsClient<$Result.GetResult<Prisma.$VanityAnalyticsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends VanityAnalyticFindUniqueArgs>(args: SelectSubset<T, VanityAnalyticFindUniqueArgs<ExtArgs>>): Prisma__VanityAnalyticClient<$Result.GetResult<Prisma.$VanityAnalyticPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one VanityAnalytics that matches the filter or throw an error with `error.code='P2025'`
+     * Find one VanityAnalytic that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {VanityAnalyticsFindUniqueOrThrowArgs} args - Arguments to find a VanityAnalytics
+     * @param {VanityAnalyticFindUniqueOrThrowArgs} args - Arguments to find a VanityAnalytic
      * @example
-     * // Get one VanityAnalytics
-     * const vanityAnalytics = await prisma.vanityAnalytics.findUniqueOrThrow({
+     * // Get one VanityAnalytic
+     * const vanityAnalytic = await prisma.vanityAnalytic.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends VanityAnalyticsFindUniqueOrThrowArgs>(args: SelectSubset<T, VanityAnalyticsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VanityAnalyticsClient<$Result.GetResult<Prisma.$VanityAnalyticsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends VanityAnalyticFindUniqueOrThrowArgs>(args: SelectSubset<T, VanityAnalyticFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VanityAnalyticClient<$Result.GetResult<Prisma.$VanityAnalyticPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first VanityAnalytics that matches the filter.
+     * Find the first VanityAnalytic that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {VanityAnalyticsFindFirstArgs} args - Arguments to find a VanityAnalytics
+     * @param {VanityAnalyticFindFirstArgs} args - Arguments to find a VanityAnalytic
      * @example
-     * // Get one VanityAnalytics
-     * const vanityAnalytics = await prisma.vanityAnalytics.findFirst({
+     * // Get one VanityAnalytic
+     * const vanityAnalytic = await prisma.vanityAnalytic.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends VanityAnalyticsFindFirstArgs>(args?: SelectSubset<T, VanityAnalyticsFindFirstArgs<ExtArgs>>): Prisma__VanityAnalyticsClient<$Result.GetResult<Prisma.$VanityAnalyticsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends VanityAnalyticFindFirstArgs>(args?: SelectSubset<T, VanityAnalyticFindFirstArgs<ExtArgs>>): Prisma__VanityAnalyticClient<$Result.GetResult<Prisma.$VanityAnalyticPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first VanityAnalytics that matches the filter or
+     * Find the first VanityAnalytic that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {VanityAnalyticsFindFirstOrThrowArgs} args - Arguments to find a VanityAnalytics
+     * @param {VanityAnalyticFindFirstOrThrowArgs} args - Arguments to find a VanityAnalytic
      * @example
-     * // Get one VanityAnalytics
-     * const vanityAnalytics = await prisma.vanityAnalytics.findFirstOrThrow({
+     * // Get one VanityAnalytic
+     * const vanityAnalytic = await prisma.vanityAnalytic.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends VanityAnalyticsFindFirstOrThrowArgs>(args?: SelectSubset<T, VanityAnalyticsFindFirstOrThrowArgs<ExtArgs>>): Prisma__VanityAnalyticsClient<$Result.GetResult<Prisma.$VanityAnalyticsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends VanityAnalyticFindFirstOrThrowArgs>(args?: SelectSubset<T, VanityAnalyticFindFirstOrThrowArgs<ExtArgs>>): Prisma__VanityAnalyticClient<$Result.GetResult<Prisma.$VanityAnalyticPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more VanityAnalytics that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {VanityAnalyticsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {VanityAnalyticFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all VanityAnalytics
-     * const vanityAnalytics = await prisma.vanityAnalytics.findMany()
+     * const vanityAnalytics = await prisma.vanityAnalytic.findMany()
      * 
      * // Get first 10 VanityAnalytics
-     * const vanityAnalytics = await prisma.vanityAnalytics.findMany({ take: 10 })
+     * const vanityAnalytics = await prisma.vanityAnalytic.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const vanityAnalyticsWithIdOnly = await prisma.vanityAnalytics.findMany({ select: { id: true } })
+     * const vanityAnalyticWithIdOnly = await prisma.vanityAnalytic.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends VanityAnalyticsFindManyArgs>(args?: SelectSubset<T, VanityAnalyticsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VanityAnalyticsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends VanityAnalyticFindManyArgs>(args?: SelectSubset<T, VanityAnalyticFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VanityAnalyticPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a VanityAnalytics.
-     * @param {VanityAnalyticsCreateArgs} args - Arguments to create a VanityAnalytics.
+     * Create a VanityAnalytic.
+     * @param {VanityAnalyticCreateArgs} args - Arguments to create a VanityAnalytic.
      * @example
-     * // Create one VanityAnalytics
-     * const VanityAnalytics = await prisma.vanityAnalytics.create({
+     * // Create one VanityAnalytic
+     * const VanityAnalytic = await prisma.vanityAnalytic.create({
      *   data: {
-     *     // ... data to create a VanityAnalytics
+     *     // ... data to create a VanityAnalytic
      *   }
      * })
      * 
      */
-    create<T extends VanityAnalyticsCreateArgs>(args: SelectSubset<T, VanityAnalyticsCreateArgs<ExtArgs>>): Prisma__VanityAnalyticsClient<$Result.GetResult<Prisma.$VanityAnalyticsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends VanityAnalyticCreateArgs>(args: SelectSubset<T, VanityAnalyticCreateArgs<ExtArgs>>): Prisma__VanityAnalyticClient<$Result.GetResult<Prisma.$VanityAnalyticPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many VanityAnalytics.
-     * @param {VanityAnalyticsCreateManyArgs} args - Arguments to create many VanityAnalytics.
+     * @param {VanityAnalyticCreateManyArgs} args - Arguments to create many VanityAnalytics.
      * @example
      * // Create many VanityAnalytics
-     * const vanityAnalytics = await prisma.vanityAnalytics.createMany({
+     * const vanityAnalytic = await prisma.vanityAnalytic.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends VanityAnalyticsCreateManyArgs>(args?: SelectSubset<T, VanityAnalyticsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends VanityAnalyticCreateManyArgs>(args?: SelectSubset<T, VanityAnalyticCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a VanityAnalytics.
-     * @param {VanityAnalyticsDeleteArgs} args - Arguments to delete one VanityAnalytics.
+     * Delete a VanityAnalytic.
+     * @param {VanityAnalyticDeleteArgs} args - Arguments to delete one VanityAnalytic.
      * @example
-     * // Delete one VanityAnalytics
-     * const VanityAnalytics = await prisma.vanityAnalytics.delete({
+     * // Delete one VanityAnalytic
+     * const VanityAnalytic = await prisma.vanityAnalytic.delete({
      *   where: {
-     *     // ... filter to delete one VanityAnalytics
+     *     // ... filter to delete one VanityAnalytic
      *   }
      * })
      * 
      */
-    delete<T extends VanityAnalyticsDeleteArgs>(args: SelectSubset<T, VanityAnalyticsDeleteArgs<ExtArgs>>): Prisma__VanityAnalyticsClient<$Result.GetResult<Prisma.$VanityAnalyticsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends VanityAnalyticDeleteArgs>(args: SelectSubset<T, VanityAnalyticDeleteArgs<ExtArgs>>): Prisma__VanityAnalyticClient<$Result.GetResult<Prisma.$VanityAnalyticPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one VanityAnalytics.
-     * @param {VanityAnalyticsUpdateArgs} args - Arguments to update one VanityAnalytics.
+     * Update one VanityAnalytic.
+     * @param {VanityAnalyticUpdateArgs} args - Arguments to update one VanityAnalytic.
      * @example
-     * // Update one VanityAnalytics
-     * const vanityAnalytics = await prisma.vanityAnalytics.update({
+     * // Update one VanityAnalytic
+     * const vanityAnalytic = await prisma.vanityAnalytic.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -50181,30 +50181,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends VanityAnalyticsUpdateArgs>(args: SelectSubset<T, VanityAnalyticsUpdateArgs<ExtArgs>>): Prisma__VanityAnalyticsClient<$Result.GetResult<Prisma.$VanityAnalyticsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends VanityAnalyticUpdateArgs>(args: SelectSubset<T, VanityAnalyticUpdateArgs<ExtArgs>>): Prisma__VanityAnalyticClient<$Result.GetResult<Prisma.$VanityAnalyticPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more VanityAnalytics.
-     * @param {VanityAnalyticsDeleteManyArgs} args - Arguments to filter VanityAnalytics to delete.
+     * @param {VanityAnalyticDeleteManyArgs} args - Arguments to filter VanityAnalytics to delete.
      * @example
      * // Delete a few VanityAnalytics
-     * const { count } = await prisma.vanityAnalytics.deleteMany({
+     * const { count } = await prisma.vanityAnalytic.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends VanityAnalyticsDeleteManyArgs>(args?: SelectSubset<T, VanityAnalyticsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends VanityAnalyticDeleteManyArgs>(args?: SelectSubset<T, VanityAnalyticDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more VanityAnalytics.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {VanityAnalyticsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {VanityAnalyticUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
      * // Update many VanityAnalytics
-     * const vanityAnalytics = await prisma.vanityAnalytics.updateMany({
+     * const vanityAnalytic = await prisma.vanityAnalytic.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -50214,79 +50214,79 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends VanityAnalyticsUpdateManyArgs>(args: SelectSubset<T, VanityAnalyticsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends VanityAnalyticUpdateManyArgs>(args: SelectSubset<T, VanityAnalyticUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one VanityAnalytics.
-     * @param {VanityAnalyticsUpsertArgs} args - Arguments to update or create a VanityAnalytics.
+     * Create or update one VanityAnalytic.
+     * @param {VanityAnalyticUpsertArgs} args - Arguments to update or create a VanityAnalytic.
      * @example
-     * // Update or create a VanityAnalytics
-     * const vanityAnalytics = await prisma.vanityAnalytics.upsert({
+     * // Update or create a VanityAnalytic
+     * const vanityAnalytic = await prisma.vanityAnalytic.upsert({
      *   create: {
-     *     // ... data to create a VanityAnalytics
+     *     // ... data to create a VanityAnalytic
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the VanityAnalytics we want to update
+     *     // ... the filter for the VanityAnalytic we want to update
      *   }
      * })
      */
-    upsert<T extends VanityAnalyticsUpsertArgs>(args: SelectSubset<T, VanityAnalyticsUpsertArgs<ExtArgs>>): Prisma__VanityAnalyticsClient<$Result.GetResult<Prisma.$VanityAnalyticsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends VanityAnalyticUpsertArgs>(args: SelectSubset<T, VanityAnalyticUpsertArgs<ExtArgs>>): Prisma__VanityAnalyticClient<$Result.GetResult<Prisma.$VanityAnalyticPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more VanityAnalytics that matches the filter.
-     * @param {VanityAnalyticsFindRawArgs} args - Select which filters you would like to apply.
+     * @param {VanityAnalyticFindRawArgs} args - Select which filters you would like to apply.
      * @example
-     * const vanityAnalytics = await prisma.vanityAnalytics.findRaw({
+     * const vanityAnalytic = await prisma.vanityAnalytic.findRaw({
      *   filter: { age: { $gt: 25 } }
      * })
      */
-    findRaw(args?: VanityAnalyticsFindRawArgs): Prisma.PrismaPromise<JsonObject>
+    findRaw(args?: VanityAnalyticFindRawArgs): Prisma.PrismaPromise<JsonObject>
 
     /**
-     * Perform aggregation operations on a VanityAnalytics.
-     * @param {VanityAnalyticsAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * Perform aggregation operations on a VanityAnalytic.
+     * @param {VanityAnalyticAggregateRawArgs} args - Select which aggregations you would like to apply.
      * @example
-     * const vanityAnalytics = await prisma.vanityAnalytics.aggregateRaw({
+     * const vanityAnalytic = await prisma.vanityAnalytic.aggregateRaw({
      *   pipeline: [
      *     { $match: { status: "registered" } },
      *     { $group: { _id: "$country", total: { $sum: 1 } } }
      *   ]
      * })
      */
-    aggregateRaw(args?: VanityAnalyticsAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+    aggregateRaw(args?: VanityAnalyticAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
 
 
     /**
      * Count the number of VanityAnalytics.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {VanityAnalyticsCountArgs} args - Arguments to filter VanityAnalytics to count.
+     * @param {VanityAnalyticCountArgs} args - Arguments to filter VanityAnalytics to count.
      * @example
      * // Count the number of VanityAnalytics
-     * const count = await prisma.vanityAnalytics.count({
+     * const count = await prisma.vanityAnalytic.count({
      *   where: {
      *     // ... the filter for the VanityAnalytics we want to count
      *   }
      * })
     **/
-    count<T extends VanityAnalyticsCountArgs>(
-      args?: Subset<T, VanityAnalyticsCountArgs>,
+    count<T extends VanityAnalyticCountArgs>(
+      args?: Subset<T, VanityAnalyticCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], VanityAnalyticsCountAggregateOutputType>
+          : GetScalarType<T['select'], VanityAnalyticCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a VanityAnalytics.
+     * Allows you to perform aggregations operations on a VanityAnalytic.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {VanityAnalyticsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {VanityAnalyticAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -50306,13 +50306,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends VanityAnalyticsAggregateArgs>(args: Subset<T, VanityAnalyticsAggregateArgs>): Prisma.PrismaPromise<GetVanityAnalyticsAggregateType<T>>
+    aggregate<T extends VanityAnalyticAggregateArgs>(args: Subset<T, VanityAnalyticAggregateArgs>): Prisma.PrismaPromise<GetVanityAnalyticAggregateType<T>>
 
     /**
-     * Group by VanityAnalytics.
+     * Group by VanityAnalytic.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {VanityAnalyticsGroupByArgs} args - Group by arguments.
+     * @param {VanityAnalyticGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -50327,14 +50327,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends VanityAnalyticsGroupByArgs,
+      T extends VanityAnalyticGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: VanityAnalyticsGroupByArgs['orderBy'] }
-        : { orderBy?: VanityAnalyticsGroupByArgs['orderBy'] },
+        ? { orderBy: VanityAnalyticGroupByArgs['orderBy'] }
+        : { orderBy?: VanityAnalyticGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -50383,22 +50383,22 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, VanityAnalyticsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVanityAnalyticsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, VanityAnalyticGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVanityAnalyticGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the VanityAnalytics model
+   * Fields of the VanityAnalytic model
    */
-  readonly fields: VanityAnalyticsFieldRefs;
+  readonly fields: VanityAnalyticFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for VanityAnalytics.
+   * The delegate class that acts as a "Promise-like" for VanityAnalytic.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__VanityAnalyticsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__VanityAnalyticClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Latest30Days<T extends VanityAnalytics$Latest30DaysArgs<ExtArgs> = {}>(args?: Subset<T, VanityAnalytics$Latest30DaysArgs<ExtArgs>>): Prisma__AnalyticsLatest30DaysClient<$Result.GetResult<Prisma.$AnalyticsLatest30DaysPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    Latest30Days<T extends VanityAnalytic$Latest30DaysArgs<ExtArgs> = {}>(args?: Subset<T, VanityAnalytic$Latest30DaysArgs<ExtArgs>>): Prisma__VanityAnalyticsLatest30DayClient<$Result.GetResult<Prisma.$VanityAnalyticsLatest30DayPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     Vanitys<T extends VanitysDefaultArgs<ExtArgs> = {}>(args?: Subset<T, VanitysDefaultArgs<ExtArgs>>): Prisma__VanitysClient<$Result.GetResult<Prisma.$VanitysPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -50426,98 +50426,98 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the VanityAnalytics model
+   * Fields of the VanityAnalytic model
    */
-  interface VanityAnalyticsFieldRefs {
-    readonly id: FieldRef<"VanityAnalytics", 'String'>
-    readonly Click: FieldRef<"VanityAnalytics", 'Int'>
-    readonly TrackInviteWithLog: FieldRef<"VanityAnalytics", 'String'>
-    readonly TrackMessageId: FieldRef<"VanityAnalytics", 'String'>
-    readonly Update: FieldRef<"VanityAnalytics", 'DateTime'>
-    readonly UniqueClick: FieldRef<"VanityAnalytics", 'Int'>
-    readonly JoinedWithCode: FieldRef<"VanityAnalytics", 'Int'>
-    readonly LoggedIPs: FieldRef<"VanityAnalytics", 'String[]'>
-    readonly VanityId: FieldRef<"VanityAnalytics", 'String'>
+  interface VanityAnalyticFieldRefs {
+    readonly id: FieldRef<"VanityAnalytic", 'String'>
+    readonly Click: FieldRef<"VanityAnalytic", 'Int'>
+    readonly TrackInviteWithLog: FieldRef<"VanityAnalytic", 'String'>
+    readonly TrackMessageId: FieldRef<"VanityAnalytic", 'String'>
+    readonly Update: FieldRef<"VanityAnalytic", 'DateTime'>
+    readonly UniqueClick: FieldRef<"VanityAnalytic", 'Int'>
+    readonly JoinedWithCode: FieldRef<"VanityAnalytic", 'Int'>
+    readonly LoggedIPs: FieldRef<"VanityAnalytic", 'String[]'>
+    readonly VanityId: FieldRef<"VanityAnalytic", 'String'>
   }
     
 
   // Custom InputTypes
   /**
-   * VanityAnalytics findUnique
+   * VanityAnalytic findUnique
    */
-  export type VanityAnalyticsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityAnalytics
+     * Select specific fields to fetch from the VanityAnalytic
      */
-    select?: VanityAnalyticsSelect<ExtArgs> | null
+    select?: VanityAnalyticSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityAnalytics
+     * Omit specific fields from the VanityAnalytic
      */
-    omit?: VanityAnalyticsOmit<ExtArgs> | null
+    omit?: VanityAnalyticOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityAnalyticsInclude<ExtArgs> | null
+    include?: VanityAnalyticInclude<ExtArgs> | null
     /**
-     * Filter, which VanityAnalytics to fetch.
+     * Filter, which VanityAnalytic to fetch.
      */
-    where: VanityAnalyticsWhereUniqueInput
+    where: VanityAnalyticWhereUniqueInput
   }
 
   /**
-   * VanityAnalytics findUniqueOrThrow
+   * VanityAnalytic findUniqueOrThrow
    */
-  export type VanityAnalyticsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityAnalytics
+     * Select specific fields to fetch from the VanityAnalytic
      */
-    select?: VanityAnalyticsSelect<ExtArgs> | null
+    select?: VanityAnalyticSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityAnalytics
+     * Omit specific fields from the VanityAnalytic
      */
-    omit?: VanityAnalyticsOmit<ExtArgs> | null
+    omit?: VanityAnalyticOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityAnalyticsInclude<ExtArgs> | null
+    include?: VanityAnalyticInclude<ExtArgs> | null
     /**
-     * Filter, which VanityAnalytics to fetch.
+     * Filter, which VanityAnalytic to fetch.
      */
-    where: VanityAnalyticsWhereUniqueInput
+    where: VanityAnalyticWhereUniqueInput
   }
 
   /**
-   * VanityAnalytics findFirst
+   * VanityAnalytic findFirst
    */
-  export type VanityAnalyticsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityAnalytics
+     * Select specific fields to fetch from the VanityAnalytic
      */
-    select?: VanityAnalyticsSelect<ExtArgs> | null
+    select?: VanityAnalyticSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityAnalytics
+     * Omit specific fields from the VanityAnalytic
      */
-    omit?: VanityAnalyticsOmit<ExtArgs> | null
+    omit?: VanityAnalyticOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityAnalyticsInclude<ExtArgs> | null
+    include?: VanityAnalyticInclude<ExtArgs> | null
     /**
-     * Filter, which VanityAnalytics to fetch.
+     * Filter, which VanityAnalytic to fetch.
      */
-    where?: VanityAnalyticsWhereInput
+    where?: VanityAnalyticWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of VanityAnalytics to fetch.
      */
-    orderBy?: VanityAnalyticsOrderByWithRelationInput | VanityAnalyticsOrderByWithRelationInput[]
+    orderBy?: VanityAnalyticOrderByWithRelationInput | VanityAnalyticOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for VanityAnalytics.
      */
-    cursor?: VanityAnalyticsWhereUniqueInput
+    cursor?: VanityAnalyticWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
@@ -50535,41 +50535,41 @@ export namespace Prisma {
      * 
      * Filter by unique combinations of VanityAnalytics.
      */
-    distinct?: VanityAnalyticsScalarFieldEnum | VanityAnalyticsScalarFieldEnum[]
+    distinct?: VanityAnalyticScalarFieldEnum | VanityAnalyticScalarFieldEnum[]
   }
 
   /**
-   * VanityAnalytics findFirstOrThrow
+   * VanityAnalytic findFirstOrThrow
    */
-  export type VanityAnalyticsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityAnalytics
+     * Select specific fields to fetch from the VanityAnalytic
      */
-    select?: VanityAnalyticsSelect<ExtArgs> | null
+    select?: VanityAnalyticSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityAnalytics
+     * Omit specific fields from the VanityAnalytic
      */
-    omit?: VanityAnalyticsOmit<ExtArgs> | null
+    omit?: VanityAnalyticOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityAnalyticsInclude<ExtArgs> | null
+    include?: VanityAnalyticInclude<ExtArgs> | null
     /**
-     * Filter, which VanityAnalytics to fetch.
+     * Filter, which VanityAnalytic to fetch.
      */
-    where?: VanityAnalyticsWhereInput
+    where?: VanityAnalyticWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of VanityAnalytics to fetch.
      */
-    orderBy?: VanityAnalyticsOrderByWithRelationInput | VanityAnalyticsOrderByWithRelationInput[]
+    orderBy?: VanityAnalyticOrderByWithRelationInput | VanityAnalyticOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for VanityAnalytics.
      */
-    cursor?: VanityAnalyticsWhereUniqueInput
+    cursor?: VanityAnalyticWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
@@ -50587,41 +50587,41 @@ export namespace Prisma {
      * 
      * Filter by unique combinations of VanityAnalytics.
      */
-    distinct?: VanityAnalyticsScalarFieldEnum | VanityAnalyticsScalarFieldEnum[]
+    distinct?: VanityAnalyticScalarFieldEnum | VanityAnalyticScalarFieldEnum[]
   }
 
   /**
-   * VanityAnalytics findMany
+   * VanityAnalytic findMany
    */
-  export type VanityAnalyticsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityAnalytics
+     * Select specific fields to fetch from the VanityAnalytic
      */
-    select?: VanityAnalyticsSelect<ExtArgs> | null
+    select?: VanityAnalyticSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityAnalytics
+     * Omit specific fields from the VanityAnalytic
      */
-    omit?: VanityAnalyticsOmit<ExtArgs> | null
+    omit?: VanityAnalyticOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityAnalyticsInclude<ExtArgs> | null
+    include?: VanityAnalyticInclude<ExtArgs> | null
     /**
      * Filter, which VanityAnalytics to fetch.
      */
-    where?: VanityAnalyticsWhereInput
+    where?: VanityAnalyticWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of VanityAnalytics to fetch.
      */
-    orderBy?: VanityAnalyticsOrderByWithRelationInput | VanityAnalyticsOrderByWithRelationInput[]
+    orderBy?: VanityAnalyticOrderByWithRelationInput | VanityAnalyticOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for listing VanityAnalytics.
      */
-    cursor?: VanityAnalyticsWhereUniqueInput
+    cursor?: VanityAnalyticWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
@@ -50634,79 +50634,79 @@ export namespace Prisma {
      * Skip the first `n` VanityAnalytics.
      */
     skip?: number
-    distinct?: VanityAnalyticsScalarFieldEnum | VanityAnalyticsScalarFieldEnum[]
+    distinct?: VanityAnalyticScalarFieldEnum | VanityAnalyticScalarFieldEnum[]
   }
 
   /**
-   * VanityAnalytics create
+   * VanityAnalytic create
    */
-  export type VanityAnalyticsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityAnalytics
+     * Select specific fields to fetch from the VanityAnalytic
      */
-    select?: VanityAnalyticsSelect<ExtArgs> | null
+    select?: VanityAnalyticSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityAnalytics
+     * Omit specific fields from the VanityAnalytic
      */
-    omit?: VanityAnalyticsOmit<ExtArgs> | null
+    omit?: VanityAnalyticOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityAnalyticsInclude<ExtArgs> | null
+    include?: VanityAnalyticInclude<ExtArgs> | null
     /**
-     * The data needed to create a VanityAnalytics.
+     * The data needed to create a VanityAnalytic.
      */
-    data: XOR<VanityAnalyticsCreateInput, VanityAnalyticsUncheckedCreateInput>
+    data: XOR<VanityAnalyticCreateInput, VanityAnalyticUncheckedCreateInput>
   }
 
   /**
-   * VanityAnalytics createMany
+   * VanityAnalytic createMany
    */
-  export type VanityAnalyticsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to create many VanityAnalytics.
      */
-    data: VanityAnalyticsCreateManyInput | VanityAnalyticsCreateManyInput[]
+    data: VanityAnalyticCreateManyInput | VanityAnalyticCreateManyInput[]
   }
 
   /**
-   * VanityAnalytics update
+   * VanityAnalytic update
    */
-  export type VanityAnalyticsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityAnalytics
+     * Select specific fields to fetch from the VanityAnalytic
      */
-    select?: VanityAnalyticsSelect<ExtArgs> | null
+    select?: VanityAnalyticSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityAnalytics
+     * Omit specific fields from the VanityAnalytic
      */
-    omit?: VanityAnalyticsOmit<ExtArgs> | null
+    omit?: VanityAnalyticOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityAnalyticsInclude<ExtArgs> | null
+    include?: VanityAnalyticInclude<ExtArgs> | null
     /**
-     * The data needed to update a VanityAnalytics.
+     * The data needed to update a VanityAnalytic.
      */
-    data: XOR<VanityAnalyticsUpdateInput, VanityAnalyticsUncheckedUpdateInput>
+    data: XOR<VanityAnalyticUpdateInput, VanityAnalyticUncheckedUpdateInput>
     /**
-     * Choose, which VanityAnalytics to update.
+     * Choose, which VanityAnalytic to update.
      */
-    where: VanityAnalyticsWhereUniqueInput
+    where: VanityAnalyticWhereUniqueInput
   }
 
   /**
-   * VanityAnalytics updateMany
+   * VanityAnalytic updateMany
    */
-  export type VanityAnalyticsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The data used to update VanityAnalytics.
      */
-    data: XOR<VanityAnalyticsUpdateManyMutationInput, VanityAnalyticsUncheckedUpdateManyInput>
+    data: XOR<VanityAnalyticUpdateManyMutationInput, VanityAnalyticUncheckedUpdateManyInput>
     /**
      * Filter which VanityAnalytics to update
      */
-    where?: VanityAnalyticsWhereInput
+    where?: VanityAnalyticWhereInput
     /**
      * Limit how many VanityAnalytics to update.
      */
@@ -50714,65 +50714,65 @@ export namespace Prisma {
   }
 
   /**
-   * VanityAnalytics upsert
+   * VanityAnalytic upsert
    */
-  export type VanityAnalyticsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityAnalytics
+     * Select specific fields to fetch from the VanityAnalytic
      */
-    select?: VanityAnalyticsSelect<ExtArgs> | null
+    select?: VanityAnalyticSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityAnalytics
+     * Omit specific fields from the VanityAnalytic
      */
-    omit?: VanityAnalyticsOmit<ExtArgs> | null
+    omit?: VanityAnalyticOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityAnalyticsInclude<ExtArgs> | null
+    include?: VanityAnalyticInclude<ExtArgs> | null
     /**
-     * The filter to search for the VanityAnalytics to update in case it exists.
+     * The filter to search for the VanityAnalytic to update in case it exists.
      */
-    where: VanityAnalyticsWhereUniqueInput
+    where: VanityAnalyticWhereUniqueInput
     /**
-     * In case the VanityAnalytics found by the `where` argument doesn't exist, create a new VanityAnalytics with this data.
+     * In case the VanityAnalytic found by the `where` argument doesn't exist, create a new VanityAnalytic with this data.
      */
-    create: XOR<VanityAnalyticsCreateInput, VanityAnalyticsUncheckedCreateInput>
+    create: XOR<VanityAnalyticCreateInput, VanityAnalyticUncheckedCreateInput>
     /**
-     * In case the VanityAnalytics was found with the provided `where` argument, update it with this data.
+     * In case the VanityAnalytic was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<VanityAnalyticsUpdateInput, VanityAnalyticsUncheckedUpdateInput>
+    update: XOR<VanityAnalyticUpdateInput, VanityAnalyticUncheckedUpdateInput>
   }
 
   /**
-   * VanityAnalytics delete
+   * VanityAnalytic delete
    */
-  export type VanityAnalyticsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityAnalytics
+     * Select specific fields to fetch from the VanityAnalytic
      */
-    select?: VanityAnalyticsSelect<ExtArgs> | null
+    select?: VanityAnalyticSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityAnalytics
+     * Omit specific fields from the VanityAnalytic
      */
-    omit?: VanityAnalyticsOmit<ExtArgs> | null
+    omit?: VanityAnalyticOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityAnalyticsInclude<ExtArgs> | null
+    include?: VanityAnalyticInclude<ExtArgs> | null
     /**
-     * Filter which VanityAnalytics to delete.
+     * Filter which VanityAnalytic to delete.
      */
-    where: VanityAnalyticsWhereUniqueInput
+    where: VanityAnalyticWhereUniqueInput
   }
 
   /**
-   * VanityAnalytics deleteMany
+   * VanityAnalytic deleteMany
    */
-  export type VanityAnalyticsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which VanityAnalytics to delete
      */
-    where?: VanityAnalyticsWhereInput
+    where?: VanityAnalyticWhereInput
     /**
      * Limit how many VanityAnalytics to delete.
      */
@@ -50780,9 +50780,9 @@ export namespace Prisma {
   }
 
   /**
-   * VanityAnalytics findRaw
+   * VanityAnalytic findRaw
    */
-  export type VanityAnalyticsFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
      */
@@ -50794,9 +50794,9 @@ export namespace Prisma {
   }
 
   /**
-   * VanityAnalytics aggregateRaw
+   * VanityAnalytic aggregateRaw
    */
-  export type VanityAnalyticsAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
      */
@@ -50808,68 +50808,68 @@ export namespace Prisma {
   }
 
   /**
-   * VanityAnalytics.Latest30Days
+   * VanityAnalytic.Latest30Days
    */
-  export type VanityAnalytics$Latest30DaysArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalytic$Latest30DaysArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AnalyticsLatest30Days
+     * Select specific fields to fetch from the VanityAnalyticsLatest30Day
      */
-    select?: AnalyticsLatest30DaysSelect<ExtArgs> | null
+    select?: VanityAnalyticsLatest30DaySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AnalyticsLatest30Days
+     * Omit specific fields from the VanityAnalyticsLatest30Day
      */
-    omit?: AnalyticsLatest30DaysOmit<ExtArgs> | null
+    omit?: VanityAnalyticsLatest30DayOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AnalyticsLatest30DaysInclude<ExtArgs> | null
-    where?: AnalyticsLatest30DaysWhereInput
+    include?: VanityAnalyticsLatest30DayInclude<ExtArgs> | null
+    where?: VanityAnalyticsLatest30DayWhereInput
   }
 
   /**
-   * VanityAnalytics without action
+   * VanityAnalytic without action
    */
-  export type VanityAnalyticsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the VanityAnalytics
+     * Select specific fields to fetch from the VanityAnalytic
      */
-    select?: VanityAnalyticsSelect<ExtArgs> | null
+    select?: VanityAnalyticSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the VanityAnalytics
+     * Omit specific fields from the VanityAnalytic
      */
-    omit?: VanityAnalyticsOmit<ExtArgs> | null
+    omit?: VanityAnalyticOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VanityAnalyticsInclude<ExtArgs> | null
+    include?: VanityAnalyticInclude<ExtArgs> | null
   }
 
 
   /**
-   * Model AnalyticsLatest30Days
+   * Model VanityAnalyticsLatest30Day
    */
 
-  export type AggregateAnalyticsLatest30Days = {
-    _count: AnalyticsLatest30DaysCountAggregateOutputType | null
-    _avg: AnalyticsLatest30DaysAvgAggregateOutputType | null
-    _sum: AnalyticsLatest30DaysSumAggregateOutputType | null
-    _min: AnalyticsLatest30DaysMinAggregateOutputType | null
-    _max: AnalyticsLatest30DaysMaxAggregateOutputType | null
+  export type AggregateVanityAnalyticsLatest30Day = {
+    _count: VanityAnalyticsLatest30DayCountAggregateOutputType | null
+    _avg: VanityAnalyticsLatest30DayAvgAggregateOutputType | null
+    _sum: VanityAnalyticsLatest30DaySumAggregateOutputType | null
+    _min: VanityAnalyticsLatest30DayMinAggregateOutputType | null
+    _max: VanityAnalyticsLatest30DayMaxAggregateOutputType | null
   }
 
-  export type AnalyticsLatest30DaysAvgAggregateOutputType = {
+  export type VanityAnalyticsLatest30DayAvgAggregateOutputType = {
     Click: number | null
     UniqueClick: number | null
     JoinedWithCode: number | null
   }
 
-  export type AnalyticsLatest30DaysSumAggregateOutputType = {
+  export type VanityAnalyticsLatest30DaySumAggregateOutputType = {
     Click: number | null
     UniqueClick: number | null
     JoinedWithCode: number | null
   }
 
-  export type AnalyticsLatest30DaysMinAggregateOutputType = {
+  export type VanityAnalyticsLatest30DayMinAggregateOutputType = {
     id: string | null
     Click: number | null
     UniqueClick: number | null
@@ -50878,7 +50878,7 @@ export namespace Prisma {
     VanityAnalyticsId: string | null
   }
 
-  export type AnalyticsLatest30DaysMaxAggregateOutputType = {
+  export type VanityAnalyticsLatest30DayMaxAggregateOutputType = {
     id: string | null
     Click: number | null
     UniqueClick: number | null
@@ -50887,7 +50887,7 @@ export namespace Prisma {
     VanityAnalyticsId: string | null
   }
 
-  export type AnalyticsLatest30DaysCountAggregateOutputType = {
+  export type VanityAnalyticsLatest30DayCountAggregateOutputType = {
     id: number
     Click: number
     UniqueClick: number
@@ -50898,19 +50898,19 @@ export namespace Prisma {
   }
 
 
-  export type AnalyticsLatest30DaysAvgAggregateInputType = {
+  export type VanityAnalyticsLatest30DayAvgAggregateInputType = {
     Click?: true
     UniqueClick?: true
     JoinedWithCode?: true
   }
 
-  export type AnalyticsLatest30DaysSumAggregateInputType = {
+  export type VanityAnalyticsLatest30DaySumAggregateInputType = {
     Click?: true
     UniqueClick?: true
     JoinedWithCode?: true
   }
 
-  export type AnalyticsLatest30DaysMinAggregateInputType = {
+  export type VanityAnalyticsLatest30DayMinAggregateInputType = {
     id?: true
     Click?: true
     UniqueClick?: true
@@ -50919,7 +50919,7 @@ export namespace Prisma {
     VanityAnalyticsId?: true
   }
 
-  export type AnalyticsLatest30DaysMaxAggregateInputType = {
+  export type VanityAnalyticsLatest30DayMaxAggregateInputType = {
     id?: true
     Click?: true
     UniqueClick?: true
@@ -50928,7 +50928,7 @@ export namespace Prisma {
     VanityAnalyticsId?: true
   }
 
-  export type AnalyticsLatest30DaysCountAggregateInputType = {
+  export type VanityAnalyticsLatest30DayCountAggregateInputType = {
     id?: true
     Click?: true
     UniqueClick?: true
@@ -50938,133 +50938,133 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type AnalyticsLatest30DaysAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticsLatest30DayAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which AnalyticsLatest30Days to aggregate.
+     * Filter which VanityAnalyticsLatest30Day to aggregate.
      */
-    where?: AnalyticsLatest30DaysWhereInput
+    where?: VanityAnalyticsLatest30DayWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of AnalyticsLatest30Days to fetch.
+     * Determine the order of VanityAnalyticsLatest30Days to fetch.
      */
-    orderBy?: AnalyticsLatest30DaysOrderByWithRelationInput | AnalyticsLatest30DaysOrderByWithRelationInput[]
+    orderBy?: VanityAnalyticsLatest30DayOrderByWithRelationInput | VanityAnalyticsLatest30DayOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: AnalyticsLatest30DaysWhereUniqueInput
+    cursor?: VanityAnalyticsLatest30DayWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` AnalyticsLatest30Days from the position of the cursor.
+     * Take `±n` VanityAnalyticsLatest30Days from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` AnalyticsLatest30Days.
+     * Skip the first `n` VanityAnalyticsLatest30Days.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned AnalyticsLatest30Days
+     * Count returned VanityAnalyticsLatest30Days
     **/
-    _count?: true | AnalyticsLatest30DaysCountAggregateInputType
+    _count?: true | VanityAnalyticsLatest30DayCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: AnalyticsLatest30DaysAvgAggregateInputType
+    _avg?: VanityAnalyticsLatest30DayAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: AnalyticsLatest30DaysSumAggregateInputType
+    _sum?: VanityAnalyticsLatest30DaySumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: AnalyticsLatest30DaysMinAggregateInputType
+    _min?: VanityAnalyticsLatest30DayMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: AnalyticsLatest30DaysMaxAggregateInputType
+    _max?: VanityAnalyticsLatest30DayMaxAggregateInputType
   }
 
-  export type GetAnalyticsLatest30DaysAggregateType<T extends AnalyticsLatest30DaysAggregateArgs> = {
-        [P in keyof T & keyof AggregateAnalyticsLatest30Days]: P extends '_count' | 'count'
+  export type GetVanityAnalyticsLatest30DayAggregateType<T extends VanityAnalyticsLatest30DayAggregateArgs> = {
+        [P in keyof T & keyof AggregateVanityAnalyticsLatest30Day]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateAnalyticsLatest30Days[P]>
-      : GetScalarType<T[P], AggregateAnalyticsLatest30Days[P]>
+        : GetScalarType<T[P], AggregateVanityAnalyticsLatest30Day[P]>
+      : GetScalarType<T[P], AggregateVanityAnalyticsLatest30Day[P]>
   }
 
 
 
 
-  export type AnalyticsLatest30DaysGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AnalyticsLatest30DaysWhereInput
-    orderBy?: AnalyticsLatest30DaysOrderByWithAggregationInput | AnalyticsLatest30DaysOrderByWithAggregationInput[]
-    by: AnalyticsLatest30DaysScalarFieldEnum[] | AnalyticsLatest30DaysScalarFieldEnum
-    having?: AnalyticsLatest30DaysScalarWhereWithAggregatesInput
+  export type VanityAnalyticsLatest30DayGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VanityAnalyticsLatest30DayWhereInput
+    orderBy?: VanityAnalyticsLatest30DayOrderByWithAggregationInput | VanityAnalyticsLatest30DayOrderByWithAggregationInput[]
+    by: VanityAnalyticsLatest30DayScalarFieldEnum[] | VanityAnalyticsLatest30DayScalarFieldEnum
+    having?: VanityAnalyticsLatest30DayScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: AnalyticsLatest30DaysCountAggregateInputType | true
-    _avg?: AnalyticsLatest30DaysAvgAggregateInputType
-    _sum?: AnalyticsLatest30DaysSumAggregateInputType
-    _min?: AnalyticsLatest30DaysMinAggregateInputType
-    _max?: AnalyticsLatest30DaysMaxAggregateInputType
+    _count?: VanityAnalyticsLatest30DayCountAggregateInputType | true
+    _avg?: VanityAnalyticsLatest30DayAvgAggregateInputType
+    _sum?: VanityAnalyticsLatest30DaySumAggregateInputType
+    _min?: VanityAnalyticsLatest30DayMinAggregateInputType
+    _max?: VanityAnalyticsLatest30DayMaxAggregateInputType
   }
 
-  export type AnalyticsLatest30DaysGroupByOutputType = {
+  export type VanityAnalyticsLatest30DayGroupByOutputType = {
     id: string
     Click: number | null
     UniqueClick: number | null
     Date: Date | null
     JoinedWithCode: number | null
     VanityAnalyticsId: string
-    _count: AnalyticsLatest30DaysCountAggregateOutputType | null
-    _avg: AnalyticsLatest30DaysAvgAggregateOutputType | null
-    _sum: AnalyticsLatest30DaysSumAggregateOutputType | null
-    _min: AnalyticsLatest30DaysMinAggregateOutputType | null
-    _max: AnalyticsLatest30DaysMaxAggregateOutputType | null
+    _count: VanityAnalyticsLatest30DayCountAggregateOutputType | null
+    _avg: VanityAnalyticsLatest30DayAvgAggregateOutputType | null
+    _sum: VanityAnalyticsLatest30DaySumAggregateOutputType | null
+    _min: VanityAnalyticsLatest30DayMinAggregateOutputType | null
+    _max: VanityAnalyticsLatest30DayMaxAggregateOutputType | null
   }
 
-  type GetAnalyticsLatest30DaysGroupByPayload<T extends AnalyticsLatest30DaysGroupByArgs> = Prisma.PrismaPromise<
+  type GetVanityAnalyticsLatest30DayGroupByPayload<T extends VanityAnalyticsLatest30DayGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<AnalyticsLatest30DaysGroupByOutputType, T['by']> &
+      PickEnumerable<VanityAnalyticsLatest30DayGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof AnalyticsLatest30DaysGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof VanityAnalyticsLatest30DayGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], AnalyticsLatest30DaysGroupByOutputType[P]>
-            : GetScalarType<T[P], AnalyticsLatest30DaysGroupByOutputType[P]>
+              : GetScalarType<T[P], VanityAnalyticsLatest30DayGroupByOutputType[P]>
+            : GetScalarType<T[P], VanityAnalyticsLatest30DayGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type AnalyticsLatest30DaysSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type VanityAnalyticsLatest30DaySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     Click?: boolean
     UniqueClick?: boolean
     Date?: boolean
     JoinedWithCode?: boolean
     VanityAnalyticsId?: boolean
-    VanityAnalytics?: boolean | VanityAnalyticsDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["analyticsLatest30Days"]>
+    VanityAnalytics?: boolean | VanityAnalyticDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["vanityAnalyticsLatest30Day"]>
 
 
 
-  export type AnalyticsLatest30DaysSelectScalar = {
+  export type VanityAnalyticsLatest30DaySelectScalar = {
     id?: boolean
     Click?: boolean
     UniqueClick?: boolean
@@ -51073,15 +51073,15 @@ export namespace Prisma {
     VanityAnalyticsId?: boolean
   }
 
-  export type AnalyticsLatest30DaysOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "Click" | "UniqueClick" | "Date" | "JoinedWithCode" | "VanityAnalyticsId", ExtArgs["result"]["analyticsLatest30Days"]>
-  export type AnalyticsLatest30DaysInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    VanityAnalytics?: boolean | VanityAnalyticsDefaultArgs<ExtArgs>
+  export type VanityAnalyticsLatest30DayOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "Click" | "UniqueClick" | "Date" | "JoinedWithCode" | "VanityAnalyticsId", ExtArgs["result"]["vanityAnalyticsLatest30Day"]>
+  export type VanityAnalyticsLatest30DayInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    VanityAnalytics?: boolean | VanityAnalyticDefaultArgs<ExtArgs>
   }
 
-  export type $AnalyticsLatest30DaysPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "AnalyticsLatest30Days"
+  export type $VanityAnalyticsLatest30DayPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "VanityAnalyticsLatest30Day"
     objects: {
-      VanityAnalytics: Prisma.$VanityAnalyticsPayload<ExtArgs>
+      VanityAnalytics: Prisma.$VanityAnalyticPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -51090,143 +51090,143 @@ export namespace Prisma {
       Date: Date | null
       JoinedWithCode: number | null
       VanityAnalyticsId: string
-    }, ExtArgs["result"]["analyticsLatest30Days"]>
+    }, ExtArgs["result"]["vanityAnalyticsLatest30Day"]>
     composites: {}
   }
 
-  type AnalyticsLatest30DaysGetPayload<S extends boolean | null | undefined | AnalyticsLatest30DaysDefaultArgs> = $Result.GetResult<Prisma.$AnalyticsLatest30DaysPayload, S>
+  type VanityAnalyticsLatest30DayGetPayload<S extends boolean | null | undefined | VanityAnalyticsLatest30DayDefaultArgs> = $Result.GetResult<Prisma.$VanityAnalyticsLatest30DayPayload, S>
 
-  type AnalyticsLatest30DaysCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<AnalyticsLatest30DaysFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: AnalyticsLatest30DaysCountAggregateInputType | true
+  type VanityAnalyticsLatest30DayCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<VanityAnalyticsLatest30DayFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: VanityAnalyticsLatest30DayCountAggregateInputType | true
     }
 
-  export interface AnalyticsLatest30DaysDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AnalyticsLatest30Days'], meta: { name: 'AnalyticsLatest30Days' } }
+  export interface VanityAnalyticsLatest30DayDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['VanityAnalyticsLatest30Day'], meta: { name: 'VanityAnalyticsLatest30Day' } }
     /**
-     * Find zero or one AnalyticsLatest30Days that matches the filter.
-     * @param {AnalyticsLatest30DaysFindUniqueArgs} args - Arguments to find a AnalyticsLatest30Days
+     * Find zero or one VanityAnalyticsLatest30Day that matches the filter.
+     * @param {VanityAnalyticsLatest30DayFindUniqueArgs} args - Arguments to find a VanityAnalyticsLatest30Day
      * @example
-     * // Get one AnalyticsLatest30Days
-     * const analyticsLatest30Days = await prisma.analyticsLatest30Days.findUnique({
+     * // Get one VanityAnalyticsLatest30Day
+     * const vanityAnalyticsLatest30Day = await prisma.vanityAnalyticsLatest30Day.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends AnalyticsLatest30DaysFindUniqueArgs>(args: SelectSubset<T, AnalyticsLatest30DaysFindUniqueArgs<ExtArgs>>): Prisma__AnalyticsLatest30DaysClient<$Result.GetResult<Prisma.$AnalyticsLatest30DaysPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends VanityAnalyticsLatest30DayFindUniqueArgs>(args: SelectSubset<T, VanityAnalyticsLatest30DayFindUniqueArgs<ExtArgs>>): Prisma__VanityAnalyticsLatest30DayClient<$Result.GetResult<Prisma.$VanityAnalyticsLatest30DayPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one AnalyticsLatest30Days that matches the filter or throw an error with `error.code='P2025'`
+     * Find one VanityAnalyticsLatest30Day that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {AnalyticsLatest30DaysFindUniqueOrThrowArgs} args - Arguments to find a AnalyticsLatest30Days
+     * @param {VanityAnalyticsLatest30DayFindUniqueOrThrowArgs} args - Arguments to find a VanityAnalyticsLatest30Day
      * @example
-     * // Get one AnalyticsLatest30Days
-     * const analyticsLatest30Days = await prisma.analyticsLatest30Days.findUniqueOrThrow({
+     * // Get one VanityAnalyticsLatest30Day
+     * const vanityAnalyticsLatest30Day = await prisma.vanityAnalyticsLatest30Day.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends AnalyticsLatest30DaysFindUniqueOrThrowArgs>(args: SelectSubset<T, AnalyticsLatest30DaysFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AnalyticsLatest30DaysClient<$Result.GetResult<Prisma.$AnalyticsLatest30DaysPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends VanityAnalyticsLatest30DayFindUniqueOrThrowArgs>(args: SelectSubset<T, VanityAnalyticsLatest30DayFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VanityAnalyticsLatest30DayClient<$Result.GetResult<Prisma.$VanityAnalyticsLatest30DayPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first AnalyticsLatest30Days that matches the filter.
+     * Find the first VanityAnalyticsLatest30Day that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AnalyticsLatest30DaysFindFirstArgs} args - Arguments to find a AnalyticsLatest30Days
+     * @param {VanityAnalyticsLatest30DayFindFirstArgs} args - Arguments to find a VanityAnalyticsLatest30Day
      * @example
-     * // Get one AnalyticsLatest30Days
-     * const analyticsLatest30Days = await prisma.analyticsLatest30Days.findFirst({
+     * // Get one VanityAnalyticsLatest30Day
+     * const vanityAnalyticsLatest30Day = await prisma.vanityAnalyticsLatest30Day.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends AnalyticsLatest30DaysFindFirstArgs>(args?: SelectSubset<T, AnalyticsLatest30DaysFindFirstArgs<ExtArgs>>): Prisma__AnalyticsLatest30DaysClient<$Result.GetResult<Prisma.$AnalyticsLatest30DaysPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends VanityAnalyticsLatest30DayFindFirstArgs>(args?: SelectSubset<T, VanityAnalyticsLatest30DayFindFirstArgs<ExtArgs>>): Prisma__VanityAnalyticsLatest30DayClient<$Result.GetResult<Prisma.$VanityAnalyticsLatest30DayPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first AnalyticsLatest30Days that matches the filter or
+     * Find the first VanityAnalyticsLatest30Day that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AnalyticsLatest30DaysFindFirstOrThrowArgs} args - Arguments to find a AnalyticsLatest30Days
+     * @param {VanityAnalyticsLatest30DayFindFirstOrThrowArgs} args - Arguments to find a VanityAnalyticsLatest30Day
      * @example
-     * // Get one AnalyticsLatest30Days
-     * const analyticsLatest30Days = await prisma.analyticsLatest30Days.findFirstOrThrow({
+     * // Get one VanityAnalyticsLatest30Day
+     * const vanityAnalyticsLatest30Day = await prisma.vanityAnalyticsLatest30Day.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends AnalyticsLatest30DaysFindFirstOrThrowArgs>(args?: SelectSubset<T, AnalyticsLatest30DaysFindFirstOrThrowArgs<ExtArgs>>): Prisma__AnalyticsLatest30DaysClient<$Result.GetResult<Prisma.$AnalyticsLatest30DaysPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends VanityAnalyticsLatest30DayFindFirstOrThrowArgs>(args?: SelectSubset<T, VanityAnalyticsLatest30DayFindFirstOrThrowArgs<ExtArgs>>): Prisma__VanityAnalyticsLatest30DayClient<$Result.GetResult<Prisma.$VanityAnalyticsLatest30DayPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more AnalyticsLatest30Days that matches the filter.
+     * Find zero or more VanityAnalyticsLatest30Days that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AnalyticsLatest30DaysFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {VanityAnalyticsLatest30DayFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all AnalyticsLatest30Days
-     * const analyticsLatest30Days = await prisma.analyticsLatest30Days.findMany()
+     * // Get all VanityAnalyticsLatest30Days
+     * const vanityAnalyticsLatest30Days = await prisma.vanityAnalyticsLatest30Day.findMany()
      * 
-     * // Get first 10 AnalyticsLatest30Days
-     * const analyticsLatest30Days = await prisma.analyticsLatest30Days.findMany({ take: 10 })
+     * // Get first 10 VanityAnalyticsLatest30Days
+     * const vanityAnalyticsLatest30Days = await prisma.vanityAnalyticsLatest30Day.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const analyticsLatest30DaysWithIdOnly = await prisma.analyticsLatest30Days.findMany({ select: { id: true } })
+     * const vanityAnalyticsLatest30DayWithIdOnly = await prisma.vanityAnalyticsLatest30Day.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends AnalyticsLatest30DaysFindManyArgs>(args?: SelectSubset<T, AnalyticsLatest30DaysFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnalyticsLatest30DaysPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends VanityAnalyticsLatest30DayFindManyArgs>(args?: SelectSubset<T, VanityAnalyticsLatest30DayFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VanityAnalyticsLatest30DayPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a AnalyticsLatest30Days.
-     * @param {AnalyticsLatest30DaysCreateArgs} args - Arguments to create a AnalyticsLatest30Days.
+     * Create a VanityAnalyticsLatest30Day.
+     * @param {VanityAnalyticsLatest30DayCreateArgs} args - Arguments to create a VanityAnalyticsLatest30Day.
      * @example
-     * // Create one AnalyticsLatest30Days
-     * const AnalyticsLatest30Days = await prisma.analyticsLatest30Days.create({
+     * // Create one VanityAnalyticsLatest30Day
+     * const VanityAnalyticsLatest30Day = await prisma.vanityAnalyticsLatest30Day.create({
      *   data: {
-     *     // ... data to create a AnalyticsLatest30Days
+     *     // ... data to create a VanityAnalyticsLatest30Day
      *   }
      * })
      * 
      */
-    create<T extends AnalyticsLatest30DaysCreateArgs>(args: SelectSubset<T, AnalyticsLatest30DaysCreateArgs<ExtArgs>>): Prisma__AnalyticsLatest30DaysClient<$Result.GetResult<Prisma.$AnalyticsLatest30DaysPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends VanityAnalyticsLatest30DayCreateArgs>(args: SelectSubset<T, VanityAnalyticsLatest30DayCreateArgs<ExtArgs>>): Prisma__VanityAnalyticsLatest30DayClient<$Result.GetResult<Prisma.$VanityAnalyticsLatest30DayPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many AnalyticsLatest30Days.
-     * @param {AnalyticsLatest30DaysCreateManyArgs} args - Arguments to create many AnalyticsLatest30Days.
+     * Create many VanityAnalyticsLatest30Days.
+     * @param {VanityAnalyticsLatest30DayCreateManyArgs} args - Arguments to create many VanityAnalyticsLatest30Days.
      * @example
-     * // Create many AnalyticsLatest30Days
-     * const analyticsLatest30Days = await prisma.analyticsLatest30Days.createMany({
+     * // Create many VanityAnalyticsLatest30Days
+     * const vanityAnalyticsLatest30Day = await prisma.vanityAnalyticsLatest30Day.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends AnalyticsLatest30DaysCreateManyArgs>(args?: SelectSubset<T, AnalyticsLatest30DaysCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends VanityAnalyticsLatest30DayCreateManyArgs>(args?: SelectSubset<T, VanityAnalyticsLatest30DayCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a AnalyticsLatest30Days.
-     * @param {AnalyticsLatest30DaysDeleteArgs} args - Arguments to delete one AnalyticsLatest30Days.
+     * Delete a VanityAnalyticsLatest30Day.
+     * @param {VanityAnalyticsLatest30DayDeleteArgs} args - Arguments to delete one VanityAnalyticsLatest30Day.
      * @example
-     * // Delete one AnalyticsLatest30Days
-     * const AnalyticsLatest30Days = await prisma.analyticsLatest30Days.delete({
+     * // Delete one VanityAnalyticsLatest30Day
+     * const VanityAnalyticsLatest30Day = await prisma.vanityAnalyticsLatest30Day.delete({
      *   where: {
-     *     // ... filter to delete one AnalyticsLatest30Days
+     *     // ... filter to delete one VanityAnalyticsLatest30Day
      *   }
      * })
      * 
      */
-    delete<T extends AnalyticsLatest30DaysDeleteArgs>(args: SelectSubset<T, AnalyticsLatest30DaysDeleteArgs<ExtArgs>>): Prisma__AnalyticsLatest30DaysClient<$Result.GetResult<Prisma.$AnalyticsLatest30DaysPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends VanityAnalyticsLatest30DayDeleteArgs>(args: SelectSubset<T, VanityAnalyticsLatest30DayDeleteArgs<ExtArgs>>): Prisma__VanityAnalyticsLatest30DayClient<$Result.GetResult<Prisma.$VanityAnalyticsLatest30DayPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one AnalyticsLatest30Days.
-     * @param {AnalyticsLatest30DaysUpdateArgs} args - Arguments to update one AnalyticsLatest30Days.
+     * Update one VanityAnalyticsLatest30Day.
+     * @param {VanityAnalyticsLatest30DayUpdateArgs} args - Arguments to update one VanityAnalyticsLatest30Day.
      * @example
-     * // Update one AnalyticsLatest30Days
-     * const analyticsLatest30Days = await prisma.analyticsLatest30Days.update({
+     * // Update one VanityAnalyticsLatest30Day
+     * const vanityAnalyticsLatest30Day = await prisma.vanityAnalyticsLatest30Day.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -51236,30 +51236,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends AnalyticsLatest30DaysUpdateArgs>(args: SelectSubset<T, AnalyticsLatest30DaysUpdateArgs<ExtArgs>>): Prisma__AnalyticsLatest30DaysClient<$Result.GetResult<Prisma.$AnalyticsLatest30DaysPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends VanityAnalyticsLatest30DayUpdateArgs>(args: SelectSubset<T, VanityAnalyticsLatest30DayUpdateArgs<ExtArgs>>): Prisma__VanityAnalyticsLatest30DayClient<$Result.GetResult<Prisma.$VanityAnalyticsLatest30DayPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more AnalyticsLatest30Days.
-     * @param {AnalyticsLatest30DaysDeleteManyArgs} args - Arguments to filter AnalyticsLatest30Days to delete.
+     * Delete zero or more VanityAnalyticsLatest30Days.
+     * @param {VanityAnalyticsLatest30DayDeleteManyArgs} args - Arguments to filter VanityAnalyticsLatest30Days to delete.
      * @example
-     * // Delete a few AnalyticsLatest30Days
-     * const { count } = await prisma.analyticsLatest30Days.deleteMany({
+     * // Delete a few VanityAnalyticsLatest30Days
+     * const { count } = await prisma.vanityAnalyticsLatest30Day.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends AnalyticsLatest30DaysDeleteManyArgs>(args?: SelectSubset<T, AnalyticsLatest30DaysDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends VanityAnalyticsLatest30DayDeleteManyArgs>(args?: SelectSubset<T, VanityAnalyticsLatest30DayDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more AnalyticsLatest30Days.
+     * Update zero or more VanityAnalyticsLatest30Days.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AnalyticsLatest30DaysUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {VanityAnalyticsLatest30DayUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many AnalyticsLatest30Days
-     * const analyticsLatest30Days = await prisma.analyticsLatest30Days.updateMany({
+     * // Update many VanityAnalyticsLatest30Days
+     * const vanityAnalyticsLatest30Day = await prisma.vanityAnalyticsLatest30Day.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -51269,79 +51269,79 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends AnalyticsLatest30DaysUpdateManyArgs>(args: SelectSubset<T, AnalyticsLatest30DaysUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends VanityAnalyticsLatest30DayUpdateManyArgs>(args: SelectSubset<T, VanityAnalyticsLatest30DayUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one AnalyticsLatest30Days.
-     * @param {AnalyticsLatest30DaysUpsertArgs} args - Arguments to update or create a AnalyticsLatest30Days.
+     * Create or update one VanityAnalyticsLatest30Day.
+     * @param {VanityAnalyticsLatest30DayUpsertArgs} args - Arguments to update or create a VanityAnalyticsLatest30Day.
      * @example
-     * // Update or create a AnalyticsLatest30Days
-     * const analyticsLatest30Days = await prisma.analyticsLatest30Days.upsert({
+     * // Update or create a VanityAnalyticsLatest30Day
+     * const vanityAnalyticsLatest30Day = await prisma.vanityAnalyticsLatest30Day.upsert({
      *   create: {
-     *     // ... data to create a AnalyticsLatest30Days
+     *     // ... data to create a VanityAnalyticsLatest30Day
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the AnalyticsLatest30Days we want to update
+     *     // ... the filter for the VanityAnalyticsLatest30Day we want to update
      *   }
      * })
      */
-    upsert<T extends AnalyticsLatest30DaysUpsertArgs>(args: SelectSubset<T, AnalyticsLatest30DaysUpsertArgs<ExtArgs>>): Prisma__AnalyticsLatest30DaysClient<$Result.GetResult<Prisma.$AnalyticsLatest30DaysPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends VanityAnalyticsLatest30DayUpsertArgs>(args: SelectSubset<T, VanityAnalyticsLatest30DayUpsertArgs<ExtArgs>>): Prisma__VanityAnalyticsLatest30DayClient<$Result.GetResult<Prisma.$VanityAnalyticsLatest30DayPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more AnalyticsLatest30Days that matches the filter.
-     * @param {AnalyticsLatest30DaysFindRawArgs} args - Select which filters you would like to apply.
+     * Find zero or more VanityAnalyticsLatest30Days that matches the filter.
+     * @param {VanityAnalyticsLatest30DayFindRawArgs} args - Select which filters you would like to apply.
      * @example
-     * const analyticsLatest30Days = await prisma.analyticsLatest30Days.findRaw({
+     * const vanityAnalyticsLatest30Day = await prisma.vanityAnalyticsLatest30Day.findRaw({
      *   filter: { age: { $gt: 25 } }
      * })
      */
-    findRaw(args?: AnalyticsLatest30DaysFindRawArgs): Prisma.PrismaPromise<JsonObject>
+    findRaw(args?: VanityAnalyticsLatest30DayFindRawArgs): Prisma.PrismaPromise<JsonObject>
 
     /**
-     * Perform aggregation operations on a AnalyticsLatest30Days.
-     * @param {AnalyticsLatest30DaysAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * Perform aggregation operations on a VanityAnalyticsLatest30Day.
+     * @param {VanityAnalyticsLatest30DayAggregateRawArgs} args - Select which aggregations you would like to apply.
      * @example
-     * const analyticsLatest30Days = await prisma.analyticsLatest30Days.aggregateRaw({
+     * const vanityAnalyticsLatest30Day = await prisma.vanityAnalyticsLatest30Day.aggregateRaw({
      *   pipeline: [
      *     { $match: { status: "registered" } },
      *     { $group: { _id: "$country", total: { $sum: 1 } } }
      *   ]
      * })
      */
-    aggregateRaw(args?: AnalyticsLatest30DaysAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+    aggregateRaw(args?: VanityAnalyticsLatest30DayAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
 
 
     /**
-     * Count the number of AnalyticsLatest30Days.
+     * Count the number of VanityAnalyticsLatest30Days.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AnalyticsLatest30DaysCountArgs} args - Arguments to filter AnalyticsLatest30Days to count.
+     * @param {VanityAnalyticsLatest30DayCountArgs} args - Arguments to filter VanityAnalyticsLatest30Days to count.
      * @example
-     * // Count the number of AnalyticsLatest30Days
-     * const count = await prisma.analyticsLatest30Days.count({
+     * // Count the number of VanityAnalyticsLatest30Days
+     * const count = await prisma.vanityAnalyticsLatest30Day.count({
      *   where: {
-     *     // ... the filter for the AnalyticsLatest30Days we want to count
+     *     // ... the filter for the VanityAnalyticsLatest30Days we want to count
      *   }
      * })
     **/
-    count<T extends AnalyticsLatest30DaysCountArgs>(
-      args?: Subset<T, AnalyticsLatest30DaysCountArgs>,
+    count<T extends VanityAnalyticsLatest30DayCountArgs>(
+      args?: Subset<T, VanityAnalyticsLatest30DayCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], AnalyticsLatest30DaysCountAggregateOutputType>
+          : GetScalarType<T['select'], VanityAnalyticsLatest30DayCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a AnalyticsLatest30Days.
+     * Allows you to perform aggregations operations on a VanityAnalyticsLatest30Day.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AnalyticsLatest30DaysAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {VanityAnalyticsLatest30DayAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -51361,13 +51361,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends AnalyticsLatest30DaysAggregateArgs>(args: Subset<T, AnalyticsLatest30DaysAggregateArgs>): Prisma.PrismaPromise<GetAnalyticsLatest30DaysAggregateType<T>>
+    aggregate<T extends VanityAnalyticsLatest30DayAggregateArgs>(args: Subset<T, VanityAnalyticsLatest30DayAggregateArgs>): Prisma.PrismaPromise<GetVanityAnalyticsLatest30DayAggregateType<T>>
 
     /**
-     * Group by AnalyticsLatest30Days.
+     * Group by VanityAnalyticsLatest30Day.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AnalyticsLatest30DaysGroupByArgs} args - Group by arguments.
+     * @param {VanityAnalyticsLatest30DayGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -51382,14 +51382,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends AnalyticsLatest30DaysGroupByArgs,
+      T extends VanityAnalyticsLatest30DayGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: AnalyticsLatest30DaysGroupByArgs['orderBy'] }
-        : { orderBy?: AnalyticsLatest30DaysGroupByArgs['orderBy'] },
+        ? { orderBy: VanityAnalyticsLatest30DayGroupByArgs['orderBy'] }
+        : { orderBy?: VanityAnalyticsLatest30DayGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -51438,22 +51438,22 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, AnalyticsLatest30DaysGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAnalyticsLatest30DaysGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, VanityAnalyticsLatest30DayGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVanityAnalyticsLatest30DayGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the AnalyticsLatest30Days model
+   * Fields of the VanityAnalyticsLatest30Day model
    */
-  readonly fields: AnalyticsLatest30DaysFieldRefs;
+  readonly fields: VanityAnalyticsLatest30DayFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for AnalyticsLatest30Days.
+   * The delegate class that acts as a "Promise-like" for VanityAnalyticsLatest30Day.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__AnalyticsLatest30DaysClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__VanityAnalyticsLatest30DayClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    VanityAnalytics<T extends VanityAnalyticsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, VanityAnalyticsDefaultArgs<ExtArgs>>): Prisma__VanityAnalyticsClient<$Result.GetResult<Prisma.$VanityAnalyticsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    VanityAnalytics<T extends VanityAnalyticDefaultArgs<ExtArgs> = {}>(args?: Subset<T, VanityAnalyticDefaultArgs<ExtArgs>>): Prisma__VanityAnalyticClient<$Result.GetResult<Prisma.$VanityAnalyticPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -51480,360 +51480,360 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the AnalyticsLatest30Days model
+   * Fields of the VanityAnalyticsLatest30Day model
    */
-  interface AnalyticsLatest30DaysFieldRefs {
-    readonly id: FieldRef<"AnalyticsLatest30Days", 'String'>
-    readonly Click: FieldRef<"AnalyticsLatest30Days", 'Int'>
-    readonly UniqueClick: FieldRef<"AnalyticsLatest30Days", 'Int'>
-    readonly Date: FieldRef<"AnalyticsLatest30Days", 'DateTime'>
-    readonly JoinedWithCode: FieldRef<"AnalyticsLatest30Days", 'Int'>
-    readonly VanityAnalyticsId: FieldRef<"AnalyticsLatest30Days", 'String'>
+  interface VanityAnalyticsLatest30DayFieldRefs {
+    readonly id: FieldRef<"VanityAnalyticsLatest30Day", 'String'>
+    readonly Click: FieldRef<"VanityAnalyticsLatest30Day", 'Int'>
+    readonly UniqueClick: FieldRef<"VanityAnalyticsLatest30Day", 'Int'>
+    readonly Date: FieldRef<"VanityAnalyticsLatest30Day", 'DateTime'>
+    readonly JoinedWithCode: FieldRef<"VanityAnalyticsLatest30Day", 'Int'>
+    readonly VanityAnalyticsId: FieldRef<"VanityAnalyticsLatest30Day", 'String'>
   }
     
 
   // Custom InputTypes
   /**
-   * AnalyticsLatest30Days findUnique
+   * VanityAnalyticsLatest30Day findUnique
    */
-  export type AnalyticsLatest30DaysFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticsLatest30DayFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AnalyticsLatest30Days
+     * Select specific fields to fetch from the VanityAnalyticsLatest30Day
      */
-    select?: AnalyticsLatest30DaysSelect<ExtArgs> | null
+    select?: VanityAnalyticsLatest30DaySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AnalyticsLatest30Days
+     * Omit specific fields from the VanityAnalyticsLatest30Day
      */
-    omit?: AnalyticsLatest30DaysOmit<ExtArgs> | null
+    omit?: VanityAnalyticsLatest30DayOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AnalyticsLatest30DaysInclude<ExtArgs> | null
+    include?: VanityAnalyticsLatest30DayInclude<ExtArgs> | null
     /**
-     * Filter, which AnalyticsLatest30Days to fetch.
+     * Filter, which VanityAnalyticsLatest30Day to fetch.
      */
-    where: AnalyticsLatest30DaysWhereUniqueInput
+    where: VanityAnalyticsLatest30DayWhereUniqueInput
   }
 
   /**
-   * AnalyticsLatest30Days findUniqueOrThrow
+   * VanityAnalyticsLatest30Day findUniqueOrThrow
    */
-  export type AnalyticsLatest30DaysFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticsLatest30DayFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AnalyticsLatest30Days
+     * Select specific fields to fetch from the VanityAnalyticsLatest30Day
      */
-    select?: AnalyticsLatest30DaysSelect<ExtArgs> | null
+    select?: VanityAnalyticsLatest30DaySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AnalyticsLatest30Days
+     * Omit specific fields from the VanityAnalyticsLatest30Day
      */
-    omit?: AnalyticsLatest30DaysOmit<ExtArgs> | null
+    omit?: VanityAnalyticsLatest30DayOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AnalyticsLatest30DaysInclude<ExtArgs> | null
+    include?: VanityAnalyticsLatest30DayInclude<ExtArgs> | null
     /**
-     * Filter, which AnalyticsLatest30Days to fetch.
+     * Filter, which VanityAnalyticsLatest30Day to fetch.
      */
-    where: AnalyticsLatest30DaysWhereUniqueInput
+    where: VanityAnalyticsLatest30DayWhereUniqueInput
   }
 
   /**
-   * AnalyticsLatest30Days findFirst
+   * VanityAnalyticsLatest30Day findFirst
    */
-  export type AnalyticsLatest30DaysFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticsLatest30DayFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AnalyticsLatest30Days
+     * Select specific fields to fetch from the VanityAnalyticsLatest30Day
      */
-    select?: AnalyticsLatest30DaysSelect<ExtArgs> | null
+    select?: VanityAnalyticsLatest30DaySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AnalyticsLatest30Days
+     * Omit specific fields from the VanityAnalyticsLatest30Day
      */
-    omit?: AnalyticsLatest30DaysOmit<ExtArgs> | null
+    omit?: VanityAnalyticsLatest30DayOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AnalyticsLatest30DaysInclude<ExtArgs> | null
+    include?: VanityAnalyticsLatest30DayInclude<ExtArgs> | null
     /**
-     * Filter, which AnalyticsLatest30Days to fetch.
+     * Filter, which VanityAnalyticsLatest30Day to fetch.
      */
-    where?: AnalyticsLatest30DaysWhereInput
+    where?: VanityAnalyticsLatest30DayWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of AnalyticsLatest30Days to fetch.
+     * Determine the order of VanityAnalyticsLatest30Days to fetch.
      */
-    orderBy?: AnalyticsLatest30DaysOrderByWithRelationInput | AnalyticsLatest30DaysOrderByWithRelationInput[]
+    orderBy?: VanityAnalyticsLatest30DayOrderByWithRelationInput | VanityAnalyticsLatest30DayOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for AnalyticsLatest30Days.
+     * Sets the position for searching for VanityAnalyticsLatest30Days.
      */
-    cursor?: AnalyticsLatest30DaysWhereUniqueInput
+    cursor?: VanityAnalyticsLatest30DayWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` AnalyticsLatest30Days from the position of the cursor.
+     * Take `±n` VanityAnalyticsLatest30Days from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` AnalyticsLatest30Days.
+     * Skip the first `n` VanityAnalyticsLatest30Days.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of AnalyticsLatest30Days.
+     * Filter by unique combinations of VanityAnalyticsLatest30Days.
      */
-    distinct?: AnalyticsLatest30DaysScalarFieldEnum | AnalyticsLatest30DaysScalarFieldEnum[]
+    distinct?: VanityAnalyticsLatest30DayScalarFieldEnum | VanityAnalyticsLatest30DayScalarFieldEnum[]
   }
 
   /**
-   * AnalyticsLatest30Days findFirstOrThrow
+   * VanityAnalyticsLatest30Day findFirstOrThrow
    */
-  export type AnalyticsLatest30DaysFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticsLatest30DayFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AnalyticsLatest30Days
+     * Select specific fields to fetch from the VanityAnalyticsLatest30Day
      */
-    select?: AnalyticsLatest30DaysSelect<ExtArgs> | null
+    select?: VanityAnalyticsLatest30DaySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AnalyticsLatest30Days
+     * Omit specific fields from the VanityAnalyticsLatest30Day
      */
-    omit?: AnalyticsLatest30DaysOmit<ExtArgs> | null
+    omit?: VanityAnalyticsLatest30DayOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AnalyticsLatest30DaysInclude<ExtArgs> | null
+    include?: VanityAnalyticsLatest30DayInclude<ExtArgs> | null
     /**
-     * Filter, which AnalyticsLatest30Days to fetch.
+     * Filter, which VanityAnalyticsLatest30Day to fetch.
      */
-    where?: AnalyticsLatest30DaysWhereInput
+    where?: VanityAnalyticsLatest30DayWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of AnalyticsLatest30Days to fetch.
+     * Determine the order of VanityAnalyticsLatest30Days to fetch.
      */
-    orderBy?: AnalyticsLatest30DaysOrderByWithRelationInput | AnalyticsLatest30DaysOrderByWithRelationInput[]
+    orderBy?: VanityAnalyticsLatest30DayOrderByWithRelationInput | VanityAnalyticsLatest30DayOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for AnalyticsLatest30Days.
+     * Sets the position for searching for VanityAnalyticsLatest30Days.
      */
-    cursor?: AnalyticsLatest30DaysWhereUniqueInput
+    cursor?: VanityAnalyticsLatest30DayWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` AnalyticsLatest30Days from the position of the cursor.
+     * Take `±n` VanityAnalyticsLatest30Days from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` AnalyticsLatest30Days.
+     * Skip the first `n` VanityAnalyticsLatest30Days.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of AnalyticsLatest30Days.
+     * Filter by unique combinations of VanityAnalyticsLatest30Days.
      */
-    distinct?: AnalyticsLatest30DaysScalarFieldEnum | AnalyticsLatest30DaysScalarFieldEnum[]
+    distinct?: VanityAnalyticsLatest30DayScalarFieldEnum | VanityAnalyticsLatest30DayScalarFieldEnum[]
   }
 
   /**
-   * AnalyticsLatest30Days findMany
+   * VanityAnalyticsLatest30Day findMany
    */
-  export type AnalyticsLatest30DaysFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticsLatest30DayFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AnalyticsLatest30Days
+     * Select specific fields to fetch from the VanityAnalyticsLatest30Day
      */
-    select?: AnalyticsLatest30DaysSelect<ExtArgs> | null
+    select?: VanityAnalyticsLatest30DaySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AnalyticsLatest30Days
+     * Omit specific fields from the VanityAnalyticsLatest30Day
      */
-    omit?: AnalyticsLatest30DaysOmit<ExtArgs> | null
+    omit?: VanityAnalyticsLatest30DayOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AnalyticsLatest30DaysInclude<ExtArgs> | null
+    include?: VanityAnalyticsLatest30DayInclude<ExtArgs> | null
     /**
-     * Filter, which AnalyticsLatest30Days to fetch.
+     * Filter, which VanityAnalyticsLatest30Days to fetch.
      */
-    where?: AnalyticsLatest30DaysWhereInput
+    where?: VanityAnalyticsLatest30DayWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of AnalyticsLatest30Days to fetch.
+     * Determine the order of VanityAnalyticsLatest30Days to fetch.
      */
-    orderBy?: AnalyticsLatest30DaysOrderByWithRelationInput | AnalyticsLatest30DaysOrderByWithRelationInput[]
+    orderBy?: VanityAnalyticsLatest30DayOrderByWithRelationInput | VanityAnalyticsLatest30DayOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing AnalyticsLatest30Days.
+     * Sets the position for listing VanityAnalyticsLatest30Days.
      */
-    cursor?: AnalyticsLatest30DaysWhereUniqueInput
+    cursor?: VanityAnalyticsLatest30DayWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` AnalyticsLatest30Days from the position of the cursor.
+     * Take `±n` VanityAnalyticsLatest30Days from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` AnalyticsLatest30Days.
+     * Skip the first `n` VanityAnalyticsLatest30Days.
      */
     skip?: number
-    distinct?: AnalyticsLatest30DaysScalarFieldEnum | AnalyticsLatest30DaysScalarFieldEnum[]
+    distinct?: VanityAnalyticsLatest30DayScalarFieldEnum | VanityAnalyticsLatest30DayScalarFieldEnum[]
   }
 
   /**
-   * AnalyticsLatest30Days create
+   * VanityAnalyticsLatest30Day create
    */
-  export type AnalyticsLatest30DaysCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticsLatest30DayCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AnalyticsLatest30Days
+     * Select specific fields to fetch from the VanityAnalyticsLatest30Day
      */
-    select?: AnalyticsLatest30DaysSelect<ExtArgs> | null
+    select?: VanityAnalyticsLatest30DaySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AnalyticsLatest30Days
+     * Omit specific fields from the VanityAnalyticsLatest30Day
      */
-    omit?: AnalyticsLatest30DaysOmit<ExtArgs> | null
+    omit?: VanityAnalyticsLatest30DayOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AnalyticsLatest30DaysInclude<ExtArgs> | null
+    include?: VanityAnalyticsLatest30DayInclude<ExtArgs> | null
     /**
-     * The data needed to create a AnalyticsLatest30Days.
+     * The data needed to create a VanityAnalyticsLatest30Day.
      */
-    data: XOR<AnalyticsLatest30DaysCreateInput, AnalyticsLatest30DaysUncheckedCreateInput>
+    data: XOR<VanityAnalyticsLatest30DayCreateInput, VanityAnalyticsLatest30DayUncheckedCreateInput>
   }
 
   /**
-   * AnalyticsLatest30Days createMany
+   * VanityAnalyticsLatest30Day createMany
    */
-  export type AnalyticsLatest30DaysCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticsLatest30DayCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many AnalyticsLatest30Days.
+     * The data used to create many VanityAnalyticsLatest30Days.
      */
-    data: AnalyticsLatest30DaysCreateManyInput | AnalyticsLatest30DaysCreateManyInput[]
+    data: VanityAnalyticsLatest30DayCreateManyInput | VanityAnalyticsLatest30DayCreateManyInput[]
   }
 
   /**
-   * AnalyticsLatest30Days update
+   * VanityAnalyticsLatest30Day update
    */
-  export type AnalyticsLatest30DaysUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticsLatest30DayUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AnalyticsLatest30Days
+     * Select specific fields to fetch from the VanityAnalyticsLatest30Day
      */
-    select?: AnalyticsLatest30DaysSelect<ExtArgs> | null
+    select?: VanityAnalyticsLatest30DaySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AnalyticsLatest30Days
+     * Omit specific fields from the VanityAnalyticsLatest30Day
      */
-    omit?: AnalyticsLatest30DaysOmit<ExtArgs> | null
+    omit?: VanityAnalyticsLatest30DayOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AnalyticsLatest30DaysInclude<ExtArgs> | null
+    include?: VanityAnalyticsLatest30DayInclude<ExtArgs> | null
     /**
-     * The data needed to update a AnalyticsLatest30Days.
+     * The data needed to update a VanityAnalyticsLatest30Day.
      */
-    data: XOR<AnalyticsLatest30DaysUpdateInput, AnalyticsLatest30DaysUncheckedUpdateInput>
+    data: XOR<VanityAnalyticsLatest30DayUpdateInput, VanityAnalyticsLatest30DayUncheckedUpdateInput>
     /**
-     * Choose, which AnalyticsLatest30Days to update.
+     * Choose, which VanityAnalyticsLatest30Day to update.
      */
-    where: AnalyticsLatest30DaysWhereUniqueInput
+    where: VanityAnalyticsLatest30DayWhereUniqueInput
   }
 
   /**
-   * AnalyticsLatest30Days updateMany
+   * VanityAnalyticsLatest30Day updateMany
    */
-  export type AnalyticsLatest30DaysUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticsLatest30DayUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update AnalyticsLatest30Days.
+     * The data used to update VanityAnalyticsLatest30Days.
      */
-    data: XOR<AnalyticsLatest30DaysUpdateManyMutationInput, AnalyticsLatest30DaysUncheckedUpdateManyInput>
+    data: XOR<VanityAnalyticsLatest30DayUpdateManyMutationInput, VanityAnalyticsLatest30DayUncheckedUpdateManyInput>
     /**
-     * Filter which AnalyticsLatest30Days to update
+     * Filter which VanityAnalyticsLatest30Days to update
      */
-    where?: AnalyticsLatest30DaysWhereInput
+    where?: VanityAnalyticsLatest30DayWhereInput
     /**
-     * Limit how many AnalyticsLatest30Days to update.
+     * Limit how many VanityAnalyticsLatest30Days to update.
      */
     limit?: number
   }
 
   /**
-   * AnalyticsLatest30Days upsert
+   * VanityAnalyticsLatest30Day upsert
    */
-  export type AnalyticsLatest30DaysUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticsLatest30DayUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AnalyticsLatest30Days
+     * Select specific fields to fetch from the VanityAnalyticsLatest30Day
      */
-    select?: AnalyticsLatest30DaysSelect<ExtArgs> | null
+    select?: VanityAnalyticsLatest30DaySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AnalyticsLatest30Days
+     * Omit specific fields from the VanityAnalyticsLatest30Day
      */
-    omit?: AnalyticsLatest30DaysOmit<ExtArgs> | null
+    omit?: VanityAnalyticsLatest30DayOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AnalyticsLatest30DaysInclude<ExtArgs> | null
+    include?: VanityAnalyticsLatest30DayInclude<ExtArgs> | null
     /**
-     * The filter to search for the AnalyticsLatest30Days to update in case it exists.
+     * The filter to search for the VanityAnalyticsLatest30Day to update in case it exists.
      */
-    where: AnalyticsLatest30DaysWhereUniqueInput
+    where: VanityAnalyticsLatest30DayWhereUniqueInput
     /**
-     * In case the AnalyticsLatest30Days found by the `where` argument doesn't exist, create a new AnalyticsLatest30Days with this data.
+     * In case the VanityAnalyticsLatest30Day found by the `where` argument doesn't exist, create a new VanityAnalyticsLatest30Day with this data.
      */
-    create: XOR<AnalyticsLatest30DaysCreateInput, AnalyticsLatest30DaysUncheckedCreateInput>
+    create: XOR<VanityAnalyticsLatest30DayCreateInput, VanityAnalyticsLatest30DayUncheckedCreateInput>
     /**
-     * In case the AnalyticsLatest30Days was found with the provided `where` argument, update it with this data.
+     * In case the VanityAnalyticsLatest30Day was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<AnalyticsLatest30DaysUpdateInput, AnalyticsLatest30DaysUncheckedUpdateInput>
+    update: XOR<VanityAnalyticsLatest30DayUpdateInput, VanityAnalyticsLatest30DayUncheckedUpdateInput>
   }
 
   /**
-   * AnalyticsLatest30Days delete
+   * VanityAnalyticsLatest30Day delete
    */
-  export type AnalyticsLatest30DaysDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticsLatest30DayDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AnalyticsLatest30Days
+     * Select specific fields to fetch from the VanityAnalyticsLatest30Day
      */
-    select?: AnalyticsLatest30DaysSelect<ExtArgs> | null
+    select?: VanityAnalyticsLatest30DaySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AnalyticsLatest30Days
+     * Omit specific fields from the VanityAnalyticsLatest30Day
      */
-    omit?: AnalyticsLatest30DaysOmit<ExtArgs> | null
+    omit?: VanityAnalyticsLatest30DayOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AnalyticsLatest30DaysInclude<ExtArgs> | null
+    include?: VanityAnalyticsLatest30DayInclude<ExtArgs> | null
     /**
-     * Filter which AnalyticsLatest30Days to delete.
+     * Filter which VanityAnalyticsLatest30Day to delete.
      */
-    where: AnalyticsLatest30DaysWhereUniqueInput
+    where: VanityAnalyticsLatest30DayWhereUniqueInput
   }
 
   /**
-   * AnalyticsLatest30Days deleteMany
+   * VanityAnalyticsLatest30Day deleteMany
    */
-  export type AnalyticsLatest30DaysDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticsLatest30DayDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which AnalyticsLatest30Days to delete
+     * Filter which VanityAnalyticsLatest30Days to delete
      */
-    where?: AnalyticsLatest30DaysWhereInput
+    where?: VanityAnalyticsLatest30DayWhereInput
     /**
-     * Limit how many AnalyticsLatest30Days to delete.
+     * Limit how many VanityAnalyticsLatest30Days to delete.
      */
     limit?: number
   }
 
   /**
-   * AnalyticsLatest30Days findRaw
+   * VanityAnalyticsLatest30Day findRaw
    */
-  export type AnalyticsLatest30DaysFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticsLatest30DayFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
      */
@@ -51845,9 +51845,9 @@ export namespace Prisma {
   }
 
   /**
-   * AnalyticsLatest30Days aggregateRaw
+   * VanityAnalyticsLatest30Day aggregateRaw
    */
-  export type AnalyticsLatest30DaysAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticsLatest30DayAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
      */
@@ -51859,21 +51859,21 @@ export namespace Prisma {
   }
 
   /**
-   * AnalyticsLatest30Days without action
+   * VanityAnalyticsLatest30Day without action
    */
-  export type AnalyticsLatest30DaysDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VanityAnalyticsLatest30DayDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AnalyticsLatest30Days
+     * Select specific fields to fetch from the VanityAnalyticsLatest30Day
      */
-    select?: AnalyticsLatest30DaysSelect<ExtArgs> | null
+    select?: VanityAnalyticsLatest30DaySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AnalyticsLatest30Days
+     * Omit specific fields from the VanityAnalyticsLatest30Day
      */
-    omit?: AnalyticsLatest30DaysOmit<ExtArgs> | null
+    omit?: VanityAnalyticsLatest30DayOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AnalyticsLatest30DaysInclude<ExtArgs> | null
+    include?: VanityAnalyticsLatest30DayInclude<ExtArgs> | null
   }
 
 
@@ -53457,7 +53457,7 @@ export namespace Prisma {
   export type VanitysScalarFieldEnum = (typeof VanitysScalarFieldEnum)[keyof typeof VanitysScalarFieldEnum]
 
 
-  export const VanityEmbedsScalarFieldEnum: {
+  export const VanityEmbedScalarFieldEnum: {
     id: 'id',
     Title: 'Title',
     Description: 'Description',
@@ -53467,10 +53467,10 @@ export namespace Prisma {
     VanityId: 'VanityId'
   };
 
-  export type VanityEmbedsScalarFieldEnum = (typeof VanityEmbedsScalarFieldEnum)[keyof typeof VanityEmbedsScalarFieldEnum]
+  export type VanityEmbedScalarFieldEnum = (typeof VanityEmbedScalarFieldEnum)[keyof typeof VanityEmbedScalarFieldEnum]
 
 
-  export const VanityEmbedAuthorsScalarFieldEnum: {
+  export const VanityEmbedAuthorScalarFieldEnum: {
     id: 'id',
     Name: 'Name',
     URL: 'URL',
@@ -53478,10 +53478,10 @@ export namespace Prisma {
     VanityEmbedsId: 'VanityEmbedsId'
   };
 
-  export type VanityEmbedAuthorsScalarFieldEnum = (typeof VanityEmbedAuthorsScalarFieldEnum)[keyof typeof VanityEmbedAuthorsScalarFieldEnum]
+  export type VanityEmbedAuthorScalarFieldEnum = (typeof VanityEmbedAuthorScalarFieldEnum)[keyof typeof VanityEmbedAuthorScalarFieldEnum]
 
 
-  export const VanityAnalyticsScalarFieldEnum: {
+  export const VanityAnalyticScalarFieldEnum: {
     id: 'id',
     Click: 'Click',
     TrackInviteWithLog: 'TrackInviteWithLog',
@@ -53493,10 +53493,10 @@ export namespace Prisma {
     VanityId: 'VanityId'
   };
 
-  export type VanityAnalyticsScalarFieldEnum = (typeof VanityAnalyticsScalarFieldEnum)[keyof typeof VanityAnalyticsScalarFieldEnum]
+  export type VanityAnalyticScalarFieldEnum = (typeof VanityAnalyticScalarFieldEnum)[keyof typeof VanityAnalyticScalarFieldEnum]
 
 
-  export const AnalyticsLatest30DaysScalarFieldEnum: {
+  export const VanityAnalyticsLatest30DayScalarFieldEnum: {
     id: 'id',
     Click: 'Click',
     UniqueClick: 'UniqueClick',
@@ -53505,7 +53505,7 @@ export namespace Prisma {
     VanityAnalyticsId: 'VanityAnalyticsId'
   };
 
-  export type AnalyticsLatest30DaysScalarFieldEnum = (typeof AnalyticsLatest30DaysScalarFieldEnum)[keyof typeof AnalyticsLatest30DaysScalarFieldEnum]
+  export type VanityAnalyticsLatest30DayScalarFieldEnum = (typeof VanityAnalyticsLatest30DayScalarFieldEnum)[keyof typeof VanityAnalyticsLatest30DayScalarFieldEnum]
 
 
   export const DisBotScalarFieldEnum: {
@@ -56708,8 +56708,8 @@ export namespace Prisma {
     IsBannedFromDiscover?: BoolNullableFilter<"Vanitys"> | boolean | null
     CreatedAt?: DateTimeFilter<"Vanitys"> | Date | string
     UserId?: StringFilter<"Vanitys"> | string
-    Analytics?: XOR<VanityAnalyticsNullableScalarRelationFilter, VanityAnalyticsWhereInput> | null
-    Embed?: XOR<VanityEmbedsNullableScalarRelationFilter, VanityEmbedsWhereInput> | null
+    Analytics?: XOR<VanityAnalyticNullableScalarRelationFilter, VanityAnalyticWhereInput> | null
+    Embed?: XOR<VanityEmbedNullableScalarRelationFilter, VanityEmbedWhereInput> | null
     Users?: XOR<UsersScalarRelationFilter, UsersWhereInput>
   }
 
@@ -56724,8 +56724,8 @@ export namespace Prisma {
     IsBannedFromDiscover?: SortOrder
     CreatedAt?: SortOrder
     UserId?: SortOrder
-    Analytics?: VanityAnalyticsOrderByWithRelationInput
-    Embed?: VanityEmbedsOrderByWithRelationInput
+    Analytics?: VanityAnalyticOrderByWithRelationInput
+    Embed?: VanityEmbedOrderByWithRelationInput
     Users?: UsersOrderByWithRelationInput
   }
 
@@ -56743,8 +56743,8 @@ export namespace Prisma {
     IsBannedFromDiscover?: BoolNullableFilter<"Vanitys"> | boolean | null
     CreatedAt?: DateTimeFilter<"Vanitys"> | Date | string
     UserId?: StringFilter<"Vanitys"> | string
-    Analytics?: XOR<VanityAnalyticsNullableScalarRelationFilter, VanityAnalyticsWhereInput> | null
-    Embed?: XOR<VanityEmbedsNullableScalarRelationFilter, VanityEmbedsWhereInput> | null
+    Analytics?: XOR<VanityAnalyticNullableScalarRelationFilter, VanityAnalyticWhereInput> | null
+    Embed?: XOR<VanityEmbedNullableScalarRelationFilter, VanityEmbedWhereInput> | null
     Users?: XOR<UsersScalarRelationFilter, UsersWhereInput>
   }, "id" | "UUID">
 
@@ -56780,22 +56780,22 @@ export namespace Prisma {
     UserId?: StringWithAggregatesFilter<"Vanitys"> | string
   }
 
-  export type VanityEmbedsWhereInput = {
-    AND?: VanityEmbedsWhereInput | VanityEmbedsWhereInput[]
-    OR?: VanityEmbedsWhereInput[]
-    NOT?: VanityEmbedsWhereInput | VanityEmbedsWhereInput[]
-    id?: StringFilter<"VanityEmbeds"> | string
-    Title?: StringFilter<"VanityEmbeds"> | string
-    Description?: StringFilter<"VanityEmbeds"> | string
-    Color?: StringFilter<"VanityEmbeds"> | string
-    ImageUrl?: StringFilter<"VanityEmbeds"> | string
-    ThumbnailUrl?: StringFilter<"VanityEmbeds"> | string
-    VanityId?: StringFilter<"VanityEmbeds"> | string
-    Author?: XOR<VanityEmbedAuthorsNullableScalarRelationFilter, VanityEmbedAuthorsWhereInput> | null
+  export type VanityEmbedWhereInput = {
+    AND?: VanityEmbedWhereInput | VanityEmbedWhereInput[]
+    OR?: VanityEmbedWhereInput[]
+    NOT?: VanityEmbedWhereInput | VanityEmbedWhereInput[]
+    id?: StringFilter<"VanityEmbed"> | string
+    Title?: StringFilter<"VanityEmbed"> | string
+    Description?: StringFilter<"VanityEmbed"> | string
+    Color?: StringFilter<"VanityEmbed"> | string
+    ImageUrl?: StringNullableFilter<"VanityEmbed"> | string | null
+    ThumbnailUrl?: StringNullableFilter<"VanityEmbed"> | string | null
+    VanityId?: StringFilter<"VanityEmbed"> | string
+    Author?: XOR<VanityEmbedAuthorNullableScalarRelationFilter, VanityEmbedAuthorWhereInput> | null
     Vanitys?: XOR<VanitysScalarRelationFilter, VanitysWhereInput>
   }
 
-  export type VanityEmbedsOrderByWithRelationInput = {
+  export type VanityEmbedOrderByWithRelationInput = {
     id?: SortOrder
     Title?: SortOrder
     Description?: SortOrder
@@ -56803,26 +56803,26 @@ export namespace Prisma {
     ImageUrl?: SortOrder
     ThumbnailUrl?: SortOrder
     VanityId?: SortOrder
-    Author?: VanityEmbedAuthorsOrderByWithRelationInput
+    Author?: VanityEmbedAuthorOrderByWithRelationInput
     Vanitys?: VanitysOrderByWithRelationInput
   }
 
-  export type VanityEmbedsWhereUniqueInput = Prisma.AtLeast<{
+  export type VanityEmbedWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     VanityId?: string
-    AND?: VanityEmbedsWhereInput | VanityEmbedsWhereInput[]
-    OR?: VanityEmbedsWhereInput[]
-    NOT?: VanityEmbedsWhereInput | VanityEmbedsWhereInput[]
-    Title?: StringFilter<"VanityEmbeds"> | string
-    Description?: StringFilter<"VanityEmbeds"> | string
-    Color?: StringFilter<"VanityEmbeds"> | string
-    ImageUrl?: StringFilter<"VanityEmbeds"> | string
-    ThumbnailUrl?: StringFilter<"VanityEmbeds"> | string
-    Author?: XOR<VanityEmbedAuthorsNullableScalarRelationFilter, VanityEmbedAuthorsWhereInput> | null
+    AND?: VanityEmbedWhereInput | VanityEmbedWhereInput[]
+    OR?: VanityEmbedWhereInput[]
+    NOT?: VanityEmbedWhereInput | VanityEmbedWhereInput[]
+    Title?: StringFilter<"VanityEmbed"> | string
+    Description?: StringFilter<"VanityEmbed"> | string
+    Color?: StringFilter<"VanityEmbed"> | string
+    ImageUrl?: StringNullableFilter<"VanityEmbed"> | string | null
+    ThumbnailUrl?: StringNullableFilter<"VanityEmbed"> | string | null
+    Author?: XOR<VanityEmbedAuthorNullableScalarRelationFilter, VanityEmbedAuthorWhereInput> | null
     Vanitys?: XOR<VanitysScalarRelationFilter, VanitysWhereInput>
   }, "id" | "VanityId">
 
-  export type VanityEmbedsOrderByWithAggregationInput = {
+  export type VanityEmbedOrderByWithAggregationInput = {
     id?: SortOrder
     Title?: SortOrder
     Description?: SortOrder
@@ -56830,97 +56830,97 @@ export namespace Prisma {
     ImageUrl?: SortOrder
     ThumbnailUrl?: SortOrder
     VanityId?: SortOrder
-    _count?: VanityEmbedsCountOrderByAggregateInput
-    _max?: VanityEmbedsMaxOrderByAggregateInput
-    _min?: VanityEmbedsMinOrderByAggregateInput
+    _count?: VanityEmbedCountOrderByAggregateInput
+    _max?: VanityEmbedMaxOrderByAggregateInput
+    _min?: VanityEmbedMinOrderByAggregateInput
   }
 
-  export type VanityEmbedsScalarWhereWithAggregatesInput = {
-    AND?: VanityEmbedsScalarWhereWithAggregatesInput | VanityEmbedsScalarWhereWithAggregatesInput[]
-    OR?: VanityEmbedsScalarWhereWithAggregatesInput[]
-    NOT?: VanityEmbedsScalarWhereWithAggregatesInput | VanityEmbedsScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"VanityEmbeds"> | string
-    Title?: StringWithAggregatesFilter<"VanityEmbeds"> | string
-    Description?: StringWithAggregatesFilter<"VanityEmbeds"> | string
-    Color?: StringWithAggregatesFilter<"VanityEmbeds"> | string
-    ImageUrl?: StringWithAggregatesFilter<"VanityEmbeds"> | string
-    ThumbnailUrl?: StringWithAggregatesFilter<"VanityEmbeds"> | string
-    VanityId?: StringWithAggregatesFilter<"VanityEmbeds"> | string
+  export type VanityEmbedScalarWhereWithAggregatesInput = {
+    AND?: VanityEmbedScalarWhereWithAggregatesInput | VanityEmbedScalarWhereWithAggregatesInput[]
+    OR?: VanityEmbedScalarWhereWithAggregatesInput[]
+    NOT?: VanityEmbedScalarWhereWithAggregatesInput | VanityEmbedScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"VanityEmbed"> | string
+    Title?: StringWithAggregatesFilter<"VanityEmbed"> | string
+    Description?: StringWithAggregatesFilter<"VanityEmbed"> | string
+    Color?: StringWithAggregatesFilter<"VanityEmbed"> | string
+    ImageUrl?: StringNullableWithAggregatesFilter<"VanityEmbed"> | string | null
+    ThumbnailUrl?: StringNullableWithAggregatesFilter<"VanityEmbed"> | string | null
+    VanityId?: StringWithAggregatesFilter<"VanityEmbed"> | string
   }
 
-  export type VanityEmbedAuthorsWhereInput = {
-    AND?: VanityEmbedAuthorsWhereInput | VanityEmbedAuthorsWhereInput[]
-    OR?: VanityEmbedAuthorsWhereInput[]
-    NOT?: VanityEmbedAuthorsWhereInput | VanityEmbedAuthorsWhereInput[]
-    id?: StringFilter<"VanityEmbedAuthors"> | string
-    Name?: StringFilter<"VanityEmbedAuthors"> | string
-    URL?: StringFilter<"VanityEmbedAuthors"> | string
-    IconURL?: StringFilter<"VanityEmbedAuthors"> | string
-    VanityEmbedsId?: StringFilter<"VanityEmbedAuthors"> | string
-    VanityEmbeds?: XOR<VanityEmbedsScalarRelationFilter, VanityEmbedsWhereInput>
+  export type VanityEmbedAuthorWhereInput = {
+    AND?: VanityEmbedAuthorWhereInput | VanityEmbedAuthorWhereInput[]
+    OR?: VanityEmbedAuthorWhereInput[]
+    NOT?: VanityEmbedAuthorWhereInput | VanityEmbedAuthorWhereInput[]
+    id?: StringFilter<"VanityEmbedAuthor"> | string
+    Name?: StringNullableFilter<"VanityEmbedAuthor"> | string | null
+    URL?: StringNullableFilter<"VanityEmbedAuthor"> | string | null
+    IconURL?: StringNullableFilter<"VanityEmbedAuthor"> | string | null
+    VanityEmbedsId?: StringFilter<"VanityEmbedAuthor"> | string
+    VanityEmbeds?: XOR<VanityEmbedScalarRelationFilter, VanityEmbedWhereInput>
   }
 
-  export type VanityEmbedAuthorsOrderByWithRelationInput = {
+  export type VanityEmbedAuthorOrderByWithRelationInput = {
     id?: SortOrder
     Name?: SortOrder
     URL?: SortOrder
     IconURL?: SortOrder
     VanityEmbedsId?: SortOrder
-    VanityEmbeds?: VanityEmbedsOrderByWithRelationInput
+    VanityEmbeds?: VanityEmbedOrderByWithRelationInput
   }
 
-  export type VanityEmbedAuthorsWhereUniqueInput = Prisma.AtLeast<{
+  export type VanityEmbedAuthorWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     VanityEmbedsId?: string
-    AND?: VanityEmbedAuthorsWhereInput | VanityEmbedAuthorsWhereInput[]
-    OR?: VanityEmbedAuthorsWhereInput[]
-    NOT?: VanityEmbedAuthorsWhereInput | VanityEmbedAuthorsWhereInput[]
-    Name?: StringFilter<"VanityEmbedAuthors"> | string
-    URL?: StringFilter<"VanityEmbedAuthors"> | string
-    IconURL?: StringFilter<"VanityEmbedAuthors"> | string
-    VanityEmbeds?: XOR<VanityEmbedsScalarRelationFilter, VanityEmbedsWhereInput>
+    AND?: VanityEmbedAuthorWhereInput | VanityEmbedAuthorWhereInput[]
+    OR?: VanityEmbedAuthorWhereInput[]
+    NOT?: VanityEmbedAuthorWhereInput | VanityEmbedAuthorWhereInput[]
+    Name?: StringNullableFilter<"VanityEmbedAuthor"> | string | null
+    URL?: StringNullableFilter<"VanityEmbedAuthor"> | string | null
+    IconURL?: StringNullableFilter<"VanityEmbedAuthor"> | string | null
+    VanityEmbeds?: XOR<VanityEmbedScalarRelationFilter, VanityEmbedWhereInput>
   }, "id" | "VanityEmbedsId">
 
-  export type VanityEmbedAuthorsOrderByWithAggregationInput = {
+  export type VanityEmbedAuthorOrderByWithAggregationInput = {
     id?: SortOrder
     Name?: SortOrder
     URL?: SortOrder
     IconURL?: SortOrder
     VanityEmbedsId?: SortOrder
-    _count?: VanityEmbedAuthorsCountOrderByAggregateInput
-    _max?: VanityEmbedAuthorsMaxOrderByAggregateInput
-    _min?: VanityEmbedAuthorsMinOrderByAggregateInput
+    _count?: VanityEmbedAuthorCountOrderByAggregateInput
+    _max?: VanityEmbedAuthorMaxOrderByAggregateInput
+    _min?: VanityEmbedAuthorMinOrderByAggregateInput
   }
 
-  export type VanityEmbedAuthorsScalarWhereWithAggregatesInput = {
-    AND?: VanityEmbedAuthorsScalarWhereWithAggregatesInput | VanityEmbedAuthorsScalarWhereWithAggregatesInput[]
-    OR?: VanityEmbedAuthorsScalarWhereWithAggregatesInput[]
-    NOT?: VanityEmbedAuthorsScalarWhereWithAggregatesInput | VanityEmbedAuthorsScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"VanityEmbedAuthors"> | string
-    Name?: StringWithAggregatesFilter<"VanityEmbedAuthors"> | string
-    URL?: StringWithAggregatesFilter<"VanityEmbedAuthors"> | string
-    IconURL?: StringWithAggregatesFilter<"VanityEmbedAuthors"> | string
-    VanityEmbedsId?: StringWithAggregatesFilter<"VanityEmbedAuthors"> | string
+  export type VanityEmbedAuthorScalarWhereWithAggregatesInput = {
+    AND?: VanityEmbedAuthorScalarWhereWithAggregatesInput | VanityEmbedAuthorScalarWhereWithAggregatesInput[]
+    OR?: VanityEmbedAuthorScalarWhereWithAggregatesInput[]
+    NOT?: VanityEmbedAuthorScalarWhereWithAggregatesInput | VanityEmbedAuthorScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"VanityEmbedAuthor"> | string
+    Name?: StringNullableWithAggregatesFilter<"VanityEmbedAuthor"> | string | null
+    URL?: StringNullableWithAggregatesFilter<"VanityEmbedAuthor"> | string | null
+    IconURL?: StringNullableWithAggregatesFilter<"VanityEmbedAuthor"> | string | null
+    VanityEmbedsId?: StringWithAggregatesFilter<"VanityEmbedAuthor"> | string
   }
 
-  export type VanityAnalyticsWhereInput = {
-    AND?: VanityAnalyticsWhereInput | VanityAnalyticsWhereInput[]
-    OR?: VanityAnalyticsWhereInput[]
-    NOT?: VanityAnalyticsWhereInput | VanityAnalyticsWhereInput[]
-    id?: StringFilter<"VanityAnalytics"> | string
-    Click?: IntFilter<"VanityAnalytics"> | number
-    TrackInviteWithLog?: StringNullableFilter<"VanityAnalytics"> | string | null
-    TrackMessageId?: StringNullableFilter<"VanityAnalytics"> | string | null
-    Update?: DateTimeNullableFilter<"VanityAnalytics"> | Date | string | null
-    UniqueClick?: IntNullableFilter<"VanityAnalytics"> | number | null
-    JoinedWithCode?: IntNullableFilter<"VanityAnalytics"> | number | null
-    LoggedIPs?: StringNullableListFilter<"VanityAnalytics">
-    VanityId?: StringFilter<"VanityAnalytics"> | string
-    Latest30Days?: XOR<AnalyticsLatest30DaysNullableScalarRelationFilter, AnalyticsLatest30DaysWhereInput> | null
+  export type VanityAnalyticWhereInput = {
+    AND?: VanityAnalyticWhereInput | VanityAnalyticWhereInput[]
+    OR?: VanityAnalyticWhereInput[]
+    NOT?: VanityAnalyticWhereInput | VanityAnalyticWhereInput[]
+    id?: StringFilter<"VanityAnalytic"> | string
+    Click?: IntFilter<"VanityAnalytic"> | number
+    TrackInviteWithLog?: StringNullableFilter<"VanityAnalytic"> | string | null
+    TrackMessageId?: StringNullableFilter<"VanityAnalytic"> | string | null
+    Update?: DateTimeNullableFilter<"VanityAnalytic"> | Date | string | null
+    UniqueClick?: IntNullableFilter<"VanityAnalytic"> | number | null
+    JoinedWithCode?: IntNullableFilter<"VanityAnalytic"> | number | null
+    LoggedIPs?: StringNullableListFilter<"VanityAnalytic">
+    VanityId?: StringFilter<"VanityAnalytic"> | string
+    Latest30Days?: XOR<VanityAnalyticsLatest30DayNullableScalarRelationFilter, VanityAnalyticsLatest30DayWhereInput> | null
     Vanitys?: XOR<VanitysScalarRelationFilter, VanitysWhereInput>
   }
 
-  export type VanityAnalyticsOrderByWithRelationInput = {
+  export type VanityAnalyticOrderByWithRelationInput = {
     id?: SortOrder
     Click?: SortOrder
     TrackInviteWithLog?: SortOrder
@@ -56930,28 +56930,28 @@ export namespace Prisma {
     JoinedWithCode?: SortOrder
     LoggedIPs?: SortOrder
     VanityId?: SortOrder
-    Latest30Days?: AnalyticsLatest30DaysOrderByWithRelationInput
+    Latest30Days?: VanityAnalyticsLatest30DayOrderByWithRelationInput
     Vanitys?: VanitysOrderByWithRelationInput
   }
 
-  export type VanityAnalyticsWhereUniqueInput = Prisma.AtLeast<{
+  export type VanityAnalyticWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     VanityId?: string
-    AND?: VanityAnalyticsWhereInput | VanityAnalyticsWhereInput[]
-    OR?: VanityAnalyticsWhereInput[]
-    NOT?: VanityAnalyticsWhereInput | VanityAnalyticsWhereInput[]
-    Click?: IntFilter<"VanityAnalytics"> | number
-    TrackInviteWithLog?: StringNullableFilter<"VanityAnalytics"> | string | null
-    TrackMessageId?: StringNullableFilter<"VanityAnalytics"> | string | null
-    Update?: DateTimeNullableFilter<"VanityAnalytics"> | Date | string | null
-    UniqueClick?: IntNullableFilter<"VanityAnalytics"> | number | null
-    JoinedWithCode?: IntNullableFilter<"VanityAnalytics"> | number | null
-    LoggedIPs?: StringNullableListFilter<"VanityAnalytics">
-    Latest30Days?: XOR<AnalyticsLatest30DaysNullableScalarRelationFilter, AnalyticsLatest30DaysWhereInput> | null
+    AND?: VanityAnalyticWhereInput | VanityAnalyticWhereInput[]
+    OR?: VanityAnalyticWhereInput[]
+    NOT?: VanityAnalyticWhereInput | VanityAnalyticWhereInput[]
+    Click?: IntFilter<"VanityAnalytic"> | number
+    TrackInviteWithLog?: StringNullableFilter<"VanityAnalytic"> | string | null
+    TrackMessageId?: StringNullableFilter<"VanityAnalytic"> | string | null
+    Update?: DateTimeNullableFilter<"VanityAnalytic"> | Date | string | null
+    UniqueClick?: IntNullableFilter<"VanityAnalytic"> | number | null
+    JoinedWithCode?: IntNullableFilter<"VanityAnalytic"> | number | null
+    LoggedIPs?: StringNullableListFilter<"VanityAnalytic">
+    Latest30Days?: XOR<VanityAnalyticsLatest30DayNullableScalarRelationFilter, VanityAnalyticsLatest30DayWhereInput> | null
     Vanitys?: XOR<VanitysScalarRelationFilter, VanitysWhereInput>
   }, "id" | "VanityId">
 
-  export type VanityAnalyticsOrderByWithAggregationInput = {
+  export type VanityAnalyticOrderByWithAggregationInput = {
     id?: SortOrder
     Click?: SortOrder
     TrackInviteWithLog?: SortOrder
@@ -56961,88 +56961,88 @@ export namespace Prisma {
     JoinedWithCode?: SortOrder
     LoggedIPs?: SortOrder
     VanityId?: SortOrder
-    _count?: VanityAnalyticsCountOrderByAggregateInput
-    _avg?: VanityAnalyticsAvgOrderByAggregateInput
-    _max?: VanityAnalyticsMaxOrderByAggregateInput
-    _min?: VanityAnalyticsMinOrderByAggregateInput
-    _sum?: VanityAnalyticsSumOrderByAggregateInput
+    _count?: VanityAnalyticCountOrderByAggregateInput
+    _avg?: VanityAnalyticAvgOrderByAggregateInput
+    _max?: VanityAnalyticMaxOrderByAggregateInput
+    _min?: VanityAnalyticMinOrderByAggregateInput
+    _sum?: VanityAnalyticSumOrderByAggregateInput
   }
 
-  export type VanityAnalyticsScalarWhereWithAggregatesInput = {
-    AND?: VanityAnalyticsScalarWhereWithAggregatesInput | VanityAnalyticsScalarWhereWithAggregatesInput[]
-    OR?: VanityAnalyticsScalarWhereWithAggregatesInput[]
-    NOT?: VanityAnalyticsScalarWhereWithAggregatesInput | VanityAnalyticsScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"VanityAnalytics"> | string
-    Click?: IntWithAggregatesFilter<"VanityAnalytics"> | number
-    TrackInviteWithLog?: StringNullableWithAggregatesFilter<"VanityAnalytics"> | string | null
-    TrackMessageId?: StringNullableWithAggregatesFilter<"VanityAnalytics"> | string | null
-    Update?: DateTimeNullableWithAggregatesFilter<"VanityAnalytics"> | Date | string | null
-    UniqueClick?: IntNullableWithAggregatesFilter<"VanityAnalytics"> | number | null
-    JoinedWithCode?: IntNullableWithAggregatesFilter<"VanityAnalytics"> | number | null
-    LoggedIPs?: StringNullableListFilter<"VanityAnalytics">
-    VanityId?: StringWithAggregatesFilter<"VanityAnalytics"> | string
+  export type VanityAnalyticScalarWhereWithAggregatesInput = {
+    AND?: VanityAnalyticScalarWhereWithAggregatesInput | VanityAnalyticScalarWhereWithAggregatesInput[]
+    OR?: VanityAnalyticScalarWhereWithAggregatesInput[]
+    NOT?: VanityAnalyticScalarWhereWithAggregatesInput | VanityAnalyticScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"VanityAnalytic"> | string
+    Click?: IntWithAggregatesFilter<"VanityAnalytic"> | number
+    TrackInviteWithLog?: StringNullableWithAggregatesFilter<"VanityAnalytic"> | string | null
+    TrackMessageId?: StringNullableWithAggregatesFilter<"VanityAnalytic"> | string | null
+    Update?: DateTimeNullableWithAggregatesFilter<"VanityAnalytic"> | Date | string | null
+    UniqueClick?: IntNullableWithAggregatesFilter<"VanityAnalytic"> | number | null
+    JoinedWithCode?: IntNullableWithAggregatesFilter<"VanityAnalytic"> | number | null
+    LoggedIPs?: StringNullableListFilter<"VanityAnalytic">
+    VanityId?: StringWithAggregatesFilter<"VanityAnalytic"> | string
   }
 
-  export type AnalyticsLatest30DaysWhereInput = {
-    AND?: AnalyticsLatest30DaysWhereInput | AnalyticsLatest30DaysWhereInput[]
-    OR?: AnalyticsLatest30DaysWhereInput[]
-    NOT?: AnalyticsLatest30DaysWhereInput | AnalyticsLatest30DaysWhereInput[]
-    id?: StringFilter<"AnalyticsLatest30Days"> | string
-    Click?: IntNullableFilter<"AnalyticsLatest30Days"> | number | null
-    UniqueClick?: IntNullableFilter<"AnalyticsLatest30Days"> | number | null
-    Date?: DateTimeNullableFilter<"AnalyticsLatest30Days"> | Date | string | null
-    JoinedWithCode?: IntNullableFilter<"AnalyticsLatest30Days"> | number | null
-    VanityAnalyticsId?: StringFilter<"AnalyticsLatest30Days"> | string
-    VanityAnalytics?: XOR<VanityAnalyticsScalarRelationFilter, VanityAnalyticsWhereInput>
+  export type VanityAnalyticsLatest30DayWhereInput = {
+    AND?: VanityAnalyticsLatest30DayWhereInput | VanityAnalyticsLatest30DayWhereInput[]
+    OR?: VanityAnalyticsLatest30DayWhereInput[]
+    NOT?: VanityAnalyticsLatest30DayWhereInput | VanityAnalyticsLatest30DayWhereInput[]
+    id?: StringFilter<"VanityAnalyticsLatest30Day"> | string
+    Click?: IntNullableFilter<"VanityAnalyticsLatest30Day"> | number | null
+    UniqueClick?: IntNullableFilter<"VanityAnalyticsLatest30Day"> | number | null
+    Date?: DateTimeNullableFilter<"VanityAnalyticsLatest30Day"> | Date | string | null
+    JoinedWithCode?: IntNullableFilter<"VanityAnalyticsLatest30Day"> | number | null
+    VanityAnalyticsId?: StringFilter<"VanityAnalyticsLatest30Day"> | string
+    VanityAnalytics?: XOR<VanityAnalyticScalarRelationFilter, VanityAnalyticWhereInput>
   }
 
-  export type AnalyticsLatest30DaysOrderByWithRelationInput = {
+  export type VanityAnalyticsLatest30DayOrderByWithRelationInput = {
     id?: SortOrder
     Click?: SortOrder
     UniqueClick?: SortOrder
     Date?: SortOrder
     JoinedWithCode?: SortOrder
     VanityAnalyticsId?: SortOrder
-    VanityAnalytics?: VanityAnalyticsOrderByWithRelationInput
+    VanityAnalytics?: VanityAnalyticOrderByWithRelationInput
   }
 
-  export type AnalyticsLatest30DaysWhereUniqueInput = Prisma.AtLeast<{
+  export type VanityAnalyticsLatest30DayWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     VanityAnalyticsId?: string
-    AND?: AnalyticsLatest30DaysWhereInput | AnalyticsLatest30DaysWhereInput[]
-    OR?: AnalyticsLatest30DaysWhereInput[]
-    NOT?: AnalyticsLatest30DaysWhereInput | AnalyticsLatest30DaysWhereInput[]
-    Click?: IntNullableFilter<"AnalyticsLatest30Days"> | number | null
-    UniqueClick?: IntNullableFilter<"AnalyticsLatest30Days"> | number | null
-    Date?: DateTimeNullableFilter<"AnalyticsLatest30Days"> | Date | string | null
-    JoinedWithCode?: IntNullableFilter<"AnalyticsLatest30Days"> | number | null
-    VanityAnalytics?: XOR<VanityAnalyticsScalarRelationFilter, VanityAnalyticsWhereInput>
+    AND?: VanityAnalyticsLatest30DayWhereInput | VanityAnalyticsLatest30DayWhereInput[]
+    OR?: VanityAnalyticsLatest30DayWhereInput[]
+    NOT?: VanityAnalyticsLatest30DayWhereInput | VanityAnalyticsLatest30DayWhereInput[]
+    Click?: IntNullableFilter<"VanityAnalyticsLatest30Day"> | number | null
+    UniqueClick?: IntNullableFilter<"VanityAnalyticsLatest30Day"> | number | null
+    Date?: DateTimeNullableFilter<"VanityAnalyticsLatest30Day"> | Date | string | null
+    JoinedWithCode?: IntNullableFilter<"VanityAnalyticsLatest30Day"> | number | null
+    VanityAnalytics?: XOR<VanityAnalyticScalarRelationFilter, VanityAnalyticWhereInput>
   }, "id" | "VanityAnalyticsId">
 
-  export type AnalyticsLatest30DaysOrderByWithAggregationInput = {
+  export type VanityAnalyticsLatest30DayOrderByWithAggregationInput = {
     id?: SortOrder
     Click?: SortOrder
     UniqueClick?: SortOrder
     Date?: SortOrder
     JoinedWithCode?: SortOrder
     VanityAnalyticsId?: SortOrder
-    _count?: AnalyticsLatest30DaysCountOrderByAggregateInput
-    _avg?: AnalyticsLatest30DaysAvgOrderByAggregateInput
-    _max?: AnalyticsLatest30DaysMaxOrderByAggregateInput
-    _min?: AnalyticsLatest30DaysMinOrderByAggregateInput
-    _sum?: AnalyticsLatest30DaysSumOrderByAggregateInput
+    _count?: VanityAnalyticsLatest30DayCountOrderByAggregateInput
+    _avg?: VanityAnalyticsLatest30DayAvgOrderByAggregateInput
+    _max?: VanityAnalyticsLatest30DayMaxOrderByAggregateInput
+    _min?: VanityAnalyticsLatest30DayMinOrderByAggregateInput
+    _sum?: VanityAnalyticsLatest30DaySumOrderByAggregateInput
   }
 
-  export type AnalyticsLatest30DaysScalarWhereWithAggregatesInput = {
-    AND?: AnalyticsLatest30DaysScalarWhereWithAggregatesInput | AnalyticsLatest30DaysScalarWhereWithAggregatesInput[]
-    OR?: AnalyticsLatest30DaysScalarWhereWithAggregatesInput[]
-    NOT?: AnalyticsLatest30DaysScalarWhereWithAggregatesInput | AnalyticsLatest30DaysScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"AnalyticsLatest30Days"> | string
-    Click?: IntNullableWithAggregatesFilter<"AnalyticsLatest30Days"> | number | null
-    UniqueClick?: IntNullableWithAggregatesFilter<"AnalyticsLatest30Days"> | number | null
-    Date?: DateTimeNullableWithAggregatesFilter<"AnalyticsLatest30Days"> | Date | string | null
-    JoinedWithCode?: IntNullableWithAggregatesFilter<"AnalyticsLatest30Days"> | number | null
-    VanityAnalyticsId?: StringWithAggregatesFilter<"AnalyticsLatest30Days"> | string
+  export type VanityAnalyticsLatest30DayScalarWhereWithAggregatesInput = {
+    AND?: VanityAnalyticsLatest30DayScalarWhereWithAggregatesInput | VanityAnalyticsLatest30DayScalarWhereWithAggregatesInput[]
+    OR?: VanityAnalyticsLatest30DayScalarWhereWithAggregatesInput[]
+    NOT?: VanityAnalyticsLatest30DayScalarWhereWithAggregatesInput | VanityAnalyticsLatest30DayScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"VanityAnalyticsLatest30Day"> | string
+    Click?: IntNullableWithAggregatesFilter<"VanityAnalyticsLatest30Day"> | number | null
+    UniqueClick?: IntNullableWithAggregatesFilter<"VanityAnalyticsLatest30Day"> | number | null
+    Date?: DateTimeNullableWithAggregatesFilter<"VanityAnalyticsLatest30Day"> | Date | string | null
+    JoinedWithCode?: IntNullableWithAggregatesFilter<"VanityAnalyticsLatest30Day"> | number | null
+    VanityAnalyticsId?: StringWithAggregatesFilter<"VanityAnalyticsLatest30Day"> | string
   }
 
   export type DisBotWhereInput = {
@@ -60366,8 +60366,8 @@ export namespace Prisma {
     InDiscovery?: boolean | null
     IsBannedFromDiscover?: boolean | null
     CreatedAt: Date | string
-    Analytics?: VanityAnalyticsCreateNestedOneWithoutVanitysInput
-    Embed?: VanityEmbedsCreateNestedOneWithoutVanitysInput
+    Analytics?: VanityAnalyticCreateNestedOneWithoutVanitysInput
+    Embed?: VanityEmbedCreateNestedOneWithoutVanitysInput
     Users: UsersCreateNestedOneWithoutVanitysInput
   }
 
@@ -60382,8 +60382,8 @@ export namespace Prisma {
     IsBannedFromDiscover?: boolean | null
     CreatedAt: Date | string
     UserId: string
-    Analytics?: VanityAnalyticsUncheckedCreateNestedOneWithoutVanitysInput
-    Embed?: VanityEmbedsUncheckedCreateNestedOneWithoutVanitysInput
+    Analytics?: VanityAnalyticUncheckedCreateNestedOneWithoutVanitysInput
+    Embed?: VanityEmbedUncheckedCreateNestedOneWithoutVanitysInput
   }
 
   export type VanitysUpdateInput = {
@@ -60395,8 +60395,8 @@ export namespace Prisma {
     InDiscovery?: NullableBoolFieldUpdateOperationsInput | boolean | null
     IsBannedFromDiscover?: NullableBoolFieldUpdateOperationsInput | boolean | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Analytics?: VanityAnalyticsUpdateOneWithoutVanitysNestedInput
-    Embed?: VanityEmbedsUpdateOneWithoutVanitysNestedInput
+    Analytics?: VanityAnalyticUpdateOneWithoutVanitysNestedInput
+    Embed?: VanityEmbedUpdateOneWithoutVanitysNestedInput
     Users?: UsersUpdateOneRequiredWithoutVanitysNestedInput
   }
 
@@ -60410,8 +60410,8 @@ export namespace Prisma {
     IsBannedFromDiscover?: NullableBoolFieldUpdateOperationsInput | boolean | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UserId?: StringFieldUpdateOperationsInput | string
-    Analytics?: VanityAnalyticsUncheckedUpdateOneWithoutVanitysNestedInput
-    Embed?: VanityEmbedsUncheckedUpdateOneWithoutVanitysNestedInput
+    Analytics?: VanityAnalyticUncheckedUpdateOneWithoutVanitysNestedInput
+    Embed?: VanityEmbedUncheckedUpdateOneWithoutVanitysNestedInput
   }
 
   export type VanitysCreateManyInput = {
@@ -60450,127 +60450,127 @@ export namespace Prisma {
     UserId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type VanityEmbedsCreateInput = {
+  export type VanityEmbedCreateInput = {
     id?: string
     Title: string
     Description: string
     Color: string
-    ImageUrl: string
-    ThumbnailUrl: string
-    Author?: VanityEmbedAuthorsCreateNestedOneWithoutVanityEmbedsInput
+    ImageUrl?: string | null
+    ThumbnailUrl?: string | null
+    Author?: VanityEmbedAuthorCreateNestedOneWithoutVanityEmbedsInput
     Vanitys: VanitysCreateNestedOneWithoutEmbedInput
   }
 
-  export type VanityEmbedsUncheckedCreateInput = {
+  export type VanityEmbedUncheckedCreateInput = {
     id?: string
     Title: string
     Description: string
     Color: string
-    ImageUrl: string
-    ThumbnailUrl: string
+    ImageUrl?: string | null
+    ThumbnailUrl?: string | null
     VanityId: string
-    Author?: VanityEmbedAuthorsUncheckedCreateNestedOneWithoutVanityEmbedsInput
+    Author?: VanityEmbedAuthorUncheckedCreateNestedOneWithoutVanityEmbedsInput
   }
 
-  export type VanityEmbedsUpdateInput = {
+  export type VanityEmbedUpdateInput = {
     Title?: StringFieldUpdateOperationsInput | string
     Description?: StringFieldUpdateOperationsInput | string
     Color?: StringFieldUpdateOperationsInput | string
-    ImageUrl?: StringFieldUpdateOperationsInput | string
-    ThumbnailUrl?: StringFieldUpdateOperationsInput | string
-    Author?: VanityEmbedAuthorsUpdateOneWithoutVanityEmbedsNestedInput
+    ImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    ThumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    Author?: VanityEmbedAuthorUpdateOneWithoutVanityEmbedsNestedInput
     Vanitys?: VanitysUpdateOneRequiredWithoutEmbedNestedInput
   }
 
-  export type VanityEmbedsUncheckedUpdateInput = {
+  export type VanityEmbedUncheckedUpdateInput = {
     Title?: StringFieldUpdateOperationsInput | string
     Description?: StringFieldUpdateOperationsInput | string
     Color?: StringFieldUpdateOperationsInput | string
-    ImageUrl?: StringFieldUpdateOperationsInput | string
-    ThumbnailUrl?: StringFieldUpdateOperationsInput | string
+    ImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    ThumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     VanityId?: StringFieldUpdateOperationsInput | string
-    Author?: VanityEmbedAuthorsUncheckedUpdateOneWithoutVanityEmbedsNestedInput
+    Author?: VanityEmbedAuthorUncheckedUpdateOneWithoutVanityEmbedsNestedInput
   }
 
-  export type VanityEmbedsCreateManyInput = {
+  export type VanityEmbedCreateManyInput = {
     id?: string
     Title: string
     Description: string
     Color: string
-    ImageUrl: string
-    ThumbnailUrl: string
+    ImageUrl?: string | null
+    ThumbnailUrl?: string | null
     VanityId: string
   }
 
-  export type VanityEmbedsUpdateManyMutationInput = {
+  export type VanityEmbedUpdateManyMutationInput = {
     Title?: StringFieldUpdateOperationsInput | string
     Description?: StringFieldUpdateOperationsInput | string
     Color?: StringFieldUpdateOperationsInput | string
-    ImageUrl?: StringFieldUpdateOperationsInput | string
-    ThumbnailUrl?: StringFieldUpdateOperationsInput | string
+    ImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    ThumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type VanityEmbedsUncheckedUpdateManyInput = {
+  export type VanityEmbedUncheckedUpdateManyInput = {
     Title?: StringFieldUpdateOperationsInput | string
     Description?: StringFieldUpdateOperationsInput | string
     Color?: StringFieldUpdateOperationsInput | string
-    ImageUrl?: StringFieldUpdateOperationsInput | string
-    ThumbnailUrl?: StringFieldUpdateOperationsInput | string
+    ImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    ThumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     VanityId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type VanityEmbedAuthorsCreateInput = {
+  export type VanityEmbedAuthorCreateInput = {
     id?: string
-    Name: string
-    URL: string
-    IconURL: string
-    VanityEmbeds: VanityEmbedsCreateNestedOneWithoutAuthorInput
+    Name?: string | null
+    URL?: string | null
+    IconURL?: string | null
+    VanityEmbeds: VanityEmbedCreateNestedOneWithoutAuthorInput
   }
 
-  export type VanityEmbedAuthorsUncheckedCreateInput = {
+  export type VanityEmbedAuthorUncheckedCreateInput = {
     id?: string
-    Name: string
-    URL: string
-    IconURL: string
+    Name?: string | null
+    URL?: string | null
+    IconURL?: string | null
     VanityEmbedsId: string
   }
 
-  export type VanityEmbedAuthorsUpdateInput = {
-    Name?: StringFieldUpdateOperationsInput | string
-    URL?: StringFieldUpdateOperationsInput | string
-    IconURL?: StringFieldUpdateOperationsInput | string
-    VanityEmbeds?: VanityEmbedsUpdateOneRequiredWithoutAuthorNestedInput
+  export type VanityEmbedAuthorUpdateInput = {
+    Name?: NullableStringFieldUpdateOperationsInput | string | null
+    URL?: NullableStringFieldUpdateOperationsInput | string | null
+    IconURL?: NullableStringFieldUpdateOperationsInput | string | null
+    VanityEmbeds?: VanityEmbedUpdateOneRequiredWithoutAuthorNestedInput
   }
 
-  export type VanityEmbedAuthorsUncheckedUpdateInput = {
-    Name?: StringFieldUpdateOperationsInput | string
-    URL?: StringFieldUpdateOperationsInput | string
-    IconURL?: StringFieldUpdateOperationsInput | string
+  export type VanityEmbedAuthorUncheckedUpdateInput = {
+    Name?: NullableStringFieldUpdateOperationsInput | string | null
+    URL?: NullableStringFieldUpdateOperationsInput | string | null
+    IconURL?: NullableStringFieldUpdateOperationsInput | string | null
     VanityEmbedsId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type VanityEmbedAuthorsCreateManyInput = {
+  export type VanityEmbedAuthorCreateManyInput = {
     id?: string
-    Name: string
-    URL: string
-    IconURL: string
+    Name?: string | null
+    URL?: string | null
+    IconURL?: string | null
     VanityEmbedsId: string
   }
 
-  export type VanityEmbedAuthorsUpdateManyMutationInput = {
-    Name?: StringFieldUpdateOperationsInput | string
-    URL?: StringFieldUpdateOperationsInput | string
-    IconURL?: StringFieldUpdateOperationsInput | string
+  export type VanityEmbedAuthorUpdateManyMutationInput = {
+    Name?: NullableStringFieldUpdateOperationsInput | string | null
+    URL?: NullableStringFieldUpdateOperationsInput | string | null
+    IconURL?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type VanityEmbedAuthorsUncheckedUpdateManyInput = {
-    Name?: StringFieldUpdateOperationsInput | string
-    URL?: StringFieldUpdateOperationsInput | string
-    IconURL?: StringFieldUpdateOperationsInput | string
+  export type VanityEmbedAuthorUncheckedUpdateManyInput = {
+    Name?: NullableStringFieldUpdateOperationsInput | string | null
+    URL?: NullableStringFieldUpdateOperationsInput | string | null
+    IconURL?: NullableStringFieldUpdateOperationsInput | string | null
     VanityEmbedsId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type VanityAnalyticsCreateInput = {
+  export type VanityAnalyticCreateInput = {
     id?: string
     Click: number
     TrackInviteWithLog?: string | null
@@ -60578,12 +60578,12 @@ export namespace Prisma {
     Update?: Date | string | null
     UniqueClick?: number | null
     JoinedWithCode?: number | null
-    LoggedIPs?: VanityAnalyticsCreateLoggedIPsInput | string[]
-    Latest30Days?: AnalyticsLatest30DaysCreateNestedOneWithoutVanityAnalyticsInput
+    LoggedIPs?: VanityAnalyticCreateLoggedIPsInput | string[]
+    Latest30Days?: VanityAnalyticsLatest30DayCreateNestedOneWithoutVanityAnalyticsInput
     Vanitys: VanitysCreateNestedOneWithoutAnalyticsInput
   }
 
-  export type VanityAnalyticsUncheckedCreateInput = {
+  export type VanityAnalyticUncheckedCreateInput = {
     id?: string
     Click: number
     TrackInviteWithLog?: string | null
@@ -60591,36 +60591,36 @@ export namespace Prisma {
     Update?: Date | string | null
     UniqueClick?: number | null
     JoinedWithCode?: number | null
-    LoggedIPs?: VanityAnalyticsCreateLoggedIPsInput | string[]
+    LoggedIPs?: VanityAnalyticCreateLoggedIPsInput | string[]
     VanityId: string
-    Latest30Days?: AnalyticsLatest30DaysUncheckedCreateNestedOneWithoutVanityAnalyticsInput
+    Latest30Days?: VanityAnalyticsLatest30DayUncheckedCreateNestedOneWithoutVanityAnalyticsInput
   }
 
-  export type VanityAnalyticsUpdateInput = {
+  export type VanityAnalyticUpdateInput = {
     Click?: IntFieldUpdateOperationsInput | number
     TrackInviteWithLog?: NullableStringFieldUpdateOperationsInput | string | null
     TrackMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     Update?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     UniqueClick?: NullableIntFieldUpdateOperationsInput | number | null
     JoinedWithCode?: NullableIntFieldUpdateOperationsInput | number | null
-    LoggedIPs?: VanityAnalyticsUpdateLoggedIPsInput | string[]
-    Latest30Days?: AnalyticsLatest30DaysUpdateOneWithoutVanityAnalyticsNestedInput
+    LoggedIPs?: VanityAnalyticUpdateLoggedIPsInput | string[]
+    Latest30Days?: VanityAnalyticsLatest30DayUpdateOneWithoutVanityAnalyticsNestedInput
     Vanitys?: VanitysUpdateOneRequiredWithoutAnalyticsNestedInput
   }
 
-  export type VanityAnalyticsUncheckedUpdateInput = {
+  export type VanityAnalyticUncheckedUpdateInput = {
     Click?: IntFieldUpdateOperationsInput | number
     TrackInviteWithLog?: NullableStringFieldUpdateOperationsInput | string | null
     TrackMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     Update?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     UniqueClick?: NullableIntFieldUpdateOperationsInput | number | null
     JoinedWithCode?: NullableIntFieldUpdateOperationsInput | number | null
-    LoggedIPs?: VanityAnalyticsUpdateLoggedIPsInput | string[]
+    LoggedIPs?: VanityAnalyticUpdateLoggedIPsInput | string[]
     VanityId?: StringFieldUpdateOperationsInput | string
-    Latest30Days?: AnalyticsLatest30DaysUncheckedUpdateOneWithoutVanityAnalyticsNestedInput
+    Latest30Days?: VanityAnalyticsLatest30DayUncheckedUpdateOneWithoutVanityAnalyticsNestedInput
   }
 
-  export type VanityAnalyticsCreateManyInput = {
+  export type VanityAnalyticCreateManyInput = {
     id?: string
     Click: number
     TrackInviteWithLog?: string | null
@@ -60628,41 +60628,41 @@ export namespace Prisma {
     Update?: Date | string | null
     UniqueClick?: number | null
     JoinedWithCode?: number | null
-    LoggedIPs?: VanityAnalyticsCreateLoggedIPsInput | string[]
+    LoggedIPs?: VanityAnalyticCreateLoggedIPsInput | string[]
     VanityId: string
   }
 
-  export type VanityAnalyticsUpdateManyMutationInput = {
+  export type VanityAnalyticUpdateManyMutationInput = {
     Click?: IntFieldUpdateOperationsInput | number
     TrackInviteWithLog?: NullableStringFieldUpdateOperationsInput | string | null
     TrackMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     Update?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     UniqueClick?: NullableIntFieldUpdateOperationsInput | number | null
     JoinedWithCode?: NullableIntFieldUpdateOperationsInput | number | null
-    LoggedIPs?: VanityAnalyticsUpdateLoggedIPsInput | string[]
+    LoggedIPs?: VanityAnalyticUpdateLoggedIPsInput | string[]
   }
 
-  export type VanityAnalyticsUncheckedUpdateManyInput = {
+  export type VanityAnalyticUncheckedUpdateManyInput = {
     Click?: IntFieldUpdateOperationsInput | number
     TrackInviteWithLog?: NullableStringFieldUpdateOperationsInput | string | null
     TrackMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     Update?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     UniqueClick?: NullableIntFieldUpdateOperationsInput | number | null
     JoinedWithCode?: NullableIntFieldUpdateOperationsInput | number | null
-    LoggedIPs?: VanityAnalyticsUpdateLoggedIPsInput | string[]
+    LoggedIPs?: VanityAnalyticUpdateLoggedIPsInput | string[]
     VanityId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type AnalyticsLatest30DaysCreateInput = {
+  export type VanityAnalyticsLatest30DayCreateInput = {
     id?: string
     Click?: number | null
     UniqueClick?: number | null
     Date?: Date | string | null
     JoinedWithCode?: number | null
-    VanityAnalytics: VanityAnalyticsCreateNestedOneWithoutLatest30DaysInput
+    VanityAnalytics: VanityAnalyticCreateNestedOneWithoutLatest30DaysInput
   }
 
-  export type AnalyticsLatest30DaysUncheckedCreateInput = {
+  export type VanityAnalyticsLatest30DayUncheckedCreateInput = {
     id?: string
     Click?: number | null
     UniqueClick?: number | null
@@ -60671,15 +60671,15 @@ export namespace Prisma {
     VanityAnalyticsId: string
   }
 
-  export type AnalyticsLatest30DaysUpdateInput = {
+  export type VanityAnalyticsLatest30DayUpdateInput = {
     Click?: NullableIntFieldUpdateOperationsInput | number | null
     UniqueClick?: NullableIntFieldUpdateOperationsInput | number | null
     Date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     JoinedWithCode?: NullableIntFieldUpdateOperationsInput | number | null
-    VanityAnalytics?: VanityAnalyticsUpdateOneRequiredWithoutLatest30DaysNestedInput
+    VanityAnalytics?: VanityAnalyticUpdateOneRequiredWithoutLatest30DaysNestedInput
   }
 
-  export type AnalyticsLatest30DaysUncheckedUpdateInput = {
+  export type VanityAnalyticsLatest30DayUncheckedUpdateInput = {
     Click?: NullableIntFieldUpdateOperationsInput | number | null
     UniqueClick?: NullableIntFieldUpdateOperationsInput | number | null
     Date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -60687,7 +60687,7 @@ export namespace Prisma {
     VanityAnalyticsId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type AnalyticsLatest30DaysCreateManyInput = {
+  export type VanityAnalyticsLatest30DayCreateManyInput = {
     id?: string
     Click?: number | null
     UniqueClick?: number | null
@@ -60696,14 +60696,14 @@ export namespace Prisma {
     VanityAnalyticsId: string
   }
 
-  export type AnalyticsLatest30DaysUpdateManyMutationInput = {
+  export type VanityAnalyticsLatest30DayUpdateManyMutationInput = {
     Click?: NullableIntFieldUpdateOperationsInput | number | null
     UniqueClick?: NullableIntFieldUpdateOperationsInput | number | null
     Date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     JoinedWithCode?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type AnalyticsLatest30DaysUncheckedUpdateManyInput = {
+  export type VanityAnalyticsLatest30DayUncheckedUpdateManyInput = {
     Click?: NullableIntFieldUpdateOperationsInput | number | null
     UniqueClick?: NullableIntFieldUpdateOperationsInput | number | null
     Date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -62900,14 +62900,14 @@ export namespace Prisma {
     _max?: NestedJsonFilter<$PrismaModel>
   }
 
-  export type VanityAnalyticsNullableScalarRelationFilter = {
-    is?: VanityAnalyticsWhereInput | null
-    isNot?: VanityAnalyticsWhereInput | null
+  export type VanityAnalyticNullableScalarRelationFilter = {
+    is?: VanityAnalyticWhereInput | null
+    isNot?: VanityAnalyticWhereInput | null
   }
 
-  export type VanityEmbedsNullableScalarRelationFilter = {
-    is?: VanityEmbedsWhereInput | null
-    isNot?: VanityEmbedsWhereInput | null
+  export type VanityEmbedNullableScalarRelationFilter = {
+    is?: VanityEmbedWhereInput | null
+    isNot?: VanityEmbedWhereInput | null
   }
 
   export type VanitysCountOrderByAggregateInput = {
@@ -62949,9 +62949,9 @@ export namespace Prisma {
     UserId?: SortOrder
   }
 
-  export type VanityEmbedAuthorsNullableScalarRelationFilter = {
-    is?: VanityEmbedAuthorsWhereInput | null
-    isNot?: VanityEmbedAuthorsWhereInput | null
+  export type VanityEmbedAuthorNullableScalarRelationFilter = {
+    is?: VanityEmbedAuthorWhereInput | null
+    isNot?: VanityEmbedAuthorWhereInput | null
   }
 
   export type VanitysScalarRelationFilter = {
@@ -62959,7 +62959,7 @@ export namespace Prisma {
     isNot?: VanitysWhereInput
   }
 
-  export type VanityEmbedsCountOrderByAggregateInput = {
+  export type VanityEmbedCountOrderByAggregateInput = {
     id?: SortOrder
     Title?: SortOrder
     Description?: SortOrder
@@ -62969,7 +62969,7 @@ export namespace Prisma {
     VanityId?: SortOrder
   }
 
-  export type VanityEmbedsMaxOrderByAggregateInput = {
+  export type VanityEmbedMaxOrderByAggregateInput = {
     id?: SortOrder
     Title?: SortOrder
     Description?: SortOrder
@@ -62979,7 +62979,7 @@ export namespace Prisma {
     VanityId?: SortOrder
   }
 
-  export type VanityEmbedsMinOrderByAggregateInput = {
+  export type VanityEmbedMinOrderByAggregateInput = {
     id?: SortOrder
     Title?: SortOrder
     Description?: SortOrder
@@ -62989,12 +62989,12 @@ export namespace Prisma {
     VanityId?: SortOrder
   }
 
-  export type VanityEmbedsScalarRelationFilter = {
-    is?: VanityEmbedsWhereInput
-    isNot?: VanityEmbedsWhereInput
+  export type VanityEmbedScalarRelationFilter = {
+    is?: VanityEmbedWhereInput
+    isNot?: VanityEmbedWhereInput
   }
 
-  export type VanityEmbedAuthorsCountOrderByAggregateInput = {
+  export type VanityEmbedAuthorCountOrderByAggregateInput = {
     id?: SortOrder
     Name?: SortOrder
     URL?: SortOrder
@@ -63002,7 +63002,7 @@ export namespace Prisma {
     VanityEmbedsId?: SortOrder
   }
 
-  export type VanityEmbedAuthorsMaxOrderByAggregateInput = {
+  export type VanityEmbedAuthorMaxOrderByAggregateInput = {
     id?: SortOrder
     Name?: SortOrder
     URL?: SortOrder
@@ -63010,7 +63010,7 @@ export namespace Prisma {
     VanityEmbedsId?: SortOrder
   }
 
-  export type VanityEmbedAuthorsMinOrderByAggregateInput = {
+  export type VanityEmbedAuthorMinOrderByAggregateInput = {
     id?: SortOrder
     Name?: SortOrder
     URL?: SortOrder
@@ -63018,12 +63018,12 @@ export namespace Prisma {
     VanityEmbedsId?: SortOrder
   }
 
-  export type AnalyticsLatest30DaysNullableScalarRelationFilter = {
-    is?: AnalyticsLatest30DaysWhereInput | null
-    isNot?: AnalyticsLatest30DaysWhereInput | null
+  export type VanityAnalyticsLatest30DayNullableScalarRelationFilter = {
+    is?: VanityAnalyticsLatest30DayWhereInput | null
+    isNot?: VanityAnalyticsLatest30DayWhereInput | null
   }
 
-  export type VanityAnalyticsCountOrderByAggregateInput = {
+  export type VanityAnalyticCountOrderByAggregateInput = {
     id?: SortOrder
     Click?: SortOrder
     TrackInviteWithLog?: SortOrder
@@ -63035,13 +63035,13 @@ export namespace Prisma {
     VanityId?: SortOrder
   }
 
-  export type VanityAnalyticsAvgOrderByAggregateInput = {
+  export type VanityAnalyticAvgOrderByAggregateInput = {
     Click?: SortOrder
     UniqueClick?: SortOrder
     JoinedWithCode?: SortOrder
   }
 
-  export type VanityAnalyticsMaxOrderByAggregateInput = {
+  export type VanityAnalyticMaxOrderByAggregateInput = {
     id?: SortOrder
     Click?: SortOrder
     TrackInviteWithLog?: SortOrder
@@ -63052,7 +63052,7 @@ export namespace Prisma {
     VanityId?: SortOrder
   }
 
-  export type VanityAnalyticsMinOrderByAggregateInput = {
+  export type VanityAnalyticMinOrderByAggregateInput = {
     id?: SortOrder
     Click?: SortOrder
     TrackInviteWithLog?: SortOrder
@@ -63063,18 +63063,18 @@ export namespace Prisma {
     VanityId?: SortOrder
   }
 
-  export type VanityAnalyticsSumOrderByAggregateInput = {
+  export type VanityAnalyticSumOrderByAggregateInput = {
     Click?: SortOrder
     UniqueClick?: SortOrder
     JoinedWithCode?: SortOrder
   }
 
-  export type VanityAnalyticsScalarRelationFilter = {
-    is?: VanityAnalyticsWhereInput
-    isNot?: VanityAnalyticsWhereInput
+  export type VanityAnalyticScalarRelationFilter = {
+    is?: VanityAnalyticWhereInput
+    isNot?: VanityAnalyticWhereInput
   }
 
-  export type AnalyticsLatest30DaysCountOrderByAggregateInput = {
+  export type VanityAnalyticsLatest30DayCountOrderByAggregateInput = {
     id?: SortOrder
     Click?: SortOrder
     UniqueClick?: SortOrder
@@ -63083,13 +63083,13 @@ export namespace Prisma {
     VanityAnalyticsId?: SortOrder
   }
 
-  export type AnalyticsLatest30DaysAvgOrderByAggregateInput = {
+  export type VanityAnalyticsLatest30DayAvgOrderByAggregateInput = {
     Click?: SortOrder
     UniqueClick?: SortOrder
     JoinedWithCode?: SortOrder
   }
 
-  export type AnalyticsLatest30DaysMaxOrderByAggregateInput = {
+  export type VanityAnalyticsLatest30DayMaxOrderByAggregateInput = {
     id?: SortOrder
     Click?: SortOrder
     UniqueClick?: SortOrder
@@ -63098,7 +63098,7 @@ export namespace Prisma {
     VanityAnalyticsId?: SortOrder
   }
 
-  export type AnalyticsLatest30DaysMinOrderByAggregateInput = {
+  export type VanityAnalyticsLatest30DayMinOrderByAggregateInput = {
     id?: SortOrder
     Click?: SortOrder
     UniqueClick?: SortOrder
@@ -63107,7 +63107,7 @@ export namespace Prisma {
     VanityAnalyticsId?: SortOrder
   }
 
-  export type AnalyticsLatest30DaysSumOrderByAggregateInput = {
+  export type VanityAnalyticsLatest30DaySumOrderByAggregateInput = {
     Click?: SortOrder
     UniqueClick?: SortOrder
     JoinedWithCode?: SortOrder
@@ -65687,16 +65687,16 @@ export namespace Prisma {
     update?: XOR<XOR<UsersUpdateToOneWithWhereWithoutGuildBackupsInput, UsersUpdateWithoutGuildBackupsInput>, UsersUncheckedUpdateWithoutGuildBackupsInput>
   }
 
-  export type VanityAnalyticsCreateNestedOneWithoutVanitysInput = {
-    create?: XOR<VanityAnalyticsCreateWithoutVanitysInput, VanityAnalyticsUncheckedCreateWithoutVanitysInput>
-    connectOrCreate?: VanityAnalyticsCreateOrConnectWithoutVanitysInput
-    connect?: VanityAnalyticsWhereUniqueInput
+  export type VanityAnalyticCreateNestedOneWithoutVanitysInput = {
+    create?: XOR<VanityAnalyticCreateWithoutVanitysInput, VanityAnalyticUncheckedCreateWithoutVanitysInput>
+    connectOrCreate?: VanityAnalyticCreateOrConnectWithoutVanitysInput
+    connect?: VanityAnalyticWhereUniqueInput
   }
 
-  export type VanityEmbedsCreateNestedOneWithoutVanitysInput = {
-    create?: XOR<VanityEmbedsCreateWithoutVanitysInput, VanityEmbedsUncheckedCreateWithoutVanitysInput>
-    connectOrCreate?: VanityEmbedsCreateOrConnectWithoutVanitysInput
-    connect?: VanityEmbedsWhereUniqueInput
+  export type VanityEmbedCreateNestedOneWithoutVanitysInput = {
+    create?: XOR<VanityEmbedCreateWithoutVanitysInput, VanityEmbedUncheckedCreateWithoutVanitysInput>
+    connectOrCreate?: VanityEmbedCreateOrConnectWithoutVanitysInput
+    connect?: VanityEmbedWhereUniqueInput
   }
 
   export type UsersCreateNestedOneWithoutVanitysInput = {
@@ -65705,36 +65705,36 @@ export namespace Prisma {
     connect?: UsersWhereUniqueInput
   }
 
-  export type VanityAnalyticsUncheckedCreateNestedOneWithoutVanitysInput = {
-    create?: XOR<VanityAnalyticsCreateWithoutVanitysInput, VanityAnalyticsUncheckedCreateWithoutVanitysInput>
-    connectOrCreate?: VanityAnalyticsCreateOrConnectWithoutVanitysInput
-    connect?: VanityAnalyticsWhereUniqueInput
+  export type VanityAnalyticUncheckedCreateNestedOneWithoutVanitysInput = {
+    create?: XOR<VanityAnalyticCreateWithoutVanitysInput, VanityAnalyticUncheckedCreateWithoutVanitysInput>
+    connectOrCreate?: VanityAnalyticCreateOrConnectWithoutVanitysInput
+    connect?: VanityAnalyticWhereUniqueInput
   }
 
-  export type VanityEmbedsUncheckedCreateNestedOneWithoutVanitysInput = {
-    create?: XOR<VanityEmbedsCreateWithoutVanitysInput, VanityEmbedsUncheckedCreateWithoutVanitysInput>
-    connectOrCreate?: VanityEmbedsCreateOrConnectWithoutVanitysInput
-    connect?: VanityEmbedsWhereUniqueInput
+  export type VanityEmbedUncheckedCreateNestedOneWithoutVanitysInput = {
+    create?: XOR<VanityEmbedCreateWithoutVanitysInput, VanityEmbedUncheckedCreateWithoutVanitysInput>
+    connectOrCreate?: VanityEmbedCreateOrConnectWithoutVanitysInput
+    connect?: VanityEmbedWhereUniqueInput
   }
 
-  export type VanityAnalyticsUpdateOneWithoutVanitysNestedInput = {
-    create?: XOR<VanityAnalyticsCreateWithoutVanitysInput, VanityAnalyticsUncheckedCreateWithoutVanitysInput>
-    connectOrCreate?: VanityAnalyticsCreateOrConnectWithoutVanitysInput
-    upsert?: VanityAnalyticsUpsertWithoutVanitysInput
-    disconnect?: VanityAnalyticsWhereInput | boolean
-    delete?: VanityAnalyticsWhereInput | boolean
-    connect?: VanityAnalyticsWhereUniqueInput
-    update?: XOR<XOR<VanityAnalyticsUpdateToOneWithWhereWithoutVanitysInput, VanityAnalyticsUpdateWithoutVanitysInput>, VanityAnalyticsUncheckedUpdateWithoutVanitysInput>
+  export type VanityAnalyticUpdateOneWithoutVanitysNestedInput = {
+    create?: XOR<VanityAnalyticCreateWithoutVanitysInput, VanityAnalyticUncheckedCreateWithoutVanitysInput>
+    connectOrCreate?: VanityAnalyticCreateOrConnectWithoutVanitysInput
+    upsert?: VanityAnalyticUpsertWithoutVanitysInput
+    disconnect?: VanityAnalyticWhereInput | boolean
+    delete?: VanityAnalyticWhereInput | boolean
+    connect?: VanityAnalyticWhereUniqueInput
+    update?: XOR<XOR<VanityAnalyticUpdateToOneWithWhereWithoutVanitysInput, VanityAnalyticUpdateWithoutVanitysInput>, VanityAnalyticUncheckedUpdateWithoutVanitysInput>
   }
 
-  export type VanityEmbedsUpdateOneWithoutVanitysNestedInput = {
-    create?: XOR<VanityEmbedsCreateWithoutVanitysInput, VanityEmbedsUncheckedCreateWithoutVanitysInput>
-    connectOrCreate?: VanityEmbedsCreateOrConnectWithoutVanitysInput
-    upsert?: VanityEmbedsUpsertWithoutVanitysInput
-    disconnect?: VanityEmbedsWhereInput | boolean
-    delete?: VanityEmbedsWhereInput | boolean
-    connect?: VanityEmbedsWhereUniqueInput
-    update?: XOR<XOR<VanityEmbedsUpdateToOneWithWhereWithoutVanitysInput, VanityEmbedsUpdateWithoutVanitysInput>, VanityEmbedsUncheckedUpdateWithoutVanitysInput>
+  export type VanityEmbedUpdateOneWithoutVanitysNestedInput = {
+    create?: XOR<VanityEmbedCreateWithoutVanitysInput, VanityEmbedUncheckedCreateWithoutVanitysInput>
+    connectOrCreate?: VanityEmbedCreateOrConnectWithoutVanitysInput
+    upsert?: VanityEmbedUpsertWithoutVanitysInput
+    disconnect?: VanityEmbedWhereInput | boolean
+    delete?: VanityEmbedWhereInput | boolean
+    connect?: VanityEmbedWhereUniqueInput
+    update?: XOR<XOR<VanityEmbedUpdateToOneWithWhereWithoutVanitysInput, VanityEmbedUpdateWithoutVanitysInput>, VanityEmbedUncheckedUpdateWithoutVanitysInput>
   }
 
   export type UsersUpdateOneRequiredWithoutVanitysNestedInput = {
@@ -65745,30 +65745,30 @@ export namespace Prisma {
     update?: XOR<XOR<UsersUpdateToOneWithWhereWithoutVanitysInput, UsersUpdateWithoutVanitysInput>, UsersUncheckedUpdateWithoutVanitysInput>
   }
 
-  export type VanityAnalyticsUncheckedUpdateOneWithoutVanitysNestedInput = {
-    create?: XOR<VanityAnalyticsCreateWithoutVanitysInput, VanityAnalyticsUncheckedCreateWithoutVanitysInput>
-    connectOrCreate?: VanityAnalyticsCreateOrConnectWithoutVanitysInput
-    upsert?: VanityAnalyticsUpsertWithoutVanitysInput
-    disconnect?: VanityAnalyticsWhereInput | boolean
-    delete?: VanityAnalyticsWhereInput | boolean
-    connect?: VanityAnalyticsWhereUniqueInput
-    update?: XOR<XOR<VanityAnalyticsUpdateToOneWithWhereWithoutVanitysInput, VanityAnalyticsUpdateWithoutVanitysInput>, VanityAnalyticsUncheckedUpdateWithoutVanitysInput>
+  export type VanityAnalyticUncheckedUpdateOneWithoutVanitysNestedInput = {
+    create?: XOR<VanityAnalyticCreateWithoutVanitysInput, VanityAnalyticUncheckedCreateWithoutVanitysInput>
+    connectOrCreate?: VanityAnalyticCreateOrConnectWithoutVanitysInput
+    upsert?: VanityAnalyticUpsertWithoutVanitysInput
+    disconnect?: VanityAnalyticWhereInput | boolean
+    delete?: VanityAnalyticWhereInput | boolean
+    connect?: VanityAnalyticWhereUniqueInput
+    update?: XOR<XOR<VanityAnalyticUpdateToOneWithWhereWithoutVanitysInput, VanityAnalyticUpdateWithoutVanitysInput>, VanityAnalyticUncheckedUpdateWithoutVanitysInput>
   }
 
-  export type VanityEmbedsUncheckedUpdateOneWithoutVanitysNestedInput = {
-    create?: XOR<VanityEmbedsCreateWithoutVanitysInput, VanityEmbedsUncheckedCreateWithoutVanitysInput>
-    connectOrCreate?: VanityEmbedsCreateOrConnectWithoutVanitysInput
-    upsert?: VanityEmbedsUpsertWithoutVanitysInput
-    disconnect?: VanityEmbedsWhereInput | boolean
-    delete?: VanityEmbedsWhereInput | boolean
-    connect?: VanityEmbedsWhereUniqueInput
-    update?: XOR<XOR<VanityEmbedsUpdateToOneWithWhereWithoutVanitysInput, VanityEmbedsUpdateWithoutVanitysInput>, VanityEmbedsUncheckedUpdateWithoutVanitysInput>
+  export type VanityEmbedUncheckedUpdateOneWithoutVanitysNestedInput = {
+    create?: XOR<VanityEmbedCreateWithoutVanitysInput, VanityEmbedUncheckedCreateWithoutVanitysInput>
+    connectOrCreate?: VanityEmbedCreateOrConnectWithoutVanitysInput
+    upsert?: VanityEmbedUpsertWithoutVanitysInput
+    disconnect?: VanityEmbedWhereInput | boolean
+    delete?: VanityEmbedWhereInput | boolean
+    connect?: VanityEmbedWhereUniqueInput
+    update?: XOR<XOR<VanityEmbedUpdateToOneWithWhereWithoutVanitysInput, VanityEmbedUpdateWithoutVanitysInput>, VanityEmbedUncheckedUpdateWithoutVanitysInput>
   }
 
-  export type VanityEmbedAuthorsCreateNestedOneWithoutVanityEmbedsInput = {
-    create?: XOR<VanityEmbedAuthorsCreateWithoutVanityEmbedsInput, VanityEmbedAuthorsUncheckedCreateWithoutVanityEmbedsInput>
-    connectOrCreate?: VanityEmbedAuthorsCreateOrConnectWithoutVanityEmbedsInput
-    connect?: VanityEmbedAuthorsWhereUniqueInput
+  export type VanityEmbedAuthorCreateNestedOneWithoutVanityEmbedsInput = {
+    create?: XOR<VanityEmbedAuthorCreateWithoutVanityEmbedsInput, VanityEmbedAuthorUncheckedCreateWithoutVanityEmbedsInput>
+    connectOrCreate?: VanityEmbedAuthorCreateOrConnectWithoutVanityEmbedsInput
+    connect?: VanityEmbedAuthorWhereUniqueInput
   }
 
   export type VanitysCreateNestedOneWithoutEmbedInput = {
@@ -65777,20 +65777,20 @@ export namespace Prisma {
     connect?: VanitysWhereUniqueInput
   }
 
-  export type VanityEmbedAuthorsUncheckedCreateNestedOneWithoutVanityEmbedsInput = {
-    create?: XOR<VanityEmbedAuthorsCreateWithoutVanityEmbedsInput, VanityEmbedAuthorsUncheckedCreateWithoutVanityEmbedsInput>
-    connectOrCreate?: VanityEmbedAuthorsCreateOrConnectWithoutVanityEmbedsInput
-    connect?: VanityEmbedAuthorsWhereUniqueInput
+  export type VanityEmbedAuthorUncheckedCreateNestedOneWithoutVanityEmbedsInput = {
+    create?: XOR<VanityEmbedAuthorCreateWithoutVanityEmbedsInput, VanityEmbedAuthorUncheckedCreateWithoutVanityEmbedsInput>
+    connectOrCreate?: VanityEmbedAuthorCreateOrConnectWithoutVanityEmbedsInput
+    connect?: VanityEmbedAuthorWhereUniqueInput
   }
 
-  export type VanityEmbedAuthorsUpdateOneWithoutVanityEmbedsNestedInput = {
-    create?: XOR<VanityEmbedAuthorsCreateWithoutVanityEmbedsInput, VanityEmbedAuthorsUncheckedCreateWithoutVanityEmbedsInput>
-    connectOrCreate?: VanityEmbedAuthorsCreateOrConnectWithoutVanityEmbedsInput
-    upsert?: VanityEmbedAuthorsUpsertWithoutVanityEmbedsInput
-    disconnect?: VanityEmbedAuthorsWhereInput | boolean
-    delete?: VanityEmbedAuthorsWhereInput | boolean
-    connect?: VanityEmbedAuthorsWhereUniqueInput
-    update?: XOR<XOR<VanityEmbedAuthorsUpdateToOneWithWhereWithoutVanityEmbedsInput, VanityEmbedAuthorsUpdateWithoutVanityEmbedsInput>, VanityEmbedAuthorsUncheckedUpdateWithoutVanityEmbedsInput>
+  export type VanityEmbedAuthorUpdateOneWithoutVanityEmbedsNestedInput = {
+    create?: XOR<VanityEmbedAuthorCreateWithoutVanityEmbedsInput, VanityEmbedAuthorUncheckedCreateWithoutVanityEmbedsInput>
+    connectOrCreate?: VanityEmbedAuthorCreateOrConnectWithoutVanityEmbedsInput
+    upsert?: VanityEmbedAuthorUpsertWithoutVanityEmbedsInput
+    disconnect?: VanityEmbedAuthorWhereInput | boolean
+    delete?: VanityEmbedAuthorWhereInput | boolean
+    connect?: VanityEmbedAuthorWhereUniqueInput
+    update?: XOR<XOR<VanityEmbedAuthorUpdateToOneWithWhereWithoutVanityEmbedsInput, VanityEmbedAuthorUpdateWithoutVanityEmbedsInput>, VanityEmbedAuthorUncheckedUpdateWithoutVanityEmbedsInput>
   }
 
   export type VanitysUpdateOneRequiredWithoutEmbedNestedInput = {
@@ -65801,38 +65801,38 @@ export namespace Prisma {
     update?: XOR<XOR<VanitysUpdateToOneWithWhereWithoutEmbedInput, VanitysUpdateWithoutEmbedInput>, VanitysUncheckedUpdateWithoutEmbedInput>
   }
 
-  export type VanityEmbedAuthorsUncheckedUpdateOneWithoutVanityEmbedsNestedInput = {
-    create?: XOR<VanityEmbedAuthorsCreateWithoutVanityEmbedsInput, VanityEmbedAuthorsUncheckedCreateWithoutVanityEmbedsInput>
-    connectOrCreate?: VanityEmbedAuthorsCreateOrConnectWithoutVanityEmbedsInput
-    upsert?: VanityEmbedAuthorsUpsertWithoutVanityEmbedsInput
-    disconnect?: VanityEmbedAuthorsWhereInput | boolean
-    delete?: VanityEmbedAuthorsWhereInput | boolean
-    connect?: VanityEmbedAuthorsWhereUniqueInput
-    update?: XOR<XOR<VanityEmbedAuthorsUpdateToOneWithWhereWithoutVanityEmbedsInput, VanityEmbedAuthorsUpdateWithoutVanityEmbedsInput>, VanityEmbedAuthorsUncheckedUpdateWithoutVanityEmbedsInput>
+  export type VanityEmbedAuthorUncheckedUpdateOneWithoutVanityEmbedsNestedInput = {
+    create?: XOR<VanityEmbedAuthorCreateWithoutVanityEmbedsInput, VanityEmbedAuthorUncheckedCreateWithoutVanityEmbedsInput>
+    connectOrCreate?: VanityEmbedAuthorCreateOrConnectWithoutVanityEmbedsInput
+    upsert?: VanityEmbedAuthorUpsertWithoutVanityEmbedsInput
+    disconnect?: VanityEmbedAuthorWhereInput | boolean
+    delete?: VanityEmbedAuthorWhereInput | boolean
+    connect?: VanityEmbedAuthorWhereUniqueInput
+    update?: XOR<XOR<VanityEmbedAuthorUpdateToOneWithWhereWithoutVanityEmbedsInput, VanityEmbedAuthorUpdateWithoutVanityEmbedsInput>, VanityEmbedAuthorUncheckedUpdateWithoutVanityEmbedsInput>
   }
 
-  export type VanityEmbedsCreateNestedOneWithoutAuthorInput = {
-    create?: XOR<VanityEmbedsCreateWithoutAuthorInput, VanityEmbedsUncheckedCreateWithoutAuthorInput>
-    connectOrCreate?: VanityEmbedsCreateOrConnectWithoutAuthorInput
-    connect?: VanityEmbedsWhereUniqueInput
+  export type VanityEmbedCreateNestedOneWithoutAuthorInput = {
+    create?: XOR<VanityEmbedCreateWithoutAuthorInput, VanityEmbedUncheckedCreateWithoutAuthorInput>
+    connectOrCreate?: VanityEmbedCreateOrConnectWithoutAuthorInput
+    connect?: VanityEmbedWhereUniqueInput
   }
 
-  export type VanityEmbedsUpdateOneRequiredWithoutAuthorNestedInput = {
-    create?: XOR<VanityEmbedsCreateWithoutAuthorInput, VanityEmbedsUncheckedCreateWithoutAuthorInput>
-    connectOrCreate?: VanityEmbedsCreateOrConnectWithoutAuthorInput
-    upsert?: VanityEmbedsUpsertWithoutAuthorInput
-    connect?: VanityEmbedsWhereUniqueInput
-    update?: XOR<XOR<VanityEmbedsUpdateToOneWithWhereWithoutAuthorInput, VanityEmbedsUpdateWithoutAuthorInput>, VanityEmbedsUncheckedUpdateWithoutAuthorInput>
+  export type VanityEmbedUpdateOneRequiredWithoutAuthorNestedInput = {
+    create?: XOR<VanityEmbedCreateWithoutAuthorInput, VanityEmbedUncheckedCreateWithoutAuthorInput>
+    connectOrCreate?: VanityEmbedCreateOrConnectWithoutAuthorInput
+    upsert?: VanityEmbedUpsertWithoutAuthorInput
+    connect?: VanityEmbedWhereUniqueInput
+    update?: XOR<XOR<VanityEmbedUpdateToOneWithWhereWithoutAuthorInput, VanityEmbedUpdateWithoutAuthorInput>, VanityEmbedUncheckedUpdateWithoutAuthorInput>
   }
 
-  export type VanityAnalyticsCreateLoggedIPsInput = {
+  export type VanityAnalyticCreateLoggedIPsInput = {
     set: string[]
   }
 
-  export type AnalyticsLatest30DaysCreateNestedOneWithoutVanityAnalyticsInput = {
-    create?: XOR<AnalyticsLatest30DaysCreateWithoutVanityAnalyticsInput, AnalyticsLatest30DaysUncheckedCreateWithoutVanityAnalyticsInput>
-    connectOrCreate?: AnalyticsLatest30DaysCreateOrConnectWithoutVanityAnalyticsInput
-    connect?: AnalyticsLatest30DaysWhereUniqueInput
+  export type VanityAnalyticsLatest30DayCreateNestedOneWithoutVanityAnalyticsInput = {
+    create?: XOR<VanityAnalyticsLatest30DayCreateWithoutVanityAnalyticsInput, VanityAnalyticsLatest30DayUncheckedCreateWithoutVanityAnalyticsInput>
+    connectOrCreate?: VanityAnalyticsLatest30DayCreateOrConnectWithoutVanityAnalyticsInput
+    connect?: VanityAnalyticsLatest30DayWhereUniqueInput
   }
 
   export type VanitysCreateNestedOneWithoutAnalyticsInput = {
@@ -65841,25 +65841,25 @@ export namespace Prisma {
     connect?: VanitysWhereUniqueInput
   }
 
-  export type AnalyticsLatest30DaysUncheckedCreateNestedOneWithoutVanityAnalyticsInput = {
-    create?: XOR<AnalyticsLatest30DaysCreateWithoutVanityAnalyticsInput, AnalyticsLatest30DaysUncheckedCreateWithoutVanityAnalyticsInput>
-    connectOrCreate?: AnalyticsLatest30DaysCreateOrConnectWithoutVanityAnalyticsInput
-    connect?: AnalyticsLatest30DaysWhereUniqueInput
+  export type VanityAnalyticsLatest30DayUncheckedCreateNestedOneWithoutVanityAnalyticsInput = {
+    create?: XOR<VanityAnalyticsLatest30DayCreateWithoutVanityAnalyticsInput, VanityAnalyticsLatest30DayUncheckedCreateWithoutVanityAnalyticsInput>
+    connectOrCreate?: VanityAnalyticsLatest30DayCreateOrConnectWithoutVanityAnalyticsInput
+    connect?: VanityAnalyticsLatest30DayWhereUniqueInput
   }
 
-  export type VanityAnalyticsUpdateLoggedIPsInput = {
+  export type VanityAnalyticUpdateLoggedIPsInput = {
     set?: string[]
     push?: string | string[]
   }
 
-  export type AnalyticsLatest30DaysUpdateOneWithoutVanityAnalyticsNestedInput = {
-    create?: XOR<AnalyticsLatest30DaysCreateWithoutVanityAnalyticsInput, AnalyticsLatest30DaysUncheckedCreateWithoutVanityAnalyticsInput>
-    connectOrCreate?: AnalyticsLatest30DaysCreateOrConnectWithoutVanityAnalyticsInput
-    upsert?: AnalyticsLatest30DaysUpsertWithoutVanityAnalyticsInput
-    disconnect?: AnalyticsLatest30DaysWhereInput | boolean
-    delete?: AnalyticsLatest30DaysWhereInput | boolean
-    connect?: AnalyticsLatest30DaysWhereUniqueInput
-    update?: XOR<XOR<AnalyticsLatest30DaysUpdateToOneWithWhereWithoutVanityAnalyticsInput, AnalyticsLatest30DaysUpdateWithoutVanityAnalyticsInput>, AnalyticsLatest30DaysUncheckedUpdateWithoutVanityAnalyticsInput>
+  export type VanityAnalyticsLatest30DayUpdateOneWithoutVanityAnalyticsNestedInput = {
+    create?: XOR<VanityAnalyticsLatest30DayCreateWithoutVanityAnalyticsInput, VanityAnalyticsLatest30DayUncheckedCreateWithoutVanityAnalyticsInput>
+    connectOrCreate?: VanityAnalyticsLatest30DayCreateOrConnectWithoutVanityAnalyticsInput
+    upsert?: VanityAnalyticsLatest30DayUpsertWithoutVanityAnalyticsInput
+    disconnect?: VanityAnalyticsLatest30DayWhereInput | boolean
+    delete?: VanityAnalyticsLatest30DayWhereInput | boolean
+    connect?: VanityAnalyticsLatest30DayWhereUniqueInput
+    update?: XOR<XOR<VanityAnalyticsLatest30DayUpdateToOneWithWhereWithoutVanityAnalyticsInput, VanityAnalyticsLatest30DayUpdateWithoutVanityAnalyticsInput>, VanityAnalyticsLatest30DayUncheckedUpdateWithoutVanityAnalyticsInput>
   }
 
   export type VanitysUpdateOneRequiredWithoutAnalyticsNestedInput = {
@@ -65870,28 +65870,28 @@ export namespace Prisma {
     update?: XOR<XOR<VanitysUpdateToOneWithWhereWithoutAnalyticsInput, VanitysUpdateWithoutAnalyticsInput>, VanitysUncheckedUpdateWithoutAnalyticsInput>
   }
 
-  export type AnalyticsLatest30DaysUncheckedUpdateOneWithoutVanityAnalyticsNestedInput = {
-    create?: XOR<AnalyticsLatest30DaysCreateWithoutVanityAnalyticsInput, AnalyticsLatest30DaysUncheckedCreateWithoutVanityAnalyticsInput>
-    connectOrCreate?: AnalyticsLatest30DaysCreateOrConnectWithoutVanityAnalyticsInput
-    upsert?: AnalyticsLatest30DaysUpsertWithoutVanityAnalyticsInput
-    disconnect?: AnalyticsLatest30DaysWhereInput | boolean
-    delete?: AnalyticsLatest30DaysWhereInput | boolean
-    connect?: AnalyticsLatest30DaysWhereUniqueInput
-    update?: XOR<XOR<AnalyticsLatest30DaysUpdateToOneWithWhereWithoutVanityAnalyticsInput, AnalyticsLatest30DaysUpdateWithoutVanityAnalyticsInput>, AnalyticsLatest30DaysUncheckedUpdateWithoutVanityAnalyticsInput>
+  export type VanityAnalyticsLatest30DayUncheckedUpdateOneWithoutVanityAnalyticsNestedInput = {
+    create?: XOR<VanityAnalyticsLatest30DayCreateWithoutVanityAnalyticsInput, VanityAnalyticsLatest30DayUncheckedCreateWithoutVanityAnalyticsInput>
+    connectOrCreate?: VanityAnalyticsLatest30DayCreateOrConnectWithoutVanityAnalyticsInput
+    upsert?: VanityAnalyticsLatest30DayUpsertWithoutVanityAnalyticsInput
+    disconnect?: VanityAnalyticsLatest30DayWhereInput | boolean
+    delete?: VanityAnalyticsLatest30DayWhereInput | boolean
+    connect?: VanityAnalyticsLatest30DayWhereUniqueInput
+    update?: XOR<XOR<VanityAnalyticsLatest30DayUpdateToOneWithWhereWithoutVanityAnalyticsInput, VanityAnalyticsLatest30DayUpdateWithoutVanityAnalyticsInput>, VanityAnalyticsLatest30DayUncheckedUpdateWithoutVanityAnalyticsInput>
   }
 
-  export type VanityAnalyticsCreateNestedOneWithoutLatest30DaysInput = {
-    create?: XOR<VanityAnalyticsCreateWithoutLatest30DaysInput, VanityAnalyticsUncheckedCreateWithoutLatest30DaysInput>
-    connectOrCreate?: VanityAnalyticsCreateOrConnectWithoutLatest30DaysInput
-    connect?: VanityAnalyticsWhereUniqueInput
+  export type VanityAnalyticCreateNestedOneWithoutLatest30DaysInput = {
+    create?: XOR<VanityAnalyticCreateWithoutLatest30DaysInput, VanityAnalyticUncheckedCreateWithoutLatest30DaysInput>
+    connectOrCreate?: VanityAnalyticCreateOrConnectWithoutLatest30DaysInput
+    connect?: VanityAnalyticWhereUniqueInput
   }
 
-  export type VanityAnalyticsUpdateOneRequiredWithoutLatest30DaysNestedInput = {
-    create?: XOR<VanityAnalyticsCreateWithoutLatest30DaysInput, VanityAnalyticsUncheckedCreateWithoutLatest30DaysInput>
-    connectOrCreate?: VanityAnalyticsCreateOrConnectWithoutLatest30DaysInput
-    upsert?: VanityAnalyticsUpsertWithoutLatest30DaysInput
-    connect?: VanityAnalyticsWhereUniqueInput
-    update?: XOR<XOR<VanityAnalyticsUpdateToOneWithWhereWithoutLatest30DaysInput, VanityAnalyticsUpdateWithoutLatest30DaysInput>, VanityAnalyticsUncheckedUpdateWithoutLatest30DaysInput>
+  export type VanityAnalyticUpdateOneRequiredWithoutLatest30DaysNestedInput = {
+    create?: XOR<VanityAnalyticCreateWithoutLatest30DaysInput, VanityAnalyticUncheckedCreateWithoutLatest30DaysInput>
+    connectOrCreate?: VanityAnalyticCreateOrConnectWithoutLatest30DaysInput
+    upsert?: VanityAnalyticUpsertWithoutLatest30DaysInput
+    connect?: VanityAnalyticWhereUniqueInput
+    update?: XOR<XOR<VanityAnalyticUpdateToOneWithWhereWithoutLatest30DaysInput, VanityAnalyticUpdateWithoutLatest30DaysInput>, VanityAnalyticUncheckedUpdateWithoutLatest30DaysInput>
   }
 
   export type DisbotsLogsListCreateEnvelopeInput = {
@@ -73048,8 +73048,8 @@ export namespace Prisma {
     InDiscovery?: boolean | null
     IsBannedFromDiscover?: boolean | null
     CreatedAt: Date | string
-    Analytics?: VanityAnalyticsCreateNestedOneWithoutVanitysInput
-    Embed?: VanityEmbedsCreateNestedOneWithoutVanitysInput
+    Analytics?: VanityAnalyticCreateNestedOneWithoutVanitysInput
+    Embed?: VanityEmbedCreateNestedOneWithoutVanitysInput
   }
 
   export type VanitysUncheckedCreateWithoutUsersInput = {
@@ -73062,8 +73062,8 @@ export namespace Prisma {
     InDiscovery?: boolean | null
     IsBannedFromDiscover?: boolean | null
     CreatedAt: Date | string
-    Analytics?: VanityAnalyticsUncheckedCreateNestedOneWithoutVanitysInput
-    Embed?: VanityEmbedsUncheckedCreateNestedOneWithoutVanitysInput
+    Analytics?: VanityAnalyticUncheckedCreateNestedOneWithoutVanitysInput
+    Embed?: VanityEmbedUncheckedCreateNestedOneWithoutVanitysInput
   }
 
   export type VanitysCreateOrConnectWithoutUsersInput = {
@@ -73287,7 +73287,7 @@ export namespace Prisma {
     Vanitys?: VanitysUncheckedUpdateManyWithoutUsersNestedInput
   }
 
-  export type VanityAnalyticsCreateWithoutVanitysInput = {
+  export type VanityAnalyticCreateWithoutVanitysInput = {
     id?: string
     Click: number
     TrackInviteWithLog?: string | null
@@ -73295,11 +73295,11 @@ export namespace Prisma {
     Update?: Date | string | null
     UniqueClick?: number | null
     JoinedWithCode?: number | null
-    LoggedIPs?: VanityAnalyticsCreateLoggedIPsInput | string[]
-    Latest30Days?: AnalyticsLatest30DaysCreateNestedOneWithoutVanityAnalyticsInput
+    LoggedIPs?: VanityAnalyticCreateLoggedIPsInput | string[]
+    Latest30Days?: VanityAnalyticsLatest30DayCreateNestedOneWithoutVanityAnalyticsInput
   }
 
-  export type VanityAnalyticsUncheckedCreateWithoutVanitysInput = {
+  export type VanityAnalyticUncheckedCreateWithoutVanitysInput = {
     id?: string
     Click: number
     TrackInviteWithLog?: string | null
@@ -73307,38 +73307,38 @@ export namespace Prisma {
     Update?: Date | string | null
     UniqueClick?: number | null
     JoinedWithCode?: number | null
-    LoggedIPs?: VanityAnalyticsCreateLoggedIPsInput | string[]
-    Latest30Days?: AnalyticsLatest30DaysUncheckedCreateNestedOneWithoutVanityAnalyticsInput
+    LoggedIPs?: VanityAnalyticCreateLoggedIPsInput | string[]
+    Latest30Days?: VanityAnalyticsLatest30DayUncheckedCreateNestedOneWithoutVanityAnalyticsInput
   }
 
-  export type VanityAnalyticsCreateOrConnectWithoutVanitysInput = {
-    where: VanityAnalyticsWhereUniqueInput
-    create: XOR<VanityAnalyticsCreateWithoutVanitysInput, VanityAnalyticsUncheckedCreateWithoutVanitysInput>
+  export type VanityAnalyticCreateOrConnectWithoutVanitysInput = {
+    where: VanityAnalyticWhereUniqueInput
+    create: XOR<VanityAnalyticCreateWithoutVanitysInput, VanityAnalyticUncheckedCreateWithoutVanitysInput>
   }
 
-  export type VanityEmbedsCreateWithoutVanitysInput = {
+  export type VanityEmbedCreateWithoutVanitysInput = {
     id?: string
     Title: string
     Description: string
     Color: string
-    ImageUrl: string
-    ThumbnailUrl: string
-    Author?: VanityEmbedAuthorsCreateNestedOneWithoutVanityEmbedsInput
+    ImageUrl?: string | null
+    ThumbnailUrl?: string | null
+    Author?: VanityEmbedAuthorCreateNestedOneWithoutVanityEmbedsInput
   }
 
-  export type VanityEmbedsUncheckedCreateWithoutVanitysInput = {
+  export type VanityEmbedUncheckedCreateWithoutVanitysInput = {
     id?: string
     Title: string
     Description: string
     Color: string
-    ImageUrl: string
-    ThumbnailUrl: string
-    Author?: VanityEmbedAuthorsUncheckedCreateNestedOneWithoutVanityEmbedsInput
+    ImageUrl?: string | null
+    ThumbnailUrl?: string | null
+    Author?: VanityEmbedAuthorUncheckedCreateNestedOneWithoutVanityEmbedsInput
   }
 
-  export type VanityEmbedsCreateOrConnectWithoutVanitysInput = {
-    where: VanityEmbedsWhereUniqueInput
-    create: XOR<VanityEmbedsCreateWithoutVanitysInput, VanityEmbedsUncheckedCreateWithoutVanitysInput>
+  export type VanityEmbedCreateOrConnectWithoutVanitysInput = {
+    where: VanityEmbedWhereUniqueInput
+    create: XOR<VanityEmbedCreateWithoutVanitysInput, VanityEmbedUncheckedCreateWithoutVanitysInput>
   }
 
   export type UsersCreateWithoutVanitysInput = {
@@ -73370,66 +73370,66 @@ export namespace Prisma {
     create: XOR<UsersCreateWithoutVanitysInput, UsersUncheckedCreateWithoutVanitysInput>
   }
 
-  export type VanityAnalyticsUpsertWithoutVanitysInput = {
-    update: XOR<VanityAnalyticsUpdateWithoutVanitysInput, VanityAnalyticsUncheckedUpdateWithoutVanitysInput>
-    create: XOR<VanityAnalyticsCreateWithoutVanitysInput, VanityAnalyticsUncheckedCreateWithoutVanitysInput>
-    where?: VanityAnalyticsWhereInput
+  export type VanityAnalyticUpsertWithoutVanitysInput = {
+    update: XOR<VanityAnalyticUpdateWithoutVanitysInput, VanityAnalyticUncheckedUpdateWithoutVanitysInput>
+    create: XOR<VanityAnalyticCreateWithoutVanitysInput, VanityAnalyticUncheckedCreateWithoutVanitysInput>
+    where?: VanityAnalyticWhereInput
   }
 
-  export type VanityAnalyticsUpdateToOneWithWhereWithoutVanitysInput = {
-    where?: VanityAnalyticsWhereInput
-    data: XOR<VanityAnalyticsUpdateWithoutVanitysInput, VanityAnalyticsUncheckedUpdateWithoutVanitysInput>
+  export type VanityAnalyticUpdateToOneWithWhereWithoutVanitysInput = {
+    where?: VanityAnalyticWhereInput
+    data: XOR<VanityAnalyticUpdateWithoutVanitysInput, VanityAnalyticUncheckedUpdateWithoutVanitysInput>
   }
 
-  export type VanityAnalyticsUpdateWithoutVanitysInput = {
+  export type VanityAnalyticUpdateWithoutVanitysInput = {
     Click?: IntFieldUpdateOperationsInput | number
     TrackInviteWithLog?: NullableStringFieldUpdateOperationsInput | string | null
     TrackMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     Update?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     UniqueClick?: NullableIntFieldUpdateOperationsInput | number | null
     JoinedWithCode?: NullableIntFieldUpdateOperationsInput | number | null
-    LoggedIPs?: VanityAnalyticsUpdateLoggedIPsInput | string[]
-    Latest30Days?: AnalyticsLatest30DaysUpdateOneWithoutVanityAnalyticsNestedInput
+    LoggedIPs?: VanityAnalyticUpdateLoggedIPsInput | string[]
+    Latest30Days?: VanityAnalyticsLatest30DayUpdateOneWithoutVanityAnalyticsNestedInput
   }
 
-  export type VanityAnalyticsUncheckedUpdateWithoutVanitysInput = {
+  export type VanityAnalyticUncheckedUpdateWithoutVanitysInput = {
     Click?: IntFieldUpdateOperationsInput | number
     TrackInviteWithLog?: NullableStringFieldUpdateOperationsInput | string | null
     TrackMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     Update?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     UniqueClick?: NullableIntFieldUpdateOperationsInput | number | null
     JoinedWithCode?: NullableIntFieldUpdateOperationsInput | number | null
-    LoggedIPs?: VanityAnalyticsUpdateLoggedIPsInput | string[]
-    Latest30Days?: AnalyticsLatest30DaysUncheckedUpdateOneWithoutVanityAnalyticsNestedInput
+    LoggedIPs?: VanityAnalyticUpdateLoggedIPsInput | string[]
+    Latest30Days?: VanityAnalyticsLatest30DayUncheckedUpdateOneWithoutVanityAnalyticsNestedInput
   }
 
-  export type VanityEmbedsUpsertWithoutVanitysInput = {
-    update: XOR<VanityEmbedsUpdateWithoutVanitysInput, VanityEmbedsUncheckedUpdateWithoutVanitysInput>
-    create: XOR<VanityEmbedsCreateWithoutVanitysInput, VanityEmbedsUncheckedCreateWithoutVanitysInput>
-    where?: VanityEmbedsWhereInput
+  export type VanityEmbedUpsertWithoutVanitysInput = {
+    update: XOR<VanityEmbedUpdateWithoutVanitysInput, VanityEmbedUncheckedUpdateWithoutVanitysInput>
+    create: XOR<VanityEmbedCreateWithoutVanitysInput, VanityEmbedUncheckedCreateWithoutVanitysInput>
+    where?: VanityEmbedWhereInput
   }
 
-  export type VanityEmbedsUpdateToOneWithWhereWithoutVanitysInput = {
-    where?: VanityEmbedsWhereInput
-    data: XOR<VanityEmbedsUpdateWithoutVanitysInput, VanityEmbedsUncheckedUpdateWithoutVanitysInput>
+  export type VanityEmbedUpdateToOneWithWhereWithoutVanitysInput = {
+    where?: VanityEmbedWhereInput
+    data: XOR<VanityEmbedUpdateWithoutVanitysInput, VanityEmbedUncheckedUpdateWithoutVanitysInput>
   }
 
-  export type VanityEmbedsUpdateWithoutVanitysInput = {
+  export type VanityEmbedUpdateWithoutVanitysInput = {
     Title?: StringFieldUpdateOperationsInput | string
     Description?: StringFieldUpdateOperationsInput | string
     Color?: StringFieldUpdateOperationsInput | string
-    ImageUrl?: StringFieldUpdateOperationsInput | string
-    ThumbnailUrl?: StringFieldUpdateOperationsInput | string
-    Author?: VanityEmbedAuthorsUpdateOneWithoutVanityEmbedsNestedInput
+    ImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    ThumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    Author?: VanityEmbedAuthorUpdateOneWithoutVanityEmbedsNestedInput
   }
 
-  export type VanityEmbedsUncheckedUpdateWithoutVanitysInput = {
+  export type VanityEmbedUncheckedUpdateWithoutVanitysInput = {
     Title?: StringFieldUpdateOperationsInput | string
     Description?: StringFieldUpdateOperationsInput | string
     Color?: StringFieldUpdateOperationsInput | string
-    ImageUrl?: StringFieldUpdateOperationsInput | string
-    ThumbnailUrl?: StringFieldUpdateOperationsInput | string
-    Author?: VanityEmbedAuthorsUncheckedUpdateOneWithoutVanityEmbedsNestedInput
+    ImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    ThumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    Author?: VanityEmbedAuthorUncheckedUpdateOneWithoutVanityEmbedsNestedInput
   }
 
   export type UsersUpsertWithoutVanitysInput = {
@@ -73465,23 +73465,23 @@ export namespace Prisma {
     GuildBackups?: GuildBackupsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
-  export type VanityEmbedAuthorsCreateWithoutVanityEmbedsInput = {
+  export type VanityEmbedAuthorCreateWithoutVanityEmbedsInput = {
     id?: string
-    Name: string
-    URL: string
-    IconURL: string
+    Name?: string | null
+    URL?: string | null
+    IconURL?: string | null
   }
 
-  export type VanityEmbedAuthorsUncheckedCreateWithoutVanityEmbedsInput = {
+  export type VanityEmbedAuthorUncheckedCreateWithoutVanityEmbedsInput = {
     id?: string
-    Name: string
-    URL: string
-    IconURL: string
+    Name?: string | null
+    URL?: string | null
+    IconURL?: string | null
   }
 
-  export type VanityEmbedAuthorsCreateOrConnectWithoutVanityEmbedsInput = {
-    where: VanityEmbedAuthorsWhereUniqueInput
-    create: XOR<VanityEmbedAuthorsCreateWithoutVanityEmbedsInput, VanityEmbedAuthorsUncheckedCreateWithoutVanityEmbedsInput>
+  export type VanityEmbedAuthorCreateOrConnectWithoutVanityEmbedsInput = {
+    where: VanityEmbedAuthorWhereUniqueInput
+    create: XOR<VanityEmbedAuthorCreateWithoutVanityEmbedsInput, VanityEmbedAuthorUncheckedCreateWithoutVanityEmbedsInput>
   }
 
   export type VanitysCreateWithoutEmbedInput = {
@@ -73494,7 +73494,7 @@ export namespace Prisma {
     InDiscovery?: boolean | null
     IsBannedFromDiscover?: boolean | null
     CreatedAt: Date | string
-    Analytics?: VanityAnalyticsCreateNestedOneWithoutVanitysInput
+    Analytics?: VanityAnalyticCreateNestedOneWithoutVanitysInput
     Users: UsersCreateNestedOneWithoutVanitysInput
   }
 
@@ -73509,7 +73509,7 @@ export namespace Prisma {
     IsBannedFromDiscover?: boolean | null
     CreatedAt: Date | string
     UserId: string
-    Analytics?: VanityAnalyticsUncheckedCreateNestedOneWithoutVanitysInput
+    Analytics?: VanityAnalyticUncheckedCreateNestedOneWithoutVanitysInput
   }
 
   export type VanitysCreateOrConnectWithoutEmbedInput = {
@@ -73517,27 +73517,27 @@ export namespace Prisma {
     create: XOR<VanitysCreateWithoutEmbedInput, VanitysUncheckedCreateWithoutEmbedInput>
   }
 
-  export type VanityEmbedAuthorsUpsertWithoutVanityEmbedsInput = {
-    update: XOR<VanityEmbedAuthorsUpdateWithoutVanityEmbedsInput, VanityEmbedAuthorsUncheckedUpdateWithoutVanityEmbedsInput>
-    create: XOR<VanityEmbedAuthorsCreateWithoutVanityEmbedsInput, VanityEmbedAuthorsUncheckedCreateWithoutVanityEmbedsInput>
-    where?: VanityEmbedAuthorsWhereInput
+  export type VanityEmbedAuthorUpsertWithoutVanityEmbedsInput = {
+    update: XOR<VanityEmbedAuthorUpdateWithoutVanityEmbedsInput, VanityEmbedAuthorUncheckedUpdateWithoutVanityEmbedsInput>
+    create: XOR<VanityEmbedAuthorCreateWithoutVanityEmbedsInput, VanityEmbedAuthorUncheckedCreateWithoutVanityEmbedsInput>
+    where?: VanityEmbedAuthorWhereInput
   }
 
-  export type VanityEmbedAuthorsUpdateToOneWithWhereWithoutVanityEmbedsInput = {
-    where?: VanityEmbedAuthorsWhereInput
-    data: XOR<VanityEmbedAuthorsUpdateWithoutVanityEmbedsInput, VanityEmbedAuthorsUncheckedUpdateWithoutVanityEmbedsInput>
+  export type VanityEmbedAuthorUpdateToOneWithWhereWithoutVanityEmbedsInput = {
+    where?: VanityEmbedAuthorWhereInput
+    data: XOR<VanityEmbedAuthorUpdateWithoutVanityEmbedsInput, VanityEmbedAuthorUncheckedUpdateWithoutVanityEmbedsInput>
   }
 
-  export type VanityEmbedAuthorsUpdateWithoutVanityEmbedsInput = {
-    Name?: StringFieldUpdateOperationsInput | string
-    URL?: StringFieldUpdateOperationsInput | string
-    IconURL?: StringFieldUpdateOperationsInput | string
+  export type VanityEmbedAuthorUpdateWithoutVanityEmbedsInput = {
+    Name?: NullableStringFieldUpdateOperationsInput | string | null
+    URL?: NullableStringFieldUpdateOperationsInput | string | null
+    IconURL?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type VanityEmbedAuthorsUncheckedUpdateWithoutVanityEmbedsInput = {
-    Name?: StringFieldUpdateOperationsInput | string
-    URL?: StringFieldUpdateOperationsInput | string
-    IconURL?: StringFieldUpdateOperationsInput | string
+  export type VanityEmbedAuthorUncheckedUpdateWithoutVanityEmbedsInput = {
+    Name?: NullableStringFieldUpdateOperationsInput | string | null
+    URL?: NullableStringFieldUpdateOperationsInput | string | null
+    IconURL?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type VanitysUpsertWithoutEmbedInput = {
@@ -73560,7 +73560,7 @@ export namespace Prisma {
     InDiscovery?: NullableBoolFieldUpdateOperationsInput | boolean | null
     IsBannedFromDiscover?: NullableBoolFieldUpdateOperationsInput | boolean | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Analytics?: VanityAnalyticsUpdateOneWithoutVanitysNestedInput
+    Analytics?: VanityAnalyticUpdateOneWithoutVanitysNestedInput
     Users?: UsersUpdateOneRequiredWithoutVanitysNestedInput
   }
 
@@ -73574,64 +73574,64 @@ export namespace Prisma {
     IsBannedFromDiscover?: NullableBoolFieldUpdateOperationsInput | boolean | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UserId?: StringFieldUpdateOperationsInput | string
-    Analytics?: VanityAnalyticsUncheckedUpdateOneWithoutVanitysNestedInput
+    Analytics?: VanityAnalyticUncheckedUpdateOneWithoutVanitysNestedInput
   }
 
-  export type VanityEmbedsCreateWithoutAuthorInput = {
+  export type VanityEmbedCreateWithoutAuthorInput = {
     id?: string
     Title: string
     Description: string
     Color: string
-    ImageUrl: string
-    ThumbnailUrl: string
+    ImageUrl?: string | null
+    ThumbnailUrl?: string | null
     Vanitys: VanitysCreateNestedOneWithoutEmbedInput
   }
 
-  export type VanityEmbedsUncheckedCreateWithoutAuthorInput = {
+  export type VanityEmbedUncheckedCreateWithoutAuthorInput = {
     id?: string
     Title: string
     Description: string
     Color: string
-    ImageUrl: string
-    ThumbnailUrl: string
+    ImageUrl?: string | null
+    ThumbnailUrl?: string | null
     VanityId: string
   }
 
-  export type VanityEmbedsCreateOrConnectWithoutAuthorInput = {
-    where: VanityEmbedsWhereUniqueInput
-    create: XOR<VanityEmbedsCreateWithoutAuthorInput, VanityEmbedsUncheckedCreateWithoutAuthorInput>
+  export type VanityEmbedCreateOrConnectWithoutAuthorInput = {
+    where: VanityEmbedWhereUniqueInput
+    create: XOR<VanityEmbedCreateWithoutAuthorInput, VanityEmbedUncheckedCreateWithoutAuthorInput>
   }
 
-  export type VanityEmbedsUpsertWithoutAuthorInput = {
-    update: XOR<VanityEmbedsUpdateWithoutAuthorInput, VanityEmbedsUncheckedUpdateWithoutAuthorInput>
-    create: XOR<VanityEmbedsCreateWithoutAuthorInput, VanityEmbedsUncheckedCreateWithoutAuthorInput>
-    where?: VanityEmbedsWhereInput
+  export type VanityEmbedUpsertWithoutAuthorInput = {
+    update: XOR<VanityEmbedUpdateWithoutAuthorInput, VanityEmbedUncheckedUpdateWithoutAuthorInput>
+    create: XOR<VanityEmbedCreateWithoutAuthorInput, VanityEmbedUncheckedCreateWithoutAuthorInput>
+    where?: VanityEmbedWhereInput
   }
 
-  export type VanityEmbedsUpdateToOneWithWhereWithoutAuthorInput = {
-    where?: VanityEmbedsWhereInput
-    data: XOR<VanityEmbedsUpdateWithoutAuthorInput, VanityEmbedsUncheckedUpdateWithoutAuthorInput>
+  export type VanityEmbedUpdateToOneWithWhereWithoutAuthorInput = {
+    where?: VanityEmbedWhereInput
+    data: XOR<VanityEmbedUpdateWithoutAuthorInput, VanityEmbedUncheckedUpdateWithoutAuthorInput>
   }
 
-  export type VanityEmbedsUpdateWithoutAuthorInput = {
+  export type VanityEmbedUpdateWithoutAuthorInput = {
     Title?: StringFieldUpdateOperationsInput | string
     Description?: StringFieldUpdateOperationsInput | string
     Color?: StringFieldUpdateOperationsInput | string
-    ImageUrl?: StringFieldUpdateOperationsInput | string
-    ThumbnailUrl?: StringFieldUpdateOperationsInput | string
+    ImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    ThumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     Vanitys?: VanitysUpdateOneRequiredWithoutEmbedNestedInput
   }
 
-  export type VanityEmbedsUncheckedUpdateWithoutAuthorInput = {
+  export type VanityEmbedUncheckedUpdateWithoutAuthorInput = {
     Title?: StringFieldUpdateOperationsInput | string
     Description?: StringFieldUpdateOperationsInput | string
     Color?: StringFieldUpdateOperationsInput | string
-    ImageUrl?: StringFieldUpdateOperationsInput | string
-    ThumbnailUrl?: StringFieldUpdateOperationsInput | string
+    ImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    ThumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     VanityId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type AnalyticsLatest30DaysCreateWithoutVanityAnalyticsInput = {
+  export type VanityAnalyticsLatest30DayCreateWithoutVanityAnalyticsInput = {
     id?: string
     Click?: number | null
     UniqueClick?: number | null
@@ -73639,7 +73639,7 @@ export namespace Prisma {
     JoinedWithCode?: number | null
   }
 
-  export type AnalyticsLatest30DaysUncheckedCreateWithoutVanityAnalyticsInput = {
+  export type VanityAnalyticsLatest30DayUncheckedCreateWithoutVanityAnalyticsInput = {
     id?: string
     Click?: number | null
     UniqueClick?: number | null
@@ -73647,9 +73647,9 @@ export namespace Prisma {
     JoinedWithCode?: number | null
   }
 
-  export type AnalyticsLatest30DaysCreateOrConnectWithoutVanityAnalyticsInput = {
-    where: AnalyticsLatest30DaysWhereUniqueInput
-    create: XOR<AnalyticsLatest30DaysCreateWithoutVanityAnalyticsInput, AnalyticsLatest30DaysUncheckedCreateWithoutVanityAnalyticsInput>
+  export type VanityAnalyticsLatest30DayCreateOrConnectWithoutVanityAnalyticsInput = {
+    where: VanityAnalyticsLatest30DayWhereUniqueInput
+    create: XOR<VanityAnalyticsLatest30DayCreateWithoutVanityAnalyticsInput, VanityAnalyticsLatest30DayUncheckedCreateWithoutVanityAnalyticsInput>
   }
 
   export type VanitysCreateWithoutAnalyticsInput = {
@@ -73662,7 +73662,7 @@ export namespace Prisma {
     InDiscovery?: boolean | null
     IsBannedFromDiscover?: boolean | null
     CreatedAt: Date | string
-    Embed?: VanityEmbedsCreateNestedOneWithoutVanitysInput
+    Embed?: VanityEmbedCreateNestedOneWithoutVanitysInput
     Users: UsersCreateNestedOneWithoutVanitysInput
   }
 
@@ -73677,7 +73677,7 @@ export namespace Prisma {
     IsBannedFromDiscover?: boolean | null
     CreatedAt: Date | string
     UserId: string
-    Embed?: VanityEmbedsUncheckedCreateNestedOneWithoutVanitysInput
+    Embed?: VanityEmbedUncheckedCreateNestedOneWithoutVanitysInput
   }
 
   export type VanitysCreateOrConnectWithoutAnalyticsInput = {
@@ -73685,25 +73685,25 @@ export namespace Prisma {
     create: XOR<VanitysCreateWithoutAnalyticsInput, VanitysUncheckedCreateWithoutAnalyticsInput>
   }
 
-  export type AnalyticsLatest30DaysUpsertWithoutVanityAnalyticsInput = {
-    update: XOR<AnalyticsLatest30DaysUpdateWithoutVanityAnalyticsInput, AnalyticsLatest30DaysUncheckedUpdateWithoutVanityAnalyticsInput>
-    create: XOR<AnalyticsLatest30DaysCreateWithoutVanityAnalyticsInput, AnalyticsLatest30DaysUncheckedCreateWithoutVanityAnalyticsInput>
-    where?: AnalyticsLatest30DaysWhereInput
+  export type VanityAnalyticsLatest30DayUpsertWithoutVanityAnalyticsInput = {
+    update: XOR<VanityAnalyticsLatest30DayUpdateWithoutVanityAnalyticsInput, VanityAnalyticsLatest30DayUncheckedUpdateWithoutVanityAnalyticsInput>
+    create: XOR<VanityAnalyticsLatest30DayCreateWithoutVanityAnalyticsInput, VanityAnalyticsLatest30DayUncheckedCreateWithoutVanityAnalyticsInput>
+    where?: VanityAnalyticsLatest30DayWhereInput
   }
 
-  export type AnalyticsLatest30DaysUpdateToOneWithWhereWithoutVanityAnalyticsInput = {
-    where?: AnalyticsLatest30DaysWhereInput
-    data: XOR<AnalyticsLatest30DaysUpdateWithoutVanityAnalyticsInput, AnalyticsLatest30DaysUncheckedUpdateWithoutVanityAnalyticsInput>
+  export type VanityAnalyticsLatest30DayUpdateToOneWithWhereWithoutVanityAnalyticsInput = {
+    where?: VanityAnalyticsLatest30DayWhereInput
+    data: XOR<VanityAnalyticsLatest30DayUpdateWithoutVanityAnalyticsInput, VanityAnalyticsLatest30DayUncheckedUpdateWithoutVanityAnalyticsInput>
   }
 
-  export type AnalyticsLatest30DaysUpdateWithoutVanityAnalyticsInput = {
+  export type VanityAnalyticsLatest30DayUpdateWithoutVanityAnalyticsInput = {
     Click?: NullableIntFieldUpdateOperationsInput | number | null
     UniqueClick?: NullableIntFieldUpdateOperationsInput | number | null
     Date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     JoinedWithCode?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type AnalyticsLatest30DaysUncheckedUpdateWithoutVanityAnalyticsInput = {
+  export type VanityAnalyticsLatest30DayUncheckedUpdateWithoutVanityAnalyticsInput = {
     Click?: NullableIntFieldUpdateOperationsInput | number | null
     UniqueClick?: NullableIntFieldUpdateOperationsInput | number | null
     Date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -73730,7 +73730,7 @@ export namespace Prisma {
     InDiscovery?: NullableBoolFieldUpdateOperationsInput | boolean | null
     IsBannedFromDiscover?: NullableBoolFieldUpdateOperationsInput | boolean | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Embed?: VanityEmbedsUpdateOneWithoutVanitysNestedInput
+    Embed?: VanityEmbedUpdateOneWithoutVanitysNestedInput
     Users?: UsersUpdateOneRequiredWithoutVanitysNestedInput
   }
 
@@ -73744,10 +73744,10 @@ export namespace Prisma {
     IsBannedFromDiscover?: NullableBoolFieldUpdateOperationsInput | boolean | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UserId?: StringFieldUpdateOperationsInput | string
-    Embed?: VanityEmbedsUncheckedUpdateOneWithoutVanitysNestedInput
+    Embed?: VanityEmbedUncheckedUpdateOneWithoutVanitysNestedInput
   }
 
-  export type VanityAnalyticsCreateWithoutLatest30DaysInput = {
+  export type VanityAnalyticCreateWithoutLatest30DaysInput = {
     id?: string
     Click: number
     TrackInviteWithLog?: string | null
@@ -73755,11 +73755,11 @@ export namespace Prisma {
     Update?: Date | string | null
     UniqueClick?: number | null
     JoinedWithCode?: number | null
-    LoggedIPs?: VanityAnalyticsCreateLoggedIPsInput | string[]
+    LoggedIPs?: VanityAnalyticCreateLoggedIPsInput | string[]
     Vanitys: VanitysCreateNestedOneWithoutAnalyticsInput
   }
 
-  export type VanityAnalyticsUncheckedCreateWithoutLatest30DaysInput = {
+  export type VanityAnalyticUncheckedCreateWithoutLatest30DaysInput = {
     id?: string
     Click: number
     TrackInviteWithLog?: string | null
@@ -73767,45 +73767,45 @@ export namespace Prisma {
     Update?: Date | string | null
     UniqueClick?: number | null
     JoinedWithCode?: number | null
-    LoggedIPs?: VanityAnalyticsCreateLoggedIPsInput | string[]
+    LoggedIPs?: VanityAnalyticCreateLoggedIPsInput | string[]
     VanityId: string
   }
 
-  export type VanityAnalyticsCreateOrConnectWithoutLatest30DaysInput = {
-    where: VanityAnalyticsWhereUniqueInput
-    create: XOR<VanityAnalyticsCreateWithoutLatest30DaysInput, VanityAnalyticsUncheckedCreateWithoutLatest30DaysInput>
+  export type VanityAnalyticCreateOrConnectWithoutLatest30DaysInput = {
+    where: VanityAnalyticWhereUniqueInput
+    create: XOR<VanityAnalyticCreateWithoutLatest30DaysInput, VanityAnalyticUncheckedCreateWithoutLatest30DaysInput>
   }
 
-  export type VanityAnalyticsUpsertWithoutLatest30DaysInput = {
-    update: XOR<VanityAnalyticsUpdateWithoutLatest30DaysInput, VanityAnalyticsUncheckedUpdateWithoutLatest30DaysInput>
-    create: XOR<VanityAnalyticsCreateWithoutLatest30DaysInput, VanityAnalyticsUncheckedCreateWithoutLatest30DaysInput>
-    where?: VanityAnalyticsWhereInput
+  export type VanityAnalyticUpsertWithoutLatest30DaysInput = {
+    update: XOR<VanityAnalyticUpdateWithoutLatest30DaysInput, VanityAnalyticUncheckedUpdateWithoutLatest30DaysInput>
+    create: XOR<VanityAnalyticCreateWithoutLatest30DaysInput, VanityAnalyticUncheckedCreateWithoutLatest30DaysInput>
+    where?: VanityAnalyticWhereInput
   }
 
-  export type VanityAnalyticsUpdateToOneWithWhereWithoutLatest30DaysInput = {
-    where?: VanityAnalyticsWhereInput
-    data: XOR<VanityAnalyticsUpdateWithoutLatest30DaysInput, VanityAnalyticsUncheckedUpdateWithoutLatest30DaysInput>
+  export type VanityAnalyticUpdateToOneWithWhereWithoutLatest30DaysInput = {
+    where?: VanityAnalyticWhereInput
+    data: XOR<VanityAnalyticUpdateWithoutLatest30DaysInput, VanityAnalyticUncheckedUpdateWithoutLatest30DaysInput>
   }
 
-  export type VanityAnalyticsUpdateWithoutLatest30DaysInput = {
+  export type VanityAnalyticUpdateWithoutLatest30DaysInput = {
     Click?: IntFieldUpdateOperationsInput | number
     TrackInviteWithLog?: NullableStringFieldUpdateOperationsInput | string | null
     TrackMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     Update?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     UniqueClick?: NullableIntFieldUpdateOperationsInput | number | null
     JoinedWithCode?: NullableIntFieldUpdateOperationsInput | number | null
-    LoggedIPs?: VanityAnalyticsUpdateLoggedIPsInput | string[]
+    LoggedIPs?: VanityAnalyticUpdateLoggedIPsInput | string[]
     Vanitys?: VanitysUpdateOneRequiredWithoutAnalyticsNestedInput
   }
 
-  export type VanityAnalyticsUncheckedUpdateWithoutLatest30DaysInput = {
+  export type VanityAnalyticUncheckedUpdateWithoutLatest30DaysInput = {
     Click?: IntFieldUpdateOperationsInput | number
     TrackInviteWithLog?: NullableStringFieldUpdateOperationsInput | string | null
     TrackMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     Update?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     UniqueClick?: NullableIntFieldUpdateOperationsInput | number | null
     JoinedWithCode?: NullableIntFieldUpdateOperationsInput | number | null
-    LoggedIPs?: VanityAnalyticsUpdateLoggedIPsInput | string[]
+    LoggedIPs?: VanityAnalyticUpdateLoggedIPsInput | string[]
     VanityId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -75031,8 +75031,8 @@ export namespace Prisma {
     InDiscovery?: NullableBoolFieldUpdateOperationsInput | boolean | null
     IsBannedFromDiscover?: NullableBoolFieldUpdateOperationsInput | boolean | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Analytics?: VanityAnalyticsUpdateOneWithoutVanitysNestedInput
-    Embed?: VanityEmbedsUpdateOneWithoutVanitysNestedInput
+    Analytics?: VanityAnalyticUpdateOneWithoutVanitysNestedInput
+    Embed?: VanityEmbedUpdateOneWithoutVanitysNestedInput
   }
 
   export type VanitysUncheckedUpdateWithoutUsersInput = {
@@ -75044,8 +75044,8 @@ export namespace Prisma {
     InDiscovery?: NullableBoolFieldUpdateOperationsInput | boolean | null
     IsBannedFromDiscover?: NullableBoolFieldUpdateOperationsInput | boolean | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Analytics?: VanityAnalyticsUncheckedUpdateOneWithoutVanitysNestedInput
-    Embed?: VanityEmbedsUncheckedUpdateOneWithoutVanitysNestedInput
+    Analytics?: VanityAnalyticUncheckedUpdateOneWithoutVanitysNestedInput
+    Embed?: VanityEmbedUncheckedUpdateOneWithoutVanitysNestedInput
   }
 
   export type VanitysUncheckedUpdateManyWithoutUsersInput = {

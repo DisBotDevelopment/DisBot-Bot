@@ -42,7 +42,7 @@ export default {
                 flags: MessageFlags.Ephemeral
             });
 
-            await database.vanityAnalytics.update(
+            await database.vanityAnalytic.update(
                 {
                     where: {
                         VanityId: interaction.customId

@@ -593,7 +593,7 @@ exports.Prisma.VanitysScalarFieldEnum = {
   UserId: 'UserId'
 };
 
-exports.Prisma.VanityEmbedsScalarFieldEnum = {
+exports.Prisma.VanityEmbedScalarFieldEnum = {
   id: 'id',
   Title: 'Title',
   Description: 'Description',
@@ -603,7 +603,7 @@ exports.Prisma.VanityEmbedsScalarFieldEnum = {
   VanityId: 'VanityId'
 };
 
-exports.Prisma.VanityEmbedAuthorsScalarFieldEnum = {
+exports.Prisma.VanityEmbedAuthorScalarFieldEnum = {
   id: 'id',
   Name: 'Name',
   URL: 'URL',
@@ -611,7 +611,7 @@ exports.Prisma.VanityEmbedAuthorsScalarFieldEnum = {
   VanityEmbedsId: 'VanityEmbedsId'
 };
 
-exports.Prisma.VanityAnalyticsScalarFieldEnum = {
+exports.Prisma.VanityAnalyticScalarFieldEnum = {
   id: 'id',
   Click: 'Click',
   TrackInviteWithLog: 'TrackInviteWithLog',
@@ -623,7 +623,7 @@ exports.Prisma.VanityAnalyticsScalarFieldEnum = {
   VanityId: 'VanityId'
 };
 
-exports.Prisma.AnalyticsLatest30DaysScalarFieldEnum = {
+exports.Prisma.VanityAnalyticsLatest30DayScalarFieldEnum = {
   id: 'id',
   Click: 'Click',
   UniqueClick: 'UniqueClick',
@@ -692,10 +692,10 @@ exports.Prisma.ModelName = {
   Apis: 'Apis',
   GuildBackups: 'GuildBackups',
   Vanitys: 'Vanitys',
-  VanityEmbeds: 'VanityEmbeds',
-  VanityEmbedAuthors: 'VanityEmbedAuthors',
-  VanityAnalytics: 'VanityAnalytics',
-  AnalyticsLatest30Days: 'AnalyticsLatest30Days',
+  VanityEmbed: 'VanityEmbed',
+  VanityEmbedAuthor: 'VanityEmbedAuthor',
+  VanityAnalytic: 'VanityAnalytic',
+  VanityAnalyticsLatest30Day: 'VanityAnalyticsLatest30Day',
   DisBot: 'DisBot'
 };
 

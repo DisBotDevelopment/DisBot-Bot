@@ -36,7 +36,7 @@ export default {
         if (!vanityInvite.Analytics?.TrackMessageId) return;
         if (!vanityInvite.Analytics?.TrackInviteWithLog) return;
 
-        await database.vanityAnalytics.update({
+        await database.vanityAnalytic.update({
                 where: {
                     VanityId: vanityInvite.UUID,
                 },
@@ -45,7 +45,7 @@ export default {
                 }
             }
         )
-        await database.analyticsLatest30Days.update({
+        await database.vanityAnalyticsLatest30Day.update({
                 where: {
                     VanityAnalyticsId: vanityInvite.UUID,
                 },

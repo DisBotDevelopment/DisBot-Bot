@@ -52,7 +52,7 @@ export default {
                                 `**Host**: \`${embed.Host}\``,
                                 `**Guild**: ${await client.guilds.fetch(embed?.GuildId as string).then(g => g.name)} (\`${embed?.GuildId}\`)`,
                                 `**Invite**: [Invite](${embed.Invite})`,
-                                `**vanity-Link**: [vanity Link](https://dchat.click/${embed.Slug})`,
+                                `**Vanity-Link**: [Vanity Link](https://dchat.link/${embed.Slug})`,
                                 `**UUID**: \`\`\`${embed.UUID}\`\`\``
                             ].join("\n")
                         );

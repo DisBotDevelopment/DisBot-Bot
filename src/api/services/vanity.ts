@@ -38,7 +38,7 @@ export async function vanityAPI(client: ExtendedClient) {
 
         const isUniqueClick = !data.Analytics?.LoggedIPs?.includes(userIP as string);
         if (isUniqueClick) {
-            await database.vanityAnalytics.update({
+            await database.vanityAnalytic.update({
                 where: {
                     VanityId: data.UUID
                 },
@@ -49,7 +49,7 @@ export async function vanityAPI(client: ExtendedClient) {
                     }
                 }
             });
-            await database.analyticsLatest30Days.update({
+            await database.vanityAnalyticsLatest30Day.update({
                 where: {
                     VanityAnalyticsId: data.UUID
                 },
@@ -59,7 +59,7 @@ export async function vanityAPI(client: ExtendedClient) {
             });
         }
 
-        await database.vanityAnalytics.update({
+        await database.vanityAnalytic.update({
             where: {
                 VanityId: data.UUID
             },
@@ -68,7 +68,7 @@ export async function vanityAPI(client: ExtendedClient) {
                 Update: new Date()
             }
         });
-        await database.analyticsLatest30Days.update({
+        await database.vanityAnalyticsLatest30Day.update({
             where: {
                 VanityAnalyticsId: data.UUID
             },
