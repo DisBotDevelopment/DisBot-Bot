@@ -26,12 +26,12 @@ export async function verifyAction(
         throw new Error("Verification gate is not active.");
     }
 
-    const guildMember = member.guild.members.cache.get(member.id);
+    const guildMember = await member.guild.members.fetch(member.id);
 
 
     if (action == VerificationAction.AddRole) {
         for (const roleId of data.Roles) {
-            const role = member.guild.roles.cache.get(roleId);
+            const role = await member.guild.roles.fetch(roleId);
             if (role) {
                 if (!guildMember?.roles.cache.has(roleId)) {
                     await guildMember?.roles.add(role);
@@ -44,7 +44,7 @@ export async function verifyAction(
     if (action == VerificationAction.AddPermissionToChannel) {
 
         for (const permission of data.ChannelPermissions) {
-            const channel = guildMember?.guild.channels.cache.get(permission.ChannelId);
+            const channel = await guildMember?.guild.channels.fetch(permission.ChannelId);
             if (channel) {
                 if (!channel.isTextBased()) continue;
 
