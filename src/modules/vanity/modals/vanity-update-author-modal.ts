@@ -17,9 +17,9 @@ export default {
             flags: MessageFlags.Ephemeral
         });
 
-        const data = await database.vanityEmbed.findFirst({
+        const data = await database.vanityEmbedAuthor.findFirst({
             where: {
-                VanityId: interaction.customId.split(":")[1]
+                VanityEmbedsId: interaction.customId.split(":")[1]
             }
         });
 
@@ -31,20 +31,6 @@ export default {
         if (!data) {
             await interaction.editReply({
                 content: `## ${await convertToEmojiPng("error", client.user.id)} This vanity URL is not found.`,
-            });
-            return;
-        }
-
-        if (!icon.startsWith("http") && !icon.endsWith(".png") || !icon.endsWith(".jpg") || !icon.endsWith(".jpeg")) {
-            await interaction.editReply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} The icon URL must be a valid image URL ending with .png, .jpg, or .jpeg.`,
-            });
-            return;
-        }
-
-        if (!newImage.startsWith("http")) {
-            await interaction.editReply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} The author URL must be a valid URL starting with http.`,
             });
             return;
         }
