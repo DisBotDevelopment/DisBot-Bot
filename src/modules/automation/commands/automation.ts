@@ -91,7 +91,7 @@ export default {
                             `## ${await convertToEmojiPng("workflow", client.user?.id)} Automation`,
                             ``,
                             `**Manage all automations**`,
-                            `> ${await convertToEmojiPng("packageplus", client.user?.id)} guildAutoRoles - Automatically assign roles to new members`,
+                            `> ${await convertToEmojiPng("packageplus", client.user?.id)} AutoRoles - Automatically assign roles to new members`,
                             `> ${await convertToEmojiPng("megaphone", client.user?.id)} AutoPublish - Automatically publish messages in announcement channels`,
                             `> ${await convertToEmojiPng("smileplus", client.user?.id)} AutoReact - Automatically react to messages`,
                             `> ${await convertToEmojiPng("error", client.user?.id)} AutoDelete - Automatically delete messages \`NEW\``,

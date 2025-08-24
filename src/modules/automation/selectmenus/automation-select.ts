@@ -52,9 +52,9 @@ export default {
                         flags: MessageFlags.IsComponentsV2,
                         components: [
                             new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent([
-                                `## ${await convertToEmojiPng("packageplus", client.user?.id)} guildAutoRoles`,
+                                `## ${await convertToEmojiPng("packageplus", client.user?.id)} AutoRoles`,
                                 ``,
-                                `### **Manage all guildAutoRoles**`,
+                                `### **Manage all AutoRoles**`,
                                 `> Toggle the automation on or off`,
                                 `> Add Roles to the automation`,
                                 `> Remove Roles from the automation`,

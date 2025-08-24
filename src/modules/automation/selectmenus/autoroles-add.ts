@@ -64,7 +64,7 @@ export default {
 
         if (!client.user) throw new Error("Client user is not cached.");
         return await interaction.editReply({
-            content: `## ${await convertToEmojiPng("check", client.user?.id)} Role(s) added to guildAutoRoles successfully (${interaction.values.length} roles)`,
+            content: `## ${await convertToEmojiPng("check", client.user?.id)} Role(s) added to AutoRoles successfully (${interaction.values.length} roles)`,
         });
 
     },

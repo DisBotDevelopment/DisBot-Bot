@@ -39,7 +39,7 @@ export default {
                     }
                 })
                 await interaction.reply({
-                    content: `## ${await convertToEmojiPng("check", client.user?.id)} guildAutoRoles successfully disabled`,
+                    content: `## ${await convertToEmojiPng("check", client.user?.id)} AutoRoles successfully disabled`,
                     flags: MessageFlags.Ephemeral,
                 });
             } else {
@@ -52,7 +52,7 @@ export default {
                     }
                 })
                 await interaction.reply({
-                    content: `## ${await convertToEmojiPng("check", client.user?.id)} guildAutoRoles successfully enabled`,
+                    content: `## ${await convertToEmojiPng("check", client.user?.id)} AutoRoles successfully enabled`,
                     flags: MessageFlags.Ephemeral,
                 });
             }

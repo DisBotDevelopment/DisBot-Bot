@@ -27,7 +27,7 @@ export default {
             if (!client.user) throw new Error("Client user is not cached.");
             if (!data) {
                 await interaction.editReply({
-                    content: `## ${await convertToEmojiPng("error", client.user?.id)} No guildAutoRoles data found`,
+                    content: `## ${await convertToEmojiPng("error", client.user?.id)} No AutoRoles data found`,
                 });
                 continue;
             } else {
@@ -38,7 +38,7 @@ export default {
                 })
             }
             await interaction.editReply({
-                content: `## ${await convertToEmojiPng("check", client.user?.id)} Role(s) removed from guildAutoRoles successfully (${interaction.values.length})`,
+                content: `## ${await convertToEmojiPng("check", client.user?.id)} Role(s) removed from AutoRoles successfully (${interaction.values.length})`,
             });
         }
     },
