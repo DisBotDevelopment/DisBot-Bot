@@ -27,6 +27,26 @@ export default {
             });
         }
 
+        await database.vanityEmbedAuthor.deleteMany({
+            where: {
+                VanityEmbedsId: data.UUID
+            }
+        })
+        await database.vanityEmbed.deleteMany({
+            where: {
+                VanityId: data.UUID
+            }
+        })
+        await database.vanityAnalyticsLatest30Day.deleteMany({
+            where: {
+                VanityAnalyticsId: data.UUID
+            }
+        })
+        await database.vanityAnalytic.deleteMany({
+            where: {
+                VanityId: data.UUID
+            }
+        })
         await database.vanitys.deleteMany({
             where: {
                 UUID: data.UUID

@@ -1,7 +1,7 @@
 {
   "name": "disbot",
   "main": "./.build/startup.js",
-  "version": "1.6.2",
+  "version": "1.6.2r1",
   "scripts": {
     "disbot": "node ./.build/src/main/startup.js",
     "customer": "cd /home/disbot && node ./.build/src/main/startup.js",

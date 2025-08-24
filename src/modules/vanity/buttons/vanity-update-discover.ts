@@ -34,15 +34,25 @@ export default {
         });
 
         if (isOneGuild.length >= 1) {
+
+            await database.vanitys.update({
+                where: {
+                    UUID: interaction.customId.split(":")[1]
+                },
+                data: {
+                    InDiscovery: false,
+                }
+            });
+
             return await interaction.reply(
                 {
                     flags: MessageFlags.Ephemeral,
-                    content: `## ${await convertToEmojiPng("error", client.user.id)} You only can have this guild once in the Discovery!`,
+                    content: `## ${await convertToEmojiPng("error", client.user.id)} Disabled Discovery for this Vanity (You only can have this guild once in the Discovery!)`,
                 }
             )
         }
 
-        if (!data.Embed || !data.Embed.Title || !data.Embed.Author || !data.Embed.Description || data.Embed.ImageUrl) return await interaction.reply(
+        if (!data.Embed || !data.Embed.Title || !data.Embed.Author || !data.Embed.Description || !data.Embed.ImageUrl) return await interaction.reply(
             {
                 flags: MessageFlags.Ephemeral,
                 content: `## ${await convertToEmojiPng("error", client.user.id)} You need for the Discovery Embed Title, Embed Author (All), Embed Description and the Embed Image!`,
@@ -63,7 +73,7 @@ export default {
         await interaction.reply(
             {
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("check", client.user.id)} ${data.InDiscovery ? "Added" : "Removed"} this Vanity Url to the Discovery.`,
+                content: `## ${await convertToEmojiPng("check", client.user.id)} Added this Vanity Url to the Discovery.`,
             }
         )
     }
