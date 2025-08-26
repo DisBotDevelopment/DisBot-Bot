@@ -60,6 +60,7 @@ export async function configStartup() {
             Logging: {
                 ErrorWebhook: "",
                 BotLogger: "",
+                GitHubAPIToken: ""
             },
             BotType: "DISBOT",
             CONFIG_VERSION: botData.configVersion,

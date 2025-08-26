@@ -13,6 +13,7 @@ import {convertToEmojiPng} from "./emojis.js";
 import {LoggingAction} from "../enums/loggingTypes.js";
 import {Logger} from "../main/logger.js";
 import {Config} from "../main/config.js";
+import {Octokit} from "@octokit/core";
 
 colors.enable();
 
@@ -102,8 +103,25 @@ export async function errorHandler(interaction: Interaction, client: any, error:
                 url: Config.Logging.ErrorWebhook as string,
             });
 
+            const issue = await exportToGithubIssues(
+                `Bug Report - ${interaction.user.tag} (${interaction.user.id}) - Interaction`,
+                [
+                    `## Error Report:`,
+                    `> **User:** ***\`${interaction.user.username}\`*** (\`${interaction.user.id}\`)`,
+                    `> **Error:** \`${error.name}\``,
+                    `>  - \`${error.message}\``,
+                    `> **Interaction Id**: \`${interaction.id}\``,
+                    `> **Interaction Type:** \`${interaction.type == 2 ? "Application Command" : interaction.type == 3 ? "Message Component" : interaction.type == 5 ? "Modal Submit" : "Unknown"}\``,
+                    `> **Interaction Name/ID:** \`${interactionName}\``,
+                    ``,
+                    `## Error Stack Trace:`,
+                    ``,
+                    `\`\`\`ts\n${error.stack}\n\`\`\``,
+                ].join("\n")
+            )
+
             if (!client.user) throw new Error("Client user is not defined");
-            await webHookClient.send({
+            const message = await webHookClient.send({
                 withComponents: true,
                 flags: MessageFlags.IsComponentsV2,
                 components: [
@@ -139,7 +157,6 @@ export async function errorHandler(interaction: Interaction, client: any, error:
                 threadName:
                     `Bug Report - ${interaction.user.tag} (${interaction.user.id}) - Interaction`,
             })
-            ;
 
             await interaction.editReply({
                 components: [
@@ -149,7 +166,7 @@ export async function errorHandler(interaction: Interaction, client: any, error:
                                 .addTextDisplayComponents(
                                     new TextDisplayBuilder()
                                         .setContent([
-                                            `## ${await convertToEmojiPng("check", client.user?.id)} Successfully sent your Error Report to the Discord!`,
+                                            `## ${await convertToEmojiPng("check", client.user?.id)} Successfully sent your Error Report to the Discord!\n-# View your Bug Report on the Discord\n-# - https://discord.com/channels/1084507523492626522/${message.channel_id}/${message.id}\n-# View your Bug Report on the GitHub\n-# - ${issue}`,
                                         ].join("\n"))
                                 )
                                 .setButtonAccessory(new ButtonBuilder()
@@ -165,4 +182,30 @@ export async function errorHandler(interaction: Interaction, client: any, error:
         });
     }
 
+}
+
+
+async function exportToGithubIssues(title: string, message: string) {
+    if (!Config.Logging.GitHubAPIToken) return
+
+    const octokit = new Octokit({
+        auth: Config.Logging.GitHubAPIToken
+    })
+
+    const issue = await octokit.request('POST /repos/DisBotDevelopment/DisBot-Bot/issues', {
+        owner: 'DisBotDevelopment',
+        repo: 'DisBot-Bot',
+        title: String(title),
+        body: String(message),
+        assignees: [
+            'xyzjesper'
+        ],
+        labels: [
+            'Automation', "Bug-Report"
+        ],
+        headers: {
+            'X-GitHub-Api-Version': '2022-11-28'
+        }
+    })
+    return issue.url
 }

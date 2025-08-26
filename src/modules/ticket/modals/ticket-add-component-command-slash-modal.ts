@@ -26,7 +26,7 @@ export default {
             where: {CustomId: interaction.customId.split(":")[1]}
         })
 
-        const commandNames = await client.application.commands.fetch()
+        const commandNames = await interaction.guild.commands.fetch()
 
         if (!text && data.SlashCommandId) {
             await database.ticketSetups.update(
@@ -35,7 +35,8 @@ export default {
                         CustomId: menuID
                     },
                     data: {
-                        SlashCommandId: text ? text : null
+                        SlashCommandId: text ? text : null,
+                        SlashCommandDescription: null
                     }
                 }
             );
@@ -74,7 +75,9 @@ export default {
                     CustomId: menuID
                 },
                 data: {
-                    SlashCommandId: command.id
+                    SlashCommandId: command.id,
+                    SlashCommandName: text,
+                    SlashCommandDescription: description
                 }
             }
         );

@@ -34697,6 +34697,8 @@ export namespace Prisma {
     AutoReplyMessageTemplateId: string | null
     OldTicketCategoryId: string | null
     SlashCommandId: string | null
+    SlashCommandName: string | null
+    SlashCommandDescription: string | null
     TextCommandName: string | null
     SendTranscriptToUser: boolean | null
     GuildId: string | null
@@ -34725,6 +34727,8 @@ export namespace Prisma {
     AutoReplyMessageTemplateId: string | null
     OldTicketCategoryId: string | null
     SlashCommandId: string | null
+    SlashCommandName: string | null
+    SlashCommandDescription: string | null
     TextCommandName: string | null
     SendTranscriptToUser: boolean | null
     GuildId: string | null
@@ -34756,6 +34760,8 @@ export namespace Prisma {
     OldTicketCategoryId: number
     RequiredRoles: number
     SlashCommandId: number
+    SlashCommandName: number
+    SlashCommandDescription: number
     TextCommandName: number
     SendTranscriptToUser: number
     GuildId: number
@@ -34802,6 +34808,8 @@ export namespace Prisma {
     AutoReplyMessageTemplateId?: true
     OldTicketCategoryId?: true
     SlashCommandId?: true
+    SlashCommandName?: true
+    SlashCommandDescription?: true
     TextCommandName?: true
     SendTranscriptToUser?: true
     GuildId?: true
@@ -34830,6 +34838,8 @@ export namespace Prisma {
     AutoReplyMessageTemplateId?: true
     OldTicketCategoryId?: true
     SlashCommandId?: true
+    SlashCommandName?: true
+    SlashCommandDescription?: true
     TextCommandName?: true
     SendTranscriptToUser?: true
     GuildId?: true
@@ -34861,6 +34871,8 @@ export namespace Prisma {
     OldTicketCategoryId?: true
     RequiredRoles?: true
     SlashCommandId?: true
+    SlashCommandName?: true
+    SlashCommandDescription?: true
     TextCommandName?: true
     SendTranscriptToUser?: true
     GuildId?: true
@@ -34979,6 +34991,8 @@ export namespace Prisma {
     OldTicketCategoryId: string | null
     RequiredRoles: string[]
     SlashCommandId: string | null
+    SlashCommandName: string | null
+    SlashCommandDescription: string | null
     TextCommandName: string | null
     SendTranscriptToUser: boolean | null
     GuildId: string
@@ -35029,6 +35043,8 @@ export namespace Prisma {
     OldTicketCategoryId?: boolean
     RequiredRoles?: boolean
     SlashCommandId?: boolean
+    SlashCommandName?: boolean
+    SlashCommandDescription?: boolean
     TextCommandName?: boolean
     SendTranscriptToUser?: boolean
     GuildId?: boolean
@@ -35067,12 +35083,14 @@ export namespace Prisma {
     OldTicketCategoryId?: boolean
     RequiredRoles?: boolean
     SlashCommandId?: boolean
+    SlashCommandName?: boolean
+    SlashCommandDescription?: boolean
     TextCommandName?: boolean
     SendTranscriptToUser?: boolean
     GuildId?: boolean
   }
 
-  export type TicketSetupsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "CategoryId" | "ChannelType" | "CustomId" | "TicketChannelName" | "EnableTicketsOnlyFromTime" | "MessageTemplateId" | "TicketBlacklistRoles" | "TranscriptChannelId" | "HasModal" | "ModalTitle" | "OnlyClaimMode" | "TicketLimit" | "UserDMWhenCloseMessageTemplateId" | "WithTicketFeedback" | "TicketFeedbackChannelId" | "TicketCreationCooldownPerUser" | "AutoCloseAfterInactivity" | "AutoCloseAfterTime" | "AutoAssignHandler" | "AutoReplyMessageTemplateId" | "AutoCloseAction" | "OldTicketCategoryId" | "RequiredRoles" | "SlashCommandId" | "TextCommandName" | "SendTranscriptToUser" | "GuildId", ExtArgs["result"]["ticketSetups"]>
+  export type TicketSetupsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "CategoryId" | "ChannelType" | "CustomId" | "TicketChannelName" | "EnableTicketsOnlyFromTime" | "MessageTemplateId" | "TicketBlacklistRoles" | "TranscriptChannelId" | "HasModal" | "ModalTitle" | "OnlyClaimMode" | "TicketLimit" | "UserDMWhenCloseMessageTemplateId" | "WithTicketFeedback" | "TicketFeedbackChannelId" | "TicketCreationCooldownPerUser" | "AutoCloseAfterInactivity" | "AutoCloseAfterTime" | "AutoAssignHandler" | "AutoReplyMessageTemplateId" | "AutoCloseAction" | "OldTicketCategoryId" | "RequiredRoles" | "SlashCommandId" | "SlashCommandName" | "SlashCommandDescription" | "TextCommandName" | "SendTranscriptToUser" | "GuildId", ExtArgs["result"]["ticketSetups"]>
   export type TicketSetupsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     TicketPermissions?: boolean | TicketSetups$TicketPermissionsArgs<ExtArgs>
     ModalOptions?: boolean | TicketSetups$ModalOptionsArgs<ExtArgs>
@@ -35115,6 +35133,8 @@ export namespace Prisma {
       OldTicketCategoryId: string | null
       RequiredRoles: string[]
       SlashCommandId: string | null
+      SlashCommandName: string | null
+      SlashCommandDescription: string | null
       TextCommandName: string | null
       SendTranscriptToUser: boolean | null
       GuildId: string
@@ -35539,6 +35559,8 @@ export namespace Prisma {
     readonly OldTicketCategoryId: FieldRef<"TicketSetups", 'String'>
     readonly RequiredRoles: FieldRef<"TicketSetups", 'String[]'>
     readonly SlashCommandId: FieldRef<"TicketSetups", 'String'>
+    readonly SlashCommandName: FieldRef<"TicketSetups", 'String'>
+    readonly SlashCommandDescription: FieldRef<"TicketSetups", 'String'>
     readonly TextCommandName: FieldRef<"TicketSetups", 'String'>
     readonly SendTranscriptToUser: FieldRef<"TicketSetups", 'Boolean'>
     readonly GuildId: FieldRef<"TicketSetups", 'String'>
@@ -53266,6 +53288,8 @@ export namespace Prisma {
     OldTicketCategoryId: 'OldTicketCategoryId',
     RequiredRoles: 'RequiredRoles',
     SlashCommandId: 'SlashCommandId',
+    SlashCommandName: 'SlashCommandName',
+    SlashCommandDescription: 'SlashCommandDescription',
     TextCommandName: 'TextCommandName',
     SendTranscriptToUser: 'SendTranscriptToUser',
     GuildId: 'GuildId'
@@ -55688,6 +55712,8 @@ export namespace Prisma {
     OldTicketCategoryId?: StringNullableFilter<"TicketSetups"> | string | null
     RequiredRoles?: StringNullableListFilter<"TicketSetups">
     SlashCommandId?: StringNullableFilter<"TicketSetups"> | string | null
+    SlashCommandName?: StringNullableFilter<"TicketSetups"> | string | null
+    SlashCommandDescription?: StringNullableFilter<"TicketSetups"> | string | null
     TextCommandName?: StringNullableFilter<"TicketSetups"> | string | null
     SendTranscriptToUser?: BoolNullableFilter<"TicketSetups"> | boolean | null
     GuildId?: StringFilter<"TicketSetups"> | string
@@ -55723,6 +55749,8 @@ export namespace Prisma {
     OldTicketCategoryId?: SortOrder
     RequiredRoles?: SortOrder
     SlashCommandId?: SortOrder
+    SlashCommandName?: SortOrder
+    SlashCommandDescription?: SortOrder
     TextCommandName?: SortOrder
     SendTranscriptToUser?: SortOrder
     GuildId?: SortOrder
@@ -55761,6 +55789,8 @@ export namespace Prisma {
     OldTicketCategoryId?: StringNullableFilter<"TicketSetups"> | string | null
     RequiredRoles?: StringNullableListFilter<"TicketSetups">
     SlashCommandId?: StringNullableFilter<"TicketSetups"> | string | null
+    SlashCommandName?: StringNullableFilter<"TicketSetups"> | string | null
+    SlashCommandDescription?: StringNullableFilter<"TicketSetups"> | string | null
     TextCommandName?: StringNullableFilter<"TicketSetups"> | string | null
     SendTranscriptToUser?: BoolNullableFilter<"TicketSetups"> | boolean | null
     GuildId?: StringFilter<"TicketSetups"> | string
@@ -55796,6 +55826,8 @@ export namespace Prisma {
     OldTicketCategoryId?: SortOrder
     RequiredRoles?: SortOrder
     SlashCommandId?: SortOrder
+    SlashCommandName?: SortOrder
+    SlashCommandDescription?: SortOrder
     TextCommandName?: SortOrder
     SendTranscriptToUser?: SortOrder
     GuildId?: SortOrder
@@ -55835,6 +55867,8 @@ export namespace Prisma {
     OldTicketCategoryId?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
     RequiredRoles?: StringNullableListFilter<"TicketSetups">
     SlashCommandId?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
+    SlashCommandName?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
+    SlashCommandDescription?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
     TextCommandName?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
     SendTranscriptToUser?: BoolNullableWithAggregatesFilter<"TicketSetups"> | boolean | null
     GuildId?: StringWithAggregatesFilter<"TicketSetups"> | string
@@ -59232,6 +59266,8 @@ export namespace Prisma {
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
     SlashCommandId?: string | null
+    SlashCommandName?: string | null
+    SlashCommandDescription?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
     TicketPermissions?: TicketPermissionsCreateNestedManyWithoutTicketSetupInput
@@ -59266,6 +59302,8 @@ export namespace Prisma {
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
     SlashCommandId?: string | null
+    SlashCommandName?: string | null
+    SlashCommandDescription?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
     GuildId: string
@@ -59299,6 +59337,8 @@ export namespace Prisma {
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
+    SlashCommandName?: NullableStringFieldUpdateOperationsInput | string | null
+    SlashCommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketPermissions?: TicketPermissionsUpdateManyWithoutTicketSetupNestedInput
@@ -59332,6 +59372,8 @@ export namespace Prisma {
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
+    SlashCommandName?: NullableStringFieldUpdateOperationsInput | string | null
+    SlashCommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
     GuildId?: StringFieldUpdateOperationsInput | string
@@ -59366,6 +59408,8 @@ export namespace Prisma {
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
     SlashCommandId?: string | null
+    SlashCommandName?: string | null
+    SlashCommandDescription?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
     GuildId: string
@@ -59396,6 +59440,8 @@ export namespace Prisma {
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
+    SlashCommandName?: NullableStringFieldUpdateOperationsInput | string | null
+    SlashCommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
@@ -59425,6 +59471,8 @@ export namespace Prisma {
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
+    SlashCommandName?: NullableStringFieldUpdateOperationsInput | string | null
+    SlashCommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
     GuildId?: StringFieldUpdateOperationsInput | string
@@ -62276,6 +62324,8 @@ export namespace Prisma {
     OldTicketCategoryId?: SortOrder
     RequiredRoles?: SortOrder
     SlashCommandId?: SortOrder
+    SlashCommandName?: SortOrder
+    SlashCommandDescription?: SortOrder
     TextCommandName?: SortOrder
     SendTranscriptToUser?: SortOrder
     GuildId?: SortOrder
@@ -62312,6 +62362,8 @@ export namespace Prisma {
     AutoReplyMessageTemplateId?: SortOrder
     OldTicketCategoryId?: SortOrder
     SlashCommandId?: SortOrder
+    SlashCommandName?: SortOrder
+    SlashCommandDescription?: SortOrder
     TextCommandName?: SortOrder
     SendTranscriptToUser?: SortOrder
     GuildId?: SortOrder
@@ -62340,6 +62392,8 @@ export namespace Prisma {
     AutoReplyMessageTemplateId?: SortOrder
     OldTicketCategoryId?: SortOrder
     SlashCommandId?: SortOrder
+    SlashCommandName?: SortOrder
+    SlashCommandDescription?: SortOrder
     TextCommandName?: SortOrder
     SendTranscriptToUser?: SortOrder
     GuildId?: SortOrder
@@ -66749,6 +66803,8 @@ export namespace Prisma {
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
     SlashCommandId?: string | null
+    SlashCommandName?: string | null
+    SlashCommandDescription?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
     TicketPermissions?: TicketPermissionsCreateNestedManyWithoutTicketSetupInput
@@ -66782,6 +66838,8 @@ export namespace Prisma {
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
     SlashCommandId?: string | null
+    SlashCommandName?: string | null
+    SlashCommandDescription?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
     TicketPermissions?: TicketPermissionsUncheckedCreateNestedManyWithoutTicketSetupInput
@@ -67575,6 +67633,8 @@ export namespace Prisma {
     OldTicketCategoryId?: StringNullableFilter<"TicketSetups"> | string | null
     RequiredRoles?: StringNullableListFilter<"TicketSetups">
     SlashCommandId?: StringNullableFilter<"TicketSetups"> | string | null
+    SlashCommandName?: StringNullableFilter<"TicketSetups"> | string | null
+    SlashCommandDescription?: StringNullableFilter<"TicketSetups"> | string | null
     TextCommandName?: StringNullableFilter<"TicketSetups"> | string | null
     SendTranscriptToUser?: BoolNullableFilter<"TicketSetups"> | boolean | null
     GuildId?: StringFilter<"TicketSetups"> | string
@@ -71946,6 +72006,8 @@ export namespace Prisma {
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
     SlashCommandId?: string | null
+    SlashCommandName?: string | null
+    SlashCommandDescription?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
     TicketPermissions?: TicketPermissionsCreateNestedManyWithoutTicketSetupInput
@@ -71979,6 +72041,8 @@ export namespace Prisma {
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
     SlashCommandId?: string | null
+    SlashCommandName?: string | null
+    SlashCommandDescription?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
     GuildId: string
@@ -72027,6 +72091,8 @@ export namespace Prisma {
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
+    SlashCommandName?: NullableStringFieldUpdateOperationsInput | string | null
+    SlashCommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketPermissions?: TicketPermissionsUpdateManyWithoutTicketSetupNestedInput
@@ -72059,6 +72125,8 @@ export namespace Prisma {
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
+    SlashCommandName?: NullableStringFieldUpdateOperationsInput | string | null
+    SlashCommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
     GuildId?: StringFieldUpdateOperationsInput | string
@@ -72092,6 +72160,8 @@ export namespace Prisma {
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
     SlashCommandId?: string | null
+    SlashCommandName?: string | null
+    SlashCommandDescription?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
     ModalOptions?: TicketModalDataCreateNestedManyWithoutTicketSetupInput
@@ -72125,6 +72195,8 @@ export namespace Prisma {
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
     SlashCommandId?: string | null
+    SlashCommandName?: string | null
+    SlashCommandDescription?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
     GuildId: string
@@ -72173,6 +72245,8 @@ export namespace Prisma {
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
+    SlashCommandName?: NullableStringFieldUpdateOperationsInput | string | null
+    SlashCommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ModalOptions?: TicketModalDataUpdateManyWithoutTicketSetupNestedInput
@@ -72205,6 +72279,8 @@ export namespace Prisma {
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
+    SlashCommandName?: NullableStringFieldUpdateOperationsInput | string | null
+    SlashCommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
     GuildId?: StringFieldUpdateOperationsInput | string
@@ -72259,6 +72335,8 @@ export namespace Prisma {
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
     SlashCommandId?: string | null
+    SlashCommandName?: string | null
+    SlashCommandDescription?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
     TicketPermissions?: TicketPermissionsCreateNestedManyWithoutTicketSetupInput
@@ -72292,6 +72370,8 @@ export namespace Prisma {
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
     SlashCommandId?: string | null
+    SlashCommandName?: string | null
+    SlashCommandDescription?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
     GuildId: string
@@ -72365,6 +72445,8 @@ export namespace Prisma {
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
+    SlashCommandName?: NullableStringFieldUpdateOperationsInput | string | null
+    SlashCommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketPermissions?: TicketPermissionsUpdateManyWithoutTicketSetupNestedInput
@@ -72397,6 +72479,8 @@ export namespace Prisma {
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
+    SlashCommandName?: NullableStringFieldUpdateOperationsInput | string | null
+    SlashCommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
     GuildId?: StringFieldUpdateOperationsInput | string
@@ -73964,6 +74048,8 @@ export namespace Prisma {
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
     SlashCommandId?: string | null
+    SlashCommandName?: string | null
+    SlashCommandDescription?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
   }
@@ -74366,6 +74452,8 @@ export namespace Prisma {
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
+    SlashCommandName?: NullableStringFieldUpdateOperationsInput | string | null
+    SlashCommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketPermissions?: TicketPermissionsUpdateManyWithoutTicketSetupNestedInput
@@ -74398,6 +74486,8 @@ export namespace Prisma {
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
+    SlashCommandName?: NullableStringFieldUpdateOperationsInput | string | null
+    SlashCommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
     TicketPermissions?: TicketPermissionsUncheckedUpdateManyWithoutTicketSetupNestedInput
@@ -74430,6 +74520,8 @@ export namespace Prisma {
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
+    SlashCommandName?: NullableStringFieldUpdateOperationsInput | string | null
+    SlashCommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }

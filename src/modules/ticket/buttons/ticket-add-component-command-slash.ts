@@ -31,13 +31,13 @@ export default {
             .setLabel("Command Name")
             .setPlaceholder("getsupport (Will be used as /getsupport)")
             .setStyle(TextInputStyle.Short)
-            .setRequired(false);
+            .setRequired(true);
         description
             .setCustomId("description")
             .setLabel("Command Description")
             .setPlaceholder("My Command Support Command")
             .setStyle(TextInputStyle.Short)
-            .setRequired(false);
+            .setRequired(true);
 
         modal.addComponents(new ActionRowBuilder<TextInputBuilder>().addComponents(uuid), new ActionRowBuilder<TextInputBuilder>().addComponents(description));
 

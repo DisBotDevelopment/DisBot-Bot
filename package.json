@@ -1,7 +1,7 @@
 {
   "name": "disbot",
   "main": "./.build/startup.js",
-  "version": "1.6.2r2",
+  "version": "1.6.2r4",
   "scripts": {
     "disbot": "node ./.build/src/main/startup.js",
     "customer": "cd /home/disbot && node ./.build/src/main/startup.js",
@@ -21,6 +21,7 @@
   "type": "module",
   "dependencies": {
     "@napi-rs/canvas": "^0.1.77",
+    "@octokit/core": "^7.0.3",
     "@prisma/client": "^6.14.0",
     "@sentry/cli": "^2.52.0",
     "@sentry/node": "^10.5.0",

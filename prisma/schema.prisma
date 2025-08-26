@@ -431,6 +431,8 @@ model TicketSetups {
   OldTicketCategoryId              String?
   RequiredRoles                    String[]
   SlashCommandId                   String?
+  SlashCommandName                 String?
+  SlashCommandDescription          String?
   TextCommandName                  String?
   SendTranscriptToUser             Boolean?
   GuildId                          String

@@ -438,6 +438,8 @@ exports.Prisma.TicketSetupsScalarFieldEnum = {
   OldTicketCategoryId: 'OldTicketCategoryId',
   RequiredRoles: 'RequiredRoles',
   SlashCommandId: 'SlashCommandId',
+  SlashCommandName: 'SlashCommandName',
+  SlashCommandDescription: 'SlashCommandDescription',
   TextCommandName: 'TextCommandName',
   SendTranscriptToUser: 'SendTranscriptToUser',
   GuildId: 'GuildId'

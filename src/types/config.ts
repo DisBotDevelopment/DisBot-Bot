@@ -44,6 +44,7 @@ export type DisBotConfigData = {
     Logging: {
         ErrorWebhook: string;
         BotLogger: string;
+        GitHubAPIToken: string;
     };
     BotType: string;
     CONFIG_VERSION: string

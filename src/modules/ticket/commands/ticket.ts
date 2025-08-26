@@ -38,7 +38,12 @@ export default {
             await interaction.deferReply({
                 flags: MessageFlags.Ephemeral,
             })
-            return await interaction.deleteReply()
+            await interaction.editReply({
+                content: `-# You only can use this in ticket Channels!`
+            })
+
+            setTimeout(() => interaction.deferReply({}), 2000)
+
         }
         await ticketActionsHelper(client, data.TicketId, interaction)
 
