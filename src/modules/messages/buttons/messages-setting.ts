@@ -27,27 +27,33 @@ export default {
         });
 
         const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
-            new ButtonBuilder()
-                .setEmoji("<:preview:1288230393757171825>")
-                .setLabel("Message Preview")
-                .setStyle(ButtonStyle.Secondary)
-                .setCustomId("messages-preview:" + data?.Name),
-            new ButtonBuilder()
-                .setEmoji("<:edit:1259961121075626066>")
-                .setLabel("Edit Message")
-                .setStyle(ButtonStyle.Secondary)
-                .setCustomId("messages-edit-message:" + data?.Name),
-            new ButtonBuilder()
-                .setEmoji("<:edit:1259961121075626066>")
-                .setLabel("Edit Embed")
-                .setStyle(ButtonStyle.Secondary)
-                .setCustomId("messages-embed-create:" + data?.Name),
-            new ButtonBuilder()
-                .setEmoji("<:trash:1259432932234367069>")
-                .setLabel("Delete Embed")
-                .setStyle(ButtonStyle.Secondary)
-                .setCustomId("messages-edit-embed-remove:" + data?.Name)
-        );
+                new ButtonBuilder()
+                    .setEmoji("<:preview:1288230393757171825>")
+                    .setLabel("Message Preview")
+                    .setStyle(ButtonStyle.Secondary)
+                    .setCustomId("messages-preview:" + data?.Name),
+                new ButtonBuilder()
+                    .setEmoji("<:edit:1259961121075626066>")
+                    .setLabel("Edit Message")
+                    .setStyle(ButtonStyle.Secondary)
+                    .setCustomId("messages-edit-message:" + data?.Name),
+                new ButtonBuilder()
+                    .setEmoji("<:edit:1259961121075626066>")
+                    .setLabel("Edit Embed")
+                    .setStyle(ButtonStyle.Secondary)
+                    .setCustomId("messages-embed-create:" + data?.Name),
+                new ButtonBuilder()
+                    .setCustomId("messages-message-extra-embeds:" + data.Name)
+                    .setLabel("Add Extra Embeds")
+                    .setEmoji("<:add:1260157236043583519>")
+                    .setStyle(ButtonStyle.Secondary),
+                new ButtonBuilder()
+                    .setEmoji("<:trash:1259432932234367069>")
+                    .setLabel("Delete Embed")
+                    .setStyle(ButtonStyle.Secondary)
+                    .setCustomId("messages-edit-embed-remove:" + data?.Name)
+            )
+        ;
 
         await interaction.reply({
             components: [

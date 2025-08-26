@@ -1,10 +1,26 @@
-import { ActionRowBuilder, AttachmentBuilder, ButtonBuilder, ButtonInteraction, ButtonStyle, ComponentType, ContainerBuilder, ContainerComponent, EmbedBuilder, FileBuilder, Message, MessageFlags, StringSelectMenuBuilder, TextDisplayBuilder, UserSelectMenuInteraction } from "discord.js";
-import { ExtendedClient } from "../../../types/client.js";
-import { convertToEmojiPng } from "../../../helper/emojis.js";
-import { log } from "winston";
+import {
+    ActionRowBuilder,
+    AttachmentBuilder,
+    ButtonBuilder,
+    ButtonInteraction,
+    ButtonStyle,
+    ComponentType,
+    ContainerBuilder,
+    ContainerComponent,
+    EmbedBuilder,
+    FileBuilder,
+    Message,
+    MessageFlags,
+    StringSelectMenuBuilder,
+    TextDisplayBuilder,
+    UserSelectMenuInteraction
+} from "discord.js";
+import {ExtendedClient} from "../../../types/client.js";
+import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {log} from "winston";
 
 export default {
-    id: "messages-embed-exportfile",
+    id: "editmessages-embed-exportfile",
 
     /**
      * @param {ButtonInteraction} interaction
@@ -14,26 +30,16 @@ export default {
         interaction: ButtonInteraction,
         client: ExtendedClient
     ) {
-        const uuid = interaction.customId.split(":")[2];
-        const isExtra = interaction.customId.split(":")[3];
-        const isExtraEdit = interaction.customId.split(":")[4];
-        const isExtraEditId = interaction.customId.split(":")[5];
-        const messageId = interaction.customId.split(":")[1];
-        const message = await interaction.channel?.messages.fetch(messageId);
-
-
-        if (!interaction.channel?.isTextBased()) {
-            return interaction.reply({
-                content: "This channel is not sendable.",
-                ephemeral: true,
-            });
-        }
+        const messageId = interaction.customId.split(":")[1]
+        const embedId = interaction.customId.split(":")[2]
+        const message = await interaction.channel.messages.fetch(messageId);
+        const embed = message.embeds[Number(embedId)]
 
         if (!client.user) throw new Error("No Client")
-        if (!interaction.channel.isSendable()) return interaction.reply({ content: `## ${await convertToEmojiPng("error", client.user?.id)} This channel not supports message sending!` })
+        if (!interaction.channel.isSendable() || !interaction.channel?.isTextBased()) return interaction.reply({content: `## ${await convertToEmojiPng("error", client.user?.id)} This channel not supports message sending!`})
 
 
-        const buffer = Buffer.from(JSON.stringify(message?.embeds[0].toJSON()));
+        const buffer = Buffer.from(JSON.stringify(embed.toJSON()));
 
         const addRow = new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(
             new StringSelectMenuBuilder()
@@ -166,24 +172,15 @@ export default {
                 .setStyle(ButtonStyle.Primary)
                 .setEmoji("<:import:1321939860868698185>"),
             new ButtonBuilder()
-                .setCustomId(`messages-embed-create-save:${uuid}:${messageId}:${isExtra}:${isExtraEdit}:${isExtraEditId}`)
-                .setLabel("Save the Embed")
-                .setStyle(ButtonStyle.Success)
-                .setEmoji("<:save:1260157401496031244>"),
-            new ButtonBuilder()
-                .setCustomId(`messages-embed-exportfile:${messageId}:${uuid}:${isExtra}:${isExtraEdit}:${isExtraEditId}`)
+                .setCustomId(`editmessages-embed-exportfile:${messageId}:${embedId}`)
                 .setStyle(ButtonStyle.Secondary)
                 .setEmoji("<:save:1260140823106813953>"),
-            new ButtonBuilder()
-                .setCustomId(`messages-embed-clearmessage:${messageId}`)
-                .setStyle(ButtonStyle.Danger)
-                .setEmoji("<:message:1322252985702551767>")
         );
 
         await interaction.update({
             withResponse: true,
             flags: MessageFlags.IsComponentsV2 | MessageFlags.Ephemeral,
-            files: [new AttachmentBuilder(buffer, { name: `embed-${uuid}.json` })],
+            files: [new AttachmentBuilder(buffer, {name: `embed-${messageId}.json`})],
             components: [
                 new ContainerBuilder()
                     .addActionRowComponents(addRow)
@@ -191,13 +188,14 @@ export default {
                     .addActionRowComponents(buttonRow)
                     .addTextDisplayComponents(
                         new TextDisplayBuilder().setContent(
-                            `**Use the ${await convertToEmojiPng("message", client.user.id)} button to clear the message from the channel**\n-# To Export the Embed as JSON File use the ${await convertToEmojiPng("refresh", client.user.id)} button below.\n-# To Import a JSON File use the ${await convertToEmojiPng("import", client.user.id)} button.`
+                            `${await convertToEmojiPng("info", client.user.id)} **__You now live edit your Embed!__**\n-# To Export the Embed as JSON File use the ${await convertToEmojiPng("refresh", client.user.id)} button below.\n-# To Import a JSON File use the ${await convertToEmojiPng("import", client.user.id)} button.`
                         )
                     )
                     .addFileComponents(
-                        new FileBuilder().setURL(`attachment://embed-${uuid}.json`)
+                        new FileBuilder().setURL(`attachment://embed-${messageId}.json`)
                     ),
             ],
         });
-    }
+
+    },
 };

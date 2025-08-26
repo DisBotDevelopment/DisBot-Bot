@@ -1,44 +1,79 @@
-import { EmbedBuilder, MessageFlags, ModalSubmitInteraction } from "discord.js";
-import { ExtendedClient } from "../../../types/client.js";
-import { convertToEmojiPng } from "../../../helper/emojis.js";
+import {EmbedBuilder, MessageFlags, ModalSubmitInteraction} from "discord.js";
+import {ExtendedClient} from "../../../types/client.js";
+import {convertToEmojiPng} from "../../../helper/emojis.js";
 
 export default {
-  id: "modal-embed-import",
+    id: "modal-embed-import",
 
-  /**
-   *
-   * @param {ModalSubmitInteraction} interaction
-   * @param {ExtendedClient} client
-   */
+    /**
+     *
+     * @param {ModalSubmitInteraction} interaction
+     * @param {ExtendedClient} client
+     */
 
-  async execute(interaction: ModalSubmitInteraction, client: ExtendedClient) {
-    await interaction.deferReply({ flags: MessageFlags.Ephemeral });
+    async execute(interaction: ModalSubmitInteraction, client: ExtendedClient) {
+        try {
 
-    try {
-      const message = await interaction.channel?.messages.fetch(
-        interaction.customId.split(":")[1]
-      );
-      const json = interaction.fields.getTextInputValue("embed-import-input");
+            const [, messageId, embedIndexStr] = interaction.customId.split(":");
+            const embedIndex = Number(embedIndexStr ?? "0");
 
-      const updateembed = new EmbedBuilder(JSON.parse(json));
+            const message = await interaction.channel.messages.fetch(messageId);
+            const embeds = message.embeds.map(e => new EmbedBuilder(e.data));
 
-      message?.edit({ embeds: [updateembed] });
-      interaction.editReply({
-        content: `## ${await convertToEmojiPng(
-          "check",
-          client.user?.id || ""
-        )} The embed has been imported successfully.`,
-      });
+            let newEmbed;
+            try {
+                const json = JSON.parse(interaction.fields.getTextInputValue("embed-import-input"));
+                newEmbed = new EmbedBuilder(json);
+            } catch (err) {
+                return interaction.reply({
+                    content: `## ${await convertToEmojiPng("error", client.user?.id)} Invalid JSON!`,
+                    flags: MessageFlags.Ephemeral,
+                });
+            }
 
-      if (!client.user) throw new Error("Client not found!");
-    } catch (error) {
+            embeds[embedIndex] = newEmbed;
 
-      interaction.editReply({
-        content:
-          "## An error occurred while trying to import the embed. \n-# Plase make sure the JSON is valid. If you need help, please contact the support server." +
-          "\n-# Check that you habe a Description, Title, Thumbnail or Image" +
-          error,
-      });
+            console.log(embeds[embedIndex])
+            console.log(embeds)
+
+            if (message.webhookId) {
+                const webhooks = await interaction.guild?.fetchWebhooks();
+                const webhook = webhooks?.find((wh) => wh.id == message.webhookId);
+
+                if (!webhook) {
+                    return interaction.reply({
+                        content: `## ${await convertToEmojiPng("error", client.user?.id)} I can't find the webhook for this message!`,
+                        flags: MessageFlags.Ephemeral,
+                    });
+                }
+
+                try {
+                    await interaction.deferUpdate();
+                    return await webhook.editMessage(message.id, {embeds});
+                } catch (err) {
+                    console.error(err);
+                    return interaction.reply({
+                        content: `## ${await convertToEmojiPng("error", client.user?.id)} Failed to edit the message via webhook!`,
+                        flags: MessageFlags.Ephemeral,
+                    });
+                }
+            }
+
+            await message.edit({embeds});
+            await interaction.reply({
+                content: `## ${await convertToEmojiPng("check", client.user?.id || "")} The embed has been imported successfully.`,
+                flags: MessageFlags.Ephemeral
+            });
+
+        } catch (error) {
+            console.error(error);
+            await interaction.reply({
+                flags: MessageFlags.Ephemeral,
+                content:
+                    "## An error occurred while trying to import the embed.\n" +
+                    "-# Please make sure the JSON is valid.\n" +
+                    "-# Check that you have a Description, Title, Thumbnail or Image."
+            });
+        }
     }
-  }
 };

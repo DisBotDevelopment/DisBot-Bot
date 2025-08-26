@@ -30,8 +30,9 @@ export default {
         for (const command of commands.values()) {
             if (
                 command.name == data.CustomName &&
-                data.CustomName != name &&
-                command.guildId == interaction.guild?.id
+                data.IsEnabled &&
+                command.guildId == interaction.guild?.id &&
+                command.name != name
             ) {
                 await interaction.guild?.commands.edit(command.id, {
                     name: name,
@@ -48,7 +49,7 @@ export default {
                 });
             }
         }
-        
+
         return await interaction.reply({
             flags: MessageFlags.Ephemeral,
             content: `## ${await convertToEmojiPng("error", client.user.id)} Could not find a matching command.`

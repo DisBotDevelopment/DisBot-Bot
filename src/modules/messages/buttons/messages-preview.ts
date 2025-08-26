@@ -19,14 +19,23 @@ export default {
             }
         });
 
+        let extraEmbeds: EmbedBuilder[] = []
+
+        if (data.OtherEmbeds) {
+            extraEmbeds = data.OtherEmbeds.map((embed) => new EmbedBuilder(JSON.parse(embed)));
+        }
+
+        console.log(extraEmbeds)
+
+
         if (data?.EmbedJSON) {
-            interaction.reply({
+            await interaction.reply({
                 content: data.Content ? data.Content : "-# No Content",
-                embeds: [new EmbedBuilder(JSON.parse(data.EmbedJSON))],
+                embeds: [new EmbedBuilder(JSON.parse(data.EmbedJSON)), ...extraEmbeds],
                 flags: MessageFlags.Ephemeral
             });
         } else {
-            interaction.reply({
+            await interaction.reply({
                 content: data?.Content ? data.Content : "-# No Content",
                 embeds: [new EmbedBuilder().setDescription("-# No Embed")],
                 flags: MessageFlags.Ephemeral

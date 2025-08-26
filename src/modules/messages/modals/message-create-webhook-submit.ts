@@ -26,15 +26,21 @@ export default {
             url: webhook
         });
 
-        if (data?.EmbedJSON) {
-            webhooClient.send({
-                content: data.Content ? data.Content : "",
-                embeds: [new EmbedBuilder(JSON.parse(data.EmbedJSON))]
-            });
-        } else {
-            webhooClient.send({content: data?.Content ? data.Content : ""});
+        let extraEmbeds: EmbedBuilder[] = []
+
+        if (data.OtherEmbeds) {
+            extraEmbeds = data.OtherEmbeds.map((embed) => new EmbedBuilder(JSON.parse(embed)));
         }
 
-        interaction.deferUpdate();
+        if (data?.EmbedJSON) {
+            await webhooClient.send({
+                content: data.Content ? data.Content : "",
+                embeds: [new EmbedBuilder(JSON.parse(data.EmbedJSON)), ...extraEmbeds]
+            });
+        } else {
+            await webhooClient.send({content: data?.Content ? data.Content : ""});
+        }
+
+        await interaction.deferUpdate();
     }
 };

@@ -22,8 +22,7 @@ export async function loadModals(client: ExtendedClient): Promise<void> {
             console.warn("Modules folder does not exist.".red);
             return;
         }
-
-        // Alle Unterordner in modules/ durchsuchen
+        
         const moduleDirectories = fs.readdirSync(modulesFolder, {withFileTypes: true})
             .filter(dirent => dirent.isDirectory())
             .map(dirent => dirent.name);
@@ -34,7 +33,7 @@ export async function loadModals(client: ExtendedClient): Promise<void> {
             const modalFolder = path.join(modulesFolder, moduleDir, "modals");
 
             if (!fs.existsSync(modalFolder)) {
-                continue; // Skip if no modal folder exists
+                continue;
             }
 
             const modalFiles = getFilesRecursively(modalFolder, [".js"]);

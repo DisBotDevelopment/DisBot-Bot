@@ -1,36 +1,59 @@
-import { EmbedBuilder, ModalSubmitInteraction } from "discord.js";
-import { ExtendedClient } from "../../../types/client.js";
-import { URL_PLACEHOLDER } from "../../../main/placeholder.js";
+import {EmbedBuilder, MessageFlags, ModalSubmitInteraction} from "discord.js";
+import {ExtendedClient} from "../../../types/client.js";
+import {URL_PLACEHOLDER} from "../../../main/placeholder.js";
 
 export default {
-  id: "modal-embed-create-author-url",
+    id: "modal-embed-create-author-url",
 
-  async execute(interaction: ModalSubmitInteraction, client: ExtendedClient) {
-    const url = interaction.fields.getTextInputValue(
-      "embed-create-options-author-url-input"
-    );
-    const message = await interaction.channel?.messages.fetch(
-      interaction.message?.reference?.messageId as string
-    );
-    const embed = message?.embeds[0];
+    async execute(interaction: ModalSubmitInteraction, client: ExtendedClient) {
+        const url = interaction.fields.getTextInputValue(
+            "embed-create-options-author-url-input"
+        );
 
-    let link = url;
+        const [, messageId, embedIndexStr] = interaction.customId.split(":");
+        const embedIndex = Number(embedIndexStr ?? "0");
 
-    for (const [key, value] of Object.entries(URL_PLACEHOLDER)) {
-      if (url.includes(key)) {
-        link = url.replace(key, value);
-      }
+        const message = await interaction.channel.messages.fetch(messageId);
+        const embeds = message.embeds.map(e => new EmbedBuilder(e.data));
 
-      const updateembed = new EmbedBuilder(embed?.data).setAuthor({
-        name: embed?.data.author?.name ? embed?.data.author?.name : "",
-        iconURL: embed?.data.author?.icon_url
-          ? embed?.data.author?.icon_url
-          : undefined,
-        url: link
-      });
+        if (!embeds[embedIndex]) {
+            return interaction.reply({
+                content: "## ❌ I can't find the embed at this index!",
+                flags: MessageFlags.Ephemeral,
+            });
+        }
 
-      message?.edit({ embeds: [updateembed] });
-      interaction.deferUpdate();
+        let link = url;
+        for (const [key, value] of Object.entries(URL_PLACEHOLDER)) {
+            if (link.includes(key)) {
+                link = link.replace(key, value);
+            }
+        }
+
+        const oldAuthor = embeds[embedIndex].data.author
+
+        embeds[embedIndex].setAuthor({
+            name: oldAuthor.name ?? "",
+            iconURL: oldAuthor.icon_url ?? undefined,
+            url: link
+        });
+
+        if (message.webhookId) {
+            const webhooks = await interaction.guild?.fetchWebhooks();
+            const webhook = webhooks?.find((wh) => wh.id === message.webhookId);
+
+            if (!webhook) {
+                return interaction.reply({
+                    content: "## ❌ I can't find the webhook for this message!",
+                    flags: 64,
+                });
+            }
+
+            await interaction.deferUpdate();
+            return await webhook.editMessage(message.id, {embeds});
+        }
+
+        await interaction.deferUpdate();
+        await message.edit({embeds});
     }
-  }
-}
+};

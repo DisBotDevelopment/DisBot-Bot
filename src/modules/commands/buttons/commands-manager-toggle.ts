@@ -3,7 +3,7 @@ import {
     ButtonInteraction,
     ButtonStyle,
     MessageFlags,
-    ModalBuilder,
+    ModalBuilder, REST, Routes,
     TextInputBuilder,
     TextInputStyle
 } from "discord.js";
@@ -11,6 +11,8 @@ import {convertToEmojiPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {protectedCommands} from "../../../main/data.js";
 import {database} from "../../../main/database.js";
+import {Logger} from "../../../main/logger.js";
+import {Config} from "../../../main/config.js";
 
 export default {
     id: "commands-manager-toggle",
@@ -49,8 +51,31 @@ export default {
             for (const command of commands.values()) {
                 if (
                     command.name != data.CustomName &&
-                    command.guildId == interaction.guild?.id
+                    command.guildId == interaction.guild?.id && !data.IsEnabled
                 ) {
+
+                    const restClient = new REST({version: "10"}).setToken(Config.Bot.DiscordBotToken);
+
+                    const json = client.commands.get(data.CodeName).data.toJSON();
+
+                    json.name = data.CustomName;
+                    json.description = data.Description;
+                    json.default_member_permissions = data.Permissions;
+
+                    const currentCommands = await restClient.get(
+                        Routes.applicationGuildCommands(Config.Bot.DiscordApplicationId, interaction.guild.id)
+                    ) as any[]
+                    
+                    const newCommands = [...currentCommands, json];
+
+                    await restClient.put(
+                        Routes.applicationGuildCommands(Config.Bot.DiscordApplicationId, interaction.guild.id),
+                        {
+                            body: newCommands,
+                        }
+                    );
+
+
                     await database.buildInCommands.update({
                         where: {
                             UUID: interaction.customId.split(":")[1]
@@ -59,17 +84,6 @@ export default {
                             IsEnabled: true
                         }
                     })
-                    await interaction.guild.commands.create(
-                        {
-                            name: data.CustomName,
-                            description: client.commands.get(data.CodeName).data.description,
-                            contexts: client.commands.get(data.CodeName).data.contexts,
-                            options: client.commands.get(data.CodeName).data.options as any,
-                            default_member_permissions: client.commands.get(data.CodeName).data.default_member_permissions,
-                            integrationTypes: client.commands.get(data.CodeName).data.integration_types,
-                            dmPermission: false
-                        }
-                    )
 
                     return await interaction.reply({
                         flags: MessageFlags.Ephemeral,
@@ -80,8 +94,7 @@ export default {
                     command.name == data.CustomName &&
                     command.guildId == interaction.guild?.id
                 ) {
-                    
-                    await interaction.guild.commands.delete(command.id)
+                    await command.delete()
                     await database.buildInCommands.update({
                         where: {
                             UUID: interaction.customId.split(":")[1]
@@ -97,6 +110,7 @@ export default {
                 }
             }
         } catch (error) {
+            Logger.error(error);
             return await interaction.reply({
                 flags: MessageFlags.Ephemeral,
                 content: `## ${await convertToEmojiPng("error", client.user.id)} Can't remove this command from the Guild!`

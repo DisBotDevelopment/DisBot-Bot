@@ -23,7 +23,6 @@ export async function loadSelectMenus(client: ExtendedClient): Promise<void> {
       return;
     }
 
-    // Alle Unterordner in modules/ durchsuchen
     const moduleDirectories = fs.readdirSync(modulesFolder, { withFileTypes: true })
       .filter(dirent => dirent.isDirectory())
       .map(dirent => dirent.name);
@@ -34,7 +33,7 @@ export async function loadSelectMenus(client: ExtendedClient): Promise<void> {
       const selectmenuFolder = path.join(modulesFolder, moduleDir, "selectmenus");
 
       if (!fs.existsSync(selectmenuFolder)) {
-        continue; // Skip if no selectmenu folder exists
+        continue; 
       }
 
       const selectmenuFiles = getFilesRecursively(selectmenuFolder, [".js"]);

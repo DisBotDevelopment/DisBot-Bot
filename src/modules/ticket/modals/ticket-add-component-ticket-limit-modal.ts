@@ -3,7 +3,7 @@ import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
 export default {
-    id: "ticket-add-component-channel-name-modal",
+    id: "ticket-add-component-ticket-limit-modal",
 
     /**
      *

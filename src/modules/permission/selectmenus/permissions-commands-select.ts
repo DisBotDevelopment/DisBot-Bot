@@ -86,7 +86,12 @@ export default {
                                     .setLabel("Disable Internal User Permission")
                                     .setEmoji("<:permissions:1277170947761111130>")
                                     .setStyle(ButtonStyle.Secondary)
-                                    .setCustomId("permissions-manage-user-permission:" + data.UUID)
+                                    .setCustomId("permissions-manage-user-permission:" + data.UUID),
+                                new ButtonBuilder()
+                                    .setLabel("Reset Interaction Permissions")
+                                    .setEmoji("<:reset:1260160749481889793>")
+                                    .setStyle(ButtonStyle.Secondary)
+                                    .setCustomId("permissions-manage-reset:" + data.UUID)
                             )
                         )
                         .addActionRowComponents(
@@ -106,7 +111,7 @@ export default {
                                     .setMinValues(0)
                                     .setMaxValues(25)
                                     .setDefaultChannels(data.ChannelIds)
-                                    .setPlaceholder("Select users you want to allow to use this interaction!")
+                                    .setPlaceholder("Select channels you want to allow to use this interaction!")
                             )
                         )
                         .addActionRowComponents(
@@ -116,7 +121,7 @@ export default {
                                     .setMinValues(0)
                                     .setMaxValues(25)
                                     .setDefaultRoles(data.RoleIds)
-                                    .setPlaceholder("Select users you want to allow to use this interaction!")
+                                    .setPlaceholder("Select roles you want to allow to use this interaction!")
                             )
                         )
                 ]

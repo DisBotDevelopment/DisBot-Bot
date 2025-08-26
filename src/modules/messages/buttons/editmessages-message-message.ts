@@ -2,7 +2,7 @@ import {ActionRowBuilder, ButtonInteraction, Message, ModalBuilder, TextInputBui
 import {ExtendedClient} from "../../../types/client.js";
 
 export default {
-  id: "edit-message-message",
+  id: "editmessages-message-message",
 
   /**
    *
@@ -19,11 +19,11 @@ export default {
 
     modal
       .setTitle("Edit your message")
-      .setCustomId("edit-message-modal:" + messageID);
+      .setCustomId("editmessages-message-message-modal:" + messageID);
 
     content
       .setLabel("Message Content")
-      .setCustomId("edit-message-content")
+      .setCustomId("content")
       .setStyle(TextInputStyle.Paragraph)
       .setValue(`${message.content}`)
       .setRequired(true);

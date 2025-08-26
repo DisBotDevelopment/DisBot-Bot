@@ -39,7 +39,6 @@ export class CommandHelper {
             return;
         }
 
-        // Alle Unterordner in modules/ durchsuchen
         const moduleDirectories = fs.readdirSync(modulesFolder, {withFileTypes: true})
             .filter(dirent => dirent.isDirectory())
             .map(dirent => dirent.name);
@@ -48,10 +47,9 @@ export class CommandHelper {
             const moduleCommandFolder = path.join(modulesFolder, moduleDir, "commands");
 
             if (!fs.existsSync(moduleCommandFolder)) {
-                continue; // Skip if no command folder exists
+                continue
             }
 
-            // Command Pfade für jedes Modul
             const commandDirs = {
                 commands: moduleCommandFolder,
                 contextMenus: path.join(modulesFolder, moduleDir, "contextmenu"),
@@ -162,8 +160,7 @@ export class CommandHelper {
                             };
                         }
                         return cmd;
-                    });
-
+                    })
 
                 await restClient.put(Routes.applicationGuildCommands(Config.Bot.DiscordApplicationId, guild.id), {
                     body: cmdlist,

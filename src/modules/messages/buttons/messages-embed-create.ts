@@ -23,7 +23,11 @@ export default {
      * @param {ExtendedClient} client
      */
     async execute(interaction: ButtonInteraction, client: ExtendedClient) {
-        const uuid = interaction.customId.split(":")[1];
+        const uuid = interaction.customId.split(":")[1] ?? "noUUID";
+        const isExtra = interaction.customId.split(":")[2] ?? ""
+        const isExtraEdit = interaction.customId.split(":")[3] ?? ""
+        const isExtraEditId = interaction.customId.split(":")[4] ?? ""
+
 
         const data = await database.messageTemplates.findFirst({
             where: {
@@ -31,23 +35,24 @@ export default {
             }
         });
 
+        if (isExtra && data.OtherEmbeds.length >= 9 && !isExtraEdit) {
+            return interaction.reply({
+                content: `## ${await convertToEmojiPng("error", client.user?.id)} You only can have 9 Embeds & your Main-Embed!`,
+                flags: MessageFlags.Ephemeral
+            })
+        }
+
         let embed;
         if (data?.EmbedJSON) {
             embed = new EmbedBuilder(JSON.parse(data.EmbedJSON));
+        } else if (isExtraEdit) {
+            embed = new EmbedBuilder(JSON.parse(data.OtherEmbeds.filter((e, i) => i == Number(isExtraEditId)).map((e) => e)[0]));
         } else {
             embed = new EmbedBuilder().setDescription("ㅤ")
         }
 
-
-        if (!interaction.channel?.isTextBased()) {
-            return interaction.reply({
-                content: "This channel is not sendable.",
-                ephemeral: true,
-            });
-        }
-
         if (!client.user) throw new Error("No Client")
-        if (!interaction.channel.isSendable()) return interaction.reply({content: `## ${await convertToEmojiPng("error", client.user?.id)} This channel not supports message sending!`})
+        if (!interaction.channel.isSendable() || !interaction.channel?.isTextBased()) return interaction.reply({content: `## ${await convertToEmojiPng("error", client.user?.id)} This channel not supports message sending!`})
 
         const sentMsg = await interaction.channel.send({embeds: [embed]});
         const messageId = sentMsg.id;
@@ -185,17 +190,17 @@ export default {
                 .setStyle(ButtonStyle.Primary)
                 .setEmoji("<:import:1321939860868698185>"),
             new ButtonBuilder()
-                .setCustomId(`messages-embed-create-save:${uuid}:${messageId}`)
+                .setCustomId(`messages-embed-create-save:${uuid}:${messageId}:${isExtra}:${isExtraEdit}:${isExtraEditId}`)
                 .setLabel("Save the Embed")
                 .setStyle(ButtonStyle.Success)
                 .setEmoji("<:save:1260157401496031244>"),
             new ButtonBuilder()
-                .setCustomId(`messages-embed-exportfile:${messageId}:${uuid}`)
+                .setCustomId(`messages-embed-exportfile:${messageId}:${uuid}:${isExtra}:${isExtraEdit}:${isExtraEditId}`)
                 .setStyle(ButtonStyle.Secondary)
                 .setEmoji("<:save:1260140823106813953>"),
             new ButtonBuilder()
                 .setCustomId(`messages-embed-clearmessage:${messageId}`)
-                .setStyle(ButtonStyle.Secondary)
+                .setStyle(ButtonStyle.Danger)
                 .setEmoji("<:save:1322252985702551767>")
         );
 

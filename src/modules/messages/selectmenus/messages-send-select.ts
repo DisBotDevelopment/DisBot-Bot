@@ -21,20 +21,27 @@ export default {
             }
         });
 
+
+        let extraEmbeds: EmbedBuilder[] = []
+
+        if (data.OtherEmbeds) {
+            extraEmbeds = data.OtherEmbeds.map((embed) => new EmbedBuilder(JSON.parse(embed)));
+        }
+
         for (const value of interaction.values) {
             const channel = interaction.guild?.channels.cache.get(value);
             if (data?.EmbedJSON) {
-                (channel as TextChannel).send({
+                await (channel as TextChannel).send({
                     content: data?.Content ? data.Content : " ",
-                    embeds: [new EmbedBuilder(JSON.parse(data.EmbedJSON))]
+                    embeds: [new EmbedBuilder(JSON.parse(data.EmbedJSON)), ...extraEmbeds]
                 });
             } else {
-                (channel as TextChannel).send({
+                await (channel as TextChannel).send({
                     content: data?.Content ? data.Content : ""
                 });
             }
 
-            interaction.deferUpdate();
+            await interaction.deferUpdate();
         }
     }
 };

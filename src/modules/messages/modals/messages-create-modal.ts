@@ -55,8 +55,7 @@ export default {
                         GuildId: interaction.guild?.id
                     }
                 },
-                Name:
-                    name.toLowerCase(),
+                Name: name,
                 Content:
                     null,
                 EmbedJSON:
@@ -79,6 +78,11 @@ export default {
                 .setCustomId("messages-message-save:" + name)
                 .setLabel("Save Message Template")
                 .setEmoji("<:save:1260157401496031244>")
+                .setStyle(ButtonStyle.Secondary),
+            new ButtonBuilder()
+                .setCustomId("messages-message-extra-embeds:" + name)
+                .setLabel("Add Extra Embeds")
+                .setEmoji("<:add:1260157236043583519>")
                 .setStyle(ButtonStyle.Secondary)
         );
 

@@ -19,8 +19,6 @@ export async function loadButtons(client: ExtendedClient): Promise<void> {
       console.warn("Modules folder does not exist.".red);
       return;
     }
-
-    // Alle Unterordner in modules/ durchsuchen
     const moduleDirectories = fs.readdirSync(modulesFolder, { withFileTypes: true })
       .filter(dirent => dirent.isDirectory())
       .map(dirent => dirent.name);
@@ -31,7 +29,7 @@ export async function loadButtons(client: ExtendedClient): Promise<void> {
       const buttonFolder = path.join(modulesFolder, moduleDir, "buttons");
 
       if (!fs.existsSync(buttonFolder)) {
-        continue; // Skip if no button folder exists
+        continue; 
       }
 
       const buttonFiles = getFilesRecursively(buttonFolder, [".js"]);

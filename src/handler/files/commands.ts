@@ -1,11 +1,11 @@
 import colors from "colors";
 import fs from "fs";
 import path from "path";
-import { pathToFileURL } from "url";
-import { getFilesRecursively } from "../../helper/fileHelper.js";
-import type { ExtendedClient } from "../../types/client.js";
-import { Logger } from "../../main/logger.js";
-import { LoggingAction } from "../../enums/loggingTypes.js";
+import {pathToFileURL} from "url";
+import {getFilesRecursively} from "../../helper/fileHelper.js";
+import type {ExtendedClient} from "../../types/client.js";
+import {Logger} from "../../main/logger.js";
+import {LoggingAction} from "../../enums/loggingTypes.js";
 import {Config} from "../../main/config.js";
 
 colors.enable();
@@ -22,8 +22,7 @@ export async function loadCommands(client: ExtendedClient) {
             return;
         }
 
-        // Alle Unterordner in modules/ durchsuchen
-        const moduleDirectories = fs.readdirSync(modulesFolder, { withFileTypes: true })
+        const moduleDirectories = fs.readdirSync(modulesFolder, {withFileTypes: true})
             .filter(dirent => dirent.isDirectory())
             .map(dirent => dirent.name);
 

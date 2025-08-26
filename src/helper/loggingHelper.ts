@@ -25,6 +25,10 @@ export async function loggingHelper(
 
     const webhookMessage = await webhookClient.send(
         {
+            allowedMentions: {
+                roles: [],
+                users: []
+            },
             withComponents: true,
             components: [
                 new ContainerBuilder()

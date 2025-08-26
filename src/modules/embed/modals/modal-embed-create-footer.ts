@@ -1,32 +1,50 @@
-import { Client, EmbedBuilder, ModalSubmitInteraction } from "discord.js";
-import { ExtendedClient } from "../../../types/client.js";
+import {Client, EmbedBuilder, MessageFlags, ModalSubmitInteraction} from "discord.js";
+import {ExtendedClient} from "../../../types/client.js";
 
 export default {
-  id: "modal-embed-create-footer",
+    id: "modal-embed-create-footer",
 
-  /**
-   *
-   * @param {ModalSubmitInteraction} interaction
-   * @param {Client} client
-   */
+    async execute(interaction: ModalSubmitInteraction, client: ExtendedClient) {
+        const text = interaction.fields.getTextInputValue(
+            "embed-create-options-footer-input"
+        );
 
-  async execute(interaction: ModalSubmitInteraction, client: ExtendedClient) {
-    const text = interaction.fields.getTextInputValue(
-      "embed-create-options-footer-input"
-    );
-    const message = await interaction.channel?.messages.fetch(
-      interaction.customId.split(":")[1] as string
-    );
-    const embed = message?.embeds[0];
+        const [, messageId, embedIndexStr] = interaction.customId.split(":");
+        const embedIndex = Number(embedIndexStr ?? "0");
 
-    const updateembed = new EmbedBuilder(embed?.data).setFooter({
-      text: text,
-      iconURL: embed?.data.footer?.icon_url
-        ? embed?.data.footer.icon_url
-        : undefined
-    });
+        const message = await interaction.channel.messages.fetch(messageId);
+        const embeds = message.embeds.map(e => new EmbedBuilder(e.data));
 
-    message?.edit({ embeds: [updateembed] });
-    interaction.deferUpdate();
-  }
+        if (!embeds[embedIndex]) {
+            return interaction.reply({
+                content: "## ❌ I can't find the embed at this index!",
+                flags: MessageFlags.Ephemeral,
+            });
+        }
+
+        const oldFooter = embeds[embedIndex].data.footer
+
+        embeds[embedIndex].setFooter({
+            text: text,
+            iconURL: oldFooter.icon_url ?? undefined
+        });
+
+        if (message.webhookId) {
+            const webhooks = await interaction.guild?.fetchWebhooks();
+            const webhook = webhooks?.find((wh) => wh.id === message.webhookId);
+
+            if (!webhook) {
+                return interaction.reply({
+                    content: "## ❌ I can't find the webhook for this message!",
+                    flags: MessageFlags.Ephemeral,
+                });
+            }
+
+            await interaction.deferUpdate();
+            return await webhook.editMessage(message.id, {embeds});
+        }
+
+        await interaction.deferUpdate();
+        await message.edit({embeds});
+    }
 };
