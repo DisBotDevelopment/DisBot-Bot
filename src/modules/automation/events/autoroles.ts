@@ -22,19 +22,21 @@ export default {
         if (!toggleData) return;
         if (toggleData.AutorolesEnabled == false) return;
 
-        const guildAutoRolesData = await database.guildAutoRoles.findFirst({
+        const guildAutoRolesData = await database.guildAutoRoles.findMany({
             where: {
                 GuildId: guild.id
             }
         });
 
         if (!guildAutoRolesData) return;
-        if (!guildAutoRolesData.RoleId) return;
 
-        try {
-            await member.roles.add(guildAutoRolesData.RoleId);
-        } catch {
-            return;
+        for (const guildAutoRole of guildAutoRolesData) {
+            if (!guildAutoRole.RoleId) continue;
+
+            try {
+                await member.roles.add(guildAutoRole.RoleId);
+            } catch {
+            }
         }
     }
 };
