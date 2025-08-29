@@ -3,7 +3,7 @@ import {
     ChatInputCommandInteraction,
     MessageFlags,
     PermissionFlagsBits,
-    TextChannel,
+    TextChannel, Webhook,
 } from "discord.js";
 import {ExtendedClient} from "../../../../types/client.js";
 import {convertToEmojiPng} from "../../../../helper/emojis.js";
@@ -34,13 +34,20 @@ export default {
         if (!interaction.member) throw new Error("Member not found");
 
         const webhookchannel = interaction.options.getChannel("channel") as TextChannel;
-        const webhook = await webhookchannel.createWebhook({
-            avatar: interaction.guild.iconURL(),
-            name: "Logging Webhook",
-        });
+        let webhook: Webhook
+        try {
+            webhook = await webhookchannel.createWebhook({
+                avatar: interaction.guild.iconURL(),
+                name: "Logging Webhook",
+            });
+        } catch (e) {
+            return interaction.editReply({
+                content: `## ${await convertToEmojiPng("error", client.user.id)} The Limit of the webhooks has been reached.`,
+            });
+        }
 
         const getChannel = webhook.url;
-        const getLogType = interaction.options.getString("logtype");
+        const getLogType = interaction.options.getString("logging");
         const guildId = interaction.guild.id;
 
         let data = await database.guildLogging.findFirst({where: {GuildId: guildId}});

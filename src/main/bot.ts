@@ -3,7 +3,7 @@ import colors from "colors";
 import {
     ActivityType,
     Client,
-    Collection,
+    Collection, Events,
     GatewayIntentBits,
     Guild,
     Partials,
@@ -178,7 +178,7 @@ client
             botType: Config.BotType.toString() || "Unknown",
             action: LoggingAction.Other,
         });
-        client.once("ready", async () => {
+        client.once(Events.ClientReady, async () => {
             clientReady(client);
             await initDataToDatabase(client)
         });

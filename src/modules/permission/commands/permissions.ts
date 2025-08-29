@@ -6,7 +6,7 @@ import {
     EmbedBuilder,
     MessageFlags,
     PermissionFlagsBits,
-    SlashCommandBuilder, TextDisplayBuilder
+    SlashCommandBuilder, TextDisplayBuilder, UserSelectMenuBuilder
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiPng} from "../../../helper/emojis.js";
@@ -64,6 +64,14 @@ export default {
                                     ``,
                                     `-# Note: This are only Permissions not settings `
                                 ].join("\n"))
+                    )
+                    .addActionRowComponents(
+                     new ActionRowBuilder<UserSelectMenuBuilder>().addComponents(
+                         new UserSelectMenuBuilder()
+                             .setCustomId("permissions-view-user-permissions")
+                             .setPlaceholder("Select a user to view the Permissions")
+                             .setMaxValues(1)
+                     )
                     )
                     .addActionRowComponents(
                         new ActionRowBuilder<ButtonBuilder>().addComponents(

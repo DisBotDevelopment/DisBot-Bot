@@ -28,7 +28,7 @@ export default {
         isGuildOwner: false,
     },
     data: new SlashCommandBuilder()
-        .setName("automation")
+        .setName("automations")
         .setDescription("Manage all automations")
         .setDescriptionLocalizations({
             de: "Automatisierungen verwalten",
@@ -59,7 +59,7 @@ export default {
                 .setPlaceholder("Select an automation")
                 .addOptions(
                     {
-                        label: "guildAutoRoles",
+                        label: "AutoRoles",
                         value: "guildAutoRoles",
                         description: "Automatically assign roles to new members",
                         emoji: "<:packageplus:1362545377030701167>",

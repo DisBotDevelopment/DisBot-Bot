@@ -125,7 +125,7 @@ export class CommandHelper {
         }
 
         if (!Config.Bot.DiscordApplicationId || !Config.Bot.DiscordBotToken) {
-            throw new Error("Missing environment variables: APPLICATIONID or TOKEN");
+            throw new Error("Missing Config variables: DiscordApplicationId or DiscordBotToken");
         }
 
         const restClient = new REST({version: "10"}).setToken(Config.Bot.DiscordBotToken);
@@ -135,6 +135,7 @@ export class CommandHelper {
             body: [],
         });
 
+
         const allGuilds = await client.guilds.fetch();
         for (const guild of allGuilds.values()) {
             const buildInCommandOverrides = await database.buildInCommands.findMany({
@@ -142,85 +143,98 @@ export class CommandHelper {
                     GuildCommandMangerId: guild.id
                 }
             })
+            try {
+                cmdlist = cmdlist
+                    .filter(cmd => {
+                        const override = buildInCommandOverrides.find(o => o.CodeName === cmd.name);
+                        return !(override && override.IsEnabled === false);
+                    })
+                    .map(cmd => {
+                        const override = buildInCommandOverrides.find(o => o.CodeName === cmd.name);
+                        if (override) {
+                            return {
+                                ...cmd,
+                                name: override.CustomName,
+                                description: override.Description ?? client.commands.get(override.CodeName).data.description,
+                                default_member_permissions: override.Permissions ?? client.commands.get(override.CodeName).data.default_member_permissions
+                            };
+                        }
+                        return cmd;
+                    })
 
-            cmdlist = cmdlist
-                .filter(cmd => {
-                    const override = buildInCommandOverrides.find(o => o.CodeName === cmd.name);
-                    return !(override && override.IsEnabled === false);
-                })
-                .map(cmd => {
-                    const override = buildInCommandOverrides.find(o => o.CodeName === cmd.name);
-                    if (override) {
-                        return {
-                            ...cmd,
-                            name: override.CustomName,
-                            description: override.Description ?? client.commands.get(override.CodeName).data.description,
-                            default_member_permissions: override.Permissions ?? client.commands.get(override.CodeName).data.default_member_permissions
-                        };
+                await restClient.put(Routes.applicationGuildCommands(Config.Bot.DiscordApplicationId, guild.id), {
+                    body: cmdlist,
+                });
+
+
+                const ticketCommands = await database.ticketSetups.findMany({
+                    where: {
+                        GuildId: guild.id
                     }
-                    return cmd;
                 })
 
-            await restClient.put(Routes.applicationGuildCommands(Config.Bot.DiscordApplicationId, guild.id), {
-                body: cmdlist,
-            });
+                for (const ticketCommand of ticketCommands) {
+                    const clientGuild = await client.guilds.fetch(guild.id);
 
-            const ticketCommands = await database.ticketSetups.findMany({
-                where: {
-                    GuildId: guild.id
-                }
-            })
+                    let guildCommand = null;
+                    try {
+                        guildCommand = await clientGuild.commands.fetch(ticketCommand.SlashCommandId);
+                    } catch {
+                    }
 
-            for (const ticketCommand of ticketCommands) {
-                const clientGuild = await client.guilds.fetch(guild.id);
-
-                let guildCommand = null;
-                try {
-                    guildCommand = await clientGuild.commands.fetch(ticketCommand.SlashCommandId);
-                } catch {
-                }
-
-                if (!guildCommand) {
-                    guildCommand = await clientGuild.commands.create({
-                        name: ticketCommand.SlashCommandName ?? `open-${ticketCommand.CustomId}-ticket`,
-                        description: ticketCommand.SlashCommandDescription ?? ticketCommand.CustomId,
-                    });
-
-                    await database.ticketSetups.update({
-                        where: {
-                            CustomId: ticketCommand.CustomId,
-                        },
-                        data: {
-                            SlashCommandId: guildCommand.id,
-                        },
-                    });
-                } else {
-                    if (
-                        guildCommand.name !== ticketCommand.SlashCommandName ||
-                        guildCommand.description !== ticketCommand.SlashCommandDescription
-                    ) {
-                        const updated = await guildCommand.edit({
-                            name: ticketCommand.SlashCommandName ?? guildCommand.name,
-                            description: ticketCommand.SlashCommandDescription ?? guildCommand.description,
+                    if (!guildCommand) {
+                        guildCommand = await clientGuild.commands.create({
+                            name: ticketCommand.SlashCommandName ?? `open-${ticketCommand.CustomId}-ticket`,
+                            description: ticketCommand.SlashCommandDescription ?? ticketCommand.CustomId,
                         });
 
                         await database.ticketSetups.update({
-                            where: {CustomId: ticketCommand.CustomId},
-                            data: {SlashCommandId: updated.id},
+                            where: {
+                                CustomId: ticketCommand.CustomId,
+                            },
+                            data: {
+                                SlashCommandId: guildCommand.id,
+                            },
                         });
+                    } else {
+                        if (
+                            guildCommand.name !== ticketCommand.SlashCommandName ||
+                            guildCommand.description !== ticketCommand.SlashCommandDescription
+                        ) {
+                            const updated = await guildCommand.edit({
+                                name: ticketCommand.SlashCommandName ?? guildCommand.name,
+                                description: ticketCommand.SlashCommandDescription ?? guildCommand.description,
+                            });
+
+                            await database.ticketSetups.update({
+                                where: {CustomId: ticketCommand.CustomId},
+                                data: {SlashCommandId: updated.id},
+                            });
+                        }
                     }
                 }
+
+            } catch (e) {
+                Logger.error({
+                    timestamp: new Date().toISOString(),
+                    level: "error",
+                    label: "CommandHelper",
+                    message: `Command loading failed with error: ${e} - Commands failed at ${cmdlist.map((c) => c.name)} commands`,
+                    botType: Config.BotType.toString() || "Unknown",
+                    action: LoggingAction.Command,
+                });
             }
 
+            Logger.info({
+                timestamp: new Date().toISOString(),
+                level: "info",
+                label: "CommandHelper",
+                message: `Discord added ${cmdlist.length} commands (${stats.subCommands} subCommands, ${stats.subCommandGroups} subCommandGroups), ${stats.userInstall} userInstall commands, ${stats.contextMenus} context menu commands from ${moduleDirectories.length} module(s) for ${allGuilds.size} Guilds`,
+                botType: Config.BotType.toString() || "Unknown",
+                action: LoggingAction.Command,
+            });
         }
-        Logger.info({
-            timestamp: new Date().toISOString(),
-            level: "info",
-            label: "CommandHelper",
-            message: `Discord added ${cmdlist.length} commands (${stats.subCommands} subCommands, ${stats.subCommandGroups} subCommandGroups), ${stats.userInstall} userInstall commands, ${stats.contextMenus} context menu commands from ${moduleDirectories.length} module(s) for ${allGuilds.size} Guilds`,
-            botType: Config.BotType.toString() || "Unknown",
-            action: LoggingAction.Command,
-        });
+
     }
 
     public static async guildLoadCommands(client: ExtendedClient) {

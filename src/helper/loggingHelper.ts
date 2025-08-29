@@ -4,7 +4,7 @@ import {
     ContainerBuilder,
     FileBuilder,
     MessageFlags, SeparatorBuilder, SeparatorSpacingSize,
-    TextDisplayBuilder, UserSelectMenuBuilder,
+    TextDisplayBuilder, UserSelectMenuBuilder, Webhook,
     WebhookClient
 } from "discord.js";
 import {database} from "../main/database.js";
@@ -74,19 +74,21 @@ export async function loggingHelper(
             ],
             flags: MessageFlags.IsComponentsV2
         })
-
-    const webhookData = await client.fetchWebhook(webhookMessage.webhook_id)
-
-
-    await database.guildLogs.create({
-        data: {
-            GuildId: webhookData.guildId,
-            UUID: uuid,
-            Notes: [],
-            LogMessage: message,
-            LogJSON: JSON.stringify(eventJSON)
-        }
-    })
+    
+    try {
+        const webhookData = await client.fetchWebhook(webhookMessage.webhook_id)
+        await database.guildLogs.create({
+            data: {
+                GuildId: webhookData.guildId,
+                UUID: uuid,
+                Notes: [],
+                LogMessage: message,
+                LogJSON: JSON.stringify(eventJSON)
+            }
+        })
+    } catch (e) {
+        return
+    }
 
 
 }
