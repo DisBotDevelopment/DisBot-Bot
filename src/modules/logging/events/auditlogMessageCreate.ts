@@ -42,7 +42,7 @@ export default {
                 }
             });
 
-            if (!loggingData?.Integration) return;
+            if (!loggingData?.Message) return;
 
             const webhook = new WebhookClient({url: loggingData.Integration});
 
