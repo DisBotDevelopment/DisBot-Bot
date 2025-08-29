@@ -22,12 +22,20 @@ export default {
         const name = new TextInputBuilder();
         const emoji = new TextInputBuilder();
         const style = new TextInputBuilder();
+        const messageUrl = new TextInputBuilder();
 
         modal
             .setTitle("Use Component with Button")
             .setCustomId(
                 "ticket-add-component-use-button-modal:" + interaction.customId.split(":")[1] + ":" + interaction.customId.split(":")[2] + ":" + interaction.customId.split(":")[3]
             );
+
+        messageUrl
+            .setCustomId("messageurl")
+            .setLabel("Sent a Message Url")
+            .setStyle(TextInputStyle.Short)
+            .setRequired(true);
+
         name
             .setCustomId("name")
             .setLabel("Button Label")
@@ -47,6 +55,7 @@ export default {
             .setRequired(true);
 
         modal.addComponents(
+            new ActionRowBuilder<TextInputBuilder>().addComponents(messageUrl),
             new ActionRowBuilder<TextInputBuilder>().addComponents(name),
             new ActionRowBuilder<TextInputBuilder>().addComponents(emoji),
             new ActionRowBuilder<TextInputBuilder>().addComponents(style)

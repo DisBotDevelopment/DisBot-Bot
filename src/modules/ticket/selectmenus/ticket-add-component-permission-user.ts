@@ -82,7 +82,7 @@ export default {
                                     .setEmoji("<:ping:1232483669218955374>"),
                                 new ButtonBuilder()
                                     .setCustomId("ticket-add-component-permission-is-handler:" + uuid)
-                                    .setLabel("Is Ticket Mod (View all Buttons, etc...)")
+                                    .setLabel("Is Ticket Mod (Need to create a Ticket)")
                                     .setStyle(ButtonStyle.Secondary)
                                     .setEmoji("<:Mod_Shield:1279080247387619369>")
                             )

@@ -20,8 +20,11 @@ export default {
      */
 
     async execute(interaction: ModalSubmitInteraction, client: ExtendedClient) {
-        const messageId = interaction.customId.split(":")[2];
-        const channelId = interaction.customId.split(":")[3];
+        const messageUrl = interaction.fields.getTextInputValue(
+            "messageurl"
+        ).split("/")
+        const messageId = messageUrl[6]
+        const channelId = messageUrl[5]
 
         const nameinput = interaction.fields.getTextInputValue(
             "name"

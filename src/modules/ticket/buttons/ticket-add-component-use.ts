@@ -1,6 +1,6 @@
 import {
-    ActionRowBuilder,
-    ButtonInteraction,
+    ActionRowBuilder, ButtonBuilder,
+    ButtonInteraction, ButtonStyle, ContainerBuilder, MessageFlags,
     ModalBuilder,
     ModalSubmitInteraction,
     TextInputBuilder,
@@ -21,17 +21,26 @@ export default {
     async execute(interaction: ButtonInteraction, client: ExtendedClient) {
         const uuid = interaction.customId.split(":")[1]
 
-        await interaction.showModal(
-            new ModalBuilder().setCustomId("ticket-add-component-use-messageurl:" + uuid).setTitle("Use a Message from you Discord")
-                .addComponents(
-                    new ActionRowBuilder<TextInputBuilder>().addComponents(
-                        new TextInputBuilder()
-                            .setLabel("Message Url")
-                            .setStyle(TextInputStyle.Paragraph)
-                            .setCustomId("message")
-                            .setRequired(true)
+        await interaction.reply({
+            flags: MessageFlags.IsComponentsV2 | MessageFlags.Ephemeral,
+            components: [
+                new ContainerBuilder()
+                    .addActionRowComponents(
+                        new ActionRowBuilder<ButtonBuilder>().addComponents(
+                            new ButtonBuilder()
+                                .setLabel("Use Button for Component")
+                                .setEmoji("<:emoji:1327305176553492520>")
+                                .setStyle(ButtonStyle.Secondary)
+                                .setCustomId("ticket-add-component-use-button:" + uuid),
+                            new ButtonBuilder()
+                                .setLabel("Use Selectmenu for Component")
+                                .setEmoji("<:emoji:1327304700701315132>")
+                                .setStyle(ButtonStyle.Secondary)
+                                .setCustomId("ticket-add-component-use-select:" + uuid)
+                        )
                     )
-                )
-        )
+
+            ]
+        })
     }
 };

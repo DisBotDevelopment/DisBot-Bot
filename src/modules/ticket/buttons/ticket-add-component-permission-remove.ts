@@ -25,7 +25,7 @@ export default {
         await interaction.update({
             flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
             components: [
-                new TextDisplayBuilder().setContent(`## ${await convertToEmojiPng("check", client.user.id)} Ticket Permission with Id ${uuid} successfully!`)
+                new TextDisplayBuilder().setContent(`## ${await convertToEmojiPng("check", client.user.id)} Ticket Permission with Id ${uuid} successfully deleted!`)
             ]
         })
 

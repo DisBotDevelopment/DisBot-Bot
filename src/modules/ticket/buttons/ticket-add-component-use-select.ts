@@ -23,12 +23,20 @@ export default {
         const description = new TextInputBuilder();
         const emoji = new TextInputBuilder();
         const placeholder = new TextInputBuilder();
+        const messageUrl = new TextInputBuilder();
 
         modal
             .setTitle("Use Component with Button")
             .setCustomId(
                 "ticket-add-component-use-select-modal:" + interaction.customId.split(":")[1] + ":" + interaction.customId.split(":")[2] + ":" + interaction.customId.split(":")[3]
             );
+
+        messageUrl
+            .setCustomId("messageurl")
+            .setLabel("Sent a Message Url")
+            .setStyle(TextInputStyle.Short)
+            .setRequired(true);
+
         name
             .setCustomId("name")
             .setLabel("Selectmenu Label")
@@ -54,6 +62,7 @@ export default {
             .setRequired(false);
 
         modal.addComponents(
+            new ActionRowBuilder<TextInputBuilder>().addComponents(messageUrl),
             new ActionRowBuilder<TextInputBuilder>().addComponents(name),
             new ActionRowBuilder<TextInputBuilder>().addComponents(description),
             new ActionRowBuilder<TextInputBuilder>().addComponents(emoji),

@@ -49,6 +49,7 @@ export async function ticketHelper(
         user = interaction.member as GuildMember;
     }
 
+
     const data = await database.ticketSetups.findFirst({
         include: {
             ModalOptions: true,
@@ -62,13 +63,10 @@ export async function ticketHelper(
 
     // Validate Ticket
     if (data.TicketPermissions.length <= 0) {
-        return;
-    } else {
         const isOneTicketMod = data.TicketPermissions.some((p) => p.IsHandler == true)
         if (!isOneTicketMod) {
             return;
         }
-
     }
 
     // EnableTicketsOnlyFromTime
@@ -160,7 +158,7 @@ export async function ticketHelper(
     }
 
     // RequiredRoles
-    if (data.RequiredRoles) {
+    if (data.RequiredRoles.length > 0) {
         if (!user.roles.cache.some((r) => data.RequiredRoles.includes(r.id))) {
 
             if (ticketType == "event") {
@@ -221,6 +219,7 @@ export async function ticketHelper(
         }
 
     }
+
 
     const messageData = await database.messageTemplates.findFirst({
         where: {
@@ -429,6 +428,30 @@ export async function ticketHelper(
             }
         }
     })
+
+    if (ticketType == "event") {
+        (messageEvent.channel as TextChannel).send({
+            allowedMentions: {
+                repliedUser: false,
+            },
+            content: `-# ${await convertToEmojiPng("ticket", client.user.id)} Your ticket has beed created here ${channel.url}`
+        }).then(async (m) => {
+            setTimeout(async () => {
+                await m.delete()
+            }, 5000)
+        })
+        return;
+    } else if (ticketType == "interaction") {
+        await interaction.reply({
+            flags: MessageFlags.Ephemeral,
+            content: `-# ${await convertToEmojiPng("ticket", client.user.id)} Your ticket has beed created here ${channel.url}`
+        }).then(async (i) => {
+            setTimeout(async () => {
+                await i.delete()
+            }, 5000)
+        })
+        return;
+    }
 }
 
 export async function ticketErrorMessage(message: string, interaction: ChatInputCommandInteraction | ButtonInteraction | ModalSubmitInteraction | AnySelectMenuInteraction, client: ExtendedClient) {
@@ -1323,11 +1346,6 @@ export const ticketActions = [
     {
         label: "Claim",
         value: "claim",
-        emoji: "<:permissions:1277170947761111130>"
-    },
-    {
-        label: "Only Claim Bypass",
-        value: "claim_bypass",
         emoji: "<:permissions:1277170947761111130>"
     },
     {
