@@ -1,4 +1,4 @@
 export const botData = {
-  version: "1.6.2r4",
+  version: "v.1.6.2r11",
   configVersion: "1.2.1",
 };
