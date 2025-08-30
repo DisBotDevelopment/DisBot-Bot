@@ -189,6 +189,24 @@ export default {
                     content: `## ${emoji} You have successfully set Reaction logging`,
                 });
 
+            case "polls":
+                await updateLogging({Poll: getChannel});
+                return interaction.editReply({
+                    content: `## ${emoji} You have successfully set Poll logging`,
+                });
+
+            case "thread":
+                await updateLogging({Thread: getChannel});
+                return interaction.editReply({
+                    content: `## ${emoji} You have successfully set Thread logging`,
+                });
+
+            case "voice":
+                await updateLogging({Voice: getChannel});
+                return interaction.editReply({
+                    content: `## ${emoji} You have successfully set Voice logging`,
+                });
+
             default:
                 return interaction.editReply({
                     content: `## ${await convertToEmojiPng("error", client.user.id)} Please select a valid logging type!`,
