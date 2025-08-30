@@ -28,7 +28,7 @@ export default {
         modal
             .setTitle("Use Component with Button")
             .setCustomId(
-                "ticket-add-component-use-select-modal:" + interaction.customId.split(":")[1] + ":" + interaction.customId.split(":")[2] + ":" + interaction.customId.split(":")[3]
+                "ticket-add-component-use-select-modal:" + interaction.customId.split(":")[1]
             );
 
         messageUrl

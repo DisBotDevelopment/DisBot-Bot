@@ -93,7 +93,7 @@ export default {
                                     new StringSelectMenuBuilder()
                                         .setCustomId("ticket-add-component-permission-ticket:" + uuid)
                                         .setPlaceholder("Select Ticket Permissions")
-                                        .setMaxValues(11)
+                                        .setMaxValues(ticketActions.length)
                                         .setMinValues(0)
                                         .addOptions(ticketActions)
                                 )

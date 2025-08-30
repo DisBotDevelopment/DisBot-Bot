@@ -56,7 +56,6 @@ export default {
         let updatedRows: ActionRowBuilder<AnyComponentBuilder>[] = [];
         let optionAdded = false;
 
-        // Suche nach existierenden StringSelectMenus und versuche, die Option hinzuzufügen
         updatedRows = rows
             .filter((row) =>
                 row.components.some(

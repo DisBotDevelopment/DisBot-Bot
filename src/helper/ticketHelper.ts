@@ -45,6 +45,11 @@ export async function ticketHelper(
         guild = messageEvent.guild;
         user = messageEvent.member;
     } else if (ticketType == "interaction") {
+
+        await interaction.deferReply({
+            flags: MessageFlags.Ephemeral
+        })
+
         guild = interaction.guild;
         user = interaction.member as GuildMember;
     }
@@ -93,8 +98,7 @@ export async function ticketHelper(
                 })
                 return;
             } else if (ticketType == "interaction") {
-                await interaction.reply({
-                    flags: MessageFlags.Ephemeral,
+                await interaction.editReply({
                     content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You only can open Tickets from ${startStr}-${endStr}!`
                 }).then(async (i) => {
                     setTimeout(async () => {
@@ -124,8 +128,7 @@ export async function ticketHelper(
                     })
                     return;
                 } else if (ticketType == "interaction") {
-                    await interaction.reply({
-                        flags: MessageFlags.Ephemeral,
+                    await interaction.editReply({
                         content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You are blacklisted for this Ticket!`
                     }).then(async (i) => {
                         setTimeout(async () => {
@@ -174,8 +177,7 @@ export async function ticketHelper(
                 })
                 return;
             } else if (ticketType == "interaction") {
-                await interaction.reply({
-                    flags: MessageFlags.Ephemeral,
+                await interaction.editReply({
                     content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You need one of the Required Roles! \n > -# ${data.RequiredRoles.map((r) => `<@&${r}>`).join(", ")}`
                 }).then(async (i) => {
                     setTimeout(async () => {
@@ -206,8 +208,7 @@ export async function ticketHelper(
                 })
                 return;
             } else if (ticketType == "interaction") {
-                await interaction.reply({
-                    flags: MessageFlags.Ephemeral,
+                await interaction.editReply({
                     content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You have reached the ticket limit! You can only open ${data.TicketLimit} more tickets.`
                 }).then(async (i) => {
                     setTimeout(async () => {
@@ -221,11 +222,24 @@ export async function ticketHelper(
     }
 
 
-    const messageData = await database.messageTemplates.findFirst({
+    let messageData = await database.messageTemplates.findFirst({
         where: {
-            Name: data.MessageTemplateId
+            Name: data.MessageTemplateId ?? ""
         }
     })
+
+    if (!messageData) {
+        const ticketTemplateMessage = await fetch("https://cdn.xyzhub.link/raw/VqvWD9.json?download=true")
+        const ticketTemplateMessageData = await ticketTemplateMessage.json()
+        messageData = {
+            id: "not-used",
+            GuildId: guild.id,
+            Content: null,
+            EmbedJSON: JSON.stringify(ticketTemplateMessageData),
+            Name: "ticket-not-found",
+            OtherEmbeds: []
+        }
+    }
 
     const ticketId = randomUUID()
     const ticketPlaceholderType = {
@@ -337,14 +351,14 @@ export async function ticketHelper(
 
     if (messageData.EmbedJSON) {
         await channel.send({
-            content: replacePlaceholders(messageData.Content, ticketPlaceholderType) ?? null,
+            content: messageData.Content ? replacePlaceholders(messageData.Content ?? "", ticketPlaceholderType) : null,
             embeds: [
                 new EmbedBuilder(JSON.parse(replacePlaceholders(messageData.EmbedJSON, ticketPlaceholderType)))
             ]
         })
     } else {
         await channel.send({
-            content: replacePlaceholders(messageData.Content, ticketPlaceholderType) ?? null,
+            content: replacePlaceholders(messageData.Content ?? "", ticketPlaceholderType) ?? null,
         })
     }
 
@@ -442,8 +456,7 @@ export async function ticketHelper(
         })
         return;
     } else if (ticketType == "interaction") {
-        await interaction.reply({
-            flags: MessageFlags.Ephemeral,
+        await interaction.editReply({
             content: `-# ${await convertToEmojiPng("ticket", client.user.id)} Your ticket has beed created here ${channel.url}`
         }).then(async (i) => {
             setTimeout(async () => {

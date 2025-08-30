@@ -40,8 +40,9 @@ export default {
         const content = [
             `## ${ticketEmoji} Preview of Ticket Component \`${data.CustomId.substring(0, 10)}...\``,
             ``,
-            `**Channel Name_*_:** ${data.TicketChannelName ?? "_No Name_"}`,
-            `**Channel Type_*_:** ${data.ChannelType == ChannelType.GuildCategory ? "Category" : "Thread"}`,
+            `**Channel Name **_*_**:** ${data.TicketChannelName ?? "_No Name_"}`,
+            `**Channel Type **_*_**:** ${data.ChannelType == ChannelType.GuildCategory ? "Category" : "Thread"}`,
+            `**Ticket Permissions **_*_**: \`Use the Button from the \"Ticket-Permissions-Button\"\``,
             `**Ticket Limit:** ${data.TicketLimit ?? "_No Limit_"}`,
             `**Only Claim Mode:** ${data.OnlyClaimMode ? "Yes" : "No"}`,
             `**Has Modal:** ${data.HasModal ? "Yes" : "No"}`,
@@ -61,13 +62,13 @@ export default {
             `**Old Ticket Category:** ${data.OldTicketCategoryId ?? "_N/A_"}`,
             `**Enable Tickets Only From Time:** ${data.EnableTicketsOnlyFromTime ?? "_N/A_"}`,
             `**Category ID:** \`${data.CategoryId ?? "N/A"}\``,
-            `**Message Template ID_*_:** ${data.MessageTemplateId ?? "_N/A_"}`,
+            `**Message Template ID:** ${data.MessageTemplateId ?? "_N/A_"}`,
             `**User DM When Close Message Template ID:** ${data.UserDMWhenCloseMessageTemplateId ?? "_N/A_"}`,
             `**Auto Reply Message Template ID:** ${data.AutoReplyMessageTemplateId ?? "_N/A_"}`,
             `**Slash Command ID:** \`${data.SlashCommandId ?? "N/A"}\``,
             `**Text Command Name:** ${data.TextCommandName ?? "_N/A_"}`,
             ``,
-            `${await convertToEmojiPng("info", client.user.id)} Options with _*_ is a Required Option!`,
+            `${await convertToEmojiPng("info", client.user.id)} Options with **_*_** is a Required Option!`,
             ``,
         ].join("\n");
 
