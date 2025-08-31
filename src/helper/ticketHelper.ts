@@ -181,6 +181,7 @@ export async function ticketHelper(
     if (data.TicketLimit) {
         const ticketsPerUser = await database.tickets.findMany({
             where: {
+                IsClosed: false,
                 TicketOwnerId: user.id
             }
         })
