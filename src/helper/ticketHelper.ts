@@ -100,10 +100,6 @@ export async function ticketHelper(
             } else if (ticketType == "interaction") {
                 await interaction.editReply({
                     content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You only can open Tickets from ${startStr}-${endStr}!`
-                }).then(async (i) => {
-                    setTimeout(async () => {
-                        await i.delete()
-                    }, 5000)
                 })
                 return;
             }
@@ -130,10 +126,6 @@ export async function ticketHelper(
                 } else if (ticketType == "interaction") {
                     await interaction.editReply({
                         content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You are blacklisted for this Ticket!`
-                    }).then(async (i) => {
-                        setTimeout(async () => {
-                            await i.delete()
-                        }, 5000)
                     })
                     return;
                 }
@@ -179,10 +171,6 @@ export async function ticketHelper(
             } else if (ticketType == "interaction") {
                 await interaction.editReply({
                     content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You need one of the Required Roles! \n > -# ${data.RequiredRoles.map((r) => `<@&${r}>`).join(", ")}`
-                }).then(async (i) => {
-                    setTimeout(async () => {
-                        await i.delete()
-                    }, 5000)
                 })
                 return;
             }
@@ -210,10 +198,6 @@ export async function ticketHelper(
             } else if (ticketType == "interaction") {
                 await interaction.editReply({
                     content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You have reached the ticket limit! You can only open ${data.TicketLimit} more tickets.`
-                }).then(async (i) => {
-                    setTimeout(async () => {
-                        await i.delete()
-                    }, 5000)
                 })
                 return;
             }
@@ -458,10 +442,6 @@ export async function ticketHelper(
     } else if (ticketType == "interaction") {
         await interaction.editReply({
             content: `-# ${await convertToEmojiPng("ticket", client.user.id)} Your ticket has beed created here ${channel.url}`
-        }).then(async (i) => {
-            setTimeout(async () => {
-                await i.delete()
-            }, 5000)
         })
         return;
     }
