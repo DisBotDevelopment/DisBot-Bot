@@ -30,7 +30,7 @@ export default {
             .setCustomId("limit")
             .setLabel("Ticket Limit")
             .setStyle(TextInputStyle.Short)
-            .setRequired(true);
+            .setRequired(false);
 
         modal.addComponents(new ActionRowBuilder<TextInputBuilder>().addComponents(uuid));
 

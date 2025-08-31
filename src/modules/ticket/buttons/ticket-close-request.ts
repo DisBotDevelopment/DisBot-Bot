@@ -50,16 +50,16 @@ export default {
                     .addTextDisplayComponents(new TextDisplayBuilder()
                         .setContent(
                             [
-                                `### ${await convertToEmojiPng("ticket", client.user.id)} ${interaction.user} ask to close this ticket from <@${data.TicketOwnerId}`,
+                                `### ${await convertToEmojiPng("ticket", client.user.id)} ${interaction.user} ask to close this ticket from <@${data.TicketOwnerId}>`,
                                 `> -# Claimed: ${data.IsClaimed ? "Yes" : "No"}`,
-                                `> -# User Claimed: <@${data.UserWhoHasClaimedId}>`,
+                                `> -# User Claimed:  ${data.UserWhoHasClaimedId ? `<@${data.UserWhoHasClaimedId}>` : "N/A"}`,
                             ].join("\n")))
                     .addActionRowComponents(
                         new ActionRowBuilder<ButtonBuilder>().addComponents(
                             new ButtonBuilder()
                                 .setEmoji("<:x_:1322169218682322955>")
                                 .setDisabled(!(await hasTicketPermission("confirm-user-close", interaction.member as GuildMember, data.TicketId, client) || await hasTicketPermission("all", interaction.member as GuildMember, data.TicketId, client)))
-                                .setCustomId("ticket-close")
+                                .setCustomId("ticket-close:" + uuid)
                                 .setStyle(ButtonStyle.Secondary),
                             new ButtonBuilder()
                                 .setEmoji("<:arrowbackregular24:1301119279088799815>")

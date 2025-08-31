@@ -23,7 +23,7 @@ export default {
                     CustomId: uuid
                 },
                 data: {
-                    TicketLimit: Number(limit)
+                    TicketLimit: limit ? Number(limit) : null
                 }
             }
         );

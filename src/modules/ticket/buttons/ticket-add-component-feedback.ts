@@ -3,7 +3,7 @@ import {
     ButtonBuilder,
     ButtonInteraction,
     ButtonStyle,
-    ChannelSelectMenuBuilder,
+    ChannelSelectMenuBuilder, ChannelType,
     ContainerBuilder,
     MessageFlags, ModalBuilder, RoleSelectMenuBuilder, SeparatorBuilder, SeparatorComponent, SeparatorSpacingSize,
     StringSelectMenuBuilder,
@@ -50,19 +50,24 @@ export default {
 
         } else {
 
-            await database.ticketSetups.update({
-                where: {
-                    CustomId: uuid
-                },
-                data: {
-                    WithTicketFeedback: true
-                }
-            })
 
             await interaction.reply({
-                flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("check", client.user.id)} Enabled User Feedback after Close`
+                flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
+                components: [
+                    new ContainerBuilder()
+                        .addActionRowComponents(
+                            new ActionRowBuilder<ChannelSelectMenuBuilder>().addComponents(
+                                new ChannelSelectMenuBuilder()
+                                    .setCustomId("ticket-add-component-feedback-channel:" + uuid)
+                                    .setPlaceholder("Select Channel the Feedback result.")
+                                    .setChannelTypes(ChannelType.GuildText)
+                                    .setMaxValues(1)
+                                    .setMinValues(1)
+                            )
+                        )
+                ]
             })
+
         }
     }
 

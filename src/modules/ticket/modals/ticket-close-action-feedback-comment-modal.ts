@@ -35,12 +35,12 @@ export default {
 
         if (!data) return await ticketErrorMessage("No Data!", interaction, client)
 
-        const feedback = await database.ticketFeedback.findFirst({
+        let feedback = await database.ticketFeedback.findFirst({
             where: {
                 TicketId: uuid
             }
         })
-        if (!feedback)
+        if (!feedback) {
             await database.ticketFeedback.create(
                 {
                     data: {
@@ -55,7 +55,12 @@ export default {
                     }
                 }
             )
-
+            feedback = await database.ticketFeedback.findFirst({
+                where: {
+                    TicketId: uuid
+                }
+            })
+        }
         await database.ticketFeedback.update({
             where: {
                 id: feedback.id
