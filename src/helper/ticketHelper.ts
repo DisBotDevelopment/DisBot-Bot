@@ -68,11 +68,23 @@ export async function ticketHelper(
 
     // Validate Ticket
     if (data.TicketPermissions.length <= 0) {
-        const isOneTicketMod = data.TicketPermissions.some((p) => p.IsHandler == true)
-        if (!isOneTicketMod) {
+        if (ticketType == "event") {
+            (messageEvent.channel as TextChannel).send({
+                content: `-# ${await convertToEmojiPng("ticket", client.user.id)} I can't create a Ticket without Moderators `
+            }).then(async (m) => {
+                setTimeout(async () => {
+                    await m.delete()
+                }, 5000)
+            })
+            return;
+        } else if (ticketType == "interaction") {
+            await interaction.editReply({
+                content: `-# ${await convertToEmojiPng("ticket", client.user.id)} I can't create a Ticket without Moderators `
+            })
             return;
         }
     }
+
 
     // EnableTicketsOnlyFromTime
     if (data.EnableTicketsOnlyFromTime) {
@@ -272,8 +284,16 @@ export async function ticketHelper(
         return
     }
 
-    // Channel Permissions
-    if ((IsChannel || IsThread) && data.TicketPermissions) {
+    // Pre Permissions
+    if (IsChannel) await (channel as TextChannel).permissionOverwrites.create(user.id, {
+        ViewChannel: true,
+        SendMessages: true
+    });
+    if (IsThread) await (channel as ThreadChannel).members.add(user.id)
+
+    // Ticket Permissions
+    if (data.TicketPermissions) {
+        // Channel Perms
         if (IsChannel) {
             for (const perms of data.TicketPermissions) {
                 const permissions: Record<string, boolean> = {};
@@ -301,23 +321,29 @@ export async function ticketHelper(
                 ViewChannel: false,
             });
         }
-
+        // Thread Perms
+        if (IsThread) {
+            for (const perms of data.TicketPermissions) {
+                if (perms.DiscordRoleId) {
+                    channel.send({
+                        content: `<@&${perms.DiscordRoleId}>`
+                    }).then(async (m) => {
+                        await m.delete()
+                    })
+                } else if (perms.DiscordUserId) {
+                    await (channel as ThreadChannel).members.add(perms.DiscordUserId)
+                }
+            }
+        }
 
         // Shadow Ping
         for (const perms of data.TicketPermissions) {
             if (perms.HasShadowPing) {
                 // Thread
-                if (IsThread && perms.DiscordRoleId) {
-                    const roleMembers = guild.roles.cache.get(perms.DiscordRoleId)
-                    for (const member of roleMembers.members.keys()) {
-                        await (channel as ThreadChannel).members.add(member)
-                    }
+                // Has beed Pinged
 
-                } else if (IsThread && perms.DiscordUserId) {
-                    await (channel as ThreadChannel).members.add(perms.DiscordUserId)
-                }
                 // Channel
-                else if (IsChannel && perms.DiscordRoleId) {
+                if (IsChannel && perms.DiscordRoleId) {
                     channel.send({
                         content: `<@&${perms.DiscordRoleId}>`
                     }).then(async (m) => {
