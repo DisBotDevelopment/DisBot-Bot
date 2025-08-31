@@ -63,84 +63,87 @@ export default {
                 }
             );
 
-            const interactionPermission = await database.guildInteractionPermissions.findFirst({
-                where: {
-                    GuildId: interaction.guildId,
-                    CustomId: interaction.customId,
-                    Type: GuildPermissionType.BUTTON
-                }
-            })
+            if (interaction.inGuild()) {
+                const activeHandler = buttonHandler
+                const interactionPermission = await database.guildInteractionPermissions.findFirst({
+                    where: {
+                        GuildId: interaction.guildId,
+                        CommandName: activeHandler?.data?.name ? activeHandler.data.name : activeHandler.subCommand ? activeHandler.subCommand : activeHandler.subCommandGroup,
+                        Type: activeHandler?.data?.name ? GuildPermissionType.COMMAND : activeHandler.subCommand ? GuildPermissionType.SUBCOMMAND : GuildPermissionType.SUBCOMMANDGROUP
+                    }
+                })
 
-            if (interactionPermission) {
-                const allowedToUse: boolean[] = []
-                if (interactionPermission?.UserIds.length >= 1) {
-                    allowedToUse.push(await InteractionHelper.userRequirements(
+                if (interactionPermission) {
+                    const allowedToUse: boolean[] = []
+                    if (interactionPermission?.UserIds.length >= 1) {
+                        allowedToUse.push(await InteractionHelper.userRequirements(
+                                interaction,
+                                client,
+                                interactionPermission.UserIds
+                            )
+                        )
+                    }
+                    if (interactionPermission?.ChannelIds.length >= 1) {
+                        if (await InteractionHelper.channelRequirements(
                             interaction,
                             client,
-                            interactionPermission.UserIds
-                        )
-                    )
-                }
-                if (interactionPermission?.ChannelIds.length >= 1) {
-                    if (await InteractionHelper.channelRequirements(
-                        interaction,
-                        client,
-                        interactionPermission.ChannelIds
-                    )) {
+                            interactionPermission.ChannelIds
+                        )) {
+                            return await (interaction as any).reply({
+                                flags: MessageFlags.Ephemeral,
+                                content: `## ${await convertToEmojiPng("permission", client.user.id)} You can't perform this interaction!`
+                            })
+                        }
+                    }
+                    if (interactionPermission?.RoleIds.length >= 1) {
+                        allowedToUse.push(await InteractionHelper.roleRequirements(
+                            interaction,
+                            client,
+                            interactionPermission.RoleIds
+                        ))
+                    }
+                    if (!allowedToUse.some((a) => a == true)) {
                         return await (interaction as any).reply({
                             flags: MessageFlags.Ephemeral,
                             content: `## ${await convertToEmojiPng("permission", client.user.id)} You can't perform this interaction!`
                         })
                     }
-                }
-                if (interactionPermission?.RoleIds.length >= 1) {
-                    allowedToUse.push(await InteractionHelper.roleRequirements(
-                        interaction,
-                        client,
-                        interactionPermission.RoleIds
-                    ))
-                }
-                if (!allowedToUse.some((a) => a == true)) {
-                    return await (interaction as any).reply({
-                        flags: MessageFlags.Ephemeral,
-                        content: `## ${await convertToEmojiPng("permission", client.user.id)} You can't perform this interaction!`
-                    })
-                }
 
-                const cooldownData = interactionPermission?.Cooldown ?? buttonHandler?.options?.cooldown ?? 0
-                if (cooldownData) {
-                    await InteractionHelper.cooldownCheck(
-                        interactionPermission.Cooldown ?? buttonHandler.options.cooldown as number,
+                    const cooldownData = interactionPermission?.Cooldown ?? activeHandler?.options?.cooldown ?? 0
+                    if (cooldownData) {
+                        await InteractionHelper.cooldownCheck(
+                            interactionPermission.Cooldown ?? activeHandler.options.cooldown as number,
+                            interaction,
+                            client,
+                            activeHandler.type as DisBotInteractionType
+                        );
+                    }
+                }
+                if ((activeHandler?.options?.botPermissions?.length ?? 0) > 0) {
+                    await InteractionHelper.checkBotPermissions(
                         interaction,
                         client,
-                        buttonHandler.type as DisBotInteractionType
+                        activeHandler.options.botPermissions
                     );
                 }
-            }
-            if ((buttonHandler?.options?.botPermissions?.length ?? 0) > 0) {
-                await InteractionHelper.checkBotPermissions(
-                    interaction,
-                    client,
-                    buttonHandler.options.botPermissions
-                );
-            }
-            if (interactionPermission?.NeedsGuildOwner) {
-                await InteractionHelper.checkGuildOwner(
-                    interaction,
-                    client,
-                );
-            } else if (buttonHandler?.options?.isGuildOwner && interactionPermission?.NeedsGuildOwner == null) {
-                await InteractionHelper.checkGuildOwner(
-                    interaction,
-                    client,
-                );
-            }
-            if ((buttonHandler?.options?.userPermissions?.length ?? 0) > 0 && !interactionPermission?.DisableInternalUserPermission) {
-                await InteractionHelper.checkUserPermissions(
-                    interaction,
-                    client,
-                    buttonHandler.options.userPermissions
-                );
+                if (interactionPermission?.NeedsGuildOwner) {
+                    await InteractionHelper.checkGuildOwner(
+                        interaction,
+                        client,
+                    );
+                } else if (activeHandler?.options?.isGuildOwner && interactionPermission?.NeedsGuildOwner == null) {
+                    await InteractionHelper.checkGuildOwner(
+                        interaction,
+                        client,
+                    );
+                }
+                if ((activeHandler?.options?.userPermissions?.length ?? 0) > 0 && !interactionPermission?.DisableInternalUserPermission) {
+                    await InteractionHelper.checkUserPermissions(
+                        interaction,
+                        client,
+                        activeHandler.options.userPermissions
+                    );
+                }
             }
 
             await buttonHandler?.execute(interaction, client);

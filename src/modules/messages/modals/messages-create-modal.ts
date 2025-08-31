@@ -23,10 +23,10 @@ export default {
      */
 
     async execute(interaction: ModalSubmitInteraction, client: ExtendedClient) {
-        const name = interaction.fields.getTextInputValue("name");
+        const name = interaction.fields.getTextInputValue("name").replace(/\s+/g, "");
 
         const data = await database.messageTemplates.findFirst({
-            where: {Name: name.toLowerCase(),}
+            where: {Name: name,}
         });
 
         if (!client.user) throw new Error("Client user is not cached");
@@ -47,7 +47,6 @@ export default {
                 });
         }
 
-        const uuids = randomUUID();
         await database.messageTemplates.create({
             data: {
                 Guilds: {
@@ -56,8 +55,7 @@ export default {
                     }
                 },
                 Name: name,
-                Content:
-                    null,
+                Content: "ㅤ",
                 EmbedJSON:
                     null,
             }
@@ -86,7 +84,7 @@ export default {
                 .setStyle(ButtonStyle.Secondary)
         );
 
-        interaction.reply({
+        await interaction.reply({
             components: [
                 new ContainerBuilder().addTextDisplayComponents(
                     new TextDisplayBuilder().setContent(`## ${await convertToEmojiPng(

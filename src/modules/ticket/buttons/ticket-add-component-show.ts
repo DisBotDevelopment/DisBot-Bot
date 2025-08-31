@@ -68,7 +68,7 @@ export default {
             `**Slash Command ID:** \`${data.SlashCommandId ?? "N/A"}\``,
             `**Text Command Name:** ${data.TextCommandName ?? "_N/A_"}`,
             ``,
-            `${await convertToEmojiPng("info", client.user.id)} Options with **_*_** is a Required Option!`,
+            `${await convertToEmojiPng("info", client.user.id)} Options with _*_ is a Required Option!`,
             ``,
         ].join("\n");
 
