@@ -29,7 +29,7 @@ export default {
      * @param {Client} client
      */
     async execute(interaction: StringSelectMenuInteraction, client: ExtendedClient) {
-        const uuid = interaction.customId.split(":")[1]
+        const uuid = interaction.values[0]
         const data = await database.ticketSetups.findFirst({
             include: {
                 ModalOptions: true
