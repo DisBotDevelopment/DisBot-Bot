@@ -325,11 +325,11 @@ export async function ticketHelper(
         if (IsThread) {
             for (const perms of data.TicketPermissions) {
                 if (perms.DiscordRoleId) {
-                    channel.send({
-                        content: `<@&${perms.DiscordRoleId}>`
-                    }).then(async (m) => {
-                        await m.delete()
-                    })
+                    await channel.guild.members.fetch();
+                    const role = await channel.guild.roles.fetch(perms.DiscordRoleId);
+                    for (const memberId of role.members.values()) {
+                        await (channel as ThreadChannel).members.add(memberId)
+                    }
                 } else if (perms.DiscordUserId) {
                     await (channel as ThreadChannel).members.add(perms.DiscordUserId)
                 }
@@ -340,7 +340,7 @@ export async function ticketHelper(
         for (const perms of data.TicketPermissions) {
             if (perms.HasShadowPing) {
                 // Thread
-                // Has beed Pinged
+                // Threads cannot have shadow pings because I add the member from the role in lines 328-335, and this pings the member!
 
                 // Channel
                 if (IsChannel && perms.DiscordRoleId) {
