@@ -50,6 +50,8 @@ export default {
         const guild = await client.guilds.fetch(data.GuildId)
         const channel = await guild.channels.fetch(data.TicketFeedbackChannelId)
 
+        console.log(data.TicketFeedback.Comment)
+
         await (channel as TextChannel).send({
             flags: MessageFlags.IsComponentsV2,
             components: [
@@ -61,7 +63,7 @@ export default {
                             `> **User**: ${interaction.user} (\`${interaction.user.id}\`)`,
                             `> **Ticket Id**: \`${data.TicketId}\``,
                             `> **Rating**: ${data.TicketFeedback.Rating == 1 ? "⭐" : data.TicketFeedback.Rating == 2 ? "⭐⭐" : data.TicketFeedback.Rating == 3 ? "⭐⭐⭐" : data.TicketFeedback.Rating == 4 ? "⭐⭐⭐⭐" : data.TicketFeedback.Rating == 5 ? "⭐⭐⭐⭐⭐" : "N/A"}`,
-                            `> **Comment**: ${data.TicketFeedback.Comment}`,
+                            `> **Comment**: ${data.TicketFeedback.Comment ?? "N/A"}`,
                             `> **Sent At**: <t:${Math.floor(new Date(data.TicketFeedback.SubmittedAt).getTime() / 1000)}:R> (<t:${Math.floor(new Date(data.TicketFeedback.SubmittedAt).getTime() / 1000)}:F>)`,
                             ``
                         ].join("\n"))

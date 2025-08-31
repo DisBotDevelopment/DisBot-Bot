@@ -20,7 +20,7 @@ export default {
         const modal = new ModalBuilder()
         const comment = new TextInputBuilder()
 
-        modal.setTitle("Feedback Comment").setCustomId("ticket-close-action-feedback-comment-modal")
+        modal.setTitle("Feedback Comment").setCustomId("ticket-close-action-feedback-comment-modal:" + interaction.customId.split(":")[1])
 
         comment
             .setCustomId("comment")

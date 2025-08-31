@@ -61,6 +61,9 @@ export default {
                 }
             })
         }
+
+        console.log(interaction.fields.getTextInputValue("comment"))
+
         await database.ticketFeedback.update({
             where: {
                 id: feedback.id
