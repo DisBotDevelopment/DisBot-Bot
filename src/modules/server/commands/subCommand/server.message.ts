@@ -4,10 +4,9 @@ import {convertToEmojiPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 
 export default {
-    subCommand: "discord.message",
+    subCommand: "server.message",
     options: {
         once: false,
-        permission: PermissionType.Discord,
         cooldown: 3000,
         botPermissions: [PermissionFlagsBits.ManageChannels, PermissionFlagsBits.ManageMessages, PermissionFlagsBits.SendMessages],
         userPermissions: [PermissionFlagsBits.ManageMessages, PermissionFlagsBits.ManageChannels, PermissionFlagsBits.SendMessages],

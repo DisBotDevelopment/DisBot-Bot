@@ -3,7 +3,7 @@ import {ExtendedClient} from "../../../../types/client.js";
 import {convertToEmojiPng} from "../../../../helper/emojis.js";
 
 export default {
-    subCommandGroup: "discord.pause.direct-message",
+    subCommandGroup: "server.pause.direct-message",
 
     /**
      * @param {ChatInputCommandInteraction} interaction

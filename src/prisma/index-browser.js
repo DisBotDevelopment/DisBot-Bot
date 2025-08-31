@@ -220,7 +220,10 @@ exports.Prisma.GuildChannelLinksScalarFieldEnum = {
   id: 'id',
   UUID: 'UUID',
   ChannelId: 'ChannelId',
-  WebhookUrls: 'WebhookUrls',
+  WebhookUrl: 'WebhookUrl',
+  SyncFlags: 'SyncFlags',
+  LinkedWith: 'LinkedWith',
+  UsersCanSelectIds: 'UsersCanSelectIds',
   GuildId: 'GuildId'
 };
 
@@ -229,7 +232,7 @@ exports.Prisma.SyncedChannelLinkMessagesScalarFieldEnum = {
   GuildId: 'GuildId',
   UserMessageId: 'UserMessageId',
   WebhookMessageId: 'WebhookMessageId',
-  WebhookURL: 'WebhookURL',
+  WebhookUrl: 'WebhookUrl',
   ChannelId: 'ChannelId',
   ChannelLinkId: 'ChannelLinkId'
 };
@@ -522,7 +525,6 @@ exports.Prisma.GuildFeatureTogglesScalarFieldEnum = {
   LeaveEnabled: 'LeaveEnabled',
   AutoreactEnabled: 'AutoreactEnabled',
   AutopublishEnabled: 'AutopublishEnabled',
-  ConnectionsEnabled: 'ConnectionsEnabled',
   ChatfilterEnabled: 'ChatfilterEnabled',
   AutorolesEnabled: 'AutorolesEnabled',
   LoggingEnabled: 'LoggingEnabled',

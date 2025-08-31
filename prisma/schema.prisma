@@ -21,7 +21,6 @@ model Guilds {
   AutoRoles                   GuildAutoRoles[]
   GuildBans                   GuildBans[]
   ChatModerations             GuildChatModeration?
-  ChannelLinks                GuildChannelLinks[]
   DiscordAddons               DiscordGuildAddon?
   Giveaways                   Giveaways[]
   TempVoices                  TempVoices[]
@@ -41,6 +40,7 @@ model Guilds {
   GuildInteractionPermissions GuildInteractionPermissions[]
   GuildCommandManger          GuildCommandManger?
   GuildComponentManager       GuildComponentManager?
+  GuildChannelLinks           GuildChannelLinks[]
 }
 
 model GuildCommandManger {
@@ -151,24 +151,25 @@ model GuildChatModeration {
   Guilds              Guilds   @relation(fields: [GuildId], references: [GuildId])
 }
 
-// UPDATE SOON
 model GuildChannelLinks {
   id                       String                      @id @default(auto()) @map("_id") @db.ObjectId
   UUID                     String                      @unique
-  ChannelId                String
-  WebhookUrls              String[]
+  ChannelId                String                      @unique
+  WebhookUrl               String                      @unique
   SyncedChannelLinkMessage SyncedChannelLinkMessages[]
+  SyncFlags                String[] // See selectmenu from Channel Link flags
+  LinkedWith               String[]
+  UsersCanSelectIds        String[]
   GuildId                  String
   Guilds                   Guilds                      @relation(fields: [GuildId], references: [GuildId])
 }
 
-// UPDATE SOON
 model SyncedChannelLinkMessages {
   id               String            @id @default(auto()) @map("_id") @db.ObjectId
   GuildId          String
   UserMessageId    String
   WebhookMessageId String
-  WebhookURL       String
+  WebhookUrl       String
   ChannelId        String
   ChannelLinkId    String
   ChannelLinks     GuildChannelLinks @relation(fields: [ChannelLinkId], references: [UUID])
@@ -527,7 +528,6 @@ model GuildFeatureToggles {
   LeaveEnabled       Boolean @default(false)
   AutoreactEnabled   Boolean @default(false)
   AutopublishEnabled Boolean @default(false)
-  ConnectionsEnabled Boolean @default(false)
   ChatfilterEnabled  Boolean @default(false)
   AutorolesEnabled   Boolean @default(false)
   LoggingEnabled     Boolean @default(false)
@@ -567,7 +567,7 @@ model Users {
   id           String         @id @default(auto()) @map("_id") @db.ObjectId
   Username     String
   UserId       String         @unique
-  Apiss        Apis[]
+  Apis         Apis[]
   GuildBackups GuildBackups[]
   Vanitys      Vanitys[]
   Votes        Int            @default(0)

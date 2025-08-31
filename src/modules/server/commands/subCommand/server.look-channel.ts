@@ -4,10 +4,9 @@ import { convertToEmojiPng } from "../../../../helper/emojis.js";
 import { PermissionType } from "../../../../enums/permissionType.js";
 
 export default {
-    subCommand: "discord.unlook-channel",
+    subCommand: "server.look-channel",
     options: {
         once: false,
-        permission: PermissionType.Discord,
         cooldown: 3000,
         botPermissions: [PermissionFlagsBits.ManageChannels, PermissionFlagsBits.ManageMessages],
         userPermissions: [PermissionFlagsBits.ManageMessages, PermissionFlagsBits.ManageChannels],
@@ -15,16 +14,20 @@ export default {
         isGuildOwner: false,
     },
     /**
+     *
      * @param {ChatInputCommandInteraction} interaction
      * @param {ExtendedClient} client
      */
+
     async execute(
         interaction: ChatInputCommandInteraction,
         client: ExtendedClient
     ) {
+
         const channel = interaction.channel as TextChannel | null;
         const role = interaction.options.getRole("role");
         const permission = interaction.options.getString("permission");
+
 
         if (!client.user) throw new Error("No user was found.");
 
@@ -63,15 +66,15 @@ export default {
         } else {
             await channel.permissionOverwrites.edit(role as RoleResolvable,
                 {
-                    SendMessages: null,
-                    CreatePublicThreads: null,
-                    CreatePrivateThreads: null,
-                    AddReactions: null,
-                    Speak: null,
-                    SendMessagesInThreads: null,
-                    Connect: null,
-                    UseApplicationCommands: null,
-                    UseExternalApps: null
+                    SendMessages: false,
+                    CreatePublicThreads: false,
+                    CreatePrivateThreads: false,
+                    AddReactions: false,
+                    Speak: false,
+                    SendMessagesInThreads: false,
+                    Connect: false,
+                    UseApplicationCommands: false,
+                    UseExternalApps: false
                 },
                 {
                     reason: `User ${interaction.user.username} (${interaction.user.id}) used the command /discord.look`
@@ -80,7 +83,7 @@ export default {
         }
 
         await interaction.reply({
-            content: `## ${await convertToEmojiPng("check", client.user.id)} Removed the lock from the channel ${channel} for the role ${role}`,
+            content: `## ${await convertToEmojiPng("check", client.user.id)} Successfully locked the channel ${channel} for the role ${role}`,
             flags: MessageFlags.Ephemeral
         });
     }

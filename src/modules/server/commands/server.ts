@@ -1,16 +1,16 @@
-import { ApplicationIntegrationType, InteractionContextType, PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
+import {ApplicationIntegrationType, InteractionContextType, PermissionFlagsBits, SlashCommandBuilder} from "discord.js";
 
 export default {
     help: {
-        name: 'Discord Commands',
-        description: 'Setup simple discord settings with command and get extra features to manage your server',
-        usage: '/discord',
+        name: 'Server Commands',
+        description: 'A smaple command to run easily command releated to your discord server (Discord Addon)',
+        usage: '/server',
         examples: [],
         aliases: [],
-        docsLink: 'https://docs.disbot.app/docs/commands/discord'
+        docsLink: 'https://docs.disbot.app/docs/commands/server'
     },
     data: new SlashCommandBuilder()
-        .setName("discord")
+        .setName("server")
         .setDescription("Setup simple discord settings with command and get extra features to manage your server")
         .setDescriptionLocalizations({
             de: "Verwalte deinen Discord-Server einfach mit Befehlen und erhalte zusätzliche Funktionen"
@@ -159,5 +159,10 @@ export default {
                         .setDescription("The channel to enable no embed links")
                         .setRequired(true)
                 )
+        )
+
+        .addSubcommand((subCommand) =>
+            subCommand.setName("channel-link")
+                .setDescription("Sync message from channels from an other server to your and back.")
         )
 };

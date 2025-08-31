@@ -4838,7 +4838,6 @@ export namespace Prisma {
     AutoReacts: number
     AutoRoles: number
     GuildBans: number
-    ChannelLinks: number
     Giveaways: number
     TempVoices: number
     MessageTemplates: number
@@ -4850,6 +4849,7 @@ export namespace Prisma {
     YoutubeNotifications: number
     GuildLogs: number
     GuildInteractionPermissions: number
+    GuildChannelLinks: number
   }
 
   export type GuildsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4857,7 +4857,6 @@ export namespace Prisma {
     AutoReacts?: boolean | GuildsCountOutputTypeCountAutoReactsArgs
     AutoRoles?: boolean | GuildsCountOutputTypeCountAutoRolesArgs
     GuildBans?: boolean | GuildsCountOutputTypeCountGuildBansArgs
-    ChannelLinks?: boolean | GuildsCountOutputTypeCountChannelLinksArgs
     Giveaways?: boolean | GuildsCountOutputTypeCountGiveawaysArgs
     TempVoices?: boolean | GuildsCountOutputTypeCountTempVoicesArgs
     MessageTemplates?: boolean | GuildsCountOutputTypeCountMessageTemplatesArgs
@@ -4869,6 +4868,7 @@ export namespace Prisma {
     YoutubeNotifications?: boolean | GuildsCountOutputTypeCountYoutubeNotificationsArgs
     GuildLogs?: boolean | GuildsCountOutputTypeCountGuildLogsArgs
     GuildInteractionPermissions?: boolean | GuildsCountOutputTypeCountGuildInteractionPermissionsArgs
+    GuildChannelLinks?: boolean | GuildsCountOutputTypeCountGuildChannelLinksArgs
   }
 
   // Custom InputTypes
@@ -4908,13 +4908,6 @@ export namespace Prisma {
    */
   export type GuildsCountOutputTypeCountGuildBansArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: GuildBansWhereInput
-  }
-
-  /**
-   * GuildsCountOutputType without action
-   */
-  export type GuildsCountOutputTypeCountChannelLinksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: GuildChannelLinksWhereInput
   }
 
   /**
@@ -4992,6 +4985,13 @@ export namespace Prisma {
    */
   export type GuildsCountOutputTypeCountGuildInteractionPermissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: GuildInteractionPermissionsWhereInput
+  }
+
+  /**
+   * GuildsCountOutputType without action
+   */
+  export type GuildsCountOutputTypeCountGuildChannelLinksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GuildChannelLinksWhereInput
   }
 
 
@@ -5204,13 +5204,13 @@ export namespace Prisma {
    */
 
   export type UsersCountOutputType = {
-    Apiss: number
+    Apis: number
     GuildBackups: number
     Vanitys: number
   }
 
   export type UsersCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Apiss?: boolean | UsersCountOutputTypeCountApissArgs
+    Apis?: boolean | UsersCountOutputTypeCountApisArgs
     GuildBackups?: boolean | UsersCountOutputTypeCountGuildBackupsArgs
     Vanitys?: boolean | UsersCountOutputTypeCountVanitysArgs
   }
@@ -5229,7 +5229,7 @@ export namespace Prisma {
   /**
    * UsersCountOutputType without action
    */
-  export type UsersCountOutputTypeCountApissArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UsersCountOutputTypeCountApisArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ApisWhereInput
   }
 
@@ -5730,7 +5730,6 @@ export namespace Prisma {
     AutoRoles?: boolean | Guilds$AutoRolesArgs<ExtArgs>
     GuildBans?: boolean | Guilds$GuildBansArgs<ExtArgs>
     ChatModerations?: boolean | Guilds$ChatModerationsArgs<ExtArgs>
-    ChannelLinks?: boolean | Guilds$ChannelLinksArgs<ExtArgs>
     DiscordAddons?: boolean | Guilds$DiscordAddonsArgs<ExtArgs>
     Giveaways?: boolean | Guilds$GiveawaysArgs<ExtArgs>
     TempVoices?: boolean | Guilds$TempVoicesArgs<ExtArgs>
@@ -5750,6 +5749,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: boolean | Guilds$GuildInteractionPermissionsArgs<ExtArgs>
     GuildCommandManger?: boolean | Guilds$GuildCommandMangerArgs<ExtArgs>
     GuildComponentManager?: boolean | Guilds$GuildComponentManagerArgs<ExtArgs>
+    GuildChannelLinks?: boolean | Guilds$GuildChannelLinksArgs<ExtArgs>
     _count?: boolean | GuildsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["guilds"]>
 
@@ -5770,7 +5770,6 @@ export namespace Prisma {
     AutoRoles?: boolean | Guilds$AutoRolesArgs<ExtArgs>
     GuildBans?: boolean | Guilds$GuildBansArgs<ExtArgs>
     ChatModerations?: boolean | Guilds$ChatModerationsArgs<ExtArgs>
-    ChannelLinks?: boolean | Guilds$ChannelLinksArgs<ExtArgs>
     DiscordAddons?: boolean | Guilds$DiscordAddonsArgs<ExtArgs>
     Giveaways?: boolean | Guilds$GiveawaysArgs<ExtArgs>
     TempVoices?: boolean | Guilds$TempVoicesArgs<ExtArgs>
@@ -5790,6 +5789,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: boolean | Guilds$GuildInteractionPermissionsArgs<ExtArgs>
     GuildCommandManger?: boolean | Guilds$GuildCommandMangerArgs<ExtArgs>
     GuildComponentManager?: boolean | Guilds$GuildComponentManagerArgs<ExtArgs>
+    GuildChannelLinks?: boolean | Guilds$GuildChannelLinksArgs<ExtArgs>
     _count?: boolean | GuildsCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -5802,7 +5802,6 @@ export namespace Prisma {
       AutoRoles: Prisma.$GuildAutoRolesPayload<ExtArgs>[]
       GuildBans: Prisma.$GuildBansPayload<ExtArgs>[]
       ChatModerations: Prisma.$GuildChatModerationPayload<ExtArgs> | null
-      ChannelLinks: Prisma.$GuildChannelLinksPayload<ExtArgs>[]
       DiscordAddons: Prisma.$DiscordGuildAddonPayload<ExtArgs> | null
       Giveaways: Prisma.$GiveawaysPayload<ExtArgs>[]
       TempVoices: Prisma.$TempVoicesPayload<ExtArgs>[]
@@ -5822,6 +5821,7 @@ export namespace Prisma {
       GuildInteractionPermissions: Prisma.$GuildInteractionPermissionsPayload<ExtArgs>[]
       GuildCommandManger: Prisma.$GuildCommandMangerPayload<ExtArgs> | null
       GuildComponentManager: Prisma.$GuildComponentManagerPayload<ExtArgs> | null
+      GuildChannelLinks: Prisma.$GuildChannelLinksPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6197,7 +6197,6 @@ export namespace Prisma {
     AutoRoles<T extends Guilds$AutoRolesArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$AutoRolesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuildAutoRolesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     GuildBans<T extends Guilds$GuildBansArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$GuildBansArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuildBansPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ChatModerations<T extends Guilds$ChatModerationsArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$ChatModerationsArgs<ExtArgs>>): Prisma__GuildChatModerationClient<$Result.GetResult<Prisma.$GuildChatModerationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    ChannelLinks<T extends Guilds$ChannelLinksArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$ChannelLinksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuildChannelLinksPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     DiscordAddons<T extends Guilds$DiscordAddonsArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$DiscordAddonsArgs<ExtArgs>>): Prisma__DiscordGuildAddonClient<$Result.GetResult<Prisma.$DiscordGuildAddonPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     Giveaways<T extends Guilds$GiveawaysArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$GiveawaysArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GiveawaysPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     TempVoices<T extends Guilds$TempVoicesArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$TempVoicesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TempVoicesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -6217,6 +6216,7 @@ export namespace Prisma {
     GuildInteractionPermissions<T extends Guilds$GuildInteractionPermissionsArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$GuildInteractionPermissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuildInteractionPermissionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     GuildCommandManger<T extends Guilds$GuildCommandMangerArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$GuildCommandMangerArgs<ExtArgs>>): Prisma__GuildCommandMangerClient<$Result.GetResult<Prisma.$GuildCommandMangerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     GuildComponentManager<T extends Guilds$GuildComponentManagerArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$GuildComponentManagerArgs<ExtArgs>>): Prisma__GuildComponentManagerClient<$Result.GetResult<Prisma.$GuildComponentManagerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    GuildChannelLinks<T extends Guilds$GuildChannelLinksArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$GuildChannelLinksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuildChannelLinksPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6754,30 +6754,6 @@ export namespace Prisma {
   }
 
   /**
-   * Guilds.ChannelLinks
-   */
-  export type Guilds$ChannelLinksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GuildChannelLinks
-     */
-    select?: GuildChannelLinksSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GuildChannelLinks
-     */
-    omit?: GuildChannelLinksOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GuildChannelLinksInclude<ExtArgs> | null
-    where?: GuildChannelLinksWhereInput
-    orderBy?: GuildChannelLinksOrderByWithRelationInput | GuildChannelLinksOrderByWithRelationInput[]
-    cursor?: GuildChannelLinksWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: GuildChannelLinksScalarFieldEnum | GuildChannelLinksScalarFieldEnum[]
-  }
-
-  /**
    * Guilds.DiscordAddons
    */
   export type Guilds$DiscordAddonsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7191,6 +7167,30 @@ export namespace Prisma {
      */
     include?: GuildComponentManagerInclude<ExtArgs> | null
     where?: GuildComponentManagerWhereInput
+  }
+
+  /**
+   * Guilds.GuildChannelLinks
+   */
+  export type Guilds$GuildChannelLinksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GuildChannelLinks
+     */
+    select?: GuildChannelLinksSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GuildChannelLinks
+     */
+    omit?: GuildChannelLinksOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GuildChannelLinksInclude<ExtArgs> | null
+    where?: GuildChannelLinksWhereInput
+    orderBy?: GuildChannelLinksOrderByWithRelationInput | GuildChannelLinksOrderByWithRelationInput[]
+    cursor?: GuildChannelLinksWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GuildChannelLinksScalarFieldEnum | GuildChannelLinksScalarFieldEnum[]
   }
 
   /**
@@ -17184,6 +17184,7 @@ export namespace Prisma {
     id: string | null
     UUID: string | null
     ChannelId: string | null
+    WebhookUrl: string | null
     GuildId: string | null
   }
 
@@ -17191,6 +17192,7 @@ export namespace Prisma {
     id: string | null
     UUID: string | null
     ChannelId: string | null
+    WebhookUrl: string | null
     GuildId: string | null
   }
 
@@ -17198,7 +17200,10 @@ export namespace Prisma {
     id: number
     UUID: number
     ChannelId: number
-    WebhookUrls: number
+    WebhookUrl: number
+    SyncFlags: number
+    LinkedWith: number
+    UsersCanSelectIds: number
     GuildId: number
     _all: number
   }
@@ -17208,6 +17213,7 @@ export namespace Prisma {
     id?: true
     UUID?: true
     ChannelId?: true
+    WebhookUrl?: true
     GuildId?: true
   }
 
@@ -17215,6 +17221,7 @@ export namespace Prisma {
     id?: true
     UUID?: true
     ChannelId?: true
+    WebhookUrl?: true
     GuildId?: true
   }
 
@@ -17222,7 +17229,10 @@ export namespace Prisma {
     id?: true
     UUID?: true
     ChannelId?: true
-    WebhookUrls?: true
+    WebhookUrl?: true
+    SyncFlags?: true
+    LinkedWith?: true
+    UsersCanSelectIds?: true
     GuildId?: true
     _all?: true
   }
@@ -17303,7 +17313,10 @@ export namespace Prisma {
     id: string
     UUID: string
     ChannelId: string
-    WebhookUrls: string[]
+    WebhookUrl: string
+    SyncFlags: string[]
+    LinkedWith: string[]
+    UsersCanSelectIds: string[]
     GuildId: string
     _count: GuildChannelLinksCountAggregateOutputType | null
     _min: GuildChannelLinksMinAggregateOutputType | null
@@ -17328,7 +17341,10 @@ export namespace Prisma {
     id?: boolean
     UUID?: boolean
     ChannelId?: boolean
-    WebhookUrls?: boolean
+    WebhookUrl?: boolean
+    SyncFlags?: boolean
+    LinkedWith?: boolean
+    UsersCanSelectIds?: boolean
     GuildId?: boolean
     SyncedChannelLinkMessage?: boolean | GuildChannelLinks$SyncedChannelLinkMessageArgs<ExtArgs>
     Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
@@ -17341,11 +17357,14 @@ export namespace Prisma {
     id?: boolean
     UUID?: boolean
     ChannelId?: boolean
-    WebhookUrls?: boolean
+    WebhookUrl?: boolean
+    SyncFlags?: boolean
+    LinkedWith?: boolean
+    UsersCanSelectIds?: boolean
     GuildId?: boolean
   }
 
-  export type GuildChannelLinksOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "UUID" | "ChannelId" | "WebhookUrls" | "GuildId", ExtArgs["result"]["guildChannelLinks"]>
+  export type GuildChannelLinksOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "UUID" | "ChannelId" | "WebhookUrl" | "SyncFlags" | "LinkedWith" | "UsersCanSelectIds" | "GuildId", ExtArgs["result"]["guildChannelLinks"]>
   export type GuildChannelLinksInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     SyncedChannelLinkMessage?: boolean | GuildChannelLinks$SyncedChannelLinkMessageArgs<ExtArgs>
     Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
@@ -17362,7 +17381,10 @@ export namespace Prisma {
       id: string
       UUID: string
       ChannelId: string
-      WebhookUrls: string[]
+      WebhookUrl: string
+      SyncFlags: string[]
+      LinkedWith: string[]
+      UsersCanSelectIds: string[]
       GuildId: string
     }, ExtArgs["result"]["guildChannelLinks"]>
     composites: {}
@@ -17761,7 +17783,10 @@ export namespace Prisma {
     readonly id: FieldRef<"GuildChannelLinks", 'String'>
     readonly UUID: FieldRef<"GuildChannelLinks", 'String'>
     readonly ChannelId: FieldRef<"GuildChannelLinks", 'String'>
-    readonly WebhookUrls: FieldRef<"GuildChannelLinks", 'String[]'>
+    readonly WebhookUrl: FieldRef<"GuildChannelLinks", 'String'>
+    readonly SyncFlags: FieldRef<"GuildChannelLinks", 'String[]'>
+    readonly LinkedWith: FieldRef<"GuildChannelLinks", 'String[]'>
+    readonly UsersCanSelectIds: FieldRef<"GuildChannelLinks", 'String[]'>
     readonly GuildId: FieldRef<"GuildChannelLinks", 'String'>
   }
     
@@ -18190,7 +18215,7 @@ export namespace Prisma {
     GuildId: string | null
     UserMessageId: string | null
     WebhookMessageId: string | null
-    WebhookURL: string | null
+    WebhookUrl: string | null
     ChannelId: string | null
     ChannelLinkId: string | null
   }
@@ -18200,7 +18225,7 @@ export namespace Prisma {
     GuildId: string | null
     UserMessageId: string | null
     WebhookMessageId: string | null
-    WebhookURL: string | null
+    WebhookUrl: string | null
     ChannelId: string | null
     ChannelLinkId: string | null
   }
@@ -18210,7 +18235,7 @@ export namespace Prisma {
     GuildId: number
     UserMessageId: number
     WebhookMessageId: number
-    WebhookURL: number
+    WebhookUrl: number
     ChannelId: number
     ChannelLinkId: number
     _all: number
@@ -18222,7 +18247,7 @@ export namespace Prisma {
     GuildId?: true
     UserMessageId?: true
     WebhookMessageId?: true
-    WebhookURL?: true
+    WebhookUrl?: true
     ChannelId?: true
     ChannelLinkId?: true
   }
@@ -18232,7 +18257,7 @@ export namespace Prisma {
     GuildId?: true
     UserMessageId?: true
     WebhookMessageId?: true
-    WebhookURL?: true
+    WebhookUrl?: true
     ChannelId?: true
     ChannelLinkId?: true
   }
@@ -18242,7 +18267,7 @@ export namespace Prisma {
     GuildId?: true
     UserMessageId?: true
     WebhookMessageId?: true
-    WebhookURL?: true
+    WebhookUrl?: true
     ChannelId?: true
     ChannelLinkId?: true
     _all?: true
@@ -18325,7 +18350,7 @@ export namespace Prisma {
     GuildId: string
     UserMessageId: string
     WebhookMessageId: string
-    WebhookURL: string
+    WebhookUrl: string
     ChannelId: string
     ChannelLinkId: string
     _count: SyncedChannelLinkMessagesCountAggregateOutputType | null
@@ -18352,7 +18377,7 @@ export namespace Prisma {
     GuildId?: boolean
     UserMessageId?: boolean
     WebhookMessageId?: boolean
-    WebhookURL?: boolean
+    WebhookUrl?: boolean
     ChannelId?: boolean
     ChannelLinkId?: boolean
     ChannelLinks?: boolean | GuildChannelLinksDefaultArgs<ExtArgs>
@@ -18365,12 +18390,12 @@ export namespace Prisma {
     GuildId?: boolean
     UserMessageId?: boolean
     WebhookMessageId?: boolean
-    WebhookURL?: boolean
+    WebhookUrl?: boolean
     ChannelId?: boolean
     ChannelLinkId?: boolean
   }
 
-  export type SyncedChannelLinkMessagesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "GuildId" | "UserMessageId" | "WebhookMessageId" | "WebhookURL" | "ChannelId" | "ChannelLinkId", ExtArgs["result"]["syncedChannelLinkMessages"]>
+  export type SyncedChannelLinkMessagesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "GuildId" | "UserMessageId" | "WebhookMessageId" | "WebhookUrl" | "ChannelId" | "ChannelLinkId", ExtArgs["result"]["syncedChannelLinkMessages"]>
   export type SyncedChannelLinkMessagesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ChannelLinks?: boolean | GuildChannelLinksDefaultArgs<ExtArgs>
   }
@@ -18385,7 +18410,7 @@ export namespace Prisma {
       GuildId: string
       UserMessageId: string
       WebhookMessageId: string
-      WebhookURL: string
+      WebhookUrl: string
       ChannelId: string
       ChannelLinkId: string
     }, ExtArgs["result"]["syncedChannelLinkMessages"]>
@@ -18785,7 +18810,7 @@ export namespace Prisma {
     readonly GuildId: FieldRef<"SyncedChannelLinkMessages", 'String'>
     readonly UserMessageId: FieldRef<"SyncedChannelLinkMessages", 'String'>
     readonly WebhookMessageId: FieldRef<"SyncedChannelLinkMessages", 'String'>
-    readonly WebhookURL: FieldRef<"SyncedChannelLinkMessages", 'String'>
+    readonly WebhookUrl: FieldRef<"SyncedChannelLinkMessages", 'String'>
     readonly ChannelId: FieldRef<"SyncedChannelLinkMessages", 'String'>
     readonly ChannelLinkId: FieldRef<"SyncedChannelLinkMessages", 'String'>
   }
@@ -40530,7 +40555,6 @@ export namespace Prisma {
     LeaveEnabled: boolean | null
     AutoreactEnabled: boolean | null
     AutopublishEnabled: boolean | null
-    ConnectionsEnabled: boolean | null
     ChatfilterEnabled: boolean | null
     AutorolesEnabled: boolean | null
     LoggingEnabled: boolean | null
@@ -40547,7 +40571,6 @@ export namespace Prisma {
     LeaveEnabled: boolean | null
     AutoreactEnabled: boolean | null
     AutopublishEnabled: boolean | null
-    ConnectionsEnabled: boolean | null
     ChatfilterEnabled: boolean | null
     AutorolesEnabled: boolean | null
     LoggingEnabled: boolean | null
@@ -40564,7 +40587,6 @@ export namespace Prisma {
     LeaveEnabled: number
     AutoreactEnabled: number
     AutopublishEnabled: number
-    ConnectionsEnabled: number
     ChatfilterEnabled: number
     AutorolesEnabled: number
     LoggingEnabled: number
@@ -40583,7 +40605,6 @@ export namespace Prisma {
     LeaveEnabled?: true
     AutoreactEnabled?: true
     AutopublishEnabled?: true
-    ConnectionsEnabled?: true
     ChatfilterEnabled?: true
     AutorolesEnabled?: true
     LoggingEnabled?: true
@@ -40600,7 +40621,6 @@ export namespace Prisma {
     LeaveEnabled?: true
     AutoreactEnabled?: true
     AutopublishEnabled?: true
-    ConnectionsEnabled?: true
     ChatfilterEnabled?: true
     AutorolesEnabled?: true
     LoggingEnabled?: true
@@ -40617,7 +40637,6 @@ export namespace Prisma {
     LeaveEnabled?: true
     AutoreactEnabled?: true
     AutopublishEnabled?: true
-    ConnectionsEnabled?: true
     ChatfilterEnabled?: true
     AutorolesEnabled?: true
     LoggingEnabled?: true
@@ -40707,7 +40726,6 @@ export namespace Prisma {
     LeaveEnabled: boolean
     AutoreactEnabled: boolean
     AutopublishEnabled: boolean
-    ConnectionsEnabled: boolean
     ChatfilterEnabled: boolean
     AutorolesEnabled: boolean
     LoggingEnabled: boolean
@@ -40741,7 +40759,6 @@ export namespace Prisma {
     LeaveEnabled?: boolean
     AutoreactEnabled?: boolean
     AutopublishEnabled?: boolean
-    ConnectionsEnabled?: boolean
     ChatfilterEnabled?: boolean
     AutorolesEnabled?: boolean
     LoggingEnabled?: boolean
@@ -40761,7 +40778,6 @@ export namespace Prisma {
     LeaveEnabled?: boolean
     AutoreactEnabled?: boolean
     AutopublishEnabled?: boolean
-    ConnectionsEnabled?: boolean
     ChatfilterEnabled?: boolean
     AutorolesEnabled?: boolean
     LoggingEnabled?: boolean
@@ -40771,7 +40787,7 @@ export namespace Prisma {
     GuildId?: boolean
   }
 
-  export type GuildFeatureTogglesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "LevelEnabled" | "WecomeEnabled" | "LeaveEnabled" | "AutoreactEnabled" | "AutopublishEnabled" | "ConnectionsEnabled" | "ChatfilterEnabled" | "AutorolesEnabled" | "LoggingEnabled" | "TwitchEnabled" | "YoutubeEnabled" | "SpotifyEnabled" | "GuildId", ExtArgs["result"]["guildFeatureToggles"]>
+  export type GuildFeatureTogglesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "LevelEnabled" | "WecomeEnabled" | "LeaveEnabled" | "AutoreactEnabled" | "AutopublishEnabled" | "ChatfilterEnabled" | "AutorolesEnabled" | "LoggingEnabled" | "TwitchEnabled" | "YoutubeEnabled" | "SpotifyEnabled" | "GuildId", ExtArgs["result"]["guildFeatureToggles"]>
   export type GuildFeatureTogglesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
   }
@@ -40788,7 +40804,6 @@ export namespace Prisma {
       LeaveEnabled: boolean
       AutoreactEnabled: boolean
       AutopublishEnabled: boolean
-      ConnectionsEnabled: boolean
       ChatfilterEnabled: boolean
       AutorolesEnabled: boolean
       LoggingEnabled: boolean
@@ -41195,7 +41210,6 @@ export namespace Prisma {
     readonly LeaveEnabled: FieldRef<"GuildFeatureToggles", 'Boolean'>
     readonly AutoreactEnabled: FieldRef<"GuildFeatureToggles", 'Boolean'>
     readonly AutopublishEnabled: FieldRef<"GuildFeatureToggles", 'Boolean'>
-    readonly ConnectionsEnabled: FieldRef<"GuildFeatureToggles", 'Boolean'>
     readonly ChatfilterEnabled: FieldRef<"GuildFeatureToggles", 'Boolean'>
     readonly AutorolesEnabled: FieldRef<"GuildFeatureToggles", 'Boolean'>
     readonly LoggingEnabled: FieldRef<"GuildFeatureToggles", 'Boolean'>
@@ -43829,7 +43843,7 @@ export namespace Prisma {
     GloablVotes?: boolean
     CustomerBots?: boolean
     BackupCount?: boolean
-    Apiss?: boolean | Users$ApissArgs<ExtArgs>
+    Apis?: boolean | Users$ApisArgs<ExtArgs>
     GuildBackups?: boolean | Users$GuildBackupsArgs<ExtArgs>
     Vanitys?: boolean | Users$VanitysArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
@@ -43849,7 +43863,7 @@ export namespace Prisma {
 
   export type UsersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "Username" | "UserId" | "Votes" | "GloablVotes" | "CustomerBots" | "BackupCount", ExtArgs["result"]["users"]>
   export type UsersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Apiss?: boolean | Users$ApissArgs<ExtArgs>
+    Apis?: boolean | Users$ApisArgs<ExtArgs>
     GuildBackups?: boolean | Users$GuildBackupsArgs<ExtArgs>
     Vanitys?: boolean | Users$VanitysArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
@@ -43858,7 +43872,7 @@ export namespace Prisma {
   export type $UsersPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Users"
     objects: {
-      Apiss: Prisma.$ApisPayload<ExtArgs>[]
+      Apis: Prisma.$ApisPayload<ExtArgs>[]
       GuildBackups: Prisma.$GuildBackupsPayload<ExtArgs>[]
       Vanitys: Prisma.$VanitysPayload<ExtArgs>[]
     }
@@ -44233,7 +44247,7 @@ export namespace Prisma {
    */
   export interface Prisma__UsersClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Apiss<T extends Users$ApissArgs<ExtArgs> = {}>(args?: Subset<T, Users$ApissArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApisPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Apis<T extends Users$ApisArgs<ExtArgs> = {}>(args?: Subset<T, Users$ApisArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApisPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     GuildBackups<T extends Users$GuildBackupsArgs<ExtArgs> = {}>(args?: Subset<T, Users$GuildBackupsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuildBackupsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Vanitys<T extends Users$VanitysArgs<ExtArgs> = {}>(args?: Subset<T, Users$VanitysArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VanitysPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -44642,9 +44656,9 @@ export namespace Prisma {
   }
 
   /**
-   * Users.Apiss
+   * Users.Apis
    */
-  export type Users$ApissArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Users$ApisArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Apis
      */
@@ -53019,7 +53033,10 @@ export namespace Prisma {
     id: 'id',
     UUID: 'UUID',
     ChannelId: 'ChannelId',
-    WebhookUrls: 'WebhookUrls',
+    WebhookUrl: 'WebhookUrl',
+    SyncFlags: 'SyncFlags',
+    LinkedWith: 'LinkedWith',
+    UsersCanSelectIds: 'UsersCanSelectIds',
     GuildId: 'GuildId'
   };
 
@@ -53031,7 +53048,7 @@ export namespace Prisma {
     GuildId: 'GuildId',
     UserMessageId: 'UserMessageId',
     WebhookMessageId: 'WebhookMessageId',
-    WebhookURL: 'WebhookURL',
+    WebhookUrl: 'WebhookUrl',
     ChannelId: 'ChannelId',
     ChannelLinkId: 'ChannelLinkId'
   };
@@ -53387,7 +53404,6 @@ export namespace Prisma {
     LeaveEnabled: 'LeaveEnabled',
     AutoreactEnabled: 'AutoreactEnabled',
     AutopublishEnabled: 'AutopublishEnabled',
-    ConnectionsEnabled: 'ConnectionsEnabled',
     ChatfilterEnabled: 'ChatfilterEnabled',
     AutorolesEnabled: 'AutorolesEnabled',
     LoggingEnabled: 'LoggingEnabled',
@@ -53672,7 +53688,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesListRelationFilter
     GuildBans?: GuildBansListRelationFilter
     ChatModerations?: XOR<GuildChatModerationNullableScalarRelationFilter, GuildChatModerationWhereInput> | null
-    ChannelLinks?: GuildChannelLinksListRelationFilter
     DiscordAddons?: XOR<DiscordGuildAddonNullableScalarRelationFilter, DiscordGuildAddonWhereInput> | null
     Giveaways?: GiveawaysListRelationFilter
     TempVoices?: TempVoicesListRelationFilter
@@ -53692,6 +53707,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsListRelationFilter
     GuildCommandManger?: XOR<GuildCommandMangerNullableScalarRelationFilter, GuildCommandMangerWhereInput> | null
     GuildComponentManager?: XOR<GuildComponentManagerNullableScalarRelationFilter, GuildComponentManagerWhereInput> | null
+    GuildChannelLinks?: GuildChannelLinksListRelationFilter
   }
 
   export type GuildsOrderByWithRelationInput = {
@@ -53705,7 +53721,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesOrderByRelationAggregateInput
     GuildBans?: GuildBansOrderByRelationAggregateInput
     ChatModerations?: GuildChatModerationOrderByWithRelationInput
-    ChannelLinks?: GuildChannelLinksOrderByRelationAggregateInput
     DiscordAddons?: DiscordGuildAddonOrderByWithRelationInput
     Giveaways?: GiveawaysOrderByRelationAggregateInput
     TempVoices?: TempVoicesOrderByRelationAggregateInput
@@ -53725,6 +53740,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsOrderByRelationAggregateInput
     GuildCommandManger?: GuildCommandMangerOrderByWithRelationInput
     GuildComponentManager?: GuildComponentManagerOrderByWithRelationInput
+    GuildChannelLinks?: GuildChannelLinksOrderByRelationAggregateInput
   }
 
   export type GuildsWhereUniqueInput = Prisma.AtLeast<{
@@ -53741,7 +53757,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesListRelationFilter
     GuildBans?: GuildBansListRelationFilter
     ChatModerations?: XOR<GuildChatModerationNullableScalarRelationFilter, GuildChatModerationWhereInput> | null
-    ChannelLinks?: GuildChannelLinksListRelationFilter
     DiscordAddons?: XOR<DiscordGuildAddonNullableScalarRelationFilter, DiscordGuildAddonWhereInput> | null
     Giveaways?: GiveawaysListRelationFilter
     TempVoices?: TempVoicesListRelationFilter
@@ -53761,6 +53776,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsListRelationFilter
     GuildCommandManger?: XOR<GuildCommandMangerNullableScalarRelationFilter, GuildCommandMangerWhereInput> | null
     GuildComponentManager?: XOR<GuildComponentManagerNullableScalarRelationFilter, GuildComponentManagerWhereInput> | null
+    GuildChannelLinks?: GuildChannelLinksListRelationFilter
   }, "id" | "GuildId">
 
   export type GuildsOrderByWithAggregationInput = {
@@ -54425,7 +54441,10 @@ export namespace Prisma {
     id?: StringFilter<"GuildChannelLinks"> | string
     UUID?: StringFilter<"GuildChannelLinks"> | string
     ChannelId?: StringFilter<"GuildChannelLinks"> | string
-    WebhookUrls?: StringNullableListFilter<"GuildChannelLinks">
+    WebhookUrl?: StringFilter<"GuildChannelLinks"> | string
+    SyncFlags?: StringNullableListFilter<"GuildChannelLinks">
+    LinkedWith?: StringNullableListFilter<"GuildChannelLinks">
+    UsersCanSelectIds?: StringNullableListFilter<"GuildChannelLinks">
     GuildId?: StringFilter<"GuildChannelLinks"> | string
     SyncedChannelLinkMessage?: SyncedChannelLinkMessagesListRelationFilter
     Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
@@ -54435,7 +54454,10 @@ export namespace Prisma {
     id?: SortOrder
     UUID?: SortOrder
     ChannelId?: SortOrder
-    WebhookUrls?: SortOrder
+    WebhookUrl?: SortOrder
+    SyncFlags?: SortOrder
+    LinkedWith?: SortOrder
+    UsersCanSelectIds?: SortOrder
     GuildId?: SortOrder
     SyncedChannelLinkMessage?: SyncedChannelLinkMessagesOrderByRelationAggregateInput
     Guilds?: GuildsOrderByWithRelationInput
@@ -54444,21 +54466,27 @@ export namespace Prisma {
   export type GuildChannelLinksWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     UUID?: string
+    ChannelId?: string
+    WebhookUrl?: string
     AND?: GuildChannelLinksWhereInput | GuildChannelLinksWhereInput[]
     OR?: GuildChannelLinksWhereInput[]
     NOT?: GuildChannelLinksWhereInput | GuildChannelLinksWhereInput[]
-    ChannelId?: StringFilter<"GuildChannelLinks"> | string
-    WebhookUrls?: StringNullableListFilter<"GuildChannelLinks">
+    SyncFlags?: StringNullableListFilter<"GuildChannelLinks">
+    LinkedWith?: StringNullableListFilter<"GuildChannelLinks">
+    UsersCanSelectIds?: StringNullableListFilter<"GuildChannelLinks">
     GuildId?: StringFilter<"GuildChannelLinks"> | string
     SyncedChannelLinkMessage?: SyncedChannelLinkMessagesListRelationFilter
     Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
-  }, "id" | "UUID">
+  }, "id" | "UUID" | "ChannelId" | "WebhookUrl">
 
   export type GuildChannelLinksOrderByWithAggregationInput = {
     id?: SortOrder
     UUID?: SortOrder
     ChannelId?: SortOrder
-    WebhookUrls?: SortOrder
+    WebhookUrl?: SortOrder
+    SyncFlags?: SortOrder
+    LinkedWith?: SortOrder
+    UsersCanSelectIds?: SortOrder
     GuildId?: SortOrder
     _count?: GuildChannelLinksCountOrderByAggregateInput
     _max?: GuildChannelLinksMaxOrderByAggregateInput
@@ -54472,7 +54500,10 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"GuildChannelLinks"> | string
     UUID?: StringWithAggregatesFilter<"GuildChannelLinks"> | string
     ChannelId?: StringWithAggregatesFilter<"GuildChannelLinks"> | string
-    WebhookUrls?: StringNullableListFilter<"GuildChannelLinks">
+    WebhookUrl?: StringWithAggregatesFilter<"GuildChannelLinks"> | string
+    SyncFlags?: StringNullableListFilter<"GuildChannelLinks">
+    LinkedWith?: StringNullableListFilter<"GuildChannelLinks">
+    UsersCanSelectIds?: StringNullableListFilter<"GuildChannelLinks">
     GuildId?: StringWithAggregatesFilter<"GuildChannelLinks"> | string
   }
 
@@ -54484,7 +54515,7 @@ export namespace Prisma {
     GuildId?: StringFilter<"SyncedChannelLinkMessages"> | string
     UserMessageId?: StringFilter<"SyncedChannelLinkMessages"> | string
     WebhookMessageId?: StringFilter<"SyncedChannelLinkMessages"> | string
-    WebhookURL?: StringFilter<"SyncedChannelLinkMessages"> | string
+    WebhookUrl?: StringFilter<"SyncedChannelLinkMessages"> | string
     ChannelId?: StringFilter<"SyncedChannelLinkMessages"> | string
     ChannelLinkId?: StringFilter<"SyncedChannelLinkMessages"> | string
     ChannelLinks?: XOR<GuildChannelLinksScalarRelationFilter, GuildChannelLinksWhereInput>
@@ -54495,7 +54526,7 @@ export namespace Prisma {
     GuildId?: SortOrder
     UserMessageId?: SortOrder
     WebhookMessageId?: SortOrder
-    WebhookURL?: SortOrder
+    WebhookUrl?: SortOrder
     ChannelId?: SortOrder
     ChannelLinkId?: SortOrder
     ChannelLinks?: GuildChannelLinksOrderByWithRelationInput
@@ -54509,7 +54540,7 @@ export namespace Prisma {
     GuildId?: StringFilter<"SyncedChannelLinkMessages"> | string
     UserMessageId?: StringFilter<"SyncedChannelLinkMessages"> | string
     WebhookMessageId?: StringFilter<"SyncedChannelLinkMessages"> | string
-    WebhookURL?: StringFilter<"SyncedChannelLinkMessages"> | string
+    WebhookUrl?: StringFilter<"SyncedChannelLinkMessages"> | string
     ChannelId?: StringFilter<"SyncedChannelLinkMessages"> | string
     ChannelLinkId?: StringFilter<"SyncedChannelLinkMessages"> | string
     ChannelLinks?: XOR<GuildChannelLinksScalarRelationFilter, GuildChannelLinksWhereInput>
@@ -54520,7 +54551,7 @@ export namespace Prisma {
     GuildId?: SortOrder
     UserMessageId?: SortOrder
     WebhookMessageId?: SortOrder
-    WebhookURL?: SortOrder
+    WebhookUrl?: SortOrder
     ChannelId?: SortOrder
     ChannelLinkId?: SortOrder
     _count?: SyncedChannelLinkMessagesCountOrderByAggregateInput
@@ -54536,7 +54567,7 @@ export namespace Prisma {
     GuildId?: StringWithAggregatesFilter<"SyncedChannelLinkMessages"> | string
     UserMessageId?: StringWithAggregatesFilter<"SyncedChannelLinkMessages"> | string
     WebhookMessageId?: StringWithAggregatesFilter<"SyncedChannelLinkMessages"> | string
-    WebhookURL?: StringWithAggregatesFilter<"SyncedChannelLinkMessages"> | string
+    WebhookUrl?: StringWithAggregatesFilter<"SyncedChannelLinkMessages"> | string
     ChannelId?: StringWithAggregatesFilter<"SyncedChannelLinkMessages"> | string
     ChannelLinkId?: StringWithAggregatesFilter<"SyncedChannelLinkMessages"> | string
   }
@@ -56305,7 +56336,6 @@ export namespace Prisma {
     LeaveEnabled?: BoolFilter<"GuildFeatureToggles"> | boolean
     AutoreactEnabled?: BoolFilter<"GuildFeatureToggles"> | boolean
     AutopublishEnabled?: BoolFilter<"GuildFeatureToggles"> | boolean
-    ConnectionsEnabled?: BoolFilter<"GuildFeatureToggles"> | boolean
     ChatfilterEnabled?: BoolFilter<"GuildFeatureToggles"> | boolean
     AutorolesEnabled?: BoolFilter<"GuildFeatureToggles"> | boolean
     LoggingEnabled?: BoolFilter<"GuildFeatureToggles"> | boolean
@@ -56323,7 +56353,6 @@ export namespace Prisma {
     LeaveEnabled?: SortOrder
     AutoreactEnabled?: SortOrder
     AutopublishEnabled?: SortOrder
-    ConnectionsEnabled?: SortOrder
     ChatfilterEnabled?: SortOrder
     AutorolesEnabled?: SortOrder
     LoggingEnabled?: SortOrder
@@ -56345,7 +56374,6 @@ export namespace Prisma {
     LeaveEnabled?: BoolFilter<"GuildFeatureToggles"> | boolean
     AutoreactEnabled?: BoolFilter<"GuildFeatureToggles"> | boolean
     AutopublishEnabled?: BoolFilter<"GuildFeatureToggles"> | boolean
-    ConnectionsEnabled?: BoolFilter<"GuildFeatureToggles"> | boolean
     ChatfilterEnabled?: BoolFilter<"GuildFeatureToggles"> | boolean
     AutorolesEnabled?: BoolFilter<"GuildFeatureToggles"> | boolean
     LoggingEnabled?: BoolFilter<"GuildFeatureToggles"> | boolean
@@ -56362,7 +56390,6 @@ export namespace Prisma {
     LeaveEnabled?: SortOrder
     AutoreactEnabled?: SortOrder
     AutopublishEnabled?: SortOrder
-    ConnectionsEnabled?: SortOrder
     ChatfilterEnabled?: SortOrder
     AutorolesEnabled?: SortOrder
     LoggingEnabled?: SortOrder
@@ -56385,7 +56412,6 @@ export namespace Prisma {
     LeaveEnabled?: BoolWithAggregatesFilter<"GuildFeatureToggles"> | boolean
     AutoreactEnabled?: BoolWithAggregatesFilter<"GuildFeatureToggles"> | boolean
     AutopublishEnabled?: BoolWithAggregatesFilter<"GuildFeatureToggles"> | boolean
-    ConnectionsEnabled?: BoolWithAggregatesFilter<"GuildFeatureToggles"> | boolean
     ChatfilterEnabled?: BoolWithAggregatesFilter<"GuildFeatureToggles"> | boolean
     AutorolesEnabled?: BoolWithAggregatesFilter<"GuildFeatureToggles"> | boolean
     LoggingEnabled?: BoolWithAggregatesFilter<"GuildFeatureToggles"> | boolean
@@ -56546,7 +56572,7 @@ export namespace Prisma {
     GloablVotes?: IntFilter<"Users"> | number
     CustomerBots?: IntFilter<"Users"> | number
     BackupCount?: IntFilter<"Users"> | number
-    Apiss?: ApisListRelationFilter
+    Apis?: ApisListRelationFilter
     GuildBackups?: GuildBackupsListRelationFilter
     Vanitys?: VanitysListRelationFilter
   }
@@ -56559,7 +56585,7 @@ export namespace Prisma {
     GloablVotes?: SortOrder
     CustomerBots?: SortOrder
     BackupCount?: SortOrder
-    Apiss?: ApisOrderByRelationAggregateInput
+    Apis?: ApisOrderByRelationAggregateInput
     GuildBackups?: GuildBackupsOrderByRelationAggregateInput
     Vanitys?: VanitysOrderByRelationAggregateInput
   }
@@ -56575,7 +56601,7 @@ export namespace Prisma {
     GloablVotes?: IntFilter<"Users"> | number
     CustomerBots?: IntFilter<"Users"> | number
     BackupCount?: IntFilter<"Users"> | number
-    Apiss?: ApisListRelationFilter
+    Apis?: ApisListRelationFilter
     GuildBackups?: GuildBackupsListRelationFilter
     Vanitys?: VanitysListRelationFilter
   }, "id" | "UserId">
@@ -57145,7 +57171,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
@@ -57165,6 +57190,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateInput = {
@@ -57178,7 +57204,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
@@ -57198,6 +57223,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUpdateInput = {
@@ -57210,7 +57236,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
@@ -57230,6 +57255,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateInput = {
@@ -57242,7 +57268,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
@@ -57262,6 +57287,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateManyInput = {
@@ -57913,16 +57939,22 @@ export namespace Prisma {
     id?: string
     UUID: string
     ChannelId: string
-    WebhookUrls?: GuildChannelLinksCreateWebhookUrlsInput | string[]
+    WebhookUrl: string
+    SyncFlags?: GuildChannelLinksCreateSyncFlagsInput | string[]
+    LinkedWith?: GuildChannelLinksCreateLinkedWithInput | string[]
+    UsersCanSelectIds?: GuildChannelLinksCreateUsersCanSelectIdsInput | string[]
     SyncedChannelLinkMessage?: SyncedChannelLinkMessagesCreateNestedManyWithoutChannelLinksInput
-    Guilds: GuildsCreateNestedOneWithoutChannelLinksInput
+    Guilds: GuildsCreateNestedOneWithoutGuildChannelLinksInput
   }
 
   export type GuildChannelLinksUncheckedCreateInput = {
     id?: string
     UUID: string
     ChannelId: string
-    WebhookUrls?: GuildChannelLinksCreateWebhookUrlsInput | string[]
+    WebhookUrl: string
+    SyncFlags?: GuildChannelLinksCreateSyncFlagsInput | string[]
+    LinkedWith?: GuildChannelLinksCreateLinkedWithInput | string[]
+    UsersCanSelectIds?: GuildChannelLinksCreateUsersCanSelectIdsInput | string[]
     GuildId: string
     SyncedChannelLinkMessage?: SyncedChannelLinkMessagesUncheckedCreateNestedManyWithoutChannelLinksInput
   }
@@ -57930,15 +57962,21 @@ export namespace Prisma {
   export type GuildChannelLinksUpdateInput = {
     UUID?: StringFieldUpdateOperationsInput | string
     ChannelId?: StringFieldUpdateOperationsInput | string
-    WebhookUrls?: GuildChannelLinksUpdateWebhookUrlsInput | string[]
+    WebhookUrl?: StringFieldUpdateOperationsInput | string
+    SyncFlags?: GuildChannelLinksUpdateSyncFlagsInput | string[]
+    LinkedWith?: GuildChannelLinksUpdateLinkedWithInput | string[]
+    UsersCanSelectIds?: GuildChannelLinksUpdateUsersCanSelectIdsInput | string[]
     SyncedChannelLinkMessage?: SyncedChannelLinkMessagesUpdateManyWithoutChannelLinksNestedInput
-    Guilds?: GuildsUpdateOneRequiredWithoutChannelLinksNestedInput
+    Guilds?: GuildsUpdateOneRequiredWithoutGuildChannelLinksNestedInput
   }
 
   export type GuildChannelLinksUncheckedUpdateInput = {
     UUID?: StringFieldUpdateOperationsInput | string
     ChannelId?: StringFieldUpdateOperationsInput | string
-    WebhookUrls?: GuildChannelLinksUpdateWebhookUrlsInput | string[]
+    WebhookUrl?: StringFieldUpdateOperationsInput | string
+    SyncFlags?: GuildChannelLinksUpdateSyncFlagsInput | string[]
+    LinkedWith?: GuildChannelLinksUpdateLinkedWithInput | string[]
+    UsersCanSelectIds?: GuildChannelLinksUpdateUsersCanSelectIdsInput | string[]
     GuildId?: StringFieldUpdateOperationsInput | string
     SyncedChannelLinkMessage?: SyncedChannelLinkMessagesUncheckedUpdateManyWithoutChannelLinksNestedInput
   }
@@ -57947,20 +57985,29 @@ export namespace Prisma {
     id?: string
     UUID: string
     ChannelId: string
-    WebhookUrls?: GuildChannelLinksCreateWebhookUrlsInput | string[]
+    WebhookUrl: string
+    SyncFlags?: GuildChannelLinksCreateSyncFlagsInput | string[]
+    LinkedWith?: GuildChannelLinksCreateLinkedWithInput | string[]
+    UsersCanSelectIds?: GuildChannelLinksCreateUsersCanSelectIdsInput | string[]
     GuildId: string
   }
 
   export type GuildChannelLinksUpdateManyMutationInput = {
     UUID?: StringFieldUpdateOperationsInput | string
     ChannelId?: StringFieldUpdateOperationsInput | string
-    WebhookUrls?: GuildChannelLinksUpdateWebhookUrlsInput | string[]
+    WebhookUrl?: StringFieldUpdateOperationsInput | string
+    SyncFlags?: GuildChannelLinksUpdateSyncFlagsInput | string[]
+    LinkedWith?: GuildChannelLinksUpdateLinkedWithInput | string[]
+    UsersCanSelectIds?: GuildChannelLinksUpdateUsersCanSelectIdsInput | string[]
   }
 
   export type GuildChannelLinksUncheckedUpdateManyInput = {
     UUID?: StringFieldUpdateOperationsInput | string
     ChannelId?: StringFieldUpdateOperationsInput | string
-    WebhookUrls?: GuildChannelLinksUpdateWebhookUrlsInput | string[]
+    WebhookUrl?: StringFieldUpdateOperationsInput | string
+    SyncFlags?: GuildChannelLinksUpdateSyncFlagsInput | string[]
+    LinkedWith?: GuildChannelLinksUpdateLinkedWithInput | string[]
+    UsersCanSelectIds?: GuildChannelLinksUpdateUsersCanSelectIdsInput | string[]
     GuildId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -57969,7 +58016,7 @@ export namespace Prisma {
     GuildId: string
     UserMessageId: string
     WebhookMessageId: string
-    WebhookURL: string
+    WebhookUrl: string
     ChannelId: string
     ChannelLinks: GuildChannelLinksCreateNestedOneWithoutSyncedChannelLinkMessageInput
   }
@@ -57979,7 +58026,7 @@ export namespace Prisma {
     GuildId: string
     UserMessageId: string
     WebhookMessageId: string
-    WebhookURL: string
+    WebhookUrl: string
     ChannelId: string
     ChannelLinkId: string
   }
@@ -57988,7 +58035,7 @@ export namespace Prisma {
     GuildId?: StringFieldUpdateOperationsInput | string
     UserMessageId?: StringFieldUpdateOperationsInput | string
     WebhookMessageId?: StringFieldUpdateOperationsInput | string
-    WebhookURL?: StringFieldUpdateOperationsInput | string
+    WebhookUrl?: StringFieldUpdateOperationsInput | string
     ChannelId?: StringFieldUpdateOperationsInput | string
     ChannelLinks?: GuildChannelLinksUpdateOneRequiredWithoutSyncedChannelLinkMessageNestedInput
   }
@@ -57997,7 +58044,7 @@ export namespace Prisma {
     GuildId?: StringFieldUpdateOperationsInput | string
     UserMessageId?: StringFieldUpdateOperationsInput | string
     WebhookMessageId?: StringFieldUpdateOperationsInput | string
-    WebhookURL?: StringFieldUpdateOperationsInput | string
+    WebhookUrl?: StringFieldUpdateOperationsInput | string
     ChannelId?: StringFieldUpdateOperationsInput | string
     ChannelLinkId?: StringFieldUpdateOperationsInput | string
   }
@@ -58007,7 +58054,7 @@ export namespace Prisma {
     GuildId: string
     UserMessageId: string
     WebhookMessageId: string
-    WebhookURL: string
+    WebhookUrl: string
     ChannelId: string
     ChannelLinkId: string
   }
@@ -58016,7 +58063,7 @@ export namespace Prisma {
     GuildId?: StringFieldUpdateOperationsInput | string
     UserMessageId?: StringFieldUpdateOperationsInput | string
     WebhookMessageId?: StringFieldUpdateOperationsInput | string
-    WebhookURL?: StringFieldUpdateOperationsInput | string
+    WebhookUrl?: StringFieldUpdateOperationsInput | string
     ChannelId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -58024,7 +58071,7 @@ export namespace Prisma {
     GuildId?: StringFieldUpdateOperationsInput | string
     UserMessageId?: StringFieldUpdateOperationsInput | string
     WebhookMessageId?: StringFieldUpdateOperationsInput | string
-    WebhookURL?: StringFieldUpdateOperationsInput | string
+    WebhookUrl?: StringFieldUpdateOperationsInput | string
     ChannelId?: StringFieldUpdateOperationsInput | string
     ChannelLinkId?: StringFieldUpdateOperationsInput | string
   }
@@ -59959,7 +60006,6 @@ export namespace Prisma {
     LeaveEnabled?: boolean
     AutoreactEnabled?: boolean
     AutopublishEnabled?: boolean
-    ConnectionsEnabled?: boolean
     ChatfilterEnabled?: boolean
     AutorolesEnabled?: boolean
     LoggingEnabled?: boolean
@@ -59976,7 +60022,6 @@ export namespace Prisma {
     LeaveEnabled?: boolean
     AutoreactEnabled?: boolean
     AutopublishEnabled?: boolean
-    ConnectionsEnabled?: boolean
     ChatfilterEnabled?: boolean
     AutorolesEnabled?: boolean
     LoggingEnabled?: boolean
@@ -59992,7 +60037,6 @@ export namespace Prisma {
     LeaveEnabled?: BoolFieldUpdateOperationsInput | boolean
     AutoreactEnabled?: BoolFieldUpdateOperationsInput | boolean
     AutopublishEnabled?: BoolFieldUpdateOperationsInput | boolean
-    ConnectionsEnabled?: BoolFieldUpdateOperationsInput | boolean
     ChatfilterEnabled?: BoolFieldUpdateOperationsInput | boolean
     AutorolesEnabled?: BoolFieldUpdateOperationsInput | boolean
     LoggingEnabled?: BoolFieldUpdateOperationsInput | boolean
@@ -60008,7 +60052,6 @@ export namespace Prisma {
     LeaveEnabled?: BoolFieldUpdateOperationsInput | boolean
     AutoreactEnabled?: BoolFieldUpdateOperationsInput | boolean
     AutopublishEnabled?: BoolFieldUpdateOperationsInput | boolean
-    ConnectionsEnabled?: BoolFieldUpdateOperationsInput | boolean
     ChatfilterEnabled?: BoolFieldUpdateOperationsInput | boolean
     AutorolesEnabled?: BoolFieldUpdateOperationsInput | boolean
     LoggingEnabled?: BoolFieldUpdateOperationsInput | boolean
@@ -60025,7 +60068,6 @@ export namespace Prisma {
     LeaveEnabled?: boolean
     AutoreactEnabled?: boolean
     AutopublishEnabled?: boolean
-    ConnectionsEnabled?: boolean
     ChatfilterEnabled?: boolean
     AutorolesEnabled?: boolean
     LoggingEnabled?: boolean
@@ -60041,7 +60083,6 @@ export namespace Prisma {
     LeaveEnabled?: BoolFieldUpdateOperationsInput | boolean
     AutoreactEnabled?: BoolFieldUpdateOperationsInput | boolean
     AutopublishEnabled?: BoolFieldUpdateOperationsInput | boolean
-    ConnectionsEnabled?: BoolFieldUpdateOperationsInput | boolean
     ChatfilterEnabled?: BoolFieldUpdateOperationsInput | boolean
     AutorolesEnabled?: BoolFieldUpdateOperationsInput | boolean
     LoggingEnabled?: BoolFieldUpdateOperationsInput | boolean
@@ -60056,7 +60097,6 @@ export namespace Prisma {
     LeaveEnabled?: BoolFieldUpdateOperationsInput | boolean
     AutoreactEnabled?: BoolFieldUpdateOperationsInput | boolean
     AutopublishEnabled?: BoolFieldUpdateOperationsInput | boolean
-    ConnectionsEnabled?: BoolFieldUpdateOperationsInput | boolean
     ChatfilterEnabled?: BoolFieldUpdateOperationsInput | boolean
     AutorolesEnabled?: BoolFieldUpdateOperationsInput | boolean
     LoggingEnabled?: BoolFieldUpdateOperationsInput | boolean
@@ -60218,7 +60258,7 @@ export namespace Prisma {
     GloablVotes?: number
     CustomerBots?: number
     BackupCount?: number
-    Apiss?: ApisCreateNestedManyWithoutUsersInput
+    Apis?: ApisCreateNestedManyWithoutUsersInput
     GuildBackups?: GuildBackupsCreateNestedManyWithoutUsersInput
     Vanitys?: VanitysCreateNestedManyWithoutUsersInput
   }
@@ -60231,7 +60271,7 @@ export namespace Prisma {
     GloablVotes?: number
     CustomerBots?: number
     BackupCount?: number
-    Apiss?: ApisUncheckedCreateNestedManyWithoutUsersInput
+    Apis?: ApisUncheckedCreateNestedManyWithoutUsersInput
     GuildBackups?: GuildBackupsUncheckedCreateNestedManyWithoutUsersInput
     Vanitys?: VanitysUncheckedCreateNestedManyWithoutUsersInput
   }
@@ -60243,7 +60283,7 @@ export namespace Prisma {
     GloablVotes?: IntFieldUpdateOperationsInput | number
     CustomerBots?: IntFieldUpdateOperationsInput | number
     BackupCount?: IntFieldUpdateOperationsInput | number
-    Apiss?: ApisUpdateManyWithoutUsersNestedInput
+    Apis?: ApisUpdateManyWithoutUsersNestedInput
     GuildBackups?: GuildBackupsUpdateManyWithoutUsersNestedInput
     Vanitys?: VanitysUpdateManyWithoutUsersNestedInput
   }
@@ -60255,7 +60295,7 @@ export namespace Prisma {
     GloablVotes?: IntFieldUpdateOperationsInput | number
     CustomerBots?: IntFieldUpdateOperationsInput | number
     BackupCount?: IntFieldUpdateOperationsInput | number
-    Apiss?: ApisUncheckedUpdateManyWithoutUsersNestedInput
+    Apis?: ApisUncheckedUpdateManyWithoutUsersNestedInput
     GuildBackups?: GuildBackupsUncheckedUpdateManyWithoutUsersNestedInput
     Vanitys?: VanitysUncheckedUpdateManyWithoutUsersNestedInput
   }
@@ -60293,7 +60333,7 @@ export namespace Prisma {
     Flags?: ApisCreateFlagsInput | string[]
     AccessibleGuilds?: ApisCreateAccessibleGuildsInput | string[]
     Key: string
-    Users: UsersCreateNestedOneWithoutApissInput
+    Users: UsersCreateNestedOneWithoutApisInput
   }
 
   export type ApisUncheckedCreateInput = {
@@ -60308,7 +60348,7 @@ export namespace Prisma {
     Flags?: ApisUpdateFlagsInput | string[]
     AccessibleGuilds?: ApisUpdateAccessibleGuildsInput | string[]
     Key?: StringFieldUpdateOperationsInput | string
-    Users?: UsersUpdateOneRequiredWithoutApissNestedInput
+    Users?: UsersUpdateOneRequiredWithoutApisNestedInput
   }
 
   export type ApisUncheckedUpdateInput = {
@@ -60867,12 +60907,6 @@ export namespace Prisma {
     isNot?: GuildChatModerationWhereInput | null
   }
 
-  export type GuildChannelLinksListRelationFilter = {
-    every?: GuildChannelLinksWhereInput
-    some?: GuildChannelLinksWhereInput
-    none?: GuildChannelLinksWhereInput
-  }
-
   export type DiscordGuildAddonNullableScalarRelationFilter = {
     is?: DiscordGuildAddonWhereInput | null
     isNot?: DiscordGuildAddonWhereInput | null
@@ -60979,6 +61013,12 @@ export namespace Prisma {
     isNot?: GuildComponentManagerWhereInput | null
   }
 
+  export type GuildChannelLinksListRelationFilter = {
+    every?: GuildChannelLinksWhereInput
+    some?: GuildChannelLinksWhereInput
+    none?: GuildChannelLinksWhereInput
+  }
+
   export type GuildAutoDeletesOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -60992,10 +61032,6 @@ export namespace Prisma {
   }
 
   export type GuildBansOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type GuildChannelLinksOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -61040,6 +61076,10 @@ export namespace Prisma {
   }
 
   export type GuildInteractionPermissionsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type GuildChannelLinksOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -61504,7 +61544,10 @@ export namespace Prisma {
     id?: SortOrder
     UUID?: SortOrder
     ChannelId?: SortOrder
-    WebhookUrls?: SortOrder
+    WebhookUrl?: SortOrder
+    SyncFlags?: SortOrder
+    LinkedWith?: SortOrder
+    UsersCanSelectIds?: SortOrder
     GuildId?: SortOrder
   }
 
@@ -61512,6 +61555,7 @@ export namespace Prisma {
     id?: SortOrder
     UUID?: SortOrder
     ChannelId?: SortOrder
+    WebhookUrl?: SortOrder
     GuildId?: SortOrder
   }
 
@@ -61519,6 +61563,7 @@ export namespace Prisma {
     id?: SortOrder
     UUID?: SortOrder
     ChannelId?: SortOrder
+    WebhookUrl?: SortOrder
     GuildId?: SortOrder
   }
 
@@ -61532,7 +61577,7 @@ export namespace Prisma {
     GuildId?: SortOrder
     UserMessageId?: SortOrder
     WebhookMessageId?: SortOrder
-    WebhookURL?: SortOrder
+    WebhookUrl?: SortOrder
     ChannelId?: SortOrder
     ChannelLinkId?: SortOrder
   }
@@ -61542,7 +61587,7 @@ export namespace Prisma {
     GuildId?: SortOrder
     UserMessageId?: SortOrder
     WebhookMessageId?: SortOrder
-    WebhookURL?: SortOrder
+    WebhookUrl?: SortOrder
     ChannelId?: SortOrder
     ChannelLinkId?: SortOrder
   }
@@ -61552,7 +61597,7 @@ export namespace Prisma {
     GuildId?: SortOrder
     UserMessageId?: SortOrder
     WebhookMessageId?: SortOrder
-    WebhookURL?: SortOrder
+    WebhookUrl?: SortOrder
     ChannelId?: SortOrder
     ChannelLinkId?: SortOrder
   }
@@ -62698,7 +62743,6 @@ export namespace Prisma {
     LeaveEnabled?: SortOrder
     AutoreactEnabled?: SortOrder
     AutopublishEnabled?: SortOrder
-    ConnectionsEnabled?: SortOrder
     ChatfilterEnabled?: SortOrder
     AutorolesEnabled?: SortOrder
     LoggingEnabled?: SortOrder
@@ -62715,7 +62759,6 @@ export namespace Prisma {
     LeaveEnabled?: SortOrder
     AutoreactEnabled?: SortOrder
     AutopublishEnabled?: SortOrder
-    ConnectionsEnabled?: SortOrder
     ChatfilterEnabled?: SortOrder
     AutorolesEnabled?: SortOrder
     LoggingEnabled?: SortOrder
@@ -62732,7 +62775,6 @@ export namespace Prisma {
     LeaveEnabled?: SortOrder
     AutoreactEnabled?: SortOrder
     AutopublishEnabled?: SortOrder
-    ConnectionsEnabled?: SortOrder
     ChatfilterEnabled?: SortOrder
     AutorolesEnabled?: SortOrder
     LoggingEnabled?: SortOrder
@@ -63258,13 +63300,6 @@ export namespace Prisma {
     connect?: GuildChatModerationWhereUniqueInput
   }
 
-  export type GuildChannelLinksCreateNestedManyWithoutGuildsInput = {
-    create?: XOR<GuildChannelLinksCreateWithoutGuildsInput, GuildChannelLinksUncheckedCreateWithoutGuildsInput> | GuildChannelLinksCreateWithoutGuildsInput[] | GuildChannelLinksUncheckedCreateWithoutGuildsInput[]
-    connectOrCreate?: GuildChannelLinksCreateOrConnectWithoutGuildsInput | GuildChannelLinksCreateOrConnectWithoutGuildsInput[]
-    createMany?: GuildChannelLinksCreateManyGuildsInputEnvelope
-    connect?: GuildChannelLinksWhereUniqueInput | GuildChannelLinksWhereUniqueInput[]
-  }
-
   export type DiscordGuildAddonCreateNestedOneWithoutGuildsInput = {
     create?: XOR<DiscordGuildAddonCreateWithoutGuildsInput, DiscordGuildAddonUncheckedCreateWithoutGuildsInput>
     connectOrCreate?: DiscordGuildAddonCreateOrConnectWithoutGuildsInput
@@ -63390,6 +63425,13 @@ export namespace Prisma {
     connect?: GuildComponentManagerWhereUniqueInput
   }
 
+  export type GuildChannelLinksCreateNestedManyWithoutGuildsInput = {
+    create?: XOR<GuildChannelLinksCreateWithoutGuildsInput, GuildChannelLinksUncheckedCreateWithoutGuildsInput> | GuildChannelLinksCreateWithoutGuildsInput[] | GuildChannelLinksUncheckedCreateWithoutGuildsInput[]
+    connectOrCreate?: GuildChannelLinksCreateOrConnectWithoutGuildsInput | GuildChannelLinksCreateOrConnectWithoutGuildsInput[]
+    createMany?: GuildChannelLinksCreateManyGuildsInputEnvelope
+    connect?: GuildChannelLinksWhereUniqueInput | GuildChannelLinksWhereUniqueInput[]
+  }
+
   export type GuildAutoDeletesUncheckedCreateNestedManyWithoutGuildsInput = {
     create?: XOR<GuildAutoDeletesCreateWithoutGuildsInput, GuildAutoDeletesUncheckedCreateWithoutGuildsInput> | GuildAutoDeletesCreateWithoutGuildsInput[] | GuildAutoDeletesUncheckedCreateWithoutGuildsInput[]
     connectOrCreate?: GuildAutoDeletesCreateOrConnectWithoutGuildsInput | GuildAutoDeletesCreateOrConnectWithoutGuildsInput[]
@@ -63428,13 +63470,6 @@ export namespace Prisma {
     create?: XOR<GuildChatModerationCreateWithoutGuildsInput, GuildChatModerationUncheckedCreateWithoutGuildsInput>
     connectOrCreate?: GuildChatModerationCreateOrConnectWithoutGuildsInput
     connect?: GuildChatModerationWhereUniqueInput
-  }
-
-  export type GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput = {
-    create?: XOR<GuildChannelLinksCreateWithoutGuildsInput, GuildChannelLinksUncheckedCreateWithoutGuildsInput> | GuildChannelLinksCreateWithoutGuildsInput[] | GuildChannelLinksUncheckedCreateWithoutGuildsInput[]
-    connectOrCreate?: GuildChannelLinksCreateOrConnectWithoutGuildsInput | GuildChannelLinksCreateOrConnectWithoutGuildsInput[]
-    createMany?: GuildChannelLinksCreateManyGuildsInputEnvelope
-    connect?: GuildChannelLinksWhereUniqueInput | GuildChannelLinksWhereUniqueInput[]
   }
 
   export type DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput = {
@@ -63562,6 +63597,13 @@ export namespace Prisma {
     connect?: GuildComponentManagerWhereUniqueInput
   }
 
+  export type GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput = {
+    create?: XOR<GuildChannelLinksCreateWithoutGuildsInput, GuildChannelLinksUncheckedCreateWithoutGuildsInput> | GuildChannelLinksCreateWithoutGuildsInput[] | GuildChannelLinksUncheckedCreateWithoutGuildsInput[]
+    connectOrCreate?: GuildChannelLinksCreateOrConnectWithoutGuildsInput | GuildChannelLinksCreateOrConnectWithoutGuildsInput[]
+    createMany?: GuildChannelLinksCreateManyGuildsInputEnvelope
+    connect?: GuildChannelLinksWhereUniqueInput | GuildChannelLinksWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -63640,20 +63682,6 @@ export namespace Prisma {
     delete?: GuildChatModerationWhereInput | boolean
     connect?: GuildChatModerationWhereUniqueInput
     update?: XOR<XOR<GuildChatModerationUpdateToOneWithWhereWithoutGuildsInput, GuildChatModerationUpdateWithoutGuildsInput>, GuildChatModerationUncheckedUpdateWithoutGuildsInput>
-  }
-
-  export type GuildChannelLinksUpdateManyWithoutGuildsNestedInput = {
-    create?: XOR<GuildChannelLinksCreateWithoutGuildsInput, GuildChannelLinksUncheckedCreateWithoutGuildsInput> | GuildChannelLinksCreateWithoutGuildsInput[] | GuildChannelLinksUncheckedCreateWithoutGuildsInput[]
-    connectOrCreate?: GuildChannelLinksCreateOrConnectWithoutGuildsInput | GuildChannelLinksCreateOrConnectWithoutGuildsInput[]
-    upsert?: GuildChannelLinksUpsertWithWhereUniqueWithoutGuildsInput | GuildChannelLinksUpsertWithWhereUniqueWithoutGuildsInput[]
-    createMany?: GuildChannelLinksCreateManyGuildsInputEnvelope
-    set?: GuildChannelLinksWhereUniqueInput | GuildChannelLinksWhereUniqueInput[]
-    disconnect?: GuildChannelLinksWhereUniqueInput | GuildChannelLinksWhereUniqueInput[]
-    delete?: GuildChannelLinksWhereUniqueInput | GuildChannelLinksWhereUniqueInput[]
-    connect?: GuildChannelLinksWhereUniqueInput | GuildChannelLinksWhereUniqueInput[]
-    update?: GuildChannelLinksUpdateWithWhereUniqueWithoutGuildsInput | GuildChannelLinksUpdateWithWhereUniqueWithoutGuildsInput[]
-    updateMany?: GuildChannelLinksUpdateManyWithWhereWithoutGuildsInput | GuildChannelLinksUpdateManyWithWhereWithoutGuildsInput[]
-    deleteMany?: GuildChannelLinksScalarWhereInput | GuildChannelLinksScalarWhereInput[]
   }
 
   export type DiscordGuildAddonUpdateOneWithoutGuildsNestedInput = {
@@ -63890,6 +63918,20 @@ export namespace Prisma {
     update?: XOR<XOR<GuildComponentManagerUpdateToOneWithWhereWithoutGuildsInput, GuildComponentManagerUpdateWithoutGuildsInput>, GuildComponentManagerUncheckedUpdateWithoutGuildsInput>
   }
 
+  export type GuildChannelLinksUpdateManyWithoutGuildsNestedInput = {
+    create?: XOR<GuildChannelLinksCreateWithoutGuildsInput, GuildChannelLinksUncheckedCreateWithoutGuildsInput> | GuildChannelLinksCreateWithoutGuildsInput[] | GuildChannelLinksUncheckedCreateWithoutGuildsInput[]
+    connectOrCreate?: GuildChannelLinksCreateOrConnectWithoutGuildsInput | GuildChannelLinksCreateOrConnectWithoutGuildsInput[]
+    upsert?: GuildChannelLinksUpsertWithWhereUniqueWithoutGuildsInput | GuildChannelLinksUpsertWithWhereUniqueWithoutGuildsInput[]
+    createMany?: GuildChannelLinksCreateManyGuildsInputEnvelope
+    set?: GuildChannelLinksWhereUniqueInput | GuildChannelLinksWhereUniqueInput[]
+    disconnect?: GuildChannelLinksWhereUniqueInput | GuildChannelLinksWhereUniqueInput[]
+    delete?: GuildChannelLinksWhereUniqueInput | GuildChannelLinksWhereUniqueInput[]
+    connect?: GuildChannelLinksWhereUniqueInput | GuildChannelLinksWhereUniqueInput[]
+    update?: GuildChannelLinksUpdateWithWhereUniqueWithoutGuildsInput | GuildChannelLinksUpdateWithWhereUniqueWithoutGuildsInput[]
+    updateMany?: GuildChannelLinksUpdateManyWithWhereWithoutGuildsInput | GuildChannelLinksUpdateManyWithWhereWithoutGuildsInput[]
+    deleteMany?: GuildChannelLinksScalarWhereInput | GuildChannelLinksScalarWhereInput[]
+  }
+
   export type GuildAutoDeletesUncheckedUpdateManyWithoutGuildsNestedInput = {
     create?: XOR<GuildAutoDeletesCreateWithoutGuildsInput, GuildAutoDeletesUncheckedCreateWithoutGuildsInput> | GuildAutoDeletesCreateWithoutGuildsInput[] | GuildAutoDeletesUncheckedCreateWithoutGuildsInput[]
     connectOrCreate?: GuildAutoDeletesCreateOrConnectWithoutGuildsInput | GuildAutoDeletesCreateOrConnectWithoutGuildsInput[]
@@ -63964,20 +64006,6 @@ export namespace Prisma {
     delete?: GuildChatModerationWhereInput | boolean
     connect?: GuildChatModerationWhereUniqueInput
     update?: XOR<XOR<GuildChatModerationUpdateToOneWithWhereWithoutGuildsInput, GuildChatModerationUpdateWithoutGuildsInput>, GuildChatModerationUncheckedUpdateWithoutGuildsInput>
-  }
-
-  export type GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput = {
-    create?: XOR<GuildChannelLinksCreateWithoutGuildsInput, GuildChannelLinksUncheckedCreateWithoutGuildsInput> | GuildChannelLinksCreateWithoutGuildsInput[] | GuildChannelLinksUncheckedCreateWithoutGuildsInput[]
-    connectOrCreate?: GuildChannelLinksCreateOrConnectWithoutGuildsInput | GuildChannelLinksCreateOrConnectWithoutGuildsInput[]
-    upsert?: GuildChannelLinksUpsertWithWhereUniqueWithoutGuildsInput | GuildChannelLinksUpsertWithWhereUniqueWithoutGuildsInput[]
-    createMany?: GuildChannelLinksCreateManyGuildsInputEnvelope
-    set?: GuildChannelLinksWhereUniqueInput | GuildChannelLinksWhereUniqueInput[]
-    disconnect?: GuildChannelLinksWhereUniqueInput | GuildChannelLinksWhereUniqueInput[]
-    delete?: GuildChannelLinksWhereUniqueInput | GuildChannelLinksWhereUniqueInput[]
-    connect?: GuildChannelLinksWhereUniqueInput | GuildChannelLinksWhereUniqueInput[]
-    update?: GuildChannelLinksUpdateWithWhereUniqueWithoutGuildsInput | GuildChannelLinksUpdateWithWhereUniqueWithoutGuildsInput[]
-    updateMany?: GuildChannelLinksUpdateManyWithWhereWithoutGuildsInput | GuildChannelLinksUpdateManyWithWhereWithoutGuildsInput[]
-    deleteMany?: GuildChannelLinksScalarWhereInput | GuildChannelLinksScalarWhereInput[]
   }
 
   export type DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput = {
@@ -64212,6 +64240,20 @@ export namespace Prisma {
     delete?: GuildComponentManagerWhereInput | boolean
     connect?: GuildComponentManagerWhereUniqueInput
     update?: XOR<XOR<GuildComponentManagerUpdateToOneWithWhereWithoutGuildsInput, GuildComponentManagerUpdateWithoutGuildsInput>, GuildComponentManagerUncheckedUpdateWithoutGuildsInput>
+  }
+
+  export type GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput = {
+    create?: XOR<GuildChannelLinksCreateWithoutGuildsInput, GuildChannelLinksUncheckedCreateWithoutGuildsInput> | GuildChannelLinksCreateWithoutGuildsInput[] | GuildChannelLinksUncheckedCreateWithoutGuildsInput[]
+    connectOrCreate?: GuildChannelLinksCreateOrConnectWithoutGuildsInput | GuildChannelLinksCreateOrConnectWithoutGuildsInput[]
+    upsert?: GuildChannelLinksUpsertWithWhereUniqueWithoutGuildsInput | GuildChannelLinksUpsertWithWhereUniqueWithoutGuildsInput[]
+    createMany?: GuildChannelLinksCreateManyGuildsInputEnvelope
+    set?: GuildChannelLinksWhereUniqueInput | GuildChannelLinksWhereUniqueInput[]
+    disconnect?: GuildChannelLinksWhereUniqueInput | GuildChannelLinksWhereUniqueInput[]
+    delete?: GuildChannelLinksWhereUniqueInput | GuildChannelLinksWhereUniqueInput[]
+    connect?: GuildChannelLinksWhereUniqueInput | GuildChannelLinksWhereUniqueInput[]
+    update?: GuildChannelLinksUpdateWithWhereUniqueWithoutGuildsInput | GuildChannelLinksUpdateWithWhereUniqueWithoutGuildsInput[]
+    updateMany?: GuildChannelLinksUpdateManyWithWhereWithoutGuildsInput | GuildChannelLinksUpdateManyWithWhereWithoutGuildsInput[]
+    deleteMany?: GuildChannelLinksScalarWhereInput | GuildChannelLinksScalarWhereInput[]
   }
 
   export type GuildCommandMangerCreateCommandsInput = {
@@ -64582,7 +64624,15 @@ export namespace Prisma {
     update?: XOR<XOR<GuildsUpdateToOneWithWhereWithoutChatModerationsInput, GuildsUpdateWithoutChatModerationsInput>, GuildsUncheckedUpdateWithoutChatModerationsInput>
   }
 
-  export type GuildChannelLinksCreateWebhookUrlsInput = {
+  export type GuildChannelLinksCreateSyncFlagsInput = {
+    set: string[]
+  }
+
+  export type GuildChannelLinksCreateLinkedWithInput = {
+    set: string[]
+  }
+
+  export type GuildChannelLinksCreateUsersCanSelectIdsInput = {
     set: string[]
   }
 
@@ -64593,9 +64643,9 @@ export namespace Prisma {
     connect?: SyncedChannelLinkMessagesWhereUniqueInput | SyncedChannelLinkMessagesWhereUniqueInput[]
   }
 
-  export type GuildsCreateNestedOneWithoutChannelLinksInput = {
-    create?: XOR<GuildsCreateWithoutChannelLinksInput, GuildsUncheckedCreateWithoutChannelLinksInput>
-    connectOrCreate?: GuildsCreateOrConnectWithoutChannelLinksInput
+  export type GuildsCreateNestedOneWithoutGuildChannelLinksInput = {
+    create?: XOR<GuildsCreateWithoutGuildChannelLinksInput, GuildsUncheckedCreateWithoutGuildChannelLinksInput>
+    connectOrCreate?: GuildsCreateOrConnectWithoutGuildChannelLinksInput
     connect?: GuildsWhereUniqueInput
   }
 
@@ -64606,7 +64656,17 @@ export namespace Prisma {
     connect?: SyncedChannelLinkMessagesWhereUniqueInput | SyncedChannelLinkMessagesWhereUniqueInput[]
   }
 
-  export type GuildChannelLinksUpdateWebhookUrlsInput = {
+  export type GuildChannelLinksUpdateSyncFlagsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type GuildChannelLinksUpdateLinkedWithInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type GuildChannelLinksUpdateUsersCanSelectIdsInput = {
     set?: string[]
     push?: string | string[]
   }
@@ -64625,12 +64685,12 @@ export namespace Prisma {
     deleteMany?: SyncedChannelLinkMessagesScalarWhereInput | SyncedChannelLinkMessagesScalarWhereInput[]
   }
 
-  export type GuildsUpdateOneRequiredWithoutChannelLinksNestedInput = {
-    create?: XOR<GuildsCreateWithoutChannelLinksInput, GuildsUncheckedCreateWithoutChannelLinksInput>
-    connectOrCreate?: GuildsCreateOrConnectWithoutChannelLinksInput
-    upsert?: GuildsUpsertWithoutChannelLinksInput
+  export type GuildsUpdateOneRequiredWithoutGuildChannelLinksNestedInput = {
+    create?: XOR<GuildsCreateWithoutGuildChannelLinksInput, GuildsUncheckedCreateWithoutGuildChannelLinksInput>
+    connectOrCreate?: GuildsCreateOrConnectWithoutGuildChannelLinksInput
+    upsert?: GuildsUpsertWithoutGuildChannelLinksInput
     connect?: GuildsWhereUniqueInput
-    update?: XOR<XOR<GuildsUpdateToOneWithWhereWithoutChannelLinksInput, GuildsUpdateWithoutChannelLinksInput>, GuildsUncheckedUpdateWithoutChannelLinksInput>
+    update?: XOR<XOR<GuildsUpdateToOneWithWhereWithoutGuildChannelLinksInput, GuildsUpdateWithoutGuildChannelLinksInput>, GuildsUncheckedUpdateWithoutGuildChannelLinksInput>
   }
 
   export type SyncedChannelLinkMessagesUncheckedUpdateManyWithoutChannelLinksNestedInput = {
@@ -65703,9 +65763,9 @@ export namespace Prisma {
     set: string[]
   }
 
-  export type UsersCreateNestedOneWithoutApissInput = {
-    create?: XOR<UsersCreateWithoutApissInput, UsersUncheckedCreateWithoutApissInput>
-    connectOrCreate?: UsersCreateOrConnectWithoutApissInput
+  export type UsersCreateNestedOneWithoutApisInput = {
+    create?: XOR<UsersCreateWithoutApisInput, UsersUncheckedCreateWithoutApisInput>
+    connectOrCreate?: UsersCreateOrConnectWithoutApisInput
     connect?: UsersWhereUniqueInput
   }
 
@@ -65719,12 +65779,12 @@ export namespace Prisma {
     push?: string | string[]
   }
 
-  export type UsersUpdateOneRequiredWithoutApissNestedInput = {
-    create?: XOR<UsersCreateWithoutApissInput, UsersUncheckedCreateWithoutApissInput>
-    connectOrCreate?: UsersCreateOrConnectWithoutApissInput
-    upsert?: UsersUpsertWithoutApissInput
+  export type UsersUpdateOneRequiredWithoutApisNestedInput = {
+    create?: XOR<UsersCreateWithoutApisInput, UsersUncheckedCreateWithoutApisInput>
+    connectOrCreate?: UsersCreateOrConnectWithoutApisInput
+    upsert?: UsersUpsertWithoutApisInput
     connect?: UsersWhereUniqueInput
-    update?: XOR<XOR<UsersUpdateToOneWithWhereWithoutApissInput, UsersUpdateWithoutApissInput>, UsersUncheckedUpdateWithoutApissInput>
+    update?: XOR<XOR<UsersUpdateToOneWithWhereWithoutApisInput, UsersUpdateWithoutApisInput>, UsersUncheckedUpdateWithoutApisInput>
   }
 
   export type UsersCreateNestedOneWithoutGuildBackupsInput = {
@@ -66424,31 +66484,6 @@ export namespace Prisma {
     create: XOR<GuildChatModerationCreateWithoutGuildsInput, GuildChatModerationUncheckedCreateWithoutGuildsInput>
   }
 
-  export type GuildChannelLinksCreateWithoutGuildsInput = {
-    id?: string
-    UUID: string
-    ChannelId: string
-    WebhookUrls?: GuildChannelLinksCreateWebhookUrlsInput | string[]
-    SyncedChannelLinkMessage?: SyncedChannelLinkMessagesCreateNestedManyWithoutChannelLinksInput
-  }
-
-  export type GuildChannelLinksUncheckedCreateWithoutGuildsInput = {
-    id?: string
-    UUID: string
-    ChannelId: string
-    WebhookUrls?: GuildChannelLinksCreateWebhookUrlsInput | string[]
-    SyncedChannelLinkMessage?: SyncedChannelLinkMessagesUncheckedCreateNestedManyWithoutChannelLinksInput
-  }
-
-  export type GuildChannelLinksCreateOrConnectWithoutGuildsInput = {
-    where: GuildChannelLinksWhereUniqueInput
-    create: XOR<GuildChannelLinksCreateWithoutGuildsInput, GuildChannelLinksUncheckedCreateWithoutGuildsInput>
-  }
-
-  export type GuildChannelLinksCreateManyGuildsInputEnvelope = {
-    data: GuildChannelLinksCreateManyGuildsInput | GuildChannelLinksCreateManyGuildsInput[]
-  }
-
   export type DiscordGuildAddonCreateWithoutGuildsInput = {
     id?: string
     OnlyMedia?: DiscordGuildAddonCreateOnlyMediaInput | string[]
@@ -66863,7 +66898,6 @@ export namespace Prisma {
     LeaveEnabled?: boolean
     AutoreactEnabled?: boolean
     AutopublishEnabled?: boolean
-    ConnectionsEnabled?: boolean
     ChatfilterEnabled?: boolean
     AutorolesEnabled?: boolean
     LoggingEnabled?: boolean
@@ -66879,7 +66913,6 @@ export namespace Prisma {
     LeaveEnabled?: boolean
     AutoreactEnabled?: boolean
     AutopublishEnabled?: boolean
-    ConnectionsEnabled?: boolean
     ChatfilterEnabled?: boolean
     AutorolesEnabled?: boolean
     LoggingEnabled?: boolean
@@ -67076,6 +67109,37 @@ export namespace Prisma {
     create: XOR<GuildComponentManagerCreateWithoutGuildsInput, GuildComponentManagerUncheckedCreateWithoutGuildsInput>
   }
 
+  export type GuildChannelLinksCreateWithoutGuildsInput = {
+    id?: string
+    UUID: string
+    ChannelId: string
+    WebhookUrl: string
+    SyncFlags?: GuildChannelLinksCreateSyncFlagsInput | string[]
+    LinkedWith?: GuildChannelLinksCreateLinkedWithInput | string[]
+    UsersCanSelectIds?: GuildChannelLinksCreateUsersCanSelectIdsInput | string[]
+    SyncedChannelLinkMessage?: SyncedChannelLinkMessagesCreateNestedManyWithoutChannelLinksInput
+  }
+
+  export type GuildChannelLinksUncheckedCreateWithoutGuildsInput = {
+    id?: string
+    UUID: string
+    ChannelId: string
+    WebhookUrl: string
+    SyncFlags?: GuildChannelLinksCreateSyncFlagsInput | string[]
+    LinkedWith?: GuildChannelLinksCreateLinkedWithInput | string[]
+    UsersCanSelectIds?: GuildChannelLinksCreateUsersCanSelectIdsInput | string[]
+    SyncedChannelLinkMessage?: SyncedChannelLinkMessagesUncheckedCreateNestedManyWithoutChannelLinksInput
+  }
+
+  export type GuildChannelLinksCreateOrConnectWithoutGuildsInput = {
+    where: GuildChannelLinksWhereUniqueInput
+    create: XOR<GuildChannelLinksCreateWithoutGuildsInput, GuildChannelLinksUncheckedCreateWithoutGuildsInput>
+  }
+
+  export type GuildChannelLinksCreateManyGuildsInputEnvelope = {
+    data: GuildChannelLinksCreateManyGuildsInput | GuildChannelLinksCreateManyGuildsInput[]
+  }
+
   export type GuildAutoDeletesUpsertWithWhereUniqueWithoutGuildsInput = {
     where: GuildAutoDeletesWhereUniqueInput
     update: XOR<GuildAutoDeletesUpdateWithoutGuildsInput, GuildAutoDeletesUncheckedUpdateWithoutGuildsInput>
@@ -67232,33 +67296,6 @@ export namespace Prisma {
     Words?: GuildChatModerationUpdateWordsInput | string[]
     WhiteListRoleIds?: GuildChatModerationUpdateWhiteListRoleIdsInput | string[]
     WhiteListChannelIds?: GuildChatModerationUpdateWhiteListChannelIdsInput | string[]
-  }
-
-  export type GuildChannelLinksUpsertWithWhereUniqueWithoutGuildsInput = {
-    where: GuildChannelLinksWhereUniqueInput
-    update: XOR<GuildChannelLinksUpdateWithoutGuildsInput, GuildChannelLinksUncheckedUpdateWithoutGuildsInput>
-    create: XOR<GuildChannelLinksCreateWithoutGuildsInput, GuildChannelLinksUncheckedCreateWithoutGuildsInput>
-  }
-
-  export type GuildChannelLinksUpdateWithWhereUniqueWithoutGuildsInput = {
-    where: GuildChannelLinksWhereUniqueInput
-    data: XOR<GuildChannelLinksUpdateWithoutGuildsInput, GuildChannelLinksUncheckedUpdateWithoutGuildsInput>
-  }
-
-  export type GuildChannelLinksUpdateManyWithWhereWithoutGuildsInput = {
-    where: GuildChannelLinksScalarWhereInput
-    data: XOR<GuildChannelLinksUpdateManyMutationInput, GuildChannelLinksUncheckedUpdateManyWithoutGuildsInput>
-  }
-
-  export type GuildChannelLinksScalarWhereInput = {
-    AND?: GuildChannelLinksScalarWhereInput | GuildChannelLinksScalarWhereInput[]
-    OR?: GuildChannelLinksScalarWhereInput[]
-    NOT?: GuildChannelLinksScalarWhereInput | GuildChannelLinksScalarWhereInput[]
-    id?: StringFilter<"GuildChannelLinks"> | string
-    UUID?: StringFilter<"GuildChannelLinks"> | string
-    ChannelId?: StringFilter<"GuildChannelLinks"> | string
-    WebhookUrls?: StringNullableListFilter<"GuildChannelLinks">
-    GuildId?: StringFilter<"GuildChannelLinks"> | string
   }
 
   export type DiscordGuildAddonUpsertWithoutGuildsInput = {
@@ -67657,7 +67694,6 @@ export namespace Prisma {
     LeaveEnabled?: BoolFieldUpdateOperationsInput | boolean
     AutoreactEnabled?: BoolFieldUpdateOperationsInput | boolean
     AutopublishEnabled?: BoolFieldUpdateOperationsInput | boolean
-    ConnectionsEnabled?: BoolFieldUpdateOperationsInput | boolean
     ChatfilterEnabled?: BoolFieldUpdateOperationsInput | boolean
     AutorolesEnabled?: BoolFieldUpdateOperationsInput | boolean
     LoggingEnabled?: BoolFieldUpdateOperationsInput | boolean
@@ -67672,7 +67708,6 @@ export namespace Prisma {
     LeaveEnabled?: BoolFieldUpdateOperationsInput | boolean
     AutoreactEnabled?: BoolFieldUpdateOperationsInput | boolean
     AutopublishEnabled?: BoolFieldUpdateOperationsInput | boolean
-    ConnectionsEnabled?: BoolFieldUpdateOperationsInput | boolean
     ChatfilterEnabled?: BoolFieldUpdateOperationsInput | boolean
     AutorolesEnabled?: BoolFieldUpdateOperationsInput | boolean
     LoggingEnabled?: BoolFieldUpdateOperationsInput | boolean
@@ -67878,6 +67913,36 @@ export namespace Prisma {
     Modals?: GuildComponentManagerUpdateModalsInput | InputJsonValue[]
   }
 
+  export type GuildChannelLinksUpsertWithWhereUniqueWithoutGuildsInput = {
+    where: GuildChannelLinksWhereUniqueInput
+    update: XOR<GuildChannelLinksUpdateWithoutGuildsInput, GuildChannelLinksUncheckedUpdateWithoutGuildsInput>
+    create: XOR<GuildChannelLinksCreateWithoutGuildsInput, GuildChannelLinksUncheckedCreateWithoutGuildsInput>
+  }
+
+  export type GuildChannelLinksUpdateWithWhereUniqueWithoutGuildsInput = {
+    where: GuildChannelLinksWhereUniqueInput
+    data: XOR<GuildChannelLinksUpdateWithoutGuildsInput, GuildChannelLinksUncheckedUpdateWithoutGuildsInput>
+  }
+
+  export type GuildChannelLinksUpdateManyWithWhereWithoutGuildsInput = {
+    where: GuildChannelLinksScalarWhereInput
+    data: XOR<GuildChannelLinksUpdateManyMutationInput, GuildChannelLinksUncheckedUpdateManyWithoutGuildsInput>
+  }
+
+  export type GuildChannelLinksScalarWhereInput = {
+    AND?: GuildChannelLinksScalarWhereInput | GuildChannelLinksScalarWhereInput[]
+    OR?: GuildChannelLinksScalarWhereInput[]
+    NOT?: GuildChannelLinksScalarWhereInput | GuildChannelLinksScalarWhereInput[]
+    id?: StringFilter<"GuildChannelLinks"> | string
+    UUID?: StringFilter<"GuildChannelLinks"> | string
+    ChannelId?: StringFilter<"GuildChannelLinks"> | string
+    WebhookUrl?: StringFilter<"GuildChannelLinks"> | string
+    SyncFlags?: StringNullableListFilter<"GuildChannelLinks">
+    LinkedWith?: StringNullableListFilter<"GuildChannelLinks">
+    UsersCanSelectIds?: StringNullableListFilter<"GuildChannelLinks">
+    GuildId?: StringFilter<"GuildChannelLinks"> | string
+  }
+
   export type BuildInCommandsCreateWithoutGuildCommandMangersInput = {
     id?: string
     UUID: string
@@ -67918,7 +67983,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
@@ -67937,6 +68001,7 @@ export namespace Prisma {
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildCommandMangerInput = {
@@ -67950,7 +68015,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
@@ -67969,6 +68033,7 @@ export namespace Prisma {
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildCommandMangerInput = {
@@ -68027,7 +68092,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
@@ -68046,6 +68110,7 @@ export namespace Prisma {
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildCommandMangerInput = {
@@ -68058,7 +68123,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
@@ -68077,6 +68141,7 @@ export namespace Prisma {
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildCommandMangerCreateWithoutBuildInCommandsInput = {
@@ -68140,7 +68205,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
@@ -68159,6 +68223,7 @@ export namespace Prisma {
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildComponentManagerInput = {
@@ -68172,7 +68237,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
@@ -68191,6 +68255,7 @@ export namespace Prisma {
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildComponentManagerInput = {
@@ -68219,7 +68284,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
@@ -68238,6 +68302,7 @@ export namespace Prisma {
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildComponentManagerInput = {
@@ -68250,7 +68315,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
@@ -68269,6 +68333,7 @@ export namespace Prisma {
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutGuildInteractionPermissionsInput = {
@@ -68282,7 +68347,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
@@ -68301,6 +68365,7 @@ export namespace Prisma {
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildInteractionPermissionsInput = {
@@ -68314,7 +68379,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
@@ -68333,6 +68397,7 @@ export namespace Prisma {
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildInteractionPermissionsInput = {
@@ -68361,7 +68426,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
@@ -68380,6 +68444,7 @@ export namespace Prisma {
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildInteractionPermissionsInput = {
@@ -68392,7 +68457,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
@@ -68411,6 +68475,7 @@ export namespace Prisma {
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutAutoAutoDeletesInput = {
@@ -68423,7 +68488,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
@@ -68443,6 +68507,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutAutoAutoDeletesInput = {
@@ -68455,7 +68520,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
@@ -68475,6 +68539,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutAutoAutoDeletesInput = {
@@ -68502,7 +68567,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
@@ -68522,6 +68586,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutAutoAutoDeletesInput = {
@@ -68533,7 +68598,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
@@ -68553,6 +68617,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutAutoPublishInput = {
@@ -68565,7 +68630,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
@@ -68585,6 +68649,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutAutoPublishInput = {
@@ -68597,7 +68662,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
@@ -68617,6 +68681,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutAutoPublishInput = {
@@ -68644,7 +68709,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
@@ -68664,6 +68728,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutAutoPublishInput = {
@@ -68675,7 +68740,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
@@ -68695,6 +68759,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutAutoReactsInput = {
@@ -68707,7 +68772,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
@@ -68727,6 +68791,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutAutoReactsInput = {
@@ -68739,7 +68804,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
@@ -68759,6 +68823,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutAutoReactsInput = {
@@ -68786,7 +68851,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
@@ -68806,6 +68870,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutAutoReactsInput = {
@@ -68817,7 +68882,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
@@ -68837,6 +68901,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutAutoRolesInput = {
@@ -68849,7 +68914,6 @@ export namespace Prisma {
     AutoReacts?: GuildAutoReactsCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
@@ -68869,6 +68933,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutAutoRolesInput = {
@@ -68881,7 +68946,6 @@ export namespace Prisma {
     AutoReacts?: GuildAutoReactsUncheckedCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
@@ -68901,6 +68965,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutAutoRolesInput = {
@@ -68928,7 +68993,6 @@ export namespace Prisma {
     AutoReacts?: GuildAutoReactsUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
@@ -68948,6 +69012,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutAutoRolesInput = {
@@ -68959,7 +69024,6 @@ export namespace Prisma {
     AutoReacts?: GuildAutoReactsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
@@ -68979,6 +69043,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutGuildBansInput = {
@@ -68991,7 +69056,6 @@ export namespace Prisma {
     AutoReacts?: GuildAutoReactsCreateNestedManyWithoutGuildsInput
     AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
@@ -69011,6 +69075,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildBansInput = {
@@ -69023,7 +69088,6 @@ export namespace Prisma {
     AutoReacts?: GuildAutoReactsUncheckedCreateNestedManyWithoutGuildsInput
     AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
@@ -69043,6 +69107,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildBansInput = {
@@ -69070,7 +69135,6 @@ export namespace Prisma {
     AutoReacts?: GuildAutoReactsUpdateManyWithoutGuildsNestedInput
     AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
@@ -69090,6 +69154,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildBansInput = {
@@ -69101,7 +69166,6 @@ export namespace Prisma {
     AutoReacts?: GuildAutoReactsUncheckedUpdateManyWithoutGuildsNestedInput
     AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
@@ -69121,6 +69185,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutChatModerationsInput = {
@@ -69133,7 +69198,6 @@ export namespace Prisma {
     AutoReacts?: GuildAutoReactsCreateNestedManyWithoutGuildsInput
     AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
@@ -69153,6 +69217,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutChatModerationsInput = {
@@ -69165,7 +69230,6 @@ export namespace Prisma {
     AutoReacts?: GuildAutoReactsUncheckedCreateNestedManyWithoutGuildsInput
     AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
@@ -69185,6 +69249,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutChatModerationsInput = {
@@ -69212,7 +69277,6 @@ export namespace Prisma {
     AutoReacts?: GuildAutoReactsUpdateManyWithoutGuildsNestedInput
     AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
@@ -69232,6 +69296,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutChatModerationsInput = {
@@ -69243,7 +69308,6 @@ export namespace Prisma {
     AutoReacts?: GuildAutoReactsUncheckedUpdateManyWithoutGuildsNestedInput
     AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
@@ -69263,6 +69327,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type SyncedChannelLinkMessagesCreateWithoutChannelLinksInput = {
@@ -69270,7 +69335,7 @@ export namespace Prisma {
     GuildId: string
     UserMessageId: string
     WebhookMessageId: string
-    WebhookURL: string
+    WebhookUrl: string
     ChannelId: string
   }
 
@@ -69279,7 +69344,7 @@ export namespace Prisma {
     GuildId: string
     UserMessageId: string
     WebhookMessageId: string
-    WebhookURL: string
+    WebhookUrl: string
     ChannelId: string
   }
 
@@ -69292,7 +69357,7 @@ export namespace Prisma {
     data: SyncedChannelLinkMessagesCreateManyChannelLinksInput | SyncedChannelLinkMessagesCreateManyChannelLinksInput[]
   }
 
-  export type GuildsCreateWithoutChannelLinksInput = {
+  export type GuildsCreateWithoutGuildChannelLinksInput = {
     id?: string
     GuildId: string
     GuildName: string
@@ -69324,7 +69389,7 @@ export namespace Prisma {
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
   }
 
-  export type GuildsUncheckedCreateWithoutChannelLinksInput = {
+  export type GuildsUncheckedCreateWithoutGuildChannelLinksInput = {
     id?: string
     GuildId: string
     GuildName: string
@@ -69356,9 +69421,9 @@ export namespace Prisma {
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
   }
 
-  export type GuildsCreateOrConnectWithoutChannelLinksInput = {
+  export type GuildsCreateOrConnectWithoutGuildChannelLinksInput = {
     where: GuildsWhereUniqueInput
-    create: XOR<GuildsCreateWithoutChannelLinksInput, GuildsUncheckedCreateWithoutChannelLinksInput>
+    create: XOR<GuildsCreateWithoutGuildChannelLinksInput, GuildsUncheckedCreateWithoutGuildChannelLinksInput>
   }
 
   export type SyncedChannelLinkMessagesUpsertWithWhereUniqueWithoutChannelLinksInput = {
@@ -69385,23 +69450,23 @@ export namespace Prisma {
     GuildId?: StringFilter<"SyncedChannelLinkMessages"> | string
     UserMessageId?: StringFilter<"SyncedChannelLinkMessages"> | string
     WebhookMessageId?: StringFilter<"SyncedChannelLinkMessages"> | string
-    WebhookURL?: StringFilter<"SyncedChannelLinkMessages"> | string
+    WebhookUrl?: StringFilter<"SyncedChannelLinkMessages"> | string
     ChannelId?: StringFilter<"SyncedChannelLinkMessages"> | string
     ChannelLinkId?: StringFilter<"SyncedChannelLinkMessages"> | string
   }
 
-  export type GuildsUpsertWithoutChannelLinksInput = {
-    update: XOR<GuildsUpdateWithoutChannelLinksInput, GuildsUncheckedUpdateWithoutChannelLinksInput>
-    create: XOR<GuildsCreateWithoutChannelLinksInput, GuildsUncheckedCreateWithoutChannelLinksInput>
+  export type GuildsUpsertWithoutGuildChannelLinksInput = {
+    update: XOR<GuildsUpdateWithoutGuildChannelLinksInput, GuildsUncheckedUpdateWithoutGuildChannelLinksInput>
+    create: XOR<GuildsCreateWithoutGuildChannelLinksInput, GuildsUncheckedCreateWithoutGuildChannelLinksInput>
     where?: GuildsWhereInput
   }
 
-  export type GuildsUpdateToOneWithWhereWithoutChannelLinksInput = {
+  export type GuildsUpdateToOneWithWhereWithoutGuildChannelLinksInput = {
     where?: GuildsWhereInput
-    data: XOR<GuildsUpdateWithoutChannelLinksInput, GuildsUncheckedUpdateWithoutChannelLinksInput>
+    data: XOR<GuildsUpdateWithoutGuildChannelLinksInput, GuildsUncheckedUpdateWithoutGuildChannelLinksInput>
   }
 
-  export type GuildsUpdateWithoutChannelLinksInput = {
+  export type GuildsUpdateWithoutGuildChannelLinksInput = {
     GuildId?: StringFieldUpdateOperationsInput | string
     GuildName?: StringFieldUpdateOperationsInput | string
     GuildOwner?: StringFieldUpdateOperationsInput | string
@@ -69432,7 +69497,7 @@ export namespace Prisma {
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
   }
 
-  export type GuildsUncheckedUpdateWithoutChannelLinksInput = {
+  export type GuildsUncheckedUpdateWithoutGuildChannelLinksInput = {
     GuildId?: StringFieldUpdateOperationsInput | string
     GuildName?: StringFieldUpdateOperationsInput | string
     GuildOwner?: StringFieldUpdateOperationsInput | string
@@ -69467,15 +69532,21 @@ export namespace Prisma {
     id?: string
     UUID: string
     ChannelId: string
-    WebhookUrls?: GuildChannelLinksCreateWebhookUrlsInput | string[]
-    Guilds: GuildsCreateNestedOneWithoutChannelLinksInput
+    WebhookUrl: string
+    SyncFlags?: GuildChannelLinksCreateSyncFlagsInput | string[]
+    LinkedWith?: GuildChannelLinksCreateLinkedWithInput | string[]
+    UsersCanSelectIds?: GuildChannelLinksCreateUsersCanSelectIdsInput | string[]
+    Guilds: GuildsCreateNestedOneWithoutGuildChannelLinksInput
   }
 
   export type GuildChannelLinksUncheckedCreateWithoutSyncedChannelLinkMessageInput = {
     id?: string
     UUID: string
     ChannelId: string
-    WebhookUrls?: GuildChannelLinksCreateWebhookUrlsInput | string[]
+    WebhookUrl: string
+    SyncFlags?: GuildChannelLinksCreateSyncFlagsInput | string[]
+    LinkedWith?: GuildChannelLinksCreateLinkedWithInput | string[]
+    UsersCanSelectIds?: GuildChannelLinksCreateUsersCanSelectIdsInput | string[]
     GuildId: string
   }
 
@@ -69498,14 +69569,20 @@ export namespace Prisma {
   export type GuildChannelLinksUpdateWithoutSyncedChannelLinkMessageInput = {
     UUID?: StringFieldUpdateOperationsInput | string
     ChannelId?: StringFieldUpdateOperationsInput | string
-    WebhookUrls?: GuildChannelLinksUpdateWebhookUrlsInput | string[]
-    Guilds?: GuildsUpdateOneRequiredWithoutChannelLinksNestedInput
+    WebhookUrl?: StringFieldUpdateOperationsInput | string
+    SyncFlags?: GuildChannelLinksUpdateSyncFlagsInput | string[]
+    LinkedWith?: GuildChannelLinksUpdateLinkedWithInput | string[]
+    UsersCanSelectIds?: GuildChannelLinksUpdateUsersCanSelectIdsInput | string[]
+    Guilds?: GuildsUpdateOneRequiredWithoutGuildChannelLinksNestedInput
   }
 
   export type GuildChannelLinksUncheckedUpdateWithoutSyncedChannelLinkMessageInput = {
     UUID?: StringFieldUpdateOperationsInput | string
     ChannelId?: StringFieldUpdateOperationsInput | string
-    WebhookUrls?: GuildChannelLinksUpdateWebhookUrlsInput | string[]
+    WebhookUrl?: StringFieldUpdateOperationsInput | string
+    SyncFlags?: GuildChannelLinksUpdateSyncFlagsInput | string[]
+    LinkedWith?: GuildChannelLinksUpdateLinkedWithInput | string[]
+    UsersCanSelectIds?: GuildChannelLinksUpdateUsersCanSelectIdsInput | string[]
     GuildId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -69520,7 +69597,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     GuildLeaveSetup?: GuildLeaveSetupCreateNestedOneWithoutGuildsInput
@@ -69539,6 +69615,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutDiscordAddonsInput = {
@@ -69552,7 +69629,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     GuildLeaveSetup?: GuildLeaveSetupUncheckedCreateNestedOneWithoutGuildsInput
@@ -69571,6 +69647,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutDiscordAddonsInput = {
@@ -69599,7 +69676,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     GuildLeaveSetup?: GuildLeaveSetupUpdateOneWithoutGuildsNestedInput
@@ -69618,6 +69694,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutDiscordAddonsInput = {
@@ -69630,7 +69707,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLeaveSetup?: GuildLeaveSetupUncheckedUpdateOneWithoutGuildsNestedInput
@@ -69649,6 +69725,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutGiveawaysInput = {
@@ -69662,7 +69739,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     GuildLeaveSetup?: GuildLeaveSetupCreateNestedOneWithoutGuildsInput
@@ -69681,6 +69757,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGiveawaysInput = {
@@ -69694,7 +69771,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     GuildLeaveSetup?: GuildLeaveSetupUncheckedCreateNestedOneWithoutGuildsInput
@@ -69713,6 +69789,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGiveawaysInput = {
@@ -69741,7 +69818,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     GuildLeaveSetup?: GuildLeaveSetupUpdateOneWithoutGuildsNestedInput
@@ -69760,6 +69836,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGiveawaysInput = {
@@ -69772,7 +69849,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLeaveSetup?: GuildLeaveSetupUncheckedUpdateOneWithoutGuildsNestedInput
@@ -69791,6 +69867,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type TempVoiceChannelsCreateWithoutTempVoicesInput = {
@@ -69827,7 +69904,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
     GuildLeaveSetup?: GuildLeaveSetupCreateNestedOneWithoutGuildsInput
@@ -69846,6 +69922,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutTempVoicesInput = {
@@ -69859,7 +69936,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
     GuildLeaveSetup?: GuildLeaveSetupUncheckedCreateNestedOneWithoutGuildsInput
@@ -69878,6 +69954,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutTempVoicesInput = {
@@ -69933,7 +70010,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
     GuildLeaveSetup?: GuildLeaveSetupUpdateOneWithoutGuildsNestedInput
@@ -69952,6 +70028,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutTempVoicesInput = {
@@ -69964,7 +70041,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
     GuildLeaveSetup?: GuildLeaveSetupUncheckedUpdateOneWithoutGuildsNestedInput
@@ -69983,6 +70059,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type TempVoicesCreateWithoutTempVoiceChannelsInput = {
@@ -70054,7 +70131,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
@@ -70073,6 +70149,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildLeaveSetupInput = {
@@ -70086,7 +70163,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
@@ -70105,6 +70181,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildLeaveSetupInput = {
@@ -70138,7 +70215,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
@@ -70157,6 +70233,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildLeaveSetupInput = {
@@ -70169,7 +70246,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
@@ -70188,6 +70264,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutGuildWelcomeSetupInput = {
@@ -70201,7 +70278,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
@@ -70220,6 +70296,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildWelcomeSetupInput = {
@@ -70233,7 +70310,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
@@ -70252,6 +70328,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildWelcomeSetupInput = {
@@ -70290,7 +70367,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
@@ -70309,6 +70385,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildWelcomeSetupInput = {
@@ -70321,7 +70398,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
@@ -70340,6 +70416,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutGuildLoggingInput = {
@@ -70353,7 +70430,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
@@ -70372,6 +70448,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildLoggingInput = {
@@ -70385,7 +70462,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
@@ -70404,6 +70480,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildLoggingInput = {
@@ -70432,7 +70509,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
@@ -70451,6 +70527,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildLoggingInput = {
@@ -70463,7 +70540,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
@@ -70482,6 +70558,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutGuildLogsInput = {
@@ -70495,7 +70572,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
@@ -70514,6 +70590,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildLogsInput = {
@@ -70527,7 +70604,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
@@ -70546,6 +70622,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildLogsInput = {
@@ -70574,7 +70651,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
@@ -70593,6 +70669,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildLogsInput = {
@@ -70605,7 +70682,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
@@ -70624,6 +70700,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutMessageTemplatesInput = {
@@ -70637,7 +70714,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
@@ -70656,6 +70732,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutMessageTemplatesInput = {
@@ -70669,7 +70746,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
@@ -70688,6 +70764,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutMessageTemplatesInput = {
@@ -70716,7 +70793,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
@@ -70735,6 +70811,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutMessageTemplatesInput = {
@@ -70747,7 +70824,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
@@ -70766,6 +70842,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutReactionRoleInput = {
@@ -70779,7 +70856,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
@@ -70798,6 +70874,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutReactionRoleInput = {
@@ -70811,7 +70888,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
@@ -70830,6 +70906,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutReactionRoleInput = {
@@ -70868,7 +70945,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
@@ -70887,6 +70963,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutReactionRoleInput = {
@@ -70899,7 +70976,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
@@ -70918,6 +70994,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type VerificationGatesCreateWithoutVerificationGatesInput = {
@@ -70968,7 +71045,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
@@ -70987,6 +71063,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutSecurityInput = {
@@ -71000,7 +71077,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
@@ -71019,6 +71095,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutSecurityInput = {
@@ -71080,7 +71157,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
@@ -71099,6 +71175,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutSecurityInput = {
@@ -71111,7 +71188,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
@@ -71130,6 +71206,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type VerificationGatesPermissionCreateWithoutVerificationGatesInput = {
@@ -71302,7 +71379,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
@@ -71321,6 +71397,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutSpotifyNotificationsInput = {
@@ -71334,7 +71411,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
@@ -71353,6 +71429,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutSpotifyNotificationsInput = {
@@ -71381,7 +71458,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
@@ -71400,6 +71476,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutSpotifyNotificationsInput = {
@@ -71412,7 +71489,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
@@ -71431,6 +71507,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutTagsInput = {
@@ -71444,7 +71521,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
@@ -71463,6 +71539,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutTagsInput = {
@@ -71476,7 +71553,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
@@ -71495,6 +71571,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutTagsInput = {
@@ -71523,7 +71600,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
@@ -71542,6 +71618,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutTagsInput = {
@@ -71554,7 +71631,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
@@ -71573,6 +71649,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type TicketPermissionsCreateWithoutTicketSetupInput = {
@@ -71650,7 +71727,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
@@ -71669,6 +71745,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutTicketSetupsInput = {
@@ -71682,7 +71759,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
@@ -71701,6 +71777,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutTicketSetupsInput = {
@@ -71873,7 +71950,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
@@ -71892,6 +71968,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutTicketSetupsInput = {
@@ -71904,7 +71981,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
@@ -71923,6 +71999,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type TicketsUpsertWithWhereUniqueWithoutTicketSetupInput = {
@@ -72657,7 +72734,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
@@ -72676,6 +72752,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildFeatureToggleInput = {
@@ -72689,7 +72766,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
@@ -72708,6 +72784,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildFeatureToggleInput = {
@@ -72736,7 +72813,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
@@ -72755,6 +72831,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildFeatureToggleInput = {
@@ -72767,7 +72844,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
@@ -72786,6 +72862,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutTwitchNotificationsInput = {
@@ -72799,7 +72876,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
@@ -72818,6 +72894,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutTwitchNotificationsInput = {
@@ -72831,7 +72908,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
@@ -72850,6 +72926,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutTwitchNotificationsInput = {
@@ -72878,7 +72955,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
@@ -72897,6 +72973,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutTwitchNotificationsInput = {
@@ -72909,7 +72986,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
@@ -72928,6 +73004,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutYoutubeNotificationsInput = {
@@ -72941,7 +73018,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
@@ -72960,6 +73036,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutYoutubeNotificationsInput = {
@@ -72973,7 +73050,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
     GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
     ChatModerations?: GuildChatModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
     Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
@@ -72992,6 +73068,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutYoutubeNotificationsInput = {
@@ -73020,7 +73097,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
@@ -73039,6 +73115,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutYoutubeNotificationsInput = {
@@ -73051,7 +73128,6 @@ export namespace Prisma {
     AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
     GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
     ChatModerations?: GuildChatModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
     Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
@@ -73070,6 +73146,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
   export type ApisCreateWithoutUsersInput = {
@@ -73247,7 +73324,7 @@ export namespace Prisma {
     UserId?: StringFilter<"Vanitys"> | string
   }
 
-  export type UsersCreateWithoutApissInput = {
+  export type UsersCreateWithoutApisInput = {
     id?: string
     Username: string
     UserId: string
@@ -73259,7 +73336,7 @@ export namespace Prisma {
     Vanitys?: VanitysCreateNestedManyWithoutUsersInput
   }
 
-  export type UsersUncheckedCreateWithoutApissInput = {
+  export type UsersUncheckedCreateWithoutApisInput = {
     id?: string
     Username: string
     UserId: string
@@ -73271,23 +73348,23 @@ export namespace Prisma {
     Vanitys?: VanitysUncheckedCreateNestedManyWithoutUsersInput
   }
 
-  export type UsersCreateOrConnectWithoutApissInput = {
+  export type UsersCreateOrConnectWithoutApisInput = {
     where: UsersWhereUniqueInput
-    create: XOR<UsersCreateWithoutApissInput, UsersUncheckedCreateWithoutApissInput>
+    create: XOR<UsersCreateWithoutApisInput, UsersUncheckedCreateWithoutApisInput>
   }
 
-  export type UsersUpsertWithoutApissInput = {
-    update: XOR<UsersUpdateWithoutApissInput, UsersUncheckedUpdateWithoutApissInput>
-    create: XOR<UsersCreateWithoutApissInput, UsersUncheckedCreateWithoutApissInput>
+  export type UsersUpsertWithoutApisInput = {
+    update: XOR<UsersUpdateWithoutApisInput, UsersUncheckedUpdateWithoutApisInput>
+    create: XOR<UsersCreateWithoutApisInput, UsersUncheckedCreateWithoutApisInput>
     where?: UsersWhereInput
   }
 
-  export type UsersUpdateToOneWithWhereWithoutApissInput = {
+  export type UsersUpdateToOneWithWhereWithoutApisInput = {
     where?: UsersWhereInput
-    data: XOR<UsersUpdateWithoutApissInput, UsersUncheckedUpdateWithoutApissInput>
+    data: XOR<UsersUpdateWithoutApisInput, UsersUncheckedUpdateWithoutApisInput>
   }
 
-  export type UsersUpdateWithoutApissInput = {
+  export type UsersUpdateWithoutApisInput = {
     Username?: StringFieldUpdateOperationsInput | string
     UserId?: StringFieldUpdateOperationsInput | string
     Votes?: IntFieldUpdateOperationsInput | number
@@ -73298,7 +73375,7 @@ export namespace Prisma {
     Vanitys?: VanitysUpdateManyWithoutUsersNestedInput
   }
 
-  export type UsersUncheckedUpdateWithoutApissInput = {
+  export type UsersUncheckedUpdateWithoutApisInput = {
     Username?: StringFieldUpdateOperationsInput | string
     UserId?: StringFieldUpdateOperationsInput | string
     Votes?: IntFieldUpdateOperationsInput | number
@@ -73317,7 +73394,7 @@ export namespace Prisma {
     GloablVotes?: number
     CustomerBots?: number
     BackupCount?: number
-    Apiss?: ApisCreateNestedManyWithoutUsersInput
+    Apis?: ApisCreateNestedManyWithoutUsersInput
     Vanitys?: VanitysCreateNestedManyWithoutUsersInput
   }
 
@@ -73329,7 +73406,7 @@ export namespace Prisma {
     GloablVotes?: number
     CustomerBots?: number
     BackupCount?: number
-    Apiss?: ApisUncheckedCreateNestedManyWithoutUsersInput
+    Apis?: ApisUncheckedCreateNestedManyWithoutUsersInput
     Vanitys?: VanitysUncheckedCreateNestedManyWithoutUsersInput
   }
 
@@ -73356,7 +73433,7 @@ export namespace Prisma {
     GloablVotes?: IntFieldUpdateOperationsInput | number
     CustomerBots?: IntFieldUpdateOperationsInput | number
     BackupCount?: IntFieldUpdateOperationsInput | number
-    Apiss?: ApisUpdateManyWithoutUsersNestedInput
+    Apis?: ApisUpdateManyWithoutUsersNestedInput
     Vanitys?: VanitysUpdateManyWithoutUsersNestedInput
   }
 
@@ -73367,7 +73444,7 @@ export namespace Prisma {
     GloablVotes?: IntFieldUpdateOperationsInput | number
     CustomerBots?: IntFieldUpdateOperationsInput | number
     BackupCount?: IntFieldUpdateOperationsInput | number
-    Apiss?: ApisUncheckedUpdateManyWithoutUsersNestedInput
+    Apis?: ApisUncheckedUpdateManyWithoutUsersNestedInput
     Vanitys?: VanitysUncheckedUpdateManyWithoutUsersNestedInput
   }
 
@@ -73433,7 +73510,7 @@ export namespace Prisma {
     GloablVotes?: number
     CustomerBots?: number
     BackupCount?: number
-    Apiss?: ApisCreateNestedManyWithoutUsersInput
+    Apis?: ApisCreateNestedManyWithoutUsersInput
     GuildBackups?: GuildBackupsCreateNestedManyWithoutUsersInput
   }
 
@@ -73445,7 +73522,7 @@ export namespace Prisma {
     GloablVotes?: number
     CustomerBots?: number
     BackupCount?: number
-    Apiss?: ApisUncheckedCreateNestedManyWithoutUsersInput
+    Apis?: ApisUncheckedCreateNestedManyWithoutUsersInput
     GuildBackups?: GuildBackupsUncheckedCreateNestedManyWithoutUsersInput
   }
 
@@ -73534,7 +73611,7 @@ export namespace Prisma {
     GloablVotes?: IntFieldUpdateOperationsInput | number
     CustomerBots?: IntFieldUpdateOperationsInput | number
     BackupCount?: IntFieldUpdateOperationsInput | number
-    Apiss?: ApisUpdateManyWithoutUsersNestedInput
+    Apis?: ApisUpdateManyWithoutUsersNestedInput
     GuildBackups?: GuildBackupsUpdateManyWithoutUsersNestedInput
   }
 
@@ -73545,7 +73622,7 @@ export namespace Prisma {
     GloablVotes?: IntFieldUpdateOperationsInput | number
     CustomerBots?: IntFieldUpdateOperationsInput | number
     BackupCount?: IntFieldUpdateOperationsInput | number
-    Apiss?: ApisUncheckedUpdateManyWithoutUsersNestedInput
+    Apis?: ApisUncheckedUpdateManyWithoutUsersNestedInput
     GuildBackups?: GuildBackupsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
@@ -73936,13 +74013,6 @@ export namespace Prisma {
     CreatedAt?: Date | string | null
   }
 
-  export type GuildChannelLinksCreateManyGuildsInput = {
-    id?: string
-    UUID: string
-    ChannelId: string
-    WebhookUrls?: GuildChannelLinksCreateWebhookUrlsInput | string[]
-  }
-
   export type GiveawaysCreateManyGuildsInput = {
     id?: string
     UUID: string
@@ -74096,6 +74166,16 @@ export namespace Prisma {
     Cooldown?: number | null
   }
 
+  export type GuildChannelLinksCreateManyGuildsInput = {
+    id?: string
+    UUID: string
+    ChannelId: string
+    WebhookUrl: string
+    SyncFlags?: GuildChannelLinksCreateSyncFlagsInput | string[]
+    LinkedWith?: GuildChannelLinksCreateLinkedWithInput | string[]
+    UsersCanSelectIds?: GuildChannelLinksCreateUsersCanSelectIdsInput | string[]
+  }
+
   export type GuildAutoDeletesUpdateWithoutGuildsInput = {
     ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     IsActive?: NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -74184,26 +74264,6 @@ export namespace Prisma {
     DmMessage?: NullableStringFieldUpdateOperationsInput | string | null
     Banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     CreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type GuildChannelLinksUpdateWithoutGuildsInput = {
-    UUID?: StringFieldUpdateOperationsInput | string
-    ChannelId?: StringFieldUpdateOperationsInput | string
-    WebhookUrls?: GuildChannelLinksUpdateWebhookUrlsInput | string[]
-    SyncedChannelLinkMessage?: SyncedChannelLinkMessagesUpdateManyWithoutChannelLinksNestedInput
-  }
-
-  export type GuildChannelLinksUncheckedUpdateWithoutGuildsInput = {
-    UUID?: StringFieldUpdateOperationsInput | string
-    ChannelId?: StringFieldUpdateOperationsInput | string
-    WebhookUrls?: GuildChannelLinksUpdateWebhookUrlsInput | string[]
-    SyncedChannelLinkMessage?: SyncedChannelLinkMessagesUncheckedUpdateManyWithoutChannelLinksNestedInput
-  }
-
-  export type GuildChannelLinksUncheckedUpdateManyWithoutGuildsInput = {
-    UUID?: StringFieldUpdateOperationsInput | string
-    ChannelId?: StringFieldUpdateOperationsInput | string
-    WebhookUrls?: GuildChannelLinksUpdateWebhookUrlsInput | string[]
   }
 
   export type GiveawaysUpdateWithoutGuildsInput = {
@@ -74640,6 +74700,35 @@ export namespace Prisma {
     Cooldown?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
+  export type GuildChannelLinksUpdateWithoutGuildsInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    ChannelId?: StringFieldUpdateOperationsInput | string
+    WebhookUrl?: StringFieldUpdateOperationsInput | string
+    SyncFlags?: GuildChannelLinksUpdateSyncFlagsInput | string[]
+    LinkedWith?: GuildChannelLinksUpdateLinkedWithInput | string[]
+    UsersCanSelectIds?: GuildChannelLinksUpdateUsersCanSelectIdsInput | string[]
+    SyncedChannelLinkMessage?: SyncedChannelLinkMessagesUpdateManyWithoutChannelLinksNestedInput
+  }
+
+  export type GuildChannelLinksUncheckedUpdateWithoutGuildsInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    ChannelId?: StringFieldUpdateOperationsInput | string
+    WebhookUrl?: StringFieldUpdateOperationsInput | string
+    SyncFlags?: GuildChannelLinksUpdateSyncFlagsInput | string[]
+    LinkedWith?: GuildChannelLinksUpdateLinkedWithInput | string[]
+    UsersCanSelectIds?: GuildChannelLinksUpdateUsersCanSelectIdsInput | string[]
+    SyncedChannelLinkMessage?: SyncedChannelLinkMessagesUncheckedUpdateManyWithoutChannelLinksNestedInput
+  }
+
+  export type GuildChannelLinksUncheckedUpdateManyWithoutGuildsInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    ChannelId?: StringFieldUpdateOperationsInput | string
+    WebhookUrl?: StringFieldUpdateOperationsInput | string
+    SyncFlags?: GuildChannelLinksUpdateSyncFlagsInput | string[]
+    LinkedWith?: GuildChannelLinksUpdateLinkedWithInput | string[]
+    UsersCanSelectIds?: GuildChannelLinksUpdateUsersCanSelectIdsInput | string[]
+  }
+
   export type BuildInCommandsCreateManyGuildCommandMangersInput = {
     id?: string
     UUID: string
@@ -74682,7 +74771,7 @@ export namespace Prisma {
     GuildId: string
     UserMessageId: string
     WebhookMessageId: string
-    WebhookURL: string
+    WebhookUrl: string
     ChannelId: string
   }
 
@@ -74690,7 +74779,7 @@ export namespace Prisma {
     GuildId?: StringFieldUpdateOperationsInput | string
     UserMessageId?: StringFieldUpdateOperationsInput | string
     WebhookMessageId?: StringFieldUpdateOperationsInput | string
-    WebhookURL?: StringFieldUpdateOperationsInput | string
+    WebhookUrl?: StringFieldUpdateOperationsInput | string
     ChannelId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -74698,7 +74787,7 @@ export namespace Prisma {
     GuildId?: StringFieldUpdateOperationsInput | string
     UserMessageId?: StringFieldUpdateOperationsInput | string
     WebhookMessageId?: StringFieldUpdateOperationsInput | string
-    WebhookURL?: StringFieldUpdateOperationsInput | string
+    WebhookUrl?: StringFieldUpdateOperationsInput | string
     ChannelId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -74706,7 +74795,7 @@ export namespace Prisma {
     GuildId?: StringFieldUpdateOperationsInput | string
     UserMessageId?: StringFieldUpdateOperationsInput | string
     WebhookMessageId?: StringFieldUpdateOperationsInput | string
-    WebhookURL?: StringFieldUpdateOperationsInput | string
+    WebhookUrl?: StringFieldUpdateOperationsInput | string
     ChannelId?: StringFieldUpdateOperationsInput | string
   }
 

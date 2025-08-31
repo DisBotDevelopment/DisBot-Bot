@@ -5,10 +5,9 @@ import { convertToEmojiPng } from "../../../../helper/emojis.js";
 import { PermissionType } from "../../../../enums/permissionType.js";
 
 export default {
-    subCommand: "discord.slowmode",
+    subCommand: "server.slowmode",
     options: {
         once: false,
-        permission: PermissionType.Discord,
         cooldown: 3000,
         botPermissions: [PermissionFlagsBits.ManageChannels, PermissionFlagsBits.ManageMessages],
         userPermissions: [PermissionFlagsBits.ManageMessages, PermissionFlagsBits.ManageChannels],

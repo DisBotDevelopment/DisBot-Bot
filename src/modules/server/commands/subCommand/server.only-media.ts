@@ -5,10 +5,9 @@ import {PermissionType} from "../../../../enums/permissionType.js";
 import {database} from "../../../../main/database.js";
 
 export default {
-    subCommand: "discord.no-embed-links",
+    subCommand: "server.only-media",
     options: {
         once: false,
-        permission: PermissionType.Discord,
         cooldown: 3000,
         botPermissions: [PermissionFlagsBits.ManageChannels, PermissionFlagsBits.ManageMessages],
         userPermissions: [PermissionFlagsBits.ManageMessages, PermissionFlagsBits.ManageChannels],
@@ -42,42 +41,43 @@ export default {
         if (!data) {
             await database.discordGuildAddon.create({
                 data: {
-                    GuildId: interaction.guild?.id,
+                    NoLinkEmbeds: [],
                     InvitesPaused: false,
-                    OnlyMedia: [],
-                    NoLinkEmbeds: []
+                    GuildId: interaction.guild?.id,
+                    OnlyMedia: []
                 }
             })
         }
 
-        if (data?.NoLinkEmbeds.includes(channel.id)) {
+        if (data?.OnlyMedia.includes(channel.id)) {
             await database.discordGuildAddon.update({
                 where: {
-                    GuildId: interaction.guild.id
-                }
-                , data: {
-                    NoLinkEmbeds: {
-                        set: data.NoLinkEmbeds.filter((r) => r != channel.id)
+                    GuildId: interaction.guild?.id,
+                },
+                data: {
+                    OnlyMedia: {
+                        set: data.OnlyMedia.filter((r) => r != channel.id)
                     }
                 }
-            })
+            },)
             return interaction.editReply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} This channel is already disabled for No-Link-Embeds and will be removed from the list!`
+                content: `## ${await convertToEmojiPng("error", client.user.id)} This channel is already disabled for media only and will be removed from the list!`
             })
         } else {
             await database.discordGuildAddon.update({
                 where: {
-                    GuildId: interaction.guild.id
+                    GuildId: interaction.guild?.id,
                 },
                 data: {
-                    NoLinkEmbeds: {
+                    OnlyMedia: {
                         push: channel.id
                     }
                 }
             })
             return interaction.editReply({
-                content: `## ${await convertToEmojiPng("check", client.user.id)} This channel is now enabled for NoLinkEmbeds!`
+                content: `## ${await convertToEmojiPng("check", client.user.id)} This channel is now enabled for media only!`
             })
         }
+
     }
 };
