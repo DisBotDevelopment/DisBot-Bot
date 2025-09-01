@@ -12,8 +12,34 @@ import {
 import {ExtendedClient} from "../types/client.js";
 import {database} from "../main/database.js";
 import {handleCloseAction} from "../helper/ticketHelper.js";
+import {Config} from "../main/config.js";
 
 export class Scheduler {
+
+    public static async checkVoteRoles(client: ExtendedClient) {
+        const voteGuild = await client.guilds.fetch(Config.Other.Vote.VoteGuildId)
+
+        const members = await voteGuild.members.fetch()
+        for (const member of members.values()) {
+            const dbUser = await database.users.findFirst({
+                where: {
+                    UserId: member.user.id
+                }
+            })
+
+            if (!dbUser) {
+                continue
+            }
+            if (!dbUser.LastVote) {
+                continue
+            }
+            const now = Date.now();
+            if (dbUser.LastVote.getTime() + 24 * 60 * 60 * 1000 < now) {
+                await member.roles.remove(Config.Other.Vote.VoteRoleId);
+            }
+        }
+    }
+
     public static async checkLast30DaysVanities(client: ExtendedClient) {
         const vanities = await database.vanitys.findMany({
             include: {

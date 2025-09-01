@@ -437,6 +437,10 @@ exports.Prisma.TicketSetupsScalarFieldEnum = {
   AutoCloseAfterTime: 'AutoCloseAfterTime',
   AutoAssignHandler: 'AutoAssignHandler',
   AutoReplyMessageTemplateId: 'AutoReplyMessageTemplateId',
+  TicketRateLimit: 'TicketRateLimit',
+  TicketStatusMessageTemplateId: 'TicketStatusMessageTemplateId',
+  TicketStatusMessageId: 'TicketStatusMessageId',
+  TicketStatusChannelId: 'TicketStatusChannelId',
   AutoCloseAction: 'AutoCloseAction',
   OldTicketCategoryId: 'OldTicketCategoryId',
   RequiredRoles: 'RequiredRoles',
@@ -562,6 +566,7 @@ exports.Prisma.UsersScalarFieldEnum = {
   UserId: 'UserId',
   Votes: 'Votes',
   GloablVotes: 'GloablVotes',
+  LastVote: 'LastVote',
   CustomerBots: 'CustomerBots',
   BackupCount: 'BackupCount'
 };

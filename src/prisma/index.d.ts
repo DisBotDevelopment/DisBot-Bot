@@ -34720,6 +34720,10 @@ export namespace Prisma {
     AutoCloseAfterTime: number | null
     AutoAssignHandler: string | null
     AutoReplyMessageTemplateId: string | null
+    TicketRateLimit: string | null
+    TicketStatusMessageTemplateId: string | null
+    TicketStatusMessageId: string | null
+    TicketStatusChannelId: string | null
     OldTicketCategoryId: string | null
     SlashCommandId: string | null
     SlashCommandName: string | null
@@ -34750,6 +34754,10 @@ export namespace Prisma {
     AutoCloseAfterTime: number | null
     AutoAssignHandler: string | null
     AutoReplyMessageTemplateId: string | null
+    TicketRateLimit: string | null
+    TicketStatusMessageTemplateId: string | null
+    TicketStatusMessageId: string | null
+    TicketStatusChannelId: string | null
     OldTicketCategoryId: string | null
     SlashCommandId: string | null
     SlashCommandName: string | null
@@ -34781,6 +34789,10 @@ export namespace Prisma {
     AutoCloseAfterTime: number
     AutoAssignHandler: number
     AutoReplyMessageTemplateId: number
+    TicketRateLimit: number
+    TicketStatusMessageTemplateId: number
+    TicketStatusMessageId: number
+    TicketStatusChannelId: number
     AutoCloseAction: number
     OldTicketCategoryId: number
     RequiredRoles: number
@@ -34831,6 +34843,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: true
     AutoAssignHandler?: true
     AutoReplyMessageTemplateId?: true
+    TicketRateLimit?: true
+    TicketStatusMessageTemplateId?: true
+    TicketStatusMessageId?: true
+    TicketStatusChannelId?: true
     OldTicketCategoryId?: true
     SlashCommandId?: true
     SlashCommandName?: true
@@ -34861,6 +34877,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: true
     AutoAssignHandler?: true
     AutoReplyMessageTemplateId?: true
+    TicketRateLimit?: true
+    TicketStatusMessageTemplateId?: true
+    TicketStatusMessageId?: true
+    TicketStatusChannelId?: true
     OldTicketCategoryId?: true
     SlashCommandId?: true
     SlashCommandName?: true
@@ -34892,6 +34912,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: true
     AutoAssignHandler?: true
     AutoReplyMessageTemplateId?: true
+    TicketRateLimit?: true
+    TicketStatusMessageTemplateId?: true
+    TicketStatusMessageId?: true
+    TicketStatusChannelId?: true
     AutoCloseAction?: true
     OldTicketCategoryId?: true
     RequiredRoles?: true
@@ -35012,6 +35036,10 @@ export namespace Prisma {
     AutoCloseAfterTime: number | null
     AutoAssignHandler: string | null
     AutoReplyMessageTemplateId: string | null
+    TicketRateLimit: string | null
+    TicketStatusMessageTemplateId: string | null
+    TicketStatusMessageId: string | null
+    TicketStatusChannelId: string | null
     AutoCloseAction: string[]
     OldTicketCategoryId: string | null
     RequiredRoles: string[]
@@ -35064,6 +35092,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: boolean
     AutoAssignHandler?: boolean
     AutoReplyMessageTemplateId?: boolean
+    TicketRateLimit?: boolean
+    TicketStatusMessageTemplateId?: boolean
+    TicketStatusMessageId?: boolean
+    TicketStatusChannelId?: boolean
     AutoCloseAction?: boolean
     OldTicketCategoryId?: boolean
     RequiredRoles?: boolean
@@ -35104,6 +35136,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: boolean
     AutoAssignHandler?: boolean
     AutoReplyMessageTemplateId?: boolean
+    TicketRateLimit?: boolean
+    TicketStatusMessageTemplateId?: boolean
+    TicketStatusMessageId?: boolean
+    TicketStatusChannelId?: boolean
     AutoCloseAction?: boolean
     OldTicketCategoryId?: boolean
     RequiredRoles?: boolean
@@ -35115,7 +35151,7 @@ export namespace Prisma {
     GuildId?: boolean
   }
 
-  export type TicketSetupsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "CategoryId" | "ChannelType" | "CustomId" | "TicketChannelName" | "EnableTicketsOnlyFromTime" | "MessageTemplateId" | "TicketBlacklistRoles" | "TranscriptChannelId" | "HasModal" | "ModalTitle" | "OnlyClaimMode" | "TicketLimit" | "UserDMWhenCloseMessageTemplateId" | "WithTicketFeedback" | "TicketFeedbackChannelId" | "TicketCreationCooldownPerUser" | "AutoCloseAfterInactivity" | "AutoCloseAfterTime" | "AutoAssignHandler" | "AutoReplyMessageTemplateId" | "AutoCloseAction" | "OldTicketCategoryId" | "RequiredRoles" | "SlashCommandId" | "SlashCommandName" | "SlashCommandDescription" | "TextCommandName" | "SendTranscriptToUser" | "GuildId", ExtArgs["result"]["ticketSetups"]>
+  export type TicketSetupsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "CategoryId" | "ChannelType" | "CustomId" | "TicketChannelName" | "EnableTicketsOnlyFromTime" | "MessageTemplateId" | "TicketBlacklistRoles" | "TranscriptChannelId" | "HasModal" | "ModalTitle" | "OnlyClaimMode" | "TicketLimit" | "UserDMWhenCloseMessageTemplateId" | "WithTicketFeedback" | "TicketFeedbackChannelId" | "TicketCreationCooldownPerUser" | "AutoCloseAfterInactivity" | "AutoCloseAfterTime" | "AutoAssignHandler" | "AutoReplyMessageTemplateId" | "TicketRateLimit" | "TicketStatusMessageTemplateId" | "TicketStatusMessageId" | "TicketStatusChannelId" | "AutoCloseAction" | "OldTicketCategoryId" | "RequiredRoles" | "SlashCommandId" | "SlashCommandName" | "SlashCommandDescription" | "TextCommandName" | "SendTranscriptToUser" | "GuildId", ExtArgs["result"]["ticketSetups"]>
   export type TicketSetupsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     TicketPermissions?: boolean | TicketSetups$TicketPermissionsArgs<ExtArgs>
     ModalOptions?: boolean | TicketSetups$ModalOptionsArgs<ExtArgs>
@@ -35154,6 +35190,10 @@ export namespace Prisma {
       AutoCloseAfterTime: number | null
       AutoAssignHandler: string | null
       AutoReplyMessageTemplateId: string | null
+      TicketRateLimit: string | null
+      TicketStatusMessageTemplateId: string | null
+      TicketStatusMessageId: string | null
+      TicketStatusChannelId: string | null
       AutoCloseAction: string[]
       OldTicketCategoryId: string | null
       RequiredRoles: string[]
@@ -35580,6 +35620,10 @@ export namespace Prisma {
     readonly AutoCloseAfterTime: FieldRef<"TicketSetups", 'Int'>
     readonly AutoAssignHandler: FieldRef<"TicketSetups", 'String'>
     readonly AutoReplyMessageTemplateId: FieldRef<"TicketSetups", 'String'>
+    readonly TicketRateLimit: FieldRef<"TicketSetups", 'String'>
+    readonly TicketStatusMessageTemplateId: FieldRef<"TicketSetups", 'String'>
+    readonly TicketStatusMessageId: FieldRef<"TicketSetups", 'String'>
+    readonly TicketStatusChannelId: FieldRef<"TicketSetups", 'String'>
     readonly AutoCloseAction: FieldRef<"TicketSetups", 'String[]'>
     readonly OldTicketCategoryId: FieldRef<"TicketSetups", 'String'>
     readonly RequiredRoles: FieldRef<"TicketSetups", 'String[]'>
@@ -43649,6 +43693,7 @@ export namespace Prisma {
     UserId: string | null
     Votes: number | null
     GloablVotes: number | null
+    LastVote: Date | null
     CustomerBots: number | null
     BackupCount: number | null
   }
@@ -43659,6 +43704,7 @@ export namespace Prisma {
     UserId: string | null
     Votes: number | null
     GloablVotes: number | null
+    LastVote: Date | null
     CustomerBots: number | null
     BackupCount: number | null
   }
@@ -43669,6 +43715,7 @@ export namespace Prisma {
     UserId: number
     Votes: number
     GloablVotes: number
+    LastVote: number
     CustomerBots: number
     BackupCount: number
     _all: number
@@ -43695,6 +43742,7 @@ export namespace Prisma {
     UserId?: true
     Votes?: true
     GloablVotes?: true
+    LastVote?: true
     CustomerBots?: true
     BackupCount?: true
   }
@@ -43705,6 +43753,7 @@ export namespace Prisma {
     UserId?: true
     Votes?: true
     GloablVotes?: true
+    LastVote?: true
     CustomerBots?: true
     BackupCount?: true
   }
@@ -43715,6 +43764,7 @@ export namespace Prisma {
     UserId?: true
     Votes?: true
     GloablVotes?: true
+    LastVote?: true
     CustomerBots?: true
     BackupCount?: true
     _all?: true
@@ -43812,6 +43862,7 @@ export namespace Prisma {
     UserId: string
     Votes: number
     GloablVotes: number
+    LastVote: Date | null
     CustomerBots: number
     BackupCount: number
     _count: UsersCountAggregateOutputType | null
@@ -43841,6 +43892,7 @@ export namespace Prisma {
     UserId?: boolean
     Votes?: boolean
     GloablVotes?: boolean
+    LastVote?: boolean
     CustomerBots?: boolean
     BackupCount?: boolean
     Apis?: boolean | Users$ApisArgs<ExtArgs>
@@ -43857,11 +43909,12 @@ export namespace Prisma {
     UserId?: boolean
     Votes?: boolean
     GloablVotes?: boolean
+    LastVote?: boolean
     CustomerBots?: boolean
     BackupCount?: boolean
   }
 
-  export type UsersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "Username" | "UserId" | "Votes" | "GloablVotes" | "CustomerBots" | "BackupCount", ExtArgs["result"]["users"]>
+  export type UsersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "Username" | "UserId" | "Votes" | "GloablVotes" | "LastVote" | "CustomerBots" | "BackupCount", ExtArgs["result"]["users"]>
   export type UsersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Apis?: boolean | Users$ApisArgs<ExtArgs>
     GuildBackups?: boolean | Users$GuildBackupsArgs<ExtArgs>
@@ -43882,6 +43935,7 @@ export namespace Prisma {
       UserId: string
       Votes: number
       GloablVotes: number
+      LastVote: Date | null
       CustomerBots: number
       BackupCount: number
     }, ExtArgs["result"]["users"]>
@@ -44284,6 +44338,7 @@ export namespace Prisma {
     readonly UserId: FieldRef<"Users", 'String'>
     readonly Votes: FieldRef<"Users", 'Int'>
     readonly GloablVotes: FieldRef<"Users", 'Int'>
+    readonly LastVote: FieldRef<"Users", 'DateTime'>
     readonly CustomerBots: FieldRef<"Users", 'Int'>
     readonly BackupCount: FieldRef<"Users", 'Int'>
   }
@@ -53301,6 +53356,10 @@ export namespace Prisma {
     AutoCloseAfterTime: 'AutoCloseAfterTime',
     AutoAssignHandler: 'AutoAssignHandler',
     AutoReplyMessageTemplateId: 'AutoReplyMessageTemplateId',
+    TicketRateLimit: 'TicketRateLimit',
+    TicketStatusMessageTemplateId: 'TicketStatusMessageTemplateId',
+    TicketStatusMessageId: 'TicketStatusMessageId',
+    TicketStatusChannelId: 'TicketStatusChannelId',
     AutoCloseAction: 'AutoCloseAction',
     OldTicketCategoryId: 'OldTicketCategoryId',
     RequiredRoles: 'RequiredRoles',
@@ -53450,6 +53509,7 @@ export namespace Prisma {
     UserId: 'UserId',
     Votes: 'Votes',
     GloablVotes: 'GloablVotes',
+    LastVote: 'LastVote',
     CustomerBots: 'CustomerBots',
     BackupCount: 'BackupCount'
   };
@@ -55739,6 +55799,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: IntNullableFilter<"TicketSetups"> | number | null
     AutoAssignHandler?: StringNullableFilter<"TicketSetups"> | string | null
     AutoReplyMessageTemplateId?: StringNullableFilter<"TicketSetups"> | string | null
+    TicketRateLimit?: StringNullableFilter<"TicketSetups"> | string | null
+    TicketStatusMessageTemplateId?: StringNullableFilter<"TicketSetups"> | string | null
+    TicketStatusMessageId?: StringNullableFilter<"TicketSetups"> | string | null
+    TicketStatusChannelId?: StringNullableFilter<"TicketSetups"> | string | null
     AutoCloseAction?: StringNullableListFilter<"TicketSetups">
     OldTicketCategoryId?: StringNullableFilter<"TicketSetups"> | string | null
     RequiredRoles?: StringNullableListFilter<"TicketSetups">
@@ -55776,6 +55840,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: SortOrder
     AutoAssignHandler?: SortOrder
     AutoReplyMessageTemplateId?: SortOrder
+    TicketRateLimit?: SortOrder
+    TicketStatusMessageTemplateId?: SortOrder
+    TicketStatusMessageId?: SortOrder
+    TicketStatusChannelId?: SortOrder
     AutoCloseAction?: SortOrder
     OldTicketCategoryId?: SortOrder
     RequiredRoles?: SortOrder
@@ -55816,6 +55884,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: IntNullableFilter<"TicketSetups"> | number | null
     AutoAssignHandler?: StringNullableFilter<"TicketSetups"> | string | null
     AutoReplyMessageTemplateId?: StringNullableFilter<"TicketSetups"> | string | null
+    TicketRateLimit?: StringNullableFilter<"TicketSetups"> | string | null
+    TicketStatusMessageTemplateId?: StringNullableFilter<"TicketSetups"> | string | null
+    TicketStatusMessageId?: StringNullableFilter<"TicketSetups"> | string | null
+    TicketStatusChannelId?: StringNullableFilter<"TicketSetups"> | string | null
     AutoCloseAction?: StringNullableListFilter<"TicketSetups">
     OldTicketCategoryId?: StringNullableFilter<"TicketSetups"> | string | null
     RequiredRoles?: StringNullableListFilter<"TicketSetups">
@@ -55853,6 +55925,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: SortOrder
     AutoAssignHandler?: SortOrder
     AutoReplyMessageTemplateId?: SortOrder
+    TicketRateLimit?: SortOrder
+    TicketStatusMessageTemplateId?: SortOrder
+    TicketStatusMessageId?: SortOrder
+    TicketStatusChannelId?: SortOrder
     AutoCloseAction?: SortOrder
     OldTicketCategoryId?: SortOrder
     RequiredRoles?: SortOrder
@@ -55894,6 +55970,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: IntNullableWithAggregatesFilter<"TicketSetups"> | number | null
     AutoAssignHandler?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
     AutoReplyMessageTemplateId?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
+    TicketRateLimit?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
+    TicketStatusMessageTemplateId?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
+    TicketStatusMessageId?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
+    TicketStatusChannelId?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
     AutoCloseAction?: StringNullableListFilter<"TicketSetups">
     OldTicketCategoryId?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
     RequiredRoles?: StringNullableListFilter<"TicketSetups">
@@ -56570,6 +56650,7 @@ export namespace Prisma {
     UserId?: StringFilter<"Users"> | string
     Votes?: IntFilter<"Users"> | number
     GloablVotes?: IntFilter<"Users"> | number
+    LastVote?: DateTimeNullableFilter<"Users"> | Date | string | null
     CustomerBots?: IntFilter<"Users"> | number
     BackupCount?: IntFilter<"Users"> | number
     Apis?: ApisListRelationFilter
@@ -56583,6 +56664,7 @@ export namespace Prisma {
     UserId?: SortOrder
     Votes?: SortOrder
     GloablVotes?: SortOrder
+    LastVote?: SortOrder
     CustomerBots?: SortOrder
     BackupCount?: SortOrder
     Apis?: ApisOrderByRelationAggregateInput
@@ -56599,6 +56681,7 @@ export namespace Prisma {
     Username?: StringFilter<"Users"> | string
     Votes?: IntFilter<"Users"> | number
     GloablVotes?: IntFilter<"Users"> | number
+    LastVote?: DateTimeNullableFilter<"Users"> | Date | string | null
     CustomerBots?: IntFilter<"Users"> | number
     BackupCount?: IntFilter<"Users"> | number
     Apis?: ApisListRelationFilter
@@ -56612,6 +56695,7 @@ export namespace Prisma {
     UserId?: SortOrder
     Votes?: SortOrder
     GloablVotes?: SortOrder
+    LastVote?: SortOrder
     CustomerBots?: SortOrder
     BackupCount?: SortOrder
     _count?: UsersCountOrderByAggregateInput
@@ -56630,6 +56714,7 @@ export namespace Prisma {
     UserId?: StringWithAggregatesFilter<"Users"> | string
     Votes?: IntWithAggregatesFilter<"Users"> | number
     GloablVotes?: IntWithAggregatesFilter<"Users"> | number
+    LastVote?: DateTimeNullableWithAggregatesFilter<"Users"> | Date | string | null
     CustomerBots?: IntWithAggregatesFilter<"Users"> | number
     BackupCount?: IntWithAggregatesFilter<"Users"> | number
   }
@@ -59309,6 +59394,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: number | null
     AutoAssignHandler?: string | null
     AutoReplyMessageTemplateId?: string | null
+    TicketRateLimit?: string | null
+    TicketStatusMessageTemplateId?: string | null
+    TicketStatusMessageId?: string | null
+    TicketStatusChannelId?: string | null
     AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
@@ -59345,6 +59434,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: number | null
     AutoAssignHandler?: string | null
     AutoReplyMessageTemplateId?: string | null
+    TicketRateLimit?: string | null
+    TicketStatusMessageTemplateId?: string | null
+    TicketStatusMessageId?: string | null
+    TicketStatusChannelId?: string | null
     AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
@@ -59380,6 +59473,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: NullableIntFieldUpdateOperationsInput | number | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketRateLimit?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusMessageId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
@@ -59415,6 +59512,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: NullableIntFieldUpdateOperationsInput | number | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketRateLimit?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusMessageId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
@@ -59451,6 +59552,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: number | null
     AutoAssignHandler?: string | null
     AutoReplyMessageTemplateId?: string | null
+    TicketRateLimit?: string | null
+    TicketStatusMessageTemplateId?: string | null
+    TicketStatusMessageId?: string | null
+    TicketStatusChannelId?: string | null
     AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
@@ -59483,6 +59588,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: NullableIntFieldUpdateOperationsInput | number | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketRateLimit?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusMessageId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
@@ -59514,6 +59623,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: NullableIntFieldUpdateOperationsInput | number | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketRateLimit?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusMessageId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
@@ -60256,6 +60369,7 @@ export namespace Prisma {
     UserId: string
     Votes?: number
     GloablVotes?: number
+    LastVote?: Date | string | null
     CustomerBots?: number
     BackupCount?: number
     Apis?: ApisCreateNestedManyWithoutUsersInput
@@ -60269,6 +60383,7 @@ export namespace Prisma {
     UserId: string
     Votes?: number
     GloablVotes?: number
+    LastVote?: Date | string | null
     CustomerBots?: number
     BackupCount?: number
     Apis?: ApisUncheckedCreateNestedManyWithoutUsersInput
@@ -60281,6 +60396,7 @@ export namespace Prisma {
     UserId?: StringFieldUpdateOperationsInput | string
     Votes?: IntFieldUpdateOperationsInput | number
     GloablVotes?: IntFieldUpdateOperationsInput | number
+    LastVote?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     CustomerBots?: IntFieldUpdateOperationsInput | number
     BackupCount?: IntFieldUpdateOperationsInput | number
     Apis?: ApisUpdateManyWithoutUsersNestedInput
@@ -60293,6 +60409,7 @@ export namespace Prisma {
     UserId?: StringFieldUpdateOperationsInput | string
     Votes?: IntFieldUpdateOperationsInput | number
     GloablVotes?: IntFieldUpdateOperationsInput | number
+    LastVote?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     CustomerBots?: IntFieldUpdateOperationsInput | number
     BackupCount?: IntFieldUpdateOperationsInput | number
     Apis?: ApisUncheckedUpdateManyWithoutUsersNestedInput
@@ -60306,6 +60423,7 @@ export namespace Prisma {
     UserId: string
     Votes?: number
     GloablVotes?: number
+    LastVote?: Date | string | null
     CustomerBots?: number
     BackupCount?: number
   }
@@ -60315,6 +60433,7 @@ export namespace Prisma {
     UserId?: StringFieldUpdateOperationsInput | string
     Votes?: IntFieldUpdateOperationsInput | number
     GloablVotes?: IntFieldUpdateOperationsInput | number
+    LastVote?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     CustomerBots?: IntFieldUpdateOperationsInput | number
     BackupCount?: IntFieldUpdateOperationsInput | number
   }
@@ -60324,6 +60443,7 @@ export namespace Prisma {
     UserId?: StringFieldUpdateOperationsInput | string
     Votes?: IntFieldUpdateOperationsInput | number
     GloablVotes?: IntFieldUpdateOperationsInput | number
+    LastVote?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     CustomerBots?: IntFieldUpdateOperationsInput | number
     BackupCount?: IntFieldUpdateOperationsInput | number
   }
@@ -62365,6 +62485,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: SortOrder
     AutoAssignHandler?: SortOrder
     AutoReplyMessageTemplateId?: SortOrder
+    TicketRateLimit?: SortOrder
+    TicketStatusMessageTemplateId?: SortOrder
+    TicketStatusMessageId?: SortOrder
+    TicketStatusChannelId?: SortOrder
     AutoCloseAction?: SortOrder
     OldTicketCategoryId?: SortOrder
     RequiredRoles?: SortOrder
@@ -62405,6 +62529,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: SortOrder
     AutoAssignHandler?: SortOrder
     AutoReplyMessageTemplateId?: SortOrder
+    TicketRateLimit?: SortOrder
+    TicketStatusMessageTemplateId?: SortOrder
+    TicketStatusMessageId?: SortOrder
+    TicketStatusChannelId?: SortOrder
     OldTicketCategoryId?: SortOrder
     SlashCommandId?: SortOrder
     SlashCommandName?: SortOrder
@@ -62435,6 +62563,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: SortOrder
     AutoAssignHandler?: SortOrder
     AutoReplyMessageTemplateId?: SortOrder
+    TicketRateLimit?: SortOrder
+    TicketStatusMessageTemplateId?: SortOrder
+    TicketStatusMessageId?: SortOrder
+    TicketStatusChannelId?: SortOrder
     OldTicketCategoryId?: SortOrder
     SlashCommandId?: SortOrder
     SlashCommandName?: SortOrder
@@ -62880,6 +63012,7 @@ export namespace Prisma {
     UserId?: SortOrder
     Votes?: SortOrder
     GloablVotes?: SortOrder
+    LastVote?: SortOrder
     CustomerBots?: SortOrder
     BackupCount?: SortOrder
   }
@@ -62897,6 +63030,7 @@ export namespace Prisma {
     UserId?: SortOrder
     Votes?: SortOrder
     GloablVotes?: SortOrder
+    LastVote?: SortOrder
     CustomerBots?: SortOrder
     BackupCount?: SortOrder
   }
@@ -62907,6 +63041,7 @@ export namespace Prisma {
     UserId?: SortOrder
     Votes?: SortOrder
     GloablVotes?: SortOrder
+    LastVote?: SortOrder
     CustomerBots?: SortOrder
     BackupCount?: SortOrder
   }
@@ -66834,6 +66969,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: number | null
     AutoAssignHandler?: string | null
     AutoReplyMessageTemplateId?: string | null
+    TicketRateLimit?: string | null
+    TicketStatusMessageTemplateId?: string | null
+    TicketStatusMessageId?: string | null
+    TicketStatusChannelId?: string | null
     AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
@@ -66869,6 +67008,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: number | null
     AutoAssignHandler?: string | null
     AutoReplyMessageTemplateId?: string | null
+    TicketRateLimit?: string | null
+    TicketStatusMessageTemplateId?: string | null
+    TicketStatusMessageId?: string | null
+    TicketStatusChannelId?: string | null
     AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
@@ -67666,6 +67809,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: IntNullableFilter<"TicketSetups"> | number | null
     AutoAssignHandler?: StringNullableFilter<"TicketSetups"> | string | null
     AutoReplyMessageTemplateId?: StringNullableFilter<"TicketSetups"> | string | null
+    TicketRateLimit?: StringNullableFilter<"TicketSetups"> | string | null
+    TicketStatusMessageTemplateId?: StringNullableFilter<"TicketSetups"> | string | null
+    TicketStatusMessageId?: StringNullableFilter<"TicketSetups"> | string | null
+    TicketStatusChannelId?: StringNullableFilter<"TicketSetups"> | string | null
     AutoCloseAction?: StringNullableListFilter<"TicketSetups">
     OldTicketCategoryId?: StringNullableFilter<"TicketSetups"> | string | null
     RequiredRoles?: StringNullableListFilter<"TicketSetups">
@@ -72079,6 +72226,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: number | null
     AutoAssignHandler?: string | null
     AutoReplyMessageTemplateId?: string | null
+    TicketRateLimit?: string | null
+    TicketStatusMessageTemplateId?: string | null
+    TicketStatusMessageId?: string | null
+    TicketStatusChannelId?: string | null
     AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
@@ -72114,6 +72265,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: number | null
     AutoAssignHandler?: string | null
     AutoReplyMessageTemplateId?: string | null
+    TicketRateLimit?: string | null
+    TicketStatusMessageTemplateId?: string | null
+    TicketStatusMessageId?: string | null
+    TicketStatusChannelId?: string | null
     AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
@@ -72164,6 +72319,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: NullableIntFieldUpdateOperationsInput | number | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketRateLimit?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusMessageId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
@@ -72198,6 +72357,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: NullableIntFieldUpdateOperationsInput | number | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketRateLimit?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusMessageId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
@@ -72233,6 +72396,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: number | null
     AutoAssignHandler?: string | null
     AutoReplyMessageTemplateId?: string | null
+    TicketRateLimit?: string | null
+    TicketStatusMessageTemplateId?: string | null
+    TicketStatusMessageId?: string | null
+    TicketStatusChannelId?: string | null
     AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
@@ -72268,6 +72435,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: number | null
     AutoAssignHandler?: string | null
     AutoReplyMessageTemplateId?: string | null
+    TicketRateLimit?: string | null
+    TicketStatusMessageTemplateId?: string | null
+    TicketStatusMessageId?: string | null
+    TicketStatusChannelId?: string | null
     AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
@@ -72318,6 +72489,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: NullableIntFieldUpdateOperationsInput | number | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketRateLimit?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusMessageId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
@@ -72352,6 +72527,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: NullableIntFieldUpdateOperationsInput | number | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketRateLimit?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusMessageId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
@@ -72408,6 +72587,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: number | null
     AutoAssignHandler?: string | null
     AutoReplyMessageTemplateId?: string | null
+    TicketRateLimit?: string | null
+    TicketStatusMessageTemplateId?: string | null
+    TicketStatusMessageId?: string | null
+    TicketStatusChannelId?: string | null
     AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
@@ -72443,6 +72626,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: number | null
     AutoAssignHandler?: string | null
     AutoReplyMessageTemplateId?: string | null
+    TicketRateLimit?: string | null
+    TicketStatusMessageTemplateId?: string | null
+    TicketStatusMessageId?: string | null
+    TicketStatusChannelId?: string | null
     AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
@@ -72518,6 +72705,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: NullableIntFieldUpdateOperationsInput | number | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketRateLimit?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusMessageId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
@@ -72552,6 +72743,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: NullableIntFieldUpdateOperationsInput | number | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketRateLimit?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusMessageId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
@@ -73330,6 +73525,7 @@ export namespace Prisma {
     UserId: string
     Votes?: number
     GloablVotes?: number
+    LastVote?: Date | string | null
     CustomerBots?: number
     BackupCount?: number
     GuildBackups?: GuildBackupsCreateNestedManyWithoutUsersInput
@@ -73342,6 +73538,7 @@ export namespace Prisma {
     UserId: string
     Votes?: number
     GloablVotes?: number
+    LastVote?: Date | string | null
     CustomerBots?: number
     BackupCount?: number
     GuildBackups?: GuildBackupsUncheckedCreateNestedManyWithoutUsersInput
@@ -73369,6 +73566,7 @@ export namespace Prisma {
     UserId?: StringFieldUpdateOperationsInput | string
     Votes?: IntFieldUpdateOperationsInput | number
     GloablVotes?: IntFieldUpdateOperationsInput | number
+    LastVote?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     CustomerBots?: IntFieldUpdateOperationsInput | number
     BackupCount?: IntFieldUpdateOperationsInput | number
     GuildBackups?: GuildBackupsUpdateManyWithoutUsersNestedInput
@@ -73380,6 +73578,7 @@ export namespace Prisma {
     UserId?: StringFieldUpdateOperationsInput | string
     Votes?: IntFieldUpdateOperationsInput | number
     GloablVotes?: IntFieldUpdateOperationsInput | number
+    LastVote?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     CustomerBots?: IntFieldUpdateOperationsInput | number
     BackupCount?: IntFieldUpdateOperationsInput | number
     GuildBackups?: GuildBackupsUncheckedUpdateManyWithoutUsersNestedInput
@@ -73392,6 +73591,7 @@ export namespace Prisma {
     UserId: string
     Votes?: number
     GloablVotes?: number
+    LastVote?: Date | string | null
     CustomerBots?: number
     BackupCount?: number
     Apis?: ApisCreateNestedManyWithoutUsersInput
@@ -73404,6 +73604,7 @@ export namespace Prisma {
     UserId: string
     Votes?: number
     GloablVotes?: number
+    LastVote?: Date | string | null
     CustomerBots?: number
     BackupCount?: number
     Apis?: ApisUncheckedCreateNestedManyWithoutUsersInput
@@ -73431,6 +73632,7 @@ export namespace Prisma {
     UserId?: StringFieldUpdateOperationsInput | string
     Votes?: IntFieldUpdateOperationsInput | number
     GloablVotes?: IntFieldUpdateOperationsInput | number
+    LastVote?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     CustomerBots?: IntFieldUpdateOperationsInput | number
     BackupCount?: IntFieldUpdateOperationsInput | number
     Apis?: ApisUpdateManyWithoutUsersNestedInput
@@ -73442,6 +73644,7 @@ export namespace Prisma {
     UserId?: StringFieldUpdateOperationsInput | string
     Votes?: IntFieldUpdateOperationsInput | number
     GloablVotes?: IntFieldUpdateOperationsInput | number
+    LastVote?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     CustomerBots?: IntFieldUpdateOperationsInput | number
     BackupCount?: IntFieldUpdateOperationsInput | number
     Apis?: ApisUncheckedUpdateManyWithoutUsersNestedInput
@@ -73508,6 +73711,7 @@ export namespace Prisma {
     UserId: string
     Votes?: number
     GloablVotes?: number
+    LastVote?: Date | string | null
     CustomerBots?: number
     BackupCount?: number
     Apis?: ApisCreateNestedManyWithoutUsersInput
@@ -73520,6 +73724,7 @@ export namespace Prisma {
     UserId: string
     Votes?: number
     GloablVotes?: number
+    LastVote?: Date | string | null
     CustomerBots?: number
     BackupCount?: number
     Apis?: ApisUncheckedCreateNestedManyWithoutUsersInput
@@ -73609,6 +73814,7 @@ export namespace Prisma {
     UserId?: StringFieldUpdateOperationsInput | string
     Votes?: IntFieldUpdateOperationsInput | number
     GloablVotes?: IntFieldUpdateOperationsInput | number
+    LastVote?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     CustomerBots?: IntFieldUpdateOperationsInput | number
     BackupCount?: IntFieldUpdateOperationsInput | number
     Apis?: ApisUpdateManyWithoutUsersNestedInput
@@ -73620,6 +73826,7 @@ export namespace Prisma {
     UserId?: StringFieldUpdateOperationsInput | string
     Votes?: IntFieldUpdateOperationsInput | number
     GloablVotes?: IntFieldUpdateOperationsInput | number
+    LastVote?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     CustomerBots?: IntFieldUpdateOperationsInput | number
     BackupCount?: IntFieldUpdateOperationsInput | number
     Apis?: ApisUncheckedUpdateManyWithoutUsersNestedInput
@@ -74114,6 +74321,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: number | null
     AutoAssignHandler?: string | null
     AutoReplyMessageTemplateId?: string | null
+    TicketRateLimit?: string | null
+    TicketStatusMessageTemplateId?: string | null
+    TicketStatusMessageId?: string | null
+    TicketStatusChannelId?: string | null
     AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
@@ -74508,6 +74719,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: NullableIntFieldUpdateOperationsInput | number | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketRateLimit?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusMessageId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
@@ -74542,6 +74757,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: NullableIntFieldUpdateOperationsInput | number | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketRateLimit?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusMessageId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
@@ -74576,6 +74795,10 @@ export namespace Prisma {
     AutoCloseAfterTime?: NullableIntFieldUpdateOperationsInput | number | null
     AutoAssignHandler?: NullableStringFieldUpdateOperationsInput | string | null
     AutoReplyMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketRateLimit?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusMessageId?: NullableStringFieldUpdateOperationsInput | string | null
+    TicketStatusChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]

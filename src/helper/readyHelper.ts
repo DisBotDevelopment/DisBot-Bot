@@ -1,4 +1,3 @@
-
 import {api} from "../api/restAPI/api.js";
 import {app} from "../api/services/app.js";
 import {emojiCache} from "../api/services/emojiCache.js";
@@ -35,9 +34,10 @@ export async function clientReady(client: ExtendedClient) {
         // AutoDelete
         await Scheduler.deleteMessagesFromAutoDelete(client);
 
-        // Schedule Vanity URL's
+        // Schedule Vanity URL's && Vote Role on Guild
         setInterval(async () => {
             Scheduler.checkLast30DaysVanities(client);
+            Scheduler.checkVoteRoles(client);
         }, 86400000); // 24 hours
 
         // Notfiy

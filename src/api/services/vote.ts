@@ -1,6 +1,6 @@
 import {Webhook, WebhookPayload} from "@top-gg/sdk";
 import bodyParser from "body-parser";
-import {EmbedBuilder, WebhookClient} from "discord.js";
+import {EmbedBuilder, User, WebhookClient} from "discord.js";
 import express, {Request, Response} from "express";
 import {ExtendedClient} from "../../types/client.js";
 import {Logger} from "../../main/logger.js";
@@ -22,16 +22,20 @@ export async function vote(client: ExtendedClient) {
                 }
             });
 
-
             let gvotes = data?.GloablVotes as number;
             gvotes = gvotes + 1;
             let votes = data?.Votes;
             votes = (votes as number) + 1;
 
+            const voteGuild = await client.guilds.fetch(Config.Other.Vote.VoteGuildId)
+            const voteUser = await voteGuild.members.fetch(vote.user)
+
+            await voteUser.roles.add(Config.Other.Vote.VoteRoleId)
+
             await database.users.update(
                 {
                     where: {UserId: vote.user},
-                    data: {Votes: votes, GloablVotes: gvotes}
+                    data: {Votes: votes, GloablVotes: gvotes, LastVote: new Date}
                 }
             );
 
@@ -51,7 +55,7 @@ export async function vote(client: ExtendedClient) {
             });
             const user = await client.users.fetch(vote.user);
 
-            webhook.send({
+            await webhook.send({
                 embeds: [
                     new EmbedBuilder()
                         .setDescription(
@@ -87,6 +91,11 @@ export async function vote(client: ExtendedClient) {
                 }
             });
 
+            const voteGuild = await client.guilds.fetch(Config.Other.Vote.VoteGuildId)
+            const voteUser = await voteGuild.members.fetch(vote.id)
+
+            await voteUser.roles.add(Config.Other.Vote.VoteRoleId)
+
 
             let gvotes = data?.GloablVotes as number;
             gvotes = gvotes + 1;
@@ -98,7 +107,7 @@ export async function vote(client: ExtendedClient) {
             await database.users.update(
                 {
                     where: {UserId: vote.id},
-                    data: {Votes: votes, GloablVotes: gvotes}
+                    data: {Votes: votes, GloablVotes: gvotes, LastVote: new Date}
                 }
             );
 
@@ -118,7 +127,7 @@ export async function vote(client: ExtendedClient) {
             });
             const user = await client.users.fetch(vote.id);
 
-            webhook.send({
+            await webhook.send({
                 embeds: [
                     new EmbedBuilder()
                         .setDescription(

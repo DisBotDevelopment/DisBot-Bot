@@ -50,6 +50,8 @@ export async function configStartup() {
                     DcBotListSecret: "",
                     TopggToken: "",
                     VotePort: 0,
+                    VoteRoleId: "",
+                    VoteGuildId: ""
                 },
                 AppPort: 0,
                 API: {

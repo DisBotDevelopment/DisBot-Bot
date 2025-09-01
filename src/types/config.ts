@@ -34,6 +34,8 @@ export type DisBotConfigData = {
             DcBotListSecret: string;
             TopggToken: string;
             VotePort: number;
+            VoteRoleId: string;
+            VoteGuildId: string;
         };
         AppPort: number;
         API: {

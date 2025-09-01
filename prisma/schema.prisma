@@ -428,6 +428,10 @@ model TicketSetups {
   AutoCloseAfterTime               Int?
   AutoAssignHandler                String?
   AutoReplyMessageTemplateId       String?
+  TicketRateLimit                  String?
+  TicketStatusMessageTemplateId    String?
+  TicketStatusMessageId            String?
+  TicketStatusChannelId            String?
   AutoCloseAction                  String[] // LOOK (THREAD), ARCHIVE (BOTH), MOVE_TO_OLD_CHANNEL (Channel), DELETE (BOTH), WITH_CONFIRM (BOTH), TRANSCRIPT (BOTH), REASON (BOTH), REMOVE_USER_FROM_TICKET (BOTH) - !!! SUGGEST MORE !!!
   OldTicketCategoryId              String?
   RequiredRoles                    String[]
@@ -572,6 +576,7 @@ model Users {
   Vanitys      Vanitys[]
   Votes        Int            @default(0)
   GloablVotes  Int            @default(0)
+  LastVote     DateTime?
   // CURRENTLY NO USE!
   CustomerBots Int            @default(1)
   BackupCount  Int            @default(10000)
