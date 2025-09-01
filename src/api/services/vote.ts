@@ -17,6 +17,10 @@ export async function vote(client: ExtendedClient) {
     app.post(
         "/webhook",
         webhook.listener(async (vote: WebhookPayload) => {
+
+            const user = await client.users.fetch(vote.user);
+            await initUsersToDatabase(client, user)
+
             const data = await database.users.findFirst({
                 where: {
                     UserId: vote.user
@@ -54,7 +58,7 @@ export async function vote(client: ExtendedClient) {
             const webhook = new WebhookClient({
                 url: "https://discord.com/api/webhooks/1231322811964854292/fLN_e9cNkywg3Hdoi25AKEUL_KDbeKFYTtgNhiwGmHmVa14CWNuF9iSbNAYNFmISD8r3",
             });
-            const user = await client.users.fetch(vote.user);
+
 
             await webhook.send({
                 embeds: [
