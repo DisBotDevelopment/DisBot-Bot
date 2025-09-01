@@ -7,6 +7,7 @@ import {LoggingAction} from "../enums/loggingTypes.js";
 import colors from "colors"
 import {User} from "discord.js";
 import {Config} from "../main/config.js";
+import * as cluster from "node:cluster";
 
 colors.enable();
 
@@ -96,7 +97,7 @@ export async function setupDisBotConfig(client: ExtendedClient): Promise<void> {
 export async function initGuildsToDatabase(client: ExtendedClient) {
     const allGuilds = await client.guilds.fetch();
 
-    allGuilds.forEach(async (guild) => {
+    for (const guild of allGuilds.values()) {
         // Init Guilds
         const guildsData = await database.guilds.findFirst({
             where: {
@@ -152,7 +153,31 @@ export async function initGuildsToDatabase(client: ExtendedClient) {
                 }
             })
         }
-    })
+
+        // Init Guild Users
+        const clientGuild = await client.guilds.fetch(guild.id)
+        const guildMembers = await clientGuild.members.fetch()
+
+        for (const member of guildMembers.values()) {
+            await initUsersToDatabase(client, member.user)
+        }
+
+        Logger.info(
+            {
+                guildId: "0",
+                userId: "0",
+                channelId: "0",
+                messageId: "0",
+                timestamp: new Date().toISOString(),
+                level: "info",
+                label: "Database",
+                message: `Database init loaded for Guild ${clientGuild.name} ${guildMembers.size} members!`.gray,
+                botType: Config.BotType.toString() || "Unknown",
+                action: LoggingAction.Database,
+            }
+        );
+
+    }
 }
 
 export async function initUsersToDatabase(client: ExtendedClient, user: User) {

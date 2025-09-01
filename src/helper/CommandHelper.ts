@@ -219,7 +219,7 @@ export class CommandHelper {
                     timestamp: new Date().toISOString(),
                     level: "error",
                     label: "CommandHelper",
-                    message: `Command loading failed with error: ${e} - Commands failed at ${cmdlist.map((c) => c.name)} commands`,
+                    message: `Command loading failed with error: ${e} - Commands failed at ${cmdlist.map((c) => c.name)} commands on Guild \"${guild.name}\" (${guild.id})`,
                     botType: Config.BotType.toString() || "Unknown",
                     action: LoggingAction.Command,
                 });
@@ -229,7 +229,7 @@ export class CommandHelper {
                 timestamp: new Date().toISOString(),
                 level: "info",
                 label: "CommandHelper",
-                message: `Discord added ${cmdlist.length} commands (${stats.subCommands} subCommands, ${stats.subCommandGroups} subCommandGroups), ${stats.userInstall} userInstall commands, ${stats.contextMenus} context menu commands from ${moduleDirectories.length} module(s) for ${allGuilds.size} Guilds`,
+                message: `Discord added ${cmdlist.length} commands (${stats.subCommands} subCommands, ${stats.subCommandGroups} subCommandGroups), ${stats.userInstall} userInstall commands, ${stats.contextMenus} context menu commands from ${moduleDirectories.length} module(s) for \"${guild.name}\" (${guild.id})`,
                 botType: Config.BotType.toString() || "Unknown",
                 action: LoggingAction.Command,
             });
