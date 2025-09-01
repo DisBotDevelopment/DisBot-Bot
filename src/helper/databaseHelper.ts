@@ -98,100 +98,121 @@ export async function initGuildsToDatabase(client: ExtendedClient) {
     const allGuilds = await client.guilds.fetch();
 
     for (const guild of allGuilds.values()) {
-        // Init Guilds
-        const guildsData = await database.guilds.findFirst({
-            where: {
-                GuildId: guild.id
-            }
-        })
-        const guildCommandManagerData = await database.guildCommandManger.findFirst({
-            where: {
-                GuildId: guild.id
-            }
-        })
-        const guildComponentManagerData = await database.guildComponentManager.findFirst({
-            where: {
-                GuildId: guild.id
-            }
-        })
-        const guildOwner = await client.guilds.fetch(guild.id)
-        if (!guildsData) {
-            await database.guilds.create({
-                data: {
-                    GuildId: guild.id,
-                    GuildName: guild.name,
-                    GuildOwner: guildOwner.id
+        try {
+            // Init Guilds
+            const guildsData = await database.guilds.findFirst({
+                where: {
+                    GuildId: guild.id
                 }
             })
-        }
-        if (!guildCommandManagerData) {
-            await database.guildCommandManger.create({
-                data: {
-                    Guilds: {
-                        connect: {
-                            GuildId: guild.id,
-                        }
-                    },
-                    Commands: [],
-                    ContextMenus: [],
-                    SubCommands: [],
-                    SubCommandGroups: [],
+            const guildCommandManagerData = await database.guildCommandManger.findFirst({
+                where: {
+                    GuildId: guild.id
                 }
             })
-        }
-        if (!guildComponentManagerData) {
-            await database.guildComponentManager.create({
-                data: {
-                    Guilds: {
-                        connect: {
-                            GuildId: guild.id,
-                        }
-                    },
-                    Buttons: [],
-                    Modals: [],
-                    Selectmenus: []
+            const guildComponentManagerData = await database.guildComponentManager.findFirst({
+                where: {
+                    GuildId: guild.id
                 }
             })
-        }
-
-        // Init Guild Users
-        const clientGuild = await client.guilds.fetch(guild.id)
-        const guildMembers = await clientGuild.members.fetch()
-
-        for (const member of guildMembers.values()) {
-            await initUsersToDatabase(client, member.user)
-        }
-
-        Logger.info(
-            {
-                guildId: "0",
-                userId: "0",
-                channelId: "0",
-                messageId: "0",
-                timestamp: new Date().toISOString(),
-                level: "info",
-                label: "Database",
-                message: `Database init loaded for Guild ${clientGuild.name} ${guildMembers.size} members!`.gray,
-                botType: Config.BotType.toString() || "Unknown",
-                action: LoggingAction.Database,
+            const guildOwner = await client.guilds.fetch(guild.id)
+            if (!guildsData) {
+                await database.guilds.create({
+                    data: {
+                        GuildId: guild.id,
+                        GuildName: guild.name,
+                        GuildOwner: guildOwner.id
+                    }
+                })
             }
-        );
+            if (!guildCommandManagerData) {
+                await database.guildCommandManger.create({
+                    data: {
+                        Guilds: {
+                            connect: {
+                                GuildId: guild.id,
+                            }
+                        },
+                        Commands: [],
+                        ContextMenus: [],
+                        SubCommands: [],
+                        SubCommandGroups: [],
+                    }
+                })
+            }
+            if (!guildComponentManagerData) {
+                await database.guildComponentManager.create({
+                    data: {
+                        Guilds: {
+                            connect: {
+                                GuildId: guild.id,
+                            }
+                        },
+                        Buttons: [],
+                        Modals: [],
+                        Selectmenus: []
+                    }
+                })
+            }
 
+            // Init Guild Users
+            const clientGuild = await client.guilds.fetch(guild.id)
+            const guildMembers = await clientGuild.members.fetch()
+
+            for (const member of guildMembers.values()) {
+                await initUsersToDatabase(client, member.user)
+            }
+
+            Logger.info(
+                {
+                    guildId: "0",
+                    userId: "0",
+                    channelId: "0",
+                    messageId: "0",
+                    timestamp: new Date().toISOString(),
+                    level: "info",
+                    label: "Database",
+                    message: `Database init loaded for Guild ${clientGuild.name} ${guildMembers.size} members!`.gray,
+                    botType: Config.BotType.toString() || "Unknown",
+                    action: LoggingAction.Database,
+                }
+            );
+
+        } catch (e) {
+            Logger.error(
+                {
+                    guildId: "0",
+                    userId: "0",
+                    channelId: "0",
+                    messageId: "0",
+                    timestamp: new Date().toISOString(),
+                    level: "error",
+                    label: "Database",
+                    message: `Database init failed for Guild member Init!`.red,
+                    botType: Config.BotType.toString() || "Unknown",
+                    action: LoggingAction.Database,
+                }
+            );
+        }
     }
 }
 
 export async function initUsersToDatabase(client: ExtendedClient, user: User) {
 
-    // Init Users
-    const usersData = await database.users.findFirst({
-        where: {
-            UserId: user.id
-        }
-    })
-    if (!usersData) await database.users.create({
-        data: {
-            UserId: user.id,
-            Username: user.username
-        }
-    })
+    try {
+        // Init Users
+        const usersData = await database.users.findFirst({
+            where: {
+                UserId: user.id
+            }
+        })
+        if (!usersData) await database.users.create({
+            data: {
+                UserId: user.id,
+                Username: user.username
+            }
+        })
+    } catch (err) {
+
+    }
 }
