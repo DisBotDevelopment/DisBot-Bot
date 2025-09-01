@@ -3,7 +3,7 @@ import {PrismaClient} from "../prisma/index.js";
 import {LoggingAction} from "../enums/loggingTypes.js";
 import {Logger} from "./logger.js";
 import colors from "colors"
-import {initGuildsToDatabase, initUsersToDatabase, setupDisBotConfig} from "../helper/databaseHelper.js";
+import {initGuildsToDatabase, setupDisBotConfig} from "../helper/databaseHelper.js";
 import {Config} from "./config.js";
 
 colors.enable();

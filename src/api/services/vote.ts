@@ -7,6 +7,7 @@ import {Logger} from "../../main/logger.js";
 import {LoggingAction} from "../../enums/loggingTypes.js";
 import {database} from "../../main/database.js";
 import {Config} from "../../main/config.js";
+import {initUsersToDatabase} from "../../helper/databaseHelper.js";
 
 export async function vote(client: ExtendedClient) {
     const app = express();
@@ -85,7 +86,11 @@ export async function vote(client: ExtendedClient) {
                 return;
             }
             const vote = req.body
-            const data = await database.users.findFirst({
+            const user = await client.users.fetch(vote.id);
+
+            await initUsersToDatabase(client, user)
+
+            let data = await database.users.findFirst({
                 where: {
                     UserId: vote.id
                 }
@@ -125,7 +130,7 @@ export async function vote(client: ExtendedClient) {
             const webhook = new WebhookClient({
                 url: "https://discord.com/api/webhooks/1231322811964854292/fLN_e9cNkywg3Hdoi25AKEUL_KDbeKFYTtgNhiwGmHmVa14CWNuF9iSbNAYNFmISD8r3",
             });
-            const user = await client.users.fetch(vote.id);
+
 
             await webhook.send({
                 embeds: [

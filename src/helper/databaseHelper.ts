@@ -7,7 +7,6 @@ import {LoggingAction} from "../enums/loggingTypes.js";
 import colors from "colors"
 import {User} from "discord.js";
 import {Config} from "../main/config.js";
-import * as process from "node:process";
 
 colors.enable();
 
