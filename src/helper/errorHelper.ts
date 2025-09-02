@@ -14,10 +14,11 @@ import {LoggingAction} from "../enums/loggingTypes.js";
 import {Logger} from "../main/logger.js";
 import {Config} from "../main/config.js";
 import {Octokit} from "@octokit/core";
+import {cli} from "winston/lib/winston/config/index.js";
 
 colors.enable();
 
-export async function errorHandler(interaction: Interaction, client: any, error: Error) {
+export async function errorHandler(interaction: Interaction, client: any, error: Error, customMessage?: string, customDescription?: string) {
     Logger?.error({
         timestamp: new Date().toISOString(),
         level: "error",
@@ -26,7 +27,6 @@ export async function errorHandler(interaction: Interaction, client: any, error:
         botType: Config.BotType.toString() || "Unknown",
         action: LoggingAction.Interaction,
     });
-    Sentry.captureException(error);
     if (interaction.isRepliable()) {
         await interaction.deferReply({
             flags: MessageFlags.Ephemeral,
@@ -41,8 +41,13 @@ export async function errorHandler(interaction: Interaction, client: any, error:
                             .addTextDisplayComponents(
                                 new TextDisplayBuilder()
                                     .setContent([
-                                        `## ${await convertToEmojiPng("error", client.user?.id)} An error occurred while processing your interaction.`,
-                                        `-# You can click the button below to report this issue to the developers.`
+                                        `## ${await convertToEmojiPng("error", client.user?.id)} An error occurred while processing your actions.`,
+                                        `-# **Steps you can do**`,
+                                        `-# - Check your Action or Input.`,
+                                        `-# - Check the Error Message and the Error Details below.`,
+                                        `-# - Check Github and Discord for this problem.`,
+                                        `-# - If there is no problem from you side and on Github or Discord then click \"Report Error\"`,
+                                        `-# - Thanks for your Report - You will see a message with the Reports Liked.`,
                                     ].join("\n"))
                             )
                             .setButtonAccessory(new ButtonBuilder()
@@ -52,17 +57,35 @@ export async function errorHandler(interaction: Interaction, client: any, error:
                                 .setEmoji("<:error:1366426689961459893>"))
                     )
                     .addSeparatorComponents(new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Large))
+                    .addTextDisplayComponents(
+                        new TextDisplayBuilder()
+                            .setContent([
+                                `### ${customMessage ? customMessage : "Process and Action Failed"}`,
+                                `-# __${customDescription ? customDescription : "You Interaction or Action failed!"}__`,
+                                `### ${await convertToEmojiPng("box", client.user.id)} Error Message`,
+                            ].join("\n"))
+                    )
+                    .addTextDisplayComponents(
+                        new TextDisplayBuilder()
+                            .setContent([
+                                `||\`\`\`${error as Error}\`\`\`||`
+                            ].join("\n"))
+                    )
+                    .addSeparatorComponents(new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Small).setDivider(true))
+                    .addSeparatorComponents(new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Large).setDivider(true))
                     .addSectionComponents(
                         new SectionBuilder()
                             .addTextDisplayComponents(
                                 new TextDisplayBuilder()
                                     .setContent([
-                                        `> ### ${await convertToEmojiPng("info", client.user?.id)} What will happen if you do it.`,
+                                        `### ${await convertToEmojiPng("info", client.user?.id)} What will happen if you do it.`,
                                         `> -# You will share you public user ID`,
                                         `> -# You will send an Error stack trace`,
                                         `> -# You will send Interaction related data`,
                                         `> -# \"Public Database Id's\" like uuids of you setup and or a not sensitive ID`,
                                         `> -# You will send a contact for the devs to contact you!`,
+                                        `> -# You will open a GitHub Issue!`,
+                                        `> -# You will open a Forum Post on Discord!`,
                                     ].join("\n"))
                             )
                             .setButtonAccessory(new ButtonBuilder()
