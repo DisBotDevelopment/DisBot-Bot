@@ -188,7 +188,7 @@ export async function initGuildsToDatabase(client: ExtendedClient) {
                     timestamp: new Date().toISOString(),
                     level: "error",
                     label: "Database",
-                    message: `Database init failed for Guild member Init!`.red,
+                    message: `Database init failed for Guild member init with error ${e}`.red,
                     botType: Config.BotType.toString() || "Unknown",
                     action: LoggingAction.Database,
                 }

@@ -5,6 +5,7 @@ import {Logger} from "./logger.js";
 import colors from "colors"
 import {initGuildsToDatabase, setupDisBotConfig} from "../helper/databaseHelper.js";
 import {Config} from "./config.js";
+import * as process from "node:process";
 
 colors.enable();
 
