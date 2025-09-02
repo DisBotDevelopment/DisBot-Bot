@@ -5,7 +5,7 @@ import {
     BitField, ButtonBuilder,
     ButtonInteraction, ButtonStyle,
     ChannelType,
-    ChatInputCommandInteraction, Client, ContainerBuilder,
+    ChatInputCommandInteraction, Client, ContainerBuilder, Embed,
     EmbedBuilder, FileBuilder,
     Guild,
     GuildMember, GuildTextBasedChannel, Interaction,
@@ -82,6 +82,122 @@ export async function ticketHelper(
                 content: `-# ${await convertToEmojiPng("ticket", client.user.id)} I can't create a Ticket without Moderators `
             })
             return;
+        }
+    }
+
+    // Check Rate Limit
+    if (data.TicketRateLimit) {
+        const channel = await guild.channels.fetch(data.TicketStatusChannelId) as GuildTextBasedChannel
+        const message = await channel.messages.fetch(data.TicketStatusMessageId)
+        const allTicketsFromComponentCount = (await database.tickets.findMany({
+            where: {
+                TicketSetupId: data.CustomId,
+                IsClosed: false
+            }
+        })).length
+        if (!message) {
+        }
+
+        async function checkStatus(currentTickets: number, green: number, yellow: number, red: number) {
+            const greenEmoji = await convertToEmojiPng("sirengreen", client.user.id)
+            const yellowEmoji = await convertToEmojiPng("sirenyellow", client.user.id)
+            const redEmoji = await convertToEmojiPng("sirenred", client.user.id)
+
+            let status = {
+                current: "ㅤ",
+                green: "ㅤ",
+                yellow: "ㅤ",
+                red: "ㅤ"
+            }
+
+            if (currentTickets == 0) {
+                status = {
+                    current: greenEmoji,
+                    green: greenEmoji,
+                    yellow: status.yellow,
+                    red: status.red
+                }
+            }
+
+            if (currentTickets <= green && currentTickets <= yellow) {
+                status = {
+                    current: greenEmoji,
+                    green: greenEmoji,
+                    yellow: status.yellow,
+                    red: status.red
+                }
+            }
+            if (currentTickets >= green && currentTickets <= yellow && currentTickets <= red) {
+                status = {
+                    current: yellowEmoji,
+                    green: status.green,
+                    yellow: yellowEmoji,
+                    red: status.red
+                }
+            }
+            if (currentTickets >= yellow && currentTickets <= red) {
+                status = {
+                    current: redEmoji,
+                    green: status.green,
+                    yellow: status.yellow,
+                    red: redEmoji
+                }
+            }
+
+            return status
+        }
+
+        const current = allTicketsFromComponentCount
+        const greenState = Number(data.TicketRateLimit.split(",")[0])
+        const yellowState = Number(data.TicketRateLimit.split(",")[1])
+        const redState = Number(data.TicketRateLimit.split(",")[2])
+
+        const statusMessageTemplate = await database.messageTemplates.findFirst({
+            where: {
+                Name: data.TicketStatusMessageTemplateId
+            }
+        })
+        if (!statusMessageTemplate) {
+        }
+        if (message.author.id != client.user.id) {
+        }
+
+        const ticketPlaceholderType = {
+            ticket: {
+                status: {
+                    current: (await checkStatus(current, greenState, yellowState, redState)).current,
+                    green: (await checkStatus(current, greenState, yellowState, redState)).green,
+                    yellow: (await checkStatus(current, greenState, yellowState, redState)).yellow,
+                    red: (await checkStatus(current, greenState, yellowState, redState)).red,
+                }
+            }
+        }
+
+        if (statusMessageTemplate.EmbedJSON)
+            await message.edit({
+                embeds: [new EmbedBuilder(JSON.parse(replacePlaceholders(statusMessageTemplate.EmbedJSON, ticketPlaceholderType)))],
+                content: statusMessageTemplate.Content ? replacePlaceholders(statusMessageTemplate.Content ?? "", ticketPlaceholderType) : "ㅤ"
+            })
+        else await message.edit({
+            content: statusMessageTemplate.Content ? replacePlaceholders(statusMessageTemplate.Content ?? "", ticketPlaceholderType) : "ㅤ"
+        })
+
+        if (allTicketsFromComponentCount >= redState) {
+            if (ticketType == "event") {
+                (messageEvent.channel as TextChannel).send({
+                    content: `-# ${await convertToEmojiPng("sirenred", client.user.id)} At the moment our support team is busy!`
+                }).then(async (m) => {
+                    setTimeout(async () => {
+                        await m.delete()
+                    }, 5000)
+                })
+                return;
+            } else if (ticketType == "interaction") {
+                await interaction.editReply({
+                    content: `-# ${await convertToEmojiPng("sirenred", client.user.id)} At the moment our support team is busy! Please wait for a ${await convertToEmojiPng("sirengreen", client.user.id)}, ${await convertToEmojiPng("sirenyellow", client.user.id)} status!`
+                })
+                return;
+            }
         }
     }
 
@@ -485,12 +601,18 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
     let actionCounter: number = 0
 
     const data = await database.tickets.findFirst({
+        include: {
+            TicketSetup: true
+        },
         where: {
             TicketId: ticketId
         }
     })
-    if (!data) return await ticketErrorMessage("No Data!", interaction, client)
+    if (!data && interaction) {
+        return await ticketErrorMessage("No Data!", interaction, client)
+    }
 
+    // Default Ticket Close Actions
     const owner = await guild.members.fetch(data.TicketOwnerId)
 
     const actions = data.AutoCloseAction
@@ -545,6 +667,105 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
             flags: MessageFlags.Ephemeral,
         })
 
+    // Check Rate Limit
+    if (data.TicketSetup.TicketRateLimit) {
+        const channel = await guild.channels.fetch(data.TicketSetup.TicketStatusChannelId) as GuildTextBasedChannel
+        const message = await channel.messages.fetch(data.TicketSetup.TicketStatusMessageId)
+        const allTicketsFromComponentCount = (await database.tickets.findMany({
+            where: {
+                TicketSetupId: data.TicketSetup.CustomId,
+                IsClosed: false
+            }
+        })).length
+        if (!message) {
+        }
+
+        async function checkStatus(currentTickets: number, green: number, yellow: number, red: number) {
+            const greenEmoji = await convertToEmojiPng("sirengreen", client.user.id)
+            const yellowEmoji = await convertToEmojiPng("sirenyellow", client.user.id)
+            const redEmoji = await convertToEmojiPng("sirenred", client.user.id)
+
+            let status = {
+                current: "ㅤ",
+                green: "ㅤ",
+                yellow: "ㅤ",
+                red: "ㅤ"
+            }
+
+            if (currentTickets == 0) {
+                status = {
+                    current: greenEmoji,
+                    green: greenEmoji,
+                    yellow: status.yellow,
+                    red: status.red
+                }
+            }
+
+            if (currentTickets <= green && currentTickets <= yellow) {
+                status = {
+                    current: greenEmoji,
+                    green: greenEmoji,
+                    yellow: status.yellow,
+                    red: status.red
+                }
+            }
+            if (currentTickets >= green && currentTickets <= yellow && currentTickets <= red) {
+                status = {
+                    current: yellowEmoji,
+                    green: status.green,
+                    yellow: yellowEmoji,
+                    red: status.red
+                }
+            }
+            if (currentTickets >= yellow && currentTickets <= red) {
+                status = {
+                    current: redEmoji,
+                    green: status.green,
+                    yellow: status.yellow,
+                    red: redEmoji
+                }
+            }
+
+            return status
+        }
+
+        const current = allTicketsFromComponentCount
+        const greenState = Number(data.TicketSetup.TicketRateLimit.split(",")[0])
+        const yellowState = Number(data.TicketSetup.TicketRateLimit.split(",")[1])
+        const redState = Number(data.TicketSetup.TicketRateLimit.split(",")[2])
+
+        const statusMessageTemplate = await database.messageTemplates.findFirst({
+            where: {
+                Name: data.TicketSetup.TicketStatusMessageTemplateId
+            }
+        })
+        if (!statusMessageTemplate) {
+        }
+        if (message.author.id != client.user.id) {
+        }
+
+        const ticketPlaceholderType = {
+            ticket: {
+                status: {
+                    current: (await checkStatus(current, greenState, yellowState, redState)).current,
+                    green: (await checkStatus(current, greenState, yellowState, redState)).green,
+                    yellow: (await checkStatus(current, greenState, yellowState, redState)).yellow,
+                    red: (await checkStatus(current, greenState, yellowState, redState)).red,
+                }
+            }
+        }
+
+        if (statusMessageTemplate.EmbedJSON)
+            await message.edit({
+                embeds: [new EmbedBuilder(JSON.parse(replacePlaceholders(statusMessageTemplate.EmbedJSON, ticketPlaceholderType)))],
+                content: statusMessageTemplate.Content ? replacePlaceholders(statusMessageTemplate.Content ?? "", ticketPlaceholderType) : "ㅤ"
+            })
+        else await message.edit({
+            content: statusMessageTemplate.Content ? replacePlaceholders(statusMessageTemplate.Content ?? "", ticketPlaceholderType) : "ㅤ"
+        })
+    }
+
+    // Default Ticket Close Actions
     if (data.UserDMWhenCloseMessageTemplateId) {
         actionCounter += 1
 
@@ -901,25 +1122,6 @@ export async function ticketArchiveAction(channel: TextChannel | PrivateThreadCh
         }
     })
 
-    if (data.ChannelType == ChannelType.PrivateThread) {
-
-        await (channel as PrivateThreadChannel).setLocked(true, "Moderator Action from Ticket with Id " + uuid)
-
-    } else if (data.ChannelType == ChannelType.GuildCategory) {
-
-        await (channel as TextChannel).permissionOverwrites.edit(data.TicketOwnerId, {
-            SendMessages: false
-        })
-
-        for (const memberId of data.AddedMemberIds) {
-            await (channel as TextChannel).permissionOverwrites.edit(memberId, {
-                SendMessages: false
-            })
-        }
-
-    }
-
-
     const message = await channel.send({
         flags: MessageFlags.IsComponentsV2,
         components: [
@@ -944,6 +1146,24 @@ export async function ticketArchiveAction(channel: TextChannel | PrivateThreadCh
             ArchiveMessageId: message.id
         }
     })
+
+    if (data.ChannelType == ChannelType.PrivateThread) {
+
+        await (channel as PrivateThreadChannel).setLocked(true, "Moderator Action from Ticket with Id " + uuid)
+
+    } else if (data.ChannelType == ChannelType.GuildCategory) {
+
+        await (channel as TextChannel).permissionOverwrites.edit(data.TicketOwnerId, {
+            SendMessages: false
+        })
+
+        for (const memberId of data.AddedMemberIds) {
+            await (channel as TextChannel).permissionOverwrites.edit(memberId, {
+                SendMessages: false
+            })
+        }
+
+    }
 }
 
 export async function ticketLookAction(channel: TextChannel | PrivateThreadChannel, client: ExtendedClient, ticketId: string, isClose?: boolean, interaction?: ChatInputCommandInteraction | ButtonInteraction | ModalSubmitInteraction | AnySelectMenuInteraction, isAuto?: boolean) {
