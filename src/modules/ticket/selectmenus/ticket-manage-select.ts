@@ -119,7 +119,12 @@ export default {
                                     .setCustomId("ticket-add-component-ticket-limit:" + uuid)
                                     .setEmoji("<:renamesolid24:1259433901554929675>")
                                     .setStyle(ButtonStyle.Secondary)
-                                    .setLabel("Ticket Limit")
+                                    .setLabel("Ticket Limit"),
+                                new ButtonBuilder()
+                                    .setCustomId("ticket-add-component-ticket-rate:" + uuid)
+                                    .setEmoji("<:limit:1412020233023131760>")
+                                    .setStyle(ButtonStyle.Secondary)
+                                    .setLabel("Rate Limit")
                             )
                         )
                         .addActionRowComponents(
