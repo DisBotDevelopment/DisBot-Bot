@@ -26,7 +26,8 @@ export const disbotstatsRoute = async (
             guild.name.toLowerCase().includes("Porn") === false ||
             guild.name.toLowerCase().includes("Pornhub") === false)
         .sort((a: any, b: any) => b.memberCount - a.memberCount)
-        .slice(0, 10);
+        // Set the count of guilds
+        .slice(0, 16);
 
     const guildCounts = await client.guilds.fetch()
 
