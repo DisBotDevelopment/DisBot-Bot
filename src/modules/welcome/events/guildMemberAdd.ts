@@ -24,7 +24,7 @@ export default {
         const toggleData = await database.guildFeatureToggles.findFirst({
             where: {GuildId: guild.id}
         });
-        if (!toggleData?.LeaveEnabled) return;
+        if (!toggleData?.WecomeEnabled) return;
 
         const data = await database.guildLeaveSetup.findFirst({
             where: {GuildId: guild.id}
