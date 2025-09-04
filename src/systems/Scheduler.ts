@@ -13,8 +13,50 @@ import {ExtendedClient} from "../types/client.js";
 import {database} from "../main/database.js";
 import {handleCloseAction} from "../helper/ticketHelper.js";
 import {Config} from "../main/config.js";
+import {convertToEmojiPng} from "../helper/emojis.js";
 
 export class Scheduler {
+
+    public static async schedulePolls(client: ExtendedClient) {
+
+        const polls = await database.polls.findMany()
+
+        for (const data of polls) {
+            try {
+                const guild = await client?.guilds?.fetch(data.GuildId) ?? null
+                if (!guild) {
+                    continue
+                }
+                const channel = await guild?.channels?.fetch(data.ChannelId) ?? null
+                if (!channel) {
+                    continue
+                }
+                const message = await (channel as TextChannel)?.messages?.fetch(data.MessageId) ?? null
+                if (!message) {
+                    continue
+                }
+
+                const timestamp = Math.floor((data.CreatedAt.getTime() + (data.Time ?? 0)) / 1000);
+                if (timestamp <= Math.floor(Date.now() / 1000)) {
+                    await message.edit({
+                        components: [
+                            new ActionRowBuilder<ButtonBuilder>().addComponents(
+                                new ButtonBuilder()
+                                    .setEmoji("<:vote:1412727028540506194>")
+                                    .setLabel("Poll Closed")
+                                    .setStyle(ButtonStyle.Link)
+                                    .setURL(message.url)
+                                    .setDisabled(true)
+                            )
+                        ]
+                    })
+
+                }
+            } catch (error) {
+                
+            }
+        }
+    }
 
     public static async checkVoteRoles(client: ExtendedClient) {
         const voteGuild = await client.guilds.fetch(Config.Other.Vote.VoteGuildId)

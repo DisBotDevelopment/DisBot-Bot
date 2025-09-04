@@ -415,6 +415,38 @@ exports.Prisma.TagsScalarFieldEnum = {
   GuildId: 'GuildId'
 };
 
+exports.Prisma.PollsScalarFieldEnum = {
+  id: 'id',
+  UUID: 'UUID',
+  MessageId: 'MessageId',
+  ChannelId: 'ChannelId',
+  MessageTemplateId: 'MessageTemplateId',
+  MultiAnswers: 'MultiAnswers',
+  Time: 'Time',
+  Entrys: 'Entrys',
+  Type: 'Type',
+  Requirements: 'Requirements',
+  CreatedAt: 'CreatedAt',
+  GuildId: 'GuildId'
+};
+
+exports.Prisma.PollOptionsScalarFieldEnum = {
+  id: 'id',
+  UUID: 'UUID',
+  Label: 'Label',
+  Description: 'Description',
+  Emoji: 'Emoji',
+  UserIds: 'UserIds',
+  PollId: 'PollId'
+};
+
+exports.Prisma.PollAnswersScalarFieldEnum = {
+  id: 'id',
+  UUID: 'UUID',
+  PollOptionId: 'PollOptionId',
+  PollId: 'PollId'
+};
+
 exports.Prisma.TicketSetupsScalarFieldEnum = {
   id: 'id',
   CategoryId: 'CategoryId',
@@ -689,6 +721,9 @@ exports.Prisma.ModelName = {
   VerificationGatesPermission: 'VerificationGatesPermission',
   GuildSpotifyNotifications: 'GuildSpotifyNotifications',
   Tags: 'Tags',
+  Polls: 'Polls',
+  PollOptions: 'PollOptions',
+  PollAnswers: 'PollAnswers',
   TicketSetups: 'TicketSetups',
   TicketModalData: 'TicketModalData',
   TicketPermissions: 'TicketPermissions',

@@ -2,18 +2,18 @@ import {ApplicationIntegrationType, InteractionContextType, PermissionFlagsBits,
 
 export default {
     help: {
-        name: 'Server Commands',
-        description: 'A smaple command to run easily command releated to your discord server (Discord Addon)',
-        usage: '/server',
+        name: 'Utility Commands',
+        description: 'A small command to quickly adjust settings or create server-specific actions.',
+        usage: '/utility',
         examples: [],
         aliases: [],
         docsLink: 'https://docs.disbot.app/docs/commands/server'
     },
     data: new SlashCommandBuilder()
-        .setName("server")
-        .setDescription("Setup simple discord settings with command and get extra features to manage your server")
+        .setName("utility")
+        .setDescription("A small command to quickly adjust settings...")
         .setDescriptionLocalizations({
-            de: "Verwalte deinen Discord-Server einfach mit Befehlen und erhalte zusätzliche Funktionen"
+            de: "Kurzbefehl zum schnellen Anpassen von Einstellungen..."
         })
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
         .setContexts([InteractionContextType.Guild])
@@ -159,10 +159,5 @@ export default {
                         .setDescription("The channel to enable no embed links")
                         .setRequired(true)
                 )
-        )
-
-        .addSubcommand((subCommand) =>
-            subCommand.setName("channel-link")
-                .setDescription("Sync message from channels from an other server to your and back.")
         )
 };

@@ -48,6 +48,7 @@ const client = new Client({
         GatewayIntentBits.GuildScheduledEvents,
         GatewayIntentBits.AutoModerationConfiguration,
         GatewayIntentBits.GuildModeration,
+        GatewayIntentBits.GuildMessagePolls
     ],
     partials: [
         Partials.User,

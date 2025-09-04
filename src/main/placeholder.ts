@@ -11,7 +11,8 @@ export const IMAGE_PLACEHOLDER = {
     "{member.avatar}": "https://i.imgur.com/kjEQRRI.png",
     "{spotify.episode.image}": "https://cdn.xyzhub.link/u/nM7pNI.png",
     "{spotify.author.image}": "https://cdn.xyzhub.link/u/HsqWSk.png",
-    "{inviter.avatar}": "https://i.imgur.com/kjEQRRI.png"
+    "{inviter.avatar}": "https://i.imgur.com/kjEQRRI.png",
+    "{polls.image}": "https://i.imgur.com/FHBicGA.png",
 };
 
 export const TIMESTAMP_PLACEHOLDER = {

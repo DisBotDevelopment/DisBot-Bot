@@ -31,6 +31,7 @@ model Guilds {
   Security                    GuildSecurity?
   SpotifyNotifications        GuildSpotifyNotifications[]
   Tags                        Tags[]
+  Polls                       Polls[]
   TicketSetups                TicketSetups[]
   GuildFeatureToggle          GuildFeatureToggles?
   TwitchNotifications         GuildTwitchNotifications[]
@@ -202,12 +203,12 @@ model Giveaways {
   EndedMessage          String?
   Rerolled              Boolean
   WinnerIds             String[]
-  WinnerMessageTemplate String?
+  WinnerMessageTemplate String? // SOON In use
   HostedBy              String
   MessageTemplate       String?
   Content               String?
   Entrys                String[]
-  Requirements          String[]
+  Requirements          String[] // Currently only Roles (One role) - More will frollow
   GuildId               String
   Guilds                Guilds    @relation(fields: [GuildId], references: [GuildId])
 }
@@ -402,6 +403,45 @@ model Tags {
   FilterTextFromMessages String[]
   GuildId                String
   Guilds                 Guilds   @relation(fields: [GuildId], references: [GuildId])
+}
+
+model Polls {
+  id                String        @id @default(auto()) @map("_id") @db.ObjectId
+  UUID              String        @unique
+  MessageId         String?
+  ChannelId         String?
+  MessageTemplateId String
+  MultiAnswers      Int
+  Time              Int?
+  Entrys            String[]
+  Type              Int // SELECTMENU, BUTTON - max 25 Options
+  Requirements      String[] // Currently only Roles (One role) - More will frollow
+  PollOptions       PollOptions[]
+  PollAnswers       PollAnswers[]
+  CreatedAt         DateTime
+  GuildId           String
+  Guilds            Guilds        @relation(fields: [GuildId], references: [GuildId])
+}
+
+model PollOptions {
+  id          String        @id @default(auto()) @map("_id") @db.ObjectId
+  UUID        String        @unique
+  Label       String
+  Description String
+  Emoji       String?
+  UserIds     String[] // Selected this Option
+  PollId      String
+  Polls       Polls         @relation(fields: [PollId], references: [UUID])
+  PollAnswers PollAnswers[]
+}
+
+model PollAnswers {
+  id           String      @id @default(auto()) @map("_id") @db.ObjectId
+  UUID         String      @unique
+  PollOptionId String
+  PollOptions  PollOptions @relation(fields: [PollOptionId], references: [UUID])
+  PollId       String
+  Polls        Polls       @relation(fields: [PollId], references: [UUID])
 }
 
 model TicketSetups {

@@ -40,11 +40,12 @@ export async function clientReady(client: ExtendedClient) {
             Scheduler.checkVoteRoles(client);
         }, 86400000); // 24 hours
 
-        // Notfiy
+        // Notfiy && Polls
         setInterval(async () => {
             checkYoutube(client);
             checkTwitch(client);
             spotify(client);
+            Scheduler.schedulePolls(client);
         }, 30000);
 
         // API

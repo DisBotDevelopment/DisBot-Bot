@@ -1,15 +1,13 @@
 import {
-    ActionRowBuilder, ChannelSelectMenuBuilder,
-    ChannelType, ChatInputCommandInteraction,
-    ContainerBuilder, MessageFlags, PermissionFlagsBits, RoleResolvable, TextChannel, TextDisplayBuilder
+    ActionRowBuilder,
+    ApplicationIntegrationType, ChannelSelectMenuBuilder, ChannelType,
+    ChatInputCommandInteraction,
+    ContainerBuilder, InteractionContextType, MessageFlags, PermissionFlagsBits, SlashCommandBuilder, TextDisplayBuilder
 } from "discord.js";
-import {ExtendedClient} from "../../../../types/client.js";
-import {convertToEmojiPng} from "../../../../helper/emojis.js";
-import {PermissionType} from "../../../../enums/permissionType.js";
-import {Channel} from "diagnostics_channel";
+import {ExtendedClient} from "../../../types/client.js";
+import {convertToEmojiPng} from "../../../helper/emojis.js";
 
 export default {
-    subCommand: "server.channel-link",
     options: {
         once: false,
         cooldown: 3000,
@@ -18,18 +16,27 @@ export default {
         userHasOnePermission: true,
         isGuildOwner: false,
     },
-    /**
-     *
-     * @param {ChatInputCommandInteraction} interaction
-     * @param {ExtendedClient} client
-     */
-
+    help: {
+        name: 'Channel Link Commands',
+        description: 'Channel Link to link channel over servers',
+        usage: '/channel-link',
+        examples: [],
+        aliases: [],
+        docsLink: 'https://docs.disbot.app/docs/commands/channel-link'
+    },
+    data: new SlashCommandBuilder()
+        .setName("channel-link")
+        .setDescription("Channel Link to link channel over servers'")
+        .setDescriptionLocalizations({
+            de: "Kanalverbindung zum Verbinden von Kanälen über Server"
+        })
+        .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
+        .setContexts([InteractionContextType.Guild])
+        .setIntegrationTypes(ApplicationIntegrationType.GuildInstall),
     async execute(
         interaction: ChatInputCommandInteraction,
         client: ExtendedClient
     ) {
-
-
         await interaction.reply({
             flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
             components: [
