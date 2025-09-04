@@ -14,6 +14,7 @@ import {database} from "../../../main/database.js";
 import {getInteractionData} from "../../../helper/utilityHelper.js";
 import {convertToEmojiPng} from "../../../helper/emojis.js";
 import ms from "ms";
+import {NUM} from "undici/lib/llhttp/constants.js";
 
 export default {
     id: "polls-disbot-time-modal",
@@ -38,20 +39,32 @@ export default {
                 content: `## ${await convertToEmojiPng("error", client.user.id)} No Poll Data found!`
             })
         }
+        try {
+            const timeInput = interaction.fields.getTextInputValue("time");
+            const timeMs = ms(timeInput as ms.StringValue);
 
-
-        await database.polls.update({
-            where: {
-                UUID: uuid
-            },
-            data: {
-                Time: ms(interaction.fields.getTextInputValue("time") as ms.StringValue)
+            if (!timeMs) {
+                return await interaction.reply({
+                    flags: MessageFlags.Ephemeral,
+                    content: `## ${await convertToEmojiPng("error", client.user.id)} Please use the Time Format 1m, 10m, 20m, etc.`
+                });
             }
-        })
 
-        await interaction.reply({
-            flags: MessageFlags.Ephemeral,
-            content: `## ${await convertToEmojiPng("check", client.user.id)} Updated your Time to ${(interaction.fields.getTextInputValue("time") as ms.StringValue)}`
-        })
+            await database.polls.update({
+                where: {UUID: uuid},
+                data: {Time: timeMs}
+            });
+
+            await interaction.reply({
+                flags: MessageFlags.Ephemeral,
+                content: `## ${await convertToEmojiPng("check", client.user.id)} Updated your Time to ${timeInput}`
+            });
+
+        } catch (e) {
+            await interaction.reply({
+                flags: MessageFlags.Ephemeral,
+                content: `## ${await convertToEmojiPng("error", client.user.id)} Something went wrong.`
+            });
+        }
     }
 };

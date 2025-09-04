@@ -144,7 +144,7 @@ export default {
                         .setPlaceholder("Select a Poll Option")
                         .addOptions(options)
                         .setMinValues(1)
-                        .setMaxValues(data.MultiAnswers >= 26 ? 25 : data.MultiAnswers)
+                        .setMaxValues(data.MultiAnswers >= 26 ? 25 : data.MultiAnswers + (data.MultiAnswers == 0 ? 1 : 0))
                 )
             );
         }

@@ -80,26 +80,13 @@ export default {
                                     ``,
                                     `- Manage your Poll Options (Create, Remove, Show)`,
                                     `- You can have only 25 Options for one Poll`,
+                                    `- Start with Options, Answers and then Time!`,
                                     `### Data`,
                                     ``,
                                     `- **Type**: ${data.Type == 1 ? "Button" : "Selectmenu"}`,
                                     `- **Message Template**: ${data.MessageTemplateId}`
                                 ].join("\n")
                             )
-                    )
-                    .addActionRowComponents(
-                        new ActionRowBuilder<ButtonBuilder>().addComponents(
-                            new ButtonBuilder()
-                                .setStyle(ButtonStyle.Secondary)
-                                .setEmoji("<:brackets:1362058401240060095>")
-                                .setLabel("Multi Answers")
-                                .setCustomId("polls-disbot-multi-answers:" + uuid),
-                            new ButtonBuilder()
-                                .setStyle(ButtonStyle.Secondary)
-                                .setEmoji("<:timer:1321939051921801308>")
-                                .setLabel("Time")
-                                .setCustomId("polls-disbot-time:" + uuid),
-                        )
                     )
                     .addActionRowComponents(
                         new ActionRowBuilder<ButtonBuilder>().addComponents(
@@ -113,6 +100,20 @@ export default {
                                 .setEmoji("<:preview:1288230393757171825>")
                                 .setLabel("Show Option")
                                 .setCustomId("polls-disbot-options-show:" + uuid)
+                        )
+                    )
+                    .addActionRowComponents(
+                        new ActionRowBuilder<ButtonBuilder>().addComponents(
+                            new ButtonBuilder()
+                                .setStyle(ButtonStyle.Secondary)
+                                .setEmoji("<:brackets:1362058401240060095>")
+                                .setLabel("Multi Answers")
+                                .setCustomId("polls-disbot-multi-answers:" + uuid),
+                            new ButtonBuilder()
+                                .setStyle(ButtonStyle.Secondary)
+                                .setEmoji("<:timer:1321939051921801308>")
+                                .setLabel("Time")
+                                .setCustomId("polls-disbot-time:" + uuid),
                         )
                     )
                     .addActionRowComponents(

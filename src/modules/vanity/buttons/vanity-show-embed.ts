@@ -34,7 +34,7 @@ export default {
                             `${await convertToEmojiPng("color", client.user.id)} **Color**: ${data.Color ?? "N/A"}`,
                             `${await convertToEmojiPng("image", client.user.id)} **Image**: ${data.ImageUrl ?? "N/A"}`,
                             `${await convertToEmojiPng("image", client.user.id)} **Thumbnail**: ${data.ThumbnailUrl ?? "N/A"}`,
-                            `${await convertToEmojiPng("signature", client.user.id)} **Author**: ${data.Author ?? "N/A"}`,
+                            `${await convertToEmojiPng("signature", client.user.id)} **Author**:`,
                             `- ${await convertToEmojiPng("renamesolid24", client.user.id)} **Name**: ${data.Author?.Name ?? "N/A"}`,
                             `- ${await convertToEmojiPng("link", client.user.id)} **Url**: ${data.Author?.URL ?? "N/A"}`,
                             `- ${await convertToEmojiPng("image", client.user.id)} **Icon**: ${data.Author?.IconURL ?? "N/A"}`,
