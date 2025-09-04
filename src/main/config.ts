@@ -45,6 +45,10 @@ export async function configStartup() {
                 },
             },
             Other: {
+                CDN: {
+                    APIToken: "",
+                    Url: ""
+                },
                 Vote: {
                     DcBotListToken: "",
                     DcBotListSecret: "",

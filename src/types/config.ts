@@ -29,6 +29,10 @@ export type DisBotConfigData = {
         };
     };
     Other: {
+        CDN: {
+            Url: string;
+            APIToken: string;
+        }
         Vote: {
             DcBotListToken: string;
             DcBotListSecret: string;
