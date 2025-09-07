@@ -5,7 +5,7 @@ import {PermissionType} from "../../../../enums/permissionType.js";
 import {database} from "../../../../main/database.js";
 
 export default {
-    subCommand: "server.only-media",
+    subCommand: "utility.only-media",
     options: {
         once: false,
         cooldown: 3000,

@@ -10,6 +10,11 @@ export type DisBotConfigData = {
         ShardList: string;
     };
     Modules: {
+        Moderation: {
+            Scout: {
+                BanListAdminGuildId: string;
+            }
+        },
         Vanity: {
             VanityPort: number;
             MainPageRedirect: string | "https://disbot.app/discovery";

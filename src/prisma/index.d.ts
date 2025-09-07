@@ -174,6 +174,36 @@ export type GuildSpotifyNotifications = $Result.DefaultSelection<Prisma.$GuildSp
  */
 export type Tags = $Result.DefaultSelection<Prisma.$TagsPayload>
 /**
+ * Model ModerationScout
+ * 
+ */
+export type ModerationScout = $Result.DefaultSelection<Prisma.$ModerationScoutPayload>
+/**
+ * Model ModerationScoutForms
+ * 
+ */
+export type ModerationScoutForms = $Result.DefaultSelection<Prisma.$ModerationScoutFormsPayload>
+/**
+ * Model ModerationScoutFormsData
+ * 
+ */
+export type ModerationScoutFormsData = $Result.DefaultSelection<Prisma.$ModerationScoutFormsDataPayload>
+/**
+ * Model ModerationScoutUserAppeals
+ * 
+ */
+export type ModerationScoutUserAppeals = $Result.DefaultSelection<Prisma.$ModerationScoutUserAppealsPayload>
+/**
+ * Model ModerationScoutReportModalData
+ * 
+ */
+export type ModerationScoutReportModalData = $Result.DefaultSelection<Prisma.$ModerationScoutReportModalDataPayload>
+/**
+ * Model ModerationScoutReports
+ * 
+ */
+export type ModerationScoutReports = $Result.DefaultSelection<Prisma.$ModerationScoutReportsPayload>
+/**
  * Model Polls
  * 
  */
@@ -638,6 +668,66 @@ export class PrismaClient<
     * ```
     */
   get tags(): Prisma.TagsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.moderationScout`: Exposes CRUD operations for the **ModerationScout** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ModerationScouts
+    * const moderationScouts = await prisma.moderationScout.findMany()
+    * ```
+    */
+  get moderationScout(): Prisma.ModerationScoutDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.moderationScoutForms`: Exposes CRUD operations for the **ModerationScoutForms** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ModerationScoutForms
+    * const moderationScoutForms = await prisma.moderationScoutForms.findMany()
+    * ```
+    */
+  get moderationScoutForms(): Prisma.ModerationScoutFormsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.moderationScoutFormsData`: Exposes CRUD operations for the **ModerationScoutFormsData** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ModerationScoutFormsData
+    * const moderationScoutFormsData = await prisma.moderationScoutFormsData.findMany()
+    * ```
+    */
+  get moderationScoutFormsData(): Prisma.ModerationScoutFormsDataDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.moderationScoutUserAppeals`: Exposes CRUD operations for the **ModerationScoutUserAppeals** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ModerationScoutUserAppeals
+    * const moderationScoutUserAppeals = await prisma.moderationScoutUserAppeals.findMany()
+    * ```
+    */
+  get moderationScoutUserAppeals(): Prisma.ModerationScoutUserAppealsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.moderationScoutReportModalData`: Exposes CRUD operations for the **ModerationScoutReportModalData** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ModerationScoutReportModalData
+    * const moderationScoutReportModalData = await prisma.moderationScoutReportModalData.findMany()
+    * ```
+    */
+  get moderationScoutReportModalData(): Prisma.ModerationScoutReportModalDataDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.moderationScoutReports`: Exposes CRUD operations for the **ModerationScoutReports** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ModerationScoutReports
+    * const moderationScoutReports = await prisma.moderationScoutReports.findMany()
+    * ```
+    */
+  get moderationScoutReports(): Prisma.ModerationScoutReportsDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.polls`: Exposes CRUD operations for the **Polls** model.
@@ -1306,6 +1396,12 @@ export namespace Prisma {
     VerificationGatesPermission: 'VerificationGatesPermission',
     GuildSpotifyNotifications: 'GuildSpotifyNotifications',
     Tags: 'Tags',
+    ModerationScout: 'ModerationScout',
+    ModerationScoutForms: 'ModerationScoutForms',
+    ModerationScoutFormsData: 'ModerationScoutFormsData',
+    ModerationScoutUserAppeals: 'ModerationScoutUserAppeals',
+    ModerationScoutReportModalData: 'ModerationScoutReportModalData',
+    ModerationScoutReports: 'ModerationScoutReports',
     Polls: 'Polls',
     PollOptions: 'PollOptions',
     PollAnswers: 'PollAnswers',
@@ -1344,7 +1440,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "guilds" | "guildCommandManger" | "buildInCommands" | "guildComponentManager" | "guildInteractionPermissions" | "guildAutoDeletes" | "guildAutoPublish" | "guildAutoReacts" | "guildAutoRoles" | "guildBans" | "guildChatModeration" | "guildChannelLinks" | "syncedChannelLinkMessages" | "discordGuildAddon" | "giveaways" | "tempVoices" | "tempVoiceChannels" | "guildLeaveSetup" | "guildWelcomeSetup" | "guildLogging" | "guildLogs" | "messageTemplates" | "guildReactionRoles" | "guildSecurity" | "verificationGates" | "verificationGatesPermission" | "guildSpotifyNotifications" | "tags" | "polls" | "pollOptions" | "pollAnswers" | "ticketSetups" | "ticketModalData" | "ticketPermissions" | "tickets" | "ticketFeedback" | "guildFeatureToggles" | "guildTwitchNotifications" | "guildYoutubeNotifications" | "users" | "apis" | "guildBackups" | "vanitys" | "vanityEmbed" | "vanityEmbedAuthor" | "vanityAnalytic" | "vanityAnalyticsLatest30Day" | "disBot"
+      modelProps: "guilds" | "guildCommandManger" | "buildInCommands" | "guildComponentManager" | "guildInteractionPermissions" | "guildAutoDeletes" | "guildAutoPublish" | "guildAutoReacts" | "guildAutoRoles" | "guildBans" | "guildChatModeration" | "guildChannelLinks" | "syncedChannelLinkMessages" | "discordGuildAddon" | "giveaways" | "tempVoices" | "tempVoiceChannels" | "guildLeaveSetup" | "guildWelcomeSetup" | "guildLogging" | "guildLogs" | "messageTemplates" | "guildReactionRoles" | "guildSecurity" | "verificationGates" | "verificationGatesPermission" | "guildSpotifyNotifications" | "tags" | "moderationScout" | "moderationScoutForms" | "moderationScoutFormsData" | "moderationScoutUserAppeals" | "moderationScoutReportModalData" | "moderationScoutReports" | "polls" | "pollOptions" | "pollAnswers" | "ticketSetups" | "ticketModalData" | "ticketPermissions" | "tickets" | "ticketFeedback" | "guildFeatureToggles" | "guildTwitchNotifications" | "guildYoutubeNotifications" | "users" | "apis" | "guildBackups" | "vanitys" | "vanityEmbed" | "vanityEmbedAuthor" | "vanityAnalytic" | "vanityAnalyticsLatest30Day" | "disBot"
       txIsolationLevel: never
     }
     model: {
@@ -3420,6 +3516,450 @@ export namespace Prisma {
           }
         }
       }
+      ModerationScout: {
+        payload: Prisma.$ModerationScoutPayload<ExtArgs>
+        fields: Prisma.ModerationScoutFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ModerationScoutFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ModerationScoutFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutPayload>
+          }
+          findFirst: {
+            args: Prisma.ModerationScoutFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ModerationScoutFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutPayload>
+          }
+          findMany: {
+            args: Prisma.ModerationScoutFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutPayload>[]
+          }
+          create: {
+            args: Prisma.ModerationScoutCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutPayload>
+          }
+          createMany: {
+            args: Prisma.ModerationScoutCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ModerationScoutDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutPayload>
+          }
+          update: {
+            args: Prisma.ModerationScoutUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutPayload>
+          }
+          deleteMany: {
+            args: Prisma.ModerationScoutDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ModerationScoutUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ModerationScoutUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutPayload>
+          }
+          aggregate: {
+            args: Prisma.ModerationScoutAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateModerationScout>
+          }
+          groupBy: {
+            args: Prisma.ModerationScoutGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ModerationScoutGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.ModerationScoutFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.ModerationScoutAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.ModerationScoutCountArgs<ExtArgs>
+            result: $Utils.Optional<ModerationScoutCountAggregateOutputType> | number
+          }
+        }
+      }
+      ModerationScoutForms: {
+        payload: Prisma.$ModerationScoutFormsPayload<ExtArgs>
+        fields: Prisma.ModerationScoutFormsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ModerationScoutFormsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutFormsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ModerationScoutFormsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutFormsPayload>
+          }
+          findFirst: {
+            args: Prisma.ModerationScoutFormsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutFormsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ModerationScoutFormsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutFormsPayload>
+          }
+          findMany: {
+            args: Prisma.ModerationScoutFormsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutFormsPayload>[]
+          }
+          create: {
+            args: Prisma.ModerationScoutFormsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutFormsPayload>
+          }
+          createMany: {
+            args: Prisma.ModerationScoutFormsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ModerationScoutFormsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutFormsPayload>
+          }
+          update: {
+            args: Prisma.ModerationScoutFormsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutFormsPayload>
+          }
+          deleteMany: {
+            args: Prisma.ModerationScoutFormsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ModerationScoutFormsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ModerationScoutFormsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutFormsPayload>
+          }
+          aggregate: {
+            args: Prisma.ModerationScoutFormsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateModerationScoutForms>
+          }
+          groupBy: {
+            args: Prisma.ModerationScoutFormsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ModerationScoutFormsGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.ModerationScoutFormsFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.ModerationScoutFormsAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.ModerationScoutFormsCountArgs<ExtArgs>
+            result: $Utils.Optional<ModerationScoutFormsCountAggregateOutputType> | number
+          }
+        }
+      }
+      ModerationScoutFormsData: {
+        payload: Prisma.$ModerationScoutFormsDataPayload<ExtArgs>
+        fields: Prisma.ModerationScoutFormsDataFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ModerationScoutFormsDataFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutFormsDataPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ModerationScoutFormsDataFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutFormsDataPayload>
+          }
+          findFirst: {
+            args: Prisma.ModerationScoutFormsDataFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutFormsDataPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ModerationScoutFormsDataFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutFormsDataPayload>
+          }
+          findMany: {
+            args: Prisma.ModerationScoutFormsDataFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutFormsDataPayload>[]
+          }
+          create: {
+            args: Prisma.ModerationScoutFormsDataCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutFormsDataPayload>
+          }
+          createMany: {
+            args: Prisma.ModerationScoutFormsDataCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ModerationScoutFormsDataDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutFormsDataPayload>
+          }
+          update: {
+            args: Prisma.ModerationScoutFormsDataUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutFormsDataPayload>
+          }
+          deleteMany: {
+            args: Prisma.ModerationScoutFormsDataDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ModerationScoutFormsDataUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ModerationScoutFormsDataUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutFormsDataPayload>
+          }
+          aggregate: {
+            args: Prisma.ModerationScoutFormsDataAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateModerationScoutFormsData>
+          }
+          groupBy: {
+            args: Prisma.ModerationScoutFormsDataGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ModerationScoutFormsDataGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.ModerationScoutFormsDataFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.ModerationScoutFormsDataAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.ModerationScoutFormsDataCountArgs<ExtArgs>
+            result: $Utils.Optional<ModerationScoutFormsDataCountAggregateOutputType> | number
+          }
+        }
+      }
+      ModerationScoutUserAppeals: {
+        payload: Prisma.$ModerationScoutUserAppealsPayload<ExtArgs>
+        fields: Prisma.ModerationScoutUserAppealsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ModerationScoutUserAppealsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutUserAppealsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ModerationScoutUserAppealsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutUserAppealsPayload>
+          }
+          findFirst: {
+            args: Prisma.ModerationScoutUserAppealsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutUserAppealsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ModerationScoutUserAppealsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutUserAppealsPayload>
+          }
+          findMany: {
+            args: Prisma.ModerationScoutUserAppealsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutUserAppealsPayload>[]
+          }
+          create: {
+            args: Prisma.ModerationScoutUserAppealsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutUserAppealsPayload>
+          }
+          createMany: {
+            args: Prisma.ModerationScoutUserAppealsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ModerationScoutUserAppealsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutUserAppealsPayload>
+          }
+          update: {
+            args: Prisma.ModerationScoutUserAppealsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutUserAppealsPayload>
+          }
+          deleteMany: {
+            args: Prisma.ModerationScoutUserAppealsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ModerationScoutUserAppealsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ModerationScoutUserAppealsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutUserAppealsPayload>
+          }
+          aggregate: {
+            args: Prisma.ModerationScoutUserAppealsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateModerationScoutUserAppeals>
+          }
+          groupBy: {
+            args: Prisma.ModerationScoutUserAppealsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ModerationScoutUserAppealsGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.ModerationScoutUserAppealsFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.ModerationScoutUserAppealsAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.ModerationScoutUserAppealsCountArgs<ExtArgs>
+            result: $Utils.Optional<ModerationScoutUserAppealsCountAggregateOutputType> | number
+          }
+        }
+      }
+      ModerationScoutReportModalData: {
+        payload: Prisma.$ModerationScoutReportModalDataPayload<ExtArgs>
+        fields: Prisma.ModerationScoutReportModalDataFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ModerationScoutReportModalDataFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutReportModalDataPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ModerationScoutReportModalDataFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutReportModalDataPayload>
+          }
+          findFirst: {
+            args: Prisma.ModerationScoutReportModalDataFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutReportModalDataPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ModerationScoutReportModalDataFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutReportModalDataPayload>
+          }
+          findMany: {
+            args: Prisma.ModerationScoutReportModalDataFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutReportModalDataPayload>[]
+          }
+          create: {
+            args: Prisma.ModerationScoutReportModalDataCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutReportModalDataPayload>
+          }
+          createMany: {
+            args: Prisma.ModerationScoutReportModalDataCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ModerationScoutReportModalDataDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutReportModalDataPayload>
+          }
+          update: {
+            args: Prisma.ModerationScoutReportModalDataUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutReportModalDataPayload>
+          }
+          deleteMany: {
+            args: Prisma.ModerationScoutReportModalDataDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ModerationScoutReportModalDataUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ModerationScoutReportModalDataUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutReportModalDataPayload>
+          }
+          aggregate: {
+            args: Prisma.ModerationScoutReportModalDataAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateModerationScoutReportModalData>
+          }
+          groupBy: {
+            args: Prisma.ModerationScoutReportModalDataGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ModerationScoutReportModalDataGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.ModerationScoutReportModalDataFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.ModerationScoutReportModalDataAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.ModerationScoutReportModalDataCountArgs<ExtArgs>
+            result: $Utils.Optional<ModerationScoutReportModalDataCountAggregateOutputType> | number
+          }
+        }
+      }
+      ModerationScoutReports: {
+        payload: Prisma.$ModerationScoutReportsPayload<ExtArgs>
+        fields: Prisma.ModerationScoutReportsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ModerationScoutReportsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutReportsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ModerationScoutReportsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutReportsPayload>
+          }
+          findFirst: {
+            args: Prisma.ModerationScoutReportsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutReportsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ModerationScoutReportsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutReportsPayload>
+          }
+          findMany: {
+            args: Prisma.ModerationScoutReportsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutReportsPayload>[]
+          }
+          create: {
+            args: Prisma.ModerationScoutReportsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutReportsPayload>
+          }
+          createMany: {
+            args: Prisma.ModerationScoutReportsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ModerationScoutReportsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutReportsPayload>
+          }
+          update: {
+            args: Prisma.ModerationScoutReportsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutReportsPayload>
+          }
+          deleteMany: {
+            args: Prisma.ModerationScoutReportsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ModerationScoutReportsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ModerationScoutReportsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ModerationScoutReportsPayload>
+          }
+          aggregate: {
+            args: Prisma.ModerationScoutReportsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateModerationScoutReports>
+          }
+          groupBy: {
+            args: Prisma.ModerationScoutReportsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ModerationScoutReportsGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.ModerationScoutReportsFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.ModerationScoutReportsAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.ModerationScoutReportsCountArgs<ExtArgs>
+            result: $Utils.Optional<ModerationScoutReportsCountAggregateOutputType> | number
+          }
+        }
+      }
       Polls: {
         payload: Prisma.$PollsPayload<ExtArgs>
         fields: Prisma.PollsFieldRefs
@@ -5007,6 +5547,12 @@ export namespace Prisma {
     verificationGatesPermission?: VerificationGatesPermissionOmit
     guildSpotifyNotifications?: GuildSpotifyNotificationsOmit
     tags?: TagsOmit
+    moderationScout?: ModerationScoutOmit
+    moderationScoutForms?: ModerationScoutFormsOmit
+    moderationScoutFormsData?: ModerationScoutFormsDataOmit
+    moderationScoutUserAppeals?: ModerationScoutUserAppealsOmit
+    moderationScoutReportModalData?: ModerationScoutReportModalDataOmit
+    moderationScoutReports?: ModerationScoutReportsOmit
     polls?: PollsOmit
     pollOptions?: PollOptionsOmit
     pollAnswers?: PollAnswersOmit
@@ -5429,6 +5975,104 @@ export namespace Prisma {
    */
   export type VerificationGatesCountOutputTypeCountChannelPermissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: VerificationGatesPermissionWhereInput
+  }
+
+
+  /**
+   * Count Type ModerationScoutCountOutputType
+   */
+
+  export type ModerationScoutCountOutputType = {
+    UserAppeals: number
+    ModerationScoutForms: number
+    ModerationScoutReports: number
+    ModerationScoutReportModalData: number
+  }
+
+  export type ModerationScoutCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    UserAppeals?: boolean | ModerationScoutCountOutputTypeCountUserAppealsArgs
+    ModerationScoutForms?: boolean | ModerationScoutCountOutputTypeCountModerationScoutFormsArgs
+    ModerationScoutReports?: boolean | ModerationScoutCountOutputTypeCountModerationScoutReportsArgs
+    ModerationScoutReportModalData?: boolean | ModerationScoutCountOutputTypeCountModerationScoutReportModalDataArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ModerationScoutCountOutputType without action
+   */
+  export type ModerationScoutCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutCountOutputType
+     */
+    select?: ModerationScoutCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ModerationScoutCountOutputType without action
+   */
+  export type ModerationScoutCountOutputTypeCountUserAppealsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ModerationScoutUserAppealsWhereInput
+  }
+
+  /**
+   * ModerationScoutCountOutputType without action
+   */
+  export type ModerationScoutCountOutputTypeCountModerationScoutFormsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ModerationScoutFormsWhereInput
+  }
+
+  /**
+   * ModerationScoutCountOutputType without action
+   */
+  export type ModerationScoutCountOutputTypeCountModerationScoutReportsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ModerationScoutReportsWhereInput
+  }
+
+  /**
+   * ModerationScoutCountOutputType without action
+   */
+  export type ModerationScoutCountOutputTypeCountModerationScoutReportModalDataArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ModerationScoutReportModalDataWhereInput
+  }
+
+
+  /**
+   * Count Type ModerationScoutFormsCountOutputType
+   */
+
+  export type ModerationScoutFormsCountOutputType = {
+    ModerationScoutFormsData: number
+    ModerationScoutUserAppeals: number
+  }
+
+  export type ModerationScoutFormsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ModerationScoutFormsData?: boolean | ModerationScoutFormsCountOutputTypeCountModerationScoutFormsDataArgs
+    ModerationScoutUserAppeals?: boolean | ModerationScoutFormsCountOutputTypeCountModerationScoutUserAppealsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ModerationScoutFormsCountOutputType without action
+   */
+  export type ModerationScoutFormsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutFormsCountOutputType
+     */
+    select?: ModerationScoutFormsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ModerationScoutFormsCountOutputType without action
+   */
+  export type ModerationScoutFormsCountOutputTypeCountModerationScoutFormsDataArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ModerationScoutFormsDataWhereInput
+  }
+
+  /**
+   * ModerationScoutFormsCountOutputType without action
+   */
+  export type ModerationScoutFormsCountOutputTypeCountModerationScoutUserAppealsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ModerationScoutUserAppealsWhereInput
   }
 
 
@@ -6104,6 +6748,7 @@ export namespace Prisma {
     GuildCommandManger?: boolean | Guilds$GuildCommandMangerArgs<ExtArgs>
     GuildComponentManager?: boolean | Guilds$GuildComponentManagerArgs<ExtArgs>
     GuildChannelLinks?: boolean | Guilds$GuildChannelLinksArgs<ExtArgs>
+    ModerationScout?: boolean | Guilds$ModerationScoutArgs<ExtArgs>
     _count?: boolean | GuildsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["guilds"]>
 
@@ -6145,6 +6790,7 @@ export namespace Prisma {
     GuildCommandManger?: boolean | Guilds$GuildCommandMangerArgs<ExtArgs>
     GuildComponentManager?: boolean | Guilds$GuildComponentManagerArgs<ExtArgs>
     GuildChannelLinks?: boolean | Guilds$GuildChannelLinksArgs<ExtArgs>
+    ModerationScout?: boolean | Guilds$ModerationScoutArgs<ExtArgs>
     _count?: boolean | GuildsCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -6178,6 +6824,7 @@ export namespace Prisma {
       GuildCommandManger: Prisma.$GuildCommandMangerPayload<ExtArgs> | null
       GuildComponentManager: Prisma.$GuildComponentManagerPayload<ExtArgs> | null
       GuildChannelLinks: Prisma.$GuildChannelLinksPayload<ExtArgs>[]
+      ModerationScout: Prisma.$ModerationScoutPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6574,6 +7221,7 @@ export namespace Prisma {
     GuildCommandManger<T extends Guilds$GuildCommandMangerArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$GuildCommandMangerArgs<ExtArgs>>): Prisma__GuildCommandMangerClient<$Result.GetResult<Prisma.$GuildCommandMangerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     GuildComponentManager<T extends Guilds$GuildComponentManagerArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$GuildComponentManagerArgs<ExtArgs>>): Prisma__GuildComponentManagerClient<$Result.GetResult<Prisma.$GuildComponentManagerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     GuildChannelLinks<T extends Guilds$GuildChannelLinksArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$GuildChannelLinksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuildChannelLinksPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ModerationScout<T extends Guilds$ModerationScoutArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$ModerationScoutArgs<ExtArgs>>): Prisma__ModerationScoutClient<$Result.GetResult<Prisma.$ModerationScoutPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7572,6 +8220,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: GuildChannelLinksScalarFieldEnum | GuildChannelLinksScalarFieldEnum[]
+  }
+
+  /**
+   * Guilds.ModerationScout
+   */
+  export type Guilds$ModerationScoutArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScout
+     */
+    select?: ModerationScoutSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScout
+     */
+    omit?: ModerationScoutOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutInclude<ExtArgs> | null
+    where?: ModerationScoutWhereInput
   }
 
   /**
@@ -34042,6 +34709,7 @@ export namespace Prisma {
     id: number
     UUID: number
     TagId: number
+    TriggerKeywords: number
     MessageId: number
     IsShlashCommand: number
     ShlashCommandId: number
@@ -34087,6 +34755,7 @@ export namespace Prisma {
     id?: true
     UUID?: true
     TagId?: true
+    TriggerKeywords?: true
     MessageId?: true
     IsShlashCommand?: true
     ShlashCommandId?: true
@@ -34175,6 +34844,7 @@ export namespace Prisma {
     id: string
     UUID: string
     TagId: string
+    TriggerKeywords: string[]
     MessageId: string
     IsShlashCommand: boolean
     ShlashCommandId: string
@@ -34207,6 +34877,7 @@ export namespace Prisma {
     id?: boolean
     UUID?: boolean
     TagId?: boolean
+    TriggerKeywords?: boolean
     MessageId?: boolean
     IsShlashCommand?: boolean
     ShlashCommandId?: boolean
@@ -34225,6 +34896,7 @@ export namespace Prisma {
     id?: boolean
     UUID?: boolean
     TagId?: boolean
+    TriggerKeywords?: boolean
     MessageId?: boolean
     IsShlashCommand?: boolean
     ShlashCommandId?: boolean
@@ -34236,7 +34908,7 @@ export namespace Prisma {
     GuildId?: boolean
   }
 
-  export type TagsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "UUID" | "TagId" | "MessageId" | "IsShlashCommand" | "ShlashCommandId" | "IsTextInputCommand" | "IsEnabled" | "PermissionRoleId" | "CommandDescription" | "FilterTextFromMessages" | "GuildId", ExtArgs["result"]["tags"]>
+  export type TagsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "UUID" | "TagId" | "TriggerKeywords" | "MessageId" | "IsShlashCommand" | "ShlashCommandId" | "IsTextInputCommand" | "IsEnabled" | "PermissionRoleId" | "CommandDescription" | "FilterTextFromMessages" | "GuildId", ExtArgs["result"]["tags"]>
   export type TagsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
   }
@@ -34250,6 +34922,7 @@ export namespace Prisma {
       id: string
       UUID: string
       TagId: string
+      TriggerKeywords: string[]
       MessageId: string
       IsShlashCommand: boolean
       ShlashCommandId: string
@@ -34655,6 +35328,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Tags", 'String'>
     readonly UUID: FieldRef<"Tags", 'String'>
     readonly TagId: FieldRef<"Tags", 'String'>
+    readonly TriggerKeywords: FieldRef<"Tags", 'String[]'>
     readonly MessageId: FieldRef<"Tags", 'String'>
     readonly IsShlashCommand: FieldRef<"Tags", 'Boolean'>
     readonly ShlashCommandId: FieldRef<"Tags", 'String'>
@@ -35049,6 +35723,6275 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: TagsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ModerationScout
+   */
+
+  export type AggregateModerationScout = {
+    _count: ModerationScoutCountAggregateOutputType | null
+    _min: ModerationScoutMinAggregateOutputType | null
+    _max: ModerationScoutMaxAggregateOutputType | null
+  }
+
+  export type ModerationScoutMinAggregateOutputType = {
+    id: string | null
+    UUID: string | null
+    ReportCommandId: string | null
+    SuccssReportMessageId: string | null
+    PublicBanListUrl: string | null
+    PublicBanListEnabled: boolean | null
+    GuildId: string | null
+  }
+
+  export type ModerationScoutMaxAggregateOutputType = {
+    id: string | null
+    UUID: string | null
+    ReportCommandId: string | null
+    SuccssReportMessageId: string | null
+    PublicBanListUrl: string | null
+    PublicBanListEnabled: boolean | null
+    GuildId: string | null
+  }
+
+  export type ModerationScoutCountAggregateOutputType = {
+    id: number
+    UUID: number
+    ReportCommandId: number
+    SuccssReportMessageId: number
+    PublicBanListUrl: number
+    AdminBanList: number
+    CurrentUserModerations: number
+    PublicBanListEnabled: number
+    ReportActions: number
+    GuildId: number
+    _all: number
+  }
+
+
+  export type ModerationScoutMinAggregateInputType = {
+    id?: true
+    UUID?: true
+    ReportCommandId?: true
+    SuccssReportMessageId?: true
+    PublicBanListUrl?: true
+    PublicBanListEnabled?: true
+    GuildId?: true
+  }
+
+  export type ModerationScoutMaxAggregateInputType = {
+    id?: true
+    UUID?: true
+    ReportCommandId?: true
+    SuccssReportMessageId?: true
+    PublicBanListUrl?: true
+    PublicBanListEnabled?: true
+    GuildId?: true
+  }
+
+  export type ModerationScoutCountAggregateInputType = {
+    id?: true
+    UUID?: true
+    ReportCommandId?: true
+    SuccssReportMessageId?: true
+    PublicBanListUrl?: true
+    AdminBanList?: true
+    CurrentUserModerations?: true
+    PublicBanListEnabled?: true
+    ReportActions?: true
+    GuildId?: true
+    _all?: true
+  }
+
+  export type ModerationScoutAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ModerationScout to aggregate.
+     */
+    where?: ModerationScoutWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModerationScouts to fetch.
+     */
+    orderBy?: ModerationScoutOrderByWithRelationInput | ModerationScoutOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ModerationScoutWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModerationScouts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModerationScouts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ModerationScouts
+    **/
+    _count?: true | ModerationScoutCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ModerationScoutMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ModerationScoutMaxAggregateInputType
+  }
+
+  export type GetModerationScoutAggregateType<T extends ModerationScoutAggregateArgs> = {
+        [P in keyof T & keyof AggregateModerationScout]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateModerationScout[P]>
+      : GetScalarType<T[P], AggregateModerationScout[P]>
+  }
+
+
+
+
+  export type ModerationScoutGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ModerationScoutWhereInput
+    orderBy?: ModerationScoutOrderByWithAggregationInput | ModerationScoutOrderByWithAggregationInput[]
+    by: ModerationScoutScalarFieldEnum[] | ModerationScoutScalarFieldEnum
+    having?: ModerationScoutScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ModerationScoutCountAggregateInputType | true
+    _min?: ModerationScoutMinAggregateInputType
+    _max?: ModerationScoutMaxAggregateInputType
+  }
+
+  export type ModerationScoutGroupByOutputType = {
+    id: string
+    UUID: string
+    ReportCommandId: string
+    SuccssReportMessageId: string
+    PublicBanListUrl: string | null
+    AdminBanList: JsonValue
+    CurrentUserModerations: JsonValue[]
+    PublicBanListEnabled: boolean
+    ReportActions: string[]
+    GuildId: string
+    _count: ModerationScoutCountAggregateOutputType | null
+    _min: ModerationScoutMinAggregateOutputType | null
+    _max: ModerationScoutMaxAggregateOutputType | null
+  }
+
+  type GetModerationScoutGroupByPayload<T extends ModerationScoutGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ModerationScoutGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ModerationScoutGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ModerationScoutGroupByOutputType[P]>
+            : GetScalarType<T[P], ModerationScoutGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ModerationScoutSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    UUID?: boolean
+    ReportCommandId?: boolean
+    SuccssReportMessageId?: boolean
+    PublicBanListUrl?: boolean
+    AdminBanList?: boolean
+    CurrentUserModerations?: boolean
+    PublicBanListEnabled?: boolean
+    ReportActions?: boolean
+    GuildId?: boolean
+    UserAppeals?: boolean | ModerationScout$UserAppealsArgs<ExtArgs>
+    ModerationScoutForms?: boolean | ModerationScout$ModerationScoutFormsArgs<ExtArgs>
+    ModerationScoutReports?: boolean | ModerationScout$ModerationScoutReportsArgs<ExtArgs>
+    ModerationScoutReportModalData?: boolean | ModerationScout$ModerationScoutReportModalDataArgs<ExtArgs>
+    Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
+    _count?: boolean | ModerationScoutCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["moderationScout"]>
+
+
+
+  export type ModerationScoutSelectScalar = {
+    id?: boolean
+    UUID?: boolean
+    ReportCommandId?: boolean
+    SuccssReportMessageId?: boolean
+    PublicBanListUrl?: boolean
+    AdminBanList?: boolean
+    CurrentUserModerations?: boolean
+    PublicBanListEnabled?: boolean
+    ReportActions?: boolean
+    GuildId?: boolean
+  }
+
+  export type ModerationScoutOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "UUID" | "ReportCommandId" | "SuccssReportMessageId" | "PublicBanListUrl" | "AdminBanList" | "CurrentUserModerations" | "PublicBanListEnabled" | "ReportActions" | "GuildId", ExtArgs["result"]["moderationScout"]>
+  export type ModerationScoutInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    UserAppeals?: boolean | ModerationScout$UserAppealsArgs<ExtArgs>
+    ModerationScoutForms?: boolean | ModerationScout$ModerationScoutFormsArgs<ExtArgs>
+    ModerationScoutReports?: boolean | ModerationScout$ModerationScoutReportsArgs<ExtArgs>
+    ModerationScoutReportModalData?: boolean | ModerationScout$ModerationScoutReportModalDataArgs<ExtArgs>
+    Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
+    _count?: boolean | ModerationScoutCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $ModerationScoutPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ModerationScout"
+    objects: {
+      UserAppeals: Prisma.$ModerationScoutUserAppealsPayload<ExtArgs>[]
+      ModerationScoutForms: Prisma.$ModerationScoutFormsPayload<ExtArgs>[]
+      ModerationScoutReports: Prisma.$ModerationScoutReportsPayload<ExtArgs>[]
+      ModerationScoutReportModalData: Prisma.$ModerationScoutReportModalDataPayload<ExtArgs>[]
+      Guilds: Prisma.$GuildsPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      UUID: string
+      ReportCommandId: string
+      SuccssReportMessageId: string
+      PublicBanListUrl: string | null
+      AdminBanList: Prisma.JsonValue
+      CurrentUserModerations: Prisma.JsonValue[]
+      PublicBanListEnabled: boolean
+      ReportActions: string[]
+      GuildId: string
+    }, ExtArgs["result"]["moderationScout"]>
+    composites: {}
+  }
+
+  type ModerationScoutGetPayload<S extends boolean | null | undefined | ModerationScoutDefaultArgs> = $Result.GetResult<Prisma.$ModerationScoutPayload, S>
+
+  type ModerationScoutCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ModerationScoutFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ModerationScoutCountAggregateInputType | true
+    }
+
+  export interface ModerationScoutDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ModerationScout'], meta: { name: 'ModerationScout' } }
+    /**
+     * Find zero or one ModerationScout that matches the filter.
+     * @param {ModerationScoutFindUniqueArgs} args - Arguments to find a ModerationScout
+     * @example
+     * // Get one ModerationScout
+     * const moderationScout = await prisma.moderationScout.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ModerationScoutFindUniqueArgs>(args: SelectSubset<T, ModerationScoutFindUniqueArgs<ExtArgs>>): Prisma__ModerationScoutClient<$Result.GetResult<Prisma.$ModerationScoutPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ModerationScout that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ModerationScoutFindUniqueOrThrowArgs} args - Arguments to find a ModerationScout
+     * @example
+     * // Get one ModerationScout
+     * const moderationScout = await prisma.moderationScout.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ModerationScoutFindUniqueOrThrowArgs>(args: SelectSubset<T, ModerationScoutFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ModerationScoutClient<$Result.GetResult<Prisma.$ModerationScoutPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ModerationScout that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutFindFirstArgs} args - Arguments to find a ModerationScout
+     * @example
+     * // Get one ModerationScout
+     * const moderationScout = await prisma.moderationScout.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ModerationScoutFindFirstArgs>(args?: SelectSubset<T, ModerationScoutFindFirstArgs<ExtArgs>>): Prisma__ModerationScoutClient<$Result.GetResult<Prisma.$ModerationScoutPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ModerationScout that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutFindFirstOrThrowArgs} args - Arguments to find a ModerationScout
+     * @example
+     * // Get one ModerationScout
+     * const moderationScout = await prisma.moderationScout.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ModerationScoutFindFirstOrThrowArgs>(args?: SelectSubset<T, ModerationScoutFindFirstOrThrowArgs<ExtArgs>>): Prisma__ModerationScoutClient<$Result.GetResult<Prisma.$ModerationScoutPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ModerationScouts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ModerationScouts
+     * const moderationScouts = await prisma.moderationScout.findMany()
+     * 
+     * // Get first 10 ModerationScouts
+     * const moderationScouts = await prisma.moderationScout.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const moderationScoutWithIdOnly = await prisma.moderationScout.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ModerationScoutFindManyArgs>(args?: SelectSubset<T, ModerationScoutFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModerationScoutPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ModerationScout.
+     * @param {ModerationScoutCreateArgs} args - Arguments to create a ModerationScout.
+     * @example
+     * // Create one ModerationScout
+     * const ModerationScout = await prisma.moderationScout.create({
+     *   data: {
+     *     // ... data to create a ModerationScout
+     *   }
+     * })
+     * 
+     */
+    create<T extends ModerationScoutCreateArgs>(args: SelectSubset<T, ModerationScoutCreateArgs<ExtArgs>>): Prisma__ModerationScoutClient<$Result.GetResult<Prisma.$ModerationScoutPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ModerationScouts.
+     * @param {ModerationScoutCreateManyArgs} args - Arguments to create many ModerationScouts.
+     * @example
+     * // Create many ModerationScouts
+     * const moderationScout = await prisma.moderationScout.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ModerationScoutCreateManyArgs>(args?: SelectSubset<T, ModerationScoutCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ModerationScout.
+     * @param {ModerationScoutDeleteArgs} args - Arguments to delete one ModerationScout.
+     * @example
+     * // Delete one ModerationScout
+     * const ModerationScout = await prisma.moderationScout.delete({
+     *   where: {
+     *     // ... filter to delete one ModerationScout
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ModerationScoutDeleteArgs>(args: SelectSubset<T, ModerationScoutDeleteArgs<ExtArgs>>): Prisma__ModerationScoutClient<$Result.GetResult<Prisma.$ModerationScoutPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ModerationScout.
+     * @param {ModerationScoutUpdateArgs} args - Arguments to update one ModerationScout.
+     * @example
+     * // Update one ModerationScout
+     * const moderationScout = await prisma.moderationScout.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ModerationScoutUpdateArgs>(args: SelectSubset<T, ModerationScoutUpdateArgs<ExtArgs>>): Prisma__ModerationScoutClient<$Result.GetResult<Prisma.$ModerationScoutPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ModerationScouts.
+     * @param {ModerationScoutDeleteManyArgs} args - Arguments to filter ModerationScouts to delete.
+     * @example
+     * // Delete a few ModerationScouts
+     * const { count } = await prisma.moderationScout.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ModerationScoutDeleteManyArgs>(args?: SelectSubset<T, ModerationScoutDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ModerationScouts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ModerationScouts
+     * const moderationScout = await prisma.moderationScout.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ModerationScoutUpdateManyArgs>(args: SelectSubset<T, ModerationScoutUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ModerationScout.
+     * @param {ModerationScoutUpsertArgs} args - Arguments to update or create a ModerationScout.
+     * @example
+     * // Update or create a ModerationScout
+     * const moderationScout = await prisma.moderationScout.upsert({
+     *   create: {
+     *     // ... data to create a ModerationScout
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ModerationScout we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ModerationScoutUpsertArgs>(args: SelectSubset<T, ModerationScoutUpsertArgs<ExtArgs>>): Prisma__ModerationScoutClient<$Result.GetResult<Prisma.$ModerationScoutPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ModerationScouts that matches the filter.
+     * @param {ModerationScoutFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const moderationScout = await prisma.moderationScout.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: ModerationScoutFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a ModerationScout.
+     * @param {ModerationScoutAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const moderationScout = await prisma.moderationScout.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: ModerationScoutAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of ModerationScouts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutCountArgs} args - Arguments to filter ModerationScouts to count.
+     * @example
+     * // Count the number of ModerationScouts
+     * const count = await prisma.moderationScout.count({
+     *   where: {
+     *     // ... the filter for the ModerationScouts we want to count
+     *   }
+     * })
+    **/
+    count<T extends ModerationScoutCountArgs>(
+      args?: Subset<T, ModerationScoutCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ModerationScoutCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ModerationScout.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ModerationScoutAggregateArgs>(args: Subset<T, ModerationScoutAggregateArgs>): Prisma.PrismaPromise<GetModerationScoutAggregateType<T>>
+
+    /**
+     * Group by ModerationScout.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ModerationScoutGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ModerationScoutGroupByArgs['orderBy'] }
+        : { orderBy?: ModerationScoutGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ModerationScoutGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetModerationScoutGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ModerationScout model
+   */
+  readonly fields: ModerationScoutFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ModerationScout.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ModerationScoutClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    UserAppeals<T extends ModerationScout$UserAppealsArgs<ExtArgs> = {}>(args?: Subset<T, ModerationScout$UserAppealsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModerationScoutUserAppealsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ModerationScoutForms<T extends ModerationScout$ModerationScoutFormsArgs<ExtArgs> = {}>(args?: Subset<T, ModerationScout$ModerationScoutFormsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModerationScoutFormsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ModerationScoutReports<T extends ModerationScout$ModerationScoutReportsArgs<ExtArgs> = {}>(args?: Subset<T, ModerationScout$ModerationScoutReportsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModerationScoutReportsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ModerationScoutReportModalData<T extends ModerationScout$ModerationScoutReportModalDataArgs<ExtArgs> = {}>(args?: Subset<T, ModerationScout$ModerationScoutReportModalDataArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModerationScoutReportModalDataPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Guilds<T extends GuildsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GuildsDefaultArgs<ExtArgs>>): Prisma__GuildsClient<$Result.GetResult<Prisma.$GuildsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ModerationScout model
+   */
+  interface ModerationScoutFieldRefs {
+    readonly id: FieldRef<"ModerationScout", 'String'>
+    readonly UUID: FieldRef<"ModerationScout", 'String'>
+    readonly ReportCommandId: FieldRef<"ModerationScout", 'String'>
+    readonly SuccssReportMessageId: FieldRef<"ModerationScout", 'String'>
+    readonly PublicBanListUrl: FieldRef<"ModerationScout", 'String'>
+    readonly AdminBanList: FieldRef<"ModerationScout", 'Json'>
+    readonly CurrentUserModerations: FieldRef<"ModerationScout", 'Json[]'>
+    readonly PublicBanListEnabled: FieldRef<"ModerationScout", 'Boolean'>
+    readonly ReportActions: FieldRef<"ModerationScout", 'String[]'>
+    readonly GuildId: FieldRef<"ModerationScout", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ModerationScout findUnique
+   */
+  export type ModerationScoutFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScout
+     */
+    select?: ModerationScoutSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScout
+     */
+    omit?: ModerationScoutOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScout to fetch.
+     */
+    where: ModerationScoutWhereUniqueInput
+  }
+
+  /**
+   * ModerationScout findUniqueOrThrow
+   */
+  export type ModerationScoutFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScout
+     */
+    select?: ModerationScoutSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScout
+     */
+    omit?: ModerationScoutOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScout to fetch.
+     */
+    where: ModerationScoutWhereUniqueInput
+  }
+
+  /**
+   * ModerationScout findFirst
+   */
+  export type ModerationScoutFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScout
+     */
+    select?: ModerationScoutSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScout
+     */
+    omit?: ModerationScoutOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScout to fetch.
+     */
+    where?: ModerationScoutWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModerationScouts to fetch.
+     */
+    orderBy?: ModerationScoutOrderByWithRelationInput | ModerationScoutOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ModerationScouts.
+     */
+    cursor?: ModerationScoutWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModerationScouts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModerationScouts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ModerationScouts.
+     */
+    distinct?: ModerationScoutScalarFieldEnum | ModerationScoutScalarFieldEnum[]
+  }
+
+  /**
+   * ModerationScout findFirstOrThrow
+   */
+  export type ModerationScoutFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScout
+     */
+    select?: ModerationScoutSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScout
+     */
+    omit?: ModerationScoutOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScout to fetch.
+     */
+    where?: ModerationScoutWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModerationScouts to fetch.
+     */
+    orderBy?: ModerationScoutOrderByWithRelationInput | ModerationScoutOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ModerationScouts.
+     */
+    cursor?: ModerationScoutWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModerationScouts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModerationScouts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ModerationScouts.
+     */
+    distinct?: ModerationScoutScalarFieldEnum | ModerationScoutScalarFieldEnum[]
+  }
+
+  /**
+   * ModerationScout findMany
+   */
+  export type ModerationScoutFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScout
+     */
+    select?: ModerationScoutSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScout
+     */
+    omit?: ModerationScoutOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScouts to fetch.
+     */
+    where?: ModerationScoutWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModerationScouts to fetch.
+     */
+    orderBy?: ModerationScoutOrderByWithRelationInput | ModerationScoutOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ModerationScouts.
+     */
+    cursor?: ModerationScoutWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModerationScouts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModerationScouts.
+     */
+    skip?: number
+    distinct?: ModerationScoutScalarFieldEnum | ModerationScoutScalarFieldEnum[]
+  }
+
+  /**
+   * ModerationScout create
+   */
+  export type ModerationScoutCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScout
+     */
+    select?: ModerationScoutSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScout
+     */
+    omit?: ModerationScoutOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ModerationScout.
+     */
+    data: XOR<ModerationScoutCreateInput, ModerationScoutUncheckedCreateInput>
+  }
+
+  /**
+   * ModerationScout createMany
+   */
+  export type ModerationScoutCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ModerationScouts.
+     */
+    data: ModerationScoutCreateManyInput | ModerationScoutCreateManyInput[]
+  }
+
+  /**
+   * ModerationScout update
+   */
+  export type ModerationScoutUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScout
+     */
+    select?: ModerationScoutSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScout
+     */
+    omit?: ModerationScoutOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ModerationScout.
+     */
+    data: XOR<ModerationScoutUpdateInput, ModerationScoutUncheckedUpdateInput>
+    /**
+     * Choose, which ModerationScout to update.
+     */
+    where: ModerationScoutWhereUniqueInput
+  }
+
+  /**
+   * ModerationScout updateMany
+   */
+  export type ModerationScoutUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ModerationScouts.
+     */
+    data: XOR<ModerationScoutUpdateManyMutationInput, ModerationScoutUncheckedUpdateManyInput>
+    /**
+     * Filter which ModerationScouts to update
+     */
+    where?: ModerationScoutWhereInput
+    /**
+     * Limit how many ModerationScouts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ModerationScout upsert
+   */
+  export type ModerationScoutUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScout
+     */
+    select?: ModerationScoutSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScout
+     */
+    omit?: ModerationScoutOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ModerationScout to update in case it exists.
+     */
+    where: ModerationScoutWhereUniqueInput
+    /**
+     * In case the ModerationScout found by the `where` argument doesn't exist, create a new ModerationScout with this data.
+     */
+    create: XOR<ModerationScoutCreateInput, ModerationScoutUncheckedCreateInput>
+    /**
+     * In case the ModerationScout was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ModerationScoutUpdateInput, ModerationScoutUncheckedUpdateInput>
+  }
+
+  /**
+   * ModerationScout delete
+   */
+  export type ModerationScoutDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScout
+     */
+    select?: ModerationScoutSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScout
+     */
+    omit?: ModerationScoutOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutInclude<ExtArgs> | null
+    /**
+     * Filter which ModerationScout to delete.
+     */
+    where: ModerationScoutWhereUniqueInput
+  }
+
+  /**
+   * ModerationScout deleteMany
+   */
+  export type ModerationScoutDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ModerationScouts to delete
+     */
+    where?: ModerationScoutWhereInput
+    /**
+     * Limit how many ModerationScouts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ModerationScout findRaw
+   */
+  export type ModerationScoutFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * ModerationScout aggregateRaw
+   */
+  export type ModerationScoutAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * ModerationScout.UserAppeals
+   */
+  export type ModerationScout$UserAppealsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutUserAppeals
+     */
+    select?: ModerationScoutUserAppealsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutUserAppeals
+     */
+    omit?: ModerationScoutUserAppealsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutUserAppealsInclude<ExtArgs> | null
+    where?: ModerationScoutUserAppealsWhereInput
+    orderBy?: ModerationScoutUserAppealsOrderByWithRelationInput | ModerationScoutUserAppealsOrderByWithRelationInput[]
+    cursor?: ModerationScoutUserAppealsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ModerationScoutUserAppealsScalarFieldEnum | ModerationScoutUserAppealsScalarFieldEnum[]
+  }
+
+  /**
+   * ModerationScout.ModerationScoutForms
+   */
+  export type ModerationScout$ModerationScoutFormsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutForms
+     */
+    select?: ModerationScoutFormsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutForms
+     */
+    omit?: ModerationScoutFormsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutFormsInclude<ExtArgs> | null
+    where?: ModerationScoutFormsWhereInput
+    orderBy?: ModerationScoutFormsOrderByWithRelationInput | ModerationScoutFormsOrderByWithRelationInput[]
+    cursor?: ModerationScoutFormsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ModerationScoutFormsScalarFieldEnum | ModerationScoutFormsScalarFieldEnum[]
+  }
+
+  /**
+   * ModerationScout.ModerationScoutReports
+   */
+  export type ModerationScout$ModerationScoutReportsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutReports
+     */
+    select?: ModerationScoutReportsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutReports
+     */
+    omit?: ModerationScoutReportsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutReportsInclude<ExtArgs> | null
+    where?: ModerationScoutReportsWhereInput
+    orderBy?: ModerationScoutReportsOrderByWithRelationInput | ModerationScoutReportsOrderByWithRelationInput[]
+    cursor?: ModerationScoutReportsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ModerationScoutReportsScalarFieldEnum | ModerationScoutReportsScalarFieldEnum[]
+  }
+
+  /**
+   * ModerationScout.ModerationScoutReportModalData
+   */
+  export type ModerationScout$ModerationScoutReportModalDataArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutReportModalData
+     */
+    select?: ModerationScoutReportModalDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutReportModalData
+     */
+    omit?: ModerationScoutReportModalDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutReportModalDataInclude<ExtArgs> | null
+    where?: ModerationScoutReportModalDataWhereInput
+    orderBy?: ModerationScoutReportModalDataOrderByWithRelationInput | ModerationScoutReportModalDataOrderByWithRelationInput[]
+    cursor?: ModerationScoutReportModalDataWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ModerationScoutReportModalDataScalarFieldEnum | ModerationScoutReportModalDataScalarFieldEnum[]
+  }
+
+  /**
+   * ModerationScout without action
+   */
+  export type ModerationScoutDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScout
+     */
+    select?: ModerationScoutSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScout
+     */
+    omit?: ModerationScoutOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ModerationScoutForms
+   */
+
+  export type AggregateModerationScoutForms = {
+    _count: ModerationScoutFormsCountAggregateOutputType | null
+    _min: ModerationScoutFormsMinAggregateOutputType | null
+    _max: ModerationScoutFormsMaxAggregateOutputType | null
+  }
+
+  export type ModerationScoutFormsMinAggregateOutputType = {
+    id: string | null
+    UUID: string | null
+  }
+
+  export type ModerationScoutFormsMaxAggregateOutputType = {
+    id: string | null
+    UUID: string | null
+  }
+
+  export type ModerationScoutFormsCountAggregateOutputType = {
+    id: number
+    UUID: number
+    Sorting: number
+    Actions: number
+    _all: number
+  }
+
+
+  export type ModerationScoutFormsMinAggregateInputType = {
+    id?: true
+    UUID?: true
+  }
+
+  export type ModerationScoutFormsMaxAggregateInputType = {
+    id?: true
+    UUID?: true
+  }
+
+  export type ModerationScoutFormsCountAggregateInputType = {
+    id?: true
+    UUID?: true
+    Sorting?: true
+    Actions?: true
+    _all?: true
+  }
+
+  export type ModerationScoutFormsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ModerationScoutForms to aggregate.
+     */
+    where?: ModerationScoutFormsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModerationScoutForms to fetch.
+     */
+    orderBy?: ModerationScoutFormsOrderByWithRelationInput | ModerationScoutFormsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ModerationScoutFormsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModerationScoutForms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModerationScoutForms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ModerationScoutForms
+    **/
+    _count?: true | ModerationScoutFormsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ModerationScoutFormsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ModerationScoutFormsMaxAggregateInputType
+  }
+
+  export type GetModerationScoutFormsAggregateType<T extends ModerationScoutFormsAggregateArgs> = {
+        [P in keyof T & keyof AggregateModerationScoutForms]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateModerationScoutForms[P]>
+      : GetScalarType<T[P], AggregateModerationScoutForms[P]>
+  }
+
+
+
+
+  export type ModerationScoutFormsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ModerationScoutFormsWhereInput
+    orderBy?: ModerationScoutFormsOrderByWithAggregationInput | ModerationScoutFormsOrderByWithAggregationInput[]
+    by: ModerationScoutFormsScalarFieldEnum[] | ModerationScoutFormsScalarFieldEnum
+    having?: ModerationScoutFormsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ModerationScoutFormsCountAggregateInputType | true
+    _min?: ModerationScoutFormsMinAggregateInputType
+    _max?: ModerationScoutFormsMaxAggregateInputType
+  }
+
+  export type ModerationScoutFormsGroupByOutputType = {
+    id: string
+    UUID: string
+    Sorting: string[]
+    Actions: string[]
+    _count: ModerationScoutFormsCountAggregateOutputType | null
+    _min: ModerationScoutFormsMinAggregateOutputType | null
+    _max: ModerationScoutFormsMaxAggregateOutputType | null
+  }
+
+  type GetModerationScoutFormsGroupByPayload<T extends ModerationScoutFormsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ModerationScoutFormsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ModerationScoutFormsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ModerationScoutFormsGroupByOutputType[P]>
+            : GetScalarType<T[P], ModerationScoutFormsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ModerationScoutFormsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    UUID?: boolean
+    Sorting?: boolean
+    Actions?: boolean
+    ModerationScout?: boolean | ModerationScoutDefaultArgs<ExtArgs>
+    ModerationScoutFormsData?: boolean | ModerationScoutForms$ModerationScoutFormsDataArgs<ExtArgs>
+    ModerationScoutUserAppeals?: boolean | ModerationScoutForms$ModerationScoutUserAppealsArgs<ExtArgs>
+    _count?: boolean | ModerationScoutFormsCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["moderationScoutForms"]>
+
+
+
+  export type ModerationScoutFormsSelectScalar = {
+    id?: boolean
+    UUID?: boolean
+    Sorting?: boolean
+    Actions?: boolean
+  }
+
+  export type ModerationScoutFormsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "UUID" | "Sorting" | "Actions", ExtArgs["result"]["moderationScoutForms"]>
+  export type ModerationScoutFormsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ModerationScout?: boolean | ModerationScoutDefaultArgs<ExtArgs>
+    ModerationScoutFormsData?: boolean | ModerationScoutForms$ModerationScoutFormsDataArgs<ExtArgs>
+    ModerationScoutUserAppeals?: boolean | ModerationScoutForms$ModerationScoutUserAppealsArgs<ExtArgs>
+    _count?: boolean | ModerationScoutFormsCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $ModerationScoutFormsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ModerationScoutForms"
+    objects: {
+      ModerationScout: Prisma.$ModerationScoutPayload<ExtArgs>
+      ModerationScoutFormsData: Prisma.$ModerationScoutFormsDataPayload<ExtArgs>[]
+      ModerationScoutUserAppeals: Prisma.$ModerationScoutUserAppealsPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      UUID: string
+      Sorting: string[]
+      Actions: string[]
+    }, ExtArgs["result"]["moderationScoutForms"]>
+    composites: {}
+  }
+
+  type ModerationScoutFormsGetPayload<S extends boolean | null | undefined | ModerationScoutFormsDefaultArgs> = $Result.GetResult<Prisma.$ModerationScoutFormsPayload, S>
+
+  type ModerationScoutFormsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ModerationScoutFormsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ModerationScoutFormsCountAggregateInputType | true
+    }
+
+  export interface ModerationScoutFormsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ModerationScoutForms'], meta: { name: 'ModerationScoutForms' } }
+    /**
+     * Find zero or one ModerationScoutForms that matches the filter.
+     * @param {ModerationScoutFormsFindUniqueArgs} args - Arguments to find a ModerationScoutForms
+     * @example
+     * // Get one ModerationScoutForms
+     * const moderationScoutForms = await prisma.moderationScoutForms.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ModerationScoutFormsFindUniqueArgs>(args: SelectSubset<T, ModerationScoutFormsFindUniqueArgs<ExtArgs>>): Prisma__ModerationScoutFormsClient<$Result.GetResult<Prisma.$ModerationScoutFormsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ModerationScoutForms that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ModerationScoutFormsFindUniqueOrThrowArgs} args - Arguments to find a ModerationScoutForms
+     * @example
+     * // Get one ModerationScoutForms
+     * const moderationScoutForms = await prisma.moderationScoutForms.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ModerationScoutFormsFindUniqueOrThrowArgs>(args: SelectSubset<T, ModerationScoutFormsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ModerationScoutFormsClient<$Result.GetResult<Prisma.$ModerationScoutFormsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ModerationScoutForms that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutFormsFindFirstArgs} args - Arguments to find a ModerationScoutForms
+     * @example
+     * // Get one ModerationScoutForms
+     * const moderationScoutForms = await prisma.moderationScoutForms.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ModerationScoutFormsFindFirstArgs>(args?: SelectSubset<T, ModerationScoutFormsFindFirstArgs<ExtArgs>>): Prisma__ModerationScoutFormsClient<$Result.GetResult<Prisma.$ModerationScoutFormsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ModerationScoutForms that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutFormsFindFirstOrThrowArgs} args - Arguments to find a ModerationScoutForms
+     * @example
+     * // Get one ModerationScoutForms
+     * const moderationScoutForms = await prisma.moderationScoutForms.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ModerationScoutFormsFindFirstOrThrowArgs>(args?: SelectSubset<T, ModerationScoutFormsFindFirstOrThrowArgs<ExtArgs>>): Prisma__ModerationScoutFormsClient<$Result.GetResult<Prisma.$ModerationScoutFormsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ModerationScoutForms that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutFormsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ModerationScoutForms
+     * const moderationScoutForms = await prisma.moderationScoutForms.findMany()
+     * 
+     * // Get first 10 ModerationScoutForms
+     * const moderationScoutForms = await prisma.moderationScoutForms.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const moderationScoutFormsWithIdOnly = await prisma.moderationScoutForms.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ModerationScoutFormsFindManyArgs>(args?: SelectSubset<T, ModerationScoutFormsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModerationScoutFormsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ModerationScoutForms.
+     * @param {ModerationScoutFormsCreateArgs} args - Arguments to create a ModerationScoutForms.
+     * @example
+     * // Create one ModerationScoutForms
+     * const ModerationScoutForms = await prisma.moderationScoutForms.create({
+     *   data: {
+     *     // ... data to create a ModerationScoutForms
+     *   }
+     * })
+     * 
+     */
+    create<T extends ModerationScoutFormsCreateArgs>(args: SelectSubset<T, ModerationScoutFormsCreateArgs<ExtArgs>>): Prisma__ModerationScoutFormsClient<$Result.GetResult<Prisma.$ModerationScoutFormsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ModerationScoutForms.
+     * @param {ModerationScoutFormsCreateManyArgs} args - Arguments to create many ModerationScoutForms.
+     * @example
+     * // Create many ModerationScoutForms
+     * const moderationScoutForms = await prisma.moderationScoutForms.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ModerationScoutFormsCreateManyArgs>(args?: SelectSubset<T, ModerationScoutFormsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ModerationScoutForms.
+     * @param {ModerationScoutFormsDeleteArgs} args - Arguments to delete one ModerationScoutForms.
+     * @example
+     * // Delete one ModerationScoutForms
+     * const ModerationScoutForms = await prisma.moderationScoutForms.delete({
+     *   where: {
+     *     // ... filter to delete one ModerationScoutForms
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ModerationScoutFormsDeleteArgs>(args: SelectSubset<T, ModerationScoutFormsDeleteArgs<ExtArgs>>): Prisma__ModerationScoutFormsClient<$Result.GetResult<Prisma.$ModerationScoutFormsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ModerationScoutForms.
+     * @param {ModerationScoutFormsUpdateArgs} args - Arguments to update one ModerationScoutForms.
+     * @example
+     * // Update one ModerationScoutForms
+     * const moderationScoutForms = await prisma.moderationScoutForms.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ModerationScoutFormsUpdateArgs>(args: SelectSubset<T, ModerationScoutFormsUpdateArgs<ExtArgs>>): Prisma__ModerationScoutFormsClient<$Result.GetResult<Prisma.$ModerationScoutFormsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ModerationScoutForms.
+     * @param {ModerationScoutFormsDeleteManyArgs} args - Arguments to filter ModerationScoutForms to delete.
+     * @example
+     * // Delete a few ModerationScoutForms
+     * const { count } = await prisma.moderationScoutForms.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ModerationScoutFormsDeleteManyArgs>(args?: SelectSubset<T, ModerationScoutFormsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ModerationScoutForms.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutFormsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ModerationScoutForms
+     * const moderationScoutForms = await prisma.moderationScoutForms.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ModerationScoutFormsUpdateManyArgs>(args: SelectSubset<T, ModerationScoutFormsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ModerationScoutForms.
+     * @param {ModerationScoutFormsUpsertArgs} args - Arguments to update or create a ModerationScoutForms.
+     * @example
+     * // Update or create a ModerationScoutForms
+     * const moderationScoutForms = await prisma.moderationScoutForms.upsert({
+     *   create: {
+     *     // ... data to create a ModerationScoutForms
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ModerationScoutForms we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ModerationScoutFormsUpsertArgs>(args: SelectSubset<T, ModerationScoutFormsUpsertArgs<ExtArgs>>): Prisma__ModerationScoutFormsClient<$Result.GetResult<Prisma.$ModerationScoutFormsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ModerationScoutForms that matches the filter.
+     * @param {ModerationScoutFormsFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const moderationScoutForms = await prisma.moderationScoutForms.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: ModerationScoutFormsFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a ModerationScoutForms.
+     * @param {ModerationScoutFormsAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const moderationScoutForms = await prisma.moderationScoutForms.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: ModerationScoutFormsAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of ModerationScoutForms.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutFormsCountArgs} args - Arguments to filter ModerationScoutForms to count.
+     * @example
+     * // Count the number of ModerationScoutForms
+     * const count = await prisma.moderationScoutForms.count({
+     *   where: {
+     *     // ... the filter for the ModerationScoutForms we want to count
+     *   }
+     * })
+    **/
+    count<T extends ModerationScoutFormsCountArgs>(
+      args?: Subset<T, ModerationScoutFormsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ModerationScoutFormsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ModerationScoutForms.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutFormsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ModerationScoutFormsAggregateArgs>(args: Subset<T, ModerationScoutFormsAggregateArgs>): Prisma.PrismaPromise<GetModerationScoutFormsAggregateType<T>>
+
+    /**
+     * Group by ModerationScoutForms.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutFormsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ModerationScoutFormsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ModerationScoutFormsGroupByArgs['orderBy'] }
+        : { orderBy?: ModerationScoutFormsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ModerationScoutFormsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetModerationScoutFormsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ModerationScoutForms model
+   */
+  readonly fields: ModerationScoutFormsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ModerationScoutForms.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ModerationScoutFormsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    ModerationScout<T extends ModerationScoutDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ModerationScoutDefaultArgs<ExtArgs>>): Prisma__ModerationScoutClient<$Result.GetResult<Prisma.$ModerationScoutPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    ModerationScoutFormsData<T extends ModerationScoutForms$ModerationScoutFormsDataArgs<ExtArgs> = {}>(args?: Subset<T, ModerationScoutForms$ModerationScoutFormsDataArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModerationScoutFormsDataPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ModerationScoutUserAppeals<T extends ModerationScoutForms$ModerationScoutUserAppealsArgs<ExtArgs> = {}>(args?: Subset<T, ModerationScoutForms$ModerationScoutUserAppealsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModerationScoutUserAppealsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ModerationScoutForms model
+   */
+  interface ModerationScoutFormsFieldRefs {
+    readonly id: FieldRef<"ModerationScoutForms", 'String'>
+    readonly UUID: FieldRef<"ModerationScoutForms", 'String'>
+    readonly Sorting: FieldRef<"ModerationScoutForms", 'String[]'>
+    readonly Actions: FieldRef<"ModerationScoutForms", 'String[]'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ModerationScoutForms findUnique
+   */
+  export type ModerationScoutFormsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutForms
+     */
+    select?: ModerationScoutFormsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutForms
+     */
+    omit?: ModerationScoutFormsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutFormsInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScoutForms to fetch.
+     */
+    where: ModerationScoutFormsWhereUniqueInput
+  }
+
+  /**
+   * ModerationScoutForms findUniqueOrThrow
+   */
+  export type ModerationScoutFormsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutForms
+     */
+    select?: ModerationScoutFormsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutForms
+     */
+    omit?: ModerationScoutFormsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutFormsInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScoutForms to fetch.
+     */
+    where: ModerationScoutFormsWhereUniqueInput
+  }
+
+  /**
+   * ModerationScoutForms findFirst
+   */
+  export type ModerationScoutFormsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutForms
+     */
+    select?: ModerationScoutFormsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutForms
+     */
+    omit?: ModerationScoutFormsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutFormsInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScoutForms to fetch.
+     */
+    where?: ModerationScoutFormsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModerationScoutForms to fetch.
+     */
+    orderBy?: ModerationScoutFormsOrderByWithRelationInput | ModerationScoutFormsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ModerationScoutForms.
+     */
+    cursor?: ModerationScoutFormsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModerationScoutForms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModerationScoutForms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ModerationScoutForms.
+     */
+    distinct?: ModerationScoutFormsScalarFieldEnum | ModerationScoutFormsScalarFieldEnum[]
+  }
+
+  /**
+   * ModerationScoutForms findFirstOrThrow
+   */
+  export type ModerationScoutFormsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutForms
+     */
+    select?: ModerationScoutFormsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutForms
+     */
+    omit?: ModerationScoutFormsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutFormsInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScoutForms to fetch.
+     */
+    where?: ModerationScoutFormsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModerationScoutForms to fetch.
+     */
+    orderBy?: ModerationScoutFormsOrderByWithRelationInput | ModerationScoutFormsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ModerationScoutForms.
+     */
+    cursor?: ModerationScoutFormsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModerationScoutForms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModerationScoutForms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ModerationScoutForms.
+     */
+    distinct?: ModerationScoutFormsScalarFieldEnum | ModerationScoutFormsScalarFieldEnum[]
+  }
+
+  /**
+   * ModerationScoutForms findMany
+   */
+  export type ModerationScoutFormsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutForms
+     */
+    select?: ModerationScoutFormsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutForms
+     */
+    omit?: ModerationScoutFormsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutFormsInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScoutForms to fetch.
+     */
+    where?: ModerationScoutFormsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModerationScoutForms to fetch.
+     */
+    orderBy?: ModerationScoutFormsOrderByWithRelationInput | ModerationScoutFormsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ModerationScoutForms.
+     */
+    cursor?: ModerationScoutFormsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModerationScoutForms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModerationScoutForms.
+     */
+    skip?: number
+    distinct?: ModerationScoutFormsScalarFieldEnum | ModerationScoutFormsScalarFieldEnum[]
+  }
+
+  /**
+   * ModerationScoutForms create
+   */
+  export type ModerationScoutFormsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutForms
+     */
+    select?: ModerationScoutFormsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutForms
+     */
+    omit?: ModerationScoutFormsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutFormsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ModerationScoutForms.
+     */
+    data: XOR<ModerationScoutFormsCreateInput, ModerationScoutFormsUncheckedCreateInput>
+  }
+
+  /**
+   * ModerationScoutForms createMany
+   */
+  export type ModerationScoutFormsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ModerationScoutForms.
+     */
+    data: ModerationScoutFormsCreateManyInput | ModerationScoutFormsCreateManyInput[]
+  }
+
+  /**
+   * ModerationScoutForms update
+   */
+  export type ModerationScoutFormsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutForms
+     */
+    select?: ModerationScoutFormsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutForms
+     */
+    omit?: ModerationScoutFormsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutFormsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ModerationScoutForms.
+     */
+    data: XOR<ModerationScoutFormsUpdateInput, ModerationScoutFormsUncheckedUpdateInput>
+    /**
+     * Choose, which ModerationScoutForms to update.
+     */
+    where: ModerationScoutFormsWhereUniqueInput
+  }
+
+  /**
+   * ModerationScoutForms updateMany
+   */
+  export type ModerationScoutFormsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ModerationScoutForms.
+     */
+    data: XOR<ModerationScoutFormsUpdateManyMutationInput, ModerationScoutFormsUncheckedUpdateManyInput>
+    /**
+     * Filter which ModerationScoutForms to update
+     */
+    where?: ModerationScoutFormsWhereInput
+    /**
+     * Limit how many ModerationScoutForms to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ModerationScoutForms upsert
+   */
+  export type ModerationScoutFormsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutForms
+     */
+    select?: ModerationScoutFormsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutForms
+     */
+    omit?: ModerationScoutFormsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutFormsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ModerationScoutForms to update in case it exists.
+     */
+    where: ModerationScoutFormsWhereUniqueInput
+    /**
+     * In case the ModerationScoutForms found by the `where` argument doesn't exist, create a new ModerationScoutForms with this data.
+     */
+    create: XOR<ModerationScoutFormsCreateInput, ModerationScoutFormsUncheckedCreateInput>
+    /**
+     * In case the ModerationScoutForms was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ModerationScoutFormsUpdateInput, ModerationScoutFormsUncheckedUpdateInput>
+  }
+
+  /**
+   * ModerationScoutForms delete
+   */
+  export type ModerationScoutFormsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutForms
+     */
+    select?: ModerationScoutFormsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutForms
+     */
+    omit?: ModerationScoutFormsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutFormsInclude<ExtArgs> | null
+    /**
+     * Filter which ModerationScoutForms to delete.
+     */
+    where: ModerationScoutFormsWhereUniqueInput
+  }
+
+  /**
+   * ModerationScoutForms deleteMany
+   */
+  export type ModerationScoutFormsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ModerationScoutForms to delete
+     */
+    where?: ModerationScoutFormsWhereInput
+    /**
+     * Limit how many ModerationScoutForms to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ModerationScoutForms findRaw
+   */
+  export type ModerationScoutFormsFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * ModerationScoutForms aggregateRaw
+   */
+  export type ModerationScoutFormsAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * ModerationScoutForms.ModerationScoutFormsData
+   */
+  export type ModerationScoutForms$ModerationScoutFormsDataArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutFormsData
+     */
+    select?: ModerationScoutFormsDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutFormsData
+     */
+    omit?: ModerationScoutFormsDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutFormsDataInclude<ExtArgs> | null
+    where?: ModerationScoutFormsDataWhereInput
+    orderBy?: ModerationScoutFormsDataOrderByWithRelationInput | ModerationScoutFormsDataOrderByWithRelationInput[]
+    cursor?: ModerationScoutFormsDataWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ModerationScoutFormsDataScalarFieldEnum | ModerationScoutFormsDataScalarFieldEnum[]
+  }
+
+  /**
+   * ModerationScoutForms.ModerationScoutUserAppeals
+   */
+  export type ModerationScoutForms$ModerationScoutUserAppealsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutUserAppeals
+     */
+    select?: ModerationScoutUserAppealsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutUserAppeals
+     */
+    omit?: ModerationScoutUserAppealsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutUserAppealsInclude<ExtArgs> | null
+    where?: ModerationScoutUserAppealsWhereInput
+    orderBy?: ModerationScoutUserAppealsOrderByWithRelationInput | ModerationScoutUserAppealsOrderByWithRelationInput[]
+    cursor?: ModerationScoutUserAppealsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ModerationScoutUserAppealsScalarFieldEnum | ModerationScoutUserAppealsScalarFieldEnum[]
+  }
+
+  /**
+   * ModerationScoutForms without action
+   */
+  export type ModerationScoutFormsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutForms
+     */
+    select?: ModerationScoutFormsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutForms
+     */
+    omit?: ModerationScoutFormsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutFormsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ModerationScoutFormsData
+   */
+
+  export type AggregateModerationScoutFormsData = {
+    _count: ModerationScoutFormsDataCountAggregateOutputType | null
+    _min: ModerationScoutFormsDataMinAggregateOutputType | null
+    _max: ModerationScoutFormsDataMaxAggregateOutputType | null
+  }
+
+  export type ModerationScoutFormsDataMinAggregateOutputType = {
+    id: string | null
+    UUID: string | null
+    Type: string | null
+    Label: string | null
+    Description: string | null
+    Placeholder: string | null
+  }
+
+  export type ModerationScoutFormsDataMaxAggregateOutputType = {
+    id: string | null
+    UUID: string | null
+    Type: string | null
+    Label: string | null
+    Description: string | null
+    Placeholder: string | null
+  }
+
+  export type ModerationScoutFormsDataCountAggregateOutputType = {
+    id: number
+    UUID: number
+    Type: number
+    Label: number
+    Description: number
+    Placeholder: number
+    OptionData: number
+    _all: number
+  }
+
+
+  export type ModerationScoutFormsDataMinAggregateInputType = {
+    id?: true
+    UUID?: true
+    Type?: true
+    Label?: true
+    Description?: true
+    Placeholder?: true
+  }
+
+  export type ModerationScoutFormsDataMaxAggregateInputType = {
+    id?: true
+    UUID?: true
+    Type?: true
+    Label?: true
+    Description?: true
+    Placeholder?: true
+  }
+
+  export type ModerationScoutFormsDataCountAggregateInputType = {
+    id?: true
+    UUID?: true
+    Type?: true
+    Label?: true
+    Description?: true
+    Placeholder?: true
+    OptionData?: true
+    _all?: true
+  }
+
+  export type ModerationScoutFormsDataAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ModerationScoutFormsData to aggregate.
+     */
+    where?: ModerationScoutFormsDataWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModerationScoutFormsData to fetch.
+     */
+    orderBy?: ModerationScoutFormsDataOrderByWithRelationInput | ModerationScoutFormsDataOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ModerationScoutFormsDataWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModerationScoutFormsData from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModerationScoutFormsData.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ModerationScoutFormsData
+    **/
+    _count?: true | ModerationScoutFormsDataCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ModerationScoutFormsDataMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ModerationScoutFormsDataMaxAggregateInputType
+  }
+
+  export type GetModerationScoutFormsDataAggregateType<T extends ModerationScoutFormsDataAggregateArgs> = {
+        [P in keyof T & keyof AggregateModerationScoutFormsData]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateModerationScoutFormsData[P]>
+      : GetScalarType<T[P], AggregateModerationScoutFormsData[P]>
+  }
+
+
+
+
+  export type ModerationScoutFormsDataGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ModerationScoutFormsDataWhereInput
+    orderBy?: ModerationScoutFormsDataOrderByWithAggregationInput | ModerationScoutFormsDataOrderByWithAggregationInput[]
+    by: ModerationScoutFormsDataScalarFieldEnum[] | ModerationScoutFormsDataScalarFieldEnum
+    having?: ModerationScoutFormsDataScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ModerationScoutFormsDataCountAggregateInputType | true
+    _min?: ModerationScoutFormsDataMinAggregateInputType
+    _max?: ModerationScoutFormsDataMaxAggregateInputType
+  }
+
+  export type ModerationScoutFormsDataGroupByOutputType = {
+    id: string
+    UUID: string
+    Type: string
+    Label: string
+    Description: string
+    Placeholder: string
+    OptionData: JsonValue
+    _count: ModerationScoutFormsDataCountAggregateOutputType | null
+    _min: ModerationScoutFormsDataMinAggregateOutputType | null
+    _max: ModerationScoutFormsDataMaxAggregateOutputType | null
+  }
+
+  type GetModerationScoutFormsDataGroupByPayload<T extends ModerationScoutFormsDataGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ModerationScoutFormsDataGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ModerationScoutFormsDataGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ModerationScoutFormsDataGroupByOutputType[P]>
+            : GetScalarType<T[P], ModerationScoutFormsDataGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ModerationScoutFormsDataSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    UUID?: boolean
+    Type?: boolean
+    Label?: boolean
+    Description?: boolean
+    Placeholder?: boolean
+    OptionData?: boolean
+    ModerationScoutForms?: boolean | ModerationScoutFormsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["moderationScoutFormsData"]>
+
+
+
+  export type ModerationScoutFormsDataSelectScalar = {
+    id?: boolean
+    UUID?: boolean
+    Type?: boolean
+    Label?: boolean
+    Description?: boolean
+    Placeholder?: boolean
+    OptionData?: boolean
+  }
+
+  export type ModerationScoutFormsDataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "UUID" | "Type" | "Label" | "Description" | "Placeholder" | "OptionData", ExtArgs["result"]["moderationScoutFormsData"]>
+  export type ModerationScoutFormsDataInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ModerationScoutForms?: boolean | ModerationScoutFormsDefaultArgs<ExtArgs>
+  }
+
+  export type $ModerationScoutFormsDataPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ModerationScoutFormsData"
+    objects: {
+      ModerationScoutForms: Prisma.$ModerationScoutFormsPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      UUID: string
+      Type: string
+      Label: string
+      Description: string
+      Placeholder: string
+      OptionData: Prisma.JsonValue
+    }, ExtArgs["result"]["moderationScoutFormsData"]>
+    composites: {}
+  }
+
+  type ModerationScoutFormsDataGetPayload<S extends boolean | null | undefined | ModerationScoutFormsDataDefaultArgs> = $Result.GetResult<Prisma.$ModerationScoutFormsDataPayload, S>
+
+  type ModerationScoutFormsDataCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ModerationScoutFormsDataFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ModerationScoutFormsDataCountAggregateInputType | true
+    }
+
+  export interface ModerationScoutFormsDataDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ModerationScoutFormsData'], meta: { name: 'ModerationScoutFormsData' } }
+    /**
+     * Find zero or one ModerationScoutFormsData that matches the filter.
+     * @param {ModerationScoutFormsDataFindUniqueArgs} args - Arguments to find a ModerationScoutFormsData
+     * @example
+     * // Get one ModerationScoutFormsData
+     * const moderationScoutFormsData = await prisma.moderationScoutFormsData.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ModerationScoutFormsDataFindUniqueArgs>(args: SelectSubset<T, ModerationScoutFormsDataFindUniqueArgs<ExtArgs>>): Prisma__ModerationScoutFormsDataClient<$Result.GetResult<Prisma.$ModerationScoutFormsDataPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ModerationScoutFormsData that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ModerationScoutFormsDataFindUniqueOrThrowArgs} args - Arguments to find a ModerationScoutFormsData
+     * @example
+     * // Get one ModerationScoutFormsData
+     * const moderationScoutFormsData = await prisma.moderationScoutFormsData.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ModerationScoutFormsDataFindUniqueOrThrowArgs>(args: SelectSubset<T, ModerationScoutFormsDataFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ModerationScoutFormsDataClient<$Result.GetResult<Prisma.$ModerationScoutFormsDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ModerationScoutFormsData that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutFormsDataFindFirstArgs} args - Arguments to find a ModerationScoutFormsData
+     * @example
+     * // Get one ModerationScoutFormsData
+     * const moderationScoutFormsData = await prisma.moderationScoutFormsData.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ModerationScoutFormsDataFindFirstArgs>(args?: SelectSubset<T, ModerationScoutFormsDataFindFirstArgs<ExtArgs>>): Prisma__ModerationScoutFormsDataClient<$Result.GetResult<Prisma.$ModerationScoutFormsDataPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ModerationScoutFormsData that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutFormsDataFindFirstOrThrowArgs} args - Arguments to find a ModerationScoutFormsData
+     * @example
+     * // Get one ModerationScoutFormsData
+     * const moderationScoutFormsData = await prisma.moderationScoutFormsData.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ModerationScoutFormsDataFindFirstOrThrowArgs>(args?: SelectSubset<T, ModerationScoutFormsDataFindFirstOrThrowArgs<ExtArgs>>): Prisma__ModerationScoutFormsDataClient<$Result.GetResult<Prisma.$ModerationScoutFormsDataPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ModerationScoutFormsData that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutFormsDataFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ModerationScoutFormsData
+     * const moderationScoutFormsData = await prisma.moderationScoutFormsData.findMany()
+     * 
+     * // Get first 10 ModerationScoutFormsData
+     * const moderationScoutFormsData = await prisma.moderationScoutFormsData.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const moderationScoutFormsDataWithIdOnly = await prisma.moderationScoutFormsData.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ModerationScoutFormsDataFindManyArgs>(args?: SelectSubset<T, ModerationScoutFormsDataFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModerationScoutFormsDataPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ModerationScoutFormsData.
+     * @param {ModerationScoutFormsDataCreateArgs} args - Arguments to create a ModerationScoutFormsData.
+     * @example
+     * // Create one ModerationScoutFormsData
+     * const ModerationScoutFormsData = await prisma.moderationScoutFormsData.create({
+     *   data: {
+     *     // ... data to create a ModerationScoutFormsData
+     *   }
+     * })
+     * 
+     */
+    create<T extends ModerationScoutFormsDataCreateArgs>(args: SelectSubset<T, ModerationScoutFormsDataCreateArgs<ExtArgs>>): Prisma__ModerationScoutFormsDataClient<$Result.GetResult<Prisma.$ModerationScoutFormsDataPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ModerationScoutFormsData.
+     * @param {ModerationScoutFormsDataCreateManyArgs} args - Arguments to create many ModerationScoutFormsData.
+     * @example
+     * // Create many ModerationScoutFormsData
+     * const moderationScoutFormsData = await prisma.moderationScoutFormsData.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ModerationScoutFormsDataCreateManyArgs>(args?: SelectSubset<T, ModerationScoutFormsDataCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ModerationScoutFormsData.
+     * @param {ModerationScoutFormsDataDeleteArgs} args - Arguments to delete one ModerationScoutFormsData.
+     * @example
+     * // Delete one ModerationScoutFormsData
+     * const ModerationScoutFormsData = await prisma.moderationScoutFormsData.delete({
+     *   where: {
+     *     // ... filter to delete one ModerationScoutFormsData
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ModerationScoutFormsDataDeleteArgs>(args: SelectSubset<T, ModerationScoutFormsDataDeleteArgs<ExtArgs>>): Prisma__ModerationScoutFormsDataClient<$Result.GetResult<Prisma.$ModerationScoutFormsDataPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ModerationScoutFormsData.
+     * @param {ModerationScoutFormsDataUpdateArgs} args - Arguments to update one ModerationScoutFormsData.
+     * @example
+     * // Update one ModerationScoutFormsData
+     * const moderationScoutFormsData = await prisma.moderationScoutFormsData.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ModerationScoutFormsDataUpdateArgs>(args: SelectSubset<T, ModerationScoutFormsDataUpdateArgs<ExtArgs>>): Prisma__ModerationScoutFormsDataClient<$Result.GetResult<Prisma.$ModerationScoutFormsDataPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ModerationScoutFormsData.
+     * @param {ModerationScoutFormsDataDeleteManyArgs} args - Arguments to filter ModerationScoutFormsData to delete.
+     * @example
+     * // Delete a few ModerationScoutFormsData
+     * const { count } = await prisma.moderationScoutFormsData.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ModerationScoutFormsDataDeleteManyArgs>(args?: SelectSubset<T, ModerationScoutFormsDataDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ModerationScoutFormsData.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutFormsDataUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ModerationScoutFormsData
+     * const moderationScoutFormsData = await prisma.moderationScoutFormsData.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ModerationScoutFormsDataUpdateManyArgs>(args: SelectSubset<T, ModerationScoutFormsDataUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ModerationScoutFormsData.
+     * @param {ModerationScoutFormsDataUpsertArgs} args - Arguments to update or create a ModerationScoutFormsData.
+     * @example
+     * // Update or create a ModerationScoutFormsData
+     * const moderationScoutFormsData = await prisma.moderationScoutFormsData.upsert({
+     *   create: {
+     *     // ... data to create a ModerationScoutFormsData
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ModerationScoutFormsData we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ModerationScoutFormsDataUpsertArgs>(args: SelectSubset<T, ModerationScoutFormsDataUpsertArgs<ExtArgs>>): Prisma__ModerationScoutFormsDataClient<$Result.GetResult<Prisma.$ModerationScoutFormsDataPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ModerationScoutFormsData that matches the filter.
+     * @param {ModerationScoutFormsDataFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const moderationScoutFormsData = await prisma.moderationScoutFormsData.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: ModerationScoutFormsDataFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a ModerationScoutFormsData.
+     * @param {ModerationScoutFormsDataAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const moderationScoutFormsData = await prisma.moderationScoutFormsData.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: ModerationScoutFormsDataAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of ModerationScoutFormsData.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutFormsDataCountArgs} args - Arguments to filter ModerationScoutFormsData to count.
+     * @example
+     * // Count the number of ModerationScoutFormsData
+     * const count = await prisma.moderationScoutFormsData.count({
+     *   where: {
+     *     // ... the filter for the ModerationScoutFormsData we want to count
+     *   }
+     * })
+    **/
+    count<T extends ModerationScoutFormsDataCountArgs>(
+      args?: Subset<T, ModerationScoutFormsDataCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ModerationScoutFormsDataCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ModerationScoutFormsData.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutFormsDataAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ModerationScoutFormsDataAggregateArgs>(args: Subset<T, ModerationScoutFormsDataAggregateArgs>): Prisma.PrismaPromise<GetModerationScoutFormsDataAggregateType<T>>
+
+    /**
+     * Group by ModerationScoutFormsData.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutFormsDataGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ModerationScoutFormsDataGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ModerationScoutFormsDataGroupByArgs['orderBy'] }
+        : { orderBy?: ModerationScoutFormsDataGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ModerationScoutFormsDataGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetModerationScoutFormsDataGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ModerationScoutFormsData model
+   */
+  readonly fields: ModerationScoutFormsDataFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ModerationScoutFormsData.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ModerationScoutFormsDataClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    ModerationScoutForms<T extends ModerationScoutFormsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ModerationScoutFormsDefaultArgs<ExtArgs>>): Prisma__ModerationScoutFormsClient<$Result.GetResult<Prisma.$ModerationScoutFormsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ModerationScoutFormsData model
+   */
+  interface ModerationScoutFormsDataFieldRefs {
+    readonly id: FieldRef<"ModerationScoutFormsData", 'String'>
+    readonly UUID: FieldRef<"ModerationScoutFormsData", 'String'>
+    readonly Type: FieldRef<"ModerationScoutFormsData", 'String'>
+    readonly Label: FieldRef<"ModerationScoutFormsData", 'String'>
+    readonly Description: FieldRef<"ModerationScoutFormsData", 'String'>
+    readonly Placeholder: FieldRef<"ModerationScoutFormsData", 'String'>
+    readonly OptionData: FieldRef<"ModerationScoutFormsData", 'Json'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ModerationScoutFormsData findUnique
+   */
+  export type ModerationScoutFormsDataFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutFormsData
+     */
+    select?: ModerationScoutFormsDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutFormsData
+     */
+    omit?: ModerationScoutFormsDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutFormsDataInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScoutFormsData to fetch.
+     */
+    where: ModerationScoutFormsDataWhereUniqueInput
+  }
+
+  /**
+   * ModerationScoutFormsData findUniqueOrThrow
+   */
+  export type ModerationScoutFormsDataFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutFormsData
+     */
+    select?: ModerationScoutFormsDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutFormsData
+     */
+    omit?: ModerationScoutFormsDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutFormsDataInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScoutFormsData to fetch.
+     */
+    where: ModerationScoutFormsDataWhereUniqueInput
+  }
+
+  /**
+   * ModerationScoutFormsData findFirst
+   */
+  export type ModerationScoutFormsDataFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutFormsData
+     */
+    select?: ModerationScoutFormsDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutFormsData
+     */
+    omit?: ModerationScoutFormsDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutFormsDataInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScoutFormsData to fetch.
+     */
+    where?: ModerationScoutFormsDataWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModerationScoutFormsData to fetch.
+     */
+    orderBy?: ModerationScoutFormsDataOrderByWithRelationInput | ModerationScoutFormsDataOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ModerationScoutFormsData.
+     */
+    cursor?: ModerationScoutFormsDataWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModerationScoutFormsData from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModerationScoutFormsData.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ModerationScoutFormsData.
+     */
+    distinct?: ModerationScoutFormsDataScalarFieldEnum | ModerationScoutFormsDataScalarFieldEnum[]
+  }
+
+  /**
+   * ModerationScoutFormsData findFirstOrThrow
+   */
+  export type ModerationScoutFormsDataFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutFormsData
+     */
+    select?: ModerationScoutFormsDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutFormsData
+     */
+    omit?: ModerationScoutFormsDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutFormsDataInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScoutFormsData to fetch.
+     */
+    where?: ModerationScoutFormsDataWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModerationScoutFormsData to fetch.
+     */
+    orderBy?: ModerationScoutFormsDataOrderByWithRelationInput | ModerationScoutFormsDataOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ModerationScoutFormsData.
+     */
+    cursor?: ModerationScoutFormsDataWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModerationScoutFormsData from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModerationScoutFormsData.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ModerationScoutFormsData.
+     */
+    distinct?: ModerationScoutFormsDataScalarFieldEnum | ModerationScoutFormsDataScalarFieldEnum[]
+  }
+
+  /**
+   * ModerationScoutFormsData findMany
+   */
+  export type ModerationScoutFormsDataFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutFormsData
+     */
+    select?: ModerationScoutFormsDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutFormsData
+     */
+    omit?: ModerationScoutFormsDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutFormsDataInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScoutFormsData to fetch.
+     */
+    where?: ModerationScoutFormsDataWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModerationScoutFormsData to fetch.
+     */
+    orderBy?: ModerationScoutFormsDataOrderByWithRelationInput | ModerationScoutFormsDataOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ModerationScoutFormsData.
+     */
+    cursor?: ModerationScoutFormsDataWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModerationScoutFormsData from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModerationScoutFormsData.
+     */
+    skip?: number
+    distinct?: ModerationScoutFormsDataScalarFieldEnum | ModerationScoutFormsDataScalarFieldEnum[]
+  }
+
+  /**
+   * ModerationScoutFormsData create
+   */
+  export type ModerationScoutFormsDataCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutFormsData
+     */
+    select?: ModerationScoutFormsDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutFormsData
+     */
+    omit?: ModerationScoutFormsDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutFormsDataInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ModerationScoutFormsData.
+     */
+    data: XOR<ModerationScoutFormsDataCreateInput, ModerationScoutFormsDataUncheckedCreateInput>
+  }
+
+  /**
+   * ModerationScoutFormsData createMany
+   */
+  export type ModerationScoutFormsDataCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ModerationScoutFormsData.
+     */
+    data: ModerationScoutFormsDataCreateManyInput | ModerationScoutFormsDataCreateManyInput[]
+  }
+
+  /**
+   * ModerationScoutFormsData update
+   */
+  export type ModerationScoutFormsDataUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutFormsData
+     */
+    select?: ModerationScoutFormsDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutFormsData
+     */
+    omit?: ModerationScoutFormsDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutFormsDataInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ModerationScoutFormsData.
+     */
+    data: XOR<ModerationScoutFormsDataUpdateInput, ModerationScoutFormsDataUncheckedUpdateInput>
+    /**
+     * Choose, which ModerationScoutFormsData to update.
+     */
+    where: ModerationScoutFormsDataWhereUniqueInput
+  }
+
+  /**
+   * ModerationScoutFormsData updateMany
+   */
+  export type ModerationScoutFormsDataUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ModerationScoutFormsData.
+     */
+    data: XOR<ModerationScoutFormsDataUpdateManyMutationInput, ModerationScoutFormsDataUncheckedUpdateManyInput>
+    /**
+     * Filter which ModerationScoutFormsData to update
+     */
+    where?: ModerationScoutFormsDataWhereInput
+    /**
+     * Limit how many ModerationScoutFormsData to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ModerationScoutFormsData upsert
+   */
+  export type ModerationScoutFormsDataUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutFormsData
+     */
+    select?: ModerationScoutFormsDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutFormsData
+     */
+    omit?: ModerationScoutFormsDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutFormsDataInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ModerationScoutFormsData to update in case it exists.
+     */
+    where: ModerationScoutFormsDataWhereUniqueInput
+    /**
+     * In case the ModerationScoutFormsData found by the `where` argument doesn't exist, create a new ModerationScoutFormsData with this data.
+     */
+    create: XOR<ModerationScoutFormsDataCreateInput, ModerationScoutFormsDataUncheckedCreateInput>
+    /**
+     * In case the ModerationScoutFormsData was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ModerationScoutFormsDataUpdateInput, ModerationScoutFormsDataUncheckedUpdateInput>
+  }
+
+  /**
+   * ModerationScoutFormsData delete
+   */
+  export type ModerationScoutFormsDataDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutFormsData
+     */
+    select?: ModerationScoutFormsDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutFormsData
+     */
+    omit?: ModerationScoutFormsDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutFormsDataInclude<ExtArgs> | null
+    /**
+     * Filter which ModerationScoutFormsData to delete.
+     */
+    where: ModerationScoutFormsDataWhereUniqueInput
+  }
+
+  /**
+   * ModerationScoutFormsData deleteMany
+   */
+  export type ModerationScoutFormsDataDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ModerationScoutFormsData to delete
+     */
+    where?: ModerationScoutFormsDataWhereInput
+    /**
+     * Limit how many ModerationScoutFormsData to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ModerationScoutFormsData findRaw
+   */
+  export type ModerationScoutFormsDataFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * ModerationScoutFormsData aggregateRaw
+   */
+  export type ModerationScoutFormsDataAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * ModerationScoutFormsData without action
+   */
+  export type ModerationScoutFormsDataDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutFormsData
+     */
+    select?: ModerationScoutFormsDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutFormsData
+     */
+    omit?: ModerationScoutFormsDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutFormsDataInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ModerationScoutUserAppeals
+   */
+
+  export type AggregateModerationScoutUserAppeals = {
+    _count: ModerationScoutUserAppealsCountAggregateOutputType | null
+    _min: ModerationScoutUserAppealsMinAggregateOutputType | null
+    _max: ModerationScoutUserAppealsMaxAggregateOutputType | null
+  }
+
+  export type ModerationScoutUserAppealsMinAggregateOutputType = {
+    id: string | null
+    UUID: string | null
+    Token: string | null
+    UserId: string | null
+    Case: string | null
+    FormId: string | null
+    ModerationScoutFormId: string | null
+    CratedAt: Date | null
+    CreatedBy: string | null
+    ModerationScoutId: string | null
+  }
+
+  export type ModerationScoutUserAppealsMaxAggregateOutputType = {
+    id: string | null
+    UUID: string | null
+    Token: string | null
+    UserId: string | null
+    Case: string | null
+    FormId: string | null
+    ModerationScoutFormId: string | null
+    CratedAt: Date | null
+    CreatedBy: string | null
+    ModerationScoutId: string | null
+  }
+
+  export type ModerationScoutUserAppealsCountAggregateOutputType = {
+    id: number
+    UUID: number
+    Token: number
+    UserId: number
+    Case: number
+    FormId: number
+    ModerationScoutFormId: number
+    Data: number
+    CratedAt: number
+    CreatedBy: number
+    ModerationScoutId: number
+    _all: number
+  }
+
+
+  export type ModerationScoutUserAppealsMinAggregateInputType = {
+    id?: true
+    UUID?: true
+    Token?: true
+    UserId?: true
+    Case?: true
+    FormId?: true
+    ModerationScoutFormId?: true
+    CratedAt?: true
+    CreatedBy?: true
+    ModerationScoutId?: true
+  }
+
+  export type ModerationScoutUserAppealsMaxAggregateInputType = {
+    id?: true
+    UUID?: true
+    Token?: true
+    UserId?: true
+    Case?: true
+    FormId?: true
+    ModerationScoutFormId?: true
+    CratedAt?: true
+    CreatedBy?: true
+    ModerationScoutId?: true
+  }
+
+  export type ModerationScoutUserAppealsCountAggregateInputType = {
+    id?: true
+    UUID?: true
+    Token?: true
+    UserId?: true
+    Case?: true
+    FormId?: true
+    ModerationScoutFormId?: true
+    Data?: true
+    CratedAt?: true
+    CreatedBy?: true
+    ModerationScoutId?: true
+    _all?: true
+  }
+
+  export type ModerationScoutUserAppealsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ModerationScoutUserAppeals to aggregate.
+     */
+    where?: ModerationScoutUserAppealsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModerationScoutUserAppeals to fetch.
+     */
+    orderBy?: ModerationScoutUserAppealsOrderByWithRelationInput | ModerationScoutUserAppealsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ModerationScoutUserAppealsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModerationScoutUserAppeals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModerationScoutUserAppeals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ModerationScoutUserAppeals
+    **/
+    _count?: true | ModerationScoutUserAppealsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ModerationScoutUserAppealsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ModerationScoutUserAppealsMaxAggregateInputType
+  }
+
+  export type GetModerationScoutUserAppealsAggregateType<T extends ModerationScoutUserAppealsAggregateArgs> = {
+        [P in keyof T & keyof AggregateModerationScoutUserAppeals]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateModerationScoutUserAppeals[P]>
+      : GetScalarType<T[P], AggregateModerationScoutUserAppeals[P]>
+  }
+
+
+
+
+  export type ModerationScoutUserAppealsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ModerationScoutUserAppealsWhereInput
+    orderBy?: ModerationScoutUserAppealsOrderByWithAggregationInput | ModerationScoutUserAppealsOrderByWithAggregationInput[]
+    by: ModerationScoutUserAppealsScalarFieldEnum[] | ModerationScoutUserAppealsScalarFieldEnum
+    having?: ModerationScoutUserAppealsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ModerationScoutUserAppealsCountAggregateInputType | true
+    _min?: ModerationScoutUserAppealsMinAggregateInputType
+    _max?: ModerationScoutUserAppealsMaxAggregateInputType
+  }
+
+  export type ModerationScoutUserAppealsGroupByOutputType = {
+    id: string
+    UUID: string
+    Token: string
+    UserId: string
+    Case: string
+    FormId: string
+    ModerationScoutFormId: string
+    Data: JsonValue
+    CratedAt: Date
+    CreatedBy: string
+    ModerationScoutId: string
+    _count: ModerationScoutUserAppealsCountAggregateOutputType | null
+    _min: ModerationScoutUserAppealsMinAggregateOutputType | null
+    _max: ModerationScoutUserAppealsMaxAggregateOutputType | null
+  }
+
+  type GetModerationScoutUserAppealsGroupByPayload<T extends ModerationScoutUserAppealsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ModerationScoutUserAppealsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ModerationScoutUserAppealsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ModerationScoutUserAppealsGroupByOutputType[P]>
+            : GetScalarType<T[P], ModerationScoutUserAppealsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ModerationScoutUserAppealsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    UUID?: boolean
+    Token?: boolean
+    UserId?: boolean
+    Case?: boolean
+    FormId?: boolean
+    ModerationScoutFormId?: boolean
+    Data?: boolean
+    CratedAt?: boolean
+    CreatedBy?: boolean
+    ModerationScoutId?: boolean
+    ModerationScoutForms?: boolean | ModerationScoutFormsDefaultArgs<ExtArgs>
+    ModerationScout?: boolean | ModerationScoutDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["moderationScoutUserAppeals"]>
+
+
+
+  export type ModerationScoutUserAppealsSelectScalar = {
+    id?: boolean
+    UUID?: boolean
+    Token?: boolean
+    UserId?: boolean
+    Case?: boolean
+    FormId?: boolean
+    ModerationScoutFormId?: boolean
+    Data?: boolean
+    CratedAt?: boolean
+    CreatedBy?: boolean
+    ModerationScoutId?: boolean
+  }
+
+  export type ModerationScoutUserAppealsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "UUID" | "Token" | "UserId" | "Case" | "FormId" | "ModerationScoutFormId" | "Data" | "CratedAt" | "CreatedBy" | "ModerationScoutId", ExtArgs["result"]["moderationScoutUserAppeals"]>
+  export type ModerationScoutUserAppealsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ModerationScoutForms?: boolean | ModerationScoutFormsDefaultArgs<ExtArgs>
+    ModerationScout?: boolean | ModerationScoutDefaultArgs<ExtArgs>
+  }
+
+  export type $ModerationScoutUserAppealsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ModerationScoutUserAppeals"
+    objects: {
+      ModerationScoutForms: Prisma.$ModerationScoutFormsPayload<ExtArgs>
+      ModerationScout: Prisma.$ModerationScoutPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      UUID: string
+      Token: string
+      UserId: string
+      Case: string
+      FormId: string
+      ModerationScoutFormId: string
+      Data: Prisma.JsonValue
+      CratedAt: Date
+      CreatedBy: string
+      ModerationScoutId: string
+    }, ExtArgs["result"]["moderationScoutUserAppeals"]>
+    composites: {}
+  }
+
+  type ModerationScoutUserAppealsGetPayload<S extends boolean | null | undefined | ModerationScoutUserAppealsDefaultArgs> = $Result.GetResult<Prisma.$ModerationScoutUserAppealsPayload, S>
+
+  type ModerationScoutUserAppealsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ModerationScoutUserAppealsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ModerationScoutUserAppealsCountAggregateInputType | true
+    }
+
+  export interface ModerationScoutUserAppealsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ModerationScoutUserAppeals'], meta: { name: 'ModerationScoutUserAppeals' } }
+    /**
+     * Find zero or one ModerationScoutUserAppeals that matches the filter.
+     * @param {ModerationScoutUserAppealsFindUniqueArgs} args - Arguments to find a ModerationScoutUserAppeals
+     * @example
+     * // Get one ModerationScoutUserAppeals
+     * const moderationScoutUserAppeals = await prisma.moderationScoutUserAppeals.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ModerationScoutUserAppealsFindUniqueArgs>(args: SelectSubset<T, ModerationScoutUserAppealsFindUniqueArgs<ExtArgs>>): Prisma__ModerationScoutUserAppealsClient<$Result.GetResult<Prisma.$ModerationScoutUserAppealsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ModerationScoutUserAppeals that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ModerationScoutUserAppealsFindUniqueOrThrowArgs} args - Arguments to find a ModerationScoutUserAppeals
+     * @example
+     * // Get one ModerationScoutUserAppeals
+     * const moderationScoutUserAppeals = await prisma.moderationScoutUserAppeals.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ModerationScoutUserAppealsFindUniqueOrThrowArgs>(args: SelectSubset<T, ModerationScoutUserAppealsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ModerationScoutUserAppealsClient<$Result.GetResult<Prisma.$ModerationScoutUserAppealsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ModerationScoutUserAppeals that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutUserAppealsFindFirstArgs} args - Arguments to find a ModerationScoutUserAppeals
+     * @example
+     * // Get one ModerationScoutUserAppeals
+     * const moderationScoutUserAppeals = await prisma.moderationScoutUserAppeals.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ModerationScoutUserAppealsFindFirstArgs>(args?: SelectSubset<T, ModerationScoutUserAppealsFindFirstArgs<ExtArgs>>): Prisma__ModerationScoutUserAppealsClient<$Result.GetResult<Prisma.$ModerationScoutUserAppealsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ModerationScoutUserAppeals that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutUserAppealsFindFirstOrThrowArgs} args - Arguments to find a ModerationScoutUserAppeals
+     * @example
+     * // Get one ModerationScoutUserAppeals
+     * const moderationScoutUserAppeals = await prisma.moderationScoutUserAppeals.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ModerationScoutUserAppealsFindFirstOrThrowArgs>(args?: SelectSubset<T, ModerationScoutUserAppealsFindFirstOrThrowArgs<ExtArgs>>): Prisma__ModerationScoutUserAppealsClient<$Result.GetResult<Prisma.$ModerationScoutUserAppealsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ModerationScoutUserAppeals that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutUserAppealsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ModerationScoutUserAppeals
+     * const moderationScoutUserAppeals = await prisma.moderationScoutUserAppeals.findMany()
+     * 
+     * // Get first 10 ModerationScoutUserAppeals
+     * const moderationScoutUserAppeals = await prisma.moderationScoutUserAppeals.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const moderationScoutUserAppealsWithIdOnly = await prisma.moderationScoutUserAppeals.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ModerationScoutUserAppealsFindManyArgs>(args?: SelectSubset<T, ModerationScoutUserAppealsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModerationScoutUserAppealsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ModerationScoutUserAppeals.
+     * @param {ModerationScoutUserAppealsCreateArgs} args - Arguments to create a ModerationScoutUserAppeals.
+     * @example
+     * // Create one ModerationScoutUserAppeals
+     * const ModerationScoutUserAppeals = await prisma.moderationScoutUserAppeals.create({
+     *   data: {
+     *     // ... data to create a ModerationScoutUserAppeals
+     *   }
+     * })
+     * 
+     */
+    create<T extends ModerationScoutUserAppealsCreateArgs>(args: SelectSubset<T, ModerationScoutUserAppealsCreateArgs<ExtArgs>>): Prisma__ModerationScoutUserAppealsClient<$Result.GetResult<Prisma.$ModerationScoutUserAppealsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ModerationScoutUserAppeals.
+     * @param {ModerationScoutUserAppealsCreateManyArgs} args - Arguments to create many ModerationScoutUserAppeals.
+     * @example
+     * // Create many ModerationScoutUserAppeals
+     * const moderationScoutUserAppeals = await prisma.moderationScoutUserAppeals.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ModerationScoutUserAppealsCreateManyArgs>(args?: SelectSubset<T, ModerationScoutUserAppealsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ModerationScoutUserAppeals.
+     * @param {ModerationScoutUserAppealsDeleteArgs} args - Arguments to delete one ModerationScoutUserAppeals.
+     * @example
+     * // Delete one ModerationScoutUserAppeals
+     * const ModerationScoutUserAppeals = await prisma.moderationScoutUserAppeals.delete({
+     *   where: {
+     *     // ... filter to delete one ModerationScoutUserAppeals
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ModerationScoutUserAppealsDeleteArgs>(args: SelectSubset<T, ModerationScoutUserAppealsDeleteArgs<ExtArgs>>): Prisma__ModerationScoutUserAppealsClient<$Result.GetResult<Prisma.$ModerationScoutUserAppealsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ModerationScoutUserAppeals.
+     * @param {ModerationScoutUserAppealsUpdateArgs} args - Arguments to update one ModerationScoutUserAppeals.
+     * @example
+     * // Update one ModerationScoutUserAppeals
+     * const moderationScoutUserAppeals = await prisma.moderationScoutUserAppeals.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ModerationScoutUserAppealsUpdateArgs>(args: SelectSubset<T, ModerationScoutUserAppealsUpdateArgs<ExtArgs>>): Prisma__ModerationScoutUserAppealsClient<$Result.GetResult<Prisma.$ModerationScoutUserAppealsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ModerationScoutUserAppeals.
+     * @param {ModerationScoutUserAppealsDeleteManyArgs} args - Arguments to filter ModerationScoutUserAppeals to delete.
+     * @example
+     * // Delete a few ModerationScoutUserAppeals
+     * const { count } = await prisma.moderationScoutUserAppeals.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ModerationScoutUserAppealsDeleteManyArgs>(args?: SelectSubset<T, ModerationScoutUserAppealsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ModerationScoutUserAppeals.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutUserAppealsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ModerationScoutUserAppeals
+     * const moderationScoutUserAppeals = await prisma.moderationScoutUserAppeals.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ModerationScoutUserAppealsUpdateManyArgs>(args: SelectSubset<T, ModerationScoutUserAppealsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ModerationScoutUserAppeals.
+     * @param {ModerationScoutUserAppealsUpsertArgs} args - Arguments to update or create a ModerationScoutUserAppeals.
+     * @example
+     * // Update or create a ModerationScoutUserAppeals
+     * const moderationScoutUserAppeals = await prisma.moderationScoutUserAppeals.upsert({
+     *   create: {
+     *     // ... data to create a ModerationScoutUserAppeals
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ModerationScoutUserAppeals we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ModerationScoutUserAppealsUpsertArgs>(args: SelectSubset<T, ModerationScoutUserAppealsUpsertArgs<ExtArgs>>): Prisma__ModerationScoutUserAppealsClient<$Result.GetResult<Prisma.$ModerationScoutUserAppealsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ModerationScoutUserAppeals that matches the filter.
+     * @param {ModerationScoutUserAppealsFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const moderationScoutUserAppeals = await prisma.moderationScoutUserAppeals.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: ModerationScoutUserAppealsFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a ModerationScoutUserAppeals.
+     * @param {ModerationScoutUserAppealsAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const moderationScoutUserAppeals = await prisma.moderationScoutUserAppeals.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: ModerationScoutUserAppealsAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of ModerationScoutUserAppeals.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutUserAppealsCountArgs} args - Arguments to filter ModerationScoutUserAppeals to count.
+     * @example
+     * // Count the number of ModerationScoutUserAppeals
+     * const count = await prisma.moderationScoutUserAppeals.count({
+     *   where: {
+     *     // ... the filter for the ModerationScoutUserAppeals we want to count
+     *   }
+     * })
+    **/
+    count<T extends ModerationScoutUserAppealsCountArgs>(
+      args?: Subset<T, ModerationScoutUserAppealsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ModerationScoutUserAppealsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ModerationScoutUserAppeals.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutUserAppealsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ModerationScoutUserAppealsAggregateArgs>(args: Subset<T, ModerationScoutUserAppealsAggregateArgs>): Prisma.PrismaPromise<GetModerationScoutUserAppealsAggregateType<T>>
+
+    /**
+     * Group by ModerationScoutUserAppeals.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutUserAppealsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ModerationScoutUserAppealsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ModerationScoutUserAppealsGroupByArgs['orderBy'] }
+        : { orderBy?: ModerationScoutUserAppealsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ModerationScoutUserAppealsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetModerationScoutUserAppealsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ModerationScoutUserAppeals model
+   */
+  readonly fields: ModerationScoutUserAppealsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ModerationScoutUserAppeals.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ModerationScoutUserAppealsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    ModerationScoutForms<T extends ModerationScoutFormsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ModerationScoutFormsDefaultArgs<ExtArgs>>): Prisma__ModerationScoutFormsClient<$Result.GetResult<Prisma.$ModerationScoutFormsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    ModerationScout<T extends ModerationScoutDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ModerationScoutDefaultArgs<ExtArgs>>): Prisma__ModerationScoutClient<$Result.GetResult<Prisma.$ModerationScoutPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ModerationScoutUserAppeals model
+   */
+  interface ModerationScoutUserAppealsFieldRefs {
+    readonly id: FieldRef<"ModerationScoutUserAppeals", 'String'>
+    readonly UUID: FieldRef<"ModerationScoutUserAppeals", 'String'>
+    readonly Token: FieldRef<"ModerationScoutUserAppeals", 'String'>
+    readonly UserId: FieldRef<"ModerationScoutUserAppeals", 'String'>
+    readonly Case: FieldRef<"ModerationScoutUserAppeals", 'String'>
+    readonly FormId: FieldRef<"ModerationScoutUserAppeals", 'String'>
+    readonly ModerationScoutFormId: FieldRef<"ModerationScoutUserAppeals", 'String'>
+    readonly Data: FieldRef<"ModerationScoutUserAppeals", 'Json'>
+    readonly CratedAt: FieldRef<"ModerationScoutUserAppeals", 'DateTime'>
+    readonly CreatedBy: FieldRef<"ModerationScoutUserAppeals", 'String'>
+    readonly ModerationScoutId: FieldRef<"ModerationScoutUserAppeals", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ModerationScoutUserAppeals findUnique
+   */
+  export type ModerationScoutUserAppealsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutUserAppeals
+     */
+    select?: ModerationScoutUserAppealsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutUserAppeals
+     */
+    omit?: ModerationScoutUserAppealsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutUserAppealsInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScoutUserAppeals to fetch.
+     */
+    where: ModerationScoutUserAppealsWhereUniqueInput
+  }
+
+  /**
+   * ModerationScoutUserAppeals findUniqueOrThrow
+   */
+  export type ModerationScoutUserAppealsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutUserAppeals
+     */
+    select?: ModerationScoutUserAppealsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutUserAppeals
+     */
+    omit?: ModerationScoutUserAppealsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutUserAppealsInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScoutUserAppeals to fetch.
+     */
+    where: ModerationScoutUserAppealsWhereUniqueInput
+  }
+
+  /**
+   * ModerationScoutUserAppeals findFirst
+   */
+  export type ModerationScoutUserAppealsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutUserAppeals
+     */
+    select?: ModerationScoutUserAppealsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutUserAppeals
+     */
+    omit?: ModerationScoutUserAppealsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutUserAppealsInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScoutUserAppeals to fetch.
+     */
+    where?: ModerationScoutUserAppealsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModerationScoutUserAppeals to fetch.
+     */
+    orderBy?: ModerationScoutUserAppealsOrderByWithRelationInput | ModerationScoutUserAppealsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ModerationScoutUserAppeals.
+     */
+    cursor?: ModerationScoutUserAppealsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModerationScoutUserAppeals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModerationScoutUserAppeals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ModerationScoutUserAppeals.
+     */
+    distinct?: ModerationScoutUserAppealsScalarFieldEnum | ModerationScoutUserAppealsScalarFieldEnum[]
+  }
+
+  /**
+   * ModerationScoutUserAppeals findFirstOrThrow
+   */
+  export type ModerationScoutUserAppealsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutUserAppeals
+     */
+    select?: ModerationScoutUserAppealsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutUserAppeals
+     */
+    omit?: ModerationScoutUserAppealsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutUserAppealsInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScoutUserAppeals to fetch.
+     */
+    where?: ModerationScoutUserAppealsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModerationScoutUserAppeals to fetch.
+     */
+    orderBy?: ModerationScoutUserAppealsOrderByWithRelationInput | ModerationScoutUserAppealsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ModerationScoutUserAppeals.
+     */
+    cursor?: ModerationScoutUserAppealsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModerationScoutUserAppeals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModerationScoutUserAppeals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ModerationScoutUserAppeals.
+     */
+    distinct?: ModerationScoutUserAppealsScalarFieldEnum | ModerationScoutUserAppealsScalarFieldEnum[]
+  }
+
+  /**
+   * ModerationScoutUserAppeals findMany
+   */
+  export type ModerationScoutUserAppealsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutUserAppeals
+     */
+    select?: ModerationScoutUserAppealsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutUserAppeals
+     */
+    omit?: ModerationScoutUserAppealsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutUserAppealsInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScoutUserAppeals to fetch.
+     */
+    where?: ModerationScoutUserAppealsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModerationScoutUserAppeals to fetch.
+     */
+    orderBy?: ModerationScoutUserAppealsOrderByWithRelationInput | ModerationScoutUserAppealsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ModerationScoutUserAppeals.
+     */
+    cursor?: ModerationScoutUserAppealsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModerationScoutUserAppeals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModerationScoutUserAppeals.
+     */
+    skip?: number
+    distinct?: ModerationScoutUserAppealsScalarFieldEnum | ModerationScoutUserAppealsScalarFieldEnum[]
+  }
+
+  /**
+   * ModerationScoutUserAppeals create
+   */
+  export type ModerationScoutUserAppealsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutUserAppeals
+     */
+    select?: ModerationScoutUserAppealsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutUserAppeals
+     */
+    omit?: ModerationScoutUserAppealsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutUserAppealsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ModerationScoutUserAppeals.
+     */
+    data: XOR<ModerationScoutUserAppealsCreateInput, ModerationScoutUserAppealsUncheckedCreateInput>
+  }
+
+  /**
+   * ModerationScoutUserAppeals createMany
+   */
+  export type ModerationScoutUserAppealsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ModerationScoutUserAppeals.
+     */
+    data: ModerationScoutUserAppealsCreateManyInput | ModerationScoutUserAppealsCreateManyInput[]
+  }
+
+  /**
+   * ModerationScoutUserAppeals update
+   */
+  export type ModerationScoutUserAppealsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutUserAppeals
+     */
+    select?: ModerationScoutUserAppealsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutUserAppeals
+     */
+    omit?: ModerationScoutUserAppealsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutUserAppealsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ModerationScoutUserAppeals.
+     */
+    data: XOR<ModerationScoutUserAppealsUpdateInput, ModerationScoutUserAppealsUncheckedUpdateInput>
+    /**
+     * Choose, which ModerationScoutUserAppeals to update.
+     */
+    where: ModerationScoutUserAppealsWhereUniqueInput
+  }
+
+  /**
+   * ModerationScoutUserAppeals updateMany
+   */
+  export type ModerationScoutUserAppealsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ModerationScoutUserAppeals.
+     */
+    data: XOR<ModerationScoutUserAppealsUpdateManyMutationInput, ModerationScoutUserAppealsUncheckedUpdateManyInput>
+    /**
+     * Filter which ModerationScoutUserAppeals to update
+     */
+    where?: ModerationScoutUserAppealsWhereInput
+    /**
+     * Limit how many ModerationScoutUserAppeals to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ModerationScoutUserAppeals upsert
+   */
+  export type ModerationScoutUserAppealsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutUserAppeals
+     */
+    select?: ModerationScoutUserAppealsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutUserAppeals
+     */
+    omit?: ModerationScoutUserAppealsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutUserAppealsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ModerationScoutUserAppeals to update in case it exists.
+     */
+    where: ModerationScoutUserAppealsWhereUniqueInput
+    /**
+     * In case the ModerationScoutUserAppeals found by the `where` argument doesn't exist, create a new ModerationScoutUserAppeals with this data.
+     */
+    create: XOR<ModerationScoutUserAppealsCreateInput, ModerationScoutUserAppealsUncheckedCreateInput>
+    /**
+     * In case the ModerationScoutUserAppeals was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ModerationScoutUserAppealsUpdateInput, ModerationScoutUserAppealsUncheckedUpdateInput>
+  }
+
+  /**
+   * ModerationScoutUserAppeals delete
+   */
+  export type ModerationScoutUserAppealsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutUserAppeals
+     */
+    select?: ModerationScoutUserAppealsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutUserAppeals
+     */
+    omit?: ModerationScoutUserAppealsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutUserAppealsInclude<ExtArgs> | null
+    /**
+     * Filter which ModerationScoutUserAppeals to delete.
+     */
+    where: ModerationScoutUserAppealsWhereUniqueInput
+  }
+
+  /**
+   * ModerationScoutUserAppeals deleteMany
+   */
+  export type ModerationScoutUserAppealsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ModerationScoutUserAppeals to delete
+     */
+    where?: ModerationScoutUserAppealsWhereInput
+    /**
+     * Limit how many ModerationScoutUserAppeals to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ModerationScoutUserAppeals findRaw
+   */
+  export type ModerationScoutUserAppealsFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * ModerationScoutUserAppeals aggregateRaw
+   */
+  export type ModerationScoutUserAppealsAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * ModerationScoutUserAppeals without action
+   */
+  export type ModerationScoutUserAppealsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutUserAppeals
+     */
+    select?: ModerationScoutUserAppealsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutUserAppeals
+     */
+    omit?: ModerationScoutUserAppealsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutUserAppealsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ModerationScoutReportModalData
+   */
+
+  export type AggregateModerationScoutReportModalData = {
+    _count: ModerationScoutReportModalDataCountAggregateOutputType | null
+    _avg: ModerationScoutReportModalDataAvgAggregateOutputType | null
+    _sum: ModerationScoutReportModalDataSumAggregateOutputType | null
+    _min: ModerationScoutReportModalDataMinAggregateOutputType | null
+    _max: ModerationScoutReportModalDataMaxAggregateOutputType | null
+  }
+
+  export type ModerationScoutReportModalDataAvgAggregateOutputType = {
+    Type: number | null
+    MinLength: number | null
+    MaxLength: number | null
+  }
+
+  export type ModerationScoutReportModalDataSumAggregateOutputType = {
+    Type: number | null
+    MinLength: number | null
+    MaxLength: number | null
+  }
+
+  export type ModerationScoutReportModalDataMinAggregateOutputType = {
+    id: string | null
+    UUID: string | null
+    Name: string | null
+    Placeholder: string | null
+    Type: number | null
+    MinLength: number | null
+    MaxLength: number | null
+    Required: boolean | null
+    ModerationScoutId: string | null
+  }
+
+  export type ModerationScoutReportModalDataMaxAggregateOutputType = {
+    id: string | null
+    UUID: string | null
+    Name: string | null
+    Placeholder: string | null
+    Type: number | null
+    MinLength: number | null
+    MaxLength: number | null
+    Required: boolean | null
+    ModerationScoutId: string | null
+  }
+
+  export type ModerationScoutReportModalDataCountAggregateOutputType = {
+    id: number
+    UUID: number
+    Name: number
+    Placeholder: number
+    Type: number
+    MinLength: number
+    MaxLength: number
+    Required: number
+    ModerationScoutId: number
+    _all: number
+  }
+
+
+  export type ModerationScoutReportModalDataAvgAggregateInputType = {
+    Type?: true
+    MinLength?: true
+    MaxLength?: true
+  }
+
+  export type ModerationScoutReportModalDataSumAggregateInputType = {
+    Type?: true
+    MinLength?: true
+    MaxLength?: true
+  }
+
+  export type ModerationScoutReportModalDataMinAggregateInputType = {
+    id?: true
+    UUID?: true
+    Name?: true
+    Placeholder?: true
+    Type?: true
+    MinLength?: true
+    MaxLength?: true
+    Required?: true
+    ModerationScoutId?: true
+  }
+
+  export type ModerationScoutReportModalDataMaxAggregateInputType = {
+    id?: true
+    UUID?: true
+    Name?: true
+    Placeholder?: true
+    Type?: true
+    MinLength?: true
+    MaxLength?: true
+    Required?: true
+    ModerationScoutId?: true
+  }
+
+  export type ModerationScoutReportModalDataCountAggregateInputType = {
+    id?: true
+    UUID?: true
+    Name?: true
+    Placeholder?: true
+    Type?: true
+    MinLength?: true
+    MaxLength?: true
+    Required?: true
+    ModerationScoutId?: true
+    _all?: true
+  }
+
+  export type ModerationScoutReportModalDataAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ModerationScoutReportModalData to aggregate.
+     */
+    where?: ModerationScoutReportModalDataWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModerationScoutReportModalData to fetch.
+     */
+    orderBy?: ModerationScoutReportModalDataOrderByWithRelationInput | ModerationScoutReportModalDataOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ModerationScoutReportModalDataWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModerationScoutReportModalData from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModerationScoutReportModalData.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ModerationScoutReportModalData
+    **/
+    _count?: true | ModerationScoutReportModalDataCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ModerationScoutReportModalDataAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ModerationScoutReportModalDataSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ModerationScoutReportModalDataMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ModerationScoutReportModalDataMaxAggregateInputType
+  }
+
+  export type GetModerationScoutReportModalDataAggregateType<T extends ModerationScoutReportModalDataAggregateArgs> = {
+        [P in keyof T & keyof AggregateModerationScoutReportModalData]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateModerationScoutReportModalData[P]>
+      : GetScalarType<T[P], AggregateModerationScoutReportModalData[P]>
+  }
+
+
+
+
+  export type ModerationScoutReportModalDataGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ModerationScoutReportModalDataWhereInput
+    orderBy?: ModerationScoutReportModalDataOrderByWithAggregationInput | ModerationScoutReportModalDataOrderByWithAggregationInput[]
+    by: ModerationScoutReportModalDataScalarFieldEnum[] | ModerationScoutReportModalDataScalarFieldEnum
+    having?: ModerationScoutReportModalDataScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ModerationScoutReportModalDataCountAggregateInputType | true
+    _avg?: ModerationScoutReportModalDataAvgAggregateInputType
+    _sum?: ModerationScoutReportModalDataSumAggregateInputType
+    _min?: ModerationScoutReportModalDataMinAggregateInputType
+    _max?: ModerationScoutReportModalDataMaxAggregateInputType
+  }
+
+  export type ModerationScoutReportModalDataGroupByOutputType = {
+    id: string
+    UUID: string
+    Name: string
+    Placeholder: string | null
+    Type: number
+    MinLength: number | null
+    MaxLength: number | null
+    Required: boolean
+    ModerationScoutId: string
+    _count: ModerationScoutReportModalDataCountAggregateOutputType | null
+    _avg: ModerationScoutReportModalDataAvgAggregateOutputType | null
+    _sum: ModerationScoutReportModalDataSumAggregateOutputType | null
+    _min: ModerationScoutReportModalDataMinAggregateOutputType | null
+    _max: ModerationScoutReportModalDataMaxAggregateOutputType | null
+  }
+
+  type GetModerationScoutReportModalDataGroupByPayload<T extends ModerationScoutReportModalDataGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ModerationScoutReportModalDataGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ModerationScoutReportModalDataGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ModerationScoutReportModalDataGroupByOutputType[P]>
+            : GetScalarType<T[P], ModerationScoutReportModalDataGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ModerationScoutReportModalDataSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    UUID?: boolean
+    Name?: boolean
+    Placeholder?: boolean
+    Type?: boolean
+    MinLength?: boolean
+    MaxLength?: boolean
+    Required?: boolean
+    ModerationScoutId?: boolean
+    ModerationScout?: boolean | ModerationScoutDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["moderationScoutReportModalData"]>
+
+
+
+  export type ModerationScoutReportModalDataSelectScalar = {
+    id?: boolean
+    UUID?: boolean
+    Name?: boolean
+    Placeholder?: boolean
+    Type?: boolean
+    MinLength?: boolean
+    MaxLength?: boolean
+    Required?: boolean
+    ModerationScoutId?: boolean
+  }
+
+  export type ModerationScoutReportModalDataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "UUID" | "Name" | "Placeholder" | "Type" | "MinLength" | "MaxLength" | "Required" | "ModerationScoutId", ExtArgs["result"]["moderationScoutReportModalData"]>
+  export type ModerationScoutReportModalDataInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ModerationScout?: boolean | ModerationScoutDefaultArgs<ExtArgs>
+  }
+
+  export type $ModerationScoutReportModalDataPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ModerationScoutReportModalData"
+    objects: {
+      ModerationScout: Prisma.$ModerationScoutPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      UUID: string
+      Name: string
+      Placeholder: string | null
+      Type: number
+      MinLength: number | null
+      MaxLength: number | null
+      Required: boolean
+      ModerationScoutId: string
+    }, ExtArgs["result"]["moderationScoutReportModalData"]>
+    composites: {}
+  }
+
+  type ModerationScoutReportModalDataGetPayload<S extends boolean | null | undefined | ModerationScoutReportModalDataDefaultArgs> = $Result.GetResult<Prisma.$ModerationScoutReportModalDataPayload, S>
+
+  type ModerationScoutReportModalDataCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ModerationScoutReportModalDataFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ModerationScoutReportModalDataCountAggregateInputType | true
+    }
+
+  export interface ModerationScoutReportModalDataDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ModerationScoutReportModalData'], meta: { name: 'ModerationScoutReportModalData' } }
+    /**
+     * Find zero or one ModerationScoutReportModalData that matches the filter.
+     * @param {ModerationScoutReportModalDataFindUniqueArgs} args - Arguments to find a ModerationScoutReportModalData
+     * @example
+     * // Get one ModerationScoutReportModalData
+     * const moderationScoutReportModalData = await prisma.moderationScoutReportModalData.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ModerationScoutReportModalDataFindUniqueArgs>(args: SelectSubset<T, ModerationScoutReportModalDataFindUniqueArgs<ExtArgs>>): Prisma__ModerationScoutReportModalDataClient<$Result.GetResult<Prisma.$ModerationScoutReportModalDataPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ModerationScoutReportModalData that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ModerationScoutReportModalDataFindUniqueOrThrowArgs} args - Arguments to find a ModerationScoutReportModalData
+     * @example
+     * // Get one ModerationScoutReportModalData
+     * const moderationScoutReportModalData = await prisma.moderationScoutReportModalData.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ModerationScoutReportModalDataFindUniqueOrThrowArgs>(args: SelectSubset<T, ModerationScoutReportModalDataFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ModerationScoutReportModalDataClient<$Result.GetResult<Prisma.$ModerationScoutReportModalDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ModerationScoutReportModalData that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutReportModalDataFindFirstArgs} args - Arguments to find a ModerationScoutReportModalData
+     * @example
+     * // Get one ModerationScoutReportModalData
+     * const moderationScoutReportModalData = await prisma.moderationScoutReportModalData.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ModerationScoutReportModalDataFindFirstArgs>(args?: SelectSubset<T, ModerationScoutReportModalDataFindFirstArgs<ExtArgs>>): Prisma__ModerationScoutReportModalDataClient<$Result.GetResult<Prisma.$ModerationScoutReportModalDataPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ModerationScoutReportModalData that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutReportModalDataFindFirstOrThrowArgs} args - Arguments to find a ModerationScoutReportModalData
+     * @example
+     * // Get one ModerationScoutReportModalData
+     * const moderationScoutReportModalData = await prisma.moderationScoutReportModalData.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ModerationScoutReportModalDataFindFirstOrThrowArgs>(args?: SelectSubset<T, ModerationScoutReportModalDataFindFirstOrThrowArgs<ExtArgs>>): Prisma__ModerationScoutReportModalDataClient<$Result.GetResult<Prisma.$ModerationScoutReportModalDataPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ModerationScoutReportModalData that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutReportModalDataFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ModerationScoutReportModalData
+     * const moderationScoutReportModalData = await prisma.moderationScoutReportModalData.findMany()
+     * 
+     * // Get first 10 ModerationScoutReportModalData
+     * const moderationScoutReportModalData = await prisma.moderationScoutReportModalData.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const moderationScoutReportModalDataWithIdOnly = await prisma.moderationScoutReportModalData.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ModerationScoutReportModalDataFindManyArgs>(args?: SelectSubset<T, ModerationScoutReportModalDataFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModerationScoutReportModalDataPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ModerationScoutReportModalData.
+     * @param {ModerationScoutReportModalDataCreateArgs} args - Arguments to create a ModerationScoutReportModalData.
+     * @example
+     * // Create one ModerationScoutReportModalData
+     * const ModerationScoutReportModalData = await prisma.moderationScoutReportModalData.create({
+     *   data: {
+     *     // ... data to create a ModerationScoutReportModalData
+     *   }
+     * })
+     * 
+     */
+    create<T extends ModerationScoutReportModalDataCreateArgs>(args: SelectSubset<T, ModerationScoutReportModalDataCreateArgs<ExtArgs>>): Prisma__ModerationScoutReportModalDataClient<$Result.GetResult<Prisma.$ModerationScoutReportModalDataPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ModerationScoutReportModalData.
+     * @param {ModerationScoutReportModalDataCreateManyArgs} args - Arguments to create many ModerationScoutReportModalData.
+     * @example
+     * // Create many ModerationScoutReportModalData
+     * const moderationScoutReportModalData = await prisma.moderationScoutReportModalData.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ModerationScoutReportModalDataCreateManyArgs>(args?: SelectSubset<T, ModerationScoutReportModalDataCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ModerationScoutReportModalData.
+     * @param {ModerationScoutReportModalDataDeleteArgs} args - Arguments to delete one ModerationScoutReportModalData.
+     * @example
+     * // Delete one ModerationScoutReportModalData
+     * const ModerationScoutReportModalData = await prisma.moderationScoutReportModalData.delete({
+     *   where: {
+     *     // ... filter to delete one ModerationScoutReportModalData
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ModerationScoutReportModalDataDeleteArgs>(args: SelectSubset<T, ModerationScoutReportModalDataDeleteArgs<ExtArgs>>): Prisma__ModerationScoutReportModalDataClient<$Result.GetResult<Prisma.$ModerationScoutReportModalDataPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ModerationScoutReportModalData.
+     * @param {ModerationScoutReportModalDataUpdateArgs} args - Arguments to update one ModerationScoutReportModalData.
+     * @example
+     * // Update one ModerationScoutReportModalData
+     * const moderationScoutReportModalData = await prisma.moderationScoutReportModalData.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ModerationScoutReportModalDataUpdateArgs>(args: SelectSubset<T, ModerationScoutReportModalDataUpdateArgs<ExtArgs>>): Prisma__ModerationScoutReportModalDataClient<$Result.GetResult<Prisma.$ModerationScoutReportModalDataPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ModerationScoutReportModalData.
+     * @param {ModerationScoutReportModalDataDeleteManyArgs} args - Arguments to filter ModerationScoutReportModalData to delete.
+     * @example
+     * // Delete a few ModerationScoutReportModalData
+     * const { count } = await prisma.moderationScoutReportModalData.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ModerationScoutReportModalDataDeleteManyArgs>(args?: SelectSubset<T, ModerationScoutReportModalDataDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ModerationScoutReportModalData.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutReportModalDataUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ModerationScoutReportModalData
+     * const moderationScoutReportModalData = await prisma.moderationScoutReportModalData.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ModerationScoutReportModalDataUpdateManyArgs>(args: SelectSubset<T, ModerationScoutReportModalDataUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ModerationScoutReportModalData.
+     * @param {ModerationScoutReportModalDataUpsertArgs} args - Arguments to update or create a ModerationScoutReportModalData.
+     * @example
+     * // Update or create a ModerationScoutReportModalData
+     * const moderationScoutReportModalData = await prisma.moderationScoutReportModalData.upsert({
+     *   create: {
+     *     // ... data to create a ModerationScoutReportModalData
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ModerationScoutReportModalData we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ModerationScoutReportModalDataUpsertArgs>(args: SelectSubset<T, ModerationScoutReportModalDataUpsertArgs<ExtArgs>>): Prisma__ModerationScoutReportModalDataClient<$Result.GetResult<Prisma.$ModerationScoutReportModalDataPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ModerationScoutReportModalData that matches the filter.
+     * @param {ModerationScoutReportModalDataFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const moderationScoutReportModalData = await prisma.moderationScoutReportModalData.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: ModerationScoutReportModalDataFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a ModerationScoutReportModalData.
+     * @param {ModerationScoutReportModalDataAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const moderationScoutReportModalData = await prisma.moderationScoutReportModalData.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: ModerationScoutReportModalDataAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of ModerationScoutReportModalData.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutReportModalDataCountArgs} args - Arguments to filter ModerationScoutReportModalData to count.
+     * @example
+     * // Count the number of ModerationScoutReportModalData
+     * const count = await prisma.moderationScoutReportModalData.count({
+     *   where: {
+     *     // ... the filter for the ModerationScoutReportModalData we want to count
+     *   }
+     * })
+    **/
+    count<T extends ModerationScoutReportModalDataCountArgs>(
+      args?: Subset<T, ModerationScoutReportModalDataCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ModerationScoutReportModalDataCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ModerationScoutReportModalData.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutReportModalDataAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ModerationScoutReportModalDataAggregateArgs>(args: Subset<T, ModerationScoutReportModalDataAggregateArgs>): Prisma.PrismaPromise<GetModerationScoutReportModalDataAggregateType<T>>
+
+    /**
+     * Group by ModerationScoutReportModalData.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutReportModalDataGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ModerationScoutReportModalDataGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ModerationScoutReportModalDataGroupByArgs['orderBy'] }
+        : { orderBy?: ModerationScoutReportModalDataGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ModerationScoutReportModalDataGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetModerationScoutReportModalDataGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ModerationScoutReportModalData model
+   */
+  readonly fields: ModerationScoutReportModalDataFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ModerationScoutReportModalData.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ModerationScoutReportModalDataClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    ModerationScout<T extends ModerationScoutDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ModerationScoutDefaultArgs<ExtArgs>>): Prisma__ModerationScoutClient<$Result.GetResult<Prisma.$ModerationScoutPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ModerationScoutReportModalData model
+   */
+  interface ModerationScoutReportModalDataFieldRefs {
+    readonly id: FieldRef<"ModerationScoutReportModalData", 'String'>
+    readonly UUID: FieldRef<"ModerationScoutReportModalData", 'String'>
+    readonly Name: FieldRef<"ModerationScoutReportModalData", 'String'>
+    readonly Placeholder: FieldRef<"ModerationScoutReportModalData", 'String'>
+    readonly Type: FieldRef<"ModerationScoutReportModalData", 'Int'>
+    readonly MinLength: FieldRef<"ModerationScoutReportModalData", 'Int'>
+    readonly MaxLength: FieldRef<"ModerationScoutReportModalData", 'Int'>
+    readonly Required: FieldRef<"ModerationScoutReportModalData", 'Boolean'>
+    readonly ModerationScoutId: FieldRef<"ModerationScoutReportModalData", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ModerationScoutReportModalData findUnique
+   */
+  export type ModerationScoutReportModalDataFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutReportModalData
+     */
+    select?: ModerationScoutReportModalDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutReportModalData
+     */
+    omit?: ModerationScoutReportModalDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutReportModalDataInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScoutReportModalData to fetch.
+     */
+    where: ModerationScoutReportModalDataWhereUniqueInput
+  }
+
+  /**
+   * ModerationScoutReportModalData findUniqueOrThrow
+   */
+  export type ModerationScoutReportModalDataFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutReportModalData
+     */
+    select?: ModerationScoutReportModalDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutReportModalData
+     */
+    omit?: ModerationScoutReportModalDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutReportModalDataInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScoutReportModalData to fetch.
+     */
+    where: ModerationScoutReportModalDataWhereUniqueInput
+  }
+
+  /**
+   * ModerationScoutReportModalData findFirst
+   */
+  export type ModerationScoutReportModalDataFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutReportModalData
+     */
+    select?: ModerationScoutReportModalDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutReportModalData
+     */
+    omit?: ModerationScoutReportModalDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutReportModalDataInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScoutReportModalData to fetch.
+     */
+    where?: ModerationScoutReportModalDataWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModerationScoutReportModalData to fetch.
+     */
+    orderBy?: ModerationScoutReportModalDataOrderByWithRelationInput | ModerationScoutReportModalDataOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ModerationScoutReportModalData.
+     */
+    cursor?: ModerationScoutReportModalDataWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModerationScoutReportModalData from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModerationScoutReportModalData.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ModerationScoutReportModalData.
+     */
+    distinct?: ModerationScoutReportModalDataScalarFieldEnum | ModerationScoutReportModalDataScalarFieldEnum[]
+  }
+
+  /**
+   * ModerationScoutReportModalData findFirstOrThrow
+   */
+  export type ModerationScoutReportModalDataFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutReportModalData
+     */
+    select?: ModerationScoutReportModalDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutReportModalData
+     */
+    omit?: ModerationScoutReportModalDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutReportModalDataInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScoutReportModalData to fetch.
+     */
+    where?: ModerationScoutReportModalDataWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModerationScoutReportModalData to fetch.
+     */
+    orderBy?: ModerationScoutReportModalDataOrderByWithRelationInput | ModerationScoutReportModalDataOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ModerationScoutReportModalData.
+     */
+    cursor?: ModerationScoutReportModalDataWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModerationScoutReportModalData from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModerationScoutReportModalData.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ModerationScoutReportModalData.
+     */
+    distinct?: ModerationScoutReportModalDataScalarFieldEnum | ModerationScoutReportModalDataScalarFieldEnum[]
+  }
+
+  /**
+   * ModerationScoutReportModalData findMany
+   */
+  export type ModerationScoutReportModalDataFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutReportModalData
+     */
+    select?: ModerationScoutReportModalDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutReportModalData
+     */
+    omit?: ModerationScoutReportModalDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutReportModalDataInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScoutReportModalData to fetch.
+     */
+    where?: ModerationScoutReportModalDataWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModerationScoutReportModalData to fetch.
+     */
+    orderBy?: ModerationScoutReportModalDataOrderByWithRelationInput | ModerationScoutReportModalDataOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ModerationScoutReportModalData.
+     */
+    cursor?: ModerationScoutReportModalDataWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModerationScoutReportModalData from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModerationScoutReportModalData.
+     */
+    skip?: number
+    distinct?: ModerationScoutReportModalDataScalarFieldEnum | ModerationScoutReportModalDataScalarFieldEnum[]
+  }
+
+  /**
+   * ModerationScoutReportModalData create
+   */
+  export type ModerationScoutReportModalDataCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutReportModalData
+     */
+    select?: ModerationScoutReportModalDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutReportModalData
+     */
+    omit?: ModerationScoutReportModalDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutReportModalDataInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ModerationScoutReportModalData.
+     */
+    data: XOR<ModerationScoutReportModalDataCreateInput, ModerationScoutReportModalDataUncheckedCreateInput>
+  }
+
+  /**
+   * ModerationScoutReportModalData createMany
+   */
+  export type ModerationScoutReportModalDataCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ModerationScoutReportModalData.
+     */
+    data: ModerationScoutReportModalDataCreateManyInput | ModerationScoutReportModalDataCreateManyInput[]
+  }
+
+  /**
+   * ModerationScoutReportModalData update
+   */
+  export type ModerationScoutReportModalDataUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutReportModalData
+     */
+    select?: ModerationScoutReportModalDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutReportModalData
+     */
+    omit?: ModerationScoutReportModalDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutReportModalDataInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ModerationScoutReportModalData.
+     */
+    data: XOR<ModerationScoutReportModalDataUpdateInput, ModerationScoutReportModalDataUncheckedUpdateInput>
+    /**
+     * Choose, which ModerationScoutReportModalData to update.
+     */
+    where: ModerationScoutReportModalDataWhereUniqueInput
+  }
+
+  /**
+   * ModerationScoutReportModalData updateMany
+   */
+  export type ModerationScoutReportModalDataUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ModerationScoutReportModalData.
+     */
+    data: XOR<ModerationScoutReportModalDataUpdateManyMutationInput, ModerationScoutReportModalDataUncheckedUpdateManyInput>
+    /**
+     * Filter which ModerationScoutReportModalData to update
+     */
+    where?: ModerationScoutReportModalDataWhereInput
+    /**
+     * Limit how many ModerationScoutReportModalData to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ModerationScoutReportModalData upsert
+   */
+  export type ModerationScoutReportModalDataUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutReportModalData
+     */
+    select?: ModerationScoutReportModalDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutReportModalData
+     */
+    omit?: ModerationScoutReportModalDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutReportModalDataInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ModerationScoutReportModalData to update in case it exists.
+     */
+    where: ModerationScoutReportModalDataWhereUniqueInput
+    /**
+     * In case the ModerationScoutReportModalData found by the `where` argument doesn't exist, create a new ModerationScoutReportModalData with this data.
+     */
+    create: XOR<ModerationScoutReportModalDataCreateInput, ModerationScoutReportModalDataUncheckedCreateInput>
+    /**
+     * In case the ModerationScoutReportModalData was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ModerationScoutReportModalDataUpdateInput, ModerationScoutReportModalDataUncheckedUpdateInput>
+  }
+
+  /**
+   * ModerationScoutReportModalData delete
+   */
+  export type ModerationScoutReportModalDataDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutReportModalData
+     */
+    select?: ModerationScoutReportModalDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutReportModalData
+     */
+    omit?: ModerationScoutReportModalDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutReportModalDataInclude<ExtArgs> | null
+    /**
+     * Filter which ModerationScoutReportModalData to delete.
+     */
+    where: ModerationScoutReportModalDataWhereUniqueInput
+  }
+
+  /**
+   * ModerationScoutReportModalData deleteMany
+   */
+  export type ModerationScoutReportModalDataDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ModerationScoutReportModalData to delete
+     */
+    where?: ModerationScoutReportModalDataWhereInput
+    /**
+     * Limit how many ModerationScoutReportModalData to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ModerationScoutReportModalData findRaw
+   */
+  export type ModerationScoutReportModalDataFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * ModerationScoutReportModalData aggregateRaw
+   */
+  export type ModerationScoutReportModalDataAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * ModerationScoutReportModalData without action
+   */
+  export type ModerationScoutReportModalDataDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutReportModalData
+     */
+    select?: ModerationScoutReportModalDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutReportModalData
+     */
+    omit?: ModerationScoutReportModalDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutReportModalDataInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ModerationScoutReports
+   */
+
+  export type AggregateModerationScoutReports = {
+    _count: ModerationScoutReportsCountAggregateOutputType | null
+    _min: ModerationScoutReportsMinAggregateOutputType | null
+    _max: ModerationScoutReportsMaxAggregateOutputType | null
+  }
+
+  export type ModerationScoutReportsMinAggregateOutputType = {
+    id: string | null
+    UUID: string | null
+    UserId: string | null
+    SusUserId: string | null
+    Reason: string | null
+    IsReportedToBanListAdmin: boolean | null
+    ModeratorUserId: string | null
+  }
+
+  export type ModerationScoutReportsMaxAggregateOutputType = {
+    id: string | null
+    UUID: string | null
+    UserId: string | null
+    SusUserId: string | null
+    Reason: string | null
+    IsReportedToBanListAdmin: boolean | null
+    ModeratorUserId: string | null
+  }
+
+  export type ModerationScoutReportsCountAggregateOutputType = {
+    id: number
+    UUID: number
+    UserId: number
+    SusUserId: number
+    Reason: number
+    Data: number
+    IsReportedToBanListAdmin: number
+    ModeratorUserId: number
+    _all: number
+  }
+
+
+  export type ModerationScoutReportsMinAggregateInputType = {
+    id?: true
+    UUID?: true
+    UserId?: true
+    SusUserId?: true
+    Reason?: true
+    IsReportedToBanListAdmin?: true
+    ModeratorUserId?: true
+  }
+
+  export type ModerationScoutReportsMaxAggregateInputType = {
+    id?: true
+    UUID?: true
+    UserId?: true
+    SusUserId?: true
+    Reason?: true
+    IsReportedToBanListAdmin?: true
+    ModeratorUserId?: true
+  }
+
+  export type ModerationScoutReportsCountAggregateInputType = {
+    id?: true
+    UUID?: true
+    UserId?: true
+    SusUserId?: true
+    Reason?: true
+    Data?: true
+    IsReportedToBanListAdmin?: true
+    ModeratorUserId?: true
+    _all?: true
+  }
+
+  export type ModerationScoutReportsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ModerationScoutReports to aggregate.
+     */
+    where?: ModerationScoutReportsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModerationScoutReports to fetch.
+     */
+    orderBy?: ModerationScoutReportsOrderByWithRelationInput | ModerationScoutReportsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ModerationScoutReportsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModerationScoutReports from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModerationScoutReports.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ModerationScoutReports
+    **/
+    _count?: true | ModerationScoutReportsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ModerationScoutReportsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ModerationScoutReportsMaxAggregateInputType
+  }
+
+  export type GetModerationScoutReportsAggregateType<T extends ModerationScoutReportsAggregateArgs> = {
+        [P in keyof T & keyof AggregateModerationScoutReports]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateModerationScoutReports[P]>
+      : GetScalarType<T[P], AggregateModerationScoutReports[P]>
+  }
+
+
+
+
+  export type ModerationScoutReportsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ModerationScoutReportsWhereInput
+    orderBy?: ModerationScoutReportsOrderByWithAggregationInput | ModerationScoutReportsOrderByWithAggregationInput[]
+    by: ModerationScoutReportsScalarFieldEnum[] | ModerationScoutReportsScalarFieldEnum
+    having?: ModerationScoutReportsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ModerationScoutReportsCountAggregateInputType | true
+    _min?: ModerationScoutReportsMinAggregateInputType
+    _max?: ModerationScoutReportsMaxAggregateInputType
+  }
+
+  export type ModerationScoutReportsGroupByOutputType = {
+    id: string
+    UUID: string
+    UserId: string
+    SusUserId: string
+    Reason: string | null
+    Data: JsonValue | null
+    IsReportedToBanListAdmin: boolean
+    ModeratorUserId: string
+    _count: ModerationScoutReportsCountAggregateOutputType | null
+    _min: ModerationScoutReportsMinAggregateOutputType | null
+    _max: ModerationScoutReportsMaxAggregateOutputType | null
+  }
+
+  type GetModerationScoutReportsGroupByPayload<T extends ModerationScoutReportsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ModerationScoutReportsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ModerationScoutReportsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ModerationScoutReportsGroupByOutputType[P]>
+            : GetScalarType<T[P], ModerationScoutReportsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ModerationScoutReportsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    UUID?: boolean
+    UserId?: boolean
+    SusUserId?: boolean
+    Reason?: boolean
+    Data?: boolean
+    IsReportedToBanListAdmin?: boolean
+    ModeratorUserId?: boolean
+    ModerationScout?: boolean | ModerationScoutDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["moderationScoutReports"]>
+
+
+
+  export type ModerationScoutReportsSelectScalar = {
+    id?: boolean
+    UUID?: boolean
+    UserId?: boolean
+    SusUserId?: boolean
+    Reason?: boolean
+    Data?: boolean
+    IsReportedToBanListAdmin?: boolean
+    ModeratorUserId?: boolean
+  }
+
+  export type ModerationScoutReportsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "UUID" | "UserId" | "SusUserId" | "Reason" | "Data" | "IsReportedToBanListAdmin" | "ModeratorUserId", ExtArgs["result"]["moderationScoutReports"]>
+  export type ModerationScoutReportsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ModerationScout?: boolean | ModerationScoutDefaultArgs<ExtArgs>
+  }
+
+  export type $ModerationScoutReportsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ModerationScoutReports"
+    objects: {
+      ModerationScout: Prisma.$ModerationScoutPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      UUID: string
+      UserId: string
+      SusUserId: string
+      Reason: string | null
+      Data: Prisma.JsonValue | null
+      IsReportedToBanListAdmin: boolean
+      ModeratorUserId: string
+    }, ExtArgs["result"]["moderationScoutReports"]>
+    composites: {}
+  }
+
+  type ModerationScoutReportsGetPayload<S extends boolean | null | undefined | ModerationScoutReportsDefaultArgs> = $Result.GetResult<Prisma.$ModerationScoutReportsPayload, S>
+
+  type ModerationScoutReportsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ModerationScoutReportsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ModerationScoutReportsCountAggregateInputType | true
+    }
+
+  export interface ModerationScoutReportsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ModerationScoutReports'], meta: { name: 'ModerationScoutReports' } }
+    /**
+     * Find zero or one ModerationScoutReports that matches the filter.
+     * @param {ModerationScoutReportsFindUniqueArgs} args - Arguments to find a ModerationScoutReports
+     * @example
+     * // Get one ModerationScoutReports
+     * const moderationScoutReports = await prisma.moderationScoutReports.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ModerationScoutReportsFindUniqueArgs>(args: SelectSubset<T, ModerationScoutReportsFindUniqueArgs<ExtArgs>>): Prisma__ModerationScoutReportsClient<$Result.GetResult<Prisma.$ModerationScoutReportsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ModerationScoutReports that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ModerationScoutReportsFindUniqueOrThrowArgs} args - Arguments to find a ModerationScoutReports
+     * @example
+     * // Get one ModerationScoutReports
+     * const moderationScoutReports = await prisma.moderationScoutReports.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ModerationScoutReportsFindUniqueOrThrowArgs>(args: SelectSubset<T, ModerationScoutReportsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ModerationScoutReportsClient<$Result.GetResult<Prisma.$ModerationScoutReportsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ModerationScoutReports that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutReportsFindFirstArgs} args - Arguments to find a ModerationScoutReports
+     * @example
+     * // Get one ModerationScoutReports
+     * const moderationScoutReports = await prisma.moderationScoutReports.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ModerationScoutReportsFindFirstArgs>(args?: SelectSubset<T, ModerationScoutReportsFindFirstArgs<ExtArgs>>): Prisma__ModerationScoutReportsClient<$Result.GetResult<Prisma.$ModerationScoutReportsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ModerationScoutReports that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutReportsFindFirstOrThrowArgs} args - Arguments to find a ModerationScoutReports
+     * @example
+     * // Get one ModerationScoutReports
+     * const moderationScoutReports = await prisma.moderationScoutReports.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ModerationScoutReportsFindFirstOrThrowArgs>(args?: SelectSubset<T, ModerationScoutReportsFindFirstOrThrowArgs<ExtArgs>>): Prisma__ModerationScoutReportsClient<$Result.GetResult<Prisma.$ModerationScoutReportsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ModerationScoutReports that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutReportsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ModerationScoutReports
+     * const moderationScoutReports = await prisma.moderationScoutReports.findMany()
+     * 
+     * // Get first 10 ModerationScoutReports
+     * const moderationScoutReports = await prisma.moderationScoutReports.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const moderationScoutReportsWithIdOnly = await prisma.moderationScoutReports.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ModerationScoutReportsFindManyArgs>(args?: SelectSubset<T, ModerationScoutReportsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModerationScoutReportsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ModerationScoutReports.
+     * @param {ModerationScoutReportsCreateArgs} args - Arguments to create a ModerationScoutReports.
+     * @example
+     * // Create one ModerationScoutReports
+     * const ModerationScoutReports = await prisma.moderationScoutReports.create({
+     *   data: {
+     *     // ... data to create a ModerationScoutReports
+     *   }
+     * })
+     * 
+     */
+    create<T extends ModerationScoutReportsCreateArgs>(args: SelectSubset<T, ModerationScoutReportsCreateArgs<ExtArgs>>): Prisma__ModerationScoutReportsClient<$Result.GetResult<Prisma.$ModerationScoutReportsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ModerationScoutReports.
+     * @param {ModerationScoutReportsCreateManyArgs} args - Arguments to create many ModerationScoutReports.
+     * @example
+     * // Create many ModerationScoutReports
+     * const moderationScoutReports = await prisma.moderationScoutReports.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ModerationScoutReportsCreateManyArgs>(args?: SelectSubset<T, ModerationScoutReportsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ModerationScoutReports.
+     * @param {ModerationScoutReportsDeleteArgs} args - Arguments to delete one ModerationScoutReports.
+     * @example
+     * // Delete one ModerationScoutReports
+     * const ModerationScoutReports = await prisma.moderationScoutReports.delete({
+     *   where: {
+     *     // ... filter to delete one ModerationScoutReports
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ModerationScoutReportsDeleteArgs>(args: SelectSubset<T, ModerationScoutReportsDeleteArgs<ExtArgs>>): Prisma__ModerationScoutReportsClient<$Result.GetResult<Prisma.$ModerationScoutReportsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ModerationScoutReports.
+     * @param {ModerationScoutReportsUpdateArgs} args - Arguments to update one ModerationScoutReports.
+     * @example
+     * // Update one ModerationScoutReports
+     * const moderationScoutReports = await prisma.moderationScoutReports.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ModerationScoutReportsUpdateArgs>(args: SelectSubset<T, ModerationScoutReportsUpdateArgs<ExtArgs>>): Prisma__ModerationScoutReportsClient<$Result.GetResult<Prisma.$ModerationScoutReportsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ModerationScoutReports.
+     * @param {ModerationScoutReportsDeleteManyArgs} args - Arguments to filter ModerationScoutReports to delete.
+     * @example
+     * // Delete a few ModerationScoutReports
+     * const { count } = await prisma.moderationScoutReports.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ModerationScoutReportsDeleteManyArgs>(args?: SelectSubset<T, ModerationScoutReportsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ModerationScoutReports.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutReportsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ModerationScoutReports
+     * const moderationScoutReports = await prisma.moderationScoutReports.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ModerationScoutReportsUpdateManyArgs>(args: SelectSubset<T, ModerationScoutReportsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ModerationScoutReports.
+     * @param {ModerationScoutReportsUpsertArgs} args - Arguments to update or create a ModerationScoutReports.
+     * @example
+     * // Update or create a ModerationScoutReports
+     * const moderationScoutReports = await prisma.moderationScoutReports.upsert({
+     *   create: {
+     *     // ... data to create a ModerationScoutReports
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ModerationScoutReports we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ModerationScoutReportsUpsertArgs>(args: SelectSubset<T, ModerationScoutReportsUpsertArgs<ExtArgs>>): Prisma__ModerationScoutReportsClient<$Result.GetResult<Prisma.$ModerationScoutReportsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ModerationScoutReports that matches the filter.
+     * @param {ModerationScoutReportsFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const moderationScoutReports = await prisma.moderationScoutReports.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: ModerationScoutReportsFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a ModerationScoutReports.
+     * @param {ModerationScoutReportsAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const moderationScoutReports = await prisma.moderationScoutReports.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: ModerationScoutReportsAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of ModerationScoutReports.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutReportsCountArgs} args - Arguments to filter ModerationScoutReports to count.
+     * @example
+     * // Count the number of ModerationScoutReports
+     * const count = await prisma.moderationScoutReports.count({
+     *   where: {
+     *     // ... the filter for the ModerationScoutReports we want to count
+     *   }
+     * })
+    **/
+    count<T extends ModerationScoutReportsCountArgs>(
+      args?: Subset<T, ModerationScoutReportsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ModerationScoutReportsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ModerationScoutReports.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutReportsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ModerationScoutReportsAggregateArgs>(args: Subset<T, ModerationScoutReportsAggregateArgs>): Prisma.PrismaPromise<GetModerationScoutReportsAggregateType<T>>
+
+    /**
+     * Group by ModerationScoutReports.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ModerationScoutReportsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ModerationScoutReportsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ModerationScoutReportsGroupByArgs['orderBy'] }
+        : { orderBy?: ModerationScoutReportsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ModerationScoutReportsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetModerationScoutReportsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ModerationScoutReports model
+   */
+  readonly fields: ModerationScoutReportsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ModerationScoutReports.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ModerationScoutReportsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    ModerationScout<T extends ModerationScoutDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ModerationScoutDefaultArgs<ExtArgs>>): Prisma__ModerationScoutClient<$Result.GetResult<Prisma.$ModerationScoutPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ModerationScoutReports model
+   */
+  interface ModerationScoutReportsFieldRefs {
+    readonly id: FieldRef<"ModerationScoutReports", 'String'>
+    readonly UUID: FieldRef<"ModerationScoutReports", 'String'>
+    readonly UserId: FieldRef<"ModerationScoutReports", 'String'>
+    readonly SusUserId: FieldRef<"ModerationScoutReports", 'String'>
+    readonly Reason: FieldRef<"ModerationScoutReports", 'String'>
+    readonly Data: FieldRef<"ModerationScoutReports", 'Json'>
+    readonly IsReportedToBanListAdmin: FieldRef<"ModerationScoutReports", 'Boolean'>
+    readonly ModeratorUserId: FieldRef<"ModerationScoutReports", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ModerationScoutReports findUnique
+   */
+  export type ModerationScoutReportsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutReports
+     */
+    select?: ModerationScoutReportsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutReports
+     */
+    omit?: ModerationScoutReportsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutReportsInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScoutReports to fetch.
+     */
+    where: ModerationScoutReportsWhereUniqueInput
+  }
+
+  /**
+   * ModerationScoutReports findUniqueOrThrow
+   */
+  export type ModerationScoutReportsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutReports
+     */
+    select?: ModerationScoutReportsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutReports
+     */
+    omit?: ModerationScoutReportsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutReportsInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScoutReports to fetch.
+     */
+    where: ModerationScoutReportsWhereUniqueInput
+  }
+
+  /**
+   * ModerationScoutReports findFirst
+   */
+  export type ModerationScoutReportsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutReports
+     */
+    select?: ModerationScoutReportsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutReports
+     */
+    omit?: ModerationScoutReportsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutReportsInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScoutReports to fetch.
+     */
+    where?: ModerationScoutReportsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModerationScoutReports to fetch.
+     */
+    orderBy?: ModerationScoutReportsOrderByWithRelationInput | ModerationScoutReportsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ModerationScoutReports.
+     */
+    cursor?: ModerationScoutReportsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModerationScoutReports from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModerationScoutReports.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ModerationScoutReports.
+     */
+    distinct?: ModerationScoutReportsScalarFieldEnum | ModerationScoutReportsScalarFieldEnum[]
+  }
+
+  /**
+   * ModerationScoutReports findFirstOrThrow
+   */
+  export type ModerationScoutReportsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutReports
+     */
+    select?: ModerationScoutReportsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutReports
+     */
+    omit?: ModerationScoutReportsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutReportsInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScoutReports to fetch.
+     */
+    where?: ModerationScoutReportsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModerationScoutReports to fetch.
+     */
+    orderBy?: ModerationScoutReportsOrderByWithRelationInput | ModerationScoutReportsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ModerationScoutReports.
+     */
+    cursor?: ModerationScoutReportsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModerationScoutReports from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModerationScoutReports.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ModerationScoutReports.
+     */
+    distinct?: ModerationScoutReportsScalarFieldEnum | ModerationScoutReportsScalarFieldEnum[]
+  }
+
+  /**
+   * ModerationScoutReports findMany
+   */
+  export type ModerationScoutReportsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutReports
+     */
+    select?: ModerationScoutReportsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutReports
+     */
+    omit?: ModerationScoutReportsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutReportsInclude<ExtArgs> | null
+    /**
+     * Filter, which ModerationScoutReports to fetch.
+     */
+    where?: ModerationScoutReportsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ModerationScoutReports to fetch.
+     */
+    orderBy?: ModerationScoutReportsOrderByWithRelationInput | ModerationScoutReportsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ModerationScoutReports.
+     */
+    cursor?: ModerationScoutReportsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ModerationScoutReports from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ModerationScoutReports.
+     */
+    skip?: number
+    distinct?: ModerationScoutReportsScalarFieldEnum | ModerationScoutReportsScalarFieldEnum[]
+  }
+
+  /**
+   * ModerationScoutReports create
+   */
+  export type ModerationScoutReportsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutReports
+     */
+    select?: ModerationScoutReportsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutReports
+     */
+    omit?: ModerationScoutReportsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutReportsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ModerationScoutReports.
+     */
+    data: XOR<ModerationScoutReportsCreateInput, ModerationScoutReportsUncheckedCreateInput>
+  }
+
+  /**
+   * ModerationScoutReports createMany
+   */
+  export type ModerationScoutReportsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ModerationScoutReports.
+     */
+    data: ModerationScoutReportsCreateManyInput | ModerationScoutReportsCreateManyInput[]
+  }
+
+  /**
+   * ModerationScoutReports update
+   */
+  export type ModerationScoutReportsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutReports
+     */
+    select?: ModerationScoutReportsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutReports
+     */
+    omit?: ModerationScoutReportsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutReportsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ModerationScoutReports.
+     */
+    data: XOR<ModerationScoutReportsUpdateInput, ModerationScoutReportsUncheckedUpdateInput>
+    /**
+     * Choose, which ModerationScoutReports to update.
+     */
+    where: ModerationScoutReportsWhereUniqueInput
+  }
+
+  /**
+   * ModerationScoutReports updateMany
+   */
+  export type ModerationScoutReportsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ModerationScoutReports.
+     */
+    data: XOR<ModerationScoutReportsUpdateManyMutationInput, ModerationScoutReportsUncheckedUpdateManyInput>
+    /**
+     * Filter which ModerationScoutReports to update
+     */
+    where?: ModerationScoutReportsWhereInput
+    /**
+     * Limit how many ModerationScoutReports to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ModerationScoutReports upsert
+   */
+  export type ModerationScoutReportsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutReports
+     */
+    select?: ModerationScoutReportsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutReports
+     */
+    omit?: ModerationScoutReportsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutReportsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ModerationScoutReports to update in case it exists.
+     */
+    where: ModerationScoutReportsWhereUniqueInput
+    /**
+     * In case the ModerationScoutReports found by the `where` argument doesn't exist, create a new ModerationScoutReports with this data.
+     */
+    create: XOR<ModerationScoutReportsCreateInput, ModerationScoutReportsUncheckedCreateInput>
+    /**
+     * In case the ModerationScoutReports was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ModerationScoutReportsUpdateInput, ModerationScoutReportsUncheckedUpdateInput>
+  }
+
+  /**
+   * ModerationScoutReports delete
+   */
+  export type ModerationScoutReportsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutReports
+     */
+    select?: ModerationScoutReportsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutReports
+     */
+    omit?: ModerationScoutReportsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutReportsInclude<ExtArgs> | null
+    /**
+     * Filter which ModerationScoutReports to delete.
+     */
+    where: ModerationScoutReportsWhereUniqueInput
+  }
+
+  /**
+   * ModerationScoutReports deleteMany
+   */
+  export type ModerationScoutReportsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ModerationScoutReports to delete
+     */
+    where?: ModerationScoutReportsWhereInput
+    /**
+     * Limit how many ModerationScoutReports to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ModerationScoutReports findRaw
+   */
+  export type ModerationScoutReportsFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * ModerationScoutReports aggregateRaw
+   */
+  export type ModerationScoutReportsAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * ModerationScoutReports without action
+   */
+  export type ModerationScoutReportsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ModerationScoutReports
+     */
+    select?: ModerationScoutReportsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ModerationScoutReports
+     */
+    omit?: ModerationScoutReportsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ModerationScoutReportsInclude<ExtArgs> | null
   }
 
 
@@ -56848,6 +63791,7 @@ export namespace Prisma {
     id: 'id',
     UUID: 'UUID',
     TagId: 'TagId',
+    TriggerKeywords: 'TriggerKeywords',
     MessageId: 'MessageId',
     IsShlashCommand: 'IsShlashCommand',
     ShlashCommandId: 'ShlashCommandId',
@@ -56860,6 +63804,91 @@ export namespace Prisma {
   };
 
   export type TagsScalarFieldEnum = (typeof TagsScalarFieldEnum)[keyof typeof TagsScalarFieldEnum]
+
+
+  export const ModerationScoutScalarFieldEnum: {
+    id: 'id',
+    UUID: 'UUID',
+    ReportCommandId: 'ReportCommandId',
+    SuccssReportMessageId: 'SuccssReportMessageId',
+    PublicBanListUrl: 'PublicBanListUrl',
+    AdminBanList: 'AdminBanList',
+    CurrentUserModerations: 'CurrentUserModerations',
+    PublicBanListEnabled: 'PublicBanListEnabled',
+    ReportActions: 'ReportActions',
+    GuildId: 'GuildId'
+  };
+
+  export type ModerationScoutScalarFieldEnum = (typeof ModerationScoutScalarFieldEnum)[keyof typeof ModerationScoutScalarFieldEnum]
+
+
+  export const ModerationScoutFormsScalarFieldEnum: {
+    id: 'id',
+    UUID: 'UUID',
+    Sorting: 'Sorting',
+    Actions: 'Actions'
+  };
+
+  export type ModerationScoutFormsScalarFieldEnum = (typeof ModerationScoutFormsScalarFieldEnum)[keyof typeof ModerationScoutFormsScalarFieldEnum]
+
+
+  export const ModerationScoutFormsDataScalarFieldEnum: {
+    id: 'id',
+    UUID: 'UUID',
+    Type: 'Type',
+    Label: 'Label',
+    Description: 'Description',
+    Placeholder: 'Placeholder',
+    OptionData: 'OptionData'
+  };
+
+  export type ModerationScoutFormsDataScalarFieldEnum = (typeof ModerationScoutFormsDataScalarFieldEnum)[keyof typeof ModerationScoutFormsDataScalarFieldEnum]
+
+
+  export const ModerationScoutUserAppealsScalarFieldEnum: {
+    id: 'id',
+    UUID: 'UUID',
+    Token: 'Token',
+    UserId: 'UserId',
+    Case: 'Case',
+    FormId: 'FormId',
+    ModerationScoutFormId: 'ModerationScoutFormId',
+    Data: 'Data',
+    CratedAt: 'CratedAt',
+    CreatedBy: 'CreatedBy',
+    ModerationScoutId: 'ModerationScoutId'
+  };
+
+  export type ModerationScoutUserAppealsScalarFieldEnum = (typeof ModerationScoutUserAppealsScalarFieldEnum)[keyof typeof ModerationScoutUserAppealsScalarFieldEnum]
+
+
+  export const ModerationScoutReportModalDataScalarFieldEnum: {
+    id: 'id',
+    UUID: 'UUID',
+    Name: 'Name',
+    Placeholder: 'Placeholder',
+    Type: 'Type',
+    MinLength: 'MinLength',
+    MaxLength: 'MaxLength',
+    Required: 'Required',
+    ModerationScoutId: 'ModerationScoutId'
+  };
+
+  export type ModerationScoutReportModalDataScalarFieldEnum = (typeof ModerationScoutReportModalDataScalarFieldEnum)[keyof typeof ModerationScoutReportModalDataScalarFieldEnum]
+
+
+  export const ModerationScoutReportsScalarFieldEnum: {
+    id: 'id',
+    UUID: 'UUID',
+    UserId: 'UserId',
+    SusUserId: 'SusUserId',
+    Reason: 'Reason',
+    Data: 'Data',
+    IsReportedToBanListAdmin: 'IsReportedToBanListAdmin',
+    ModeratorUserId: 'ModeratorUserId'
+  };
+
+  export type ModerationScoutReportsScalarFieldEnum = (typeof ModerationScoutReportsScalarFieldEnum)[keyof typeof ModerationScoutReportsScalarFieldEnum]
 
 
   export const PollsScalarFieldEnum: {
@@ -57338,6 +64367,7 @@ export namespace Prisma {
     GuildCommandManger?: XOR<GuildCommandMangerNullableScalarRelationFilter, GuildCommandMangerWhereInput> | null
     GuildComponentManager?: XOR<GuildComponentManagerNullableScalarRelationFilter, GuildComponentManagerWhereInput> | null
     GuildChannelLinks?: GuildChannelLinksListRelationFilter
+    ModerationScout?: XOR<ModerationScoutNullableScalarRelationFilter, ModerationScoutWhereInput> | null
   }
 
   export type GuildsOrderByWithRelationInput = {
@@ -57372,6 +64402,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerOrderByWithRelationInput
     GuildComponentManager?: GuildComponentManagerOrderByWithRelationInput
     GuildChannelLinks?: GuildChannelLinksOrderByRelationAggregateInput
+    ModerationScout?: ModerationScoutOrderByWithRelationInput
   }
 
   export type GuildsWhereUniqueInput = Prisma.AtLeast<{
@@ -57409,6 +64440,7 @@ export namespace Prisma {
     GuildCommandManger?: XOR<GuildCommandMangerNullableScalarRelationFilter, GuildCommandMangerWhereInput> | null
     GuildComponentManager?: XOR<GuildComponentManagerNullableScalarRelationFilter, GuildComponentManagerWhereInput> | null
     GuildChannelLinks?: GuildChannelLinksListRelationFilter
+    ModerationScout?: XOR<ModerationScoutNullableScalarRelationFilter, ModerationScoutWhereInput> | null
   }, "id" | "GuildId">
 
   export type GuildsOrderByWithAggregationInput = {
@@ -59263,6 +66295,7 @@ export namespace Prisma {
     id?: StringFilter<"Tags"> | string
     UUID?: StringFilter<"Tags"> | string
     TagId?: StringFilter<"Tags"> | string
+    TriggerKeywords?: StringNullableListFilter<"Tags">
     MessageId?: StringFilter<"Tags"> | string
     IsShlashCommand?: BoolFilter<"Tags"> | boolean
     ShlashCommandId?: StringFilter<"Tags"> | string
@@ -59279,6 +66312,7 @@ export namespace Prisma {
     id?: SortOrder
     UUID?: SortOrder
     TagId?: SortOrder
+    TriggerKeywords?: SortOrder
     MessageId?: SortOrder
     IsShlashCommand?: SortOrder
     ShlashCommandId?: SortOrder
@@ -59299,6 +66333,7 @@ export namespace Prisma {
     AND?: TagsWhereInput | TagsWhereInput[]
     OR?: TagsWhereInput[]
     NOT?: TagsWhereInput | TagsWhereInput[]
+    TriggerKeywords?: StringNullableListFilter<"Tags">
     MessageId?: StringFilter<"Tags"> | string
     IsShlashCommand?: BoolFilter<"Tags"> | boolean
     IsTextInputCommand?: BoolFilter<"Tags"> | boolean
@@ -59314,6 +66349,7 @@ export namespace Prisma {
     id?: SortOrder
     UUID?: SortOrder
     TagId?: SortOrder
+    TriggerKeywords?: SortOrder
     MessageId?: SortOrder
     IsShlashCommand?: SortOrder
     ShlashCommandId?: SortOrder
@@ -59335,6 +66371,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Tags"> | string
     UUID?: StringWithAggregatesFilter<"Tags"> | string
     TagId?: StringWithAggregatesFilter<"Tags"> | string
+    TriggerKeywords?: StringNullableListFilter<"Tags">
     MessageId?: StringWithAggregatesFilter<"Tags"> | string
     IsShlashCommand?: BoolWithAggregatesFilter<"Tags"> | boolean
     ShlashCommandId?: StringWithAggregatesFilter<"Tags"> | string
@@ -59344,6 +66381,454 @@ export namespace Prisma {
     CommandDescription?: StringNullableWithAggregatesFilter<"Tags"> | string | null
     FilterTextFromMessages?: StringNullableListFilter<"Tags">
     GuildId?: StringWithAggregatesFilter<"Tags"> | string
+  }
+
+  export type ModerationScoutWhereInput = {
+    AND?: ModerationScoutWhereInput | ModerationScoutWhereInput[]
+    OR?: ModerationScoutWhereInput[]
+    NOT?: ModerationScoutWhereInput | ModerationScoutWhereInput[]
+    id?: StringFilter<"ModerationScout"> | string
+    UUID?: StringFilter<"ModerationScout"> | string
+    ReportCommandId?: StringFilter<"ModerationScout"> | string
+    SuccssReportMessageId?: StringFilter<"ModerationScout"> | string
+    PublicBanListUrl?: StringNullableFilter<"ModerationScout"> | string | null
+    AdminBanList?: JsonFilter<"ModerationScout">
+    CurrentUserModerations?: JsonNullableListFilter<"ModerationScout">
+    PublicBanListEnabled?: BoolFilter<"ModerationScout"> | boolean
+    ReportActions?: StringNullableListFilter<"ModerationScout">
+    GuildId?: StringFilter<"ModerationScout"> | string
+    UserAppeals?: ModerationScoutUserAppealsListRelationFilter
+    ModerationScoutForms?: ModerationScoutFormsListRelationFilter
+    ModerationScoutReports?: ModerationScoutReportsListRelationFilter
+    ModerationScoutReportModalData?: ModerationScoutReportModalDataListRelationFilter
+    Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
+  }
+
+  export type ModerationScoutOrderByWithRelationInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    ReportCommandId?: SortOrder
+    SuccssReportMessageId?: SortOrder
+    PublicBanListUrl?: SortOrder
+    AdminBanList?: SortOrder
+    CurrentUserModerations?: SortOrder
+    PublicBanListEnabled?: SortOrder
+    ReportActions?: SortOrder
+    GuildId?: SortOrder
+    UserAppeals?: ModerationScoutUserAppealsOrderByRelationAggregateInput
+    ModerationScoutForms?: ModerationScoutFormsOrderByRelationAggregateInput
+    ModerationScoutReports?: ModerationScoutReportsOrderByRelationAggregateInput
+    ModerationScoutReportModalData?: ModerationScoutReportModalDataOrderByRelationAggregateInput
+    Guilds?: GuildsOrderByWithRelationInput
+  }
+
+  export type ModerationScoutWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    UUID?: string
+    GuildId?: string
+    AND?: ModerationScoutWhereInput | ModerationScoutWhereInput[]
+    OR?: ModerationScoutWhereInput[]
+    NOT?: ModerationScoutWhereInput | ModerationScoutWhereInput[]
+    ReportCommandId?: StringFilter<"ModerationScout"> | string
+    SuccssReportMessageId?: StringFilter<"ModerationScout"> | string
+    PublicBanListUrl?: StringNullableFilter<"ModerationScout"> | string | null
+    AdminBanList?: JsonFilter<"ModerationScout">
+    CurrentUserModerations?: JsonNullableListFilter<"ModerationScout">
+    PublicBanListEnabled?: BoolFilter<"ModerationScout"> | boolean
+    ReportActions?: StringNullableListFilter<"ModerationScout">
+    UserAppeals?: ModerationScoutUserAppealsListRelationFilter
+    ModerationScoutForms?: ModerationScoutFormsListRelationFilter
+    ModerationScoutReports?: ModerationScoutReportsListRelationFilter
+    ModerationScoutReportModalData?: ModerationScoutReportModalDataListRelationFilter
+    Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
+  }, "id" | "UUID" | "GuildId">
+
+  export type ModerationScoutOrderByWithAggregationInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    ReportCommandId?: SortOrder
+    SuccssReportMessageId?: SortOrder
+    PublicBanListUrl?: SortOrder
+    AdminBanList?: SortOrder
+    CurrentUserModerations?: SortOrder
+    PublicBanListEnabled?: SortOrder
+    ReportActions?: SortOrder
+    GuildId?: SortOrder
+    _count?: ModerationScoutCountOrderByAggregateInput
+    _max?: ModerationScoutMaxOrderByAggregateInput
+    _min?: ModerationScoutMinOrderByAggregateInput
+  }
+
+  export type ModerationScoutScalarWhereWithAggregatesInput = {
+    AND?: ModerationScoutScalarWhereWithAggregatesInput | ModerationScoutScalarWhereWithAggregatesInput[]
+    OR?: ModerationScoutScalarWhereWithAggregatesInput[]
+    NOT?: ModerationScoutScalarWhereWithAggregatesInput | ModerationScoutScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ModerationScout"> | string
+    UUID?: StringWithAggregatesFilter<"ModerationScout"> | string
+    ReportCommandId?: StringWithAggregatesFilter<"ModerationScout"> | string
+    SuccssReportMessageId?: StringWithAggregatesFilter<"ModerationScout"> | string
+    PublicBanListUrl?: StringNullableWithAggregatesFilter<"ModerationScout"> | string | null
+    AdminBanList?: JsonWithAggregatesFilter<"ModerationScout">
+    CurrentUserModerations?: JsonNullableListFilter<"ModerationScout">
+    PublicBanListEnabled?: BoolWithAggregatesFilter<"ModerationScout"> | boolean
+    ReportActions?: StringNullableListFilter<"ModerationScout">
+    GuildId?: StringWithAggregatesFilter<"ModerationScout"> | string
+  }
+
+  export type ModerationScoutFormsWhereInput = {
+    AND?: ModerationScoutFormsWhereInput | ModerationScoutFormsWhereInput[]
+    OR?: ModerationScoutFormsWhereInput[]
+    NOT?: ModerationScoutFormsWhereInput | ModerationScoutFormsWhereInput[]
+    id?: StringFilter<"ModerationScoutForms"> | string
+    UUID?: StringFilter<"ModerationScoutForms"> | string
+    Sorting?: StringNullableListFilter<"ModerationScoutForms">
+    Actions?: StringNullableListFilter<"ModerationScoutForms">
+    ModerationScout?: XOR<ModerationScoutScalarRelationFilter, ModerationScoutWhereInput>
+    ModerationScoutFormsData?: ModerationScoutFormsDataListRelationFilter
+    ModerationScoutUserAppeals?: ModerationScoutUserAppealsListRelationFilter
+  }
+
+  export type ModerationScoutFormsOrderByWithRelationInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    Sorting?: SortOrder
+    Actions?: SortOrder
+    ModerationScout?: ModerationScoutOrderByWithRelationInput
+    ModerationScoutFormsData?: ModerationScoutFormsDataOrderByRelationAggregateInput
+    ModerationScoutUserAppeals?: ModerationScoutUserAppealsOrderByRelationAggregateInput
+  }
+
+  export type ModerationScoutFormsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    UUID?: string
+    AND?: ModerationScoutFormsWhereInput | ModerationScoutFormsWhereInput[]
+    OR?: ModerationScoutFormsWhereInput[]
+    NOT?: ModerationScoutFormsWhereInput | ModerationScoutFormsWhereInput[]
+    Sorting?: StringNullableListFilter<"ModerationScoutForms">
+    Actions?: StringNullableListFilter<"ModerationScoutForms">
+    ModerationScout?: XOR<ModerationScoutScalarRelationFilter, ModerationScoutWhereInput>
+    ModerationScoutFormsData?: ModerationScoutFormsDataListRelationFilter
+    ModerationScoutUserAppeals?: ModerationScoutUserAppealsListRelationFilter
+  }, "id" | "UUID">
+
+  export type ModerationScoutFormsOrderByWithAggregationInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    Sorting?: SortOrder
+    Actions?: SortOrder
+    _count?: ModerationScoutFormsCountOrderByAggregateInput
+    _max?: ModerationScoutFormsMaxOrderByAggregateInput
+    _min?: ModerationScoutFormsMinOrderByAggregateInput
+  }
+
+  export type ModerationScoutFormsScalarWhereWithAggregatesInput = {
+    AND?: ModerationScoutFormsScalarWhereWithAggregatesInput | ModerationScoutFormsScalarWhereWithAggregatesInput[]
+    OR?: ModerationScoutFormsScalarWhereWithAggregatesInput[]
+    NOT?: ModerationScoutFormsScalarWhereWithAggregatesInput | ModerationScoutFormsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ModerationScoutForms"> | string
+    UUID?: StringWithAggregatesFilter<"ModerationScoutForms"> | string
+    Sorting?: StringNullableListFilter<"ModerationScoutForms">
+    Actions?: StringNullableListFilter<"ModerationScoutForms">
+  }
+
+  export type ModerationScoutFormsDataWhereInput = {
+    AND?: ModerationScoutFormsDataWhereInput | ModerationScoutFormsDataWhereInput[]
+    OR?: ModerationScoutFormsDataWhereInput[]
+    NOT?: ModerationScoutFormsDataWhereInput | ModerationScoutFormsDataWhereInput[]
+    id?: StringFilter<"ModerationScoutFormsData"> | string
+    UUID?: StringFilter<"ModerationScoutFormsData"> | string
+    Type?: StringFilter<"ModerationScoutFormsData"> | string
+    Label?: StringFilter<"ModerationScoutFormsData"> | string
+    Description?: StringFilter<"ModerationScoutFormsData"> | string
+    Placeholder?: StringFilter<"ModerationScoutFormsData"> | string
+    OptionData?: JsonFilter<"ModerationScoutFormsData">
+    ModerationScoutForms?: XOR<ModerationScoutFormsScalarRelationFilter, ModerationScoutFormsWhereInput>
+  }
+
+  export type ModerationScoutFormsDataOrderByWithRelationInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    Type?: SortOrder
+    Label?: SortOrder
+    Description?: SortOrder
+    Placeholder?: SortOrder
+    OptionData?: SortOrder
+    ModerationScoutForms?: ModerationScoutFormsOrderByWithRelationInput
+  }
+
+  export type ModerationScoutFormsDataWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    UUID?: string
+    AND?: ModerationScoutFormsDataWhereInput | ModerationScoutFormsDataWhereInput[]
+    OR?: ModerationScoutFormsDataWhereInput[]
+    NOT?: ModerationScoutFormsDataWhereInput | ModerationScoutFormsDataWhereInput[]
+    Type?: StringFilter<"ModerationScoutFormsData"> | string
+    Label?: StringFilter<"ModerationScoutFormsData"> | string
+    Description?: StringFilter<"ModerationScoutFormsData"> | string
+    Placeholder?: StringFilter<"ModerationScoutFormsData"> | string
+    OptionData?: JsonFilter<"ModerationScoutFormsData">
+    ModerationScoutForms?: XOR<ModerationScoutFormsScalarRelationFilter, ModerationScoutFormsWhereInput>
+  }, "id" | "UUID">
+
+  export type ModerationScoutFormsDataOrderByWithAggregationInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    Type?: SortOrder
+    Label?: SortOrder
+    Description?: SortOrder
+    Placeholder?: SortOrder
+    OptionData?: SortOrder
+    _count?: ModerationScoutFormsDataCountOrderByAggregateInput
+    _max?: ModerationScoutFormsDataMaxOrderByAggregateInput
+    _min?: ModerationScoutFormsDataMinOrderByAggregateInput
+  }
+
+  export type ModerationScoutFormsDataScalarWhereWithAggregatesInput = {
+    AND?: ModerationScoutFormsDataScalarWhereWithAggregatesInput | ModerationScoutFormsDataScalarWhereWithAggregatesInput[]
+    OR?: ModerationScoutFormsDataScalarWhereWithAggregatesInput[]
+    NOT?: ModerationScoutFormsDataScalarWhereWithAggregatesInput | ModerationScoutFormsDataScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ModerationScoutFormsData"> | string
+    UUID?: StringWithAggregatesFilter<"ModerationScoutFormsData"> | string
+    Type?: StringWithAggregatesFilter<"ModerationScoutFormsData"> | string
+    Label?: StringWithAggregatesFilter<"ModerationScoutFormsData"> | string
+    Description?: StringWithAggregatesFilter<"ModerationScoutFormsData"> | string
+    Placeholder?: StringWithAggregatesFilter<"ModerationScoutFormsData"> | string
+    OptionData?: JsonWithAggregatesFilter<"ModerationScoutFormsData">
+  }
+
+  export type ModerationScoutUserAppealsWhereInput = {
+    AND?: ModerationScoutUserAppealsWhereInput | ModerationScoutUserAppealsWhereInput[]
+    OR?: ModerationScoutUserAppealsWhereInput[]
+    NOT?: ModerationScoutUserAppealsWhereInput | ModerationScoutUserAppealsWhereInput[]
+    id?: StringFilter<"ModerationScoutUserAppeals"> | string
+    UUID?: StringFilter<"ModerationScoutUserAppeals"> | string
+    Token?: StringFilter<"ModerationScoutUserAppeals"> | string
+    UserId?: StringFilter<"ModerationScoutUserAppeals"> | string
+    Case?: StringFilter<"ModerationScoutUserAppeals"> | string
+    FormId?: StringFilter<"ModerationScoutUserAppeals"> | string
+    ModerationScoutFormId?: StringFilter<"ModerationScoutUserAppeals"> | string
+    Data?: JsonFilter<"ModerationScoutUserAppeals">
+    CratedAt?: DateTimeFilter<"ModerationScoutUserAppeals"> | Date | string
+    CreatedBy?: StringFilter<"ModerationScoutUserAppeals"> | string
+    ModerationScoutId?: StringFilter<"ModerationScoutUserAppeals"> | string
+    ModerationScoutForms?: XOR<ModerationScoutFormsScalarRelationFilter, ModerationScoutFormsWhereInput>
+    ModerationScout?: XOR<ModerationScoutScalarRelationFilter, ModerationScoutWhereInput>
+  }
+
+  export type ModerationScoutUserAppealsOrderByWithRelationInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    Token?: SortOrder
+    UserId?: SortOrder
+    Case?: SortOrder
+    FormId?: SortOrder
+    ModerationScoutFormId?: SortOrder
+    Data?: SortOrder
+    CratedAt?: SortOrder
+    CreatedBy?: SortOrder
+    ModerationScoutId?: SortOrder
+    ModerationScoutForms?: ModerationScoutFormsOrderByWithRelationInput
+    ModerationScout?: ModerationScoutOrderByWithRelationInput
+  }
+
+  export type ModerationScoutUserAppealsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    UUID?: string
+    AND?: ModerationScoutUserAppealsWhereInput | ModerationScoutUserAppealsWhereInput[]
+    OR?: ModerationScoutUserAppealsWhereInput[]
+    NOT?: ModerationScoutUserAppealsWhereInput | ModerationScoutUserAppealsWhereInput[]
+    Token?: StringFilter<"ModerationScoutUserAppeals"> | string
+    UserId?: StringFilter<"ModerationScoutUserAppeals"> | string
+    Case?: StringFilter<"ModerationScoutUserAppeals"> | string
+    FormId?: StringFilter<"ModerationScoutUserAppeals"> | string
+    ModerationScoutFormId?: StringFilter<"ModerationScoutUserAppeals"> | string
+    Data?: JsonFilter<"ModerationScoutUserAppeals">
+    CratedAt?: DateTimeFilter<"ModerationScoutUserAppeals"> | Date | string
+    CreatedBy?: StringFilter<"ModerationScoutUserAppeals"> | string
+    ModerationScoutId?: StringFilter<"ModerationScoutUserAppeals"> | string
+    ModerationScoutForms?: XOR<ModerationScoutFormsScalarRelationFilter, ModerationScoutFormsWhereInput>
+    ModerationScout?: XOR<ModerationScoutScalarRelationFilter, ModerationScoutWhereInput>
+  }, "id" | "UUID">
+
+  export type ModerationScoutUserAppealsOrderByWithAggregationInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    Token?: SortOrder
+    UserId?: SortOrder
+    Case?: SortOrder
+    FormId?: SortOrder
+    ModerationScoutFormId?: SortOrder
+    Data?: SortOrder
+    CratedAt?: SortOrder
+    CreatedBy?: SortOrder
+    ModerationScoutId?: SortOrder
+    _count?: ModerationScoutUserAppealsCountOrderByAggregateInput
+    _max?: ModerationScoutUserAppealsMaxOrderByAggregateInput
+    _min?: ModerationScoutUserAppealsMinOrderByAggregateInput
+  }
+
+  export type ModerationScoutUserAppealsScalarWhereWithAggregatesInput = {
+    AND?: ModerationScoutUserAppealsScalarWhereWithAggregatesInput | ModerationScoutUserAppealsScalarWhereWithAggregatesInput[]
+    OR?: ModerationScoutUserAppealsScalarWhereWithAggregatesInput[]
+    NOT?: ModerationScoutUserAppealsScalarWhereWithAggregatesInput | ModerationScoutUserAppealsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ModerationScoutUserAppeals"> | string
+    UUID?: StringWithAggregatesFilter<"ModerationScoutUserAppeals"> | string
+    Token?: StringWithAggregatesFilter<"ModerationScoutUserAppeals"> | string
+    UserId?: StringWithAggregatesFilter<"ModerationScoutUserAppeals"> | string
+    Case?: StringWithAggregatesFilter<"ModerationScoutUserAppeals"> | string
+    FormId?: StringWithAggregatesFilter<"ModerationScoutUserAppeals"> | string
+    ModerationScoutFormId?: StringWithAggregatesFilter<"ModerationScoutUserAppeals"> | string
+    Data?: JsonWithAggregatesFilter<"ModerationScoutUserAppeals">
+    CratedAt?: DateTimeWithAggregatesFilter<"ModerationScoutUserAppeals"> | Date | string
+    CreatedBy?: StringWithAggregatesFilter<"ModerationScoutUserAppeals"> | string
+    ModerationScoutId?: StringWithAggregatesFilter<"ModerationScoutUserAppeals"> | string
+  }
+
+  export type ModerationScoutReportModalDataWhereInput = {
+    AND?: ModerationScoutReportModalDataWhereInput | ModerationScoutReportModalDataWhereInput[]
+    OR?: ModerationScoutReportModalDataWhereInput[]
+    NOT?: ModerationScoutReportModalDataWhereInput | ModerationScoutReportModalDataWhereInput[]
+    id?: StringFilter<"ModerationScoutReportModalData"> | string
+    UUID?: StringFilter<"ModerationScoutReportModalData"> | string
+    Name?: StringFilter<"ModerationScoutReportModalData"> | string
+    Placeholder?: StringNullableFilter<"ModerationScoutReportModalData"> | string | null
+    Type?: IntFilter<"ModerationScoutReportModalData"> | number
+    MinLength?: IntNullableFilter<"ModerationScoutReportModalData"> | number | null
+    MaxLength?: IntNullableFilter<"ModerationScoutReportModalData"> | number | null
+    Required?: BoolFilter<"ModerationScoutReportModalData"> | boolean
+    ModerationScoutId?: StringFilter<"ModerationScoutReportModalData"> | string
+    ModerationScout?: XOR<ModerationScoutScalarRelationFilter, ModerationScoutWhereInput>
+  }
+
+  export type ModerationScoutReportModalDataOrderByWithRelationInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    Name?: SortOrder
+    Placeholder?: SortOrder
+    Type?: SortOrder
+    MinLength?: SortOrder
+    MaxLength?: SortOrder
+    Required?: SortOrder
+    ModerationScoutId?: SortOrder
+    ModerationScout?: ModerationScoutOrderByWithRelationInput
+  }
+
+  export type ModerationScoutReportModalDataWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    UUID?: string
+    AND?: ModerationScoutReportModalDataWhereInput | ModerationScoutReportModalDataWhereInput[]
+    OR?: ModerationScoutReportModalDataWhereInput[]
+    NOT?: ModerationScoutReportModalDataWhereInput | ModerationScoutReportModalDataWhereInput[]
+    Name?: StringFilter<"ModerationScoutReportModalData"> | string
+    Placeholder?: StringNullableFilter<"ModerationScoutReportModalData"> | string | null
+    Type?: IntFilter<"ModerationScoutReportModalData"> | number
+    MinLength?: IntNullableFilter<"ModerationScoutReportModalData"> | number | null
+    MaxLength?: IntNullableFilter<"ModerationScoutReportModalData"> | number | null
+    Required?: BoolFilter<"ModerationScoutReportModalData"> | boolean
+    ModerationScoutId?: StringFilter<"ModerationScoutReportModalData"> | string
+    ModerationScout?: XOR<ModerationScoutScalarRelationFilter, ModerationScoutWhereInput>
+  }, "id" | "UUID">
+
+  export type ModerationScoutReportModalDataOrderByWithAggregationInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    Name?: SortOrder
+    Placeholder?: SortOrder
+    Type?: SortOrder
+    MinLength?: SortOrder
+    MaxLength?: SortOrder
+    Required?: SortOrder
+    ModerationScoutId?: SortOrder
+    _count?: ModerationScoutReportModalDataCountOrderByAggregateInput
+    _avg?: ModerationScoutReportModalDataAvgOrderByAggregateInput
+    _max?: ModerationScoutReportModalDataMaxOrderByAggregateInput
+    _min?: ModerationScoutReportModalDataMinOrderByAggregateInput
+    _sum?: ModerationScoutReportModalDataSumOrderByAggregateInput
+  }
+
+  export type ModerationScoutReportModalDataScalarWhereWithAggregatesInput = {
+    AND?: ModerationScoutReportModalDataScalarWhereWithAggregatesInput | ModerationScoutReportModalDataScalarWhereWithAggregatesInput[]
+    OR?: ModerationScoutReportModalDataScalarWhereWithAggregatesInput[]
+    NOT?: ModerationScoutReportModalDataScalarWhereWithAggregatesInput | ModerationScoutReportModalDataScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ModerationScoutReportModalData"> | string
+    UUID?: StringWithAggregatesFilter<"ModerationScoutReportModalData"> | string
+    Name?: StringWithAggregatesFilter<"ModerationScoutReportModalData"> | string
+    Placeholder?: StringNullableWithAggregatesFilter<"ModerationScoutReportModalData"> | string | null
+    Type?: IntWithAggregatesFilter<"ModerationScoutReportModalData"> | number
+    MinLength?: IntNullableWithAggregatesFilter<"ModerationScoutReportModalData"> | number | null
+    MaxLength?: IntNullableWithAggregatesFilter<"ModerationScoutReportModalData"> | number | null
+    Required?: BoolWithAggregatesFilter<"ModerationScoutReportModalData"> | boolean
+    ModerationScoutId?: StringWithAggregatesFilter<"ModerationScoutReportModalData"> | string
+  }
+
+  export type ModerationScoutReportsWhereInput = {
+    AND?: ModerationScoutReportsWhereInput | ModerationScoutReportsWhereInput[]
+    OR?: ModerationScoutReportsWhereInput[]
+    NOT?: ModerationScoutReportsWhereInput | ModerationScoutReportsWhereInput[]
+    id?: StringFilter<"ModerationScoutReports"> | string
+    UUID?: StringFilter<"ModerationScoutReports"> | string
+    UserId?: StringFilter<"ModerationScoutReports"> | string
+    SusUserId?: StringFilter<"ModerationScoutReports"> | string
+    Reason?: StringNullableFilter<"ModerationScoutReports"> | string | null
+    Data?: JsonNullableFilter<"ModerationScoutReports">
+    IsReportedToBanListAdmin?: BoolFilter<"ModerationScoutReports"> | boolean
+    ModeratorUserId?: StringFilter<"ModerationScoutReports"> | string
+    ModerationScout?: XOR<ModerationScoutScalarRelationFilter, ModerationScoutWhereInput>
+  }
+
+  export type ModerationScoutReportsOrderByWithRelationInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    UserId?: SortOrder
+    SusUserId?: SortOrder
+    Reason?: SortOrder
+    Data?: SortOrder
+    IsReportedToBanListAdmin?: SortOrder
+    ModeratorUserId?: SortOrder
+    ModerationScout?: ModerationScoutOrderByWithRelationInput
+  }
+
+  export type ModerationScoutReportsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    UUID?: string
+    AND?: ModerationScoutReportsWhereInput | ModerationScoutReportsWhereInput[]
+    OR?: ModerationScoutReportsWhereInput[]
+    NOT?: ModerationScoutReportsWhereInput | ModerationScoutReportsWhereInput[]
+    UserId?: StringFilter<"ModerationScoutReports"> | string
+    SusUserId?: StringFilter<"ModerationScoutReports"> | string
+    Reason?: StringNullableFilter<"ModerationScoutReports"> | string | null
+    Data?: JsonNullableFilter<"ModerationScoutReports">
+    IsReportedToBanListAdmin?: BoolFilter<"ModerationScoutReports"> | boolean
+    ModeratorUserId?: StringFilter<"ModerationScoutReports"> | string
+    ModerationScout?: XOR<ModerationScoutScalarRelationFilter, ModerationScoutWhereInput>
+  }, "id" | "UUID">
+
+  export type ModerationScoutReportsOrderByWithAggregationInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    UserId?: SortOrder
+    SusUserId?: SortOrder
+    Reason?: SortOrder
+    Data?: SortOrder
+    IsReportedToBanListAdmin?: SortOrder
+    ModeratorUserId?: SortOrder
+    _count?: ModerationScoutReportsCountOrderByAggregateInput
+    _max?: ModerationScoutReportsMaxOrderByAggregateInput
+    _min?: ModerationScoutReportsMinOrderByAggregateInput
+  }
+
+  export type ModerationScoutReportsScalarWhereWithAggregatesInput = {
+    AND?: ModerationScoutReportsScalarWhereWithAggregatesInput | ModerationScoutReportsScalarWhereWithAggregatesInput[]
+    OR?: ModerationScoutReportsScalarWhereWithAggregatesInput[]
+    NOT?: ModerationScoutReportsScalarWhereWithAggregatesInput | ModerationScoutReportsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ModerationScoutReports"> | string
+    UUID?: StringWithAggregatesFilter<"ModerationScoutReports"> | string
+    UserId?: StringWithAggregatesFilter<"ModerationScoutReports"> | string
+    SusUserId?: StringWithAggregatesFilter<"ModerationScoutReports"> | string
+    Reason?: StringNullableWithAggregatesFilter<"ModerationScoutReports"> | string | null
+    Data?: JsonNullableWithAggregatesFilter<"ModerationScoutReports">
+    IsReportedToBanListAdmin?: BoolWithAggregatesFilter<"ModerationScoutReports"> | boolean
+    ModeratorUserId?: StringWithAggregatesFilter<"ModerationScoutReports"> | string
   }
 
   export type PollsWhereInput = {
@@ -61068,6 +68553,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateInput = {
@@ -61102,6 +68588,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUpdateInput = {
@@ -61135,6 +68622,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateInput = {
@@ -61168,6 +68656,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateManyInput = {
@@ -63071,6 +70560,7 @@ export namespace Prisma {
     id?: string
     UUID: string
     TagId: string
+    TriggerKeywords?: TagsCreateTriggerKeywordsInput | string[]
     MessageId: string
     IsShlashCommand: boolean
     ShlashCommandId: string
@@ -63086,6 +70576,7 @@ export namespace Prisma {
     id?: string
     UUID: string
     TagId: string
+    TriggerKeywords?: TagsCreateTriggerKeywordsInput | string[]
     MessageId: string
     IsShlashCommand: boolean
     ShlashCommandId: string
@@ -63100,6 +70591,7 @@ export namespace Prisma {
   export type TagsUpdateInput = {
     UUID?: StringFieldUpdateOperationsInput | string
     TagId?: StringFieldUpdateOperationsInput | string
+    TriggerKeywords?: TagsUpdateTriggerKeywordsInput | string[]
     MessageId?: StringFieldUpdateOperationsInput | string
     IsShlashCommand?: BoolFieldUpdateOperationsInput | boolean
     ShlashCommandId?: StringFieldUpdateOperationsInput | string
@@ -63114,6 +70606,7 @@ export namespace Prisma {
   export type TagsUncheckedUpdateInput = {
     UUID?: StringFieldUpdateOperationsInput | string
     TagId?: StringFieldUpdateOperationsInput | string
+    TriggerKeywords?: TagsUpdateTriggerKeywordsInput | string[]
     MessageId?: StringFieldUpdateOperationsInput | string
     IsShlashCommand?: BoolFieldUpdateOperationsInput | boolean
     ShlashCommandId?: StringFieldUpdateOperationsInput | string
@@ -63129,6 +70622,7 @@ export namespace Prisma {
     id?: string
     UUID: string
     TagId: string
+    TriggerKeywords?: TagsCreateTriggerKeywordsInput | string[]
     MessageId: string
     IsShlashCommand: boolean
     ShlashCommandId: string
@@ -63143,6 +70637,7 @@ export namespace Prisma {
   export type TagsUpdateManyMutationInput = {
     UUID?: StringFieldUpdateOperationsInput | string
     TagId?: StringFieldUpdateOperationsInput | string
+    TriggerKeywords?: TagsUpdateTriggerKeywordsInput | string[]
     MessageId?: StringFieldUpdateOperationsInput | string
     IsShlashCommand?: BoolFieldUpdateOperationsInput | boolean
     ShlashCommandId?: StringFieldUpdateOperationsInput | string
@@ -63156,6 +70651,7 @@ export namespace Prisma {
   export type TagsUncheckedUpdateManyInput = {
     UUID?: StringFieldUpdateOperationsInput | string
     TagId?: StringFieldUpdateOperationsInput | string
+    TriggerKeywords?: TagsUpdateTriggerKeywordsInput | string[]
     MessageId?: StringFieldUpdateOperationsInput | string
     IsShlashCommand?: BoolFieldUpdateOperationsInput | boolean
     ShlashCommandId?: StringFieldUpdateOperationsInput | string
@@ -63165,6 +70661,468 @@ export namespace Prisma {
     CommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
     FilterTextFromMessages?: TagsUpdateFilterTextFromMessagesInput | string[]
     GuildId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ModerationScoutCreateInput = {
+    id?: string
+    UUID: string
+    ReportCommandId: string
+    SuccssReportMessageId: string
+    PublicBanListUrl?: string | null
+    AdminBanList: InputJsonValue
+    CurrentUserModerations?: ModerationScoutCreateCurrentUserModerationsInput | InputJsonValue[]
+    PublicBanListEnabled?: boolean
+    ReportActions?: ModerationScoutCreateReportActionsInput | string[]
+    UserAppeals?: ModerationScoutUserAppealsCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutForms?: ModerationScoutFormsCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutReports?: ModerationScoutReportsCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutReportModalData?: ModerationScoutReportModalDataCreateNestedManyWithoutModerationScoutInput
+    Guilds: GuildsCreateNestedOneWithoutModerationScoutInput
+  }
+
+  export type ModerationScoutUncheckedCreateInput = {
+    id?: string
+    UUID: string
+    ReportCommandId: string
+    SuccssReportMessageId: string
+    PublicBanListUrl?: string | null
+    AdminBanList: InputJsonValue
+    CurrentUserModerations?: ModerationScoutCreateCurrentUserModerationsInput | InputJsonValue[]
+    PublicBanListEnabled?: boolean
+    ReportActions?: ModerationScoutCreateReportActionsInput | string[]
+    GuildId: string
+    UserAppeals?: ModerationScoutUserAppealsUncheckedCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutForms?: ModerationScoutFormsUncheckedCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutReports?: ModerationScoutReportsUncheckedCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutReportModalData?: ModerationScoutReportModalDataUncheckedCreateNestedManyWithoutModerationScoutInput
+  }
+
+  export type ModerationScoutUpdateInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    ReportCommandId?: StringFieldUpdateOperationsInput | string
+    SuccssReportMessageId?: StringFieldUpdateOperationsInput | string
+    PublicBanListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    AdminBanList?: InputJsonValue | InputJsonValue
+    CurrentUserModerations?: ModerationScoutUpdateCurrentUserModerationsInput | InputJsonValue[]
+    PublicBanListEnabled?: BoolFieldUpdateOperationsInput | boolean
+    ReportActions?: ModerationScoutUpdateReportActionsInput | string[]
+    UserAppeals?: ModerationScoutUserAppealsUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutForms?: ModerationScoutFormsUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutReports?: ModerationScoutReportsUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutReportModalData?: ModerationScoutReportModalDataUpdateManyWithoutModerationScoutNestedInput
+    Guilds?: GuildsUpdateOneRequiredWithoutModerationScoutNestedInput
+  }
+
+  export type ModerationScoutUncheckedUpdateInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    ReportCommandId?: StringFieldUpdateOperationsInput | string
+    SuccssReportMessageId?: StringFieldUpdateOperationsInput | string
+    PublicBanListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    AdminBanList?: InputJsonValue | InputJsonValue
+    CurrentUserModerations?: ModerationScoutUpdateCurrentUserModerationsInput | InputJsonValue[]
+    PublicBanListEnabled?: BoolFieldUpdateOperationsInput | boolean
+    ReportActions?: ModerationScoutUpdateReportActionsInput | string[]
+    GuildId?: StringFieldUpdateOperationsInput | string
+    UserAppeals?: ModerationScoutUserAppealsUncheckedUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutForms?: ModerationScoutFormsUncheckedUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutReports?: ModerationScoutReportsUncheckedUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutReportModalData?: ModerationScoutReportModalDataUncheckedUpdateManyWithoutModerationScoutNestedInput
+  }
+
+  export type ModerationScoutCreateManyInput = {
+    id?: string
+    UUID: string
+    ReportCommandId: string
+    SuccssReportMessageId: string
+    PublicBanListUrl?: string | null
+    AdminBanList: InputJsonValue
+    CurrentUserModerations?: ModerationScoutCreateCurrentUserModerationsInput | InputJsonValue[]
+    PublicBanListEnabled?: boolean
+    ReportActions?: ModerationScoutCreateReportActionsInput | string[]
+    GuildId: string
+  }
+
+  export type ModerationScoutUpdateManyMutationInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    ReportCommandId?: StringFieldUpdateOperationsInput | string
+    SuccssReportMessageId?: StringFieldUpdateOperationsInput | string
+    PublicBanListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    AdminBanList?: InputJsonValue | InputJsonValue
+    CurrentUserModerations?: ModerationScoutUpdateCurrentUserModerationsInput | InputJsonValue[]
+    PublicBanListEnabled?: BoolFieldUpdateOperationsInput | boolean
+    ReportActions?: ModerationScoutUpdateReportActionsInput | string[]
+  }
+
+  export type ModerationScoutUncheckedUpdateManyInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    ReportCommandId?: StringFieldUpdateOperationsInput | string
+    SuccssReportMessageId?: StringFieldUpdateOperationsInput | string
+    PublicBanListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    AdminBanList?: InputJsonValue | InputJsonValue
+    CurrentUserModerations?: ModerationScoutUpdateCurrentUserModerationsInput | InputJsonValue[]
+    PublicBanListEnabled?: BoolFieldUpdateOperationsInput | boolean
+    ReportActions?: ModerationScoutUpdateReportActionsInput | string[]
+    GuildId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ModerationScoutFormsCreateInput = {
+    id?: string
+    Sorting?: ModerationScoutFormsCreateSortingInput | string[]
+    Actions?: ModerationScoutFormsCreateActionsInput | string[]
+    ModerationScout: ModerationScoutCreateNestedOneWithoutModerationScoutFormsInput
+    ModerationScoutFormsData?: ModerationScoutFormsDataCreateNestedManyWithoutModerationScoutFormsInput
+    ModerationScoutUserAppeals?: ModerationScoutUserAppealsCreateNestedManyWithoutModerationScoutFormsInput
+  }
+
+  export type ModerationScoutFormsUncheckedCreateInput = {
+    id?: string
+    UUID: string
+    Sorting?: ModerationScoutFormsCreateSortingInput | string[]
+    Actions?: ModerationScoutFormsCreateActionsInput | string[]
+    ModerationScoutFormsData?: ModerationScoutFormsDataUncheckedCreateNestedManyWithoutModerationScoutFormsInput
+    ModerationScoutUserAppeals?: ModerationScoutUserAppealsUncheckedCreateNestedManyWithoutModerationScoutFormsInput
+  }
+
+  export type ModerationScoutFormsUpdateInput = {
+    Sorting?: ModerationScoutFormsUpdateSortingInput | string[]
+    Actions?: ModerationScoutFormsUpdateActionsInput | string[]
+    ModerationScout?: ModerationScoutUpdateOneRequiredWithoutModerationScoutFormsNestedInput
+    ModerationScoutFormsData?: ModerationScoutFormsDataUpdateManyWithoutModerationScoutFormsNestedInput
+    ModerationScoutUserAppeals?: ModerationScoutUserAppealsUpdateManyWithoutModerationScoutFormsNestedInput
+  }
+
+  export type ModerationScoutFormsUncheckedUpdateInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    Sorting?: ModerationScoutFormsUpdateSortingInput | string[]
+    Actions?: ModerationScoutFormsUpdateActionsInput | string[]
+    ModerationScoutFormsData?: ModerationScoutFormsDataUncheckedUpdateManyWithoutModerationScoutFormsNestedInput
+    ModerationScoutUserAppeals?: ModerationScoutUserAppealsUncheckedUpdateManyWithoutModerationScoutFormsNestedInput
+  }
+
+  export type ModerationScoutFormsCreateManyInput = {
+    id?: string
+    UUID: string
+    Sorting?: ModerationScoutFormsCreateSortingInput | string[]
+    Actions?: ModerationScoutFormsCreateActionsInput | string[]
+  }
+
+  export type ModerationScoutFormsUpdateManyMutationInput = {
+    Sorting?: ModerationScoutFormsUpdateSortingInput | string[]
+    Actions?: ModerationScoutFormsUpdateActionsInput | string[]
+  }
+
+  export type ModerationScoutFormsUncheckedUpdateManyInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    Sorting?: ModerationScoutFormsUpdateSortingInput | string[]
+    Actions?: ModerationScoutFormsUpdateActionsInput | string[]
+  }
+
+  export type ModerationScoutFormsDataCreateInput = {
+    id?: string
+    Type: string
+    Label: string
+    Description: string
+    Placeholder: string
+    OptionData: InputJsonValue
+    ModerationScoutForms: ModerationScoutFormsCreateNestedOneWithoutModerationScoutFormsDataInput
+  }
+
+  export type ModerationScoutFormsDataUncheckedCreateInput = {
+    id?: string
+    UUID: string
+    Type: string
+    Label: string
+    Description: string
+    Placeholder: string
+    OptionData: InputJsonValue
+  }
+
+  export type ModerationScoutFormsDataUpdateInput = {
+    Type?: StringFieldUpdateOperationsInput | string
+    Label?: StringFieldUpdateOperationsInput | string
+    Description?: StringFieldUpdateOperationsInput | string
+    Placeholder?: StringFieldUpdateOperationsInput | string
+    OptionData?: InputJsonValue | InputJsonValue
+    ModerationScoutForms?: ModerationScoutFormsUpdateOneRequiredWithoutModerationScoutFormsDataNestedInput
+  }
+
+  export type ModerationScoutFormsDataUncheckedUpdateInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    Type?: StringFieldUpdateOperationsInput | string
+    Label?: StringFieldUpdateOperationsInput | string
+    Description?: StringFieldUpdateOperationsInput | string
+    Placeholder?: StringFieldUpdateOperationsInput | string
+    OptionData?: InputJsonValue | InputJsonValue
+  }
+
+  export type ModerationScoutFormsDataCreateManyInput = {
+    id?: string
+    UUID: string
+    Type: string
+    Label: string
+    Description: string
+    Placeholder: string
+    OptionData: InputJsonValue
+  }
+
+  export type ModerationScoutFormsDataUpdateManyMutationInput = {
+    Type?: StringFieldUpdateOperationsInput | string
+    Label?: StringFieldUpdateOperationsInput | string
+    Description?: StringFieldUpdateOperationsInput | string
+    Placeholder?: StringFieldUpdateOperationsInput | string
+    OptionData?: InputJsonValue | InputJsonValue
+  }
+
+  export type ModerationScoutFormsDataUncheckedUpdateManyInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    Type?: StringFieldUpdateOperationsInput | string
+    Label?: StringFieldUpdateOperationsInput | string
+    Description?: StringFieldUpdateOperationsInput | string
+    Placeholder?: StringFieldUpdateOperationsInput | string
+    OptionData?: InputJsonValue | InputJsonValue
+  }
+
+  export type ModerationScoutUserAppealsCreateInput = {
+    id?: string
+    Token: string
+    UserId: string
+    Case: string
+    FormId: string
+    Data: InputJsonValue
+    CratedAt: Date | string
+    CreatedBy: string
+    ModerationScoutId: string
+    ModerationScoutForms: ModerationScoutFormsCreateNestedOneWithoutModerationScoutUserAppealsInput
+    ModerationScout: ModerationScoutCreateNestedOneWithoutUserAppealsInput
+  }
+
+  export type ModerationScoutUserAppealsUncheckedCreateInput = {
+    id?: string
+    UUID: string
+    Token: string
+    UserId: string
+    Case: string
+    FormId: string
+    ModerationScoutFormId: string
+    Data: InputJsonValue
+    CratedAt: Date | string
+    CreatedBy: string
+    ModerationScoutId: string
+  }
+
+  export type ModerationScoutUserAppealsUpdateInput = {
+    Token?: StringFieldUpdateOperationsInput | string
+    UserId?: StringFieldUpdateOperationsInput | string
+    Case?: StringFieldUpdateOperationsInput | string
+    FormId?: StringFieldUpdateOperationsInput | string
+    Data?: InputJsonValue | InputJsonValue
+    CratedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    CreatedBy?: StringFieldUpdateOperationsInput | string
+    ModerationScoutId?: StringFieldUpdateOperationsInput | string
+    ModerationScoutForms?: ModerationScoutFormsUpdateOneRequiredWithoutModerationScoutUserAppealsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneRequiredWithoutUserAppealsNestedInput
+  }
+
+  export type ModerationScoutUserAppealsUncheckedUpdateInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    Token?: StringFieldUpdateOperationsInput | string
+    UserId?: StringFieldUpdateOperationsInput | string
+    Case?: StringFieldUpdateOperationsInput | string
+    FormId?: StringFieldUpdateOperationsInput | string
+    ModerationScoutFormId?: StringFieldUpdateOperationsInput | string
+    Data?: InputJsonValue | InputJsonValue
+    CratedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    CreatedBy?: StringFieldUpdateOperationsInput | string
+    ModerationScoutId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ModerationScoutUserAppealsCreateManyInput = {
+    id?: string
+    UUID: string
+    Token: string
+    UserId: string
+    Case: string
+    FormId: string
+    ModerationScoutFormId: string
+    Data: InputJsonValue
+    CratedAt: Date | string
+    CreatedBy: string
+    ModerationScoutId: string
+  }
+
+  export type ModerationScoutUserAppealsUpdateManyMutationInput = {
+    Token?: StringFieldUpdateOperationsInput | string
+    UserId?: StringFieldUpdateOperationsInput | string
+    Case?: StringFieldUpdateOperationsInput | string
+    FormId?: StringFieldUpdateOperationsInput | string
+    Data?: InputJsonValue | InputJsonValue
+    CratedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    CreatedBy?: StringFieldUpdateOperationsInput | string
+    ModerationScoutId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ModerationScoutUserAppealsUncheckedUpdateManyInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    Token?: StringFieldUpdateOperationsInput | string
+    UserId?: StringFieldUpdateOperationsInput | string
+    Case?: StringFieldUpdateOperationsInput | string
+    FormId?: StringFieldUpdateOperationsInput | string
+    ModerationScoutFormId?: StringFieldUpdateOperationsInput | string
+    Data?: InputJsonValue | InputJsonValue
+    CratedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    CreatedBy?: StringFieldUpdateOperationsInput | string
+    ModerationScoutId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ModerationScoutReportModalDataCreateInput = {
+    id?: string
+    Name: string
+    Placeholder?: string | null
+    Type: number
+    MinLength?: number | null
+    MaxLength?: number | null
+    Required: boolean
+    ModerationScoutId: string
+    ModerationScout: ModerationScoutCreateNestedOneWithoutModerationScoutReportModalDataInput
+  }
+
+  export type ModerationScoutReportModalDataUncheckedCreateInput = {
+    id?: string
+    UUID: string
+    Name: string
+    Placeholder?: string | null
+    Type: number
+    MinLength?: number | null
+    MaxLength?: number | null
+    Required: boolean
+    ModerationScoutId: string
+  }
+
+  export type ModerationScoutReportModalDataUpdateInput = {
+    Name?: StringFieldUpdateOperationsInput | string
+    Placeholder?: NullableStringFieldUpdateOperationsInput | string | null
+    Type?: IntFieldUpdateOperationsInput | number
+    MinLength?: NullableIntFieldUpdateOperationsInput | number | null
+    MaxLength?: NullableIntFieldUpdateOperationsInput | number | null
+    Required?: BoolFieldUpdateOperationsInput | boolean
+    ModerationScoutId?: StringFieldUpdateOperationsInput | string
+    ModerationScout?: ModerationScoutUpdateOneRequiredWithoutModerationScoutReportModalDataNestedInput
+  }
+
+  export type ModerationScoutReportModalDataUncheckedUpdateInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    Name?: StringFieldUpdateOperationsInput | string
+    Placeholder?: NullableStringFieldUpdateOperationsInput | string | null
+    Type?: IntFieldUpdateOperationsInput | number
+    MinLength?: NullableIntFieldUpdateOperationsInput | number | null
+    MaxLength?: NullableIntFieldUpdateOperationsInput | number | null
+    Required?: BoolFieldUpdateOperationsInput | boolean
+    ModerationScoutId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ModerationScoutReportModalDataCreateManyInput = {
+    id?: string
+    UUID: string
+    Name: string
+    Placeholder?: string | null
+    Type: number
+    MinLength?: number | null
+    MaxLength?: number | null
+    Required: boolean
+    ModerationScoutId: string
+  }
+
+  export type ModerationScoutReportModalDataUpdateManyMutationInput = {
+    Name?: StringFieldUpdateOperationsInput | string
+    Placeholder?: NullableStringFieldUpdateOperationsInput | string | null
+    Type?: IntFieldUpdateOperationsInput | number
+    MinLength?: NullableIntFieldUpdateOperationsInput | number | null
+    MaxLength?: NullableIntFieldUpdateOperationsInput | number | null
+    Required?: BoolFieldUpdateOperationsInput | boolean
+    ModerationScoutId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ModerationScoutReportModalDataUncheckedUpdateManyInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    Name?: StringFieldUpdateOperationsInput | string
+    Placeholder?: NullableStringFieldUpdateOperationsInput | string | null
+    Type?: IntFieldUpdateOperationsInput | number
+    MinLength?: NullableIntFieldUpdateOperationsInput | number | null
+    MaxLength?: NullableIntFieldUpdateOperationsInput | number | null
+    Required?: BoolFieldUpdateOperationsInput | boolean
+    ModerationScoutId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ModerationScoutReportsCreateInput = {
+    id?: string
+    UserId: string
+    SusUserId: string
+    Reason?: string | null
+    Data?: InputJsonValue | null
+    IsReportedToBanListAdmin: boolean
+    ModeratorUserId: string
+    ModerationScout: ModerationScoutCreateNestedOneWithoutModerationScoutReportsInput
+  }
+
+  export type ModerationScoutReportsUncheckedCreateInput = {
+    id?: string
+    UUID: string
+    UserId: string
+    SusUserId: string
+    Reason?: string | null
+    Data?: InputJsonValue | null
+    IsReportedToBanListAdmin: boolean
+    ModeratorUserId: string
+  }
+
+  export type ModerationScoutReportsUpdateInput = {
+    UserId?: StringFieldUpdateOperationsInput | string
+    SusUserId?: StringFieldUpdateOperationsInput | string
+    Reason?: NullableStringFieldUpdateOperationsInput | string | null
+    Data?: InputJsonValue | InputJsonValue | null
+    IsReportedToBanListAdmin?: BoolFieldUpdateOperationsInput | boolean
+    ModeratorUserId?: StringFieldUpdateOperationsInput | string
+    ModerationScout?: ModerationScoutUpdateOneRequiredWithoutModerationScoutReportsNestedInput
+  }
+
+  export type ModerationScoutReportsUncheckedUpdateInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    UserId?: StringFieldUpdateOperationsInput | string
+    SusUserId?: StringFieldUpdateOperationsInput | string
+    Reason?: NullableStringFieldUpdateOperationsInput | string | null
+    Data?: InputJsonValue | InputJsonValue | null
+    IsReportedToBanListAdmin?: BoolFieldUpdateOperationsInput | boolean
+    ModeratorUserId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ModerationScoutReportsCreateManyInput = {
+    id?: string
+    UUID: string
+    UserId: string
+    SusUserId: string
+    Reason?: string | null
+    Data?: InputJsonValue | null
+    IsReportedToBanListAdmin: boolean
+    ModeratorUserId: string
+  }
+
+  export type ModerationScoutReportsUpdateManyMutationInput = {
+    UserId?: StringFieldUpdateOperationsInput | string
+    SusUserId?: StringFieldUpdateOperationsInput | string
+    Reason?: NullableStringFieldUpdateOperationsInput | string | null
+    Data?: InputJsonValue | InputJsonValue | null
+    IsReportedToBanListAdmin?: BoolFieldUpdateOperationsInput | boolean
+    ModeratorUserId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ModerationScoutReportsUncheckedUpdateManyInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    UserId?: StringFieldUpdateOperationsInput | string
+    SusUserId?: StringFieldUpdateOperationsInput | string
+    Reason?: NullableStringFieldUpdateOperationsInput | string | null
+    Data?: InputJsonValue | InputJsonValue | null
+    IsReportedToBanListAdmin?: BoolFieldUpdateOperationsInput | boolean
+    ModeratorUserId?: StringFieldUpdateOperationsInput | string
   }
 
   export type PollsCreateInput = {
@@ -65160,6 +73118,11 @@ export namespace Prisma {
     none?: GuildChannelLinksWhereInput
   }
 
+  export type ModerationScoutNullableScalarRelationFilter = {
+    is?: ModerationScoutWhereInput | null
+    isNot?: ModerationScoutWhereInput | null
+  }
+
   export type GuildAutoDeletesOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -66419,6 +74382,7 @@ export namespace Prisma {
     id?: SortOrder
     UUID?: SortOrder
     TagId?: SortOrder
+    TriggerKeywords?: SortOrder
     MessageId?: SortOrder
     IsShlashCommand?: SortOrder
     ShlashCommandId?: SortOrder
@@ -66456,6 +74420,315 @@ export namespace Prisma {
     PermissionRoleId?: SortOrder
     CommandDescription?: SortOrder
     GuildId?: SortOrder
+  }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+  }
+
+  export type ModerationScoutUserAppealsListRelationFilter = {
+    every?: ModerationScoutUserAppealsWhereInput
+    some?: ModerationScoutUserAppealsWhereInput
+    none?: ModerationScoutUserAppealsWhereInput
+  }
+
+  export type ModerationScoutFormsListRelationFilter = {
+    every?: ModerationScoutFormsWhereInput
+    some?: ModerationScoutFormsWhereInput
+    none?: ModerationScoutFormsWhereInput
+  }
+
+  export type ModerationScoutReportsListRelationFilter = {
+    every?: ModerationScoutReportsWhereInput
+    some?: ModerationScoutReportsWhereInput
+    none?: ModerationScoutReportsWhereInput
+  }
+
+  export type ModerationScoutReportModalDataListRelationFilter = {
+    every?: ModerationScoutReportModalDataWhereInput
+    some?: ModerationScoutReportModalDataWhereInput
+    none?: ModerationScoutReportModalDataWhereInput
+  }
+
+  export type ModerationScoutUserAppealsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ModerationScoutFormsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ModerationScoutReportsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ModerationScoutReportModalDataOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ModerationScoutCountOrderByAggregateInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    ReportCommandId?: SortOrder
+    SuccssReportMessageId?: SortOrder
+    PublicBanListUrl?: SortOrder
+    AdminBanList?: SortOrder
+    CurrentUserModerations?: SortOrder
+    PublicBanListEnabled?: SortOrder
+    ReportActions?: SortOrder
+    GuildId?: SortOrder
+  }
+
+  export type ModerationScoutMaxOrderByAggregateInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    ReportCommandId?: SortOrder
+    SuccssReportMessageId?: SortOrder
+    PublicBanListUrl?: SortOrder
+    PublicBanListEnabled?: SortOrder
+    GuildId?: SortOrder
+  }
+
+  export type ModerationScoutMinOrderByAggregateInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    ReportCommandId?: SortOrder
+    SuccssReportMessageId?: SortOrder
+    PublicBanListUrl?: SortOrder
+    PublicBanListEnabled?: SortOrder
+    GuildId?: SortOrder
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
+  }
+
+  export type ModerationScoutScalarRelationFilter = {
+    is?: ModerationScoutWhereInput
+    isNot?: ModerationScoutWhereInput
+  }
+
+  export type ModerationScoutFormsDataListRelationFilter = {
+    every?: ModerationScoutFormsDataWhereInput
+    some?: ModerationScoutFormsDataWhereInput
+    none?: ModerationScoutFormsDataWhereInput
+  }
+
+  export type ModerationScoutFormsDataOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ModerationScoutFormsCountOrderByAggregateInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    Sorting?: SortOrder
+    Actions?: SortOrder
+  }
+
+  export type ModerationScoutFormsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+  }
+
+  export type ModerationScoutFormsMinOrderByAggregateInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+  }
+
+  export type ModerationScoutFormsScalarRelationFilter = {
+    is?: ModerationScoutFormsWhereInput
+    isNot?: ModerationScoutFormsWhereInput
+  }
+
+  export type ModerationScoutFormsDataCountOrderByAggregateInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    Type?: SortOrder
+    Label?: SortOrder
+    Description?: SortOrder
+    Placeholder?: SortOrder
+    OptionData?: SortOrder
+  }
+
+  export type ModerationScoutFormsDataMaxOrderByAggregateInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    Type?: SortOrder
+    Label?: SortOrder
+    Description?: SortOrder
+    Placeholder?: SortOrder
+  }
+
+  export type ModerationScoutFormsDataMinOrderByAggregateInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    Type?: SortOrder
+    Label?: SortOrder
+    Description?: SortOrder
+    Placeholder?: SortOrder
+  }
+
+  export type ModerationScoutUserAppealsCountOrderByAggregateInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    Token?: SortOrder
+    UserId?: SortOrder
+    Case?: SortOrder
+    FormId?: SortOrder
+    ModerationScoutFormId?: SortOrder
+    Data?: SortOrder
+    CratedAt?: SortOrder
+    CreatedBy?: SortOrder
+    ModerationScoutId?: SortOrder
+  }
+
+  export type ModerationScoutUserAppealsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    Token?: SortOrder
+    UserId?: SortOrder
+    Case?: SortOrder
+    FormId?: SortOrder
+    ModerationScoutFormId?: SortOrder
+    CratedAt?: SortOrder
+    CreatedBy?: SortOrder
+    ModerationScoutId?: SortOrder
+  }
+
+  export type ModerationScoutUserAppealsMinOrderByAggregateInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    Token?: SortOrder
+    UserId?: SortOrder
+    Case?: SortOrder
+    FormId?: SortOrder
+    ModerationScoutFormId?: SortOrder
+    CratedAt?: SortOrder
+    CreatedBy?: SortOrder
+    ModerationScoutId?: SortOrder
+  }
+
+  export type ModerationScoutReportModalDataCountOrderByAggregateInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    Name?: SortOrder
+    Placeholder?: SortOrder
+    Type?: SortOrder
+    MinLength?: SortOrder
+    MaxLength?: SortOrder
+    Required?: SortOrder
+    ModerationScoutId?: SortOrder
+  }
+
+  export type ModerationScoutReportModalDataAvgOrderByAggregateInput = {
+    Type?: SortOrder
+    MinLength?: SortOrder
+    MaxLength?: SortOrder
+  }
+
+  export type ModerationScoutReportModalDataMaxOrderByAggregateInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    Name?: SortOrder
+    Placeholder?: SortOrder
+    Type?: SortOrder
+    MinLength?: SortOrder
+    MaxLength?: SortOrder
+    Required?: SortOrder
+    ModerationScoutId?: SortOrder
+  }
+
+  export type ModerationScoutReportModalDataMinOrderByAggregateInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    Name?: SortOrder
+    Placeholder?: SortOrder
+    Type?: SortOrder
+    MinLength?: SortOrder
+    MaxLength?: SortOrder
+    Required?: SortOrder
+    ModerationScoutId?: SortOrder
+  }
+
+  export type ModerationScoutReportModalDataSumOrderByAggregateInput = {
+    Type?: SortOrder
+    MinLength?: SortOrder
+    MaxLength?: SortOrder
+  }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    isSet?: boolean
+  }
+
+  export type ModerationScoutReportsCountOrderByAggregateInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    UserId?: SortOrder
+    SusUserId?: SortOrder
+    Reason?: SortOrder
+    Data?: SortOrder
+    IsReportedToBanListAdmin?: SortOrder
+    ModeratorUserId?: SortOrder
+  }
+
+  export type ModerationScoutReportsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    UserId?: SortOrder
+    SusUserId?: SortOrder
+    Reason?: SortOrder
+    IsReportedToBanListAdmin?: SortOrder
+    ModeratorUserId?: SortOrder
+  }
+
+  export type ModerationScoutReportsMinOrderByAggregateInput = {
+    id?: SortOrder
+    UUID?: SortOrder
+    UserId?: SortOrder
+    SusUserId?: SortOrder
+    Reason?: SortOrder
+    IsReportedToBanListAdmin?: SortOrder
+    ModeratorUserId?: SortOrder
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
+    isSet?: boolean
   }
 
   export type PollOptionsListRelationFilter = {
@@ -67234,17 +75507,6 @@ export namespace Prisma {
     Key?: SortOrder
     UserId?: SortOrder
   }
-  export type JsonFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-  }
 
   export type GuildBackupsCountOrderByAggregateInput = {
     id?: SortOrder
@@ -67272,20 +75534,6 @@ export namespace Prisma {
     Name?: SortOrder
     GuildId?: SortOrder
     UserId?: SortOrder
-  }
-  export type JsonWithAggregatesFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedJsonFilter<$PrismaModel>
-    _max?: NestedJsonFilter<$PrismaModel>
   }
 
   export type VanityAnalyticNullableScalarRelationFilter = {
@@ -67731,6 +75979,12 @@ export namespace Prisma {
     connect?: GuildChannelLinksWhereUniqueInput | GuildChannelLinksWhereUniqueInput[]
   }
 
+  export type ModerationScoutCreateNestedOneWithoutGuildsInput = {
+    create?: XOR<ModerationScoutCreateWithoutGuildsInput, ModerationScoutUncheckedCreateWithoutGuildsInput>
+    connectOrCreate?: ModerationScoutCreateOrConnectWithoutGuildsInput
+    connect?: ModerationScoutWhereUniqueInput
+  }
+
   export type GuildAutoDeletesUncheckedCreateNestedManyWithoutGuildsInput = {
     create?: XOR<GuildAutoDeletesCreateWithoutGuildsInput, GuildAutoDeletesUncheckedCreateWithoutGuildsInput> | GuildAutoDeletesCreateWithoutGuildsInput[] | GuildAutoDeletesUncheckedCreateWithoutGuildsInput[]
     connectOrCreate?: GuildAutoDeletesCreateOrConnectWithoutGuildsInput | GuildAutoDeletesCreateOrConnectWithoutGuildsInput[]
@@ -67908,6 +76162,12 @@ export namespace Prisma {
     connectOrCreate?: GuildChannelLinksCreateOrConnectWithoutGuildsInput | GuildChannelLinksCreateOrConnectWithoutGuildsInput[]
     createMany?: GuildChannelLinksCreateManyGuildsInputEnvelope
     connect?: GuildChannelLinksWhereUniqueInput | GuildChannelLinksWhereUniqueInput[]
+  }
+
+  export type ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput = {
+    create?: XOR<ModerationScoutCreateWithoutGuildsInput, ModerationScoutUncheckedCreateWithoutGuildsInput>
+    connectOrCreate?: ModerationScoutCreateOrConnectWithoutGuildsInput
+    connect?: ModerationScoutWhereUniqueInput
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -68252,6 +76512,16 @@ export namespace Prisma {
     deleteMany?: GuildChannelLinksScalarWhereInput | GuildChannelLinksScalarWhereInput[]
   }
 
+  export type ModerationScoutUpdateOneWithoutGuildsNestedInput = {
+    create?: XOR<ModerationScoutCreateWithoutGuildsInput, ModerationScoutUncheckedCreateWithoutGuildsInput>
+    connectOrCreate?: ModerationScoutCreateOrConnectWithoutGuildsInput
+    upsert?: ModerationScoutUpsertWithoutGuildsInput
+    disconnect?: ModerationScoutWhereInput | boolean
+    delete?: ModerationScoutWhereInput | boolean
+    connect?: ModerationScoutWhereUniqueInput
+    update?: XOR<XOR<ModerationScoutUpdateToOneWithWhereWithoutGuildsInput, ModerationScoutUpdateWithoutGuildsInput>, ModerationScoutUncheckedUpdateWithoutGuildsInput>
+  }
+
   export type GuildAutoDeletesUncheckedUpdateManyWithoutGuildsNestedInput = {
     create?: XOR<GuildAutoDeletesCreateWithoutGuildsInput, GuildAutoDeletesUncheckedCreateWithoutGuildsInput> | GuildAutoDeletesCreateWithoutGuildsInput[] | GuildAutoDeletesUncheckedCreateWithoutGuildsInput[]
     connectOrCreate?: GuildAutoDeletesCreateOrConnectWithoutGuildsInput | GuildAutoDeletesCreateOrConnectWithoutGuildsInput[]
@@ -68588,6 +76858,16 @@ export namespace Prisma {
     update?: GuildChannelLinksUpdateWithWhereUniqueWithoutGuildsInput | GuildChannelLinksUpdateWithWhereUniqueWithoutGuildsInput[]
     updateMany?: GuildChannelLinksUpdateManyWithWhereWithoutGuildsInput | GuildChannelLinksUpdateManyWithWhereWithoutGuildsInput[]
     deleteMany?: GuildChannelLinksScalarWhereInput | GuildChannelLinksScalarWhereInput[]
+  }
+
+  export type ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput = {
+    create?: XOR<ModerationScoutCreateWithoutGuildsInput, ModerationScoutUncheckedCreateWithoutGuildsInput>
+    connectOrCreate?: ModerationScoutCreateOrConnectWithoutGuildsInput
+    upsert?: ModerationScoutUpsertWithoutGuildsInput
+    disconnect?: ModerationScoutWhereInput | boolean
+    delete?: ModerationScoutWhereInput | boolean
+    connect?: ModerationScoutWhereUniqueInput
+    update?: XOR<XOR<ModerationScoutUpdateToOneWithWhereWithoutGuildsInput, ModerationScoutUpdateWithoutGuildsInput>, ModerationScoutUncheckedUpdateWithoutGuildsInput>
   }
 
   export type GuildCommandMangerCreateCommandsInput = {
@@ -69571,6 +77851,10 @@ export namespace Prisma {
     update?: XOR<XOR<GuildsUpdateToOneWithWhereWithoutSpotifyNotificationsInput, GuildsUpdateWithoutSpotifyNotificationsInput>, GuildsUncheckedUpdateWithoutSpotifyNotificationsInput>
   }
 
+  export type TagsCreateTriggerKeywordsInput = {
+    set: string[]
+  }
+
   export type TagsCreateFilterTextFromMessagesInput = {
     set: string[]
   }
@@ -69579,6 +77863,11 @@ export namespace Prisma {
     create?: XOR<GuildsCreateWithoutTagsInput, GuildsUncheckedCreateWithoutTagsInput>
     connectOrCreate?: GuildsCreateOrConnectWithoutTagsInput
     connect?: GuildsWhereUniqueInput
+  }
+
+  export type TagsUpdateTriggerKeywordsInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type TagsUpdateFilterTextFromMessagesInput = {
@@ -69592,6 +77881,392 @@ export namespace Prisma {
     upsert?: GuildsUpsertWithoutTagsInput
     connect?: GuildsWhereUniqueInput
     update?: XOR<XOR<GuildsUpdateToOneWithWhereWithoutTagsInput, GuildsUpdateWithoutTagsInput>, GuildsUncheckedUpdateWithoutTagsInput>
+  }
+
+  export type ModerationScoutCreateCurrentUserModerationsInput = {
+    set: InputJsonValue[]
+  }
+
+  export type ModerationScoutCreateReportActionsInput = {
+    set: string[]
+  }
+
+  export type ModerationScoutUserAppealsCreateNestedManyWithoutModerationScoutInput = {
+    create?: XOR<ModerationScoutUserAppealsCreateWithoutModerationScoutInput, ModerationScoutUserAppealsUncheckedCreateWithoutModerationScoutInput> | ModerationScoutUserAppealsCreateWithoutModerationScoutInput[] | ModerationScoutUserAppealsUncheckedCreateWithoutModerationScoutInput[]
+    connectOrCreate?: ModerationScoutUserAppealsCreateOrConnectWithoutModerationScoutInput | ModerationScoutUserAppealsCreateOrConnectWithoutModerationScoutInput[]
+    createMany?: ModerationScoutUserAppealsCreateManyModerationScoutInputEnvelope
+    connect?: ModerationScoutUserAppealsWhereUniqueInput | ModerationScoutUserAppealsWhereUniqueInput[]
+  }
+
+  export type ModerationScoutFormsCreateNestedManyWithoutModerationScoutInput = {
+    create?: XOR<ModerationScoutFormsCreateWithoutModerationScoutInput, ModerationScoutFormsUncheckedCreateWithoutModerationScoutInput> | ModerationScoutFormsCreateWithoutModerationScoutInput[] | ModerationScoutFormsUncheckedCreateWithoutModerationScoutInput[]
+    connectOrCreate?: ModerationScoutFormsCreateOrConnectWithoutModerationScoutInput | ModerationScoutFormsCreateOrConnectWithoutModerationScoutInput[]
+    createMany?: ModerationScoutFormsCreateManyModerationScoutInputEnvelope
+    connect?: ModerationScoutFormsWhereUniqueInput | ModerationScoutFormsWhereUniqueInput[]
+  }
+
+  export type ModerationScoutReportsCreateNestedManyWithoutModerationScoutInput = {
+    create?: XOR<ModerationScoutReportsCreateWithoutModerationScoutInput, ModerationScoutReportsUncheckedCreateWithoutModerationScoutInput> | ModerationScoutReportsCreateWithoutModerationScoutInput[] | ModerationScoutReportsUncheckedCreateWithoutModerationScoutInput[]
+    connectOrCreate?: ModerationScoutReportsCreateOrConnectWithoutModerationScoutInput | ModerationScoutReportsCreateOrConnectWithoutModerationScoutInput[]
+    createMany?: ModerationScoutReportsCreateManyModerationScoutInputEnvelope
+    connect?: ModerationScoutReportsWhereUniqueInput | ModerationScoutReportsWhereUniqueInput[]
+  }
+
+  export type ModerationScoutReportModalDataCreateNestedManyWithoutModerationScoutInput = {
+    create?: XOR<ModerationScoutReportModalDataCreateWithoutModerationScoutInput, ModerationScoutReportModalDataUncheckedCreateWithoutModerationScoutInput> | ModerationScoutReportModalDataCreateWithoutModerationScoutInput[] | ModerationScoutReportModalDataUncheckedCreateWithoutModerationScoutInput[]
+    connectOrCreate?: ModerationScoutReportModalDataCreateOrConnectWithoutModerationScoutInput | ModerationScoutReportModalDataCreateOrConnectWithoutModerationScoutInput[]
+    createMany?: ModerationScoutReportModalDataCreateManyModerationScoutInputEnvelope
+    connect?: ModerationScoutReportModalDataWhereUniqueInput | ModerationScoutReportModalDataWhereUniqueInput[]
+  }
+
+  export type GuildsCreateNestedOneWithoutModerationScoutInput = {
+    create?: XOR<GuildsCreateWithoutModerationScoutInput, GuildsUncheckedCreateWithoutModerationScoutInput>
+    connectOrCreate?: GuildsCreateOrConnectWithoutModerationScoutInput
+    connect?: GuildsWhereUniqueInput
+  }
+
+  export type ModerationScoutUserAppealsUncheckedCreateNestedManyWithoutModerationScoutInput = {
+    create?: XOR<ModerationScoutUserAppealsCreateWithoutModerationScoutInput, ModerationScoutUserAppealsUncheckedCreateWithoutModerationScoutInput> | ModerationScoutUserAppealsCreateWithoutModerationScoutInput[] | ModerationScoutUserAppealsUncheckedCreateWithoutModerationScoutInput[]
+    connectOrCreate?: ModerationScoutUserAppealsCreateOrConnectWithoutModerationScoutInput | ModerationScoutUserAppealsCreateOrConnectWithoutModerationScoutInput[]
+    createMany?: ModerationScoutUserAppealsCreateManyModerationScoutInputEnvelope
+    connect?: ModerationScoutUserAppealsWhereUniqueInput | ModerationScoutUserAppealsWhereUniqueInput[]
+  }
+
+  export type ModerationScoutFormsUncheckedCreateNestedManyWithoutModerationScoutInput = {
+    create?: XOR<ModerationScoutFormsCreateWithoutModerationScoutInput, ModerationScoutFormsUncheckedCreateWithoutModerationScoutInput> | ModerationScoutFormsCreateWithoutModerationScoutInput[] | ModerationScoutFormsUncheckedCreateWithoutModerationScoutInput[]
+    connectOrCreate?: ModerationScoutFormsCreateOrConnectWithoutModerationScoutInput | ModerationScoutFormsCreateOrConnectWithoutModerationScoutInput[]
+    createMany?: ModerationScoutFormsCreateManyModerationScoutInputEnvelope
+    connect?: ModerationScoutFormsWhereUniqueInput | ModerationScoutFormsWhereUniqueInput[]
+  }
+
+  export type ModerationScoutReportsUncheckedCreateNestedManyWithoutModerationScoutInput = {
+    create?: XOR<ModerationScoutReportsCreateWithoutModerationScoutInput, ModerationScoutReportsUncheckedCreateWithoutModerationScoutInput> | ModerationScoutReportsCreateWithoutModerationScoutInput[] | ModerationScoutReportsUncheckedCreateWithoutModerationScoutInput[]
+    connectOrCreate?: ModerationScoutReportsCreateOrConnectWithoutModerationScoutInput | ModerationScoutReportsCreateOrConnectWithoutModerationScoutInput[]
+    createMany?: ModerationScoutReportsCreateManyModerationScoutInputEnvelope
+    connect?: ModerationScoutReportsWhereUniqueInput | ModerationScoutReportsWhereUniqueInput[]
+  }
+
+  export type ModerationScoutReportModalDataUncheckedCreateNestedManyWithoutModerationScoutInput = {
+    create?: XOR<ModerationScoutReportModalDataCreateWithoutModerationScoutInput, ModerationScoutReportModalDataUncheckedCreateWithoutModerationScoutInput> | ModerationScoutReportModalDataCreateWithoutModerationScoutInput[] | ModerationScoutReportModalDataUncheckedCreateWithoutModerationScoutInput[]
+    connectOrCreate?: ModerationScoutReportModalDataCreateOrConnectWithoutModerationScoutInput | ModerationScoutReportModalDataCreateOrConnectWithoutModerationScoutInput[]
+    createMany?: ModerationScoutReportModalDataCreateManyModerationScoutInputEnvelope
+    connect?: ModerationScoutReportModalDataWhereUniqueInput | ModerationScoutReportModalDataWhereUniqueInput[]
+  }
+
+  export type ModerationScoutUpdateCurrentUserModerationsInput = {
+    set?: InputJsonValue[]
+    push?: InputJsonValue | InputJsonValue[]
+  }
+
+  export type ModerationScoutUpdateReportActionsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type ModerationScoutUserAppealsUpdateManyWithoutModerationScoutNestedInput = {
+    create?: XOR<ModerationScoutUserAppealsCreateWithoutModerationScoutInput, ModerationScoutUserAppealsUncheckedCreateWithoutModerationScoutInput> | ModerationScoutUserAppealsCreateWithoutModerationScoutInput[] | ModerationScoutUserAppealsUncheckedCreateWithoutModerationScoutInput[]
+    connectOrCreate?: ModerationScoutUserAppealsCreateOrConnectWithoutModerationScoutInput | ModerationScoutUserAppealsCreateOrConnectWithoutModerationScoutInput[]
+    upsert?: ModerationScoutUserAppealsUpsertWithWhereUniqueWithoutModerationScoutInput | ModerationScoutUserAppealsUpsertWithWhereUniqueWithoutModerationScoutInput[]
+    createMany?: ModerationScoutUserAppealsCreateManyModerationScoutInputEnvelope
+    set?: ModerationScoutUserAppealsWhereUniqueInput | ModerationScoutUserAppealsWhereUniqueInput[]
+    disconnect?: ModerationScoutUserAppealsWhereUniqueInput | ModerationScoutUserAppealsWhereUniqueInput[]
+    delete?: ModerationScoutUserAppealsWhereUniqueInput | ModerationScoutUserAppealsWhereUniqueInput[]
+    connect?: ModerationScoutUserAppealsWhereUniqueInput | ModerationScoutUserAppealsWhereUniqueInput[]
+    update?: ModerationScoutUserAppealsUpdateWithWhereUniqueWithoutModerationScoutInput | ModerationScoutUserAppealsUpdateWithWhereUniqueWithoutModerationScoutInput[]
+    updateMany?: ModerationScoutUserAppealsUpdateManyWithWhereWithoutModerationScoutInput | ModerationScoutUserAppealsUpdateManyWithWhereWithoutModerationScoutInput[]
+    deleteMany?: ModerationScoutUserAppealsScalarWhereInput | ModerationScoutUserAppealsScalarWhereInput[]
+  }
+
+  export type ModerationScoutFormsUpdateManyWithoutModerationScoutNestedInput = {
+    create?: XOR<ModerationScoutFormsCreateWithoutModerationScoutInput, ModerationScoutFormsUncheckedCreateWithoutModerationScoutInput> | ModerationScoutFormsCreateWithoutModerationScoutInput[] | ModerationScoutFormsUncheckedCreateWithoutModerationScoutInput[]
+    connectOrCreate?: ModerationScoutFormsCreateOrConnectWithoutModerationScoutInput | ModerationScoutFormsCreateOrConnectWithoutModerationScoutInput[]
+    upsert?: ModerationScoutFormsUpsertWithWhereUniqueWithoutModerationScoutInput | ModerationScoutFormsUpsertWithWhereUniqueWithoutModerationScoutInput[]
+    createMany?: ModerationScoutFormsCreateManyModerationScoutInputEnvelope
+    set?: ModerationScoutFormsWhereUniqueInput | ModerationScoutFormsWhereUniqueInput[]
+    disconnect?: ModerationScoutFormsWhereUniqueInput | ModerationScoutFormsWhereUniqueInput[]
+    delete?: ModerationScoutFormsWhereUniqueInput | ModerationScoutFormsWhereUniqueInput[]
+    connect?: ModerationScoutFormsWhereUniqueInput | ModerationScoutFormsWhereUniqueInput[]
+    update?: ModerationScoutFormsUpdateWithWhereUniqueWithoutModerationScoutInput | ModerationScoutFormsUpdateWithWhereUniqueWithoutModerationScoutInput[]
+    updateMany?: ModerationScoutFormsUpdateManyWithWhereWithoutModerationScoutInput | ModerationScoutFormsUpdateManyWithWhereWithoutModerationScoutInput[]
+    deleteMany?: ModerationScoutFormsScalarWhereInput | ModerationScoutFormsScalarWhereInput[]
+  }
+
+  export type ModerationScoutReportsUpdateManyWithoutModerationScoutNestedInput = {
+    create?: XOR<ModerationScoutReportsCreateWithoutModerationScoutInput, ModerationScoutReportsUncheckedCreateWithoutModerationScoutInput> | ModerationScoutReportsCreateWithoutModerationScoutInput[] | ModerationScoutReportsUncheckedCreateWithoutModerationScoutInput[]
+    connectOrCreate?: ModerationScoutReportsCreateOrConnectWithoutModerationScoutInput | ModerationScoutReportsCreateOrConnectWithoutModerationScoutInput[]
+    upsert?: ModerationScoutReportsUpsertWithWhereUniqueWithoutModerationScoutInput | ModerationScoutReportsUpsertWithWhereUniqueWithoutModerationScoutInput[]
+    createMany?: ModerationScoutReportsCreateManyModerationScoutInputEnvelope
+    set?: ModerationScoutReportsWhereUniqueInput | ModerationScoutReportsWhereUniqueInput[]
+    disconnect?: ModerationScoutReportsWhereUniqueInput | ModerationScoutReportsWhereUniqueInput[]
+    delete?: ModerationScoutReportsWhereUniqueInput | ModerationScoutReportsWhereUniqueInput[]
+    connect?: ModerationScoutReportsWhereUniqueInput | ModerationScoutReportsWhereUniqueInput[]
+    update?: ModerationScoutReportsUpdateWithWhereUniqueWithoutModerationScoutInput | ModerationScoutReportsUpdateWithWhereUniqueWithoutModerationScoutInput[]
+    updateMany?: ModerationScoutReportsUpdateManyWithWhereWithoutModerationScoutInput | ModerationScoutReportsUpdateManyWithWhereWithoutModerationScoutInput[]
+    deleteMany?: ModerationScoutReportsScalarWhereInput | ModerationScoutReportsScalarWhereInput[]
+  }
+
+  export type ModerationScoutReportModalDataUpdateManyWithoutModerationScoutNestedInput = {
+    create?: XOR<ModerationScoutReportModalDataCreateWithoutModerationScoutInput, ModerationScoutReportModalDataUncheckedCreateWithoutModerationScoutInput> | ModerationScoutReportModalDataCreateWithoutModerationScoutInput[] | ModerationScoutReportModalDataUncheckedCreateWithoutModerationScoutInput[]
+    connectOrCreate?: ModerationScoutReportModalDataCreateOrConnectWithoutModerationScoutInput | ModerationScoutReportModalDataCreateOrConnectWithoutModerationScoutInput[]
+    upsert?: ModerationScoutReportModalDataUpsertWithWhereUniqueWithoutModerationScoutInput | ModerationScoutReportModalDataUpsertWithWhereUniqueWithoutModerationScoutInput[]
+    createMany?: ModerationScoutReportModalDataCreateManyModerationScoutInputEnvelope
+    set?: ModerationScoutReportModalDataWhereUniqueInput | ModerationScoutReportModalDataWhereUniqueInput[]
+    disconnect?: ModerationScoutReportModalDataWhereUniqueInput | ModerationScoutReportModalDataWhereUniqueInput[]
+    delete?: ModerationScoutReportModalDataWhereUniqueInput | ModerationScoutReportModalDataWhereUniqueInput[]
+    connect?: ModerationScoutReportModalDataWhereUniqueInput | ModerationScoutReportModalDataWhereUniqueInput[]
+    update?: ModerationScoutReportModalDataUpdateWithWhereUniqueWithoutModerationScoutInput | ModerationScoutReportModalDataUpdateWithWhereUniqueWithoutModerationScoutInput[]
+    updateMany?: ModerationScoutReportModalDataUpdateManyWithWhereWithoutModerationScoutInput | ModerationScoutReportModalDataUpdateManyWithWhereWithoutModerationScoutInput[]
+    deleteMany?: ModerationScoutReportModalDataScalarWhereInput | ModerationScoutReportModalDataScalarWhereInput[]
+  }
+
+  export type GuildsUpdateOneRequiredWithoutModerationScoutNestedInput = {
+    create?: XOR<GuildsCreateWithoutModerationScoutInput, GuildsUncheckedCreateWithoutModerationScoutInput>
+    connectOrCreate?: GuildsCreateOrConnectWithoutModerationScoutInput
+    upsert?: GuildsUpsertWithoutModerationScoutInput
+    connect?: GuildsWhereUniqueInput
+    update?: XOR<XOR<GuildsUpdateToOneWithWhereWithoutModerationScoutInput, GuildsUpdateWithoutModerationScoutInput>, GuildsUncheckedUpdateWithoutModerationScoutInput>
+  }
+
+  export type ModerationScoutUserAppealsUncheckedUpdateManyWithoutModerationScoutNestedInput = {
+    create?: XOR<ModerationScoutUserAppealsCreateWithoutModerationScoutInput, ModerationScoutUserAppealsUncheckedCreateWithoutModerationScoutInput> | ModerationScoutUserAppealsCreateWithoutModerationScoutInput[] | ModerationScoutUserAppealsUncheckedCreateWithoutModerationScoutInput[]
+    connectOrCreate?: ModerationScoutUserAppealsCreateOrConnectWithoutModerationScoutInput | ModerationScoutUserAppealsCreateOrConnectWithoutModerationScoutInput[]
+    upsert?: ModerationScoutUserAppealsUpsertWithWhereUniqueWithoutModerationScoutInput | ModerationScoutUserAppealsUpsertWithWhereUniqueWithoutModerationScoutInput[]
+    createMany?: ModerationScoutUserAppealsCreateManyModerationScoutInputEnvelope
+    set?: ModerationScoutUserAppealsWhereUniqueInput | ModerationScoutUserAppealsWhereUniqueInput[]
+    disconnect?: ModerationScoutUserAppealsWhereUniqueInput | ModerationScoutUserAppealsWhereUniqueInput[]
+    delete?: ModerationScoutUserAppealsWhereUniqueInput | ModerationScoutUserAppealsWhereUniqueInput[]
+    connect?: ModerationScoutUserAppealsWhereUniqueInput | ModerationScoutUserAppealsWhereUniqueInput[]
+    update?: ModerationScoutUserAppealsUpdateWithWhereUniqueWithoutModerationScoutInput | ModerationScoutUserAppealsUpdateWithWhereUniqueWithoutModerationScoutInput[]
+    updateMany?: ModerationScoutUserAppealsUpdateManyWithWhereWithoutModerationScoutInput | ModerationScoutUserAppealsUpdateManyWithWhereWithoutModerationScoutInput[]
+    deleteMany?: ModerationScoutUserAppealsScalarWhereInput | ModerationScoutUserAppealsScalarWhereInput[]
+  }
+
+  export type ModerationScoutFormsUncheckedUpdateManyWithoutModerationScoutNestedInput = {
+    create?: XOR<ModerationScoutFormsCreateWithoutModerationScoutInput, ModerationScoutFormsUncheckedCreateWithoutModerationScoutInput> | ModerationScoutFormsCreateWithoutModerationScoutInput[] | ModerationScoutFormsUncheckedCreateWithoutModerationScoutInput[]
+    connectOrCreate?: ModerationScoutFormsCreateOrConnectWithoutModerationScoutInput | ModerationScoutFormsCreateOrConnectWithoutModerationScoutInput[]
+    upsert?: ModerationScoutFormsUpsertWithWhereUniqueWithoutModerationScoutInput | ModerationScoutFormsUpsertWithWhereUniqueWithoutModerationScoutInput[]
+    createMany?: ModerationScoutFormsCreateManyModerationScoutInputEnvelope
+    set?: ModerationScoutFormsWhereUniqueInput | ModerationScoutFormsWhereUniqueInput[]
+    disconnect?: ModerationScoutFormsWhereUniqueInput | ModerationScoutFormsWhereUniqueInput[]
+    delete?: ModerationScoutFormsWhereUniqueInput | ModerationScoutFormsWhereUniqueInput[]
+    connect?: ModerationScoutFormsWhereUniqueInput | ModerationScoutFormsWhereUniqueInput[]
+    update?: ModerationScoutFormsUpdateWithWhereUniqueWithoutModerationScoutInput | ModerationScoutFormsUpdateWithWhereUniqueWithoutModerationScoutInput[]
+    updateMany?: ModerationScoutFormsUpdateManyWithWhereWithoutModerationScoutInput | ModerationScoutFormsUpdateManyWithWhereWithoutModerationScoutInput[]
+    deleteMany?: ModerationScoutFormsScalarWhereInput | ModerationScoutFormsScalarWhereInput[]
+  }
+
+  export type ModerationScoutReportsUncheckedUpdateManyWithoutModerationScoutNestedInput = {
+    create?: XOR<ModerationScoutReportsCreateWithoutModerationScoutInput, ModerationScoutReportsUncheckedCreateWithoutModerationScoutInput> | ModerationScoutReportsCreateWithoutModerationScoutInput[] | ModerationScoutReportsUncheckedCreateWithoutModerationScoutInput[]
+    connectOrCreate?: ModerationScoutReportsCreateOrConnectWithoutModerationScoutInput | ModerationScoutReportsCreateOrConnectWithoutModerationScoutInput[]
+    upsert?: ModerationScoutReportsUpsertWithWhereUniqueWithoutModerationScoutInput | ModerationScoutReportsUpsertWithWhereUniqueWithoutModerationScoutInput[]
+    createMany?: ModerationScoutReportsCreateManyModerationScoutInputEnvelope
+    set?: ModerationScoutReportsWhereUniqueInput | ModerationScoutReportsWhereUniqueInput[]
+    disconnect?: ModerationScoutReportsWhereUniqueInput | ModerationScoutReportsWhereUniqueInput[]
+    delete?: ModerationScoutReportsWhereUniqueInput | ModerationScoutReportsWhereUniqueInput[]
+    connect?: ModerationScoutReportsWhereUniqueInput | ModerationScoutReportsWhereUniqueInput[]
+    update?: ModerationScoutReportsUpdateWithWhereUniqueWithoutModerationScoutInput | ModerationScoutReportsUpdateWithWhereUniqueWithoutModerationScoutInput[]
+    updateMany?: ModerationScoutReportsUpdateManyWithWhereWithoutModerationScoutInput | ModerationScoutReportsUpdateManyWithWhereWithoutModerationScoutInput[]
+    deleteMany?: ModerationScoutReportsScalarWhereInput | ModerationScoutReportsScalarWhereInput[]
+  }
+
+  export type ModerationScoutReportModalDataUncheckedUpdateManyWithoutModerationScoutNestedInput = {
+    create?: XOR<ModerationScoutReportModalDataCreateWithoutModerationScoutInput, ModerationScoutReportModalDataUncheckedCreateWithoutModerationScoutInput> | ModerationScoutReportModalDataCreateWithoutModerationScoutInput[] | ModerationScoutReportModalDataUncheckedCreateWithoutModerationScoutInput[]
+    connectOrCreate?: ModerationScoutReportModalDataCreateOrConnectWithoutModerationScoutInput | ModerationScoutReportModalDataCreateOrConnectWithoutModerationScoutInput[]
+    upsert?: ModerationScoutReportModalDataUpsertWithWhereUniqueWithoutModerationScoutInput | ModerationScoutReportModalDataUpsertWithWhereUniqueWithoutModerationScoutInput[]
+    createMany?: ModerationScoutReportModalDataCreateManyModerationScoutInputEnvelope
+    set?: ModerationScoutReportModalDataWhereUniqueInput | ModerationScoutReportModalDataWhereUniqueInput[]
+    disconnect?: ModerationScoutReportModalDataWhereUniqueInput | ModerationScoutReportModalDataWhereUniqueInput[]
+    delete?: ModerationScoutReportModalDataWhereUniqueInput | ModerationScoutReportModalDataWhereUniqueInput[]
+    connect?: ModerationScoutReportModalDataWhereUniqueInput | ModerationScoutReportModalDataWhereUniqueInput[]
+    update?: ModerationScoutReportModalDataUpdateWithWhereUniqueWithoutModerationScoutInput | ModerationScoutReportModalDataUpdateWithWhereUniqueWithoutModerationScoutInput[]
+    updateMany?: ModerationScoutReportModalDataUpdateManyWithWhereWithoutModerationScoutInput | ModerationScoutReportModalDataUpdateManyWithWhereWithoutModerationScoutInput[]
+    deleteMany?: ModerationScoutReportModalDataScalarWhereInput | ModerationScoutReportModalDataScalarWhereInput[]
+  }
+
+  export type ModerationScoutFormsCreateSortingInput = {
+    set: string[]
+  }
+
+  export type ModerationScoutFormsCreateActionsInput = {
+    set: string[]
+  }
+
+  export type ModerationScoutCreateNestedOneWithoutModerationScoutFormsInput = {
+    create?: XOR<ModerationScoutCreateWithoutModerationScoutFormsInput, ModerationScoutUncheckedCreateWithoutModerationScoutFormsInput>
+    connectOrCreate?: ModerationScoutCreateOrConnectWithoutModerationScoutFormsInput
+    connect?: ModerationScoutWhereUniqueInput
+  }
+
+  export type ModerationScoutFormsDataCreateNestedManyWithoutModerationScoutFormsInput = {
+    create?: XOR<ModerationScoutFormsDataCreateWithoutModerationScoutFormsInput, ModerationScoutFormsDataUncheckedCreateWithoutModerationScoutFormsInput> | ModerationScoutFormsDataCreateWithoutModerationScoutFormsInput[] | ModerationScoutFormsDataUncheckedCreateWithoutModerationScoutFormsInput[]
+    connectOrCreate?: ModerationScoutFormsDataCreateOrConnectWithoutModerationScoutFormsInput | ModerationScoutFormsDataCreateOrConnectWithoutModerationScoutFormsInput[]
+    createMany?: ModerationScoutFormsDataCreateManyModerationScoutFormsInputEnvelope
+    connect?: ModerationScoutFormsDataWhereUniqueInput | ModerationScoutFormsDataWhereUniqueInput[]
+  }
+
+  export type ModerationScoutUserAppealsCreateNestedManyWithoutModerationScoutFormsInput = {
+    create?: XOR<ModerationScoutUserAppealsCreateWithoutModerationScoutFormsInput, ModerationScoutUserAppealsUncheckedCreateWithoutModerationScoutFormsInput> | ModerationScoutUserAppealsCreateWithoutModerationScoutFormsInput[] | ModerationScoutUserAppealsUncheckedCreateWithoutModerationScoutFormsInput[]
+    connectOrCreate?: ModerationScoutUserAppealsCreateOrConnectWithoutModerationScoutFormsInput | ModerationScoutUserAppealsCreateOrConnectWithoutModerationScoutFormsInput[]
+    createMany?: ModerationScoutUserAppealsCreateManyModerationScoutFormsInputEnvelope
+    connect?: ModerationScoutUserAppealsWhereUniqueInput | ModerationScoutUserAppealsWhereUniqueInput[]
+  }
+
+  export type ModerationScoutFormsDataUncheckedCreateNestedManyWithoutModerationScoutFormsInput = {
+    create?: XOR<ModerationScoutFormsDataCreateWithoutModerationScoutFormsInput, ModerationScoutFormsDataUncheckedCreateWithoutModerationScoutFormsInput> | ModerationScoutFormsDataCreateWithoutModerationScoutFormsInput[] | ModerationScoutFormsDataUncheckedCreateWithoutModerationScoutFormsInput[]
+    connectOrCreate?: ModerationScoutFormsDataCreateOrConnectWithoutModerationScoutFormsInput | ModerationScoutFormsDataCreateOrConnectWithoutModerationScoutFormsInput[]
+    createMany?: ModerationScoutFormsDataCreateManyModerationScoutFormsInputEnvelope
+    connect?: ModerationScoutFormsDataWhereUniqueInput | ModerationScoutFormsDataWhereUniqueInput[]
+  }
+
+  export type ModerationScoutUserAppealsUncheckedCreateNestedManyWithoutModerationScoutFormsInput = {
+    create?: XOR<ModerationScoutUserAppealsCreateWithoutModerationScoutFormsInput, ModerationScoutUserAppealsUncheckedCreateWithoutModerationScoutFormsInput> | ModerationScoutUserAppealsCreateWithoutModerationScoutFormsInput[] | ModerationScoutUserAppealsUncheckedCreateWithoutModerationScoutFormsInput[]
+    connectOrCreate?: ModerationScoutUserAppealsCreateOrConnectWithoutModerationScoutFormsInput | ModerationScoutUserAppealsCreateOrConnectWithoutModerationScoutFormsInput[]
+    createMany?: ModerationScoutUserAppealsCreateManyModerationScoutFormsInputEnvelope
+    connect?: ModerationScoutUserAppealsWhereUniqueInput | ModerationScoutUserAppealsWhereUniqueInput[]
+  }
+
+  export type ModerationScoutFormsUpdateSortingInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type ModerationScoutFormsUpdateActionsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type ModerationScoutUpdateOneRequiredWithoutModerationScoutFormsNestedInput = {
+    create?: XOR<ModerationScoutCreateWithoutModerationScoutFormsInput, ModerationScoutUncheckedCreateWithoutModerationScoutFormsInput>
+    connectOrCreate?: ModerationScoutCreateOrConnectWithoutModerationScoutFormsInput
+    upsert?: ModerationScoutUpsertWithoutModerationScoutFormsInput
+    connect?: ModerationScoutWhereUniqueInput
+    update?: XOR<XOR<ModerationScoutUpdateToOneWithWhereWithoutModerationScoutFormsInput, ModerationScoutUpdateWithoutModerationScoutFormsInput>, ModerationScoutUncheckedUpdateWithoutModerationScoutFormsInput>
+  }
+
+  export type ModerationScoutFormsDataUpdateManyWithoutModerationScoutFormsNestedInput = {
+    create?: XOR<ModerationScoutFormsDataCreateWithoutModerationScoutFormsInput, ModerationScoutFormsDataUncheckedCreateWithoutModerationScoutFormsInput> | ModerationScoutFormsDataCreateWithoutModerationScoutFormsInput[] | ModerationScoutFormsDataUncheckedCreateWithoutModerationScoutFormsInput[]
+    connectOrCreate?: ModerationScoutFormsDataCreateOrConnectWithoutModerationScoutFormsInput | ModerationScoutFormsDataCreateOrConnectWithoutModerationScoutFormsInput[]
+    upsert?: ModerationScoutFormsDataUpsertWithWhereUniqueWithoutModerationScoutFormsInput | ModerationScoutFormsDataUpsertWithWhereUniqueWithoutModerationScoutFormsInput[]
+    createMany?: ModerationScoutFormsDataCreateManyModerationScoutFormsInputEnvelope
+    set?: ModerationScoutFormsDataWhereUniqueInput | ModerationScoutFormsDataWhereUniqueInput[]
+    disconnect?: ModerationScoutFormsDataWhereUniqueInput | ModerationScoutFormsDataWhereUniqueInput[]
+    delete?: ModerationScoutFormsDataWhereUniqueInput | ModerationScoutFormsDataWhereUniqueInput[]
+    connect?: ModerationScoutFormsDataWhereUniqueInput | ModerationScoutFormsDataWhereUniqueInput[]
+    update?: ModerationScoutFormsDataUpdateWithWhereUniqueWithoutModerationScoutFormsInput | ModerationScoutFormsDataUpdateWithWhereUniqueWithoutModerationScoutFormsInput[]
+    updateMany?: ModerationScoutFormsDataUpdateManyWithWhereWithoutModerationScoutFormsInput | ModerationScoutFormsDataUpdateManyWithWhereWithoutModerationScoutFormsInput[]
+    deleteMany?: ModerationScoutFormsDataScalarWhereInput | ModerationScoutFormsDataScalarWhereInput[]
+  }
+
+  export type ModerationScoutUserAppealsUpdateManyWithoutModerationScoutFormsNestedInput = {
+    create?: XOR<ModerationScoutUserAppealsCreateWithoutModerationScoutFormsInput, ModerationScoutUserAppealsUncheckedCreateWithoutModerationScoutFormsInput> | ModerationScoutUserAppealsCreateWithoutModerationScoutFormsInput[] | ModerationScoutUserAppealsUncheckedCreateWithoutModerationScoutFormsInput[]
+    connectOrCreate?: ModerationScoutUserAppealsCreateOrConnectWithoutModerationScoutFormsInput | ModerationScoutUserAppealsCreateOrConnectWithoutModerationScoutFormsInput[]
+    upsert?: ModerationScoutUserAppealsUpsertWithWhereUniqueWithoutModerationScoutFormsInput | ModerationScoutUserAppealsUpsertWithWhereUniqueWithoutModerationScoutFormsInput[]
+    createMany?: ModerationScoutUserAppealsCreateManyModerationScoutFormsInputEnvelope
+    set?: ModerationScoutUserAppealsWhereUniqueInput | ModerationScoutUserAppealsWhereUniqueInput[]
+    disconnect?: ModerationScoutUserAppealsWhereUniqueInput | ModerationScoutUserAppealsWhereUniqueInput[]
+    delete?: ModerationScoutUserAppealsWhereUniqueInput | ModerationScoutUserAppealsWhereUniqueInput[]
+    connect?: ModerationScoutUserAppealsWhereUniqueInput | ModerationScoutUserAppealsWhereUniqueInput[]
+    update?: ModerationScoutUserAppealsUpdateWithWhereUniqueWithoutModerationScoutFormsInput | ModerationScoutUserAppealsUpdateWithWhereUniqueWithoutModerationScoutFormsInput[]
+    updateMany?: ModerationScoutUserAppealsUpdateManyWithWhereWithoutModerationScoutFormsInput | ModerationScoutUserAppealsUpdateManyWithWhereWithoutModerationScoutFormsInput[]
+    deleteMany?: ModerationScoutUserAppealsScalarWhereInput | ModerationScoutUserAppealsScalarWhereInput[]
+  }
+
+  export type ModerationScoutFormsDataUncheckedUpdateManyWithoutModerationScoutFormsNestedInput = {
+    create?: XOR<ModerationScoutFormsDataCreateWithoutModerationScoutFormsInput, ModerationScoutFormsDataUncheckedCreateWithoutModerationScoutFormsInput> | ModerationScoutFormsDataCreateWithoutModerationScoutFormsInput[] | ModerationScoutFormsDataUncheckedCreateWithoutModerationScoutFormsInput[]
+    connectOrCreate?: ModerationScoutFormsDataCreateOrConnectWithoutModerationScoutFormsInput | ModerationScoutFormsDataCreateOrConnectWithoutModerationScoutFormsInput[]
+    upsert?: ModerationScoutFormsDataUpsertWithWhereUniqueWithoutModerationScoutFormsInput | ModerationScoutFormsDataUpsertWithWhereUniqueWithoutModerationScoutFormsInput[]
+    createMany?: ModerationScoutFormsDataCreateManyModerationScoutFormsInputEnvelope
+    set?: ModerationScoutFormsDataWhereUniqueInput | ModerationScoutFormsDataWhereUniqueInput[]
+    disconnect?: ModerationScoutFormsDataWhereUniqueInput | ModerationScoutFormsDataWhereUniqueInput[]
+    delete?: ModerationScoutFormsDataWhereUniqueInput | ModerationScoutFormsDataWhereUniqueInput[]
+    connect?: ModerationScoutFormsDataWhereUniqueInput | ModerationScoutFormsDataWhereUniqueInput[]
+    update?: ModerationScoutFormsDataUpdateWithWhereUniqueWithoutModerationScoutFormsInput | ModerationScoutFormsDataUpdateWithWhereUniqueWithoutModerationScoutFormsInput[]
+    updateMany?: ModerationScoutFormsDataUpdateManyWithWhereWithoutModerationScoutFormsInput | ModerationScoutFormsDataUpdateManyWithWhereWithoutModerationScoutFormsInput[]
+    deleteMany?: ModerationScoutFormsDataScalarWhereInput | ModerationScoutFormsDataScalarWhereInput[]
+  }
+
+  export type ModerationScoutUserAppealsUncheckedUpdateManyWithoutModerationScoutFormsNestedInput = {
+    create?: XOR<ModerationScoutUserAppealsCreateWithoutModerationScoutFormsInput, ModerationScoutUserAppealsUncheckedCreateWithoutModerationScoutFormsInput> | ModerationScoutUserAppealsCreateWithoutModerationScoutFormsInput[] | ModerationScoutUserAppealsUncheckedCreateWithoutModerationScoutFormsInput[]
+    connectOrCreate?: ModerationScoutUserAppealsCreateOrConnectWithoutModerationScoutFormsInput | ModerationScoutUserAppealsCreateOrConnectWithoutModerationScoutFormsInput[]
+    upsert?: ModerationScoutUserAppealsUpsertWithWhereUniqueWithoutModerationScoutFormsInput | ModerationScoutUserAppealsUpsertWithWhereUniqueWithoutModerationScoutFormsInput[]
+    createMany?: ModerationScoutUserAppealsCreateManyModerationScoutFormsInputEnvelope
+    set?: ModerationScoutUserAppealsWhereUniqueInput | ModerationScoutUserAppealsWhereUniqueInput[]
+    disconnect?: ModerationScoutUserAppealsWhereUniqueInput | ModerationScoutUserAppealsWhereUniqueInput[]
+    delete?: ModerationScoutUserAppealsWhereUniqueInput | ModerationScoutUserAppealsWhereUniqueInput[]
+    connect?: ModerationScoutUserAppealsWhereUniqueInput | ModerationScoutUserAppealsWhereUniqueInput[]
+    update?: ModerationScoutUserAppealsUpdateWithWhereUniqueWithoutModerationScoutFormsInput | ModerationScoutUserAppealsUpdateWithWhereUniqueWithoutModerationScoutFormsInput[]
+    updateMany?: ModerationScoutUserAppealsUpdateManyWithWhereWithoutModerationScoutFormsInput | ModerationScoutUserAppealsUpdateManyWithWhereWithoutModerationScoutFormsInput[]
+    deleteMany?: ModerationScoutUserAppealsScalarWhereInput | ModerationScoutUserAppealsScalarWhereInput[]
+  }
+
+  export type ModerationScoutFormsCreateNestedOneWithoutModerationScoutFormsDataInput = {
+    create?: XOR<ModerationScoutFormsCreateWithoutModerationScoutFormsDataInput, ModerationScoutFormsUncheckedCreateWithoutModerationScoutFormsDataInput>
+    connectOrCreate?: ModerationScoutFormsCreateOrConnectWithoutModerationScoutFormsDataInput
+    connect?: ModerationScoutFormsWhereUniqueInput
+  }
+
+  export type ModerationScoutFormsUpdateOneRequiredWithoutModerationScoutFormsDataNestedInput = {
+    create?: XOR<ModerationScoutFormsCreateWithoutModerationScoutFormsDataInput, ModerationScoutFormsUncheckedCreateWithoutModerationScoutFormsDataInput>
+    connectOrCreate?: ModerationScoutFormsCreateOrConnectWithoutModerationScoutFormsDataInput
+    upsert?: ModerationScoutFormsUpsertWithoutModerationScoutFormsDataInput
+    connect?: ModerationScoutFormsWhereUniqueInput
+    update?: XOR<XOR<ModerationScoutFormsUpdateToOneWithWhereWithoutModerationScoutFormsDataInput, ModerationScoutFormsUpdateWithoutModerationScoutFormsDataInput>, ModerationScoutFormsUncheckedUpdateWithoutModerationScoutFormsDataInput>
+  }
+
+  export type ModerationScoutFormsCreateNestedOneWithoutModerationScoutUserAppealsInput = {
+    create?: XOR<ModerationScoutFormsCreateWithoutModerationScoutUserAppealsInput, ModerationScoutFormsUncheckedCreateWithoutModerationScoutUserAppealsInput>
+    connectOrCreate?: ModerationScoutFormsCreateOrConnectWithoutModerationScoutUserAppealsInput
+    connect?: ModerationScoutFormsWhereUniqueInput
+  }
+
+  export type ModerationScoutCreateNestedOneWithoutUserAppealsInput = {
+    create?: XOR<ModerationScoutCreateWithoutUserAppealsInput, ModerationScoutUncheckedCreateWithoutUserAppealsInput>
+    connectOrCreate?: ModerationScoutCreateOrConnectWithoutUserAppealsInput
+    connect?: ModerationScoutWhereUniqueInput
+  }
+
+  export type ModerationScoutFormsUpdateOneRequiredWithoutModerationScoutUserAppealsNestedInput = {
+    create?: XOR<ModerationScoutFormsCreateWithoutModerationScoutUserAppealsInput, ModerationScoutFormsUncheckedCreateWithoutModerationScoutUserAppealsInput>
+    connectOrCreate?: ModerationScoutFormsCreateOrConnectWithoutModerationScoutUserAppealsInput
+    upsert?: ModerationScoutFormsUpsertWithoutModerationScoutUserAppealsInput
+    connect?: ModerationScoutFormsWhereUniqueInput
+    update?: XOR<XOR<ModerationScoutFormsUpdateToOneWithWhereWithoutModerationScoutUserAppealsInput, ModerationScoutFormsUpdateWithoutModerationScoutUserAppealsInput>, ModerationScoutFormsUncheckedUpdateWithoutModerationScoutUserAppealsInput>
+  }
+
+  export type ModerationScoutUpdateOneRequiredWithoutUserAppealsNestedInput = {
+    create?: XOR<ModerationScoutCreateWithoutUserAppealsInput, ModerationScoutUncheckedCreateWithoutUserAppealsInput>
+    connectOrCreate?: ModerationScoutCreateOrConnectWithoutUserAppealsInput
+    upsert?: ModerationScoutUpsertWithoutUserAppealsInput
+    connect?: ModerationScoutWhereUniqueInput
+    update?: XOR<XOR<ModerationScoutUpdateToOneWithWhereWithoutUserAppealsInput, ModerationScoutUpdateWithoutUserAppealsInput>, ModerationScoutUncheckedUpdateWithoutUserAppealsInput>
+  }
+
+  export type ModerationScoutCreateNestedOneWithoutModerationScoutReportModalDataInput = {
+    create?: XOR<ModerationScoutCreateWithoutModerationScoutReportModalDataInput, ModerationScoutUncheckedCreateWithoutModerationScoutReportModalDataInput>
+    connectOrCreate?: ModerationScoutCreateOrConnectWithoutModerationScoutReportModalDataInput
+    connect?: ModerationScoutWhereUniqueInput
+  }
+
+  export type ModerationScoutUpdateOneRequiredWithoutModerationScoutReportModalDataNestedInput = {
+    create?: XOR<ModerationScoutCreateWithoutModerationScoutReportModalDataInput, ModerationScoutUncheckedCreateWithoutModerationScoutReportModalDataInput>
+    connectOrCreate?: ModerationScoutCreateOrConnectWithoutModerationScoutReportModalDataInput
+    upsert?: ModerationScoutUpsertWithoutModerationScoutReportModalDataInput
+    connect?: ModerationScoutWhereUniqueInput
+    update?: XOR<XOR<ModerationScoutUpdateToOneWithWhereWithoutModerationScoutReportModalDataInput, ModerationScoutUpdateWithoutModerationScoutReportModalDataInput>, ModerationScoutUncheckedUpdateWithoutModerationScoutReportModalDataInput>
+  }
+
+  export type ModerationScoutCreateNestedOneWithoutModerationScoutReportsInput = {
+    create?: XOR<ModerationScoutCreateWithoutModerationScoutReportsInput, ModerationScoutUncheckedCreateWithoutModerationScoutReportsInput>
+    connectOrCreate?: ModerationScoutCreateOrConnectWithoutModerationScoutReportsInput
+    connect?: ModerationScoutWhereUniqueInput
+  }
+
+  export type ModerationScoutUpdateOneRequiredWithoutModerationScoutReportsNestedInput = {
+    create?: XOR<ModerationScoutCreateWithoutModerationScoutReportsInput, ModerationScoutUncheckedCreateWithoutModerationScoutReportsInput>
+    connectOrCreate?: ModerationScoutCreateOrConnectWithoutModerationScoutReportsInput
+    upsert?: ModerationScoutUpsertWithoutModerationScoutReportsInput
+    connect?: ModerationScoutWhereUniqueInput
+    update?: XOR<XOR<ModerationScoutUpdateToOneWithWhereWithoutModerationScoutReportsInput, ModerationScoutUpdateWithoutModerationScoutReportsInput>, ModerationScoutUncheckedUpdateWithoutModerationScoutReportsInput>
   }
 
   export type PollsCreateEntrysInput = {
@@ -70829,6 +79504,29 @@ export namespace Prisma {
     Label?: StringFilter<"ReactionRoleSelectmenu"> | string
     Description?: StringFilter<"ReactionRoleSelectmenu"> | string
   }
+  export type NestedJsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    isSet?: boolean
+  }
 
   export type NestedBigIntNullableFilter<$PrismaModel = never> = {
     equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
@@ -70857,17 +79555,6 @@ export namespace Prisma {
     _min?: NestedBigIntNullableFilter<$PrismaModel>
     _max?: NestedBigIntNullableFilter<$PrismaModel>
     isSet?: boolean
-  }
-  export type NestedJsonFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
-        Required<NestedJsonFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
-
-  export type NestedJsonFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
   }
 
   export type DisbotsLogsWhereInput = {
@@ -71322,6 +80009,7 @@ export namespace Prisma {
     id?: string
     UUID: string
     TagId: string
+    TriggerKeywords?: TagsCreateTriggerKeywordsInput | string[]
     MessageId: string
     IsShlashCommand: boolean
     ShlashCommandId: string
@@ -71336,6 +80024,7 @@ export namespace Prisma {
     id?: string
     UUID: string
     TagId: string
+    TriggerKeywords?: TagsCreateTriggerKeywordsInput | string[]
     MessageId: string
     IsShlashCommand: boolean
     ShlashCommandId: string
@@ -71730,6 +80419,43 @@ export namespace Prisma {
 
   export type GuildChannelLinksCreateManyGuildsInputEnvelope = {
     data: GuildChannelLinksCreateManyGuildsInput | GuildChannelLinksCreateManyGuildsInput[]
+  }
+
+  export type ModerationScoutCreateWithoutGuildsInput = {
+    id?: string
+    UUID: string
+    ReportCommandId: string
+    SuccssReportMessageId: string
+    PublicBanListUrl?: string | null
+    AdminBanList: InputJsonValue
+    CurrentUserModerations?: ModerationScoutCreateCurrentUserModerationsInput | InputJsonValue[]
+    PublicBanListEnabled?: boolean
+    ReportActions?: ModerationScoutCreateReportActionsInput | string[]
+    UserAppeals?: ModerationScoutUserAppealsCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutForms?: ModerationScoutFormsCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutReports?: ModerationScoutReportsCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutReportModalData?: ModerationScoutReportModalDataCreateNestedManyWithoutModerationScoutInput
+  }
+
+  export type ModerationScoutUncheckedCreateWithoutGuildsInput = {
+    id?: string
+    UUID: string
+    ReportCommandId: string
+    SuccssReportMessageId: string
+    PublicBanListUrl?: string | null
+    AdminBanList: InputJsonValue
+    CurrentUserModerations?: ModerationScoutCreateCurrentUserModerationsInput | InputJsonValue[]
+    PublicBanListEnabled?: boolean
+    ReportActions?: ModerationScoutCreateReportActionsInput | string[]
+    UserAppeals?: ModerationScoutUserAppealsUncheckedCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutForms?: ModerationScoutFormsUncheckedCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutReports?: ModerationScoutReportsUncheckedCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutReportModalData?: ModerationScoutReportModalDataUncheckedCreateNestedManyWithoutModerationScoutInput
+  }
+
+  export type ModerationScoutCreateOrConnectWithoutGuildsInput = {
+    where: ModerationScoutWhereUniqueInput
+    create: XOR<ModerationScoutCreateWithoutGuildsInput, ModerationScoutUncheckedCreateWithoutGuildsInput>
   }
 
   export type GuildAutoDeletesUpsertWithWhereUniqueWithoutGuildsInput = {
@@ -72206,6 +80932,7 @@ export namespace Prisma {
     id?: StringFilter<"Tags"> | string
     UUID?: StringFilter<"Tags"> | string
     TagId?: StringFilter<"Tags"> | string
+    TriggerKeywords?: StringNullableListFilter<"Tags">
     MessageId?: StringFilter<"Tags"> | string
     IsShlashCommand?: BoolFilter<"Tags"> | boolean
     ShlashCommandId?: StringFilter<"Tags"> | string
@@ -72573,6 +81300,47 @@ export namespace Prisma {
     GuildId?: StringFilter<"GuildChannelLinks"> | string
   }
 
+  export type ModerationScoutUpsertWithoutGuildsInput = {
+    update: XOR<ModerationScoutUpdateWithoutGuildsInput, ModerationScoutUncheckedUpdateWithoutGuildsInput>
+    create: XOR<ModerationScoutCreateWithoutGuildsInput, ModerationScoutUncheckedCreateWithoutGuildsInput>
+    where?: ModerationScoutWhereInput
+  }
+
+  export type ModerationScoutUpdateToOneWithWhereWithoutGuildsInput = {
+    where?: ModerationScoutWhereInput
+    data: XOR<ModerationScoutUpdateWithoutGuildsInput, ModerationScoutUncheckedUpdateWithoutGuildsInput>
+  }
+
+  export type ModerationScoutUpdateWithoutGuildsInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    ReportCommandId?: StringFieldUpdateOperationsInput | string
+    SuccssReportMessageId?: StringFieldUpdateOperationsInput | string
+    PublicBanListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    AdminBanList?: InputJsonValue | InputJsonValue
+    CurrentUserModerations?: ModerationScoutUpdateCurrentUserModerationsInput | InputJsonValue[]
+    PublicBanListEnabled?: BoolFieldUpdateOperationsInput | boolean
+    ReportActions?: ModerationScoutUpdateReportActionsInput | string[]
+    UserAppeals?: ModerationScoutUserAppealsUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutForms?: ModerationScoutFormsUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutReports?: ModerationScoutReportsUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutReportModalData?: ModerationScoutReportModalDataUpdateManyWithoutModerationScoutNestedInput
+  }
+
+  export type ModerationScoutUncheckedUpdateWithoutGuildsInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    ReportCommandId?: StringFieldUpdateOperationsInput | string
+    SuccssReportMessageId?: StringFieldUpdateOperationsInput | string
+    PublicBanListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    AdminBanList?: InputJsonValue | InputJsonValue
+    CurrentUserModerations?: ModerationScoutUpdateCurrentUserModerationsInput | InputJsonValue[]
+    PublicBanListEnabled?: BoolFieldUpdateOperationsInput | boolean
+    ReportActions?: ModerationScoutUpdateReportActionsInput | string[]
+    UserAppeals?: ModerationScoutUserAppealsUncheckedUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutForms?: ModerationScoutFormsUncheckedUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutReports?: ModerationScoutReportsUncheckedUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutReportModalData?: ModerationScoutReportModalDataUncheckedUpdateManyWithoutModerationScoutNestedInput
+  }
+
   export type BuildInCommandsCreateWithoutGuildCommandMangersInput = {
     id?: string
     UUID: string
@@ -72633,6 +81401,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildCommandMangerInput = {
@@ -72666,6 +81435,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildCommandMangerInput = {
@@ -72744,6 +81514,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildCommandMangerInput = {
@@ -72776,6 +81547,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildCommandMangerCreateWithoutBuildInCommandsInput = {
@@ -72859,6 +81631,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildComponentManagerInput = {
@@ -72892,6 +81665,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildComponentManagerInput = {
@@ -72940,6 +81714,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildComponentManagerInput = {
@@ -72972,6 +81747,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutGuildInteractionPermissionsInput = {
@@ -73005,6 +81781,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildInteractionPermissionsInput = {
@@ -73038,6 +81815,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildInteractionPermissionsInput = {
@@ -73086,6 +81864,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildInteractionPermissionsInput = {
@@ -73118,6 +81897,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutAutoAutoDeletesInput = {
@@ -73151,6 +81931,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutAutoAutoDeletesInput = {
@@ -73184,6 +81965,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutAutoAutoDeletesInput = {
@@ -73232,6 +82014,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutAutoAutoDeletesInput = {
@@ -73264,6 +82047,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutAutoPublishInput = {
@@ -73297,6 +82081,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutAutoPublishInput = {
@@ -73330,6 +82115,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutAutoPublishInput = {
@@ -73378,6 +82164,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutAutoPublishInput = {
@@ -73410,6 +82197,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutAutoReactsInput = {
@@ -73443,6 +82231,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutAutoReactsInput = {
@@ -73476,6 +82265,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutAutoReactsInput = {
@@ -73524,6 +82314,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutAutoReactsInput = {
@@ -73556,6 +82347,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutAutoRolesInput = {
@@ -73589,6 +82381,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutAutoRolesInput = {
@@ -73622,6 +82415,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutAutoRolesInput = {
@@ -73670,6 +82464,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutAutoRolesInput = {
@@ -73702,6 +82497,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutGuildBansInput = {
@@ -73735,6 +82531,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildBansInput = {
@@ -73768,6 +82565,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildBansInput = {
@@ -73816,6 +82614,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildBansInput = {
@@ -73848,6 +82647,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutChatModerationsInput = {
@@ -73881,6 +82681,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutChatModerationsInput = {
@@ -73914,6 +82715,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutChatModerationsInput = {
@@ -73962,6 +82764,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutChatModerationsInput = {
@@ -73994,6 +82797,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type SyncedChannelLinkMessagesCreateWithoutChannelLinksInput = {
@@ -74054,6 +82858,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildChannelLinksInput = {
@@ -74087,6 +82892,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildChannelLinksInput = {
@@ -74164,6 +82970,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildChannelLinksInput = {
@@ -74196,6 +83003,7 @@ export namespace Prisma {
     GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildChannelLinksCreateWithoutSyncedChannelLinkMessageInput = {
@@ -74287,6 +83095,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutDiscordAddonsInput = {
@@ -74320,6 +83129,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutDiscordAddonsInput = {
@@ -74368,6 +83178,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutDiscordAddonsInput = {
@@ -74400,6 +83211,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutGiveawaysInput = {
@@ -74433,6 +83245,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGiveawaysInput = {
@@ -74466,6 +83279,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGiveawaysInput = {
@@ -74514,6 +83328,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGiveawaysInput = {
@@ -74546,6 +83361,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type TempVoiceChannelsCreateWithoutTempVoicesInput = {
@@ -74602,6 +83418,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutTempVoicesInput = {
@@ -74635,6 +83452,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutTempVoicesInput = {
@@ -74710,6 +83528,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutTempVoicesInput = {
@@ -74742,6 +83561,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type TempVoicesCreateWithoutTempVoiceChannelsInput = {
@@ -74833,6 +83653,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildLeaveSetupInput = {
@@ -74866,6 +83687,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildLeaveSetupInput = {
@@ -74919,6 +83741,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildLeaveSetupInput = {
@@ -74951,6 +83774,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutGuildWelcomeSetupInput = {
@@ -74984,6 +83808,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildWelcomeSetupInput = {
@@ -75017,6 +83842,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildWelcomeSetupInput = {
@@ -75075,6 +83901,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildWelcomeSetupInput = {
@@ -75107,6 +83934,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutGuildLoggingInput = {
@@ -75140,6 +83968,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildLoggingInput = {
@@ -75173,6 +84002,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildLoggingInput = {
@@ -75221,6 +84051,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildLoggingInput = {
@@ -75253,6 +84084,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutGuildLogsInput = {
@@ -75286,6 +84118,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildLogsInput = {
@@ -75319,6 +84152,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildLogsInput = {
@@ -75367,6 +84201,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildLogsInput = {
@@ -75399,6 +84234,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutMessageTemplatesInput = {
@@ -75432,6 +84268,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutMessageTemplatesInput = {
@@ -75465,6 +84302,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutMessageTemplatesInput = {
@@ -75513,6 +84351,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutMessageTemplatesInput = {
@@ -75545,6 +84384,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutReactionRoleInput = {
@@ -75578,6 +84418,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutReactionRoleInput = {
@@ -75611,6 +84452,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutReactionRoleInput = {
@@ -75669,6 +84511,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutReactionRoleInput = {
@@ -75701,6 +84544,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type VerificationGatesCreateWithoutVerificationGatesInput = {
@@ -75771,6 +84615,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutSecurityInput = {
@@ -75804,6 +84649,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutSecurityInput = {
@@ -75885,6 +84731,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutSecurityInput = {
@@ -75917,6 +84764,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type VerificationGatesPermissionCreateWithoutVerificationGatesInput = {
@@ -76109,6 +84957,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutSpotifyNotificationsInput = {
@@ -76142,6 +84991,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutSpotifyNotificationsInput = {
@@ -76190,6 +85040,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutSpotifyNotificationsInput = {
@@ -76222,6 +85073,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutTagsInput = {
@@ -76255,6 +85107,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutTagsInput = {
@@ -76288,6 +85141,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutTagsInput = {
@@ -76336,6 +85190,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutTagsInput = {
@@ -76368,6 +85223,908 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
+  }
+
+  export type ModerationScoutUserAppealsCreateWithoutModerationScoutInput = {
+    id?: string
+    Token: string
+    UserId: string
+    Case: string
+    FormId: string
+    Data: InputJsonValue
+    CratedAt: Date | string
+    CreatedBy: string
+    ModerationScoutId: string
+    ModerationScoutForms: ModerationScoutFormsCreateNestedOneWithoutModerationScoutUserAppealsInput
+  }
+
+  export type ModerationScoutUserAppealsUncheckedCreateWithoutModerationScoutInput = {
+    id?: string
+    Token: string
+    UserId: string
+    Case: string
+    FormId: string
+    ModerationScoutFormId: string
+    Data: InputJsonValue
+    CratedAt: Date | string
+    CreatedBy: string
+    ModerationScoutId: string
+  }
+
+  export type ModerationScoutUserAppealsCreateOrConnectWithoutModerationScoutInput = {
+    where: ModerationScoutUserAppealsWhereUniqueInput
+    create: XOR<ModerationScoutUserAppealsCreateWithoutModerationScoutInput, ModerationScoutUserAppealsUncheckedCreateWithoutModerationScoutInput>
+  }
+
+  export type ModerationScoutUserAppealsCreateManyModerationScoutInputEnvelope = {
+    data: ModerationScoutUserAppealsCreateManyModerationScoutInput | ModerationScoutUserAppealsCreateManyModerationScoutInput[]
+  }
+
+  export type ModerationScoutFormsCreateWithoutModerationScoutInput = {
+    id?: string
+    Sorting?: ModerationScoutFormsCreateSortingInput | string[]
+    Actions?: ModerationScoutFormsCreateActionsInput | string[]
+    ModerationScoutFormsData?: ModerationScoutFormsDataCreateNestedManyWithoutModerationScoutFormsInput
+    ModerationScoutUserAppeals?: ModerationScoutUserAppealsCreateNestedManyWithoutModerationScoutFormsInput
+  }
+
+  export type ModerationScoutFormsUncheckedCreateWithoutModerationScoutInput = {
+    id?: string
+    Sorting?: ModerationScoutFormsCreateSortingInput | string[]
+    Actions?: ModerationScoutFormsCreateActionsInput | string[]
+    ModerationScoutFormsData?: ModerationScoutFormsDataUncheckedCreateNestedManyWithoutModerationScoutFormsInput
+    ModerationScoutUserAppeals?: ModerationScoutUserAppealsUncheckedCreateNestedManyWithoutModerationScoutFormsInput
+  }
+
+  export type ModerationScoutFormsCreateOrConnectWithoutModerationScoutInput = {
+    where: ModerationScoutFormsWhereUniqueInput
+    create: XOR<ModerationScoutFormsCreateWithoutModerationScoutInput, ModerationScoutFormsUncheckedCreateWithoutModerationScoutInput>
+  }
+
+  export type ModerationScoutFormsCreateManyModerationScoutInputEnvelope = {
+    data: ModerationScoutFormsCreateManyModerationScoutInput | ModerationScoutFormsCreateManyModerationScoutInput[]
+  }
+
+  export type ModerationScoutReportsCreateWithoutModerationScoutInput = {
+    id?: string
+    UserId: string
+    SusUserId: string
+    Reason?: string | null
+    Data?: InputJsonValue | null
+    IsReportedToBanListAdmin: boolean
+    ModeratorUserId: string
+  }
+
+  export type ModerationScoutReportsUncheckedCreateWithoutModerationScoutInput = {
+    id?: string
+    UserId: string
+    SusUserId: string
+    Reason?: string | null
+    Data?: InputJsonValue | null
+    IsReportedToBanListAdmin: boolean
+    ModeratorUserId: string
+  }
+
+  export type ModerationScoutReportsCreateOrConnectWithoutModerationScoutInput = {
+    where: ModerationScoutReportsWhereUniqueInput
+    create: XOR<ModerationScoutReportsCreateWithoutModerationScoutInput, ModerationScoutReportsUncheckedCreateWithoutModerationScoutInput>
+  }
+
+  export type ModerationScoutReportsCreateManyModerationScoutInputEnvelope = {
+    data: ModerationScoutReportsCreateManyModerationScoutInput | ModerationScoutReportsCreateManyModerationScoutInput[]
+  }
+
+  export type ModerationScoutReportModalDataCreateWithoutModerationScoutInput = {
+    id?: string
+    Name: string
+    Placeholder?: string | null
+    Type: number
+    MinLength?: number | null
+    MaxLength?: number | null
+    Required: boolean
+    ModerationScoutId: string
+  }
+
+  export type ModerationScoutReportModalDataUncheckedCreateWithoutModerationScoutInput = {
+    id?: string
+    Name: string
+    Placeholder?: string | null
+    Type: number
+    MinLength?: number | null
+    MaxLength?: number | null
+    Required: boolean
+    ModerationScoutId: string
+  }
+
+  export type ModerationScoutReportModalDataCreateOrConnectWithoutModerationScoutInput = {
+    where: ModerationScoutReportModalDataWhereUniqueInput
+    create: XOR<ModerationScoutReportModalDataCreateWithoutModerationScoutInput, ModerationScoutReportModalDataUncheckedCreateWithoutModerationScoutInput>
+  }
+
+  export type ModerationScoutReportModalDataCreateManyModerationScoutInputEnvelope = {
+    data: ModerationScoutReportModalDataCreateManyModerationScoutInput | ModerationScoutReportModalDataCreateManyModerationScoutInput[]
+  }
+
+  export type GuildsCreateWithoutModerationScoutInput = {
+    id?: string
+    GuildId: string
+    GuildName: string
+    GuildOwner: string
+    AutoAutoDeletes?: GuildAutoDeletesCreateNestedManyWithoutGuildsInput
+    AutoPublish?: GuildAutoPublishCreateNestedOneWithoutGuildsInput
+    AutoReacts?: GuildAutoReactsCreateNestedManyWithoutGuildsInput
+    AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
+    GuildBans?: GuildBansCreateNestedManyWithoutGuildsInput
+    ChatModerations?: GuildChatModerationCreateNestedOneWithoutGuildsInput
+    DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
+    Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
+    GuildLeaveSetup?: GuildLeaveSetupCreateNestedOneWithoutGuildsInput
+    GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
+    MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
+    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
+    Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
+    SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
+    Tags?: TagsCreateNestedManyWithoutGuildsInput
+    Polls?: PollsCreateNestedManyWithoutGuildsInput
+    TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
+    GuildFeatureToggle?: GuildFeatureTogglesCreateNestedOneWithoutGuildsInput
+    TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
+    GuildWelcomeSetup?: GuildWelcomeSetupCreateNestedOneWithoutGuildsInput
+    YoutubeNotifications?: GuildYoutubeNotificationsCreateNestedManyWithoutGuildsInput
+    GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
+    GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
+    GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+  }
+
+  export type GuildsUncheckedCreateWithoutModerationScoutInput = {
+    id?: string
+    GuildId: string
+    GuildName: string
+    GuildOwner: string
+    AutoAutoDeletes?: GuildAutoDeletesUncheckedCreateNestedManyWithoutGuildsInput
+    AutoPublish?: GuildAutoPublishUncheckedCreateNestedOneWithoutGuildsInput
+    AutoReacts?: GuildAutoReactsUncheckedCreateNestedManyWithoutGuildsInput
+    AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
+    GuildBans?: GuildBansUncheckedCreateNestedManyWithoutGuildsInput
+    ChatModerations?: GuildChatModerationUncheckedCreateNestedOneWithoutGuildsInput
+    DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
+    Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
+    GuildLeaveSetup?: GuildLeaveSetupUncheckedCreateNestedOneWithoutGuildsInput
+    GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
+    MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
+    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
+    Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
+    SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
+    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
+    Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
+    TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
+    GuildFeatureToggle?: GuildFeatureTogglesUncheckedCreateNestedOneWithoutGuildsInput
+    TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
+    GuildWelcomeSetup?: GuildWelcomeSetupUncheckedCreateNestedOneWithoutGuildsInput
+    YoutubeNotifications?: GuildYoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
+    GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
+    GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+  }
+
+  export type GuildsCreateOrConnectWithoutModerationScoutInput = {
+    where: GuildsWhereUniqueInput
+    create: XOR<GuildsCreateWithoutModerationScoutInput, GuildsUncheckedCreateWithoutModerationScoutInput>
+  }
+
+  export type ModerationScoutUserAppealsUpsertWithWhereUniqueWithoutModerationScoutInput = {
+    where: ModerationScoutUserAppealsWhereUniqueInput
+    update: XOR<ModerationScoutUserAppealsUpdateWithoutModerationScoutInput, ModerationScoutUserAppealsUncheckedUpdateWithoutModerationScoutInput>
+    create: XOR<ModerationScoutUserAppealsCreateWithoutModerationScoutInput, ModerationScoutUserAppealsUncheckedCreateWithoutModerationScoutInput>
+  }
+
+  export type ModerationScoutUserAppealsUpdateWithWhereUniqueWithoutModerationScoutInput = {
+    where: ModerationScoutUserAppealsWhereUniqueInput
+    data: XOR<ModerationScoutUserAppealsUpdateWithoutModerationScoutInput, ModerationScoutUserAppealsUncheckedUpdateWithoutModerationScoutInput>
+  }
+
+  export type ModerationScoutUserAppealsUpdateManyWithWhereWithoutModerationScoutInput = {
+    where: ModerationScoutUserAppealsScalarWhereInput
+    data: XOR<ModerationScoutUserAppealsUpdateManyMutationInput, ModerationScoutUserAppealsUncheckedUpdateManyWithoutModerationScoutInput>
+  }
+
+  export type ModerationScoutUserAppealsScalarWhereInput = {
+    AND?: ModerationScoutUserAppealsScalarWhereInput | ModerationScoutUserAppealsScalarWhereInput[]
+    OR?: ModerationScoutUserAppealsScalarWhereInput[]
+    NOT?: ModerationScoutUserAppealsScalarWhereInput | ModerationScoutUserAppealsScalarWhereInput[]
+    id?: StringFilter<"ModerationScoutUserAppeals"> | string
+    UUID?: StringFilter<"ModerationScoutUserAppeals"> | string
+    Token?: StringFilter<"ModerationScoutUserAppeals"> | string
+    UserId?: StringFilter<"ModerationScoutUserAppeals"> | string
+    Case?: StringFilter<"ModerationScoutUserAppeals"> | string
+    FormId?: StringFilter<"ModerationScoutUserAppeals"> | string
+    ModerationScoutFormId?: StringFilter<"ModerationScoutUserAppeals"> | string
+    Data?: JsonFilter<"ModerationScoutUserAppeals">
+    CratedAt?: DateTimeFilter<"ModerationScoutUserAppeals"> | Date | string
+    CreatedBy?: StringFilter<"ModerationScoutUserAppeals"> | string
+    ModerationScoutId?: StringFilter<"ModerationScoutUserAppeals"> | string
+  }
+
+  export type ModerationScoutFormsUpsertWithWhereUniqueWithoutModerationScoutInput = {
+    where: ModerationScoutFormsWhereUniqueInput
+    update: XOR<ModerationScoutFormsUpdateWithoutModerationScoutInput, ModerationScoutFormsUncheckedUpdateWithoutModerationScoutInput>
+    create: XOR<ModerationScoutFormsCreateWithoutModerationScoutInput, ModerationScoutFormsUncheckedCreateWithoutModerationScoutInput>
+  }
+
+  export type ModerationScoutFormsUpdateWithWhereUniqueWithoutModerationScoutInput = {
+    where: ModerationScoutFormsWhereUniqueInput
+    data: XOR<ModerationScoutFormsUpdateWithoutModerationScoutInput, ModerationScoutFormsUncheckedUpdateWithoutModerationScoutInput>
+  }
+
+  export type ModerationScoutFormsUpdateManyWithWhereWithoutModerationScoutInput = {
+    where: ModerationScoutFormsScalarWhereInput
+    data: XOR<ModerationScoutFormsUpdateManyMutationInput, ModerationScoutFormsUncheckedUpdateManyWithoutModerationScoutInput>
+  }
+
+  export type ModerationScoutFormsScalarWhereInput = {
+    AND?: ModerationScoutFormsScalarWhereInput | ModerationScoutFormsScalarWhereInput[]
+    OR?: ModerationScoutFormsScalarWhereInput[]
+    NOT?: ModerationScoutFormsScalarWhereInput | ModerationScoutFormsScalarWhereInput[]
+    id?: StringFilter<"ModerationScoutForms"> | string
+    UUID?: StringFilter<"ModerationScoutForms"> | string
+    Sorting?: StringNullableListFilter<"ModerationScoutForms">
+    Actions?: StringNullableListFilter<"ModerationScoutForms">
+  }
+
+  export type ModerationScoutReportsUpsertWithWhereUniqueWithoutModerationScoutInput = {
+    where: ModerationScoutReportsWhereUniqueInput
+    update: XOR<ModerationScoutReportsUpdateWithoutModerationScoutInput, ModerationScoutReportsUncheckedUpdateWithoutModerationScoutInput>
+    create: XOR<ModerationScoutReportsCreateWithoutModerationScoutInput, ModerationScoutReportsUncheckedCreateWithoutModerationScoutInput>
+  }
+
+  export type ModerationScoutReportsUpdateWithWhereUniqueWithoutModerationScoutInput = {
+    where: ModerationScoutReportsWhereUniqueInput
+    data: XOR<ModerationScoutReportsUpdateWithoutModerationScoutInput, ModerationScoutReportsUncheckedUpdateWithoutModerationScoutInput>
+  }
+
+  export type ModerationScoutReportsUpdateManyWithWhereWithoutModerationScoutInput = {
+    where: ModerationScoutReportsScalarWhereInput
+    data: XOR<ModerationScoutReportsUpdateManyMutationInput, ModerationScoutReportsUncheckedUpdateManyWithoutModerationScoutInput>
+  }
+
+  export type ModerationScoutReportsScalarWhereInput = {
+    AND?: ModerationScoutReportsScalarWhereInput | ModerationScoutReportsScalarWhereInput[]
+    OR?: ModerationScoutReportsScalarWhereInput[]
+    NOT?: ModerationScoutReportsScalarWhereInput | ModerationScoutReportsScalarWhereInput[]
+    id?: StringFilter<"ModerationScoutReports"> | string
+    UUID?: StringFilter<"ModerationScoutReports"> | string
+    UserId?: StringFilter<"ModerationScoutReports"> | string
+    SusUserId?: StringFilter<"ModerationScoutReports"> | string
+    Reason?: StringNullableFilter<"ModerationScoutReports"> | string | null
+    Data?: JsonNullableFilter<"ModerationScoutReports">
+    IsReportedToBanListAdmin?: BoolFilter<"ModerationScoutReports"> | boolean
+    ModeratorUserId?: StringFilter<"ModerationScoutReports"> | string
+  }
+
+  export type ModerationScoutReportModalDataUpsertWithWhereUniqueWithoutModerationScoutInput = {
+    where: ModerationScoutReportModalDataWhereUniqueInput
+    update: XOR<ModerationScoutReportModalDataUpdateWithoutModerationScoutInput, ModerationScoutReportModalDataUncheckedUpdateWithoutModerationScoutInput>
+    create: XOR<ModerationScoutReportModalDataCreateWithoutModerationScoutInput, ModerationScoutReportModalDataUncheckedCreateWithoutModerationScoutInput>
+  }
+
+  export type ModerationScoutReportModalDataUpdateWithWhereUniqueWithoutModerationScoutInput = {
+    where: ModerationScoutReportModalDataWhereUniqueInput
+    data: XOR<ModerationScoutReportModalDataUpdateWithoutModerationScoutInput, ModerationScoutReportModalDataUncheckedUpdateWithoutModerationScoutInput>
+  }
+
+  export type ModerationScoutReportModalDataUpdateManyWithWhereWithoutModerationScoutInput = {
+    where: ModerationScoutReportModalDataScalarWhereInput
+    data: XOR<ModerationScoutReportModalDataUpdateManyMutationInput, ModerationScoutReportModalDataUncheckedUpdateManyWithoutModerationScoutInput>
+  }
+
+  export type ModerationScoutReportModalDataScalarWhereInput = {
+    AND?: ModerationScoutReportModalDataScalarWhereInput | ModerationScoutReportModalDataScalarWhereInput[]
+    OR?: ModerationScoutReportModalDataScalarWhereInput[]
+    NOT?: ModerationScoutReportModalDataScalarWhereInput | ModerationScoutReportModalDataScalarWhereInput[]
+    id?: StringFilter<"ModerationScoutReportModalData"> | string
+    UUID?: StringFilter<"ModerationScoutReportModalData"> | string
+    Name?: StringFilter<"ModerationScoutReportModalData"> | string
+    Placeholder?: StringNullableFilter<"ModerationScoutReportModalData"> | string | null
+    Type?: IntFilter<"ModerationScoutReportModalData"> | number
+    MinLength?: IntNullableFilter<"ModerationScoutReportModalData"> | number | null
+    MaxLength?: IntNullableFilter<"ModerationScoutReportModalData"> | number | null
+    Required?: BoolFilter<"ModerationScoutReportModalData"> | boolean
+    ModerationScoutId?: StringFilter<"ModerationScoutReportModalData"> | string
+  }
+
+  export type GuildsUpsertWithoutModerationScoutInput = {
+    update: XOR<GuildsUpdateWithoutModerationScoutInput, GuildsUncheckedUpdateWithoutModerationScoutInput>
+    create: XOR<GuildsCreateWithoutModerationScoutInput, GuildsUncheckedCreateWithoutModerationScoutInput>
+    where?: GuildsWhereInput
+  }
+
+  export type GuildsUpdateToOneWithWhereWithoutModerationScoutInput = {
+    where?: GuildsWhereInput
+    data: XOR<GuildsUpdateWithoutModerationScoutInput, GuildsUncheckedUpdateWithoutModerationScoutInput>
+  }
+
+  export type GuildsUpdateWithoutModerationScoutInput = {
+    GuildId?: StringFieldUpdateOperationsInput | string
+    GuildName?: StringFieldUpdateOperationsInput | string
+    GuildOwner?: StringFieldUpdateOperationsInput | string
+    AutoAutoDeletes?: GuildAutoDeletesUpdateManyWithoutGuildsNestedInput
+    AutoPublish?: GuildAutoPublishUpdateOneWithoutGuildsNestedInput
+    AutoReacts?: GuildAutoReactsUpdateManyWithoutGuildsNestedInput
+    AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
+    GuildBans?: GuildBansUpdateManyWithoutGuildsNestedInput
+    ChatModerations?: GuildChatModerationUpdateOneWithoutGuildsNestedInput
+    DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
+    Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
+    GuildLeaveSetup?: GuildLeaveSetupUpdateOneWithoutGuildsNestedInput
+    GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
+    MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
+    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
+    Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
+    SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
+    Tags?: TagsUpdateManyWithoutGuildsNestedInput
+    Polls?: PollsUpdateManyWithoutGuildsNestedInput
+    TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
+    GuildFeatureToggle?: GuildFeatureTogglesUpdateOneWithoutGuildsNestedInput
+    TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
+    GuildWelcomeSetup?: GuildWelcomeSetupUpdateOneWithoutGuildsNestedInput
+    YoutubeNotifications?: GuildYoutubeNotificationsUpdateManyWithoutGuildsNestedInput
+    GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
+    GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
+    GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+  }
+
+  export type GuildsUncheckedUpdateWithoutModerationScoutInput = {
+    GuildId?: StringFieldUpdateOperationsInput | string
+    GuildName?: StringFieldUpdateOperationsInput | string
+    GuildOwner?: StringFieldUpdateOperationsInput | string
+    AutoAutoDeletes?: GuildAutoDeletesUncheckedUpdateManyWithoutGuildsNestedInput
+    AutoPublish?: GuildAutoPublishUncheckedUpdateOneWithoutGuildsNestedInput
+    AutoReacts?: GuildAutoReactsUncheckedUpdateManyWithoutGuildsNestedInput
+    AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildBans?: GuildBansUncheckedUpdateManyWithoutGuildsNestedInput
+    ChatModerations?: GuildChatModerationUncheckedUpdateOneWithoutGuildsNestedInput
+    DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
+    Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildLeaveSetup?: GuildLeaveSetupUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
+    MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
+    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
+    Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
+    SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
+    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
+    Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
+    TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildFeatureToggle?: GuildFeatureTogglesUncheckedUpdateOneWithoutGuildsNestedInput
+    TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildWelcomeSetup?: GuildWelcomeSetupUncheckedUpdateOneWithoutGuildsNestedInput
+    YoutubeNotifications?: GuildYoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+  }
+
+  export type ModerationScoutCreateWithoutModerationScoutFormsInput = {
+    id?: string
+    UUID: string
+    ReportCommandId: string
+    SuccssReportMessageId: string
+    PublicBanListUrl?: string | null
+    AdminBanList: InputJsonValue
+    CurrentUserModerations?: ModerationScoutCreateCurrentUserModerationsInput | InputJsonValue[]
+    PublicBanListEnabled?: boolean
+    ReportActions?: ModerationScoutCreateReportActionsInput | string[]
+    UserAppeals?: ModerationScoutUserAppealsCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutReports?: ModerationScoutReportsCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutReportModalData?: ModerationScoutReportModalDataCreateNestedManyWithoutModerationScoutInput
+    Guilds: GuildsCreateNestedOneWithoutModerationScoutInput
+  }
+
+  export type ModerationScoutUncheckedCreateWithoutModerationScoutFormsInput = {
+    id?: string
+    UUID: string
+    ReportCommandId: string
+    SuccssReportMessageId: string
+    PublicBanListUrl?: string | null
+    AdminBanList: InputJsonValue
+    CurrentUserModerations?: ModerationScoutCreateCurrentUserModerationsInput | InputJsonValue[]
+    PublicBanListEnabled?: boolean
+    ReportActions?: ModerationScoutCreateReportActionsInput | string[]
+    GuildId: string
+    UserAppeals?: ModerationScoutUserAppealsUncheckedCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutReports?: ModerationScoutReportsUncheckedCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutReportModalData?: ModerationScoutReportModalDataUncheckedCreateNestedManyWithoutModerationScoutInput
+  }
+
+  export type ModerationScoutCreateOrConnectWithoutModerationScoutFormsInput = {
+    where: ModerationScoutWhereUniqueInput
+    create: XOR<ModerationScoutCreateWithoutModerationScoutFormsInput, ModerationScoutUncheckedCreateWithoutModerationScoutFormsInput>
+  }
+
+  export type ModerationScoutFormsDataCreateWithoutModerationScoutFormsInput = {
+    id?: string
+    Type: string
+    Label: string
+    Description: string
+    Placeholder: string
+    OptionData: InputJsonValue
+  }
+
+  export type ModerationScoutFormsDataUncheckedCreateWithoutModerationScoutFormsInput = {
+    id?: string
+    Type: string
+    Label: string
+    Description: string
+    Placeholder: string
+    OptionData: InputJsonValue
+  }
+
+  export type ModerationScoutFormsDataCreateOrConnectWithoutModerationScoutFormsInput = {
+    where: ModerationScoutFormsDataWhereUniqueInput
+    create: XOR<ModerationScoutFormsDataCreateWithoutModerationScoutFormsInput, ModerationScoutFormsDataUncheckedCreateWithoutModerationScoutFormsInput>
+  }
+
+  export type ModerationScoutFormsDataCreateManyModerationScoutFormsInputEnvelope = {
+    data: ModerationScoutFormsDataCreateManyModerationScoutFormsInput | ModerationScoutFormsDataCreateManyModerationScoutFormsInput[]
+  }
+
+  export type ModerationScoutUserAppealsCreateWithoutModerationScoutFormsInput = {
+    id?: string
+    Token: string
+    UserId: string
+    Case: string
+    FormId: string
+    Data: InputJsonValue
+    CratedAt: Date | string
+    CreatedBy: string
+    ModerationScoutId: string
+    ModerationScout: ModerationScoutCreateNestedOneWithoutUserAppealsInput
+  }
+
+  export type ModerationScoutUserAppealsUncheckedCreateWithoutModerationScoutFormsInput = {
+    id?: string
+    UUID: string
+    Token: string
+    UserId: string
+    Case: string
+    FormId: string
+    Data: InputJsonValue
+    CratedAt: Date | string
+    CreatedBy: string
+    ModerationScoutId: string
+  }
+
+  export type ModerationScoutUserAppealsCreateOrConnectWithoutModerationScoutFormsInput = {
+    where: ModerationScoutUserAppealsWhereUniqueInput
+    create: XOR<ModerationScoutUserAppealsCreateWithoutModerationScoutFormsInput, ModerationScoutUserAppealsUncheckedCreateWithoutModerationScoutFormsInput>
+  }
+
+  export type ModerationScoutUserAppealsCreateManyModerationScoutFormsInputEnvelope = {
+    data: ModerationScoutUserAppealsCreateManyModerationScoutFormsInput | ModerationScoutUserAppealsCreateManyModerationScoutFormsInput[]
+  }
+
+  export type ModerationScoutUpsertWithoutModerationScoutFormsInput = {
+    update: XOR<ModerationScoutUpdateWithoutModerationScoutFormsInput, ModerationScoutUncheckedUpdateWithoutModerationScoutFormsInput>
+    create: XOR<ModerationScoutCreateWithoutModerationScoutFormsInput, ModerationScoutUncheckedCreateWithoutModerationScoutFormsInput>
+    where?: ModerationScoutWhereInput
+  }
+
+  export type ModerationScoutUpdateToOneWithWhereWithoutModerationScoutFormsInput = {
+    where?: ModerationScoutWhereInput
+    data: XOR<ModerationScoutUpdateWithoutModerationScoutFormsInput, ModerationScoutUncheckedUpdateWithoutModerationScoutFormsInput>
+  }
+
+  export type ModerationScoutUpdateWithoutModerationScoutFormsInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    ReportCommandId?: StringFieldUpdateOperationsInput | string
+    SuccssReportMessageId?: StringFieldUpdateOperationsInput | string
+    PublicBanListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    AdminBanList?: InputJsonValue | InputJsonValue
+    CurrentUserModerations?: ModerationScoutUpdateCurrentUserModerationsInput | InputJsonValue[]
+    PublicBanListEnabled?: BoolFieldUpdateOperationsInput | boolean
+    ReportActions?: ModerationScoutUpdateReportActionsInput | string[]
+    UserAppeals?: ModerationScoutUserAppealsUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutReports?: ModerationScoutReportsUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutReportModalData?: ModerationScoutReportModalDataUpdateManyWithoutModerationScoutNestedInput
+    Guilds?: GuildsUpdateOneRequiredWithoutModerationScoutNestedInput
+  }
+
+  export type ModerationScoutUncheckedUpdateWithoutModerationScoutFormsInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    ReportCommandId?: StringFieldUpdateOperationsInput | string
+    SuccssReportMessageId?: StringFieldUpdateOperationsInput | string
+    PublicBanListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    AdminBanList?: InputJsonValue | InputJsonValue
+    CurrentUserModerations?: ModerationScoutUpdateCurrentUserModerationsInput | InputJsonValue[]
+    PublicBanListEnabled?: BoolFieldUpdateOperationsInput | boolean
+    ReportActions?: ModerationScoutUpdateReportActionsInput | string[]
+    GuildId?: StringFieldUpdateOperationsInput | string
+    UserAppeals?: ModerationScoutUserAppealsUncheckedUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutReports?: ModerationScoutReportsUncheckedUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutReportModalData?: ModerationScoutReportModalDataUncheckedUpdateManyWithoutModerationScoutNestedInput
+  }
+
+  export type ModerationScoutFormsDataUpsertWithWhereUniqueWithoutModerationScoutFormsInput = {
+    where: ModerationScoutFormsDataWhereUniqueInput
+    update: XOR<ModerationScoutFormsDataUpdateWithoutModerationScoutFormsInput, ModerationScoutFormsDataUncheckedUpdateWithoutModerationScoutFormsInput>
+    create: XOR<ModerationScoutFormsDataCreateWithoutModerationScoutFormsInput, ModerationScoutFormsDataUncheckedCreateWithoutModerationScoutFormsInput>
+  }
+
+  export type ModerationScoutFormsDataUpdateWithWhereUniqueWithoutModerationScoutFormsInput = {
+    where: ModerationScoutFormsDataWhereUniqueInput
+    data: XOR<ModerationScoutFormsDataUpdateWithoutModerationScoutFormsInput, ModerationScoutFormsDataUncheckedUpdateWithoutModerationScoutFormsInput>
+  }
+
+  export type ModerationScoutFormsDataUpdateManyWithWhereWithoutModerationScoutFormsInput = {
+    where: ModerationScoutFormsDataScalarWhereInput
+    data: XOR<ModerationScoutFormsDataUpdateManyMutationInput, ModerationScoutFormsDataUncheckedUpdateManyWithoutModerationScoutFormsInput>
+  }
+
+  export type ModerationScoutFormsDataScalarWhereInput = {
+    AND?: ModerationScoutFormsDataScalarWhereInput | ModerationScoutFormsDataScalarWhereInput[]
+    OR?: ModerationScoutFormsDataScalarWhereInput[]
+    NOT?: ModerationScoutFormsDataScalarWhereInput | ModerationScoutFormsDataScalarWhereInput[]
+    id?: StringFilter<"ModerationScoutFormsData"> | string
+    UUID?: StringFilter<"ModerationScoutFormsData"> | string
+    Type?: StringFilter<"ModerationScoutFormsData"> | string
+    Label?: StringFilter<"ModerationScoutFormsData"> | string
+    Description?: StringFilter<"ModerationScoutFormsData"> | string
+    Placeholder?: StringFilter<"ModerationScoutFormsData"> | string
+    OptionData?: JsonFilter<"ModerationScoutFormsData">
+  }
+
+  export type ModerationScoutUserAppealsUpsertWithWhereUniqueWithoutModerationScoutFormsInput = {
+    where: ModerationScoutUserAppealsWhereUniqueInput
+    update: XOR<ModerationScoutUserAppealsUpdateWithoutModerationScoutFormsInput, ModerationScoutUserAppealsUncheckedUpdateWithoutModerationScoutFormsInput>
+    create: XOR<ModerationScoutUserAppealsCreateWithoutModerationScoutFormsInput, ModerationScoutUserAppealsUncheckedCreateWithoutModerationScoutFormsInput>
+  }
+
+  export type ModerationScoutUserAppealsUpdateWithWhereUniqueWithoutModerationScoutFormsInput = {
+    where: ModerationScoutUserAppealsWhereUniqueInput
+    data: XOR<ModerationScoutUserAppealsUpdateWithoutModerationScoutFormsInput, ModerationScoutUserAppealsUncheckedUpdateWithoutModerationScoutFormsInput>
+  }
+
+  export type ModerationScoutUserAppealsUpdateManyWithWhereWithoutModerationScoutFormsInput = {
+    where: ModerationScoutUserAppealsScalarWhereInput
+    data: XOR<ModerationScoutUserAppealsUpdateManyMutationInput, ModerationScoutUserAppealsUncheckedUpdateManyWithoutModerationScoutFormsInput>
+  }
+
+  export type ModerationScoutFormsCreateWithoutModerationScoutFormsDataInput = {
+    id?: string
+    Sorting?: ModerationScoutFormsCreateSortingInput | string[]
+    Actions?: ModerationScoutFormsCreateActionsInput | string[]
+    ModerationScout: ModerationScoutCreateNestedOneWithoutModerationScoutFormsInput
+    ModerationScoutUserAppeals?: ModerationScoutUserAppealsCreateNestedManyWithoutModerationScoutFormsInput
+  }
+
+  export type ModerationScoutFormsUncheckedCreateWithoutModerationScoutFormsDataInput = {
+    id?: string
+    UUID: string
+    Sorting?: ModerationScoutFormsCreateSortingInput | string[]
+    Actions?: ModerationScoutFormsCreateActionsInput | string[]
+    ModerationScoutUserAppeals?: ModerationScoutUserAppealsUncheckedCreateNestedManyWithoutModerationScoutFormsInput
+  }
+
+  export type ModerationScoutFormsCreateOrConnectWithoutModerationScoutFormsDataInput = {
+    where: ModerationScoutFormsWhereUniqueInput
+    create: XOR<ModerationScoutFormsCreateWithoutModerationScoutFormsDataInput, ModerationScoutFormsUncheckedCreateWithoutModerationScoutFormsDataInput>
+  }
+
+  export type ModerationScoutFormsUpsertWithoutModerationScoutFormsDataInput = {
+    update: XOR<ModerationScoutFormsUpdateWithoutModerationScoutFormsDataInput, ModerationScoutFormsUncheckedUpdateWithoutModerationScoutFormsDataInput>
+    create: XOR<ModerationScoutFormsCreateWithoutModerationScoutFormsDataInput, ModerationScoutFormsUncheckedCreateWithoutModerationScoutFormsDataInput>
+    where?: ModerationScoutFormsWhereInput
+  }
+
+  export type ModerationScoutFormsUpdateToOneWithWhereWithoutModerationScoutFormsDataInput = {
+    where?: ModerationScoutFormsWhereInput
+    data: XOR<ModerationScoutFormsUpdateWithoutModerationScoutFormsDataInput, ModerationScoutFormsUncheckedUpdateWithoutModerationScoutFormsDataInput>
+  }
+
+  export type ModerationScoutFormsUpdateWithoutModerationScoutFormsDataInput = {
+    Sorting?: ModerationScoutFormsUpdateSortingInput | string[]
+    Actions?: ModerationScoutFormsUpdateActionsInput | string[]
+    ModerationScout?: ModerationScoutUpdateOneRequiredWithoutModerationScoutFormsNestedInput
+    ModerationScoutUserAppeals?: ModerationScoutUserAppealsUpdateManyWithoutModerationScoutFormsNestedInput
+  }
+
+  export type ModerationScoutFormsUncheckedUpdateWithoutModerationScoutFormsDataInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    Sorting?: ModerationScoutFormsUpdateSortingInput | string[]
+    Actions?: ModerationScoutFormsUpdateActionsInput | string[]
+    ModerationScoutUserAppeals?: ModerationScoutUserAppealsUncheckedUpdateManyWithoutModerationScoutFormsNestedInput
+  }
+
+  export type ModerationScoutFormsCreateWithoutModerationScoutUserAppealsInput = {
+    id?: string
+    Sorting?: ModerationScoutFormsCreateSortingInput | string[]
+    Actions?: ModerationScoutFormsCreateActionsInput | string[]
+    ModerationScout: ModerationScoutCreateNestedOneWithoutModerationScoutFormsInput
+    ModerationScoutFormsData?: ModerationScoutFormsDataCreateNestedManyWithoutModerationScoutFormsInput
+  }
+
+  export type ModerationScoutFormsUncheckedCreateWithoutModerationScoutUserAppealsInput = {
+    id?: string
+    UUID: string
+    Sorting?: ModerationScoutFormsCreateSortingInput | string[]
+    Actions?: ModerationScoutFormsCreateActionsInput | string[]
+    ModerationScoutFormsData?: ModerationScoutFormsDataUncheckedCreateNestedManyWithoutModerationScoutFormsInput
+  }
+
+  export type ModerationScoutFormsCreateOrConnectWithoutModerationScoutUserAppealsInput = {
+    where: ModerationScoutFormsWhereUniqueInput
+    create: XOR<ModerationScoutFormsCreateWithoutModerationScoutUserAppealsInput, ModerationScoutFormsUncheckedCreateWithoutModerationScoutUserAppealsInput>
+  }
+
+  export type ModerationScoutCreateWithoutUserAppealsInput = {
+    id?: string
+    UUID: string
+    ReportCommandId: string
+    SuccssReportMessageId: string
+    PublicBanListUrl?: string | null
+    AdminBanList: InputJsonValue
+    CurrentUserModerations?: ModerationScoutCreateCurrentUserModerationsInput | InputJsonValue[]
+    PublicBanListEnabled?: boolean
+    ReportActions?: ModerationScoutCreateReportActionsInput | string[]
+    ModerationScoutForms?: ModerationScoutFormsCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutReports?: ModerationScoutReportsCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutReportModalData?: ModerationScoutReportModalDataCreateNestedManyWithoutModerationScoutInput
+    Guilds: GuildsCreateNestedOneWithoutModerationScoutInput
+  }
+
+  export type ModerationScoutUncheckedCreateWithoutUserAppealsInput = {
+    id?: string
+    UUID: string
+    ReportCommandId: string
+    SuccssReportMessageId: string
+    PublicBanListUrl?: string | null
+    AdminBanList: InputJsonValue
+    CurrentUserModerations?: ModerationScoutCreateCurrentUserModerationsInput | InputJsonValue[]
+    PublicBanListEnabled?: boolean
+    ReportActions?: ModerationScoutCreateReportActionsInput | string[]
+    GuildId: string
+    ModerationScoutForms?: ModerationScoutFormsUncheckedCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutReports?: ModerationScoutReportsUncheckedCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutReportModalData?: ModerationScoutReportModalDataUncheckedCreateNestedManyWithoutModerationScoutInput
+  }
+
+  export type ModerationScoutCreateOrConnectWithoutUserAppealsInput = {
+    where: ModerationScoutWhereUniqueInput
+    create: XOR<ModerationScoutCreateWithoutUserAppealsInput, ModerationScoutUncheckedCreateWithoutUserAppealsInput>
+  }
+
+  export type ModerationScoutFormsUpsertWithoutModerationScoutUserAppealsInput = {
+    update: XOR<ModerationScoutFormsUpdateWithoutModerationScoutUserAppealsInput, ModerationScoutFormsUncheckedUpdateWithoutModerationScoutUserAppealsInput>
+    create: XOR<ModerationScoutFormsCreateWithoutModerationScoutUserAppealsInput, ModerationScoutFormsUncheckedCreateWithoutModerationScoutUserAppealsInput>
+    where?: ModerationScoutFormsWhereInput
+  }
+
+  export type ModerationScoutFormsUpdateToOneWithWhereWithoutModerationScoutUserAppealsInput = {
+    where?: ModerationScoutFormsWhereInput
+    data: XOR<ModerationScoutFormsUpdateWithoutModerationScoutUserAppealsInput, ModerationScoutFormsUncheckedUpdateWithoutModerationScoutUserAppealsInput>
+  }
+
+  export type ModerationScoutFormsUpdateWithoutModerationScoutUserAppealsInput = {
+    Sorting?: ModerationScoutFormsUpdateSortingInput | string[]
+    Actions?: ModerationScoutFormsUpdateActionsInput | string[]
+    ModerationScout?: ModerationScoutUpdateOneRequiredWithoutModerationScoutFormsNestedInput
+    ModerationScoutFormsData?: ModerationScoutFormsDataUpdateManyWithoutModerationScoutFormsNestedInput
+  }
+
+  export type ModerationScoutFormsUncheckedUpdateWithoutModerationScoutUserAppealsInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    Sorting?: ModerationScoutFormsUpdateSortingInput | string[]
+    Actions?: ModerationScoutFormsUpdateActionsInput | string[]
+    ModerationScoutFormsData?: ModerationScoutFormsDataUncheckedUpdateManyWithoutModerationScoutFormsNestedInput
+  }
+
+  export type ModerationScoutUpsertWithoutUserAppealsInput = {
+    update: XOR<ModerationScoutUpdateWithoutUserAppealsInput, ModerationScoutUncheckedUpdateWithoutUserAppealsInput>
+    create: XOR<ModerationScoutCreateWithoutUserAppealsInput, ModerationScoutUncheckedCreateWithoutUserAppealsInput>
+    where?: ModerationScoutWhereInput
+  }
+
+  export type ModerationScoutUpdateToOneWithWhereWithoutUserAppealsInput = {
+    where?: ModerationScoutWhereInput
+    data: XOR<ModerationScoutUpdateWithoutUserAppealsInput, ModerationScoutUncheckedUpdateWithoutUserAppealsInput>
+  }
+
+  export type ModerationScoutUpdateWithoutUserAppealsInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    ReportCommandId?: StringFieldUpdateOperationsInput | string
+    SuccssReportMessageId?: StringFieldUpdateOperationsInput | string
+    PublicBanListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    AdminBanList?: InputJsonValue | InputJsonValue
+    CurrentUserModerations?: ModerationScoutUpdateCurrentUserModerationsInput | InputJsonValue[]
+    PublicBanListEnabled?: BoolFieldUpdateOperationsInput | boolean
+    ReportActions?: ModerationScoutUpdateReportActionsInput | string[]
+    ModerationScoutForms?: ModerationScoutFormsUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutReports?: ModerationScoutReportsUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutReportModalData?: ModerationScoutReportModalDataUpdateManyWithoutModerationScoutNestedInput
+    Guilds?: GuildsUpdateOneRequiredWithoutModerationScoutNestedInput
+  }
+
+  export type ModerationScoutUncheckedUpdateWithoutUserAppealsInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    ReportCommandId?: StringFieldUpdateOperationsInput | string
+    SuccssReportMessageId?: StringFieldUpdateOperationsInput | string
+    PublicBanListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    AdminBanList?: InputJsonValue | InputJsonValue
+    CurrentUserModerations?: ModerationScoutUpdateCurrentUserModerationsInput | InputJsonValue[]
+    PublicBanListEnabled?: BoolFieldUpdateOperationsInput | boolean
+    ReportActions?: ModerationScoutUpdateReportActionsInput | string[]
+    GuildId?: StringFieldUpdateOperationsInput | string
+    ModerationScoutForms?: ModerationScoutFormsUncheckedUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutReports?: ModerationScoutReportsUncheckedUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutReportModalData?: ModerationScoutReportModalDataUncheckedUpdateManyWithoutModerationScoutNestedInput
+  }
+
+  export type ModerationScoutCreateWithoutModerationScoutReportModalDataInput = {
+    id?: string
+    UUID: string
+    ReportCommandId: string
+    SuccssReportMessageId: string
+    PublicBanListUrl?: string | null
+    AdminBanList: InputJsonValue
+    CurrentUserModerations?: ModerationScoutCreateCurrentUserModerationsInput | InputJsonValue[]
+    PublicBanListEnabled?: boolean
+    ReportActions?: ModerationScoutCreateReportActionsInput | string[]
+    UserAppeals?: ModerationScoutUserAppealsCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutForms?: ModerationScoutFormsCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutReports?: ModerationScoutReportsCreateNestedManyWithoutModerationScoutInput
+    Guilds: GuildsCreateNestedOneWithoutModerationScoutInput
+  }
+
+  export type ModerationScoutUncheckedCreateWithoutModerationScoutReportModalDataInput = {
+    id?: string
+    UUID: string
+    ReportCommandId: string
+    SuccssReportMessageId: string
+    PublicBanListUrl?: string | null
+    AdminBanList: InputJsonValue
+    CurrentUserModerations?: ModerationScoutCreateCurrentUserModerationsInput | InputJsonValue[]
+    PublicBanListEnabled?: boolean
+    ReportActions?: ModerationScoutCreateReportActionsInput | string[]
+    GuildId: string
+    UserAppeals?: ModerationScoutUserAppealsUncheckedCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutForms?: ModerationScoutFormsUncheckedCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutReports?: ModerationScoutReportsUncheckedCreateNestedManyWithoutModerationScoutInput
+  }
+
+  export type ModerationScoutCreateOrConnectWithoutModerationScoutReportModalDataInput = {
+    where: ModerationScoutWhereUniqueInput
+    create: XOR<ModerationScoutCreateWithoutModerationScoutReportModalDataInput, ModerationScoutUncheckedCreateWithoutModerationScoutReportModalDataInput>
+  }
+
+  export type ModerationScoutUpsertWithoutModerationScoutReportModalDataInput = {
+    update: XOR<ModerationScoutUpdateWithoutModerationScoutReportModalDataInput, ModerationScoutUncheckedUpdateWithoutModerationScoutReportModalDataInput>
+    create: XOR<ModerationScoutCreateWithoutModerationScoutReportModalDataInput, ModerationScoutUncheckedCreateWithoutModerationScoutReportModalDataInput>
+    where?: ModerationScoutWhereInput
+  }
+
+  export type ModerationScoutUpdateToOneWithWhereWithoutModerationScoutReportModalDataInput = {
+    where?: ModerationScoutWhereInput
+    data: XOR<ModerationScoutUpdateWithoutModerationScoutReportModalDataInput, ModerationScoutUncheckedUpdateWithoutModerationScoutReportModalDataInput>
+  }
+
+  export type ModerationScoutUpdateWithoutModerationScoutReportModalDataInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    ReportCommandId?: StringFieldUpdateOperationsInput | string
+    SuccssReportMessageId?: StringFieldUpdateOperationsInput | string
+    PublicBanListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    AdminBanList?: InputJsonValue | InputJsonValue
+    CurrentUserModerations?: ModerationScoutUpdateCurrentUserModerationsInput | InputJsonValue[]
+    PublicBanListEnabled?: BoolFieldUpdateOperationsInput | boolean
+    ReportActions?: ModerationScoutUpdateReportActionsInput | string[]
+    UserAppeals?: ModerationScoutUserAppealsUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutForms?: ModerationScoutFormsUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutReports?: ModerationScoutReportsUpdateManyWithoutModerationScoutNestedInput
+    Guilds?: GuildsUpdateOneRequiredWithoutModerationScoutNestedInput
+  }
+
+  export type ModerationScoutUncheckedUpdateWithoutModerationScoutReportModalDataInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    ReportCommandId?: StringFieldUpdateOperationsInput | string
+    SuccssReportMessageId?: StringFieldUpdateOperationsInput | string
+    PublicBanListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    AdminBanList?: InputJsonValue | InputJsonValue
+    CurrentUserModerations?: ModerationScoutUpdateCurrentUserModerationsInput | InputJsonValue[]
+    PublicBanListEnabled?: BoolFieldUpdateOperationsInput | boolean
+    ReportActions?: ModerationScoutUpdateReportActionsInput | string[]
+    GuildId?: StringFieldUpdateOperationsInput | string
+    UserAppeals?: ModerationScoutUserAppealsUncheckedUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutForms?: ModerationScoutFormsUncheckedUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutReports?: ModerationScoutReportsUncheckedUpdateManyWithoutModerationScoutNestedInput
+  }
+
+  export type ModerationScoutCreateWithoutModerationScoutReportsInput = {
+    id?: string
+    UUID: string
+    ReportCommandId: string
+    SuccssReportMessageId: string
+    PublicBanListUrl?: string | null
+    AdminBanList: InputJsonValue
+    CurrentUserModerations?: ModerationScoutCreateCurrentUserModerationsInput | InputJsonValue[]
+    PublicBanListEnabled?: boolean
+    ReportActions?: ModerationScoutCreateReportActionsInput | string[]
+    UserAppeals?: ModerationScoutUserAppealsCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutForms?: ModerationScoutFormsCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutReportModalData?: ModerationScoutReportModalDataCreateNestedManyWithoutModerationScoutInput
+    Guilds: GuildsCreateNestedOneWithoutModerationScoutInput
+  }
+
+  export type ModerationScoutUncheckedCreateWithoutModerationScoutReportsInput = {
+    id?: string
+    UUID: string
+    ReportCommandId: string
+    SuccssReportMessageId: string
+    PublicBanListUrl?: string | null
+    AdminBanList: InputJsonValue
+    CurrentUserModerations?: ModerationScoutCreateCurrentUserModerationsInput | InputJsonValue[]
+    PublicBanListEnabled?: boolean
+    ReportActions?: ModerationScoutCreateReportActionsInput | string[]
+    GuildId: string
+    UserAppeals?: ModerationScoutUserAppealsUncheckedCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutForms?: ModerationScoutFormsUncheckedCreateNestedManyWithoutModerationScoutInput
+    ModerationScoutReportModalData?: ModerationScoutReportModalDataUncheckedCreateNestedManyWithoutModerationScoutInput
+  }
+
+  export type ModerationScoutCreateOrConnectWithoutModerationScoutReportsInput = {
+    where: ModerationScoutWhereUniqueInput
+    create: XOR<ModerationScoutCreateWithoutModerationScoutReportsInput, ModerationScoutUncheckedCreateWithoutModerationScoutReportsInput>
+  }
+
+  export type ModerationScoutUpsertWithoutModerationScoutReportsInput = {
+    update: XOR<ModerationScoutUpdateWithoutModerationScoutReportsInput, ModerationScoutUncheckedUpdateWithoutModerationScoutReportsInput>
+    create: XOR<ModerationScoutCreateWithoutModerationScoutReportsInput, ModerationScoutUncheckedCreateWithoutModerationScoutReportsInput>
+    where?: ModerationScoutWhereInput
+  }
+
+  export type ModerationScoutUpdateToOneWithWhereWithoutModerationScoutReportsInput = {
+    where?: ModerationScoutWhereInput
+    data: XOR<ModerationScoutUpdateWithoutModerationScoutReportsInput, ModerationScoutUncheckedUpdateWithoutModerationScoutReportsInput>
+  }
+
+  export type ModerationScoutUpdateWithoutModerationScoutReportsInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    ReportCommandId?: StringFieldUpdateOperationsInput | string
+    SuccssReportMessageId?: StringFieldUpdateOperationsInput | string
+    PublicBanListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    AdminBanList?: InputJsonValue | InputJsonValue
+    CurrentUserModerations?: ModerationScoutUpdateCurrentUserModerationsInput | InputJsonValue[]
+    PublicBanListEnabled?: BoolFieldUpdateOperationsInput | boolean
+    ReportActions?: ModerationScoutUpdateReportActionsInput | string[]
+    UserAppeals?: ModerationScoutUserAppealsUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutForms?: ModerationScoutFormsUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutReportModalData?: ModerationScoutReportModalDataUpdateManyWithoutModerationScoutNestedInput
+    Guilds?: GuildsUpdateOneRequiredWithoutModerationScoutNestedInput
+  }
+
+  export type ModerationScoutUncheckedUpdateWithoutModerationScoutReportsInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    ReportCommandId?: StringFieldUpdateOperationsInput | string
+    SuccssReportMessageId?: StringFieldUpdateOperationsInput | string
+    PublicBanListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    AdminBanList?: InputJsonValue | InputJsonValue
+    CurrentUserModerations?: ModerationScoutUpdateCurrentUserModerationsInput | InputJsonValue[]
+    PublicBanListEnabled?: BoolFieldUpdateOperationsInput | boolean
+    ReportActions?: ModerationScoutUpdateReportActionsInput | string[]
+    GuildId?: StringFieldUpdateOperationsInput | string
+    UserAppeals?: ModerationScoutUserAppealsUncheckedUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutForms?: ModerationScoutFormsUncheckedUpdateManyWithoutModerationScoutNestedInput
+    ModerationScoutReportModalData?: ModerationScoutReportModalDataUncheckedUpdateManyWithoutModerationScoutNestedInput
   }
 
   export type PollOptionsCreateWithoutPollsInput = {
@@ -76451,6 +86208,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutPollsInput = {
@@ -76484,6 +86242,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutPollsInput = {
@@ -76587,6 +86346,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutPollsInput = {
@@ -76619,6 +86379,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type PollsCreateWithoutPollOptionsInput = {
@@ -76963,6 +86724,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutTicketSetupsInput = {
@@ -76996,6 +86758,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutTicketSetupsInput = {
@@ -77188,6 +86951,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutTicketSetupsInput = {
@@ -77220,6 +86984,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type TicketsUpsertWithWhereUniqueWithoutTicketSetupInput = {
@@ -78022,6 +87787,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildFeatureToggleInput = {
@@ -78055,6 +87821,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildFeatureToggleInput = {
@@ -78103,6 +87870,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildFeatureToggleInput = {
@@ -78135,6 +87903,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutTwitchNotificationsInput = {
@@ -78168,6 +87937,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutTwitchNotificationsInput = {
@@ -78201,6 +87971,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutTwitchNotificationsInput = {
@@ -78249,6 +88020,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutTwitchNotificationsInput = {
@@ -78281,6 +88053,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutYoutubeNotificationsInput = {
@@ -78314,6 +88087,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutYoutubeNotificationsInput = {
@@ -78347,6 +88121,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutYoutubeNotificationsInput = {
@@ -78395,6 +88170,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutYoutubeNotificationsInput = {
@@ -78427,6 +88203,7 @@ export namespace Prisma {
     GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type ApisCreateWithoutUsersInput = {
@@ -79374,6 +89151,7 @@ export namespace Prisma {
     id?: string
     UUID: string
     TagId: string
+    TriggerKeywords?: TagsCreateTriggerKeywordsInput | string[]
     MessageId: string
     IsShlashCommand: boolean
     ShlashCommandId: string
@@ -79761,6 +89539,7 @@ export namespace Prisma {
   export type TagsUpdateWithoutGuildsInput = {
     UUID?: StringFieldUpdateOperationsInput | string
     TagId?: StringFieldUpdateOperationsInput | string
+    TriggerKeywords?: TagsUpdateTriggerKeywordsInput | string[]
     MessageId?: StringFieldUpdateOperationsInput | string
     IsShlashCommand?: BoolFieldUpdateOperationsInput | boolean
     ShlashCommandId?: StringFieldUpdateOperationsInput | string
@@ -79774,6 +89553,7 @@ export namespace Prisma {
   export type TagsUncheckedUpdateWithoutGuildsInput = {
     UUID?: StringFieldUpdateOperationsInput | string
     TagId?: StringFieldUpdateOperationsInput | string
+    TriggerKeywords?: TagsUpdateTriggerKeywordsInput | string[]
     MessageId?: StringFieldUpdateOperationsInput | string
     IsShlashCommand?: BoolFieldUpdateOperationsInput | boolean
     ShlashCommandId?: StringFieldUpdateOperationsInput | string
@@ -79787,6 +89567,7 @@ export namespace Prisma {
   export type TagsUncheckedUpdateManyWithoutGuildsInput = {
     UUID?: StringFieldUpdateOperationsInput | string
     TagId?: StringFieldUpdateOperationsInput | string
+    TriggerKeywords?: TagsUpdateTriggerKeywordsInput | string[]
     MessageId?: StringFieldUpdateOperationsInput | string
     IsShlashCommand?: BoolFieldUpdateOperationsInput | boolean
     ShlashCommandId?: StringFieldUpdateOperationsInput | string
@@ -80271,6 +90052,240 @@ export namespace Prisma {
   export type VerificationGatesPermissionUncheckedUpdateManyWithoutVerificationGatesInput = {
     Permission?: VerificationGatesPermissionUpdatePermissionInput | string[]
     ChannelId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ModerationScoutUserAppealsCreateManyModerationScoutInput = {
+    id?: string
+    Token: string
+    UserId: string
+    Case: string
+    FormId: string
+    ModerationScoutFormId: string
+    Data: InputJsonValue
+    CratedAt: Date | string
+    CreatedBy: string
+    ModerationScoutId: string
+  }
+
+  export type ModerationScoutFormsCreateManyModerationScoutInput = {
+    id?: string
+    Sorting?: ModerationScoutFormsCreateSortingInput | string[]
+    Actions?: ModerationScoutFormsCreateActionsInput | string[]
+  }
+
+  export type ModerationScoutReportsCreateManyModerationScoutInput = {
+    id?: string
+    UserId: string
+    SusUserId: string
+    Reason?: string | null
+    Data?: InputJsonValue | null
+    IsReportedToBanListAdmin: boolean
+    ModeratorUserId: string
+  }
+
+  export type ModerationScoutReportModalDataCreateManyModerationScoutInput = {
+    id?: string
+    Name: string
+    Placeholder?: string | null
+    Type: number
+    MinLength?: number | null
+    MaxLength?: number | null
+    Required: boolean
+    ModerationScoutId: string
+  }
+
+  export type ModerationScoutUserAppealsUpdateWithoutModerationScoutInput = {
+    Token?: StringFieldUpdateOperationsInput | string
+    UserId?: StringFieldUpdateOperationsInput | string
+    Case?: StringFieldUpdateOperationsInput | string
+    FormId?: StringFieldUpdateOperationsInput | string
+    Data?: InputJsonValue | InputJsonValue
+    CratedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    CreatedBy?: StringFieldUpdateOperationsInput | string
+    ModerationScoutId?: StringFieldUpdateOperationsInput | string
+    ModerationScoutForms?: ModerationScoutFormsUpdateOneRequiredWithoutModerationScoutUserAppealsNestedInput
+  }
+
+  export type ModerationScoutUserAppealsUncheckedUpdateWithoutModerationScoutInput = {
+    Token?: StringFieldUpdateOperationsInput | string
+    UserId?: StringFieldUpdateOperationsInput | string
+    Case?: StringFieldUpdateOperationsInput | string
+    FormId?: StringFieldUpdateOperationsInput | string
+    ModerationScoutFormId?: StringFieldUpdateOperationsInput | string
+    Data?: InputJsonValue | InputJsonValue
+    CratedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    CreatedBy?: StringFieldUpdateOperationsInput | string
+    ModerationScoutId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ModerationScoutUserAppealsUncheckedUpdateManyWithoutModerationScoutInput = {
+    Token?: StringFieldUpdateOperationsInput | string
+    UserId?: StringFieldUpdateOperationsInput | string
+    Case?: StringFieldUpdateOperationsInput | string
+    FormId?: StringFieldUpdateOperationsInput | string
+    ModerationScoutFormId?: StringFieldUpdateOperationsInput | string
+    Data?: InputJsonValue | InputJsonValue
+    CratedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    CreatedBy?: StringFieldUpdateOperationsInput | string
+    ModerationScoutId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ModerationScoutFormsUpdateWithoutModerationScoutInput = {
+    Sorting?: ModerationScoutFormsUpdateSortingInput | string[]
+    Actions?: ModerationScoutFormsUpdateActionsInput | string[]
+    ModerationScoutFormsData?: ModerationScoutFormsDataUpdateManyWithoutModerationScoutFormsNestedInput
+    ModerationScoutUserAppeals?: ModerationScoutUserAppealsUpdateManyWithoutModerationScoutFormsNestedInput
+  }
+
+  export type ModerationScoutFormsUncheckedUpdateWithoutModerationScoutInput = {
+    Sorting?: ModerationScoutFormsUpdateSortingInput | string[]
+    Actions?: ModerationScoutFormsUpdateActionsInput | string[]
+    ModerationScoutFormsData?: ModerationScoutFormsDataUncheckedUpdateManyWithoutModerationScoutFormsNestedInput
+    ModerationScoutUserAppeals?: ModerationScoutUserAppealsUncheckedUpdateManyWithoutModerationScoutFormsNestedInput
+  }
+
+  export type ModerationScoutFormsUncheckedUpdateManyWithoutModerationScoutInput = {
+    Sorting?: ModerationScoutFormsUpdateSortingInput | string[]
+    Actions?: ModerationScoutFormsUpdateActionsInput | string[]
+  }
+
+  export type ModerationScoutReportsUpdateWithoutModerationScoutInput = {
+    UserId?: StringFieldUpdateOperationsInput | string
+    SusUserId?: StringFieldUpdateOperationsInput | string
+    Reason?: NullableStringFieldUpdateOperationsInput | string | null
+    Data?: InputJsonValue | InputJsonValue | null
+    IsReportedToBanListAdmin?: BoolFieldUpdateOperationsInput | boolean
+    ModeratorUserId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ModerationScoutReportsUncheckedUpdateWithoutModerationScoutInput = {
+    UserId?: StringFieldUpdateOperationsInput | string
+    SusUserId?: StringFieldUpdateOperationsInput | string
+    Reason?: NullableStringFieldUpdateOperationsInput | string | null
+    Data?: InputJsonValue | InputJsonValue | null
+    IsReportedToBanListAdmin?: BoolFieldUpdateOperationsInput | boolean
+    ModeratorUserId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ModerationScoutReportsUncheckedUpdateManyWithoutModerationScoutInput = {
+    UserId?: StringFieldUpdateOperationsInput | string
+    SusUserId?: StringFieldUpdateOperationsInput | string
+    Reason?: NullableStringFieldUpdateOperationsInput | string | null
+    Data?: InputJsonValue | InputJsonValue | null
+    IsReportedToBanListAdmin?: BoolFieldUpdateOperationsInput | boolean
+    ModeratorUserId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ModerationScoutReportModalDataUpdateWithoutModerationScoutInput = {
+    Name?: StringFieldUpdateOperationsInput | string
+    Placeholder?: NullableStringFieldUpdateOperationsInput | string | null
+    Type?: IntFieldUpdateOperationsInput | number
+    MinLength?: NullableIntFieldUpdateOperationsInput | number | null
+    MaxLength?: NullableIntFieldUpdateOperationsInput | number | null
+    Required?: BoolFieldUpdateOperationsInput | boolean
+    ModerationScoutId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ModerationScoutReportModalDataUncheckedUpdateWithoutModerationScoutInput = {
+    Name?: StringFieldUpdateOperationsInput | string
+    Placeholder?: NullableStringFieldUpdateOperationsInput | string | null
+    Type?: IntFieldUpdateOperationsInput | number
+    MinLength?: NullableIntFieldUpdateOperationsInput | number | null
+    MaxLength?: NullableIntFieldUpdateOperationsInput | number | null
+    Required?: BoolFieldUpdateOperationsInput | boolean
+    ModerationScoutId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ModerationScoutReportModalDataUncheckedUpdateManyWithoutModerationScoutInput = {
+    Name?: StringFieldUpdateOperationsInput | string
+    Placeholder?: NullableStringFieldUpdateOperationsInput | string | null
+    Type?: IntFieldUpdateOperationsInput | number
+    MinLength?: NullableIntFieldUpdateOperationsInput | number | null
+    MaxLength?: NullableIntFieldUpdateOperationsInput | number | null
+    Required?: BoolFieldUpdateOperationsInput | boolean
+    ModerationScoutId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ModerationScoutFormsDataCreateManyModerationScoutFormsInput = {
+    id?: string
+    Type: string
+    Label: string
+    Description: string
+    Placeholder: string
+    OptionData: InputJsonValue
+  }
+
+  export type ModerationScoutUserAppealsCreateManyModerationScoutFormsInput = {
+    id?: string
+    UUID: string
+    Token: string
+    UserId: string
+    Case: string
+    FormId: string
+    Data: InputJsonValue
+    CratedAt: Date | string
+    CreatedBy: string
+    ModerationScoutId: string
+  }
+
+  export type ModerationScoutFormsDataUpdateWithoutModerationScoutFormsInput = {
+    Type?: StringFieldUpdateOperationsInput | string
+    Label?: StringFieldUpdateOperationsInput | string
+    Description?: StringFieldUpdateOperationsInput | string
+    Placeholder?: StringFieldUpdateOperationsInput | string
+    OptionData?: InputJsonValue | InputJsonValue
+  }
+
+  export type ModerationScoutFormsDataUncheckedUpdateWithoutModerationScoutFormsInput = {
+    Type?: StringFieldUpdateOperationsInput | string
+    Label?: StringFieldUpdateOperationsInput | string
+    Description?: StringFieldUpdateOperationsInput | string
+    Placeholder?: StringFieldUpdateOperationsInput | string
+    OptionData?: InputJsonValue | InputJsonValue
+  }
+
+  export type ModerationScoutFormsDataUncheckedUpdateManyWithoutModerationScoutFormsInput = {
+    Type?: StringFieldUpdateOperationsInput | string
+    Label?: StringFieldUpdateOperationsInput | string
+    Description?: StringFieldUpdateOperationsInput | string
+    Placeholder?: StringFieldUpdateOperationsInput | string
+    OptionData?: InputJsonValue | InputJsonValue
+  }
+
+  export type ModerationScoutUserAppealsUpdateWithoutModerationScoutFormsInput = {
+    Token?: StringFieldUpdateOperationsInput | string
+    UserId?: StringFieldUpdateOperationsInput | string
+    Case?: StringFieldUpdateOperationsInput | string
+    FormId?: StringFieldUpdateOperationsInput | string
+    Data?: InputJsonValue | InputJsonValue
+    CratedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    CreatedBy?: StringFieldUpdateOperationsInput | string
+    ModerationScoutId?: StringFieldUpdateOperationsInput | string
+    ModerationScout?: ModerationScoutUpdateOneRequiredWithoutUserAppealsNestedInput
+  }
+
+  export type ModerationScoutUserAppealsUncheckedUpdateWithoutModerationScoutFormsInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    Token?: StringFieldUpdateOperationsInput | string
+    UserId?: StringFieldUpdateOperationsInput | string
+    Case?: StringFieldUpdateOperationsInput | string
+    FormId?: StringFieldUpdateOperationsInput | string
+    Data?: InputJsonValue | InputJsonValue
+    CratedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    CreatedBy?: StringFieldUpdateOperationsInput | string
+    ModerationScoutId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ModerationScoutUserAppealsUncheckedUpdateManyWithoutModerationScoutFormsInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    Token?: StringFieldUpdateOperationsInput | string
+    UserId?: StringFieldUpdateOperationsInput | string
+    Case?: StringFieldUpdateOperationsInput | string
+    FormId?: StringFieldUpdateOperationsInput | string
+    Data?: InputJsonValue | InputJsonValue
+    CratedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    CreatedBy?: StringFieldUpdateOperationsInput | string
+    ModerationScoutId?: StringFieldUpdateOperationsInput | string
   }
 
   export type PollOptionsCreateManyPollsInput = {

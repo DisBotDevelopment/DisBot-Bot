@@ -8,6 +8,7 @@ import cors from "cors";
 import {botData} from "../../main/version.js";
 import {Config} from "../../main/config.js";
 import {discoveryApi} from "./routes/get/discovery.js";
+import {banList} from "./routes/get/banlist.js";
 
 export const APIServer = express();
 
@@ -21,6 +22,7 @@ export async function api(client: ExtendedClient) {
 
     // Open Stats Route
     APIServer.get("/v2/bot/stats", disbotstatsRoute);
+    APIServer.get("/v2/banList", banList);
     APIServer.get("/v2/bot/discovery", discoveryApi);
 
     APIServer.get("/version", async (req, res): Promise<void> => {
@@ -41,7 +43,7 @@ export async function api(client: ExtendedClient) {
         });
     });
 
-    // Server starten
+    // Run API Server
     let apiPort;
     if (Number(Config.Other.API.ApiPort) == 0 || Config.Other.API.ApiPort == undefined) {
         apiPort = Number(process.env.SERVER_PORT);

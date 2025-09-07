@@ -5,7 +5,7 @@ import { convertToEmojiPng } from "../../../../helper/emojis.js";
 import { PermissionType } from "../../../../enums/permissionType.js";
 
 export default {
-    subCommand: "server.slowmode",
+    subCommand: "utility.slowmode",
     options: {
         once: false,
         cooldown: 3000,

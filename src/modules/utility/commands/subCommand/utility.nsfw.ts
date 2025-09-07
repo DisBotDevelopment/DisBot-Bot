@@ -4,7 +4,7 @@ import { convertToEmojiPng } from "../../../../helper/emojis.js";
 import { PermissionType } from "../../../../enums/permissionType.js";
 
 export default {
-    subCommand: "server.nsfw",
+    subCommand: "utility.nsfw",
     options: {
         once: false,
         cooldown: 3000,

@@ -27,6 +27,11 @@ export async function configStartup() {
                 ShardList: "",
             },
             Modules: {
+                Moderation: {
+                    Scout: {
+                        BanListAdminGuildId: "1084507523492626522"
+                    }
+                },
                 Vanity: {
                     MainPageRedirect: "https://disbot.app/discovery",
                     VanityPort: 0

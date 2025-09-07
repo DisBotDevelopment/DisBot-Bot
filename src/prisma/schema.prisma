@@ -42,6 +42,7 @@ model Guilds {
   GuildCommandManger          GuildCommandManger?
   GuildComponentManager       GuildComponentManager?
   GuildChannelLinks           GuildChannelLinks[]
+  ModerationScout             ModerationScout?
 }
 
 model GuildCommandManger {
@@ -141,7 +142,7 @@ model GuildBans {
   Guilds      Guilds    @relation(fields: [GuildId], references: [GuildId])
 }
 
-// UPDATE SOON
+// UPDATE SOON - move to /moderation automod - Options Disocrd(Recommended!!!) DisBot
 model GuildChatModeration {
   id                  String   @id @default(auto()) @map("_id") @db.ObjectId
   LogChannelId        String
@@ -393,6 +394,7 @@ model Tags {
   id                     String   @id @default(auto()) @map("_id") @db.ObjectId
   UUID                   String   @unique
   TagId                  String   @unique
+  TriggerKeywords        String[] // SOON && NEW
   MessageId              String
   IsShlashCommand        Boolean
   ShlashCommandId        String   @unique
@@ -403,6 +405,93 @@ model Tags {
   FilterTextFromMessages String[]
   GuildId                String
   Guilds                 Guilds   @relation(fields: [GuildId], references: [GuildId])
+}
+
+model ModerationScout {
+  id                             String                           @id @default(auto()) @map("_id") @db.ObjectId
+  UUID                           String                           @unique
+  ReportCommandId                String
+  SuccssReportMessageId          String
+  PublicBanListUrl               String?                          @default("https://api.disbot.app/v2/banList")
+  AdminBanList                   Json // Only for the Guild set in the Config
+  CurrentUserModerations         Json[] // Storage for Bans, Wans, Mutes, Kicks (Alos you can create a custom one!)
+  PublicBanListEnabled           Boolean                          @default(false)
+  // Appeals
+  UserAppeals                    ModerationScoutUserAppeals[]
+  ModerationScoutForms           ModerationScoutForms[]
+  // Reports
+  ReportActions                  String[] // Format: action:<optionalData> | Open Ticket, Send Message, Send DM
+  ModerationScoutReports         ModerationScoutReports[]
+  ModerationScoutReportModalData ModerationScoutReportModalData[]
+  GuildId                        String                           @unique
+  Guilds                         Guilds                           @relation(fields: [GuildId], references: [GuildId])
+}
+
+// Appeals
+model ModerationScoutForms {
+  id                         String                       @id @default(auto()) @map("_id") @db.ObjectId
+  UUID                       String                       @unique
+  Sorting                    String[]
+  Actions                    String[] // Format: action:<optionalData> | Open Ticket, Send Message, Send DM, UNBAN (to make tickets required*), Resolve DM
+  ModerationScout            ModerationScout              @relation(fields: [UUID], references: [UUID])
+  ModerationScoutFormsData   ModerationScoutFormsData[]
+  ModerationScoutUserAppeals ModerationScoutUserAppeals[]
+}
+
+// Appeals
+model ModerationScoutFormsData {
+  id                   String               @id @default(auto()) @map("_id") @db.ObjectId
+  UUID                 String               @unique
+  Type                 String // DropDown, CheckBox, Short Text, Long Text, Spacing, ReadOnly
+  Label                String
+  Description          String
+  Placeholder          String
+  OptionData           Json
+  ModerationScoutForms ModerationScoutForms @relation(fields: [UUID], references: [UUID])
+}
+
+// Appeals
+model ModerationScoutUserAppeals {
+  id                    String               @id @default(auto()) @map("_id") @db.ObjectId
+  UUID                  String               @unique
+  Token                 String
+  UserId                String
+  Case                  String // REPORT, MODERATION, BAN, MUTE, WARN, CUSTOM
+  FormId                String
+  ModerationScoutFormId String
+  Data                  Json
+  CratedAt              DateTime
+  CreatedBy             String
+  ModerationScoutId     String
+  ModerationScoutForms  ModerationScoutForms @relation(fields: [ModerationScoutFormId], references: [UUID])
+  ModerationScout       ModerationScout      @relation(fields: [UUID], references: [UUID])
+}
+
+// Reports
+model ModerationScoutReportModalData {
+  id                String          @id @default(auto()) @map("_id") @db.ObjectId
+  UUID              String          @unique
+  Name              String
+  Placeholder       String?
+  Type              Int
+  MinLength         Int?
+  MaxLength         Int?
+  Required          Boolean
+  ModerationScoutId String
+  ModerationScout   ModerationScout @relation(fields: [UUID], references: [UUID])
+}
+
+// Reports
+model ModerationScoutReports {
+  id                       String          @id @default(auto()) @map("_id") @db.ObjectId
+  UUID                     String          @unique
+  UserId                   String
+  SusUserId                String
+  Reason                   String?
+  Data                     Json?
+  IsReportedToBanListAdmin Boolean
+  ModeratorUserId          String
+  ModerationScout          ModerationScout @relation(fields: [UUID], references: [UUID])
 }
 
 model Polls {

@@ -4,7 +4,7 @@ import {convertToEmojiPng} from "../../../../helper/emojis.js";
 import {database} from "../../../../main/database.js";
 
 export default {
-    subCommandGroup: "discord.pause.invites",
+    subCommandGroup: "utility.pause.invites",
 
     /**
      * @param {ChatInputCommandInteraction} interaction

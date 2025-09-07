@@ -5,7 +5,7 @@ import {PermissionType} from "../../../../enums/permissionType.js";
 import {database} from "../../../../main/database.js";
 
 export default {
-    subCommand: "server.no-embed-links",
+    subCommand: "utility.no-embed-links",
     options: {
         once: false,
         cooldown: 3000,

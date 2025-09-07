@@ -20,6 +20,14 @@ export default {
         .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
         .addSubcommand((subCommand) =>
             subCommand
+                .setName("export")
+                .setDescription("Exports guild or user data of the command executor.")
+                .setDescriptionLocalizations({
+                    de: "Exportiert Gilden- oder Benutzerdaten des Befehlsausführenden."
+                })
+        )
+        .addSubcommand((subCommand) =>
+            subCommand
                 .setName("nsfw")
                 .setDescription("Change NSFW from you channel")
                 .setDescriptionLocalizations({

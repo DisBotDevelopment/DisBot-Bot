@@ -404,6 +404,7 @@ exports.Prisma.TagsScalarFieldEnum = {
   id: 'id',
   UUID: 'UUID',
   TagId: 'TagId',
+  TriggerKeywords: 'TriggerKeywords',
   MessageId: 'MessageId',
   IsShlashCommand: 'IsShlashCommand',
   ShlashCommandId: 'ShlashCommandId',
@@ -413,6 +414,73 @@ exports.Prisma.TagsScalarFieldEnum = {
   CommandDescription: 'CommandDescription',
   FilterTextFromMessages: 'FilterTextFromMessages',
   GuildId: 'GuildId'
+};
+
+exports.Prisma.ModerationScoutScalarFieldEnum = {
+  id: 'id',
+  UUID: 'UUID',
+  ReportCommandId: 'ReportCommandId',
+  SuccssReportMessageId: 'SuccssReportMessageId',
+  PublicBanListUrl: 'PublicBanListUrl',
+  AdminBanList: 'AdminBanList',
+  CurrentUserModerations: 'CurrentUserModerations',
+  PublicBanListEnabled: 'PublicBanListEnabled',
+  ReportActions: 'ReportActions',
+  GuildId: 'GuildId'
+};
+
+exports.Prisma.ModerationScoutFormsScalarFieldEnum = {
+  id: 'id',
+  UUID: 'UUID',
+  Sorting: 'Sorting',
+  Actions: 'Actions'
+};
+
+exports.Prisma.ModerationScoutFormsDataScalarFieldEnum = {
+  id: 'id',
+  UUID: 'UUID',
+  Type: 'Type',
+  Label: 'Label',
+  Description: 'Description',
+  Placeholder: 'Placeholder',
+  OptionData: 'OptionData'
+};
+
+exports.Prisma.ModerationScoutUserAppealsScalarFieldEnum = {
+  id: 'id',
+  UUID: 'UUID',
+  Token: 'Token',
+  UserId: 'UserId',
+  Case: 'Case',
+  FormId: 'FormId',
+  ModerationScoutFormId: 'ModerationScoutFormId',
+  Data: 'Data',
+  CratedAt: 'CratedAt',
+  CreatedBy: 'CreatedBy',
+  ModerationScoutId: 'ModerationScoutId'
+};
+
+exports.Prisma.ModerationScoutReportModalDataScalarFieldEnum = {
+  id: 'id',
+  UUID: 'UUID',
+  Name: 'Name',
+  Placeholder: 'Placeholder',
+  Type: 'Type',
+  MinLength: 'MinLength',
+  MaxLength: 'MaxLength',
+  Required: 'Required',
+  ModerationScoutId: 'ModerationScoutId'
+};
+
+exports.Prisma.ModerationScoutReportsScalarFieldEnum = {
+  id: 'id',
+  UUID: 'UUID',
+  UserId: 'UserId',
+  SusUserId: 'SusUserId',
+  Reason: 'Reason',
+  Data: 'Data',
+  IsReportedToBanListAdmin: 'IsReportedToBanListAdmin',
+  ModeratorUserId: 'ModeratorUserId'
 };
 
 exports.Prisma.PollsScalarFieldEnum = {
@@ -721,6 +789,12 @@ exports.Prisma.ModelName = {
   VerificationGatesPermission: 'VerificationGatesPermission',
   GuildSpotifyNotifications: 'GuildSpotifyNotifications',
   Tags: 'Tags',
+  ModerationScout: 'ModerationScout',
+  ModerationScoutForms: 'ModerationScoutForms',
+  ModerationScoutFormsData: 'ModerationScoutFormsData',
+  ModerationScoutUserAppeals: 'ModerationScoutUserAppeals',
+  ModerationScoutReportModalData: 'ModerationScoutReportModalData',
+  ModerationScoutReports: 'ModerationScoutReports',
   Polls: 'Polls',
   PollOptions: 'PollOptions',
   PollAnswers: 'PollAnswers',

@@ -4,7 +4,7 @@ import { convertToEmojiPng } from "../../../../helper/emojis.js";
 import { PermissionType } from "../../../../enums/permissionType.js";
 
 export default {
-    subCommand: "server.look-channel",
+    subCommand: "utility.look-channel",
     options: {
         once: false,
         cooldown: 3000,
