@@ -4,10 +4,13 @@ import colors from "colors";
 import {ShardingManager} from "discord.js";
 import {Logger} from "./logger.js";
 import {Config, configStartup} from "./config.js"
+import * as process from "node:process";
 
 colors.enable();
 
 await configStartup();
+
+Logger.info(`Running on ${process.env.ENVIRONMENT} Environment.`.cyan)
 
 Sentry.init({
     dsn: process.env.SENTRY_DSN,

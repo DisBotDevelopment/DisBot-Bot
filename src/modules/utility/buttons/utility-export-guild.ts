@@ -13,7 +13,7 @@ import {ticketActionsHelper} from "../../../helper/ticketHelper.js";
 import {convertToEmojiPng} from "../../../helper/emojis.js";
 
 export default {
-    id: "utility-export-user",
+    id: "utility-export-guild",
 
     /**
      *
@@ -24,11 +24,81 @@ export default {
 
 
         if (interaction.user.id != interaction.guild.ownerId) {
-            return;
+            return interaction.reply({
+                flags: MessageFlags.Ephemeral,
+                content: `## ${await convertToEmojiPng("errorred", client.user.id)} This interaction is only for guild owners.`
+            })
         }
 
         const data = await database.guilds.findFirst({
-            include: {},
+            include: {
+                AutoAutoDeletes: true,
+                AutoPublish: true,
+                AutoReacts: true,
+                AutoRoles: true,
+                ChatModerations: true,
+                Giveaways: true,
+                GuildBans: true,
+                DiscordAddons: true,
+                GuildChannelLinks: true,
+                GuildCommandManger: {
+                    include: {
+                        BuildInCommands: true
+                    }
+                },
+                GuildComponentManager: true,
+                GuildFeatureToggle: true,
+                GuildInteractionPermissions: true,
+                GuildLeaveSetup: true,
+                GuildLogs: true,
+                GuildLogging: true,
+                GuildWelcomeSetup: true,
+                Polls: true,
+                MessageTemplates: true,
+                Tags: true,
+                ModerationScout: {
+                    include: {
+                        UserAppeals: true,
+                        ModerationScoutReports: true,
+                        ModerationScoutReportModalData: true,
+                        ModerationScoutForms: {
+                            include: {
+                                ModerationScoutUserAppeals: true,
+                                ModerationScoutFormsData: {
+                                    include: {
+                                        ModerationScoutForms: {
+                                            include: {
+                                                ModerationScoutUserAppeals: true
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                ReactionRole: true,
+                Security: {
+                    include: {
+                        VerificationGates: true
+                    }
+                },
+                SpotifyNotifications: true,
+                TempVoices: {
+                    include: {
+                        TempVoiceChannels: true
+                    }
+                },
+                TicketSetups: {
+                    include: {
+                        TicketPermissions: true,
+                        ModalOptions: true,
+                        Tickets: true
+                    }
+                },
+                TwitchNotifications: true,
+                YoutubeNotifications: true
+            },
             where: {
                 GuildId: interaction.guild.id
             }

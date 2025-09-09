@@ -1,12 +1,17 @@
 import {
     AnySelectMenuInteraction,
-    ButtonInteraction,
+    ButtonInteraction, ChatInputCommandInteraction, Message, MessageFlags,
     ModalSubmitInteraction
 } from "discord.js";
 import {createCanvas} from "canvas";
 import FormData from "form-data";
 import {Config} from "../main/config.js";
 import axios from "axios";
+import * as process from "node:process";
+import {ExtendedClient} from "../types/client.js";
+import {convertToEmojiPng} from "./emojis.js";
+import fs from "fs";
+import path from "path";
 
 export function getInteractionData(interaction: ButtonInteraction | ModalSubmitInteraction | AnySelectMenuInteraction, split: number) {
     return interaction.customId.split(":")[split];
@@ -91,3 +96,23 @@ export async function createPollImage(poll: { title: any; description: any; opti
     const data = await req.data;
     return data.files[0].url ?? null;
 }
+
+export async function isInDevelopment(
+    client: ExtendedClient,
+    interaction: ButtonInteraction | ChatInputCommandInteraction | ModalSubmitInteraction | AnySelectMenuInteraction,
+    message?: string,
+    emoji?: string,
+) {
+    // Default
+    emoji = await convertToEmojiPng("barrier", client.user.id)
+    message = "Failed to handle this feature, it is in Development!"
+
+    if (process.env.ENVIRONMENT == "DEV") {
+
+    } else {
+        return await interaction.reply({
+            flags: MessageFlags.Ephemeral,
+            content: `## ${emoji} ${message}`,
+        })
+    }
+} 

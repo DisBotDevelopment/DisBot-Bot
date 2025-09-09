@@ -35,7 +35,7 @@ export default {
             const oldFooter = embeds[embedIndex].data.footer
 
             embeds[embedIndex].setFooter({
-                text: oldFooter.text ?? '',
+                text: oldFooter?.text ?? '',
                 iconURL: imgURL
             });
 

@@ -1,5 +1,6 @@
 import {ActionRowBuilder, ButtonInteraction, ModalBuilder, TextInputBuilder, TextInputStyle,} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
+import {isInDevelopment} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "moderation-automod-disbot",
@@ -9,8 +10,9 @@ export default {
      * @param {ExtendedClient} client
      */
     async execute(interaction: ButtonInteraction, client: ExtendedClient) {
+        await isInDevelopment(client, interaction)
 
         // Select your GuildDisBotAutoModeration!
-        
+
     },
 };

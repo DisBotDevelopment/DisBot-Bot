@@ -33,8 +33,8 @@ export default {
         const oldAuthor = embeds[embedIndex].data.author
 
         embeds[embedIndex].setAuthor({
-            name: oldAuthor.name ?? "",
-            iconURL: oldAuthor.icon_url ?? undefined,
+            name: oldAuthor?.name ?? "",
+            iconURL: oldAuthor?.icon_url ?? undefined,
             url: link
         });
 

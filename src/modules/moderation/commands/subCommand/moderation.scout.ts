@@ -9,6 +9,7 @@ import {ExtendedClient} from "../../../../types/client.js";
 import {convertToEmojiPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 import {database} from "../../../../main/database.js";
+import {isInDevelopment} from "../../../../helper/utilityHelper.js";
 
 export default {
     subCommand: "moderation.scout",
@@ -28,13 +29,6 @@ export default {
         interaction: ChatInputCommandInteraction,
         client: ExtendedClient
     ) {
-
-        await interaction.reply({
-            flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
-            components: [
-                new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent(`## ${await convertToEmojiPng("info", client.user.id)} This Feature is currently in development!\n -# Normally I don't do this but for this system it would be too annoying to do it differently, I ask for your understanding`))
-
-            ]
-        })
+        await isInDevelopment(client, interaction)
     },
 };

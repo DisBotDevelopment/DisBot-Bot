@@ -1,5 +1,5 @@
-import { Client, EmbedBuilder, MessageFlags, ModalSubmitInteraction } from "discord.js";
-import { ExtendedClient } from "../../../types/client.js";
+import {Client, EmbedBuilder, MessageFlags, ModalSubmitInteraction} from "discord.js";
+import {ExtendedClient} from "../../../types/client.js";
 
 export default {
     id: "modal-embed-create-footer",
@@ -9,7 +9,7 @@ export default {
             "embed-create-options-footer-input"
         );
 
-        const [, messageId, embedIndexStr] = interaction.customId.split(":");
+        const [_, messageId, embedIndexStr] = interaction.customId.split(":");
         const embedIndex = Number(embedIndexStr ?? "0");
 
         const message = await interaction.channel.messages.fetch(messageId);
@@ -23,10 +23,13 @@ export default {
         }
 
         const oldFooter = embeds[embedIndex].data.footer
-
+        
         embeds[embedIndex].setFooter({
             text: text,
-            iconURL: oldFooter.icon_url ?? null
+        });
+        if (oldFooter?.icon_url) embeds[embedIndex].setFooter({
+            text: text,
+            iconURL: oldFooter?.icon_url ?? undefined
         });
 
         if (message.webhookId) {
@@ -41,10 +44,10 @@ export default {
             }
 
             await interaction.deferUpdate();
-            return await webhook.editMessage(message.id, { embeds });
+            return await webhook.editMessage(message.id, {embeds});
         }
 
         await interaction.deferUpdate();
-        await message.edit({ embeds });
+        await message.edit({embeds});
     }
 };
