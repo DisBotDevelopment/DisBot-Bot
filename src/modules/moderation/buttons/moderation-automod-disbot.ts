@@ -10,6 +10,7 @@ export default {
      * @param {ExtendedClient} client
      */
     async execute(interaction: ButtonInteraction, client: ExtendedClient) {
+        // INDEV
         await isInDevelopment(client, interaction)
 
         // Select your GuildDisBotAutoModeration!

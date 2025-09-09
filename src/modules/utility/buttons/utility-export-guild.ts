@@ -36,9 +36,9 @@ export default {
                 AutoPublish: true,
                 AutoReacts: true,
                 AutoRoles: true,
-                ChatModerations: true,
+                GuildDisBotAutoModeration: true,
                 Giveaways: true,
-                GuildBans: true,
+                GuildUserModeration: true,
                 DiscordAddons: true,
                 GuildChannelLinks: true,
                 GuildCommandManger: {

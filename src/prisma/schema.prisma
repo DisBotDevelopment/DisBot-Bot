@@ -19,8 +19,8 @@ model Guilds {
   AutoPublish                 GuildAutoPublish?
   AutoReacts                  GuildAutoReacts[]
   AutoRoles                   GuildAutoRoles[]
-  GuildBans                   GuildBans[]
-  ChatModerations             GuildChatModeration?
+  GuildModeration             GuildModeration?
+  GuildDisBotAutoModeration   GuildDisBotAutoModeration?
   DiscordAddons               DiscordGuildAddon?
   Giveaways                   Giveaways[]
   TempVoices                  TempVoices[]
@@ -43,6 +43,7 @@ model Guilds {
   GuildComponentManager       GuildComponentManager?
   GuildChannelLinks           GuildChannelLinks[]
   ModerationScout             ModerationScout?
+  GuildUserModeration         GuildUserModeration[]
 }
 
 model GuildCommandManger {
@@ -128,29 +129,318 @@ model GuildAutoRoles {
   Guilds  Guilds @relation(fields: [GuildId], references: [GuildId])
 }
 
-model GuildBans {
-  id          String    @id @default(auto()) @map("_id") @db.ObjectId
-  UUID        String    @unique
-  Time        String?
-  UserId      String[]
-  Reason      String?
-  ModeratorId String?
-  DmMessage   String?
-  Banned      Boolean?
-  CreatedAt   DateTime?
-  GuildId     String
-  Guilds      Guilds    @relation(fields: [GuildId], references: [GuildId])
+model ModerationScout {
+  id                             String                           @id @default(auto()) @map("_id") @db.ObjectId
+  UUID                           String                           @unique
+  PublicBanListUrl               String?                          @default("https://api.disbot.app/v2/banList")
+  AdminBanList                   Json // Only for the Guild set in the Config
+  CurrentUserModerations         Json[] // Storage for Bans, Wans, Mutes, Kicks (Alos you can create a custom one!)
+  PublicBanListEnabled           Boolean                          @default(false)
+  NeedsModeratorApprove          Boolean
+  ModeratorRoles                 String[]
+  // Appeals
+  UserAppeals                    ModerationScoutUserAppeals[]
+  ModerationScoutForms           ModerationScoutForms[]
+  // Reports
+  ReportCommandId                String
+  ReportMesageContextId          String
+  ReportUserContextId            String
+  ImmuneReportRoles              String[]
+  NotAllowedToReportRoles        String[]
+  SuccssReportMessageId          String
+  ReportActions                  String[] // Format: action:<optionalData> | Open Ticket, Send Message, Send DM
+  ModerationScoutReports         ModerationScoutReports[]
+  ModerationScoutReportModalData ModerationScoutReportModalData[]
+  ModerationScoutCases           ModerationScoutCases[]
+  GuildId                        String                           @unique
+  Guilds                         Guilds                           @relation(fields: [GuildId], references: [GuildId])
+}
+
+// TODO: NOT DONE!
+model ModerationScoutCases {
+  id                  String                @id @default(auto()) @map("_id") @db.ObjectId
+  UUID                String                @unique
+  MessageId           String
+  Channelid           String
+  UserId              String
+  ModeratorId         String
+  Data                Json
+  GuildUserModeration GuildUserModeration[]
+  ModerationScoutId   String                @unique
+  ModerationScout     ModerationScout       @relation(fields: [ModerationScoutId], references: [GuildId])
+}
+
+// Appeals
+model ModerationScoutForms {
+  id                         String                       @id @default(auto()) @map("_id") @db.ObjectId
+  UUID                       String                       @unique
+  Sorting                    String[]
+  Actions                    String[] // Format: action:<optionalData> | Open Ticket, Send Message, Send DM, UNBAN (to make tickets required*), Resolve DM
+  ModerationScout            ModerationScout              @relation(fields: [UUID], references: [UUID])
+  ModerationScoutFormsData   ModerationScoutFormsData[]
+  ModerationScoutUserAppeals ModerationScoutUserAppeals[]
+}
+
+// Appeals
+model ModerationScoutFormsData {
+  id                   String               @id @default(auto()) @map("_id") @db.ObjectId
+  UUID                 String               @unique
+  Type                 String // DropDown, CheckBox, Short Text, Long Text, Spacing, ReadOnly
+  Label                String
+  Description          String
+  Placeholder          String
+  OptionData           Json
+  ModerationScoutForms ModerationScoutForms @relation(fields: [UUID], references: [UUID])
+}
+
+// Appeals
+model ModerationScoutUserAppeals {
+  id                    String               @id @default(auto()) @map("_id") @db.ObjectId
+  UUID                  String               @unique
+  Token                 String
+  UserId                String
+  Case                  String // REPORT, MODERATION, BAN, MUTE, WARN, CUSTOM
+  FormId                String
+  ModerationScoutFormId String
+  Data                  Json
+  CratedAt              DateTime
+  CreatedBy             String
+  ModerationScoutId     String
+  ModerationScoutForms  ModerationScoutForms @relation(fields: [ModerationScoutFormId], references: [UUID])
+  ModerationScout       ModerationScout      @relation(fields: [UUID], references: [UUID])
+}
+
+// Reports
+model ModerationScoutReportModalData {
+  id                String          @id @default(auto()) @map("_id") @db.ObjectId
+  UUID              String          @unique
+  Name              String
+  Placeholder       String?
+  Type              Int
+  MinLength         Int?
+  MaxLength         Int?
+  Required          Boolean
+  InteractionType   String // MESSAGE_CONTEXT, USER_CONTEXT, COMMAND
+  ModerationScoutId String
+  ModerationScout   ModerationScout @relation(fields: [UUID], references: [UUID])
+}
+
+// Reports
+model ModerationScoutReports {
+  id                       String          @id @default(auto()) @map("_id") @db.ObjectId
+  UUID                     String          @unique
+  UserId                   String
+  SusUserId                String
+  Reason                   String?
+  Data                     Json?
+  IsReportedToBanListAdmin Boolean
+  ModeratorUserId          String
+  ModerationScout          ModerationScout @relation(fields: [UUID], references: [UUID])
+}
+
+// Soon Implemented!
+model GuildModeration {
+  id                               String                            @id @default(auto()) @map("_id") @db.ObjectId
+  GuildUserModerationSettingWarn   GuildUserModerationSettingWarn?
+  GuildUserModerationSettingUnwarn GuildUserModerationSettingUnwarn?
+  GuildUserModerationSettingBan    GuildUserModerationSettingBan?
+  GuildUserModerationSettingUnban  GuildUserModerationSettingUnban?
+  GuildUserModerationSettinKick    GuildUserModerationSettinKick?
+  GuildUserModerationSettingMute   GuildUserModerationSettingMute?
+  GuildUserModerationSettingUnmute GuildUserModerationSettingUnmute?
+  GuildId                          String                            @unique
+  Guilds                           Guilds                            @relation(fields: [GuildId], references: [GuildId])
+}
+
+model GuildUserModerationSettingBan {
+  id                           String          @id @default(auto()) @map("_id") @db.ObjectId
+  DefaultReason                String
+  AuditLogReason               String
+  Duration                     Int
+  DeleteProveMessage           Boolean
+  NeedReason                   Boolean
+  GuildUserModerationSettingId String          @unique
+  GuildUserModerationSetting   GuildModeration @relation(fields: [GuildUserModerationSettingId], references: [GuildId])
+}
+
+model GuildUserModerationSettingUnban {
+  id                           String          @id @default(auto()) @map("_id") @db.ObjectId
+  DefaultReason                String
+  AuditLogReason               String
+  NeedReason                   Boolean
+  GuildUserModerationSettingId String          @unique
+  GuildUserModerationSetting   GuildModeration @relation(fields: [GuildUserModerationSettingId], references: [GuildId])
+}
+
+model GuildUserModerationSettinKick {
+  id                           String          @id @default(auto()) @map("_id") @db.ObjectId
+  DefaultReason                String
+  AuditLogReason               String
+  NeedReason                   Boolean
+  GuildUserModerationSettingId String          @unique
+  GuildUserModerationSetting   GuildModeration @relation(fields: [GuildUserModerationSettingId], references: [GuildId])
+}
+
+model GuildUserModerationSettingWarn {
+  id                           String          @id @default(auto()) @map("_id") @db.ObjectId
+  DefaultReason                String
+  AuditLogReason               String
+  Duration                     Int
+  Actions                      Json[]
+  DeleteProveMessage           Boolean
+  NeedReason                   Boolean
+  GuildUserModerationSettingId String          @unique
+  GuildUserModerationSetting   GuildModeration @relation(fields: [GuildUserModerationSettingId], references: [GuildId])
+}
+
+model GuildUserModerationSettingUnwarn {
+  id                           String          @id @default(auto()) @map("_id") @db.ObjectId
+  DefaultReason                String
+  AuditLogReason               String
+  Actions                      Json[]
+  NeedReason                   Boolean
+  GuildUserModerationSettingId String          @unique
+  GuildUserModerationSetting   GuildModeration @relation(fields: [GuildUserModerationSettingId], references: [GuildId])
+}
+
+model GuildUserModerationSettingMute {
+  id                           String          @id @default(auto()) @map("_id") @db.ObjectId
+  DefaultReason                String
+  AuditLogReason               String
+  Duration                     Int
+  Actions                      Json[]
+  DeleteProveMessage           Boolean
+  NeedReason                   Boolean
+  UseTimeout                   Boolean
+  GuildUserModerationSettingId String          @unique
+  GuildUserModerationSetting   GuildModeration @relation(fields: [GuildUserModerationSettingId], references: [GuildId])
+}
+
+model GuildUserModerationSettingUnmute {
+  id                           String          @id @default(auto()) @map("_id") @db.ObjectId
+  DefaultReason                String
+  AuditLogReason               String
+  Actions                      Json
+  NeedReason                   Boolean
+  GuildUserModerationSettingId String          @unique
+  GuildUserModerationSetting   GuildModeration @relation(fields: [GuildUserModerationSettingId], references: [GuildId])
+}
+
+model GuildUserModeration {
+  id                   String               @id @default(auto()) @map("_id") @db.ObjectId
+  UUID                 String               @unique
+  Duration             String?
+  UserIds              String[]
+  Reason               String?
+  ModeratorId          String?
+  DmMessage            String?
+  Type                 String? // BAN, Warn, Kick, Mute
+  Notes                String[]
+  LinkedCaseId         String
+  CreatedAt            DateTime?
+  ModerationScoutCases ModerationScoutCases @relation(fields: [LinkedCaseId], references: [UUID])
+  GuildId              String
+  Guilds               Guilds               @relation(fields: [GuildId], references: [GuildId])
 }
 
 // UPDATE SOON - move to /moderation automod - Options Disocrd(Recommended!!!) DisBot
-model GuildChatModeration {
-  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
-  LogChannelId        String
-  Words               String[]
-  WhiteListRoleIds    String[]
-  WhiteListChannelIds String[]
-  GuildId             String   @unique
-  Guilds              Guilds   @relation(fields: [GuildId], references: [GuildId])
+model GuildDisBotAutoModeration {
+  id             String                                  @id @default(auto()) @map("_id") @db.ObjectId
+  MessageSpam    GuildDisBotAutoModerationMessages[]
+  MentionSpam    GuildDisBotAutoModerationMentions[]
+  AttachmentSpam GuildDisBotAutoModerationAttachments[]
+  EmojiSpam      GuildDisBotAutoModerationEmojis[]
+  BlockedWords   GuildDisBotAutoModerationBlockedWords[]
+  BlockLinks     GuildDisBotAutoModerationBlockLinks[]
+  BlockInvites   GuildDisBotAutoModerationBlockInvites[]
+  GuildId        String                                  @unique
+  Guilds         Guilds                                  @relation(fields: [GuildId], references: [GuildId])
+}
+
+model GuildDisBotAutoModerationMessages {
+  id                          String                    @id @default(auto()) @map("_id") @db.ObjectId
+  UUID                        String                    @unique
+  RegexPetterns               String[]
+  ExcludedChannels            String[]
+  ExcludedRoles               String[]
+  Trigger                     Json // {"type": ">,=", "amount": 3, "time": "5s"}
+  Actions                     Json[] // Open Ticket, Open Case, Send Message, Dm User, Log Message - {"type": "action",...}
+  GuildDisBotAutoModerationId String
+  GuildDisBotAutoModeration   GuildDisBotAutoModeration @relation(fields: [GuildDisBotAutoModerationId], references: [GuildId])
+}
+
+model GuildDisBotAutoModerationMentions {
+  id                          String                    @id @default(auto()) @map("_id") @db.ObjectId
+  UUID                        String                    @unique
+  RegexPetterns               String[]
+  ExcludedChannels            String[]
+  ExcludedRoles               String[]
+  Trigger                     Json // {"type": ">,=", "amount": 3, "time": "5s"}
+  Actions                     Json[] // Open Ticket, Open Case, Send Message, Dm User, Log Message - {"type": "action",...}
+  GuildDisBotAutoModerationId String
+  GuildDisBotAutoModeration   GuildDisBotAutoModeration @relation(fields: [GuildDisBotAutoModerationId], references: [GuildId])
+}
+
+model GuildDisBotAutoModerationAttachments {
+  id                          String                    @id @default(auto()) @map("_id") @db.ObjectId
+  UUID                        String                    @unique
+  RegexPetterns               String[]
+  ExcludedChannels            String[]
+  ExcludedRoles               String[]
+  Trigger                     Json // {"type": ">,=", "amount": 3, "time": "5s"}
+  Actions                     Json[] // Open Ticket, Open Case, Send Message, Dm User, Log Message - {"type": "action",...}
+  GuildDisBotAutoModerationId String
+  GuildDisBotAutoModeration   GuildDisBotAutoModeration @relation(fields: [GuildDisBotAutoModerationId], references: [GuildId])
+}
+
+model GuildDisBotAutoModerationEmojis {
+  id                          String                    @id @default(auto()) @map("_id") @db.ObjectId
+  UUID                        String                    @unique
+  RegexPetterns               String[]
+  ExcludedChannels            String[]
+  ExcludedRoles               String[]
+  Trigger                     Json // {"type": ">,=", "amount": 3, "time": "5s"}
+  Actions                     Json[] // Open Ticket, Open Case, Send Message, Dm User, Log Message - {"type": "action",...}
+  GuildDisBotAutoModerationId String
+  GuildDisBotAutoModeration   GuildDisBotAutoModeration @relation(fields: [GuildDisBotAutoModerationId], references: [GuildId])
+}
+
+model GuildDisBotAutoModerationBlockedWords {
+  id                          String                    @id @default(auto()) @map("_id") @db.ObjectId
+  UUID                        String                    @unique
+  RegexPetterns               String[]
+  ExcludedChannels            String[]
+  ExcludedRoles               String[]
+  Trigger                     Json // {"type": ">,=", "amount": 3, "time": "5s"}
+  Actions                     Json[] // Open Ticket, Open Case, Send Message, Dm User, Log Message - {"type": "action",...}
+  GuildDisBotAutoModerationId String
+  GuildDisBotAutoModeration   GuildDisBotAutoModeration @relation(fields: [GuildDisBotAutoModerationId], references: [GuildId])
+}
+
+model GuildDisBotAutoModerationBlockLinks {
+  id                          String                    @id @default(auto()) @map("_id") @db.ObjectId
+  UUID                        String                    @unique
+  RegexPetterns               String[]
+  ExcludedChannels            String[]
+  ExcludedRoles               String[]
+  ExcludedLinks               String[]
+  Trigger                     Json // {"type": ">,=", "amount": 3, "time": "5s"}
+  Actions                     Json[] // Open Ticket, Open Case, Send Message, Dm User, Log Message - {"type": "action",...}
+  GuildDisBotAutoModerationId String
+  GuildDisBotAutoModeration   GuildDisBotAutoModeration @relation(fields: [GuildDisBotAutoModerationId], references: [GuildId])
+}
+
+model GuildDisBotAutoModerationBlockInvites {
+  id                          String                    @id @default(auto()) @map("_id") @db.ObjectId
+  UUID                        String                    @unique
+  RegexPetterns               String[]
+  ExcludedChannels            String[]
+  ExcludedRoles               String[]
+  ExcludedGuildIds            String[]
+  Trigger                     Json // {"type": ">,=", "amount": 3, "time": "5s"}
+  Actions                     Json[] // Open Ticket, Open Case, Send Message, Dm User, Log Message - {"type": "action",...}
+  GuildDisBotAutoModerationId String
+  GuildDisBotAutoModeration   GuildDisBotAutoModeration @relation(fields: [GuildDisBotAutoModerationId], references: [GuildId])
 }
 
 model GuildChannelLinks {
@@ -405,93 +695,6 @@ model Tags {
   FilterTextFromMessages String[]
   GuildId                String
   Guilds                 Guilds   @relation(fields: [GuildId], references: [GuildId])
-}
-
-model ModerationScout {
-  id                             String                           @id @default(auto()) @map("_id") @db.ObjectId
-  UUID                           String                           @unique
-  ReportCommandId                String
-  SuccssReportMessageId          String
-  PublicBanListUrl               String?                          @default("https://api.disbot.app/v2/banList")
-  AdminBanList                   Json // Only for the Guild set in the Config
-  CurrentUserModerations         Json[] // Storage for Bans, Wans, Mutes, Kicks (Alos you can create a custom one!)
-  PublicBanListEnabled           Boolean                          @default(false)
-  // Appeals
-  UserAppeals                    ModerationScoutUserAppeals[]
-  ModerationScoutForms           ModerationScoutForms[]
-  // Reports
-  ReportActions                  String[] // Format: action:<optionalData> | Open Ticket, Send Message, Send DM
-  ModerationScoutReports         ModerationScoutReports[]
-  ModerationScoutReportModalData ModerationScoutReportModalData[]
-  GuildId                        String                           @unique
-  Guilds                         Guilds                           @relation(fields: [GuildId], references: [GuildId])
-}
-
-// Appeals
-model ModerationScoutForms {
-  id                         String                       @id @default(auto()) @map("_id") @db.ObjectId
-  UUID                       String                       @unique
-  Sorting                    String[]
-  Actions                    String[] // Format: action:<optionalData> | Open Ticket, Send Message, Send DM, UNBAN (to make tickets required*), Resolve DM
-  ModerationScout            ModerationScout              @relation(fields: [UUID], references: [UUID])
-  ModerationScoutFormsData   ModerationScoutFormsData[]
-  ModerationScoutUserAppeals ModerationScoutUserAppeals[]
-}
-
-// Appeals
-model ModerationScoutFormsData {
-  id                   String               @id @default(auto()) @map("_id") @db.ObjectId
-  UUID                 String               @unique
-  Type                 String // DropDown, CheckBox, Short Text, Long Text, Spacing, ReadOnly
-  Label                String
-  Description          String
-  Placeholder          String
-  OptionData           Json
-  ModerationScoutForms ModerationScoutForms @relation(fields: [UUID], references: [UUID])
-}
-
-// Appeals
-model ModerationScoutUserAppeals {
-  id                    String               @id @default(auto()) @map("_id") @db.ObjectId
-  UUID                  String               @unique
-  Token                 String
-  UserId                String
-  Case                  String // REPORT, MODERATION, BAN, MUTE, WARN, CUSTOM
-  FormId                String
-  ModerationScoutFormId String
-  Data                  Json
-  CratedAt              DateTime
-  CreatedBy             String
-  ModerationScoutId     String
-  ModerationScoutForms  ModerationScoutForms @relation(fields: [ModerationScoutFormId], references: [UUID])
-  ModerationScout       ModerationScout      @relation(fields: [UUID], references: [UUID])
-}
-
-// Reports
-model ModerationScoutReportModalData {
-  id                String          @id @default(auto()) @map("_id") @db.ObjectId
-  UUID              String          @unique
-  Name              String
-  Placeholder       String?
-  Type              Int
-  MinLength         Int?
-  MaxLength         Int?
-  Required          Boolean
-  ModerationScoutId String
-  ModerationScout   ModerationScout @relation(fields: [UUID], references: [UUID])
-}
-
-// Reports
-model ModerationScoutReports {
-  id                       String          @id @default(auto()) @map("_id") @db.ObjectId
-  UUID                     String          @unique
-  UserId                   String
-  SusUserId                String
-  Reason                   String?
-  Data                     Json?
-  IsReportedToBanListAdmin Boolean
-  ModeratorUserId          String
-  ModerationScout          ModerationScout @relation(fields: [UUID], references: [UUID])
 }
 
 model Polls {

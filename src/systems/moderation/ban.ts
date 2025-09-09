@@ -1,12 +1,13 @@
 import {ExtendedClient} from "../../types/client.js";
 import {database} from "../../main/database.js";
+import ms from "ms";
 
 export async function banScheduled(client: ExtendedClient) {
-    const data = await database.guildBans.findMany()
+    const data = await database.guildUserModeration.findMany()
 
     for (const d of data) {
         const currentTime = Date.now();
-        const banDuration = Number(d.Time);
+        const banDuration = ms(d.Duration as ms.StringValue);
         const banStartTime = new Date(d.CreatedAt).getTime();
         const banExpirationTime = banStartTime + banDuration;
         const remainingTime = banExpirationTime - currentTime;
@@ -15,7 +16,7 @@ export async function banScheduled(client: ExtendedClient) {
             continue;
         }
 
-        if (remainingTime <= 0 && d.Banned === true) {
+        if (remainingTime <= 0 && d.Type == "BAN") {
             await handleBanExpiration(client, d);
         }
     }
@@ -30,14 +31,14 @@ async function handleBanExpiration(client: ExtendedClient, d: any) {
             const member = await client?.users.fetch(user);
             if (!member) continue;
 
-            if (d.Banned === false) continue;
+            if (d.Type == "DONE") continue;
 
-            await database.guildBans.update({
+            await database.guildUserModeration.update({
                 where: {
                     UUID: d.UUID
                 },
                 data: {
-                    Banned: false
+                    Type: "DONE"
                 }
             });
 

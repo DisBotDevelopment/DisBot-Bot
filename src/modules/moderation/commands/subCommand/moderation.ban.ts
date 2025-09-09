@@ -15,6 +15,7 @@ import {ExtendedClient} from "../../../../types/client.js";
 import {convertToEmojiPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 import {database} from "../../../../main/database.js";
+import {isInDevelopment} from "../../../../helper/utilityHelper.js";
 
 export default {
     subCommand: "moderation.ban",
@@ -36,6 +37,10 @@ export default {
         interaction: ChatInputCommandInteraction,
         client: ExtendedClient
     ) {
+        
+        // INDEV
+        await isInDevelopment(client, interaction)
+        
         await interaction.deferReply({
             flags: MessageFlags.Ephemeral
         });
@@ -109,7 +114,8 @@ export default {
                 .setStyle(ButtonStyle.Secondary)
         );
 
-        await database.guildBans.create({
+        /*
+        await database.guildUserModeration.create({
             data: {
                 UUID: uuids,
                 Guilds: {
@@ -119,6 +125,7 @@ export default {
                 }
             }
         });
+         */
 
         if (!client.user) throw new Error("Client is not defined");
         interaction.editReply({

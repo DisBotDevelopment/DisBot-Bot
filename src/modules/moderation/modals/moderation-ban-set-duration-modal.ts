@@ -29,18 +29,18 @@ export default {
             });
         }
 
-        await database.guildBans.update({
+        await database.guildUserModeration.update({
             where: {
                 UUID: uuids
             },
             data: {
-                Time: duration
+                Duration: duration
             }
         });
 
         if (!client.user) throw new Error("Client not found");
         interaction.reply({
-            content: `## ${await convertToEmojiPng("check", client.user.id)} Duration has been set to \`${duration}\`ms`,
+            content: `## ${await convertToEmojiPng("check", client.user.id)} Duration has been set to \`${duration}\``,
             flags: MessageFlags.Ephemeral,
         });
     },

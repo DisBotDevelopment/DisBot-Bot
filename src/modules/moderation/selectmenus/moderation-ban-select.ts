@@ -27,7 +27,7 @@ export default {
 
             const uuid = interaction.customId.split(":")[1];
             for (const value of interaction.values) {
-                const data = await database.guildBans.findFirst({
+                const data = await database.guildUserModeration.findFirst({
                     where: {
                         UUID: uuid,
                     }
@@ -48,12 +48,12 @@ export default {
                             interaction.member.roles.highest.position) ||
                         0) <= user.roles.highest.position
                 ) {
-                    interaction.reply({
+                    await interaction.reply({
                         content: `## ${await convertToEmojiPng("error", client.user?.id)} You can't ban a user with a higher or equal role`,
                         flags: MessageFlags.Ephemeral,
                     });
                 }
-                await database.guildBans.update(
+                await database.guildUserModeration.update(
                     {
                         where: {
                             UUID: uuid,
@@ -61,19 +61,20 @@ export default {
                         data: {
                             GuildId: interaction.guild?.id,
                             ModeratorId: interaction.user.id,
-                            Banned: true,
+                            Type: "BAN",
+                            CreatedAt: new Date,
                         }
                     }
                 );
 
-                await database.guildBans.update(
+                await database.guildUserModeration.update(
                     {
                         where: {
                             UUID: uuid,
                         }
                         ,
                         data: {
-                            UserId: {
+                            UserIds: {
                                 push: value
                             },
                         }
@@ -93,7 +94,7 @@ export default {
                                 .replace("{guild.name}", interaction.guild?.name as string)
                                 .replace("{guild.id}", interaction.guild?.id as string)
                                 .replace("{reason}", data?.Reason ?? "No reason provided")
-                                .replace("{time}", data?.Time ?? "No time provided")
+                                .replace("{time}", data?.Duration ?? "No time provided")
                                 .replace("{moderator.tag}", `<@${interaction.user.id}>`)
                                 .replace("{moderator.id}", interaction.user.id)
                                 .replace("{moderator.name}", interaction.user.username)

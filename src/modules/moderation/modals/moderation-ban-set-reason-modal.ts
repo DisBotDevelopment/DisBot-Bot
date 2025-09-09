@@ -18,7 +18,7 @@ export default {
             "moderation-ban-set-reason-input"
         );
 
-        await database.guildBans.update(
+        await database.guildUserModeration.update(
             {
                 where: {UUID: uuids}, data: {Reason: reason}
             }

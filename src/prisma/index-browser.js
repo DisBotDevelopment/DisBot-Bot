@@ -194,26 +194,260 @@ exports.Prisma.GuildAutoRolesScalarFieldEnum = {
   GuildId: 'GuildId'
 };
 
-exports.Prisma.GuildBansScalarFieldEnum = {
+exports.Prisma.ModerationScoutScalarFieldEnum = {
   id: 'id',
   UUID: 'UUID',
-  Time: 'Time',
+  PublicBanListUrl: 'PublicBanListUrl',
+  AdminBanList: 'AdminBanList',
+  CurrentUserModerations: 'CurrentUserModerations',
+  PublicBanListEnabled: 'PublicBanListEnabled',
+  NeedsModeratorApprove: 'NeedsModeratorApprove',
+  ModeratorRoles: 'ModeratorRoles',
+  ReportCommandId: 'ReportCommandId',
+  ReportMesageContextId: 'ReportMesageContextId',
+  ReportUserContextId: 'ReportUserContextId',
+  ImmuneReportRoles: 'ImmuneReportRoles',
+  NotAllowedToReportRoles: 'NotAllowedToReportRoles',
+  SuccssReportMessageId: 'SuccssReportMessageId',
+  ReportActions: 'ReportActions',
+  GuildId: 'GuildId'
+};
+
+exports.Prisma.ModerationScoutCasesScalarFieldEnum = {
+  id: 'id',
+  UUID: 'UUID',
+  MessageId: 'MessageId',
+  Channelid: 'Channelid',
   UserId: 'UserId',
+  ModeratorId: 'ModeratorId',
+  Data: 'Data',
+  ModerationScoutId: 'ModerationScoutId'
+};
+
+exports.Prisma.ModerationScoutFormsScalarFieldEnum = {
+  id: 'id',
+  UUID: 'UUID',
+  Sorting: 'Sorting',
+  Actions: 'Actions'
+};
+
+exports.Prisma.ModerationScoutFormsDataScalarFieldEnum = {
+  id: 'id',
+  UUID: 'UUID',
+  Type: 'Type',
+  Label: 'Label',
+  Description: 'Description',
+  Placeholder: 'Placeholder',
+  OptionData: 'OptionData'
+};
+
+exports.Prisma.ModerationScoutUserAppealsScalarFieldEnum = {
+  id: 'id',
+  UUID: 'UUID',
+  Token: 'Token',
+  UserId: 'UserId',
+  Case: 'Case',
+  FormId: 'FormId',
+  ModerationScoutFormId: 'ModerationScoutFormId',
+  Data: 'Data',
+  CratedAt: 'CratedAt',
+  CreatedBy: 'CreatedBy',
+  ModerationScoutId: 'ModerationScoutId'
+};
+
+exports.Prisma.ModerationScoutReportModalDataScalarFieldEnum = {
+  id: 'id',
+  UUID: 'UUID',
+  Name: 'Name',
+  Placeholder: 'Placeholder',
+  Type: 'Type',
+  MinLength: 'MinLength',
+  MaxLength: 'MaxLength',
+  Required: 'Required',
+  InteractionType: 'InteractionType',
+  ModerationScoutId: 'ModerationScoutId'
+};
+
+exports.Prisma.ModerationScoutReportsScalarFieldEnum = {
+  id: 'id',
+  UUID: 'UUID',
+  UserId: 'UserId',
+  SusUserId: 'SusUserId',
+  Reason: 'Reason',
+  Data: 'Data',
+  IsReportedToBanListAdmin: 'IsReportedToBanListAdmin',
+  ModeratorUserId: 'ModeratorUserId'
+};
+
+exports.Prisma.GuildModerationScalarFieldEnum = {
+  id: 'id',
+  GuildId: 'GuildId'
+};
+
+exports.Prisma.GuildUserModerationSettingBanScalarFieldEnum = {
+  id: 'id',
+  DefaultReason: 'DefaultReason',
+  AuditLogReason: 'AuditLogReason',
+  Duration: 'Duration',
+  DeleteProveMessage: 'DeleteProveMessage',
+  NeedReason: 'NeedReason',
+  GuildUserModerationSettingId: 'GuildUserModerationSettingId'
+};
+
+exports.Prisma.GuildUserModerationSettingUnbanScalarFieldEnum = {
+  id: 'id',
+  DefaultReason: 'DefaultReason',
+  AuditLogReason: 'AuditLogReason',
+  NeedReason: 'NeedReason',
+  GuildUserModerationSettingId: 'GuildUserModerationSettingId'
+};
+
+exports.Prisma.GuildUserModerationSettinKickScalarFieldEnum = {
+  id: 'id',
+  DefaultReason: 'DefaultReason',
+  AuditLogReason: 'AuditLogReason',
+  NeedReason: 'NeedReason',
+  GuildUserModerationSettingId: 'GuildUserModerationSettingId'
+};
+
+exports.Prisma.GuildUserModerationSettingWarnScalarFieldEnum = {
+  id: 'id',
+  DefaultReason: 'DefaultReason',
+  AuditLogReason: 'AuditLogReason',
+  Duration: 'Duration',
+  Actions: 'Actions',
+  DeleteProveMessage: 'DeleteProveMessage',
+  NeedReason: 'NeedReason',
+  GuildUserModerationSettingId: 'GuildUserModerationSettingId'
+};
+
+exports.Prisma.GuildUserModerationSettingUnwarnScalarFieldEnum = {
+  id: 'id',
+  DefaultReason: 'DefaultReason',
+  AuditLogReason: 'AuditLogReason',
+  Actions: 'Actions',
+  NeedReason: 'NeedReason',
+  GuildUserModerationSettingId: 'GuildUserModerationSettingId'
+};
+
+exports.Prisma.GuildUserModerationSettingMuteScalarFieldEnum = {
+  id: 'id',
+  DefaultReason: 'DefaultReason',
+  AuditLogReason: 'AuditLogReason',
+  Duration: 'Duration',
+  Actions: 'Actions',
+  DeleteProveMessage: 'DeleteProveMessage',
+  NeedReason: 'NeedReason',
+  UseTimeout: 'UseTimeout',
+  GuildUserModerationSettingId: 'GuildUserModerationSettingId'
+};
+
+exports.Prisma.GuildUserModerationSettingUnmuteScalarFieldEnum = {
+  id: 'id',
+  DefaultReason: 'DefaultReason',
+  AuditLogReason: 'AuditLogReason',
+  Actions: 'Actions',
+  NeedReason: 'NeedReason',
+  GuildUserModerationSettingId: 'GuildUserModerationSettingId'
+};
+
+exports.Prisma.GuildUserModerationScalarFieldEnum = {
+  id: 'id',
+  UUID: 'UUID',
+  Duration: 'Duration',
+  UserIds: 'UserIds',
   Reason: 'Reason',
   ModeratorId: 'ModeratorId',
   DmMessage: 'DmMessage',
-  Banned: 'Banned',
+  Type: 'Type',
+  Notes: 'Notes',
+  LinkedCaseId: 'LinkedCaseId',
   CreatedAt: 'CreatedAt',
   GuildId: 'GuildId'
 };
 
-exports.Prisma.GuildChatModerationScalarFieldEnum = {
+exports.Prisma.GuildDisBotAutoModerationScalarFieldEnum = {
   id: 'id',
-  LogChannelId: 'LogChannelId',
-  Words: 'Words',
-  WhiteListRoleIds: 'WhiteListRoleIds',
-  WhiteListChannelIds: 'WhiteListChannelIds',
   GuildId: 'GuildId'
+};
+
+exports.Prisma.GuildDisBotAutoModerationMessagesScalarFieldEnum = {
+  id: 'id',
+  UUID: 'UUID',
+  RegexPetterns: 'RegexPetterns',
+  ExcludedChannels: 'ExcludedChannels',
+  ExcludedRoles: 'ExcludedRoles',
+  Trigger: 'Trigger',
+  Actions: 'Actions',
+  GuildDisBotAutoModerationId: 'GuildDisBotAutoModerationId'
+};
+
+exports.Prisma.GuildDisBotAutoModerationMentionsScalarFieldEnum = {
+  id: 'id',
+  UUID: 'UUID',
+  RegexPetterns: 'RegexPetterns',
+  ExcludedChannels: 'ExcludedChannels',
+  ExcludedRoles: 'ExcludedRoles',
+  Trigger: 'Trigger',
+  Actions: 'Actions',
+  GuildDisBotAutoModerationId: 'GuildDisBotAutoModerationId'
+};
+
+exports.Prisma.GuildDisBotAutoModerationAttachmentsScalarFieldEnum = {
+  id: 'id',
+  UUID: 'UUID',
+  RegexPetterns: 'RegexPetterns',
+  ExcludedChannels: 'ExcludedChannels',
+  ExcludedRoles: 'ExcludedRoles',
+  Trigger: 'Trigger',
+  Actions: 'Actions',
+  GuildDisBotAutoModerationId: 'GuildDisBotAutoModerationId'
+};
+
+exports.Prisma.GuildDisBotAutoModerationEmojisScalarFieldEnum = {
+  id: 'id',
+  UUID: 'UUID',
+  RegexPetterns: 'RegexPetterns',
+  ExcludedChannels: 'ExcludedChannels',
+  ExcludedRoles: 'ExcludedRoles',
+  Trigger: 'Trigger',
+  Actions: 'Actions',
+  GuildDisBotAutoModerationId: 'GuildDisBotAutoModerationId'
+};
+
+exports.Prisma.GuildDisBotAutoModerationBlockedWordsScalarFieldEnum = {
+  id: 'id',
+  UUID: 'UUID',
+  RegexPetterns: 'RegexPetterns',
+  ExcludedChannels: 'ExcludedChannels',
+  ExcludedRoles: 'ExcludedRoles',
+  Trigger: 'Trigger',
+  Actions: 'Actions',
+  GuildDisBotAutoModerationId: 'GuildDisBotAutoModerationId'
+};
+
+exports.Prisma.GuildDisBotAutoModerationBlockLinksScalarFieldEnum = {
+  id: 'id',
+  UUID: 'UUID',
+  RegexPetterns: 'RegexPetterns',
+  ExcludedChannels: 'ExcludedChannels',
+  ExcludedRoles: 'ExcludedRoles',
+  ExcludedLinks: 'ExcludedLinks',
+  Trigger: 'Trigger',
+  Actions: 'Actions',
+  GuildDisBotAutoModerationId: 'GuildDisBotAutoModerationId'
+};
+
+exports.Prisma.GuildDisBotAutoModerationBlockInvitesScalarFieldEnum = {
+  id: 'id',
+  UUID: 'UUID',
+  RegexPetterns: 'RegexPetterns',
+  ExcludedChannels: 'ExcludedChannels',
+  ExcludedRoles: 'ExcludedRoles',
+  ExcludedGuildIds: 'ExcludedGuildIds',
+  Trigger: 'Trigger',
+  Actions: 'Actions',
+  GuildDisBotAutoModerationId: 'GuildDisBotAutoModerationId'
 };
 
 exports.Prisma.GuildChannelLinksScalarFieldEnum = {
@@ -414,73 +648,6 @@ exports.Prisma.TagsScalarFieldEnum = {
   CommandDescription: 'CommandDescription',
   FilterTextFromMessages: 'FilterTextFromMessages',
   GuildId: 'GuildId'
-};
-
-exports.Prisma.ModerationScoutScalarFieldEnum = {
-  id: 'id',
-  UUID: 'UUID',
-  ReportCommandId: 'ReportCommandId',
-  SuccssReportMessageId: 'SuccssReportMessageId',
-  PublicBanListUrl: 'PublicBanListUrl',
-  AdminBanList: 'AdminBanList',
-  CurrentUserModerations: 'CurrentUserModerations',
-  PublicBanListEnabled: 'PublicBanListEnabled',
-  ReportActions: 'ReportActions',
-  GuildId: 'GuildId'
-};
-
-exports.Prisma.ModerationScoutFormsScalarFieldEnum = {
-  id: 'id',
-  UUID: 'UUID',
-  Sorting: 'Sorting',
-  Actions: 'Actions'
-};
-
-exports.Prisma.ModerationScoutFormsDataScalarFieldEnum = {
-  id: 'id',
-  UUID: 'UUID',
-  Type: 'Type',
-  Label: 'Label',
-  Description: 'Description',
-  Placeholder: 'Placeholder',
-  OptionData: 'OptionData'
-};
-
-exports.Prisma.ModerationScoutUserAppealsScalarFieldEnum = {
-  id: 'id',
-  UUID: 'UUID',
-  Token: 'Token',
-  UserId: 'UserId',
-  Case: 'Case',
-  FormId: 'FormId',
-  ModerationScoutFormId: 'ModerationScoutFormId',
-  Data: 'Data',
-  CratedAt: 'CratedAt',
-  CreatedBy: 'CreatedBy',
-  ModerationScoutId: 'ModerationScoutId'
-};
-
-exports.Prisma.ModerationScoutReportModalDataScalarFieldEnum = {
-  id: 'id',
-  UUID: 'UUID',
-  Name: 'Name',
-  Placeholder: 'Placeholder',
-  Type: 'Type',
-  MinLength: 'MinLength',
-  MaxLength: 'MaxLength',
-  Required: 'Required',
-  ModerationScoutId: 'ModerationScoutId'
-};
-
-exports.Prisma.ModerationScoutReportsScalarFieldEnum = {
-  id: 'id',
-  UUID: 'UUID',
-  UserId: 'UserId',
-  SusUserId: 'SusUserId',
-  Reason: 'Reason',
-  Data: 'Data',
-  IsReportedToBanListAdmin: 'IsReportedToBanListAdmin',
-  ModeratorUserId: 'ModeratorUserId'
 };
 
 exports.Prisma.PollsScalarFieldEnum = {
@@ -770,8 +937,30 @@ exports.Prisma.ModelName = {
   GuildAutoPublish: 'GuildAutoPublish',
   GuildAutoReacts: 'GuildAutoReacts',
   GuildAutoRoles: 'GuildAutoRoles',
-  GuildBans: 'GuildBans',
-  GuildChatModeration: 'GuildChatModeration',
+  ModerationScout: 'ModerationScout',
+  ModerationScoutCases: 'ModerationScoutCases',
+  ModerationScoutForms: 'ModerationScoutForms',
+  ModerationScoutFormsData: 'ModerationScoutFormsData',
+  ModerationScoutUserAppeals: 'ModerationScoutUserAppeals',
+  ModerationScoutReportModalData: 'ModerationScoutReportModalData',
+  ModerationScoutReports: 'ModerationScoutReports',
+  GuildModeration: 'GuildModeration',
+  GuildUserModerationSettingBan: 'GuildUserModerationSettingBan',
+  GuildUserModerationSettingUnban: 'GuildUserModerationSettingUnban',
+  GuildUserModerationSettinKick: 'GuildUserModerationSettinKick',
+  GuildUserModerationSettingWarn: 'GuildUserModerationSettingWarn',
+  GuildUserModerationSettingUnwarn: 'GuildUserModerationSettingUnwarn',
+  GuildUserModerationSettingMute: 'GuildUserModerationSettingMute',
+  GuildUserModerationSettingUnmute: 'GuildUserModerationSettingUnmute',
+  GuildUserModeration: 'GuildUserModeration',
+  GuildDisBotAutoModeration: 'GuildDisBotAutoModeration',
+  GuildDisBotAutoModerationMessages: 'GuildDisBotAutoModerationMessages',
+  GuildDisBotAutoModerationMentions: 'GuildDisBotAutoModerationMentions',
+  GuildDisBotAutoModerationAttachments: 'GuildDisBotAutoModerationAttachments',
+  GuildDisBotAutoModerationEmojis: 'GuildDisBotAutoModerationEmojis',
+  GuildDisBotAutoModerationBlockedWords: 'GuildDisBotAutoModerationBlockedWords',
+  GuildDisBotAutoModerationBlockLinks: 'GuildDisBotAutoModerationBlockLinks',
+  GuildDisBotAutoModerationBlockInvites: 'GuildDisBotAutoModerationBlockInvites',
   GuildChannelLinks: 'GuildChannelLinks',
   SyncedChannelLinkMessages: 'SyncedChannelLinkMessages',
   DiscordGuildAddon: 'DiscordGuildAddon',
@@ -789,12 +978,6 @@ exports.Prisma.ModelName = {
   VerificationGatesPermission: 'VerificationGatesPermission',
   GuildSpotifyNotifications: 'GuildSpotifyNotifications',
   Tags: 'Tags',
-  ModerationScout: 'ModerationScout',
-  ModerationScoutForms: 'ModerationScoutForms',
-  ModerationScoutFormsData: 'ModerationScoutFormsData',
-  ModerationScoutUserAppeals: 'ModerationScoutUserAppeals',
-  ModerationScoutReportModalData: 'ModerationScoutReportModalData',
-  ModerationScoutReports: 'ModerationScoutReports',
   Polls: 'Polls',
   PollOptions: 'PollOptions',
   PollAnswers: 'PollAnswers',

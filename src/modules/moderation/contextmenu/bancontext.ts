@@ -117,7 +117,8 @@ export default {
                 .setStyle(ButtonStyle.Secondary)
         );
 
-        await database.guildBans.create({
+        /*
+        await database.guildUserModeration.create({
             data: {
                 UUID: uuids,
                 Guilds: {
@@ -127,6 +128,7 @@ export default {
                 }
             }
         });
+         */
 
         if (!client.user) throw new Error("Client is not defined");
         interaction.reply({

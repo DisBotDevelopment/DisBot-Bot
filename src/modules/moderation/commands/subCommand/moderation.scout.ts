@@ -29,6 +29,7 @@ export default {
         interaction: ChatInputCommandInteraction,
         client: ExtendedClient
     ) {
+        // INDEV
         await isInDevelopment(client, interaction)
     },
 };
