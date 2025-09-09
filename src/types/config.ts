@@ -1,4 +1,4 @@
-import {BotType} from "enums/botType.js";
+import { BotType } from "enums/botType.js";
 
 export type DisBotConfigData = {
     Bot: {
@@ -45,6 +45,7 @@ export type DisBotConfigData = {
             VotePort: number;
             VoteRoleId: string;
             VoteGuildId: string;
+            VoteWebhookUrl: string;
         };
         AppPort: number;
         API: {

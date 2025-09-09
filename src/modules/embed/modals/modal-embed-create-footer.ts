@@ -1,5 +1,5 @@
-import {Client, EmbedBuilder, MessageFlags, ModalSubmitInteraction} from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import { Client, EmbedBuilder, MessageFlags, ModalSubmitInteraction } from "discord.js";
+import { ExtendedClient } from "../../../types/client.js";
 
 export default {
     id: "modal-embed-create-footer",
@@ -17,7 +17,7 @@ export default {
 
         if (!embeds[embedIndex]) {
             return interaction.reply({
-                content: "## ❌ I can't find the embed at this index!",
+                content: "## I can't find the embed at this index!",
                 flags: MessageFlags.Ephemeral,
             });
         }
@@ -26,7 +26,7 @@ export default {
 
         embeds[embedIndex].setFooter({
             text: text,
-            iconURL: oldFooter.icon_url ?? undefined
+            iconURL: oldFooter.icon_url ?? null
         });
 
         if (message.webhookId) {
@@ -41,10 +41,10 @@ export default {
             }
 
             await interaction.deferUpdate();
-            return await webhook.editMessage(message.id, {embeds});
+            return await webhook.editMessage(message.id, { embeds });
         }
 
         await interaction.deferUpdate();
-        await message.edit({embeds});
+        await message.edit({ embeds });
     }
 };

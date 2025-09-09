@@ -1,13 +1,13 @@
-import {Webhook, WebhookPayload} from "@top-gg/sdk";
+import { Webhook, WebhookPayload } from "@top-gg/sdk";
 import bodyParser from "body-parser";
-import {EmbedBuilder, User, WebhookClient} from "discord.js";
-import express, {Request, Response} from "express";
-import {ExtendedClient} from "../../types/client.js";
-import {Logger} from "../../main/logger.js";
-import {LoggingAction} from "../../enums/loggingTypes.js";
-import {database} from "../../main/database.js";
-import {Config} from "../../main/config.js";
-import {initUsersToDatabase} from "../../helper/databaseHelper.js";
+import { EmbedBuilder, User, WebhookClient } from "discord.js";
+import express, { Request, Response } from "express";
+import { ExtendedClient } from "../../types/client.js";
+import { Logger } from "../../main/logger.js";
+import { LoggingAction } from "../../enums/loggingTypes.js";
+import { database } from "../../main/database.js";
+import { Config } from "../../main/config.js";
+import { initUsersToDatabase } from "../../helper/databaseHelper.js";
 
 export async function vote(client: ExtendedClient) {
     const app = express();
@@ -39,8 +39,8 @@ export async function vote(client: ExtendedClient) {
 
             await database.users.update(
                 {
-                    where: {UserId: vote.user},
-                    data: {Votes: votes, GloablVotes: gvotes, LastVote: new Date}
+                    where: { UserId: vote.user },
+                    data: { Votes: votes, GloablVotes: gvotes, LastVote: new Date }
                 }
             );
 
@@ -49,14 +49,14 @@ export async function vote(client: ExtendedClient) {
             if ((data?.Votes as number) >= 10) {
                 await database.users.update(
                     {
-                        where: {UserId: vote.user},
-                        data: {Votes: 0, CustomerBots: (bots as number) + 1, GloablVotes: gvotes}
+                        where: { UserId: vote.user },
+                        data: { Votes: 0, CustomerBots: (bots as number) + 1, GloablVotes: gvotes }
                     }
                 );
             }
 
             const webhook = new WebhookClient({
-                url: "https://discord.com/api/webhooks/1231322811964854292/fLN_e9cNkywg3Hdoi25AKEUL_KDbeKFYTtgNhiwGmHmVa14CWNuF9iSbNAYNFmISD8r3",
+                url: Config.Other.Vote.VoteWebhookUrl,
             });
 
 
@@ -75,7 +75,7 @@ export async function vote(client: ExtendedClient) {
                                 `> <:timer:1321939051921801308> **Vote again**: [\`Click Here\`](https://top.gg/bot/1063079377975377960)`,
                             ].join("\n")
                         )
-                        .setThumbnail(user.displayAvatarURL({extension: "gif"}))
+                        .setThumbnail(user.displayAvatarURL({ extension: "gif" }))
                         .setColor("#2B2D31"),
                 ],
             });
@@ -115,8 +115,8 @@ export async function vote(client: ExtendedClient) {
 
             await database.users.update(
                 {
-                    where: {UserId: vote.id},
-                    data: {Votes: votes, GloablVotes: gvotes, LastVote: new Date}
+                    where: { UserId: vote.id },
+                    data: { Votes: votes, GloablVotes: gvotes, LastVote: new Date }
                 }
             );
 
@@ -125,14 +125,14 @@ export async function vote(client: ExtendedClient) {
             if ((data?.Votes as number) >= 10) {
                 await database.users.update(
                     {
-                        where: {UserId: vote.id},
-                        data: {Votes: 0, CustomerBots: (bots as number) + 1, GloablVotes: gvotes}
+                        where: { UserId: vote.id },
+                        data: { Votes: 0, CustomerBots: (bots as number) + 1, GloablVotes: gvotes }
                     }
                 );
             }
 
             const webhook = new WebhookClient({
-                url: "https://discord.com/api/webhooks/1231322811964854292/fLN_e9cNkywg3Hdoi25AKEUL_KDbeKFYTtgNhiwGmHmVa14CWNuF9iSbNAYNFmISD8r3",
+                url: Config.Other.Vote.VoteWebhookUrl,
             });
 
 
@@ -151,7 +151,7 @@ export async function vote(client: ExtendedClient) {
                                 `> <:timer:1321939051921801308> **Vote again**: [\`Click Here\`](https://discordbotlist.com/bots/disbot)`,
                             ].join("\n")
                         )
-                        .setThumbnail(user.displayAvatarURL({extension: "gif"}))
+                        .setThumbnail(user.displayAvatarURL({ extension: "gif" }))
                         .setColor("#2B2D31"),
                 ],
             });

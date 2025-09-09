@@ -7,10 +7,10 @@ import {
     ModalSubmitInteraction,
     RoleSelectMenuBuilder
 } from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
-import {randomUUID} from "crypto";
-import {database} from "../../../main/database.js";
+import { ExtendedClient } from "../../../types/client.js";
+import { convertToEmojiPng } from "../../../helper/emojis.js";
+import { randomUUID } from "crypto";
+import { database } from "../../../main/database.js";
 
 export default {
     id: "tag-create-name-modal",
@@ -49,7 +49,11 @@ export default {
 
         await database.tags.create({
             data: {
-                GuildId: interaction.guild?.id,
+                Guilds: {
+                    connect: {
+                        GuildId: interaction.guild.id
+                    }
+                },
                 TagId: tagID,
                 UUID: uuids,
                 MessageId: null,

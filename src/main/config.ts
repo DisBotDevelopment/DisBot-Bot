@@ -1,9 +1,9 @@
 import * as YAML from "yaml";
 import fs from "fs";
-import {botData} from "./version.js";
+import { botData } from "./version.js";
 import colors from "colors";
-import {DisBotConfigData} from "../types/config.js";
-import {YAMLMap} from "yaml";
+import { DisBotConfigData } from "../types/config.js";
+import { YAMLMap } from "yaml";
 
 colors.enable();
 
@@ -60,7 +60,8 @@ export async function configStartup() {
                     TopggToken: "",
                     VotePort: 0,
                     VoteRoleId: "",
-                    VoteGuildId: ""
+                    VoteGuildId: "",
+                    VoteWebhookUrl: ""
                 },
                 AppPort: 0,
                 API: {
@@ -87,15 +88,15 @@ export async function configStartup() {
         generateConfigCommentBeforeIn(doc, ["Bot", "DiscordClientSecret"], " Discord Bot Token from https://discord.com/developers/applications/<bot-id>/oauth2")
         generateConfigCommentBeforeIn(doc, ["Bot", "AdminGuildId"], " Bot Admin Guild for Internal Commands (https://github.com/DisBotDevelopment/DisBot-Bot/tree/main/src/internal)")
         generateConfigCommentBeforeIn(doc, ["Bot", "ShardCount"], " Use this only if you know what you are doing")
+        generateConfigCommentBeforeIn(doc, ["Modules", "Moderation", "Scout", "BanListAdminGuildId"], " Public Ban Guild Id for the Modration Scout Feature")
         generateConfigCommentBeforeIn(doc, ["Modules", "Verification", "VerifyRedirectUrl"], " Redirect from the Auth")
         generateConfigCommentBeforeIn(doc, ["Modules", "Verification", "VerifyAuthUrl"], " Discord Auth Url from the https://discord.com/developers/applications/<bot-id>/oauth2 Portal")
-        generateConfigCommentBeforeIn(doc, ["Modules", "Bot", "NewsChannel1"], " Only for DisBots Discord Server as Info Channel")
-        generateConfigCommentBeforeIn(doc, ["Modules", "Customer", "PelicanApi"], " Currently in Development and not inclued in the Bot (CODE: https://github.com/DisBotDevelopment/DisBot-Bot/tree/main/templates/unusedModules/customer)")
         generateConfigCommentBeforeIn(doc, ["Modules", "Notifications", "SpotifyClientId"], " Auth for your notifications")
         generateConfigCommentBeforeIn(doc, ["Modules", "Vanity", "VanityPort"], " Port for the Redirect of the vanity.")
         generateConfigCommentBeforeIn(doc, ["Modules", "Vanity", "MainPageRedirect"], " Main Page Redirect to any site (dchat.link -> https://google.com)")
 
         generateConfigComment(doc, "Other", " Internal use and currently in rework (API Update)")
+        generateConfigCommentBeforeIn(doc, ["Other", "CDN"], " CDN for Image Upload - Recommended Zipline")
         generateConfigCommentBefore(doc, "Logging", " DisBot Logs and Debug Logging (Webhook)")
         generateConfigComment(doc, "BotType", " Internal use for loading services. (Use DISBOT)")
         generateConfigComment(doc, "CONFIG_VERSION", " Used for updates in the Config.")
@@ -104,13 +105,15 @@ export async function configStartup() {
             process.env.CONFIG_PATH,
             YAML.stringify(doc)
         );
+        console.error(`Please setup DisBot and start up!`.yellow)
+        process.exit(0);
     }
 
     const file = fs.readFileSync(process.env.CONFIG_PATH, "utf8");
     const ymlData = YAML.parse(file);
     Config = ymlData;
 
-    console.log("DisBot Config is loaded and exported! (Logger, Startup, Bot)")
+    console.log("DisBot Config is loaded and exported! (Logger, Startup, Bot)".bold)
 
     if (Config.CONFIG_VERSION != botData.configVersion) {
         console.error(`Please recreate your Bot Config`.red)

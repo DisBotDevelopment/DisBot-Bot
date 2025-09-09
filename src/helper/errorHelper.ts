@@ -9,12 +9,11 @@ import {
     TextDisplayBuilder,
     WebhookClient
 } from "discord.js";
-import {convertToEmojiPng} from "./emojis.js";
-import {LoggingAction} from "../enums/loggingTypes.js";
-import {Logger} from "../main/logger.js";
-import {Config} from "../main/config.js";
-import {Octokit} from "@octokit/core";
-import {cli} from "winston/lib/winston/config/index.js";
+import { convertToEmojiPng } from "./emojis.js";
+import { LoggingAction } from "../enums/loggingTypes.js";
+import { Logger } from "../main/logger.js";
+import { Config } from "../main/config.js";
+import { Octokit } from "@octokit/core"
 
 colors.enable();
 
