@@ -22,7 +22,11 @@ export default {
         if (!data) {
             await database.guildWelcomeSetup.create({
                 data: {
-                    GuildId: interaction.guild?.id,
+                    Guilds: {
+                        connect: {
+                            GuildId: interaction.guild?.id,
+                        }
+                    },
                     MessageTemplateId: interaction.fields.getTextInputValue(
                         "welcome-message-create-name"
                     ),

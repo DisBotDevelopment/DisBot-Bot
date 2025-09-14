@@ -339,6 +339,31 @@ export type GuildTwitchNotifications = $Result.DefaultSelection<Prisma.$GuildTwi
  */
 export type GuildYoutubeNotifications = $Result.DefaultSelection<Prisma.$GuildYoutubeNotificationsPayload>
 /**
+ * Model LevelSettings
+ * 
+ */
+export type LevelSettings = $Result.DefaultSelection<Prisma.$LevelSettingsPayload>
+/**
+ * Model XPDrops
+ * 
+ */
+export type XPDrops = $Result.DefaultSelection<Prisma.$XPDropsPayload>
+/**
+ * Model XPStreaks
+ * 
+ */
+export type XPStreaks = $Result.DefaultSelection<Prisma.$XPStreaksPayload>
+/**
+ * Model LevelRoles
+ * 
+ */
+export type LevelRoles = $Result.DefaultSelection<Prisma.$LevelRolesPayload>
+/**
+ * Model Levels
+ * 
+ */
+export type Levels = $Result.DefaultSelection<Prisma.$LevelsPayload>
+/**
  * Model Users
  * 
  */
@@ -1080,6 +1105,56 @@ export class PrismaClient<
   get guildYoutubeNotifications(): Prisma.GuildYoutubeNotificationsDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.levelSettings`: Exposes CRUD operations for the **LevelSettings** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LevelSettings
+    * const levelSettings = await prisma.levelSettings.findMany()
+    * ```
+    */
+  get levelSettings(): Prisma.LevelSettingsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.xPDrops`: Exposes CRUD operations for the **XPDrops** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more XPDrops
+    * const xPDrops = await prisma.xPDrops.findMany()
+    * ```
+    */
+  get xPDrops(): Prisma.XPDropsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.xPStreaks`: Exposes CRUD operations for the **XPStreaks** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more XPStreaks
+    * const xPStreaks = await prisma.xPStreaks.findMany()
+    * ```
+    */
+  get xPStreaks(): Prisma.XPStreaksDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.levelRoles`: Exposes CRUD operations for the **LevelRoles** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LevelRoles
+    * const levelRoles = await prisma.levelRoles.findMany()
+    * ```
+    */
+  get levelRoles(): Prisma.LevelRolesDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.levels`: Exposes CRUD operations for the **Levels** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Levels
+    * const levels = await prisma.levels.findMany()
+    * ```
+    */
+  get levels(): Prisma.LevelsDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.users`: Exposes CRUD operations for the **Users** model.
     * Example usage:
     * ```ts
@@ -1669,6 +1744,11 @@ export namespace Prisma {
     GuildFeatureToggles: 'GuildFeatureToggles',
     GuildTwitchNotifications: 'GuildTwitchNotifications',
     GuildYoutubeNotifications: 'GuildYoutubeNotifications',
+    LevelSettings: 'LevelSettings',
+    XPDrops: 'XPDrops',
+    XPStreaks: 'XPStreaks',
+    LevelRoles: 'LevelRoles',
+    Levels: 'Levels',
     Users: 'Users',
     Apis: 'Apis',
     GuildBackups: 'GuildBackups',
@@ -1696,7 +1776,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "guilds" | "guildCommandManger" | "buildInCommands" | "guildComponentManager" | "guildInteractionPermissions" | "guildAutoDeletes" | "guildAutoPublish" | "guildAutoReacts" | "guildAutoRoles" | "moderationScout" | "moderationScoutCases" | "moderationScoutForms" | "moderationScoutFormsData" | "moderationScoutUserAppeals" | "moderationScoutReportModalData" | "moderationScoutReports" | "guildModeration" | "guildUserModerationSettingBan" | "guildUserModerationSettingUnban" | "guildUserModerationSettinKick" | "guildUserModerationSettingWarn" | "guildUserModerationSettingUnwarn" | "guildUserModerationSettingMute" | "guildUserModerationSettingUnmute" | "guildUserModeration" | "guildDisBotAutoModeration" | "guildDisBotAutoModerationMessages" | "guildDisBotAutoModerationMentions" | "guildDisBotAutoModerationAttachments" | "guildDisBotAutoModerationEmojis" | "guildDisBotAutoModerationBlockedWords" | "guildDisBotAutoModerationBlockLinks" | "guildDisBotAutoModerationBlockInvites" | "guildChannelLinks" | "syncedChannelLinkMessages" | "discordGuildAddon" | "giveaways" | "tempVoices" | "tempVoiceChannels" | "guildLeaveSetup" | "guildWelcomeSetup" | "guildLogging" | "guildLogs" | "messageTemplates" | "guildReactionRoles" | "guildSecurity" | "verificationGates" | "verificationGatesPermission" | "guildSpotifyNotifications" | "tags" | "polls" | "pollOptions" | "pollAnswers" | "ticketSetups" | "ticketModalData" | "ticketPermissions" | "tickets" | "ticketFeedback" | "guildFeatureToggles" | "guildTwitchNotifications" | "guildYoutubeNotifications" | "users" | "apis" | "guildBackups" | "vanitys" | "vanityEmbed" | "vanityEmbedAuthor" | "vanityAnalytic" | "vanityAnalyticsLatest30Day" | "disBot"
+      modelProps: "guilds" | "guildCommandManger" | "buildInCommands" | "guildComponentManager" | "guildInteractionPermissions" | "guildAutoDeletes" | "guildAutoPublish" | "guildAutoReacts" | "guildAutoRoles" | "moderationScout" | "moderationScoutCases" | "moderationScoutForms" | "moderationScoutFormsData" | "moderationScoutUserAppeals" | "moderationScoutReportModalData" | "moderationScoutReports" | "guildModeration" | "guildUserModerationSettingBan" | "guildUserModerationSettingUnban" | "guildUserModerationSettinKick" | "guildUserModerationSettingWarn" | "guildUserModerationSettingUnwarn" | "guildUserModerationSettingMute" | "guildUserModerationSettingUnmute" | "guildUserModeration" | "guildDisBotAutoModeration" | "guildDisBotAutoModerationMessages" | "guildDisBotAutoModerationMentions" | "guildDisBotAutoModerationAttachments" | "guildDisBotAutoModerationEmojis" | "guildDisBotAutoModerationBlockedWords" | "guildDisBotAutoModerationBlockLinks" | "guildDisBotAutoModerationBlockInvites" | "guildChannelLinks" | "syncedChannelLinkMessages" | "discordGuildAddon" | "giveaways" | "tempVoices" | "tempVoiceChannels" | "guildLeaveSetup" | "guildWelcomeSetup" | "guildLogging" | "guildLogs" | "messageTemplates" | "guildReactionRoles" | "guildSecurity" | "verificationGates" | "verificationGatesPermission" | "guildSpotifyNotifications" | "tags" | "polls" | "pollOptions" | "pollAnswers" | "ticketSetups" | "ticketModalData" | "ticketPermissions" | "tickets" | "ticketFeedback" | "guildFeatureToggles" | "guildTwitchNotifications" | "guildYoutubeNotifications" | "levelSettings" | "xPDrops" | "xPStreaks" | "levelRoles" | "levels" | "users" | "apis" | "guildBackups" | "vanitys" | "vanityEmbed" | "vanityEmbedAuthor" | "vanityAnalytic" | "vanityAnalyticsLatest30Day" | "disBot"
       txIsolationLevel: never
     }
     model: {
@@ -6214,6 +6294,376 @@ export namespace Prisma {
           }
         }
       }
+      LevelSettings: {
+        payload: Prisma.$LevelSettingsPayload<ExtArgs>
+        fields: Prisma.LevelSettingsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LevelSettingsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelSettingsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LevelSettingsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelSettingsPayload>
+          }
+          findFirst: {
+            args: Prisma.LevelSettingsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelSettingsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LevelSettingsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelSettingsPayload>
+          }
+          findMany: {
+            args: Prisma.LevelSettingsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelSettingsPayload>[]
+          }
+          create: {
+            args: Prisma.LevelSettingsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelSettingsPayload>
+          }
+          createMany: {
+            args: Prisma.LevelSettingsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.LevelSettingsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelSettingsPayload>
+          }
+          update: {
+            args: Prisma.LevelSettingsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelSettingsPayload>
+          }
+          deleteMany: {
+            args: Prisma.LevelSettingsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LevelSettingsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.LevelSettingsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelSettingsPayload>
+          }
+          aggregate: {
+            args: Prisma.LevelSettingsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLevelSettings>
+          }
+          groupBy: {
+            args: Prisma.LevelSettingsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LevelSettingsGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.LevelSettingsFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.LevelSettingsAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.LevelSettingsCountArgs<ExtArgs>
+            result: $Utils.Optional<LevelSettingsCountAggregateOutputType> | number
+          }
+        }
+      }
+      XPDrops: {
+        payload: Prisma.$XPDropsPayload<ExtArgs>
+        fields: Prisma.XPDropsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.XPDropsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$XPDropsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.XPDropsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$XPDropsPayload>
+          }
+          findFirst: {
+            args: Prisma.XPDropsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$XPDropsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.XPDropsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$XPDropsPayload>
+          }
+          findMany: {
+            args: Prisma.XPDropsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$XPDropsPayload>[]
+          }
+          create: {
+            args: Prisma.XPDropsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$XPDropsPayload>
+          }
+          createMany: {
+            args: Prisma.XPDropsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.XPDropsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$XPDropsPayload>
+          }
+          update: {
+            args: Prisma.XPDropsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$XPDropsPayload>
+          }
+          deleteMany: {
+            args: Prisma.XPDropsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.XPDropsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.XPDropsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$XPDropsPayload>
+          }
+          aggregate: {
+            args: Prisma.XPDropsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateXPDrops>
+          }
+          groupBy: {
+            args: Prisma.XPDropsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<XPDropsGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.XPDropsFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.XPDropsAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.XPDropsCountArgs<ExtArgs>
+            result: $Utils.Optional<XPDropsCountAggregateOutputType> | number
+          }
+        }
+      }
+      XPStreaks: {
+        payload: Prisma.$XPStreaksPayload<ExtArgs>
+        fields: Prisma.XPStreaksFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.XPStreaksFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$XPStreaksPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.XPStreaksFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$XPStreaksPayload>
+          }
+          findFirst: {
+            args: Prisma.XPStreaksFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$XPStreaksPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.XPStreaksFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$XPStreaksPayload>
+          }
+          findMany: {
+            args: Prisma.XPStreaksFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$XPStreaksPayload>[]
+          }
+          create: {
+            args: Prisma.XPStreaksCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$XPStreaksPayload>
+          }
+          createMany: {
+            args: Prisma.XPStreaksCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.XPStreaksDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$XPStreaksPayload>
+          }
+          update: {
+            args: Prisma.XPStreaksUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$XPStreaksPayload>
+          }
+          deleteMany: {
+            args: Prisma.XPStreaksDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.XPStreaksUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.XPStreaksUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$XPStreaksPayload>
+          }
+          aggregate: {
+            args: Prisma.XPStreaksAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateXPStreaks>
+          }
+          groupBy: {
+            args: Prisma.XPStreaksGroupByArgs<ExtArgs>
+            result: $Utils.Optional<XPStreaksGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.XPStreaksFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.XPStreaksAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.XPStreaksCountArgs<ExtArgs>
+            result: $Utils.Optional<XPStreaksCountAggregateOutputType> | number
+          }
+        }
+      }
+      LevelRoles: {
+        payload: Prisma.$LevelRolesPayload<ExtArgs>
+        fields: Prisma.LevelRolesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LevelRolesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelRolesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LevelRolesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelRolesPayload>
+          }
+          findFirst: {
+            args: Prisma.LevelRolesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelRolesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LevelRolesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelRolesPayload>
+          }
+          findMany: {
+            args: Prisma.LevelRolesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelRolesPayload>[]
+          }
+          create: {
+            args: Prisma.LevelRolesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelRolesPayload>
+          }
+          createMany: {
+            args: Prisma.LevelRolesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.LevelRolesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelRolesPayload>
+          }
+          update: {
+            args: Prisma.LevelRolesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelRolesPayload>
+          }
+          deleteMany: {
+            args: Prisma.LevelRolesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LevelRolesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.LevelRolesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelRolesPayload>
+          }
+          aggregate: {
+            args: Prisma.LevelRolesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLevelRoles>
+          }
+          groupBy: {
+            args: Prisma.LevelRolesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LevelRolesGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.LevelRolesFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.LevelRolesAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.LevelRolesCountArgs<ExtArgs>
+            result: $Utils.Optional<LevelRolesCountAggregateOutputType> | number
+          }
+        }
+      }
+      Levels: {
+        payload: Prisma.$LevelsPayload<ExtArgs>
+        fields: Prisma.LevelsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LevelsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LevelsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelsPayload>
+          }
+          findFirst: {
+            args: Prisma.LevelsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LevelsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelsPayload>
+          }
+          findMany: {
+            args: Prisma.LevelsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelsPayload>[]
+          }
+          create: {
+            args: Prisma.LevelsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelsPayload>
+          }
+          createMany: {
+            args: Prisma.LevelsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.LevelsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelsPayload>
+          }
+          update: {
+            args: Prisma.LevelsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelsPayload>
+          }
+          deleteMany: {
+            args: Prisma.LevelsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LevelsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.LevelsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LevelsPayload>
+          }
+          aggregate: {
+            args: Prisma.LevelsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLevels>
+          }
+          groupBy: {
+            args: Prisma.LevelsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LevelsGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.LevelsFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.LevelsAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.LevelsCountArgs<ExtArgs>
+            result: $Utils.Optional<LevelsCountAggregateOutputType> | number
+          }
+        }
+      }
       Users: {
         payload: Prisma.$UsersPayload<ExtArgs>
         fields: Prisma.UsersFieldRefs
@@ -7020,6 +7470,11 @@ export namespace Prisma {
     guildFeatureToggles?: GuildFeatureTogglesOmit
     guildTwitchNotifications?: GuildTwitchNotificationsOmit
     guildYoutubeNotifications?: GuildYoutubeNotificationsOmit
+    levelSettings?: LevelSettingsOmit
+    xPDrops?: XPDropsOmit
+    xPStreaks?: XPStreaksOmit
+    levelRoles?: LevelRolesOmit
+    levels?: LevelsOmit
     users?: UsersOmit
     apis?: ApisOmit
     guildBackups?: GuildBackupsOmit
@@ -7778,6 +8233,64 @@ export namespace Prisma {
 
 
   /**
+   * Count Type LevelSettingsCountOutputType
+   */
+
+  export type LevelSettingsCountOutputType = {
+    LevelRoles: number
+    XPDrops: number
+    XPStreaks: number
+    Levels: number
+  }
+
+  export type LevelSettingsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    LevelRoles?: boolean | LevelSettingsCountOutputTypeCountLevelRolesArgs
+    XPDrops?: boolean | LevelSettingsCountOutputTypeCountXPDropsArgs
+    XPStreaks?: boolean | LevelSettingsCountOutputTypeCountXPStreaksArgs
+    Levels?: boolean | LevelSettingsCountOutputTypeCountLevelsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * LevelSettingsCountOutputType without action
+   */
+  export type LevelSettingsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LevelSettingsCountOutputType
+     */
+    select?: LevelSettingsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * LevelSettingsCountOutputType without action
+   */
+  export type LevelSettingsCountOutputTypeCountLevelRolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LevelRolesWhereInput
+  }
+
+  /**
+   * LevelSettingsCountOutputType without action
+   */
+  export type LevelSettingsCountOutputTypeCountXPDropsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: XPDropsWhereInput
+  }
+
+  /**
+   * LevelSettingsCountOutputType without action
+   */
+  export type LevelSettingsCountOutputTypeCountXPStreaksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: XPStreaksWhereInput
+  }
+
+  /**
+   * LevelSettingsCountOutputType without action
+   */
+  export type LevelSettingsCountOutputTypeCountLevelsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LevelsWhereInput
+  }
+
+
+  /**
    * Count Type UsersCountOutputType
    */
 
@@ -7785,12 +8298,14 @@ export namespace Prisma {
     Apis: number
     GuildBackups: number
     Vanitys: number
+    Levels: number
   }
 
   export type UsersCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Apis?: boolean | UsersCountOutputTypeCountApisArgs
     GuildBackups?: boolean | UsersCountOutputTypeCountGuildBackupsArgs
     Vanitys?: boolean | UsersCountOutputTypeCountVanitysArgs
+    Levels?: boolean | UsersCountOutputTypeCountLevelsArgs
   }
 
   // Custom InputTypes
@@ -7823,6 +8338,13 @@ export namespace Prisma {
    */
   export type UsersCountOutputTypeCountVanitysArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: VanitysWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountLevelsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LevelsWhereInput
   }
 
 
@@ -8331,6 +8853,7 @@ export namespace Prisma {
     GuildChannelLinks?: boolean | Guilds$GuildChannelLinksArgs<ExtArgs>
     ModerationScout?: boolean | Guilds$ModerationScoutArgs<ExtArgs>
     GuildUserModeration?: boolean | Guilds$GuildUserModerationArgs<ExtArgs>
+    LevelSettings?: boolean | Guilds$LevelSettingsArgs<ExtArgs>
     _count?: boolean | GuildsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["guilds"]>
 
@@ -8374,6 +8897,7 @@ export namespace Prisma {
     GuildChannelLinks?: boolean | Guilds$GuildChannelLinksArgs<ExtArgs>
     ModerationScout?: boolean | Guilds$ModerationScoutArgs<ExtArgs>
     GuildUserModeration?: boolean | Guilds$GuildUserModerationArgs<ExtArgs>
+    LevelSettings?: boolean | Guilds$LevelSettingsArgs<ExtArgs>
     _count?: boolean | GuildsCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -8409,6 +8933,7 @@ export namespace Prisma {
       GuildChannelLinks: Prisma.$GuildChannelLinksPayload<ExtArgs>[]
       ModerationScout: Prisma.$ModerationScoutPayload<ExtArgs> | null
       GuildUserModeration: Prisma.$GuildUserModerationPayload<ExtArgs>[]
+      LevelSettings: Prisma.$LevelSettingsPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8807,6 +9332,7 @@ export namespace Prisma {
     GuildChannelLinks<T extends Guilds$GuildChannelLinksArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$GuildChannelLinksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuildChannelLinksPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ModerationScout<T extends Guilds$ModerationScoutArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$ModerationScoutArgs<ExtArgs>>): Prisma__ModerationScoutClient<$Result.GetResult<Prisma.$ModerationScoutPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     GuildUserModeration<T extends Guilds$GuildUserModerationArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$GuildUserModerationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuildUserModerationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    LevelSettings<T extends Guilds$LevelSettingsArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$LevelSettingsArgs<ExtArgs>>): Prisma__LevelSettingsClient<$Result.GetResult<Prisma.$LevelSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9843,6 +10369,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: GuildUserModerationScalarFieldEnum | GuildUserModerationScalarFieldEnum[]
+  }
+
+  /**
+   * Guilds.LevelSettings
+   */
+  export type Guilds$LevelSettingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LevelSettings
+     */
+    select?: LevelSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LevelSettings
+     */
+    omit?: LevelSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelSettingsInclude<ExtArgs> | null
+    where?: LevelSettingsWhereInput
   }
 
   /**
@@ -49958,7 +50503,7 @@ export namespace Prisma {
       GuildId: string
     }, ExtArgs["result"]["guildWelcomeSetup"]>
     composites: {
-      ImageData: Prisma.$WelcomeLeaveImageDataPayload
+      ImageData: Prisma.$WelcomeLeaveImageDataPayload | null
     }
   }
 
@@ -72181,6 +72726,5432 @@ export namespace Prisma {
 
 
   /**
+   * Model LevelSettings
+   */
+
+  export type AggregateLevelSettings = {
+    _count: LevelSettingsCountAggregateOutputType | null
+    _avg: LevelSettingsAvgAggregateOutputType | null
+    _sum: LevelSettingsSumAggregateOutputType | null
+    _min: LevelSettingsMinAggregateOutputType | null
+    _max: LevelSettingsMaxAggregateOutputType | null
+  }
+
+  export type LevelSettingsAvgAggregateOutputType = {
+    LeaderboardDisplayAmount: number | null
+    RequiredXPForFirstLevel: number | null
+    VoiceXPCooldown: number | null
+  }
+
+  export type LevelSettingsSumAggregateOutputType = {
+    LeaderboardDisplayAmount: number | null
+    RequiredXPForFirstLevel: number | null
+    VoiceXPCooldown: number | null
+  }
+
+  export type LevelSettingsMinAggregateOutputType = {
+    id: string | null
+    LevelUpChannelId: string | null
+    LevelUoMessageTemplateId: string | null
+    LeaderboardMessageTemplateId: string | null
+    LeaderboardDisplayAmount: number | null
+    RequiredXPForFirstLevel: number | null
+    Format: string | null
+    MessageXP: boolean | null
+    MessageXPRange: string | null
+    MesssageXPCooldown: string | null
+    MessageXPType: string | null
+    VoiceXP: boolean | null
+    VoiceXPRange: string | null
+    VoiceXPCooldown: number | null
+    GuildId: string | null
+  }
+
+  export type LevelSettingsMaxAggregateOutputType = {
+    id: string | null
+    LevelUpChannelId: string | null
+    LevelUoMessageTemplateId: string | null
+    LeaderboardMessageTemplateId: string | null
+    LeaderboardDisplayAmount: number | null
+    RequiredXPForFirstLevel: number | null
+    Format: string | null
+    MessageXP: boolean | null
+    MessageXPRange: string | null
+    MesssageXPCooldown: string | null
+    MessageXPType: string | null
+    VoiceXP: boolean | null
+    VoiceXPRange: string | null
+    VoiceXPCooldown: number | null
+    GuildId: string | null
+  }
+
+  export type LevelSettingsCountAggregateOutputType = {
+    id: number
+    LevelUpChannelId: number
+    LevelUoMessageTemplateId: number
+    LeaderboardMessageTemplateId: number
+    LeaderboardDisplayAmount: number
+    RequiredXPForFirstLevel: number
+    Format: number
+    MessageXP: number
+    MessageXPRange: number
+    MesssageXPCooldown: number
+    MessageXPType: number
+    VoiceXP: number
+    VoiceXPRange: number
+    VoiceXPCooldown: number
+    ExcludedChannelIds: number
+    ExcludeUserIds: number
+    ExcludeRoleIds: number
+    GuildId: number
+    _all: number
+  }
+
+
+  export type LevelSettingsAvgAggregateInputType = {
+    LeaderboardDisplayAmount?: true
+    RequiredXPForFirstLevel?: true
+    VoiceXPCooldown?: true
+  }
+
+  export type LevelSettingsSumAggregateInputType = {
+    LeaderboardDisplayAmount?: true
+    RequiredXPForFirstLevel?: true
+    VoiceXPCooldown?: true
+  }
+
+  export type LevelSettingsMinAggregateInputType = {
+    id?: true
+    LevelUpChannelId?: true
+    LevelUoMessageTemplateId?: true
+    LeaderboardMessageTemplateId?: true
+    LeaderboardDisplayAmount?: true
+    RequiredXPForFirstLevel?: true
+    Format?: true
+    MessageXP?: true
+    MessageXPRange?: true
+    MesssageXPCooldown?: true
+    MessageXPType?: true
+    VoiceXP?: true
+    VoiceXPRange?: true
+    VoiceXPCooldown?: true
+    GuildId?: true
+  }
+
+  export type LevelSettingsMaxAggregateInputType = {
+    id?: true
+    LevelUpChannelId?: true
+    LevelUoMessageTemplateId?: true
+    LeaderboardMessageTemplateId?: true
+    LeaderboardDisplayAmount?: true
+    RequiredXPForFirstLevel?: true
+    Format?: true
+    MessageXP?: true
+    MessageXPRange?: true
+    MesssageXPCooldown?: true
+    MessageXPType?: true
+    VoiceXP?: true
+    VoiceXPRange?: true
+    VoiceXPCooldown?: true
+    GuildId?: true
+  }
+
+  export type LevelSettingsCountAggregateInputType = {
+    id?: true
+    LevelUpChannelId?: true
+    LevelUoMessageTemplateId?: true
+    LeaderboardMessageTemplateId?: true
+    LeaderboardDisplayAmount?: true
+    RequiredXPForFirstLevel?: true
+    Format?: true
+    MessageXP?: true
+    MessageXPRange?: true
+    MesssageXPCooldown?: true
+    MessageXPType?: true
+    VoiceXP?: true
+    VoiceXPRange?: true
+    VoiceXPCooldown?: true
+    ExcludedChannelIds?: true
+    ExcludeUserIds?: true
+    ExcludeRoleIds?: true
+    GuildId?: true
+    _all?: true
+  }
+
+  export type LevelSettingsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LevelSettings to aggregate.
+     */
+    where?: LevelSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LevelSettings to fetch.
+     */
+    orderBy?: LevelSettingsOrderByWithRelationInput | LevelSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LevelSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LevelSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LevelSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LevelSettings
+    **/
+    _count?: true | LevelSettingsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LevelSettingsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LevelSettingsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LevelSettingsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LevelSettingsMaxAggregateInputType
+  }
+
+  export type GetLevelSettingsAggregateType<T extends LevelSettingsAggregateArgs> = {
+        [P in keyof T & keyof AggregateLevelSettings]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLevelSettings[P]>
+      : GetScalarType<T[P], AggregateLevelSettings[P]>
+  }
+
+
+
+
+  export type LevelSettingsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LevelSettingsWhereInput
+    orderBy?: LevelSettingsOrderByWithAggregationInput | LevelSettingsOrderByWithAggregationInput[]
+    by: LevelSettingsScalarFieldEnum[] | LevelSettingsScalarFieldEnum
+    having?: LevelSettingsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LevelSettingsCountAggregateInputType | true
+    _avg?: LevelSettingsAvgAggregateInputType
+    _sum?: LevelSettingsSumAggregateInputType
+    _min?: LevelSettingsMinAggregateInputType
+    _max?: LevelSettingsMaxAggregateInputType
+  }
+
+  export type LevelSettingsGroupByOutputType = {
+    id: string
+    LevelUpChannelId: string
+    LevelUoMessageTemplateId: string
+    LeaderboardMessageTemplateId: string
+    LeaderboardDisplayAmount: number
+    RequiredXPForFirstLevel: number
+    Format: string
+    MessageXP: boolean
+    MessageXPRange: string
+    MesssageXPCooldown: string
+    MessageXPType: string
+    VoiceXP: boolean
+    VoiceXPRange: string
+    VoiceXPCooldown: number
+    ExcludedChannelIds: string[]
+    ExcludeUserIds: string[]
+    ExcludeRoleIds: string[]
+    GuildId: string
+    _count: LevelSettingsCountAggregateOutputType | null
+    _avg: LevelSettingsAvgAggregateOutputType | null
+    _sum: LevelSettingsSumAggregateOutputType | null
+    _min: LevelSettingsMinAggregateOutputType | null
+    _max: LevelSettingsMaxAggregateOutputType | null
+  }
+
+  type GetLevelSettingsGroupByPayload<T extends LevelSettingsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LevelSettingsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LevelSettingsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LevelSettingsGroupByOutputType[P]>
+            : GetScalarType<T[P], LevelSettingsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LevelSettingsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    LevelUpChannelId?: boolean
+    LevelUoMessageTemplateId?: boolean
+    LeaderboardMessageTemplateId?: boolean
+    LeaderboardDisplayAmount?: boolean
+    RequiredXPForFirstLevel?: boolean
+    Format?: boolean
+    MessageXP?: boolean
+    MessageXPRange?: boolean
+    MesssageXPCooldown?: boolean
+    MessageXPType?: boolean
+    VoiceXP?: boolean
+    VoiceXPRange?: boolean
+    VoiceXPCooldown?: boolean
+    ExcludedChannelIds?: boolean
+    ExcludeUserIds?: boolean
+    ExcludeRoleIds?: boolean
+    GuildId?: boolean
+    LevelRoles?: boolean | LevelSettings$LevelRolesArgs<ExtArgs>
+    XPDrops?: boolean | LevelSettings$XPDropsArgs<ExtArgs>
+    XPStreaks?: boolean | LevelSettings$XPStreaksArgs<ExtArgs>
+    Levels?: boolean | LevelSettings$LevelsArgs<ExtArgs>
+    Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
+    _count?: boolean | LevelSettingsCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["levelSettings"]>
+
+
+
+  export type LevelSettingsSelectScalar = {
+    id?: boolean
+    LevelUpChannelId?: boolean
+    LevelUoMessageTemplateId?: boolean
+    LeaderboardMessageTemplateId?: boolean
+    LeaderboardDisplayAmount?: boolean
+    RequiredXPForFirstLevel?: boolean
+    Format?: boolean
+    MessageXP?: boolean
+    MessageXPRange?: boolean
+    MesssageXPCooldown?: boolean
+    MessageXPType?: boolean
+    VoiceXP?: boolean
+    VoiceXPRange?: boolean
+    VoiceXPCooldown?: boolean
+    ExcludedChannelIds?: boolean
+    ExcludeUserIds?: boolean
+    ExcludeRoleIds?: boolean
+    GuildId?: boolean
+  }
+
+  export type LevelSettingsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "LevelUpChannelId" | "LevelUoMessageTemplateId" | "LeaderboardMessageTemplateId" | "LeaderboardDisplayAmount" | "RequiredXPForFirstLevel" | "Format" | "MessageXP" | "MessageXPRange" | "MesssageXPCooldown" | "MessageXPType" | "VoiceXP" | "VoiceXPRange" | "VoiceXPCooldown" | "ExcludedChannelIds" | "ExcludeUserIds" | "ExcludeRoleIds" | "GuildId", ExtArgs["result"]["levelSettings"]>
+  export type LevelSettingsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    LevelRoles?: boolean | LevelSettings$LevelRolesArgs<ExtArgs>
+    XPDrops?: boolean | LevelSettings$XPDropsArgs<ExtArgs>
+    XPStreaks?: boolean | LevelSettings$XPStreaksArgs<ExtArgs>
+    Levels?: boolean | LevelSettings$LevelsArgs<ExtArgs>
+    Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
+    _count?: boolean | LevelSettingsCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $LevelSettingsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LevelSettings"
+    objects: {
+      LevelRoles: Prisma.$LevelRolesPayload<ExtArgs>[]
+      XPDrops: Prisma.$XPDropsPayload<ExtArgs>[]
+      XPStreaks: Prisma.$XPStreaksPayload<ExtArgs>[]
+      Levels: Prisma.$LevelsPayload<ExtArgs>[]
+      Guilds: Prisma.$GuildsPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      LevelUpChannelId: string
+      LevelUoMessageTemplateId: string
+      LeaderboardMessageTemplateId: string
+      LeaderboardDisplayAmount: number
+      RequiredXPForFirstLevel: number
+      Format: string
+      MessageXP: boolean
+      MessageXPRange: string
+      MesssageXPCooldown: string
+      MessageXPType: string
+      VoiceXP: boolean
+      VoiceXPRange: string
+      VoiceXPCooldown: number
+      ExcludedChannelIds: string[]
+      ExcludeUserIds: string[]
+      ExcludeRoleIds: string[]
+      GuildId: string
+    }, ExtArgs["result"]["levelSettings"]>
+    composites: {}
+  }
+
+  type LevelSettingsGetPayload<S extends boolean | null | undefined | LevelSettingsDefaultArgs> = $Result.GetResult<Prisma.$LevelSettingsPayload, S>
+
+  type LevelSettingsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LevelSettingsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LevelSettingsCountAggregateInputType | true
+    }
+
+  export interface LevelSettingsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LevelSettings'], meta: { name: 'LevelSettings' } }
+    /**
+     * Find zero or one LevelSettings that matches the filter.
+     * @param {LevelSettingsFindUniqueArgs} args - Arguments to find a LevelSettings
+     * @example
+     * // Get one LevelSettings
+     * const levelSettings = await prisma.levelSettings.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LevelSettingsFindUniqueArgs>(args: SelectSubset<T, LevelSettingsFindUniqueArgs<ExtArgs>>): Prisma__LevelSettingsClient<$Result.GetResult<Prisma.$LevelSettingsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LevelSettings that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LevelSettingsFindUniqueOrThrowArgs} args - Arguments to find a LevelSettings
+     * @example
+     * // Get one LevelSettings
+     * const levelSettings = await prisma.levelSettings.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LevelSettingsFindUniqueOrThrowArgs>(args: SelectSubset<T, LevelSettingsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LevelSettingsClient<$Result.GetResult<Prisma.$LevelSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LevelSettings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelSettingsFindFirstArgs} args - Arguments to find a LevelSettings
+     * @example
+     * // Get one LevelSettings
+     * const levelSettings = await prisma.levelSettings.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LevelSettingsFindFirstArgs>(args?: SelectSubset<T, LevelSettingsFindFirstArgs<ExtArgs>>): Prisma__LevelSettingsClient<$Result.GetResult<Prisma.$LevelSettingsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LevelSettings that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelSettingsFindFirstOrThrowArgs} args - Arguments to find a LevelSettings
+     * @example
+     * // Get one LevelSettings
+     * const levelSettings = await prisma.levelSettings.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LevelSettingsFindFirstOrThrowArgs>(args?: SelectSubset<T, LevelSettingsFindFirstOrThrowArgs<ExtArgs>>): Prisma__LevelSettingsClient<$Result.GetResult<Prisma.$LevelSettingsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LevelSettings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelSettingsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LevelSettings
+     * const levelSettings = await prisma.levelSettings.findMany()
+     * 
+     * // Get first 10 LevelSettings
+     * const levelSettings = await prisma.levelSettings.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const levelSettingsWithIdOnly = await prisma.levelSettings.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends LevelSettingsFindManyArgs>(args?: SelectSubset<T, LevelSettingsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LevelSettingsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LevelSettings.
+     * @param {LevelSettingsCreateArgs} args - Arguments to create a LevelSettings.
+     * @example
+     * // Create one LevelSettings
+     * const LevelSettings = await prisma.levelSettings.create({
+     *   data: {
+     *     // ... data to create a LevelSettings
+     *   }
+     * })
+     * 
+     */
+    create<T extends LevelSettingsCreateArgs>(args: SelectSubset<T, LevelSettingsCreateArgs<ExtArgs>>): Prisma__LevelSettingsClient<$Result.GetResult<Prisma.$LevelSettingsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LevelSettings.
+     * @param {LevelSettingsCreateManyArgs} args - Arguments to create many LevelSettings.
+     * @example
+     * // Create many LevelSettings
+     * const levelSettings = await prisma.levelSettings.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LevelSettingsCreateManyArgs>(args?: SelectSubset<T, LevelSettingsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a LevelSettings.
+     * @param {LevelSettingsDeleteArgs} args - Arguments to delete one LevelSettings.
+     * @example
+     * // Delete one LevelSettings
+     * const LevelSettings = await prisma.levelSettings.delete({
+     *   where: {
+     *     // ... filter to delete one LevelSettings
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LevelSettingsDeleteArgs>(args: SelectSubset<T, LevelSettingsDeleteArgs<ExtArgs>>): Prisma__LevelSettingsClient<$Result.GetResult<Prisma.$LevelSettingsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LevelSettings.
+     * @param {LevelSettingsUpdateArgs} args - Arguments to update one LevelSettings.
+     * @example
+     * // Update one LevelSettings
+     * const levelSettings = await prisma.levelSettings.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LevelSettingsUpdateArgs>(args: SelectSubset<T, LevelSettingsUpdateArgs<ExtArgs>>): Prisma__LevelSettingsClient<$Result.GetResult<Prisma.$LevelSettingsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LevelSettings.
+     * @param {LevelSettingsDeleteManyArgs} args - Arguments to filter LevelSettings to delete.
+     * @example
+     * // Delete a few LevelSettings
+     * const { count } = await prisma.levelSettings.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LevelSettingsDeleteManyArgs>(args?: SelectSubset<T, LevelSettingsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LevelSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelSettingsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LevelSettings
+     * const levelSettings = await prisma.levelSettings.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LevelSettingsUpdateManyArgs>(args: SelectSubset<T, LevelSettingsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one LevelSettings.
+     * @param {LevelSettingsUpsertArgs} args - Arguments to update or create a LevelSettings.
+     * @example
+     * // Update or create a LevelSettings
+     * const levelSettings = await prisma.levelSettings.upsert({
+     *   create: {
+     *     // ... data to create a LevelSettings
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LevelSettings we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LevelSettingsUpsertArgs>(args: SelectSubset<T, LevelSettingsUpsertArgs<ExtArgs>>): Prisma__LevelSettingsClient<$Result.GetResult<Prisma.$LevelSettingsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LevelSettings that matches the filter.
+     * @param {LevelSettingsFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const levelSettings = await prisma.levelSettings.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: LevelSettingsFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a LevelSettings.
+     * @param {LevelSettingsAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const levelSettings = await prisma.levelSettings.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: LevelSettingsAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of LevelSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelSettingsCountArgs} args - Arguments to filter LevelSettings to count.
+     * @example
+     * // Count the number of LevelSettings
+     * const count = await prisma.levelSettings.count({
+     *   where: {
+     *     // ... the filter for the LevelSettings we want to count
+     *   }
+     * })
+    **/
+    count<T extends LevelSettingsCountArgs>(
+      args?: Subset<T, LevelSettingsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LevelSettingsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LevelSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelSettingsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LevelSettingsAggregateArgs>(args: Subset<T, LevelSettingsAggregateArgs>): Prisma.PrismaPromise<GetLevelSettingsAggregateType<T>>
+
+    /**
+     * Group by LevelSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelSettingsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LevelSettingsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LevelSettingsGroupByArgs['orderBy'] }
+        : { orderBy?: LevelSettingsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LevelSettingsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLevelSettingsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LevelSettings model
+   */
+  readonly fields: LevelSettingsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LevelSettings.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LevelSettingsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    LevelRoles<T extends LevelSettings$LevelRolesArgs<ExtArgs> = {}>(args?: Subset<T, LevelSettings$LevelRolesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LevelRolesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    XPDrops<T extends LevelSettings$XPDropsArgs<ExtArgs> = {}>(args?: Subset<T, LevelSettings$XPDropsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$XPDropsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    XPStreaks<T extends LevelSettings$XPStreaksArgs<ExtArgs> = {}>(args?: Subset<T, LevelSettings$XPStreaksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$XPStreaksPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Levels<T extends LevelSettings$LevelsArgs<ExtArgs> = {}>(args?: Subset<T, LevelSettings$LevelsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LevelsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Guilds<T extends GuildsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GuildsDefaultArgs<ExtArgs>>): Prisma__GuildsClient<$Result.GetResult<Prisma.$GuildsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LevelSettings model
+   */
+  interface LevelSettingsFieldRefs {
+    readonly id: FieldRef<"LevelSettings", 'String'>
+    readonly LevelUpChannelId: FieldRef<"LevelSettings", 'String'>
+    readonly LevelUoMessageTemplateId: FieldRef<"LevelSettings", 'String'>
+    readonly LeaderboardMessageTemplateId: FieldRef<"LevelSettings", 'String'>
+    readonly LeaderboardDisplayAmount: FieldRef<"LevelSettings", 'Int'>
+    readonly RequiredXPForFirstLevel: FieldRef<"LevelSettings", 'Int'>
+    readonly Format: FieldRef<"LevelSettings", 'String'>
+    readonly MessageXP: FieldRef<"LevelSettings", 'Boolean'>
+    readonly MessageXPRange: FieldRef<"LevelSettings", 'String'>
+    readonly MesssageXPCooldown: FieldRef<"LevelSettings", 'String'>
+    readonly MessageXPType: FieldRef<"LevelSettings", 'String'>
+    readonly VoiceXP: FieldRef<"LevelSettings", 'Boolean'>
+    readonly VoiceXPRange: FieldRef<"LevelSettings", 'String'>
+    readonly VoiceXPCooldown: FieldRef<"LevelSettings", 'Int'>
+    readonly ExcludedChannelIds: FieldRef<"LevelSettings", 'String[]'>
+    readonly ExcludeUserIds: FieldRef<"LevelSettings", 'String[]'>
+    readonly ExcludeRoleIds: FieldRef<"LevelSettings", 'String[]'>
+    readonly GuildId: FieldRef<"LevelSettings", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LevelSettings findUnique
+   */
+  export type LevelSettingsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LevelSettings
+     */
+    select?: LevelSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LevelSettings
+     */
+    omit?: LevelSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelSettingsInclude<ExtArgs> | null
+    /**
+     * Filter, which LevelSettings to fetch.
+     */
+    where: LevelSettingsWhereUniqueInput
+  }
+
+  /**
+   * LevelSettings findUniqueOrThrow
+   */
+  export type LevelSettingsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LevelSettings
+     */
+    select?: LevelSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LevelSettings
+     */
+    omit?: LevelSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelSettingsInclude<ExtArgs> | null
+    /**
+     * Filter, which LevelSettings to fetch.
+     */
+    where: LevelSettingsWhereUniqueInput
+  }
+
+  /**
+   * LevelSettings findFirst
+   */
+  export type LevelSettingsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LevelSettings
+     */
+    select?: LevelSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LevelSettings
+     */
+    omit?: LevelSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelSettingsInclude<ExtArgs> | null
+    /**
+     * Filter, which LevelSettings to fetch.
+     */
+    where?: LevelSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LevelSettings to fetch.
+     */
+    orderBy?: LevelSettingsOrderByWithRelationInput | LevelSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LevelSettings.
+     */
+    cursor?: LevelSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LevelSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LevelSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LevelSettings.
+     */
+    distinct?: LevelSettingsScalarFieldEnum | LevelSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * LevelSettings findFirstOrThrow
+   */
+  export type LevelSettingsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LevelSettings
+     */
+    select?: LevelSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LevelSettings
+     */
+    omit?: LevelSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelSettingsInclude<ExtArgs> | null
+    /**
+     * Filter, which LevelSettings to fetch.
+     */
+    where?: LevelSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LevelSettings to fetch.
+     */
+    orderBy?: LevelSettingsOrderByWithRelationInput | LevelSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LevelSettings.
+     */
+    cursor?: LevelSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LevelSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LevelSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LevelSettings.
+     */
+    distinct?: LevelSettingsScalarFieldEnum | LevelSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * LevelSettings findMany
+   */
+  export type LevelSettingsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LevelSettings
+     */
+    select?: LevelSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LevelSettings
+     */
+    omit?: LevelSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelSettingsInclude<ExtArgs> | null
+    /**
+     * Filter, which LevelSettings to fetch.
+     */
+    where?: LevelSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LevelSettings to fetch.
+     */
+    orderBy?: LevelSettingsOrderByWithRelationInput | LevelSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LevelSettings.
+     */
+    cursor?: LevelSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LevelSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LevelSettings.
+     */
+    skip?: number
+    distinct?: LevelSettingsScalarFieldEnum | LevelSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * LevelSettings create
+   */
+  export type LevelSettingsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LevelSettings
+     */
+    select?: LevelSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LevelSettings
+     */
+    omit?: LevelSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelSettingsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a LevelSettings.
+     */
+    data: XOR<LevelSettingsCreateInput, LevelSettingsUncheckedCreateInput>
+  }
+
+  /**
+   * LevelSettings createMany
+   */
+  export type LevelSettingsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LevelSettings.
+     */
+    data: LevelSettingsCreateManyInput | LevelSettingsCreateManyInput[]
+  }
+
+  /**
+   * LevelSettings update
+   */
+  export type LevelSettingsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LevelSettings
+     */
+    select?: LevelSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LevelSettings
+     */
+    omit?: LevelSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelSettingsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a LevelSettings.
+     */
+    data: XOR<LevelSettingsUpdateInput, LevelSettingsUncheckedUpdateInput>
+    /**
+     * Choose, which LevelSettings to update.
+     */
+    where: LevelSettingsWhereUniqueInput
+  }
+
+  /**
+   * LevelSettings updateMany
+   */
+  export type LevelSettingsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LevelSettings.
+     */
+    data: XOR<LevelSettingsUpdateManyMutationInput, LevelSettingsUncheckedUpdateManyInput>
+    /**
+     * Filter which LevelSettings to update
+     */
+    where?: LevelSettingsWhereInput
+    /**
+     * Limit how many LevelSettings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LevelSettings upsert
+   */
+  export type LevelSettingsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LevelSettings
+     */
+    select?: LevelSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LevelSettings
+     */
+    omit?: LevelSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelSettingsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the LevelSettings to update in case it exists.
+     */
+    where: LevelSettingsWhereUniqueInput
+    /**
+     * In case the LevelSettings found by the `where` argument doesn't exist, create a new LevelSettings with this data.
+     */
+    create: XOR<LevelSettingsCreateInput, LevelSettingsUncheckedCreateInput>
+    /**
+     * In case the LevelSettings was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LevelSettingsUpdateInput, LevelSettingsUncheckedUpdateInput>
+  }
+
+  /**
+   * LevelSettings delete
+   */
+  export type LevelSettingsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LevelSettings
+     */
+    select?: LevelSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LevelSettings
+     */
+    omit?: LevelSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelSettingsInclude<ExtArgs> | null
+    /**
+     * Filter which LevelSettings to delete.
+     */
+    where: LevelSettingsWhereUniqueInput
+  }
+
+  /**
+   * LevelSettings deleteMany
+   */
+  export type LevelSettingsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LevelSettings to delete
+     */
+    where?: LevelSettingsWhereInput
+    /**
+     * Limit how many LevelSettings to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LevelSettings findRaw
+   */
+  export type LevelSettingsFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * LevelSettings aggregateRaw
+   */
+  export type LevelSettingsAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * LevelSettings.LevelRoles
+   */
+  export type LevelSettings$LevelRolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LevelRoles
+     */
+    select?: LevelRolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LevelRoles
+     */
+    omit?: LevelRolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelRolesInclude<ExtArgs> | null
+    where?: LevelRolesWhereInput
+    orderBy?: LevelRolesOrderByWithRelationInput | LevelRolesOrderByWithRelationInput[]
+    cursor?: LevelRolesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LevelRolesScalarFieldEnum | LevelRolesScalarFieldEnum[]
+  }
+
+  /**
+   * LevelSettings.XPDrops
+   */
+  export type LevelSettings$XPDropsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the XPDrops
+     */
+    select?: XPDropsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the XPDrops
+     */
+    omit?: XPDropsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: XPDropsInclude<ExtArgs> | null
+    where?: XPDropsWhereInput
+    orderBy?: XPDropsOrderByWithRelationInput | XPDropsOrderByWithRelationInput[]
+    cursor?: XPDropsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: XPDropsScalarFieldEnum | XPDropsScalarFieldEnum[]
+  }
+
+  /**
+   * LevelSettings.XPStreaks
+   */
+  export type LevelSettings$XPStreaksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the XPStreaks
+     */
+    select?: XPStreaksSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the XPStreaks
+     */
+    omit?: XPStreaksOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: XPStreaksInclude<ExtArgs> | null
+    where?: XPStreaksWhereInput
+    orderBy?: XPStreaksOrderByWithRelationInput | XPStreaksOrderByWithRelationInput[]
+    cursor?: XPStreaksWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: XPStreaksScalarFieldEnum | XPStreaksScalarFieldEnum[]
+  }
+
+  /**
+   * LevelSettings.Levels
+   */
+  export type LevelSettings$LevelsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Levels
+     */
+    select?: LevelsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Levels
+     */
+    omit?: LevelsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelsInclude<ExtArgs> | null
+    where?: LevelsWhereInput
+    orderBy?: LevelsOrderByWithRelationInput | LevelsOrderByWithRelationInput[]
+    cursor?: LevelsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LevelsScalarFieldEnum | LevelsScalarFieldEnum[]
+  }
+
+  /**
+   * LevelSettings without action
+   */
+  export type LevelSettingsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LevelSettings
+     */
+    select?: LevelSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LevelSettings
+     */
+    omit?: LevelSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelSettingsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model XPDrops
+   */
+
+  export type AggregateXPDrops = {
+    _count: XPDropsCountAggregateOutputType | null
+    _avg: XPDropsAvgAggregateOutputType | null
+    _sum: XPDropsSumAggregateOutputType | null
+    _min: XPDropsMinAggregateOutputType | null
+    _max: XPDropsMaxAggregateOutputType | null
+  }
+
+  export type XPDropsAvgAggregateOutputType = {
+    ClaimType: number | null
+  }
+
+  export type XPDropsSumAggregateOutputType = {
+    ClaimType: number | null
+  }
+
+  export type XPDropsMinAggregateOutputType = {
+    id: string | null
+    GuildId: string | null
+    XPRange: string | null
+    ClaimType: number | null
+    TimeToRespawn: string | null
+  }
+
+  export type XPDropsMaxAggregateOutputType = {
+    id: string | null
+    GuildId: string | null
+    XPRange: string | null
+    ClaimType: number | null
+    TimeToRespawn: string | null
+  }
+
+  export type XPDropsCountAggregateOutputType = {
+    id: number
+    GuildId: number
+    XPRange: number
+    ClaimType: number
+    TimeToRespawn: number
+    ChannelIds: number
+    _all: number
+  }
+
+
+  export type XPDropsAvgAggregateInputType = {
+    ClaimType?: true
+  }
+
+  export type XPDropsSumAggregateInputType = {
+    ClaimType?: true
+  }
+
+  export type XPDropsMinAggregateInputType = {
+    id?: true
+    GuildId?: true
+    XPRange?: true
+    ClaimType?: true
+    TimeToRespawn?: true
+  }
+
+  export type XPDropsMaxAggregateInputType = {
+    id?: true
+    GuildId?: true
+    XPRange?: true
+    ClaimType?: true
+    TimeToRespawn?: true
+  }
+
+  export type XPDropsCountAggregateInputType = {
+    id?: true
+    GuildId?: true
+    XPRange?: true
+    ClaimType?: true
+    TimeToRespawn?: true
+    ChannelIds?: true
+    _all?: true
+  }
+
+  export type XPDropsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which XPDrops to aggregate.
+     */
+    where?: XPDropsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of XPDrops to fetch.
+     */
+    orderBy?: XPDropsOrderByWithRelationInput | XPDropsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: XPDropsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` XPDrops from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` XPDrops.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned XPDrops
+    **/
+    _count?: true | XPDropsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: XPDropsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: XPDropsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: XPDropsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: XPDropsMaxAggregateInputType
+  }
+
+  export type GetXPDropsAggregateType<T extends XPDropsAggregateArgs> = {
+        [P in keyof T & keyof AggregateXPDrops]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateXPDrops[P]>
+      : GetScalarType<T[P], AggregateXPDrops[P]>
+  }
+
+
+
+
+  export type XPDropsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: XPDropsWhereInput
+    orderBy?: XPDropsOrderByWithAggregationInput | XPDropsOrderByWithAggregationInput[]
+    by: XPDropsScalarFieldEnum[] | XPDropsScalarFieldEnum
+    having?: XPDropsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: XPDropsCountAggregateInputType | true
+    _avg?: XPDropsAvgAggregateInputType
+    _sum?: XPDropsSumAggregateInputType
+    _min?: XPDropsMinAggregateInputType
+    _max?: XPDropsMaxAggregateInputType
+  }
+
+  export type XPDropsGroupByOutputType = {
+    id: string
+    GuildId: string
+    XPRange: string
+    ClaimType: number
+    TimeToRespawn: string
+    ChannelIds: string[]
+    _count: XPDropsCountAggregateOutputType | null
+    _avg: XPDropsAvgAggregateOutputType | null
+    _sum: XPDropsSumAggregateOutputType | null
+    _min: XPDropsMinAggregateOutputType | null
+    _max: XPDropsMaxAggregateOutputType | null
+  }
+
+  type GetXPDropsGroupByPayload<T extends XPDropsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<XPDropsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof XPDropsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], XPDropsGroupByOutputType[P]>
+            : GetScalarType<T[P], XPDropsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type XPDropsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    GuildId?: boolean
+    XPRange?: boolean
+    ClaimType?: boolean
+    TimeToRespawn?: boolean
+    ChannelIds?: boolean
+    LevelSettings?: boolean | LevelSettingsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["xPDrops"]>
+
+
+
+  export type XPDropsSelectScalar = {
+    id?: boolean
+    GuildId?: boolean
+    XPRange?: boolean
+    ClaimType?: boolean
+    TimeToRespawn?: boolean
+    ChannelIds?: boolean
+  }
+
+  export type XPDropsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "GuildId" | "XPRange" | "ClaimType" | "TimeToRespawn" | "ChannelIds", ExtArgs["result"]["xPDrops"]>
+  export type XPDropsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    LevelSettings?: boolean | LevelSettingsDefaultArgs<ExtArgs>
+  }
+
+  export type $XPDropsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "XPDrops"
+    objects: {
+      LevelSettings: Prisma.$LevelSettingsPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      GuildId: string
+      XPRange: string
+      ClaimType: number
+      TimeToRespawn: string
+      ChannelIds: string[]
+    }, ExtArgs["result"]["xPDrops"]>
+    composites: {}
+  }
+
+  type XPDropsGetPayload<S extends boolean | null | undefined | XPDropsDefaultArgs> = $Result.GetResult<Prisma.$XPDropsPayload, S>
+
+  type XPDropsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<XPDropsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: XPDropsCountAggregateInputType | true
+    }
+
+  export interface XPDropsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['XPDrops'], meta: { name: 'XPDrops' } }
+    /**
+     * Find zero or one XPDrops that matches the filter.
+     * @param {XPDropsFindUniqueArgs} args - Arguments to find a XPDrops
+     * @example
+     * // Get one XPDrops
+     * const xPDrops = await prisma.xPDrops.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends XPDropsFindUniqueArgs>(args: SelectSubset<T, XPDropsFindUniqueArgs<ExtArgs>>): Prisma__XPDropsClient<$Result.GetResult<Prisma.$XPDropsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one XPDrops that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {XPDropsFindUniqueOrThrowArgs} args - Arguments to find a XPDrops
+     * @example
+     * // Get one XPDrops
+     * const xPDrops = await prisma.xPDrops.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends XPDropsFindUniqueOrThrowArgs>(args: SelectSubset<T, XPDropsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__XPDropsClient<$Result.GetResult<Prisma.$XPDropsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first XPDrops that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {XPDropsFindFirstArgs} args - Arguments to find a XPDrops
+     * @example
+     * // Get one XPDrops
+     * const xPDrops = await prisma.xPDrops.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends XPDropsFindFirstArgs>(args?: SelectSubset<T, XPDropsFindFirstArgs<ExtArgs>>): Prisma__XPDropsClient<$Result.GetResult<Prisma.$XPDropsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first XPDrops that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {XPDropsFindFirstOrThrowArgs} args - Arguments to find a XPDrops
+     * @example
+     * // Get one XPDrops
+     * const xPDrops = await prisma.xPDrops.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends XPDropsFindFirstOrThrowArgs>(args?: SelectSubset<T, XPDropsFindFirstOrThrowArgs<ExtArgs>>): Prisma__XPDropsClient<$Result.GetResult<Prisma.$XPDropsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more XPDrops that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {XPDropsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all XPDrops
+     * const xPDrops = await prisma.xPDrops.findMany()
+     * 
+     * // Get first 10 XPDrops
+     * const xPDrops = await prisma.xPDrops.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const xPDropsWithIdOnly = await prisma.xPDrops.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends XPDropsFindManyArgs>(args?: SelectSubset<T, XPDropsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$XPDropsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a XPDrops.
+     * @param {XPDropsCreateArgs} args - Arguments to create a XPDrops.
+     * @example
+     * // Create one XPDrops
+     * const XPDrops = await prisma.xPDrops.create({
+     *   data: {
+     *     // ... data to create a XPDrops
+     *   }
+     * })
+     * 
+     */
+    create<T extends XPDropsCreateArgs>(args: SelectSubset<T, XPDropsCreateArgs<ExtArgs>>): Prisma__XPDropsClient<$Result.GetResult<Prisma.$XPDropsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many XPDrops.
+     * @param {XPDropsCreateManyArgs} args - Arguments to create many XPDrops.
+     * @example
+     * // Create many XPDrops
+     * const xPDrops = await prisma.xPDrops.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends XPDropsCreateManyArgs>(args?: SelectSubset<T, XPDropsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a XPDrops.
+     * @param {XPDropsDeleteArgs} args - Arguments to delete one XPDrops.
+     * @example
+     * // Delete one XPDrops
+     * const XPDrops = await prisma.xPDrops.delete({
+     *   where: {
+     *     // ... filter to delete one XPDrops
+     *   }
+     * })
+     * 
+     */
+    delete<T extends XPDropsDeleteArgs>(args: SelectSubset<T, XPDropsDeleteArgs<ExtArgs>>): Prisma__XPDropsClient<$Result.GetResult<Prisma.$XPDropsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one XPDrops.
+     * @param {XPDropsUpdateArgs} args - Arguments to update one XPDrops.
+     * @example
+     * // Update one XPDrops
+     * const xPDrops = await prisma.xPDrops.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends XPDropsUpdateArgs>(args: SelectSubset<T, XPDropsUpdateArgs<ExtArgs>>): Prisma__XPDropsClient<$Result.GetResult<Prisma.$XPDropsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more XPDrops.
+     * @param {XPDropsDeleteManyArgs} args - Arguments to filter XPDrops to delete.
+     * @example
+     * // Delete a few XPDrops
+     * const { count } = await prisma.xPDrops.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends XPDropsDeleteManyArgs>(args?: SelectSubset<T, XPDropsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more XPDrops.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {XPDropsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many XPDrops
+     * const xPDrops = await prisma.xPDrops.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends XPDropsUpdateManyArgs>(args: SelectSubset<T, XPDropsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one XPDrops.
+     * @param {XPDropsUpsertArgs} args - Arguments to update or create a XPDrops.
+     * @example
+     * // Update or create a XPDrops
+     * const xPDrops = await prisma.xPDrops.upsert({
+     *   create: {
+     *     // ... data to create a XPDrops
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the XPDrops we want to update
+     *   }
+     * })
+     */
+    upsert<T extends XPDropsUpsertArgs>(args: SelectSubset<T, XPDropsUpsertArgs<ExtArgs>>): Prisma__XPDropsClient<$Result.GetResult<Prisma.$XPDropsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more XPDrops that matches the filter.
+     * @param {XPDropsFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const xPDrops = await prisma.xPDrops.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: XPDropsFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a XPDrops.
+     * @param {XPDropsAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const xPDrops = await prisma.xPDrops.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: XPDropsAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of XPDrops.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {XPDropsCountArgs} args - Arguments to filter XPDrops to count.
+     * @example
+     * // Count the number of XPDrops
+     * const count = await prisma.xPDrops.count({
+     *   where: {
+     *     // ... the filter for the XPDrops we want to count
+     *   }
+     * })
+    **/
+    count<T extends XPDropsCountArgs>(
+      args?: Subset<T, XPDropsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], XPDropsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a XPDrops.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {XPDropsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends XPDropsAggregateArgs>(args: Subset<T, XPDropsAggregateArgs>): Prisma.PrismaPromise<GetXPDropsAggregateType<T>>
+
+    /**
+     * Group by XPDrops.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {XPDropsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends XPDropsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: XPDropsGroupByArgs['orderBy'] }
+        : { orderBy?: XPDropsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, XPDropsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetXPDropsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the XPDrops model
+   */
+  readonly fields: XPDropsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for XPDrops.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__XPDropsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    LevelSettings<T extends LevelSettingsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LevelSettingsDefaultArgs<ExtArgs>>): Prisma__LevelSettingsClient<$Result.GetResult<Prisma.$LevelSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the XPDrops model
+   */
+  interface XPDropsFieldRefs {
+    readonly id: FieldRef<"XPDrops", 'String'>
+    readonly GuildId: FieldRef<"XPDrops", 'String'>
+    readonly XPRange: FieldRef<"XPDrops", 'String'>
+    readonly ClaimType: FieldRef<"XPDrops", 'Int'>
+    readonly TimeToRespawn: FieldRef<"XPDrops", 'String'>
+    readonly ChannelIds: FieldRef<"XPDrops", 'String[]'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * XPDrops findUnique
+   */
+  export type XPDropsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the XPDrops
+     */
+    select?: XPDropsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the XPDrops
+     */
+    omit?: XPDropsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: XPDropsInclude<ExtArgs> | null
+    /**
+     * Filter, which XPDrops to fetch.
+     */
+    where: XPDropsWhereUniqueInput
+  }
+
+  /**
+   * XPDrops findUniqueOrThrow
+   */
+  export type XPDropsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the XPDrops
+     */
+    select?: XPDropsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the XPDrops
+     */
+    omit?: XPDropsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: XPDropsInclude<ExtArgs> | null
+    /**
+     * Filter, which XPDrops to fetch.
+     */
+    where: XPDropsWhereUniqueInput
+  }
+
+  /**
+   * XPDrops findFirst
+   */
+  export type XPDropsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the XPDrops
+     */
+    select?: XPDropsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the XPDrops
+     */
+    omit?: XPDropsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: XPDropsInclude<ExtArgs> | null
+    /**
+     * Filter, which XPDrops to fetch.
+     */
+    where?: XPDropsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of XPDrops to fetch.
+     */
+    orderBy?: XPDropsOrderByWithRelationInput | XPDropsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for XPDrops.
+     */
+    cursor?: XPDropsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` XPDrops from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` XPDrops.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of XPDrops.
+     */
+    distinct?: XPDropsScalarFieldEnum | XPDropsScalarFieldEnum[]
+  }
+
+  /**
+   * XPDrops findFirstOrThrow
+   */
+  export type XPDropsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the XPDrops
+     */
+    select?: XPDropsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the XPDrops
+     */
+    omit?: XPDropsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: XPDropsInclude<ExtArgs> | null
+    /**
+     * Filter, which XPDrops to fetch.
+     */
+    where?: XPDropsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of XPDrops to fetch.
+     */
+    orderBy?: XPDropsOrderByWithRelationInput | XPDropsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for XPDrops.
+     */
+    cursor?: XPDropsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` XPDrops from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` XPDrops.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of XPDrops.
+     */
+    distinct?: XPDropsScalarFieldEnum | XPDropsScalarFieldEnum[]
+  }
+
+  /**
+   * XPDrops findMany
+   */
+  export type XPDropsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the XPDrops
+     */
+    select?: XPDropsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the XPDrops
+     */
+    omit?: XPDropsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: XPDropsInclude<ExtArgs> | null
+    /**
+     * Filter, which XPDrops to fetch.
+     */
+    where?: XPDropsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of XPDrops to fetch.
+     */
+    orderBy?: XPDropsOrderByWithRelationInput | XPDropsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing XPDrops.
+     */
+    cursor?: XPDropsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` XPDrops from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` XPDrops.
+     */
+    skip?: number
+    distinct?: XPDropsScalarFieldEnum | XPDropsScalarFieldEnum[]
+  }
+
+  /**
+   * XPDrops create
+   */
+  export type XPDropsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the XPDrops
+     */
+    select?: XPDropsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the XPDrops
+     */
+    omit?: XPDropsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: XPDropsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a XPDrops.
+     */
+    data: XOR<XPDropsCreateInput, XPDropsUncheckedCreateInput>
+  }
+
+  /**
+   * XPDrops createMany
+   */
+  export type XPDropsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many XPDrops.
+     */
+    data: XPDropsCreateManyInput | XPDropsCreateManyInput[]
+  }
+
+  /**
+   * XPDrops update
+   */
+  export type XPDropsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the XPDrops
+     */
+    select?: XPDropsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the XPDrops
+     */
+    omit?: XPDropsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: XPDropsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a XPDrops.
+     */
+    data: XOR<XPDropsUpdateInput, XPDropsUncheckedUpdateInput>
+    /**
+     * Choose, which XPDrops to update.
+     */
+    where: XPDropsWhereUniqueInput
+  }
+
+  /**
+   * XPDrops updateMany
+   */
+  export type XPDropsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update XPDrops.
+     */
+    data: XOR<XPDropsUpdateManyMutationInput, XPDropsUncheckedUpdateManyInput>
+    /**
+     * Filter which XPDrops to update
+     */
+    where?: XPDropsWhereInput
+    /**
+     * Limit how many XPDrops to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * XPDrops upsert
+   */
+  export type XPDropsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the XPDrops
+     */
+    select?: XPDropsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the XPDrops
+     */
+    omit?: XPDropsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: XPDropsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the XPDrops to update in case it exists.
+     */
+    where: XPDropsWhereUniqueInput
+    /**
+     * In case the XPDrops found by the `where` argument doesn't exist, create a new XPDrops with this data.
+     */
+    create: XOR<XPDropsCreateInput, XPDropsUncheckedCreateInput>
+    /**
+     * In case the XPDrops was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<XPDropsUpdateInput, XPDropsUncheckedUpdateInput>
+  }
+
+  /**
+   * XPDrops delete
+   */
+  export type XPDropsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the XPDrops
+     */
+    select?: XPDropsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the XPDrops
+     */
+    omit?: XPDropsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: XPDropsInclude<ExtArgs> | null
+    /**
+     * Filter which XPDrops to delete.
+     */
+    where: XPDropsWhereUniqueInput
+  }
+
+  /**
+   * XPDrops deleteMany
+   */
+  export type XPDropsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which XPDrops to delete
+     */
+    where?: XPDropsWhereInput
+    /**
+     * Limit how many XPDrops to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * XPDrops findRaw
+   */
+  export type XPDropsFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * XPDrops aggregateRaw
+   */
+  export type XPDropsAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * XPDrops without action
+   */
+  export type XPDropsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the XPDrops
+     */
+    select?: XPDropsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the XPDrops
+     */
+    omit?: XPDropsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: XPDropsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model XPStreaks
+   */
+
+  export type AggregateXPStreaks = {
+    _count: XPStreaksCountAggregateOutputType | null
+    _avg: XPStreaksAvgAggregateOutputType | null
+    _sum: XPStreaksSumAggregateOutputType | null
+    _min: XPStreaksMinAggregateOutputType | null
+    _max: XPStreaksMaxAggregateOutputType | null
+  }
+
+  export type XPStreaksAvgAggregateOutputType = {
+    Days: number | null
+    BonusLevels: number | null
+    BonusXP: number | null
+    Multiplier: number | null
+  }
+
+  export type XPStreaksSumAggregateOutputType = {
+    Days: number | null
+    BonusLevels: number | null
+    BonusXP: number | null
+    Multiplier: number | null
+  }
+
+  export type XPStreaksMinAggregateOutputType = {
+    id: string | null
+    Days: number | null
+    Nickname: string | null
+    BonusLevels: number | null
+    BonusXP: number | null
+    ChannelId: string | null
+    MessageTemplateId: string | null
+    Multiplier: number | null
+    GuildId: string | null
+  }
+
+  export type XPStreaksMaxAggregateOutputType = {
+    id: string | null
+    Days: number | null
+    Nickname: string | null
+    BonusLevels: number | null
+    BonusXP: number | null
+    ChannelId: string | null
+    MessageTemplateId: string | null
+    Multiplier: number | null
+    GuildId: string | null
+  }
+
+  export type XPStreaksCountAggregateOutputType = {
+    id: number
+    Days: number
+    Nickname: number
+    BonusLevels: number
+    BonusXP: number
+    ChannelId: number
+    MessageTemplateId: number
+    Multiplier: number
+    RoleRewardIds: number
+    GuildId: number
+    _all: number
+  }
+
+
+  export type XPStreaksAvgAggregateInputType = {
+    Days?: true
+    BonusLevels?: true
+    BonusXP?: true
+    Multiplier?: true
+  }
+
+  export type XPStreaksSumAggregateInputType = {
+    Days?: true
+    BonusLevels?: true
+    BonusXP?: true
+    Multiplier?: true
+  }
+
+  export type XPStreaksMinAggregateInputType = {
+    id?: true
+    Days?: true
+    Nickname?: true
+    BonusLevels?: true
+    BonusXP?: true
+    ChannelId?: true
+    MessageTemplateId?: true
+    Multiplier?: true
+    GuildId?: true
+  }
+
+  export type XPStreaksMaxAggregateInputType = {
+    id?: true
+    Days?: true
+    Nickname?: true
+    BonusLevels?: true
+    BonusXP?: true
+    ChannelId?: true
+    MessageTemplateId?: true
+    Multiplier?: true
+    GuildId?: true
+  }
+
+  export type XPStreaksCountAggregateInputType = {
+    id?: true
+    Days?: true
+    Nickname?: true
+    BonusLevels?: true
+    BonusXP?: true
+    ChannelId?: true
+    MessageTemplateId?: true
+    Multiplier?: true
+    RoleRewardIds?: true
+    GuildId?: true
+    _all?: true
+  }
+
+  export type XPStreaksAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which XPStreaks to aggregate.
+     */
+    where?: XPStreaksWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of XPStreaks to fetch.
+     */
+    orderBy?: XPStreaksOrderByWithRelationInput | XPStreaksOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: XPStreaksWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` XPStreaks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` XPStreaks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned XPStreaks
+    **/
+    _count?: true | XPStreaksCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: XPStreaksAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: XPStreaksSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: XPStreaksMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: XPStreaksMaxAggregateInputType
+  }
+
+  export type GetXPStreaksAggregateType<T extends XPStreaksAggregateArgs> = {
+        [P in keyof T & keyof AggregateXPStreaks]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateXPStreaks[P]>
+      : GetScalarType<T[P], AggregateXPStreaks[P]>
+  }
+
+
+
+
+  export type XPStreaksGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: XPStreaksWhereInput
+    orderBy?: XPStreaksOrderByWithAggregationInput | XPStreaksOrderByWithAggregationInput[]
+    by: XPStreaksScalarFieldEnum[] | XPStreaksScalarFieldEnum
+    having?: XPStreaksScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: XPStreaksCountAggregateInputType | true
+    _avg?: XPStreaksAvgAggregateInputType
+    _sum?: XPStreaksSumAggregateInputType
+    _min?: XPStreaksMinAggregateInputType
+    _max?: XPStreaksMaxAggregateInputType
+  }
+
+  export type XPStreaksGroupByOutputType = {
+    id: string
+    Days: number
+    Nickname: string
+    BonusLevels: number
+    BonusXP: number
+    ChannelId: string
+    MessageTemplateId: string
+    Multiplier: number
+    RoleRewardIds: string[]
+    GuildId: string
+    _count: XPStreaksCountAggregateOutputType | null
+    _avg: XPStreaksAvgAggregateOutputType | null
+    _sum: XPStreaksSumAggregateOutputType | null
+    _min: XPStreaksMinAggregateOutputType | null
+    _max: XPStreaksMaxAggregateOutputType | null
+  }
+
+  type GetXPStreaksGroupByPayload<T extends XPStreaksGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<XPStreaksGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof XPStreaksGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], XPStreaksGroupByOutputType[P]>
+            : GetScalarType<T[P], XPStreaksGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type XPStreaksSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    Days?: boolean
+    Nickname?: boolean
+    BonusLevels?: boolean
+    BonusXP?: boolean
+    ChannelId?: boolean
+    MessageTemplateId?: boolean
+    Multiplier?: boolean
+    RoleRewardIds?: boolean
+    GuildId?: boolean
+    LevelSettings?: boolean | LevelSettingsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["xPStreaks"]>
+
+
+
+  export type XPStreaksSelectScalar = {
+    id?: boolean
+    Days?: boolean
+    Nickname?: boolean
+    BonusLevels?: boolean
+    BonusXP?: boolean
+    ChannelId?: boolean
+    MessageTemplateId?: boolean
+    Multiplier?: boolean
+    RoleRewardIds?: boolean
+    GuildId?: boolean
+  }
+
+  export type XPStreaksOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "Days" | "Nickname" | "BonusLevels" | "BonusXP" | "ChannelId" | "MessageTemplateId" | "Multiplier" | "RoleRewardIds" | "GuildId", ExtArgs["result"]["xPStreaks"]>
+  export type XPStreaksInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    LevelSettings?: boolean | LevelSettingsDefaultArgs<ExtArgs>
+  }
+
+  export type $XPStreaksPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "XPStreaks"
+    objects: {
+      LevelSettings: Prisma.$LevelSettingsPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      Days: number
+      Nickname: string
+      BonusLevels: number
+      BonusXP: number
+      ChannelId: string
+      MessageTemplateId: string
+      Multiplier: number
+      RoleRewardIds: string[]
+      GuildId: string
+    }, ExtArgs["result"]["xPStreaks"]>
+    composites: {}
+  }
+
+  type XPStreaksGetPayload<S extends boolean | null | undefined | XPStreaksDefaultArgs> = $Result.GetResult<Prisma.$XPStreaksPayload, S>
+
+  type XPStreaksCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<XPStreaksFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: XPStreaksCountAggregateInputType | true
+    }
+
+  export interface XPStreaksDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['XPStreaks'], meta: { name: 'XPStreaks' } }
+    /**
+     * Find zero or one XPStreaks that matches the filter.
+     * @param {XPStreaksFindUniqueArgs} args - Arguments to find a XPStreaks
+     * @example
+     * // Get one XPStreaks
+     * const xPStreaks = await prisma.xPStreaks.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends XPStreaksFindUniqueArgs>(args: SelectSubset<T, XPStreaksFindUniqueArgs<ExtArgs>>): Prisma__XPStreaksClient<$Result.GetResult<Prisma.$XPStreaksPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one XPStreaks that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {XPStreaksFindUniqueOrThrowArgs} args - Arguments to find a XPStreaks
+     * @example
+     * // Get one XPStreaks
+     * const xPStreaks = await prisma.xPStreaks.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends XPStreaksFindUniqueOrThrowArgs>(args: SelectSubset<T, XPStreaksFindUniqueOrThrowArgs<ExtArgs>>): Prisma__XPStreaksClient<$Result.GetResult<Prisma.$XPStreaksPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first XPStreaks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {XPStreaksFindFirstArgs} args - Arguments to find a XPStreaks
+     * @example
+     * // Get one XPStreaks
+     * const xPStreaks = await prisma.xPStreaks.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends XPStreaksFindFirstArgs>(args?: SelectSubset<T, XPStreaksFindFirstArgs<ExtArgs>>): Prisma__XPStreaksClient<$Result.GetResult<Prisma.$XPStreaksPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first XPStreaks that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {XPStreaksFindFirstOrThrowArgs} args - Arguments to find a XPStreaks
+     * @example
+     * // Get one XPStreaks
+     * const xPStreaks = await prisma.xPStreaks.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends XPStreaksFindFirstOrThrowArgs>(args?: SelectSubset<T, XPStreaksFindFirstOrThrowArgs<ExtArgs>>): Prisma__XPStreaksClient<$Result.GetResult<Prisma.$XPStreaksPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more XPStreaks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {XPStreaksFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all XPStreaks
+     * const xPStreaks = await prisma.xPStreaks.findMany()
+     * 
+     * // Get first 10 XPStreaks
+     * const xPStreaks = await prisma.xPStreaks.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const xPStreaksWithIdOnly = await prisma.xPStreaks.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends XPStreaksFindManyArgs>(args?: SelectSubset<T, XPStreaksFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$XPStreaksPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a XPStreaks.
+     * @param {XPStreaksCreateArgs} args - Arguments to create a XPStreaks.
+     * @example
+     * // Create one XPStreaks
+     * const XPStreaks = await prisma.xPStreaks.create({
+     *   data: {
+     *     // ... data to create a XPStreaks
+     *   }
+     * })
+     * 
+     */
+    create<T extends XPStreaksCreateArgs>(args: SelectSubset<T, XPStreaksCreateArgs<ExtArgs>>): Prisma__XPStreaksClient<$Result.GetResult<Prisma.$XPStreaksPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many XPStreaks.
+     * @param {XPStreaksCreateManyArgs} args - Arguments to create many XPStreaks.
+     * @example
+     * // Create many XPStreaks
+     * const xPStreaks = await prisma.xPStreaks.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends XPStreaksCreateManyArgs>(args?: SelectSubset<T, XPStreaksCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a XPStreaks.
+     * @param {XPStreaksDeleteArgs} args - Arguments to delete one XPStreaks.
+     * @example
+     * // Delete one XPStreaks
+     * const XPStreaks = await prisma.xPStreaks.delete({
+     *   where: {
+     *     // ... filter to delete one XPStreaks
+     *   }
+     * })
+     * 
+     */
+    delete<T extends XPStreaksDeleteArgs>(args: SelectSubset<T, XPStreaksDeleteArgs<ExtArgs>>): Prisma__XPStreaksClient<$Result.GetResult<Prisma.$XPStreaksPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one XPStreaks.
+     * @param {XPStreaksUpdateArgs} args - Arguments to update one XPStreaks.
+     * @example
+     * // Update one XPStreaks
+     * const xPStreaks = await prisma.xPStreaks.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends XPStreaksUpdateArgs>(args: SelectSubset<T, XPStreaksUpdateArgs<ExtArgs>>): Prisma__XPStreaksClient<$Result.GetResult<Prisma.$XPStreaksPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more XPStreaks.
+     * @param {XPStreaksDeleteManyArgs} args - Arguments to filter XPStreaks to delete.
+     * @example
+     * // Delete a few XPStreaks
+     * const { count } = await prisma.xPStreaks.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends XPStreaksDeleteManyArgs>(args?: SelectSubset<T, XPStreaksDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more XPStreaks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {XPStreaksUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many XPStreaks
+     * const xPStreaks = await prisma.xPStreaks.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends XPStreaksUpdateManyArgs>(args: SelectSubset<T, XPStreaksUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one XPStreaks.
+     * @param {XPStreaksUpsertArgs} args - Arguments to update or create a XPStreaks.
+     * @example
+     * // Update or create a XPStreaks
+     * const xPStreaks = await prisma.xPStreaks.upsert({
+     *   create: {
+     *     // ... data to create a XPStreaks
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the XPStreaks we want to update
+     *   }
+     * })
+     */
+    upsert<T extends XPStreaksUpsertArgs>(args: SelectSubset<T, XPStreaksUpsertArgs<ExtArgs>>): Prisma__XPStreaksClient<$Result.GetResult<Prisma.$XPStreaksPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more XPStreaks that matches the filter.
+     * @param {XPStreaksFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const xPStreaks = await prisma.xPStreaks.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: XPStreaksFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a XPStreaks.
+     * @param {XPStreaksAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const xPStreaks = await prisma.xPStreaks.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: XPStreaksAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of XPStreaks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {XPStreaksCountArgs} args - Arguments to filter XPStreaks to count.
+     * @example
+     * // Count the number of XPStreaks
+     * const count = await prisma.xPStreaks.count({
+     *   where: {
+     *     // ... the filter for the XPStreaks we want to count
+     *   }
+     * })
+    **/
+    count<T extends XPStreaksCountArgs>(
+      args?: Subset<T, XPStreaksCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], XPStreaksCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a XPStreaks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {XPStreaksAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends XPStreaksAggregateArgs>(args: Subset<T, XPStreaksAggregateArgs>): Prisma.PrismaPromise<GetXPStreaksAggregateType<T>>
+
+    /**
+     * Group by XPStreaks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {XPStreaksGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends XPStreaksGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: XPStreaksGroupByArgs['orderBy'] }
+        : { orderBy?: XPStreaksGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, XPStreaksGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetXPStreaksGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the XPStreaks model
+   */
+  readonly fields: XPStreaksFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for XPStreaks.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__XPStreaksClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    LevelSettings<T extends LevelSettingsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LevelSettingsDefaultArgs<ExtArgs>>): Prisma__LevelSettingsClient<$Result.GetResult<Prisma.$LevelSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the XPStreaks model
+   */
+  interface XPStreaksFieldRefs {
+    readonly id: FieldRef<"XPStreaks", 'String'>
+    readonly Days: FieldRef<"XPStreaks", 'Int'>
+    readonly Nickname: FieldRef<"XPStreaks", 'String'>
+    readonly BonusLevels: FieldRef<"XPStreaks", 'Int'>
+    readonly BonusXP: FieldRef<"XPStreaks", 'Int'>
+    readonly ChannelId: FieldRef<"XPStreaks", 'String'>
+    readonly MessageTemplateId: FieldRef<"XPStreaks", 'String'>
+    readonly Multiplier: FieldRef<"XPStreaks", 'Int'>
+    readonly RoleRewardIds: FieldRef<"XPStreaks", 'String[]'>
+    readonly GuildId: FieldRef<"XPStreaks", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * XPStreaks findUnique
+   */
+  export type XPStreaksFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the XPStreaks
+     */
+    select?: XPStreaksSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the XPStreaks
+     */
+    omit?: XPStreaksOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: XPStreaksInclude<ExtArgs> | null
+    /**
+     * Filter, which XPStreaks to fetch.
+     */
+    where: XPStreaksWhereUniqueInput
+  }
+
+  /**
+   * XPStreaks findUniqueOrThrow
+   */
+  export type XPStreaksFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the XPStreaks
+     */
+    select?: XPStreaksSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the XPStreaks
+     */
+    omit?: XPStreaksOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: XPStreaksInclude<ExtArgs> | null
+    /**
+     * Filter, which XPStreaks to fetch.
+     */
+    where: XPStreaksWhereUniqueInput
+  }
+
+  /**
+   * XPStreaks findFirst
+   */
+  export type XPStreaksFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the XPStreaks
+     */
+    select?: XPStreaksSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the XPStreaks
+     */
+    omit?: XPStreaksOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: XPStreaksInclude<ExtArgs> | null
+    /**
+     * Filter, which XPStreaks to fetch.
+     */
+    where?: XPStreaksWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of XPStreaks to fetch.
+     */
+    orderBy?: XPStreaksOrderByWithRelationInput | XPStreaksOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for XPStreaks.
+     */
+    cursor?: XPStreaksWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` XPStreaks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` XPStreaks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of XPStreaks.
+     */
+    distinct?: XPStreaksScalarFieldEnum | XPStreaksScalarFieldEnum[]
+  }
+
+  /**
+   * XPStreaks findFirstOrThrow
+   */
+  export type XPStreaksFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the XPStreaks
+     */
+    select?: XPStreaksSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the XPStreaks
+     */
+    omit?: XPStreaksOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: XPStreaksInclude<ExtArgs> | null
+    /**
+     * Filter, which XPStreaks to fetch.
+     */
+    where?: XPStreaksWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of XPStreaks to fetch.
+     */
+    orderBy?: XPStreaksOrderByWithRelationInput | XPStreaksOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for XPStreaks.
+     */
+    cursor?: XPStreaksWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` XPStreaks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` XPStreaks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of XPStreaks.
+     */
+    distinct?: XPStreaksScalarFieldEnum | XPStreaksScalarFieldEnum[]
+  }
+
+  /**
+   * XPStreaks findMany
+   */
+  export type XPStreaksFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the XPStreaks
+     */
+    select?: XPStreaksSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the XPStreaks
+     */
+    omit?: XPStreaksOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: XPStreaksInclude<ExtArgs> | null
+    /**
+     * Filter, which XPStreaks to fetch.
+     */
+    where?: XPStreaksWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of XPStreaks to fetch.
+     */
+    orderBy?: XPStreaksOrderByWithRelationInput | XPStreaksOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing XPStreaks.
+     */
+    cursor?: XPStreaksWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` XPStreaks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` XPStreaks.
+     */
+    skip?: number
+    distinct?: XPStreaksScalarFieldEnum | XPStreaksScalarFieldEnum[]
+  }
+
+  /**
+   * XPStreaks create
+   */
+  export type XPStreaksCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the XPStreaks
+     */
+    select?: XPStreaksSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the XPStreaks
+     */
+    omit?: XPStreaksOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: XPStreaksInclude<ExtArgs> | null
+    /**
+     * The data needed to create a XPStreaks.
+     */
+    data: XOR<XPStreaksCreateInput, XPStreaksUncheckedCreateInput>
+  }
+
+  /**
+   * XPStreaks createMany
+   */
+  export type XPStreaksCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many XPStreaks.
+     */
+    data: XPStreaksCreateManyInput | XPStreaksCreateManyInput[]
+  }
+
+  /**
+   * XPStreaks update
+   */
+  export type XPStreaksUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the XPStreaks
+     */
+    select?: XPStreaksSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the XPStreaks
+     */
+    omit?: XPStreaksOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: XPStreaksInclude<ExtArgs> | null
+    /**
+     * The data needed to update a XPStreaks.
+     */
+    data: XOR<XPStreaksUpdateInput, XPStreaksUncheckedUpdateInput>
+    /**
+     * Choose, which XPStreaks to update.
+     */
+    where: XPStreaksWhereUniqueInput
+  }
+
+  /**
+   * XPStreaks updateMany
+   */
+  export type XPStreaksUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update XPStreaks.
+     */
+    data: XOR<XPStreaksUpdateManyMutationInput, XPStreaksUncheckedUpdateManyInput>
+    /**
+     * Filter which XPStreaks to update
+     */
+    where?: XPStreaksWhereInput
+    /**
+     * Limit how many XPStreaks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * XPStreaks upsert
+   */
+  export type XPStreaksUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the XPStreaks
+     */
+    select?: XPStreaksSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the XPStreaks
+     */
+    omit?: XPStreaksOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: XPStreaksInclude<ExtArgs> | null
+    /**
+     * The filter to search for the XPStreaks to update in case it exists.
+     */
+    where: XPStreaksWhereUniqueInput
+    /**
+     * In case the XPStreaks found by the `where` argument doesn't exist, create a new XPStreaks with this data.
+     */
+    create: XOR<XPStreaksCreateInput, XPStreaksUncheckedCreateInput>
+    /**
+     * In case the XPStreaks was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<XPStreaksUpdateInput, XPStreaksUncheckedUpdateInput>
+  }
+
+  /**
+   * XPStreaks delete
+   */
+  export type XPStreaksDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the XPStreaks
+     */
+    select?: XPStreaksSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the XPStreaks
+     */
+    omit?: XPStreaksOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: XPStreaksInclude<ExtArgs> | null
+    /**
+     * Filter which XPStreaks to delete.
+     */
+    where: XPStreaksWhereUniqueInput
+  }
+
+  /**
+   * XPStreaks deleteMany
+   */
+  export type XPStreaksDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which XPStreaks to delete
+     */
+    where?: XPStreaksWhereInput
+    /**
+     * Limit how many XPStreaks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * XPStreaks findRaw
+   */
+  export type XPStreaksFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * XPStreaks aggregateRaw
+   */
+  export type XPStreaksAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * XPStreaks without action
+   */
+  export type XPStreaksDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the XPStreaks
+     */
+    select?: XPStreaksSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the XPStreaks
+     */
+    omit?: XPStreaksOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: XPStreaksInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model LevelRoles
+   */
+
+  export type AggregateLevelRoles = {
+    _count: LevelRolesCountAggregateOutputType | null
+    _avg: LevelRolesAvgAggregateOutputType | null
+    _sum: LevelRolesSumAggregateOutputType | null
+    _min: LevelRolesMinAggregateOutputType | null
+    _max: LevelRolesMaxAggregateOutputType | null
+  }
+
+  export type LevelRolesAvgAggregateOutputType = {
+    Level: number | null
+    Multiplier: number | null
+  }
+
+  export type LevelRolesSumAggregateOutputType = {
+    Level: number | null
+    Multiplier: number | null
+  }
+
+  export type LevelRolesMinAggregateOutputType = {
+    id: string | null
+    Level: number | null
+    Multiplier: number | null
+    Type: string | null
+    RoleId: string | null
+    GuildId: string | null
+  }
+
+  export type LevelRolesMaxAggregateOutputType = {
+    id: string | null
+    Level: number | null
+    Multiplier: number | null
+    Type: string | null
+    RoleId: string | null
+    GuildId: string | null
+  }
+
+  export type LevelRolesCountAggregateOutputType = {
+    id: number
+    Level: number
+    Multiplier: number
+    Type: number
+    RoleId: number
+    GuildId: number
+    _all: number
+  }
+
+
+  export type LevelRolesAvgAggregateInputType = {
+    Level?: true
+    Multiplier?: true
+  }
+
+  export type LevelRolesSumAggregateInputType = {
+    Level?: true
+    Multiplier?: true
+  }
+
+  export type LevelRolesMinAggregateInputType = {
+    id?: true
+    Level?: true
+    Multiplier?: true
+    Type?: true
+    RoleId?: true
+    GuildId?: true
+  }
+
+  export type LevelRolesMaxAggregateInputType = {
+    id?: true
+    Level?: true
+    Multiplier?: true
+    Type?: true
+    RoleId?: true
+    GuildId?: true
+  }
+
+  export type LevelRolesCountAggregateInputType = {
+    id?: true
+    Level?: true
+    Multiplier?: true
+    Type?: true
+    RoleId?: true
+    GuildId?: true
+    _all?: true
+  }
+
+  export type LevelRolesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LevelRoles to aggregate.
+     */
+    where?: LevelRolesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LevelRoles to fetch.
+     */
+    orderBy?: LevelRolesOrderByWithRelationInput | LevelRolesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LevelRolesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LevelRoles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LevelRoles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LevelRoles
+    **/
+    _count?: true | LevelRolesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LevelRolesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LevelRolesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LevelRolesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LevelRolesMaxAggregateInputType
+  }
+
+  export type GetLevelRolesAggregateType<T extends LevelRolesAggregateArgs> = {
+        [P in keyof T & keyof AggregateLevelRoles]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLevelRoles[P]>
+      : GetScalarType<T[P], AggregateLevelRoles[P]>
+  }
+
+
+
+
+  export type LevelRolesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LevelRolesWhereInput
+    orderBy?: LevelRolesOrderByWithAggregationInput | LevelRolesOrderByWithAggregationInput[]
+    by: LevelRolesScalarFieldEnum[] | LevelRolesScalarFieldEnum
+    having?: LevelRolesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LevelRolesCountAggregateInputType | true
+    _avg?: LevelRolesAvgAggregateInputType
+    _sum?: LevelRolesSumAggregateInputType
+    _min?: LevelRolesMinAggregateInputType
+    _max?: LevelRolesMaxAggregateInputType
+  }
+
+  export type LevelRolesGroupByOutputType = {
+    id: string
+    Level: number
+    Multiplier: number
+    Type: string
+    RoleId: string
+    GuildId: string
+    _count: LevelRolesCountAggregateOutputType | null
+    _avg: LevelRolesAvgAggregateOutputType | null
+    _sum: LevelRolesSumAggregateOutputType | null
+    _min: LevelRolesMinAggregateOutputType | null
+    _max: LevelRolesMaxAggregateOutputType | null
+  }
+
+  type GetLevelRolesGroupByPayload<T extends LevelRolesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LevelRolesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LevelRolesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LevelRolesGroupByOutputType[P]>
+            : GetScalarType<T[P], LevelRolesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LevelRolesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    Level?: boolean
+    Multiplier?: boolean
+    Type?: boolean
+    RoleId?: boolean
+    GuildId?: boolean
+    LevelSettings?: boolean | LevelSettingsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["levelRoles"]>
+
+
+
+  export type LevelRolesSelectScalar = {
+    id?: boolean
+    Level?: boolean
+    Multiplier?: boolean
+    Type?: boolean
+    RoleId?: boolean
+    GuildId?: boolean
+  }
+
+  export type LevelRolesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "Level" | "Multiplier" | "Type" | "RoleId" | "GuildId", ExtArgs["result"]["levelRoles"]>
+  export type LevelRolesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    LevelSettings?: boolean | LevelSettingsDefaultArgs<ExtArgs>
+  }
+
+  export type $LevelRolesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LevelRoles"
+    objects: {
+      LevelSettings: Prisma.$LevelSettingsPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      Level: number
+      Multiplier: number
+      Type: string
+      RoleId: string
+      GuildId: string
+    }, ExtArgs["result"]["levelRoles"]>
+    composites: {}
+  }
+
+  type LevelRolesGetPayload<S extends boolean | null | undefined | LevelRolesDefaultArgs> = $Result.GetResult<Prisma.$LevelRolesPayload, S>
+
+  type LevelRolesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LevelRolesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LevelRolesCountAggregateInputType | true
+    }
+
+  export interface LevelRolesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LevelRoles'], meta: { name: 'LevelRoles' } }
+    /**
+     * Find zero or one LevelRoles that matches the filter.
+     * @param {LevelRolesFindUniqueArgs} args - Arguments to find a LevelRoles
+     * @example
+     * // Get one LevelRoles
+     * const levelRoles = await prisma.levelRoles.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LevelRolesFindUniqueArgs>(args: SelectSubset<T, LevelRolesFindUniqueArgs<ExtArgs>>): Prisma__LevelRolesClient<$Result.GetResult<Prisma.$LevelRolesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LevelRoles that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LevelRolesFindUniqueOrThrowArgs} args - Arguments to find a LevelRoles
+     * @example
+     * // Get one LevelRoles
+     * const levelRoles = await prisma.levelRoles.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LevelRolesFindUniqueOrThrowArgs>(args: SelectSubset<T, LevelRolesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LevelRolesClient<$Result.GetResult<Prisma.$LevelRolesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LevelRoles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelRolesFindFirstArgs} args - Arguments to find a LevelRoles
+     * @example
+     * // Get one LevelRoles
+     * const levelRoles = await prisma.levelRoles.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LevelRolesFindFirstArgs>(args?: SelectSubset<T, LevelRolesFindFirstArgs<ExtArgs>>): Prisma__LevelRolesClient<$Result.GetResult<Prisma.$LevelRolesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LevelRoles that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelRolesFindFirstOrThrowArgs} args - Arguments to find a LevelRoles
+     * @example
+     * // Get one LevelRoles
+     * const levelRoles = await prisma.levelRoles.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LevelRolesFindFirstOrThrowArgs>(args?: SelectSubset<T, LevelRolesFindFirstOrThrowArgs<ExtArgs>>): Prisma__LevelRolesClient<$Result.GetResult<Prisma.$LevelRolesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LevelRoles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelRolesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LevelRoles
+     * const levelRoles = await prisma.levelRoles.findMany()
+     * 
+     * // Get first 10 LevelRoles
+     * const levelRoles = await prisma.levelRoles.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const levelRolesWithIdOnly = await prisma.levelRoles.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends LevelRolesFindManyArgs>(args?: SelectSubset<T, LevelRolesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LevelRolesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LevelRoles.
+     * @param {LevelRolesCreateArgs} args - Arguments to create a LevelRoles.
+     * @example
+     * // Create one LevelRoles
+     * const LevelRoles = await prisma.levelRoles.create({
+     *   data: {
+     *     // ... data to create a LevelRoles
+     *   }
+     * })
+     * 
+     */
+    create<T extends LevelRolesCreateArgs>(args: SelectSubset<T, LevelRolesCreateArgs<ExtArgs>>): Prisma__LevelRolesClient<$Result.GetResult<Prisma.$LevelRolesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LevelRoles.
+     * @param {LevelRolesCreateManyArgs} args - Arguments to create many LevelRoles.
+     * @example
+     * // Create many LevelRoles
+     * const levelRoles = await prisma.levelRoles.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LevelRolesCreateManyArgs>(args?: SelectSubset<T, LevelRolesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a LevelRoles.
+     * @param {LevelRolesDeleteArgs} args - Arguments to delete one LevelRoles.
+     * @example
+     * // Delete one LevelRoles
+     * const LevelRoles = await prisma.levelRoles.delete({
+     *   where: {
+     *     // ... filter to delete one LevelRoles
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LevelRolesDeleteArgs>(args: SelectSubset<T, LevelRolesDeleteArgs<ExtArgs>>): Prisma__LevelRolesClient<$Result.GetResult<Prisma.$LevelRolesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LevelRoles.
+     * @param {LevelRolesUpdateArgs} args - Arguments to update one LevelRoles.
+     * @example
+     * // Update one LevelRoles
+     * const levelRoles = await prisma.levelRoles.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LevelRolesUpdateArgs>(args: SelectSubset<T, LevelRolesUpdateArgs<ExtArgs>>): Prisma__LevelRolesClient<$Result.GetResult<Prisma.$LevelRolesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LevelRoles.
+     * @param {LevelRolesDeleteManyArgs} args - Arguments to filter LevelRoles to delete.
+     * @example
+     * // Delete a few LevelRoles
+     * const { count } = await prisma.levelRoles.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LevelRolesDeleteManyArgs>(args?: SelectSubset<T, LevelRolesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LevelRoles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelRolesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LevelRoles
+     * const levelRoles = await prisma.levelRoles.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LevelRolesUpdateManyArgs>(args: SelectSubset<T, LevelRolesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one LevelRoles.
+     * @param {LevelRolesUpsertArgs} args - Arguments to update or create a LevelRoles.
+     * @example
+     * // Update or create a LevelRoles
+     * const levelRoles = await prisma.levelRoles.upsert({
+     *   create: {
+     *     // ... data to create a LevelRoles
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LevelRoles we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LevelRolesUpsertArgs>(args: SelectSubset<T, LevelRolesUpsertArgs<ExtArgs>>): Prisma__LevelRolesClient<$Result.GetResult<Prisma.$LevelRolesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LevelRoles that matches the filter.
+     * @param {LevelRolesFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const levelRoles = await prisma.levelRoles.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: LevelRolesFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a LevelRoles.
+     * @param {LevelRolesAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const levelRoles = await prisma.levelRoles.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: LevelRolesAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of LevelRoles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelRolesCountArgs} args - Arguments to filter LevelRoles to count.
+     * @example
+     * // Count the number of LevelRoles
+     * const count = await prisma.levelRoles.count({
+     *   where: {
+     *     // ... the filter for the LevelRoles we want to count
+     *   }
+     * })
+    **/
+    count<T extends LevelRolesCountArgs>(
+      args?: Subset<T, LevelRolesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LevelRolesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LevelRoles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelRolesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LevelRolesAggregateArgs>(args: Subset<T, LevelRolesAggregateArgs>): Prisma.PrismaPromise<GetLevelRolesAggregateType<T>>
+
+    /**
+     * Group by LevelRoles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelRolesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LevelRolesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LevelRolesGroupByArgs['orderBy'] }
+        : { orderBy?: LevelRolesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LevelRolesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLevelRolesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LevelRoles model
+   */
+  readonly fields: LevelRolesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LevelRoles.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LevelRolesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    LevelSettings<T extends LevelSettingsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LevelSettingsDefaultArgs<ExtArgs>>): Prisma__LevelSettingsClient<$Result.GetResult<Prisma.$LevelSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LevelRoles model
+   */
+  interface LevelRolesFieldRefs {
+    readonly id: FieldRef<"LevelRoles", 'String'>
+    readonly Level: FieldRef<"LevelRoles", 'Int'>
+    readonly Multiplier: FieldRef<"LevelRoles", 'Int'>
+    readonly Type: FieldRef<"LevelRoles", 'String'>
+    readonly RoleId: FieldRef<"LevelRoles", 'String'>
+    readonly GuildId: FieldRef<"LevelRoles", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LevelRoles findUnique
+   */
+  export type LevelRolesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LevelRoles
+     */
+    select?: LevelRolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LevelRoles
+     */
+    omit?: LevelRolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelRolesInclude<ExtArgs> | null
+    /**
+     * Filter, which LevelRoles to fetch.
+     */
+    where: LevelRolesWhereUniqueInput
+  }
+
+  /**
+   * LevelRoles findUniqueOrThrow
+   */
+  export type LevelRolesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LevelRoles
+     */
+    select?: LevelRolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LevelRoles
+     */
+    omit?: LevelRolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelRolesInclude<ExtArgs> | null
+    /**
+     * Filter, which LevelRoles to fetch.
+     */
+    where: LevelRolesWhereUniqueInput
+  }
+
+  /**
+   * LevelRoles findFirst
+   */
+  export type LevelRolesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LevelRoles
+     */
+    select?: LevelRolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LevelRoles
+     */
+    omit?: LevelRolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelRolesInclude<ExtArgs> | null
+    /**
+     * Filter, which LevelRoles to fetch.
+     */
+    where?: LevelRolesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LevelRoles to fetch.
+     */
+    orderBy?: LevelRolesOrderByWithRelationInput | LevelRolesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LevelRoles.
+     */
+    cursor?: LevelRolesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LevelRoles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LevelRoles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LevelRoles.
+     */
+    distinct?: LevelRolesScalarFieldEnum | LevelRolesScalarFieldEnum[]
+  }
+
+  /**
+   * LevelRoles findFirstOrThrow
+   */
+  export type LevelRolesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LevelRoles
+     */
+    select?: LevelRolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LevelRoles
+     */
+    omit?: LevelRolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelRolesInclude<ExtArgs> | null
+    /**
+     * Filter, which LevelRoles to fetch.
+     */
+    where?: LevelRolesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LevelRoles to fetch.
+     */
+    orderBy?: LevelRolesOrderByWithRelationInput | LevelRolesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LevelRoles.
+     */
+    cursor?: LevelRolesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LevelRoles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LevelRoles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LevelRoles.
+     */
+    distinct?: LevelRolesScalarFieldEnum | LevelRolesScalarFieldEnum[]
+  }
+
+  /**
+   * LevelRoles findMany
+   */
+  export type LevelRolesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LevelRoles
+     */
+    select?: LevelRolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LevelRoles
+     */
+    omit?: LevelRolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelRolesInclude<ExtArgs> | null
+    /**
+     * Filter, which LevelRoles to fetch.
+     */
+    where?: LevelRolesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LevelRoles to fetch.
+     */
+    orderBy?: LevelRolesOrderByWithRelationInput | LevelRolesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LevelRoles.
+     */
+    cursor?: LevelRolesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LevelRoles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LevelRoles.
+     */
+    skip?: number
+    distinct?: LevelRolesScalarFieldEnum | LevelRolesScalarFieldEnum[]
+  }
+
+  /**
+   * LevelRoles create
+   */
+  export type LevelRolesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LevelRoles
+     */
+    select?: LevelRolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LevelRoles
+     */
+    omit?: LevelRolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelRolesInclude<ExtArgs> | null
+    /**
+     * The data needed to create a LevelRoles.
+     */
+    data: XOR<LevelRolesCreateInput, LevelRolesUncheckedCreateInput>
+  }
+
+  /**
+   * LevelRoles createMany
+   */
+  export type LevelRolesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LevelRoles.
+     */
+    data: LevelRolesCreateManyInput | LevelRolesCreateManyInput[]
+  }
+
+  /**
+   * LevelRoles update
+   */
+  export type LevelRolesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LevelRoles
+     */
+    select?: LevelRolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LevelRoles
+     */
+    omit?: LevelRolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelRolesInclude<ExtArgs> | null
+    /**
+     * The data needed to update a LevelRoles.
+     */
+    data: XOR<LevelRolesUpdateInput, LevelRolesUncheckedUpdateInput>
+    /**
+     * Choose, which LevelRoles to update.
+     */
+    where: LevelRolesWhereUniqueInput
+  }
+
+  /**
+   * LevelRoles updateMany
+   */
+  export type LevelRolesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LevelRoles.
+     */
+    data: XOR<LevelRolesUpdateManyMutationInput, LevelRolesUncheckedUpdateManyInput>
+    /**
+     * Filter which LevelRoles to update
+     */
+    where?: LevelRolesWhereInput
+    /**
+     * Limit how many LevelRoles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LevelRoles upsert
+   */
+  export type LevelRolesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LevelRoles
+     */
+    select?: LevelRolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LevelRoles
+     */
+    omit?: LevelRolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelRolesInclude<ExtArgs> | null
+    /**
+     * The filter to search for the LevelRoles to update in case it exists.
+     */
+    where: LevelRolesWhereUniqueInput
+    /**
+     * In case the LevelRoles found by the `where` argument doesn't exist, create a new LevelRoles with this data.
+     */
+    create: XOR<LevelRolesCreateInput, LevelRolesUncheckedCreateInput>
+    /**
+     * In case the LevelRoles was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LevelRolesUpdateInput, LevelRolesUncheckedUpdateInput>
+  }
+
+  /**
+   * LevelRoles delete
+   */
+  export type LevelRolesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LevelRoles
+     */
+    select?: LevelRolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LevelRoles
+     */
+    omit?: LevelRolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelRolesInclude<ExtArgs> | null
+    /**
+     * Filter which LevelRoles to delete.
+     */
+    where: LevelRolesWhereUniqueInput
+  }
+
+  /**
+   * LevelRoles deleteMany
+   */
+  export type LevelRolesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LevelRoles to delete
+     */
+    where?: LevelRolesWhereInput
+    /**
+     * Limit how many LevelRoles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LevelRoles findRaw
+   */
+  export type LevelRolesFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * LevelRoles aggregateRaw
+   */
+  export type LevelRolesAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * LevelRoles without action
+   */
+  export type LevelRolesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LevelRoles
+     */
+    select?: LevelRolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LevelRoles
+     */
+    omit?: LevelRolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelRolesInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Levels
+   */
+
+  export type AggregateLevels = {
+    _count: LevelsCountAggregateOutputType | null
+    _avg: LevelsAvgAggregateOutputType | null
+    _sum: LevelsSumAggregateOutputType | null
+    _min: LevelsMinAggregateOutputType | null
+    _max: LevelsMaxAggregateOutputType | null
+  }
+
+  export type LevelsAvgAggregateOutputType = {
+    XP: number | null
+    RequiredXp: number | null
+    Level: number | null
+  }
+
+  export type LevelsSumAggregateOutputType = {
+    XP: number | null
+    RequiredXp: number | null
+    Level: number | null
+  }
+
+  export type LevelsMinAggregateOutputType = {
+    id: string | null
+    XP: number | null
+    RequiredXp: number | null
+    Level: number | null
+    UserId: string | null
+    GuildId: string | null
+  }
+
+  export type LevelsMaxAggregateOutputType = {
+    id: string | null
+    XP: number | null
+    RequiredXp: number | null
+    Level: number | null
+    UserId: string | null
+    GuildId: string | null
+  }
+
+  export type LevelsCountAggregateOutputType = {
+    id: number
+    XP: number
+    RequiredXp: number
+    Level: number
+    UserId: number
+    GuildId: number
+    _all: number
+  }
+
+
+  export type LevelsAvgAggregateInputType = {
+    XP?: true
+    RequiredXp?: true
+    Level?: true
+  }
+
+  export type LevelsSumAggregateInputType = {
+    XP?: true
+    RequiredXp?: true
+    Level?: true
+  }
+
+  export type LevelsMinAggregateInputType = {
+    id?: true
+    XP?: true
+    RequiredXp?: true
+    Level?: true
+    UserId?: true
+    GuildId?: true
+  }
+
+  export type LevelsMaxAggregateInputType = {
+    id?: true
+    XP?: true
+    RequiredXp?: true
+    Level?: true
+    UserId?: true
+    GuildId?: true
+  }
+
+  export type LevelsCountAggregateInputType = {
+    id?: true
+    XP?: true
+    RequiredXp?: true
+    Level?: true
+    UserId?: true
+    GuildId?: true
+    _all?: true
+  }
+
+  export type LevelsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Levels to aggregate.
+     */
+    where?: LevelsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Levels to fetch.
+     */
+    orderBy?: LevelsOrderByWithRelationInput | LevelsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LevelsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Levels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Levels.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Levels
+    **/
+    _count?: true | LevelsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LevelsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LevelsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LevelsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LevelsMaxAggregateInputType
+  }
+
+  export type GetLevelsAggregateType<T extends LevelsAggregateArgs> = {
+        [P in keyof T & keyof AggregateLevels]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLevels[P]>
+      : GetScalarType<T[P], AggregateLevels[P]>
+  }
+
+
+
+
+  export type LevelsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LevelsWhereInput
+    orderBy?: LevelsOrderByWithAggregationInput | LevelsOrderByWithAggregationInput[]
+    by: LevelsScalarFieldEnum[] | LevelsScalarFieldEnum
+    having?: LevelsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LevelsCountAggregateInputType | true
+    _avg?: LevelsAvgAggregateInputType
+    _sum?: LevelsSumAggregateInputType
+    _min?: LevelsMinAggregateInputType
+    _max?: LevelsMaxAggregateInputType
+  }
+
+  export type LevelsGroupByOutputType = {
+    id: string
+    XP: number
+    RequiredXp: number
+    Level: number
+    UserId: string
+    GuildId: string
+    _count: LevelsCountAggregateOutputType | null
+    _avg: LevelsAvgAggregateOutputType | null
+    _sum: LevelsSumAggregateOutputType | null
+    _min: LevelsMinAggregateOutputType | null
+    _max: LevelsMaxAggregateOutputType | null
+  }
+
+  type GetLevelsGroupByPayload<T extends LevelsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LevelsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LevelsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LevelsGroupByOutputType[P]>
+            : GetScalarType<T[P], LevelsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LevelsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    XP?: boolean
+    RequiredXp?: boolean
+    Level?: boolean
+    UserId?: boolean
+    GuildId?: boolean
+    Users?: boolean | UsersDefaultArgs<ExtArgs>
+    LevelSettings?: boolean | LevelSettingsDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["levels"]>
+
+
+
+  export type LevelsSelectScalar = {
+    id?: boolean
+    XP?: boolean
+    RequiredXp?: boolean
+    Level?: boolean
+    UserId?: boolean
+    GuildId?: boolean
+  }
+
+  export type LevelsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "XP" | "RequiredXp" | "Level" | "UserId" | "GuildId", ExtArgs["result"]["levels"]>
+  export type LevelsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Users?: boolean | UsersDefaultArgs<ExtArgs>
+    LevelSettings?: boolean | LevelSettingsDefaultArgs<ExtArgs>
+  }
+
+  export type $LevelsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Levels"
+    objects: {
+      Users: Prisma.$UsersPayload<ExtArgs>
+      LevelSettings: Prisma.$LevelSettingsPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      XP: number
+      RequiredXp: number
+      Level: number
+      UserId: string
+      GuildId: string
+    }, ExtArgs["result"]["levels"]>
+    composites: {}
+  }
+
+  type LevelsGetPayload<S extends boolean | null | undefined | LevelsDefaultArgs> = $Result.GetResult<Prisma.$LevelsPayload, S>
+
+  type LevelsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LevelsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LevelsCountAggregateInputType | true
+    }
+
+  export interface LevelsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Levels'], meta: { name: 'Levels' } }
+    /**
+     * Find zero or one Levels that matches the filter.
+     * @param {LevelsFindUniqueArgs} args - Arguments to find a Levels
+     * @example
+     * // Get one Levels
+     * const levels = await prisma.levels.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LevelsFindUniqueArgs>(args: SelectSubset<T, LevelsFindUniqueArgs<ExtArgs>>): Prisma__LevelsClient<$Result.GetResult<Prisma.$LevelsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Levels that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LevelsFindUniqueOrThrowArgs} args - Arguments to find a Levels
+     * @example
+     * // Get one Levels
+     * const levels = await prisma.levels.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LevelsFindUniqueOrThrowArgs>(args: SelectSubset<T, LevelsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LevelsClient<$Result.GetResult<Prisma.$LevelsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Levels that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelsFindFirstArgs} args - Arguments to find a Levels
+     * @example
+     * // Get one Levels
+     * const levels = await prisma.levels.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LevelsFindFirstArgs>(args?: SelectSubset<T, LevelsFindFirstArgs<ExtArgs>>): Prisma__LevelsClient<$Result.GetResult<Prisma.$LevelsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Levels that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelsFindFirstOrThrowArgs} args - Arguments to find a Levels
+     * @example
+     * // Get one Levels
+     * const levels = await prisma.levels.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LevelsFindFirstOrThrowArgs>(args?: SelectSubset<T, LevelsFindFirstOrThrowArgs<ExtArgs>>): Prisma__LevelsClient<$Result.GetResult<Prisma.$LevelsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Levels that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Levels
+     * const levels = await prisma.levels.findMany()
+     * 
+     * // Get first 10 Levels
+     * const levels = await prisma.levels.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const levelsWithIdOnly = await prisma.levels.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends LevelsFindManyArgs>(args?: SelectSubset<T, LevelsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LevelsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Levels.
+     * @param {LevelsCreateArgs} args - Arguments to create a Levels.
+     * @example
+     * // Create one Levels
+     * const Levels = await prisma.levels.create({
+     *   data: {
+     *     // ... data to create a Levels
+     *   }
+     * })
+     * 
+     */
+    create<T extends LevelsCreateArgs>(args: SelectSubset<T, LevelsCreateArgs<ExtArgs>>): Prisma__LevelsClient<$Result.GetResult<Prisma.$LevelsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Levels.
+     * @param {LevelsCreateManyArgs} args - Arguments to create many Levels.
+     * @example
+     * // Create many Levels
+     * const levels = await prisma.levels.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LevelsCreateManyArgs>(args?: SelectSubset<T, LevelsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Levels.
+     * @param {LevelsDeleteArgs} args - Arguments to delete one Levels.
+     * @example
+     * // Delete one Levels
+     * const Levels = await prisma.levels.delete({
+     *   where: {
+     *     // ... filter to delete one Levels
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LevelsDeleteArgs>(args: SelectSubset<T, LevelsDeleteArgs<ExtArgs>>): Prisma__LevelsClient<$Result.GetResult<Prisma.$LevelsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Levels.
+     * @param {LevelsUpdateArgs} args - Arguments to update one Levels.
+     * @example
+     * // Update one Levels
+     * const levels = await prisma.levels.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LevelsUpdateArgs>(args: SelectSubset<T, LevelsUpdateArgs<ExtArgs>>): Prisma__LevelsClient<$Result.GetResult<Prisma.$LevelsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Levels.
+     * @param {LevelsDeleteManyArgs} args - Arguments to filter Levels to delete.
+     * @example
+     * // Delete a few Levels
+     * const { count } = await prisma.levels.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LevelsDeleteManyArgs>(args?: SelectSubset<T, LevelsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Levels.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Levels
+     * const levels = await prisma.levels.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LevelsUpdateManyArgs>(args: SelectSubset<T, LevelsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Levels.
+     * @param {LevelsUpsertArgs} args - Arguments to update or create a Levels.
+     * @example
+     * // Update or create a Levels
+     * const levels = await prisma.levels.upsert({
+     *   create: {
+     *     // ... data to create a Levels
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Levels we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LevelsUpsertArgs>(args: SelectSubset<T, LevelsUpsertArgs<ExtArgs>>): Prisma__LevelsClient<$Result.GetResult<Prisma.$LevelsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Levels that matches the filter.
+     * @param {LevelsFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const levels = await prisma.levels.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: LevelsFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a Levels.
+     * @param {LevelsAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const levels = await prisma.levels.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: LevelsAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of Levels.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelsCountArgs} args - Arguments to filter Levels to count.
+     * @example
+     * // Count the number of Levels
+     * const count = await prisma.levels.count({
+     *   where: {
+     *     // ... the filter for the Levels we want to count
+     *   }
+     * })
+    **/
+    count<T extends LevelsCountArgs>(
+      args?: Subset<T, LevelsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LevelsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Levels.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LevelsAggregateArgs>(args: Subset<T, LevelsAggregateArgs>): Prisma.PrismaPromise<GetLevelsAggregateType<T>>
+
+    /**
+     * Group by Levels.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LevelsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LevelsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LevelsGroupByArgs['orderBy'] }
+        : { orderBy?: LevelsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LevelsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLevelsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Levels model
+   */
+  readonly fields: LevelsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Levels.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LevelsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    Users<T extends UsersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsersDefaultArgs<ExtArgs>>): Prisma__UsersClient<$Result.GetResult<Prisma.$UsersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    LevelSettings<T extends LevelSettingsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LevelSettingsDefaultArgs<ExtArgs>>): Prisma__LevelSettingsClient<$Result.GetResult<Prisma.$LevelSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Levels model
+   */
+  interface LevelsFieldRefs {
+    readonly id: FieldRef<"Levels", 'String'>
+    readonly XP: FieldRef<"Levels", 'Int'>
+    readonly RequiredXp: FieldRef<"Levels", 'Int'>
+    readonly Level: FieldRef<"Levels", 'Int'>
+    readonly UserId: FieldRef<"Levels", 'String'>
+    readonly GuildId: FieldRef<"Levels", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Levels findUnique
+   */
+  export type LevelsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Levels
+     */
+    select?: LevelsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Levels
+     */
+    omit?: LevelsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelsInclude<ExtArgs> | null
+    /**
+     * Filter, which Levels to fetch.
+     */
+    where: LevelsWhereUniqueInput
+  }
+
+  /**
+   * Levels findUniqueOrThrow
+   */
+  export type LevelsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Levels
+     */
+    select?: LevelsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Levels
+     */
+    omit?: LevelsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelsInclude<ExtArgs> | null
+    /**
+     * Filter, which Levels to fetch.
+     */
+    where: LevelsWhereUniqueInput
+  }
+
+  /**
+   * Levels findFirst
+   */
+  export type LevelsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Levels
+     */
+    select?: LevelsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Levels
+     */
+    omit?: LevelsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelsInclude<ExtArgs> | null
+    /**
+     * Filter, which Levels to fetch.
+     */
+    where?: LevelsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Levels to fetch.
+     */
+    orderBy?: LevelsOrderByWithRelationInput | LevelsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Levels.
+     */
+    cursor?: LevelsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Levels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Levels.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Levels.
+     */
+    distinct?: LevelsScalarFieldEnum | LevelsScalarFieldEnum[]
+  }
+
+  /**
+   * Levels findFirstOrThrow
+   */
+  export type LevelsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Levels
+     */
+    select?: LevelsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Levels
+     */
+    omit?: LevelsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelsInclude<ExtArgs> | null
+    /**
+     * Filter, which Levels to fetch.
+     */
+    where?: LevelsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Levels to fetch.
+     */
+    orderBy?: LevelsOrderByWithRelationInput | LevelsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Levels.
+     */
+    cursor?: LevelsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Levels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Levels.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Levels.
+     */
+    distinct?: LevelsScalarFieldEnum | LevelsScalarFieldEnum[]
+  }
+
+  /**
+   * Levels findMany
+   */
+  export type LevelsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Levels
+     */
+    select?: LevelsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Levels
+     */
+    omit?: LevelsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelsInclude<ExtArgs> | null
+    /**
+     * Filter, which Levels to fetch.
+     */
+    where?: LevelsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Levels to fetch.
+     */
+    orderBy?: LevelsOrderByWithRelationInput | LevelsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Levels.
+     */
+    cursor?: LevelsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Levels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Levels.
+     */
+    skip?: number
+    distinct?: LevelsScalarFieldEnum | LevelsScalarFieldEnum[]
+  }
+
+  /**
+   * Levels create
+   */
+  export type LevelsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Levels
+     */
+    select?: LevelsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Levels
+     */
+    omit?: LevelsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Levels.
+     */
+    data: XOR<LevelsCreateInput, LevelsUncheckedCreateInput>
+  }
+
+  /**
+   * Levels createMany
+   */
+  export type LevelsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Levels.
+     */
+    data: LevelsCreateManyInput | LevelsCreateManyInput[]
+  }
+
+  /**
+   * Levels update
+   */
+  export type LevelsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Levels
+     */
+    select?: LevelsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Levels
+     */
+    omit?: LevelsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Levels.
+     */
+    data: XOR<LevelsUpdateInput, LevelsUncheckedUpdateInput>
+    /**
+     * Choose, which Levels to update.
+     */
+    where: LevelsWhereUniqueInput
+  }
+
+  /**
+   * Levels updateMany
+   */
+  export type LevelsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Levels.
+     */
+    data: XOR<LevelsUpdateManyMutationInput, LevelsUncheckedUpdateManyInput>
+    /**
+     * Filter which Levels to update
+     */
+    where?: LevelsWhereInput
+    /**
+     * Limit how many Levels to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Levels upsert
+   */
+  export type LevelsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Levels
+     */
+    select?: LevelsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Levels
+     */
+    omit?: LevelsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Levels to update in case it exists.
+     */
+    where: LevelsWhereUniqueInput
+    /**
+     * In case the Levels found by the `where` argument doesn't exist, create a new Levels with this data.
+     */
+    create: XOR<LevelsCreateInput, LevelsUncheckedCreateInput>
+    /**
+     * In case the Levels was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LevelsUpdateInput, LevelsUncheckedUpdateInput>
+  }
+
+  /**
+   * Levels delete
+   */
+  export type LevelsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Levels
+     */
+    select?: LevelsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Levels
+     */
+    omit?: LevelsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelsInclude<ExtArgs> | null
+    /**
+     * Filter which Levels to delete.
+     */
+    where: LevelsWhereUniqueInput
+  }
+
+  /**
+   * Levels deleteMany
+   */
+  export type LevelsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Levels to delete
+     */
+    where?: LevelsWhereInput
+    /**
+     * Limit how many Levels to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Levels findRaw
+   */
+  export type LevelsFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Levels aggregateRaw
+   */
+  export type LevelsAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Levels without action
+   */
+  export type LevelsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Levels
+     */
+    select?: LevelsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Levels
+     */
+    omit?: LevelsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelsInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Users
    */
 
@@ -72417,6 +78388,7 @@ export namespace Prisma {
     Apis?: boolean | Users$ApisArgs<ExtArgs>
     GuildBackups?: boolean | Users$GuildBackupsArgs<ExtArgs>
     Vanitys?: boolean | Users$VanitysArgs<ExtArgs>
+    Levels?: boolean | Users$LevelsArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["users"]>
 
@@ -72438,6 +78410,7 @@ export namespace Prisma {
     Apis?: boolean | Users$ApisArgs<ExtArgs>
     GuildBackups?: boolean | Users$GuildBackupsArgs<ExtArgs>
     Vanitys?: boolean | Users$VanitysArgs<ExtArgs>
+    Levels?: boolean | Users$LevelsArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -72447,6 +78420,7 @@ export namespace Prisma {
       Apis: Prisma.$ApisPayload<ExtArgs>[]
       GuildBackups: Prisma.$GuildBackupsPayload<ExtArgs>[]
       Vanitys: Prisma.$VanitysPayload<ExtArgs>[]
+      Levels: Prisma.$LevelsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -72823,6 +78797,7 @@ export namespace Prisma {
     Apis<T extends Users$ApisArgs<ExtArgs> = {}>(args?: Subset<T, Users$ApisArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApisPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     GuildBackups<T extends Users$GuildBackupsArgs<ExtArgs> = {}>(args?: Subset<T, Users$GuildBackupsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuildBackupsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Vanitys<T extends Users$VanitysArgs<ExtArgs> = {}>(args?: Subset<T, Users$VanitysArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VanitysPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Levels<T extends Users$LevelsArgs<ExtArgs> = {}>(args?: Subset<T, Users$LevelsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LevelsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -73299,6 +79274,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: VanitysScalarFieldEnum | VanitysScalarFieldEnum[]
+  }
+
+  /**
+   * Users.Levels
+   */
+  export type Users$LevelsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Levels
+     */
+    select?: LevelsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Levels
+     */
+    omit?: LevelsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LevelsInclude<ExtArgs> | null
+    where?: LevelsWhereInput
+    orderBy?: LevelsOrderByWithRelationInput | LevelsOrderByWithRelationInput[]
+    cursor?: LevelsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LevelsScalarFieldEnum | LevelsScalarFieldEnum[]
   }
 
   /**
@@ -82364,6 +88363,82 @@ export namespace Prisma {
   export type GuildYoutubeNotificationsScalarFieldEnum = (typeof GuildYoutubeNotificationsScalarFieldEnum)[keyof typeof GuildYoutubeNotificationsScalarFieldEnum]
 
 
+  export const LevelSettingsScalarFieldEnum: {
+    id: 'id',
+    LevelUpChannelId: 'LevelUpChannelId',
+    LevelUoMessageTemplateId: 'LevelUoMessageTemplateId',
+    LeaderboardMessageTemplateId: 'LeaderboardMessageTemplateId',
+    LeaderboardDisplayAmount: 'LeaderboardDisplayAmount',
+    RequiredXPForFirstLevel: 'RequiredXPForFirstLevel',
+    Format: 'Format',
+    MessageXP: 'MessageXP',
+    MessageXPRange: 'MessageXPRange',
+    MesssageXPCooldown: 'MesssageXPCooldown',
+    MessageXPType: 'MessageXPType',
+    VoiceXP: 'VoiceXP',
+    VoiceXPRange: 'VoiceXPRange',
+    VoiceXPCooldown: 'VoiceXPCooldown',
+    ExcludedChannelIds: 'ExcludedChannelIds',
+    ExcludeUserIds: 'ExcludeUserIds',
+    ExcludeRoleIds: 'ExcludeRoleIds',
+    GuildId: 'GuildId'
+  };
+
+  export type LevelSettingsScalarFieldEnum = (typeof LevelSettingsScalarFieldEnum)[keyof typeof LevelSettingsScalarFieldEnum]
+
+
+  export const XPDropsScalarFieldEnum: {
+    id: 'id',
+    GuildId: 'GuildId',
+    XPRange: 'XPRange',
+    ClaimType: 'ClaimType',
+    TimeToRespawn: 'TimeToRespawn',
+    ChannelIds: 'ChannelIds'
+  };
+
+  export type XPDropsScalarFieldEnum = (typeof XPDropsScalarFieldEnum)[keyof typeof XPDropsScalarFieldEnum]
+
+
+  export const XPStreaksScalarFieldEnum: {
+    id: 'id',
+    Days: 'Days',
+    Nickname: 'Nickname',
+    BonusLevels: 'BonusLevels',
+    BonusXP: 'BonusXP',
+    ChannelId: 'ChannelId',
+    MessageTemplateId: 'MessageTemplateId',
+    Multiplier: 'Multiplier',
+    RoleRewardIds: 'RoleRewardIds',
+    GuildId: 'GuildId'
+  };
+
+  export type XPStreaksScalarFieldEnum = (typeof XPStreaksScalarFieldEnum)[keyof typeof XPStreaksScalarFieldEnum]
+
+
+  export const LevelRolesScalarFieldEnum: {
+    id: 'id',
+    Level: 'Level',
+    Multiplier: 'Multiplier',
+    Type: 'Type',
+    RoleId: 'RoleId',
+    GuildId: 'GuildId'
+  };
+
+  export type LevelRolesScalarFieldEnum = (typeof LevelRolesScalarFieldEnum)[keyof typeof LevelRolesScalarFieldEnum]
+
+
+  export const LevelsScalarFieldEnum: {
+    id: 'id',
+    XP: 'XP',
+    RequiredXp: 'RequiredXp',
+    Level: 'Level',
+    UserId: 'UserId',
+    GuildId: 'GuildId'
+  };
+
+  export type LevelsScalarFieldEnum = (typeof LevelsScalarFieldEnum)[keyof typeof LevelsScalarFieldEnum]
+
+
   export const UsersScalarFieldEnum: {
     id: 'id',
     Username: 'Username',
@@ -82632,6 +88707,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksListRelationFilter
     ModerationScout?: XOR<ModerationScoutNullableScalarRelationFilter, ModerationScoutWhereInput> | null
     GuildUserModeration?: GuildUserModerationListRelationFilter
+    LevelSettings?: XOR<LevelSettingsNullableScalarRelationFilter, LevelSettingsWhereInput> | null
   }
 
   export type GuildsOrderByWithRelationInput = {
@@ -82668,6 +88744,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksOrderByRelationAggregateInput
     ModerationScout?: ModerationScoutOrderByWithRelationInput
     GuildUserModeration?: GuildUserModerationOrderByRelationAggregateInput
+    LevelSettings?: LevelSettingsOrderByWithRelationInput
   }
 
   export type GuildsWhereUniqueInput = Prisma.AtLeast<{
@@ -82707,6 +88784,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksListRelationFilter
     ModerationScout?: XOR<ModerationScoutNullableScalarRelationFilter, ModerationScoutWhereInput> | null
     GuildUserModeration?: GuildUserModerationListRelationFilter
+    LevelSettings?: XOR<LevelSettingsNullableScalarRelationFilter, LevelSettingsWhereInput> | null
   }, "id" | "GuildId">
 
   export type GuildsOrderByWithAggregationInput = {
@@ -85475,7 +91553,7 @@ export namespace Prisma {
     MessageTemplateId?: StringFilter<"GuildWelcomeSetup"> | string
     ChannelId?: StringFilter<"GuildWelcomeSetup"> | string
     Image?: BoolFilter<"GuildWelcomeSetup"> | boolean
-    ImageData?: XOR<WelcomeLeaveImageDataCompositeFilter, WelcomeLeaveImageDataObjectEqualityInput>
+    ImageData?: XOR<WelcomeLeaveImageDataNullableCompositeFilter, WelcomeLeaveImageDataObjectEqualityInput> | null
     GuildId?: StringFilter<"GuildWelcomeSetup"> | string
     Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
   }
@@ -85499,7 +91577,7 @@ export namespace Prisma {
     MessageTemplateId?: StringFilter<"GuildWelcomeSetup"> | string
     ChannelId?: StringFilter<"GuildWelcomeSetup"> | string
     Image?: BoolFilter<"GuildWelcomeSetup"> | boolean
-    ImageData?: XOR<WelcomeLeaveImageDataCompositeFilter, WelcomeLeaveImageDataObjectEqualityInput>
+    ImageData?: XOR<WelcomeLeaveImageDataNullableCompositeFilter, WelcomeLeaveImageDataObjectEqualityInput> | null
     Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
   }, "id" | "GuildId">
 
@@ -87315,6 +93393,411 @@ export namespace Prisma {
     GuildId?: StringWithAggregatesFilter<"GuildYoutubeNotifications"> | string
   }
 
+  export type LevelSettingsWhereInput = {
+    AND?: LevelSettingsWhereInput | LevelSettingsWhereInput[]
+    OR?: LevelSettingsWhereInput[]
+    NOT?: LevelSettingsWhereInput | LevelSettingsWhereInput[]
+    id?: StringFilter<"LevelSettings"> | string
+    LevelUpChannelId?: StringFilter<"LevelSettings"> | string
+    LevelUoMessageTemplateId?: StringFilter<"LevelSettings"> | string
+    LeaderboardMessageTemplateId?: StringFilter<"LevelSettings"> | string
+    LeaderboardDisplayAmount?: IntFilter<"LevelSettings"> | number
+    RequiredXPForFirstLevel?: IntFilter<"LevelSettings"> | number
+    Format?: StringFilter<"LevelSettings"> | string
+    MessageXP?: BoolFilter<"LevelSettings"> | boolean
+    MessageXPRange?: StringFilter<"LevelSettings"> | string
+    MesssageXPCooldown?: StringFilter<"LevelSettings"> | string
+    MessageXPType?: StringFilter<"LevelSettings"> | string
+    VoiceXP?: BoolFilter<"LevelSettings"> | boolean
+    VoiceXPRange?: StringFilter<"LevelSettings"> | string
+    VoiceXPCooldown?: IntFilter<"LevelSettings"> | number
+    ExcludedChannelIds?: StringNullableListFilter<"LevelSettings">
+    ExcludeUserIds?: StringNullableListFilter<"LevelSettings">
+    ExcludeRoleIds?: StringNullableListFilter<"LevelSettings">
+    GuildId?: StringFilter<"LevelSettings"> | string
+    LevelRoles?: LevelRolesListRelationFilter
+    XPDrops?: XPDropsListRelationFilter
+    XPStreaks?: XPStreaksListRelationFilter
+    Levels?: LevelsListRelationFilter
+    Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
+  }
+
+  export type LevelSettingsOrderByWithRelationInput = {
+    id?: SortOrder
+    LevelUpChannelId?: SortOrder
+    LevelUoMessageTemplateId?: SortOrder
+    LeaderboardMessageTemplateId?: SortOrder
+    LeaderboardDisplayAmount?: SortOrder
+    RequiredXPForFirstLevel?: SortOrder
+    Format?: SortOrder
+    MessageXP?: SortOrder
+    MessageXPRange?: SortOrder
+    MesssageXPCooldown?: SortOrder
+    MessageXPType?: SortOrder
+    VoiceXP?: SortOrder
+    VoiceXPRange?: SortOrder
+    VoiceXPCooldown?: SortOrder
+    ExcludedChannelIds?: SortOrder
+    ExcludeUserIds?: SortOrder
+    ExcludeRoleIds?: SortOrder
+    GuildId?: SortOrder
+    LevelRoles?: LevelRolesOrderByRelationAggregateInput
+    XPDrops?: XPDropsOrderByRelationAggregateInput
+    XPStreaks?: XPStreaksOrderByRelationAggregateInput
+    Levels?: LevelsOrderByRelationAggregateInput
+    Guilds?: GuildsOrderByWithRelationInput
+  }
+
+  export type LevelSettingsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    GuildId?: string
+    AND?: LevelSettingsWhereInput | LevelSettingsWhereInput[]
+    OR?: LevelSettingsWhereInput[]
+    NOT?: LevelSettingsWhereInput | LevelSettingsWhereInput[]
+    LevelUpChannelId?: StringFilter<"LevelSettings"> | string
+    LevelUoMessageTemplateId?: StringFilter<"LevelSettings"> | string
+    LeaderboardMessageTemplateId?: StringFilter<"LevelSettings"> | string
+    LeaderboardDisplayAmount?: IntFilter<"LevelSettings"> | number
+    RequiredXPForFirstLevel?: IntFilter<"LevelSettings"> | number
+    Format?: StringFilter<"LevelSettings"> | string
+    MessageXP?: BoolFilter<"LevelSettings"> | boolean
+    MessageXPRange?: StringFilter<"LevelSettings"> | string
+    MesssageXPCooldown?: StringFilter<"LevelSettings"> | string
+    MessageXPType?: StringFilter<"LevelSettings"> | string
+    VoiceXP?: BoolFilter<"LevelSettings"> | boolean
+    VoiceXPRange?: StringFilter<"LevelSettings"> | string
+    VoiceXPCooldown?: IntFilter<"LevelSettings"> | number
+    ExcludedChannelIds?: StringNullableListFilter<"LevelSettings">
+    ExcludeUserIds?: StringNullableListFilter<"LevelSettings">
+    ExcludeRoleIds?: StringNullableListFilter<"LevelSettings">
+    LevelRoles?: LevelRolesListRelationFilter
+    XPDrops?: XPDropsListRelationFilter
+    XPStreaks?: XPStreaksListRelationFilter
+    Levels?: LevelsListRelationFilter
+    Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
+  }, "id" | "GuildId">
+
+  export type LevelSettingsOrderByWithAggregationInput = {
+    id?: SortOrder
+    LevelUpChannelId?: SortOrder
+    LevelUoMessageTemplateId?: SortOrder
+    LeaderboardMessageTemplateId?: SortOrder
+    LeaderboardDisplayAmount?: SortOrder
+    RequiredXPForFirstLevel?: SortOrder
+    Format?: SortOrder
+    MessageXP?: SortOrder
+    MessageXPRange?: SortOrder
+    MesssageXPCooldown?: SortOrder
+    MessageXPType?: SortOrder
+    VoiceXP?: SortOrder
+    VoiceXPRange?: SortOrder
+    VoiceXPCooldown?: SortOrder
+    ExcludedChannelIds?: SortOrder
+    ExcludeUserIds?: SortOrder
+    ExcludeRoleIds?: SortOrder
+    GuildId?: SortOrder
+    _count?: LevelSettingsCountOrderByAggregateInput
+    _avg?: LevelSettingsAvgOrderByAggregateInput
+    _max?: LevelSettingsMaxOrderByAggregateInput
+    _min?: LevelSettingsMinOrderByAggregateInput
+    _sum?: LevelSettingsSumOrderByAggregateInput
+  }
+
+  export type LevelSettingsScalarWhereWithAggregatesInput = {
+    AND?: LevelSettingsScalarWhereWithAggregatesInput | LevelSettingsScalarWhereWithAggregatesInput[]
+    OR?: LevelSettingsScalarWhereWithAggregatesInput[]
+    NOT?: LevelSettingsScalarWhereWithAggregatesInput | LevelSettingsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"LevelSettings"> | string
+    LevelUpChannelId?: StringWithAggregatesFilter<"LevelSettings"> | string
+    LevelUoMessageTemplateId?: StringWithAggregatesFilter<"LevelSettings"> | string
+    LeaderboardMessageTemplateId?: StringWithAggregatesFilter<"LevelSettings"> | string
+    LeaderboardDisplayAmount?: IntWithAggregatesFilter<"LevelSettings"> | number
+    RequiredXPForFirstLevel?: IntWithAggregatesFilter<"LevelSettings"> | number
+    Format?: StringWithAggregatesFilter<"LevelSettings"> | string
+    MessageXP?: BoolWithAggregatesFilter<"LevelSettings"> | boolean
+    MessageXPRange?: StringWithAggregatesFilter<"LevelSettings"> | string
+    MesssageXPCooldown?: StringWithAggregatesFilter<"LevelSettings"> | string
+    MessageXPType?: StringWithAggregatesFilter<"LevelSettings"> | string
+    VoiceXP?: BoolWithAggregatesFilter<"LevelSettings"> | boolean
+    VoiceXPRange?: StringWithAggregatesFilter<"LevelSettings"> | string
+    VoiceXPCooldown?: IntWithAggregatesFilter<"LevelSettings"> | number
+    ExcludedChannelIds?: StringNullableListFilter<"LevelSettings">
+    ExcludeUserIds?: StringNullableListFilter<"LevelSettings">
+    ExcludeRoleIds?: StringNullableListFilter<"LevelSettings">
+    GuildId?: StringWithAggregatesFilter<"LevelSettings"> | string
+  }
+
+  export type XPDropsWhereInput = {
+    AND?: XPDropsWhereInput | XPDropsWhereInput[]
+    OR?: XPDropsWhereInput[]
+    NOT?: XPDropsWhereInput | XPDropsWhereInput[]
+    id?: StringFilter<"XPDrops"> | string
+    GuildId?: StringFilter<"XPDrops"> | string
+    XPRange?: StringFilter<"XPDrops"> | string
+    ClaimType?: IntFilter<"XPDrops"> | number
+    TimeToRespawn?: StringFilter<"XPDrops"> | string
+    ChannelIds?: StringNullableListFilter<"XPDrops">
+    LevelSettings?: XOR<LevelSettingsScalarRelationFilter, LevelSettingsWhereInput>
+  }
+
+  export type XPDropsOrderByWithRelationInput = {
+    id?: SortOrder
+    GuildId?: SortOrder
+    XPRange?: SortOrder
+    ClaimType?: SortOrder
+    TimeToRespawn?: SortOrder
+    ChannelIds?: SortOrder
+    LevelSettings?: LevelSettingsOrderByWithRelationInput
+  }
+
+  export type XPDropsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: XPDropsWhereInput | XPDropsWhereInput[]
+    OR?: XPDropsWhereInput[]
+    NOT?: XPDropsWhereInput | XPDropsWhereInput[]
+    GuildId?: StringFilter<"XPDrops"> | string
+    XPRange?: StringFilter<"XPDrops"> | string
+    ClaimType?: IntFilter<"XPDrops"> | number
+    TimeToRespawn?: StringFilter<"XPDrops"> | string
+    ChannelIds?: StringNullableListFilter<"XPDrops">
+    LevelSettings?: XOR<LevelSettingsScalarRelationFilter, LevelSettingsWhereInput>
+  }, "id">
+
+  export type XPDropsOrderByWithAggregationInput = {
+    id?: SortOrder
+    GuildId?: SortOrder
+    XPRange?: SortOrder
+    ClaimType?: SortOrder
+    TimeToRespawn?: SortOrder
+    ChannelIds?: SortOrder
+    _count?: XPDropsCountOrderByAggregateInput
+    _avg?: XPDropsAvgOrderByAggregateInput
+    _max?: XPDropsMaxOrderByAggregateInput
+    _min?: XPDropsMinOrderByAggregateInput
+    _sum?: XPDropsSumOrderByAggregateInput
+  }
+
+  export type XPDropsScalarWhereWithAggregatesInput = {
+    AND?: XPDropsScalarWhereWithAggregatesInput | XPDropsScalarWhereWithAggregatesInput[]
+    OR?: XPDropsScalarWhereWithAggregatesInput[]
+    NOT?: XPDropsScalarWhereWithAggregatesInput | XPDropsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"XPDrops"> | string
+    GuildId?: StringWithAggregatesFilter<"XPDrops"> | string
+    XPRange?: StringWithAggregatesFilter<"XPDrops"> | string
+    ClaimType?: IntWithAggregatesFilter<"XPDrops"> | number
+    TimeToRespawn?: StringWithAggregatesFilter<"XPDrops"> | string
+    ChannelIds?: StringNullableListFilter<"XPDrops">
+  }
+
+  export type XPStreaksWhereInput = {
+    AND?: XPStreaksWhereInput | XPStreaksWhereInput[]
+    OR?: XPStreaksWhereInput[]
+    NOT?: XPStreaksWhereInput | XPStreaksWhereInput[]
+    id?: StringFilter<"XPStreaks"> | string
+    Days?: IntFilter<"XPStreaks"> | number
+    Nickname?: StringFilter<"XPStreaks"> | string
+    BonusLevels?: IntFilter<"XPStreaks"> | number
+    BonusXP?: IntFilter<"XPStreaks"> | number
+    ChannelId?: StringFilter<"XPStreaks"> | string
+    MessageTemplateId?: StringFilter<"XPStreaks"> | string
+    Multiplier?: IntFilter<"XPStreaks"> | number
+    RoleRewardIds?: StringNullableListFilter<"XPStreaks">
+    GuildId?: StringFilter<"XPStreaks"> | string
+    LevelSettings?: XOR<LevelSettingsScalarRelationFilter, LevelSettingsWhereInput>
+  }
+
+  export type XPStreaksOrderByWithRelationInput = {
+    id?: SortOrder
+    Days?: SortOrder
+    Nickname?: SortOrder
+    BonusLevels?: SortOrder
+    BonusXP?: SortOrder
+    ChannelId?: SortOrder
+    MessageTemplateId?: SortOrder
+    Multiplier?: SortOrder
+    RoleRewardIds?: SortOrder
+    GuildId?: SortOrder
+    LevelSettings?: LevelSettingsOrderByWithRelationInput
+  }
+
+  export type XPStreaksWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: XPStreaksWhereInput | XPStreaksWhereInput[]
+    OR?: XPStreaksWhereInput[]
+    NOT?: XPStreaksWhereInput | XPStreaksWhereInput[]
+    Days?: IntFilter<"XPStreaks"> | number
+    Nickname?: StringFilter<"XPStreaks"> | string
+    BonusLevels?: IntFilter<"XPStreaks"> | number
+    BonusXP?: IntFilter<"XPStreaks"> | number
+    ChannelId?: StringFilter<"XPStreaks"> | string
+    MessageTemplateId?: StringFilter<"XPStreaks"> | string
+    Multiplier?: IntFilter<"XPStreaks"> | number
+    RoleRewardIds?: StringNullableListFilter<"XPStreaks">
+    GuildId?: StringFilter<"XPStreaks"> | string
+    LevelSettings?: XOR<LevelSettingsScalarRelationFilter, LevelSettingsWhereInput>
+  }, "id">
+
+  export type XPStreaksOrderByWithAggregationInput = {
+    id?: SortOrder
+    Days?: SortOrder
+    Nickname?: SortOrder
+    BonusLevels?: SortOrder
+    BonusXP?: SortOrder
+    ChannelId?: SortOrder
+    MessageTemplateId?: SortOrder
+    Multiplier?: SortOrder
+    RoleRewardIds?: SortOrder
+    GuildId?: SortOrder
+    _count?: XPStreaksCountOrderByAggregateInput
+    _avg?: XPStreaksAvgOrderByAggregateInput
+    _max?: XPStreaksMaxOrderByAggregateInput
+    _min?: XPStreaksMinOrderByAggregateInput
+    _sum?: XPStreaksSumOrderByAggregateInput
+  }
+
+  export type XPStreaksScalarWhereWithAggregatesInput = {
+    AND?: XPStreaksScalarWhereWithAggregatesInput | XPStreaksScalarWhereWithAggregatesInput[]
+    OR?: XPStreaksScalarWhereWithAggregatesInput[]
+    NOT?: XPStreaksScalarWhereWithAggregatesInput | XPStreaksScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"XPStreaks"> | string
+    Days?: IntWithAggregatesFilter<"XPStreaks"> | number
+    Nickname?: StringWithAggregatesFilter<"XPStreaks"> | string
+    BonusLevels?: IntWithAggregatesFilter<"XPStreaks"> | number
+    BonusXP?: IntWithAggregatesFilter<"XPStreaks"> | number
+    ChannelId?: StringWithAggregatesFilter<"XPStreaks"> | string
+    MessageTemplateId?: StringWithAggregatesFilter<"XPStreaks"> | string
+    Multiplier?: IntWithAggregatesFilter<"XPStreaks"> | number
+    RoleRewardIds?: StringNullableListFilter<"XPStreaks">
+    GuildId?: StringWithAggregatesFilter<"XPStreaks"> | string
+  }
+
+  export type LevelRolesWhereInput = {
+    AND?: LevelRolesWhereInput | LevelRolesWhereInput[]
+    OR?: LevelRolesWhereInput[]
+    NOT?: LevelRolesWhereInput | LevelRolesWhereInput[]
+    id?: StringFilter<"LevelRoles"> | string
+    Level?: IntFilter<"LevelRoles"> | number
+    Multiplier?: IntFilter<"LevelRoles"> | number
+    Type?: StringFilter<"LevelRoles"> | string
+    RoleId?: StringFilter<"LevelRoles"> | string
+    GuildId?: StringFilter<"LevelRoles"> | string
+    LevelSettings?: XOR<LevelSettingsScalarRelationFilter, LevelSettingsWhereInput>
+  }
+
+  export type LevelRolesOrderByWithRelationInput = {
+    id?: SortOrder
+    Level?: SortOrder
+    Multiplier?: SortOrder
+    Type?: SortOrder
+    RoleId?: SortOrder
+    GuildId?: SortOrder
+    LevelSettings?: LevelSettingsOrderByWithRelationInput
+  }
+
+  export type LevelRolesWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: LevelRolesWhereInput | LevelRolesWhereInput[]
+    OR?: LevelRolesWhereInput[]
+    NOT?: LevelRolesWhereInput | LevelRolesWhereInput[]
+    Level?: IntFilter<"LevelRoles"> | number
+    Multiplier?: IntFilter<"LevelRoles"> | number
+    Type?: StringFilter<"LevelRoles"> | string
+    RoleId?: StringFilter<"LevelRoles"> | string
+    GuildId?: StringFilter<"LevelRoles"> | string
+    LevelSettings?: XOR<LevelSettingsScalarRelationFilter, LevelSettingsWhereInput>
+  }, "id">
+
+  export type LevelRolesOrderByWithAggregationInput = {
+    id?: SortOrder
+    Level?: SortOrder
+    Multiplier?: SortOrder
+    Type?: SortOrder
+    RoleId?: SortOrder
+    GuildId?: SortOrder
+    _count?: LevelRolesCountOrderByAggregateInput
+    _avg?: LevelRolesAvgOrderByAggregateInput
+    _max?: LevelRolesMaxOrderByAggregateInput
+    _min?: LevelRolesMinOrderByAggregateInput
+    _sum?: LevelRolesSumOrderByAggregateInput
+  }
+
+  export type LevelRolesScalarWhereWithAggregatesInput = {
+    AND?: LevelRolesScalarWhereWithAggregatesInput | LevelRolesScalarWhereWithAggregatesInput[]
+    OR?: LevelRolesScalarWhereWithAggregatesInput[]
+    NOT?: LevelRolesScalarWhereWithAggregatesInput | LevelRolesScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"LevelRoles"> | string
+    Level?: IntWithAggregatesFilter<"LevelRoles"> | number
+    Multiplier?: IntWithAggregatesFilter<"LevelRoles"> | number
+    Type?: StringWithAggregatesFilter<"LevelRoles"> | string
+    RoleId?: StringWithAggregatesFilter<"LevelRoles"> | string
+    GuildId?: StringWithAggregatesFilter<"LevelRoles"> | string
+  }
+
+  export type LevelsWhereInput = {
+    AND?: LevelsWhereInput | LevelsWhereInput[]
+    OR?: LevelsWhereInput[]
+    NOT?: LevelsWhereInput | LevelsWhereInput[]
+    id?: StringFilter<"Levels"> | string
+    XP?: IntFilter<"Levels"> | number
+    RequiredXp?: IntFilter<"Levels"> | number
+    Level?: IntFilter<"Levels"> | number
+    UserId?: StringFilter<"Levels"> | string
+    GuildId?: StringFilter<"Levels"> | string
+    Users?: XOR<UsersScalarRelationFilter, UsersWhereInput>
+    LevelSettings?: XOR<LevelSettingsScalarRelationFilter, LevelSettingsWhereInput>
+  }
+
+  export type LevelsOrderByWithRelationInput = {
+    id?: SortOrder
+    XP?: SortOrder
+    RequiredXp?: SortOrder
+    Level?: SortOrder
+    UserId?: SortOrder
+    GuildId?: SortOrder
+    Users?: UsersOrderByWithRelationInput
+    LevelSettings?: LevelSettingsOrderByWithRelationInput
+  }
+
+  export type LevelsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: LevelsWhereInput | LevelsWhereInput[]
+    OR?: LevelsWhereInput[]
+    NOT?: LevelsWhereInput | LevelsWhereInput[]
+    XP?: IntFilter<"Levels"> | number
+    RequiredXp?: IntFilter<"Levels"> | number
+    Level?: IntFilter<"Levels"> | number
+    UserId?: StringFilter<"Levels"> | string
+    GuildId?: StringFilter<"Levels"> | string
+    Users?: XOR<UsersScalarRelationFilter, UsersWhereInput>
+    LevelSettings?: XOR<LevelSettingsScalarRelationFilter, LevelSettingsWhereInput>
+  }, "id">
+
+  export type LevelsOrderByWithAggregationInput = {
+    id?: SortOrder
+    XP?: SortOrder
+    RequiredXp?: SortOrder
+    Level?: SortOrder
+    UserId?: SortOrder
+    GuildId?: SortOrder
+    _count?: LevelsCountOrderByAggregateInput
+    _avg?: LevelsAvgOrderByAggregateInput
+    _max?: LevelsMaxOrderByAggregateInput
+    _min?: LevelsMinOrderByAggregateInput
+    _sum?: LevelsSumOrderByAggregateInput
+  }
+
+  export type LevelsScalarWhereWithAggregatesInput = {
+    AND?: LevelsScalarWhereWithAggregatesInput | LevelsScalarWhereWithAggregatesInput[]
+    OR?: LevelsScalarWhereWithAggregatesInput[]
+    NOT?: LevelsScalarWhereWithAggregatesInput | LevelsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Levels"> | string
+    XP?: IntWithAggregatesFilter<"Levels"> | number
+    RequiredXp?: IntWithAggregatesFilter<"Levels"> | number
+    Level?: IntWithAggregatesFilter<"Levels"> | number
+    UserId?: StringWithAggregatesFilter<"Levels"> | string
+    GuildId?: StringWithAggregatesFilter<"Levels"> | string
+  }
+
   export type UsersWhereInput = {
     AND?: UsersWhereInput | UsersWhereInput[]
     OR?: UsersWhereInput[]
@@ -87330,6 +93813,7 @@ export namespace Prisma {
     Apis?: ApisListRelationFilter
     GuildBackups?: GuildBackupsListRelationFilter
     Vanitys?: VanitysListRelationFilter
+    Levels?: LevelsListRelationFilter
   }
 
   export type UsersOrderByWithRelationInput = {
@@ -87344,6 +93828,7 @@ export namespace Prisma {
     Apis?: ApisOrderByRelationAggregateInput
     GuildBackups?: GuildBackupsOrderByRelationAggregateInput
     Vanitys?: VanitysOrderByRelationAggregateInput
+    Levels?: LevelsOrderByRelationAggregateInput
   }
 
   export type UsersWhereUniqueInput = Prisma.AtLeast<{
@@ -87361,6 +93846,7 @@ export namespace Prisma {
     Apis?: ApisListRelationFilter
     GuildBackups?: GuildBackupsListRelationFilter
     Vanitys?: VanitysListRelationFilter
+    Levels?: LevelsListRelationFilter
   }, "id" | "UserId">
 
   export type UsersOrderByWithAggregationInput = {
@@ -87953,6 +94439,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateInput = {
@@ -87989,6 +94476,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUpdateInput = {
@@ -88024,6 +94512,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateInput = {
@@ -88059,6 +94548,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateManyInput = {
@@ -90874,7 +97364,7 @@ export namespace Prisma {
     MessageTemplateId: string
     ChannelId: string
     Image: boolean
-    ImageData: XOR<WelcomeLeaveImageDataCreateEnvelopeInput, WelcomeLeaveImageDataCreateInput>
+    ImageData?: XOR<WelcomeLeaveImageDataNullableCreateEnvelopeInput, WelcomeLeaveImageDataCreateInput> | null
     Guilds: GuildsCreateNestedOneWithoutGuildWelcomeSetupInput
   }
 
@@ -90883,7 +97373,7 @@ export namespace Prisma {
     MessageTemplateId: string
     ChannelId: string
     Image: boolean
-    ImageData: XOR<WelcomeLeaveImageDataCreateEnvelopeInput, WelcomeLeaveImageDataCreateInput>
+    ImageData?: XOR<WelcomeLeaveImageDataNullableCreateEnvelopeInput, WelcomeLeaveImageDataCreateInput> | null
     GuildId: string
   }
 
@@ -90891,7 +97381,7 @@ export namespace Prisma {
     MessageTemplateId?: StringFieldUpdateOperationsInput | string
     ChannelId?: StringFieldUpdateOperationsInput | string
     Image?: BoolFieldUpdateOperationsInput | boolean
-    ImageData?: XOR<WelcomeLeaveImageDataUpdateEnvelopeInput, WelcomeLeaveImageDataCreateInput>
+    ImageData?: XOR<WelcomeLeaveImageDataNullableUpdateEnvelopeInput, WelcomeLeaveImageDataCreateInput> | null
     Guilds?: GuildsUpdateOneRequiredWithoutGuildWelcomeSetupNestedInput
   }
 
@@ -90899,7 +97389,7 @@ export namespace Prisma {
     MessageTemplateId?: StringFieldUpdateOperationsInput | string
     ChannelId?: StringFieldUpdateOperationsInput | string
     Image?: BoolFieldUpdateOperationsInput | boolean
-    ImageData?: XOR<WelcomeLeaveImageDataUpdateEnvelopeInput, WelcomeLeaveImageDataCreateInput>
+    ImageData?: XOR<WelcomeLeaveImageDataNullableUpdateEnvelopeInput, WelcomeLeaveImageDataCreateInput> | null
     GuildId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -90908,7 +97398,7 @@ export namespace Prisma {
     MessageTemplateId: string
     ChannelId: string
     Image: boolean
-    ImageData: XOR<WelcomeLeaveImageDataCreateEnvelopeInput, WelcomeLeaveImageDataCreateInput>
+    ImageData?: XOR<WelcomeLeaveImageDataNullableCreateEnvelopeInput, WelcomeLeaveImageDataCreateInput> | null
     GuildId: string
   }
 
@@ -90916,14 +97406,14 @@ export namespace Prisma {
     MessageTemplateId?: StringFieldUpdateOperationsInput | string
     ChannelId?: StringFieldUpdateOperationsInput | string
     Image?: BoolFieldUpdateOperationsInput | boolean
-    ImageData?: XOR<WelcomeLeaveImageDataUpdateEnvelopeInput, WelcomeLeaveImageDataCreateInput>
+    ImageData?: XOR<WelcomeLeaveImageDataNullableUpdateEnvelopeInput, WelcomeLeaveImageDataCreateInput> | null
   }
 
   export type GuildWelcomeSetupUncheckedUpdateManyInput = {
     MessageTemplateId?: StringFieldUpdateOperationsInput | string
     ChannelId?: StringFieldUpdateOperationsInput | string
     Image?: BoolFieldUpdateOperationsInput | boolean
-    ImageData?: XOR<WelcomeLeaveImageDataUpdateEnvelopeInput, WelcomeLeaveImageDataCreateInput>
+    ImageData?: XOR<WelcomeLeaveImageDataNullableUpdateEnvelopeInput, WelcomeLeaveImageDataCreateInput> | null
     GuildId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -92892,6 +99382,423 @@ export namespace Prisma {
     GuildId?: StringFieldUpdateOperationsInput | string
   }
 
+  export type LevelSettingsCreateInput = {
+    id?: string
+    LevelUpChannelId: string
+    LevelUoMessageTemplateId: string
+    LeaderboardMessageTemplateId: string
+    LeaderboardDisplayAmount: number
+    RequiredXPForFirstLevel: number
+    Format: string
+    MessageXP: boolean
+    MessageXPRange: string
+    MesssageXPCooldown: string
+    MessageXPType: string
+    VoiceXP: boolean
+    VoiceXPRange: string
+    VoiceXPCooldown: number
+    ExcludedChannelIds?: LevelSettingsCreateExcludedChannelIdsInput | string[]
+    ExcludeUserIds?: LevelSettingsCreateExcludeUserIdsInput | string[]
+    ExcludeRoleIds?: LevelSettingsCreateExcludeRoleIdsInput | string[]
+    LevelRoles?: LevelRolesCreateNestedManyWithoutLevelSettingsInput
+    XPDrops?: XPDropsCreateNestedManyWithoutLevelSettingsInput
+    XPStreaks?: XPStreaksCreateNestedManyWithoutLevelSettingsInput
+    Levels?: LevelsCreateNestedManyWithoutLevelSettingsInput
+    Guilds: GuildsCreateNestedOneWithoutLevelSettingsInput
+  }
+
+  export type LevelSettingsUncheckedCreateInput = {
+    id?: string
+    LevelUpChannelId: string
+    LevelUoMessageTemplateId: string
+    LeaderboardMessageTemplateId: string
+    LeaderboardDisplayAmount: number
+    RequiredXPForFirstLevel: number
+    Format: string
+    MessageXP: boolean
+    MessageXPRange: string
+    MesssageXPCooldown: string
+    MessageXPType: string
+    VoiceXP: boolean
+    VoiceXPRange: string
+    VoiceXPCooldown: number
+    ExcludedChannelIds?: LevelSettingsCreateExcludedChannelIdsInput | string[]
+    ExcludeUserIds?: LevelSettingsCreateExcludeUserIdsInput | string[]
+    ExcludeRoleIds?: LevelSettingsCreateExcludeRoleIdsInput | string[]
+    GuildId: string
+    LevelRoles?: LevelRolesUncheckedCreateNestedManyWithoutLevelSettingsInput
+    XPDrops?: XPDropsUncheckedCreateNestedManyWithoutLevelSettingsInput
+    XPStreaks?: XPStreaksUncheckedCreateNestedManyWithoutLevelSettingsInput
+    Levels?: LevelsUncheckedCreateNestedManyWithoutLevelSettingsInput
+  }
+
+  export type LevelSettingsUpdateInput = {
+    LevelUpChannelId?: StringFieldUpdateOperationsInput | string
+    LevelUoMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardDisplayAmount?: IntFieldUpdateOperationsInput | number
+    RequiredXPForFirstLevel?: IntFieldUpdateOperationsInput | number
+    Format?: StringFieldUpdateOperationsInput | string
+    MessageXP?: BoolFieldUpdateOperationsInput | boolean
+    MessageXPRange?: StringFieldUpdateOperationsInput | string
+    MesssageXPCooldown?: StringFieldUpdateOperationsInput | string
+    MessageXPType?: StringFieldUpdateOperationsInput | string
+    VoiceXP?: BoolFieldUpdateOperationsInput | boolean
+    VoiceXPRange?: StringFieldUpdateOperationsInput | string
+    VoiceXPCooldown?: IntFieldUpdateOperationsInput | number
+    ExcludedChannelIds?: LevelSettingsUpdateExcludedChannelIdsInput | string[]
+    ExcludeUserIds?: LevelSettingsUpdateExcludeUserIdsInput | string[]
+    ExcludeRoleIds?: LevelSettingsUpdateExcludeRoleIdsInput | string[]
+    LevelRoles?: LevelRolesUpdateManyWithoutLevelSettingsNestedInput
+    XPDrops?: XPDropsUpdateManyWithoutLevelSettingsNestedInput
+    XPStreaks?: XPStreaksUpdateManyWithoutLevelSettingsNestedInput
+    Levels?: LevelsUpdateManyWithoutLevelSettingsNestedInput
+    Guilds?: GuildsUpdateOneRequiredWithoutLevelSettingsNestedInput
+  }
+
+  export type LevelSettingsUncheckedUpdateInput = {
+    LevelUpChannelId?: StringFieldUpdateOperationsInput | string
+    LevelUoMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardDisplayAmount?: IntFieldUpdateOperationsInput | number
+    RequiredXPForFirstLevel?: IntFieldUpdateOperationsInput | number
+    Format?: StringFieldUpdateOperationsInput | string
+    MessageXP?: BoolFieldUpdateOperationsInput | boolean
+    MessageXPRange?: StringFieldUpdateOperationsInput | string
+    MesssageXPCooldown?: StringFieldUpdateOperationsInput | string
+    MessageXPType?: StringFieldUpdateOperationsInput | string
+    VoiceXP?: BoolFieldUpdateOperationsInput | boolean
+    VoiceXPRange?: StringFieldUpdateOperationsInput | string
+    VoiceXPCooldown?: IntFieldUpdateOperationsInput | number
+    ExcludedChannelIds?: LevelSettingsUpdateExcludedChannelIdsInput | string[]
+    ExcludeUserIds?: LevelSettingsUpdateExcludeUserIdsInput | string[]
+    ExcludeRoleIds?: LevelSettingsUpdateExcludeRoleIdsInput | string[]
+    GuildId?: StringFieldUpdateOperationsInput | string
+    LevelRoles?: LevelRolesUncheckedUpdateManyWithoutLevelSettingsNestedInput
+    XPDrops?: XPDropsUncheckedUpdateManyWithoutLevelSettingsNestedInput
+    XPStreaks?: XPStreaksUncheckedUpdateManyWithoutLevelSettingsNestedInput
+    Levels?: LevelsUncheckedUpdateManyWithoutLevelSettingsNestedInput
+  }
+
+  export type LevelSettingsCreateManyInput = {
+    id?: string
+    LevelUpChannelId: string
+    LevelUoMessageTemplateId: string
+    LeaderboardMessageTemplateId: string
+    LeaderboardDisplayAmount: number
+    RequiredXPForFirstLevel: number
+    Format: string
+    MessageXP: boolean
+    MessageXPRange: string
+    MesssageXPCooldown: string
+    MessageXPType: string
+    VoiceXP: boolean
+    VoiceXPRange: string
+    VoiceXPCooldown: number
+    ExcludedChannelIds?: LevelSettingsCreateExcludedChannelIdsInput | string[]
+    ExcludeUserIds?: LevelSettingsCreateExcludeUserIdsInput | string[]
+    ExcludeRoleIds?: LevelSettingsCreateExcludeRoleIdsInput | string[]
+    GuildId: string
+  }
+
+  export type LevelSettingsUpdateManyMutationInput = {
+    LevelUpChannelId?: StringFieldUpdateOperationsInput | string
+    LevelUoMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardDisplayAmount?: IntFieldUpdateOperationsInput | number
+    RequiredXPForFirstLevel?: IntFieldUpdateOperationsInput | number
+    Format?: StringFieldUpdateOperationsInput | string
+    MessageXP?: BoolFieldUpdateOperationsInput | boolean
+    MessageXPRange?: StringFieldUpdateOperationsInput | string
+    MesssageXPCooldown?: StringFieldUpdateOperationsInput | string
+    MessageXPType?: StringFieldUpdateOperationsInput | string
+    VoiceXP?: BoolFieldUpdateOperationsInput | boolean
+    VoiceXPRange?: StringFieldUpdateOperationsInput | string
+    VoiceXPCooldown?: IntFieldUpdateOperationsInput | number
+    ExcludedChannelIds?: LevelSettingsUpdateExcludedChannelIdsInput | string[]
+    ExcludeUserIds?: LevelSettingsUpdateExcludeUserIdsInput | string[]
+    ExcludeRoleIds?: LevelSettingsUpdateExcludeRoleIdsInput | string[]
+  }
+
+  export type LevelSettingsUncheckedUpdateManyInput = {
+    LevelUpChannelId?: StringFieldUpdateOperationsInput | string
+    LevelUoMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardDisplayAmount?: IntFieldUpdateOperationsInput | number
+    RequiredXPForFirstLevel?: IntFieldUpdateOperationsInput | number
+    Format?: StringFieldUpdateOperationsInput | string
+    MessageXP?: BoolFieldUpdateOperationsInput | boolean
+    MessageXPRange?: StringFieldUpdateOperationsInput | string
+    MesssageXPCooldown?: StringFieldUpdateOperationsInput | string
+    MessageXPType?: StringFieldUpdateOperationsInput | string
+    VoiceXP?: BoolFieldUpdateOperationsInput | boolean
+    VoiceXPRange?: StringFieldUpdateOperationsInput | string
+    VoiceXPCooldown?: IntFieldUpdateOperationsInput | number
+    ExcludedChannelIds?: LevelSettingsUpdateExcludedChannelIdsInput | string[]
+    ExcludeUserIds?: LevelSettingsUpdateExcludeUserIdsInput | string[]
+    ExcludeRoleIds?: LevelSettingsUpdateExcludeRoleIdsInput | string[]
+    GuildId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type XPDropsCreateInput = {
+    id?: string
+    XPRange: string
+    ClaimType: number
+    TimeToRespawn: string
+    ChannelIds?: XPDropsCreateChannelIdsInput | string[]
+    LevelSettings: LevelSettingsCreateNestedOneWithoutXPDropsInput
+  }
+
+  export type XPDropsUncheckedCreateInput = {
+    id?: string
+    GuildId: string
+    XPRange: string
+    ClaimType: number
+    TimeToRespawn: string
+    ChannelIds?: XPDropsCreateChannelIdsInput | string[]
+  }
+
+  export type XPDropsUpdateInput = {
+    XPRange?: StringFieldUpdateOperationsInput | string
+    ClaimType?: IntFieldUpdateOperationsInput | number
+    TimeToRespawn?: StringFieldUpdateOperationsInput | string
+    ChannelIds?: XPDropsUpdateChannelIdsInput | string[]
+    LevelSettings?: LevelSettingsUpdateOneRequiredWithoutXPDropsNestedInput
+  }
+
+  export type XPDropsUncheckedUpdateInput = {
+    GuildId?: StringFieldUpdateOperationsInput | string
+    XPRange?: StringFieldUpdateOperationsInput | string
+    ClaimType?: IntFieldUpdateOperationsInput | number
+    TimeToRespawn?: StringFieldUpdateOperationsInput | string
+    ChannelIds?: XPDropsUpdateChannelIdsInput | string[]
+  }
+
+  export type XPDropsCreateManyInput = {
+    id?: string
+    GuildId: string
+    XPRange: string
+    ClaimType: number
+    TimeToRespawn: string
+    ChannelIds?: XPDropsCreateChannelIdsInput | string[]
+  }
+
+  export type XPDropsUpdateManyMutationInput = {
+    XPRange?: StringFieldUpdateOperationsInput | string
+    ClaimType?: IntFieldUpdateOperationsInput | number
+    TimeToRespawn?: StringFieldUpdateOperationsInput | string
+    ChannelIds?: XPDropsUpdateChannelIdsInput | string[]
+  }
+
+  export type XPDropsUncheckedUpdateManyInput = {
+    GuildId?: StringFieldUpdateOperationsInput | string
+    XPRange?: StringFieldUpdateOperationsInput | string
+    ClaimType?: IntFieldUpdateOperationsInput | number
+    TimeToRespawn?: StringFieldUpdateOperationsInput | string
+    ChannelIds?: XPDropsUpdateChannelIdsInput | string[]
+  }
+
+  export type XPStreaksCreateInput = {
+    id?: string
+    Days: number
+    Nickname: string
+    BonusLevels: number
+    BonusXP: number
+    ChannelId: string
+    MessageTemplateId: string
+    Multiplier: number
+    RoleRewardIds?: XPStreaksCreateRoleRewardIdsInput | string[]
+    LevelSettings: LevelSettingsCreateNestedOneWithoutXPStreaksInput
+  }
+
+  export type XPStreaksUncheckedCreateInput = {
+    id?: string
+    Days: number
+    Nickname: string
+    BonusLevels: number
+    BonusXP: number
+    ChannelId: string
+    MessageTemplateId: string
+    Multiplier: number
+    RoleRewardIds?: XPStreaksCreateRoleRewardIdsInput | string[]
+    GuildId: string
+  }
+
+  export type XPStreaksUpdateInput = {
+    Days?: IntFieldUpdateOperationsInput | number
+    Nickname?: StringFieldUpdateOperationsInput | string
+    BonusLevels?: IntFieldUpdateOperationsInput | number
+    BonusXP?: IntFieldUpdateOperationsInput | number
+    ChannelId?: StringFieldUpdateOperationsInput | string
+    MessageTemplateId?: StringFieldUpdateOperationsInput | string
+    Multiplier?: IntFieldUpdateOperationsInput | number
+    RoleRewardIds?: XPStreaksUpdateRoleRewardIdsInput | string[]
+    LevelSettings?: LevelSettingsUpdateOneRequiredWithoutXPStreaksNestedInput
+  }
+
+  export type XPStreaksUncheckedUpdateInput = {
+    Days?: IntFieldUpdateOperationsInput | number
+    Nickname?: StringFieldUpdateOperationsInput | string
+    BonusLevels?: IntFieldUpdateOperationsInput | number
+    BonusXP?: IntFieldUpdateOperationsInput | number
+    ChannelId?: StringFieldUpdateOperationsInput | string
+    MessageTemplateId?: StringFieldUpdateOperationsInput | string
+    Multiplier?: IntFieldUpdateOperationsInput | number
+    RoleRewardIds?: XPStreaksUpdateRoleRewardIdsInput | string[]
+    GuildId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type XPStreaksCreateManyInput = {
+    id?: string
+    Days: number
+    Nickname: string
+    BonusLevels: number
+    BonusXP: number
+    ChannelId: string
+    MessageTemplateId: string
+    Multiplier: number
+    RoleRewardIds?: XPStreaksCreateRoleRewardIdsInput | string[]
+    GuildId: string
+  }
+
+  export type XPStreaksUpdateManyMutationInput = {
+    Days?: IntFieldUpdateOperationsInput | number
+    Nickname?: StringFieldUpdateOperationsInput | string
+    BonusLevels?: IntFieldUpdateOperationsInput | number
+    BonusXP?: IntFieldUpdateOperationsInput | number
+    ChannelId?: StringFieldUpdateOperationsInput | string
+    MessageTemplateId?: StringFieldUpdateOperationsInput | string
+    Multiplier?: IntFieldUpdateOperationsInput | number
+    RoleRewardIds?: XPStreaksUpdateRoleRewardIdsInput | string[]
+  }
+
+  export type XPStreaksUncheckedUpdateManyInput = {
+    Days?: IntFieldUpdateOperationsInput | number
+    Nickname?: StringFieldUpdateOperationsInput | string
+    BonusLevels?: IntFieldUpdateOperationsInput | number
+    BonusXP?: IntFieldUpdateOperationsInput | number
+    ChannelId?: StringFieldUpdateOperationsInput | string
+    MessageTemplateId?: StringFieldUpdateOperationsInput | string
+    Multiplier?: IntFieldUpdateOperationsInput | number
+    RoleRewardIds?: XPStreaksUpdateRoleRewardIdsInput | string[]
+    GuildId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LevelRolesCreateInput = {
+    id?: string
+    Level: number
+    Multiplier: number
+    Type: string
+    RoleId: string
+    LevelSettings: LevelSettingsCreateNestedOneWithoutLevelRolesInput
+  }
+
+  export type LevelRolesUncheckedCreateInput = {
+    id?: string
+    Level: number
+    Multiplier: number
+    Type: string
+    RoleId: string
+    GuildId: string
+  }
+
+  export type LevelRolesUpdateInput = {
+    Level?: IntFieldUpdateOperationsInput | number
+    Multiplier?: IntFieldUpdateOperationsInput | number
+    Type?: StringFieldUpdateOperationsInput | string
+    RoleId?: StringFieldUpdateOperationsInput | string
+    LevelSettings?: LevelSettingsUpdateOneRequiredWithoutLevelRolesNestedInput
+  }
+
+  export type LevelRolesUncheckedUpdateInput = {
+    Level?: IntFieldUpdateOperationsInput | number
+    Multiplier?: IntFieldUpdateOperationsInput | number
+    Type?: StringFieldUpdateOperationsInput | string
+    RoleId?: StringFieldUpdateOperationsInput | string
+    GuildId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LevelRolesCreateManyInput = {
+    id?: string
+    Level: number
+    Multiplier: number
+    Type: string
+    RoleId: string
+    GuildId: string
+  }
+
+  export type LevelRolesUpdateManyMutationInput = {
+    Level?: IntFieldUpdateOperationsInput | number
+    Multiplier?: IntFieldUpdateOperationsInput | number
+    Type?: StringFieldUpdateOperationsInput | string
+    RoleId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LevelRolesUncheckedUpdateManyInput = {
+    Level?: IntFieldUpdateOperationsInput | number
+    Multiplier?: IntFieldUpdateOperationsInput | number
+    Type?: StringFieldUpdateOperationsInput | string
+    RoleId?: StringFieldUpdateOperationsInput | string
+    GuildId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LevelsCreateInput = {
+    id?: string
+    XP: number
+    RequiredXp: number
+    Level: number
+    Users: UsersCreateNestedOneWithoutLevelsInput
+    LevelSettings: LevelSettingsCreateNestedOneWithoutLevelsInput
+  }
+
+  export type LevelsUncheckedCreateInput = {
+    id?: string
+    XP: number
+    RequiredXp: number
+    Level: number
+    UserId: string
+    GuildId: string
+  }
+
+  export type LevelsUpdateInput = {
+    XP?: IntFieldUpdateOperationsInput | number
+    RequiredXp?: IntFieldUpdateOperationsInput | number
+    Level?: IntFieldUpdateOperationsInput | number
+    Users?: UsersUpdateOneRequiredWithoutLevelsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneRequiredWithoutLevelsNestedInput
+  }
+
+  export type LevelsUncheckedUpdateInput = {
+    XP?: IntFieldUpdateOperationsInput | number
+    RequiredXp?: IntFieldUpdateOperationsInput | number
+    Level?: IntFieldUpdateOperationsInput | number
+    UserId?: StringFieldUpdateOperationsInput | string
+    GuildId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LevelsCreateManyInput = {
+    id?: string
+    XP: number
+    RequiredXp: number
+    Level: number
+    UserId: string
+    GuildId: string
+  }
+
+  export type LevelsUpdateManyMutationInput = {
+    XP?: IntFieldUpdateOperationsInput | number
+    RequiredXp?: IntFieldUpdateOperationsInput | number
+    Level?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type LevelsUncheckedUpdateManyInput = {
+    XP?: IntFieldUpdateOperationsInput | number
+    RequiredXp?: IntFieldUpdateOperationsInput | number
+    Level?: IntFieldUpdateOperationsInput | number
+    UserId?: StringFieldUpdateOperationsInput | string
+    GuildId?: StringFieldUpdateOperationsInput | string
+  }
+
   export type UsersCreateInput = {
     id?: string
     Username: string
@@ -92904,6 +99811,7 @@ export namespace Prisma {
     Apis?: ApisCreateNestedManyWithoutUsersInput
     GuildBackups?: GuildBackupsCreateNestedManyWithoutUsersInput
     Vanitys?: VanitysCreateNestedManyWithoutUsersInput
+    Levels?: LevelsCreateNestedManyWithoutUsersInput
   }
 
   export type UsersUncheckedCreateInput = {
@@ -92918,6 +99826,7 @@ export namespace Prisma {
     Apis?: ApisUncheckedCreateNestedManyWithoutUsersInput
     GuildBackups?: GuildBackupsUncheckedCreateNestedManyWithoutUsersInput
     Vanitys?: VanitysUncheckedCreateNestedManyWithoutUsersInput
+    Levels?: LevelsUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type UsersUpdateInput = {
@@ -92931,6 +99840,7 @@ export namespace Prisma {
     Apis?: ApisUpdateManyWithoutUsersNestedInput
     GuildBackups?: GuildBackupsUpdateManyWithoutUsersNestedInput
     Vanitys?: VanitysUpdateManyWithoutUsersNestedInput
+    Levels?: LevelsUpdateManyWithoutUsersNestedInput
   }
 
   export type UsersUncheckedUpdateInput = {
@@ -92944,6 +99854,7 @@ export namespace Prisma {
     Apis?: ApisUncheckedUpdateManyWithoutUsersNestedInput
     GuildBackups?: GuildBackupsUncheckedUpdateManyWithoutUsersNestedInput
     Vanitys?: VanitysUncheckedUpdateManyWithoutUsersNestedInput
+    Levels?: LevelsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type UsersCreateManyInput = {
@@ -93682,6 +100593,11 @@ export namespace Prisma {
     every?: GuildUserModerationWhereInput
     some?: GuildUserModerationWhereInput
     none?: GuildUserModerationWhereInput
+  }
+
+  export type LevelSettingsNullableScalarRelationFilter = {
+    is?: LevelSettingsWhereInput | null
+    isNot?: LevelSettingsWhereInput | null
   }
 
   export type GuildAutoDeletesOrderByRelationAggregateInput = {
@@ -95442,12 +102358,6 @@ export namespace Prisma {
     GuildId?: SortOrder
   }
 
-  export type WelcomeLeaveImageDataCompositeFilter = {
-    equals?: WelcomeLeaveImageDataObjectEqualityInput
-    is?: WelcomeLeaveImageDataWhereInput
-    isNot?: WelcomeLeaveImageDataWhereInput
-  }
-
   export type GuildWelcomeSetupCountOrderByAggregateInput = {
     id?: SortOrder
     MessageTemplateId?: SortOrder
@@ -96536,6 +103446,285 @@ export namespace Prisma {
     GuildId?: SortOrder
   }
 
+  export type LevelRolesListRelationFilter = {
+    every?: LevelRolesWhereInput
+    some?: LevelRolesWhereInput
+    none?: LevelRolesWhereInput
+  }
+
+  export type XPDropsListRelationFilter = {
+    every?: XPDropsWhereInput
+    some?: XPDropsWhereInput
+    none?: XPDropsWhereInput
+  }
+
+  export type XPStreaksListRelationFilter = {
+    every?: XPStreaksWhereInput
+    some?: XPStreaksWhereInput
+    none?: XPStreaksWhereInput
+  }
+
+  export type LevelsListRelationFilter = {
+    every?: LevelsWhereInput
+    some?: LevelsWhereInput
+    none?: LevelsWhereInput
+  }
+
+  export type LevelRolesOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type XPDropsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type XPStreaksOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type LevelsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type LevelSettingsCountOrderByAggregateInput = {
+    id?: SortOrder
+    LevelUpChannelId?: SortOrder
+    LevelUoMessageTemplateId?: SortOrder
+    LeaderboardMessageTemplateId?: SortOrder
+    LeaderboardDisplayAmount?: SortOrder
+    RequiredXPForFirstLevel?: SortOrder
+    Format?: SortOrder
+    MessageXP?: SortOrder
+    MessageXPRange?: SortOrder
+    MesssageXPCooldown?: SortOrder
+    MessageXPType?: SortOrder
+    VoiceXP?: SortOrder
+    VoiceXPRange?: SortOrder
+    VoiceXPCooldown?: SortOrder
+    ExcludedChannelIds?: SortOrder
+    ExcludeUserIds?: SortOrder
+    ExcludeRoleIds?: SortOrder
+    GuildId?: SortOrder
+  }
+
+  export type LevelSettingsAvgOrderByAggregateInput = {
+    LeaderboardDisplayAmount?: SortOrder
+    RequiredXPForFirstLevel?: SortOrder
+    VoiceXPCooldown?: SortOrder
+  }
+
+  export type LevelSettingsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    LevelUpChannelId?: SortOrder
+    LevelUoMessageTemplateId?: SortOrder
+    LeaderboardMessageTemplateId?: SortOrder
+    LeaderboardDisplayAmount?: SortOrder
+    RequiredXPForFirstLevel?: SortOrder
+    Format?: SortOrder
+    MessageXP?: SortOrder
+    MessageXPRange?: SortOrder
+    MesssageXPCooldown?: SortOrder
+    MessageXPType?: SortOrder
+    VoiceXP?: SortOrder
+    VoiceXPRange?: SortOrder
+    VoiceXPCooldown?: SortOrder
+    GuildId?: SortOrder
+  }
+
+  export type LevelSettingsMinOrderByAggregateInput = {
+    id?: SortOrder
+    LevelUpChannelId?: SortOrder
+    LevelUoMessageTemplateId?: SortOrder
+    LeaderboardMessageTemplateId?: SortOrder
+    LeaderboardDisplayAmount?: SortOrder
+    RequiredXPForFirstLevel?: SortOrder
+    Format?: SortOrder
+    MessageXP?: SortOrder
+    MessageXPRange?: SortOrder
+    MesssageXPCooldown?: SortOrder
+    MessageXPType?: SortOrder
+    VoiceXP?: SortOrder
+    VoiceXPRange?: SortOrder
+    VoiceXPCooldown?: SortOrder
+    GuildId?: SortOrder
+  }
+
+  export type LevelSettingsSumOrderByAggregateInput = {
+    LeaderboardDisplayAmount?: SortOrder
+    RequiredXPForFirstLevel?: SortOrder
+    VoiceXPCooldown?: SortOrder
+  }
+
+  export type LevelSettingsScalarRelationFilter = {
+    is?: LevelSettingsWhereInput
+    isNot?: LevelSettingsWhereInput
+  }
+
+  export type XPDropsCountOrderByAggregateInput = {
+    id?: SortOrder
+    GuildId?: SortOrder
+    XPRange?: SortOrder
+    ClaimType?: SortOrder
+    TimeToRespawn?: SortOrder
+    ChannelIds?: SortOrder
+  }
+
+  export type XPDropsAvgOrderByAggregateInput = {
+    ClaimType?: SortOrder
+  }
+
+  export type XPDropsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    GuildId?: SortOrder
+    XPRange?: SortOrder
+    ClaimType?: SortOrder
+    TimeToRespawn?: SortOrder
+  }
+
+  export type XPDropsMinOrderByAggregateInput = {
+    id?: SortOrder
+    GuildId?: SortOrder
+    XPRange?: SortOrder
+    ClaimType?: SortOrder
+    TimeToRespawn?: SortOrder
+  }
+
+  export type XPDropsSumOrderByAggregateInput = {
+    ClaimType?: SortOrder
+  }
+
+  export type XPStreaksCountOrderByAggregateInput = {
+    id?: SortOrder
+    Days?: SortOrder
+    Nickname?: SortOrder
+    BonusLevels?: SortOrder
+    BonusXP?: SortOrder
+    ChannelId?: SortOrder
+    MessageTemplateId?: SortOrder
+    Multiplier?: SortOrder
+    RoleRewardIds?: SortOrder
+    GuildId?: SortOrder
+  }
+
+  export type XPStreaksAvgOrderByAggregateInput = {
+    Days?: SortOrder
+    BonusLevels?: SortOrder
+    BonusXP?: SortOrder
+    Multiplier?: SortOrder
+  }
+
+  export type XPStreaksMaxOrderByAggregateInput = {
+    id?: SortOrder
+    Days?: SortOrder
+    Nickname?: SortOrder
+    BonusLevels?: SortOrder
+    BonusXP?: SortOrder
+    ChannelId?: SortOrder
+    MessageTemplateId?: SortOrder
+    Multiplier?: SortOrder
+    GuildId?: SortOrder
+  }
+
+  export type XPStreaksMinOrderByAggregateInput = {
+    id?: SortOrder
+    Days?: SortOrder
+    Nickname?: SortOrder
+    BonusLevels?: SortOrder
+    BonusXP?: SortOrder
+    ChannelId?: SortOrder
+    MessageTemplateId?: SortOrder
+    Multiplier?: SortOrder
+    GuildId?: SortOrder
+  }
+
+  export type XPStreaksSumOrderByAggregateInput = {
+    Days?: SortOrder
+    BonusLevels?: SortOrder
+    BonusXP?: SortOrder
+    Multiplier?: SortOrder
+  }
+
+  export type LevelRolesCountOrderByAggregateInput = {
+    id?: SortOrder
+    Level?: SortOrder
+    Multiplier?: SortOrder
+    Type?: SortOrder
+    RoleId?: SortOrder
+    GuildId?: SortOrder
+  }
+
+  export type LevelRolesAvgOrderByAggregateInput = {
+    Level?: SortOrder
+    Multiplier?: SortOrder
+  }
+
+  export type LevelRolesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    Level?: SortOrder
+    Multiplier?: SortOrder
+    Type?: SortOrder
+    RoleId?: SortOrder
+    GuildId?: SortOrder
+  }
+
+  export type LevelRolesMinOrderByAggregateInput = {
+    id?: SortOrder
+    Level?: SortOrder
+    Multiplier?: SortOrder
+    Type?: SortOrder
+    RoleId?: SortOrder
+    GuildId?: SortOrder
+  }
+
+  export type LevelRolesSumOrderByAggregateInput = {
+    Level?: SortOrder
+    Multiplier?: SortOrder
+  }
+
+  export type UsersScalarRelationFilter = {
+    is?: UsersWhereInput
+    isNot?: UsersWhereInput
+  }
+
+  export type LevelsCountOrderByAggregateInput = {
+    id?: SortOrder
+    XP?: SortOrder
+    RequiredXp?: SortOrder
+    Level?: SortOrder
+    UserId?: SortOrder
+    GuildId?: SortOrder
+  }
+
+  export type LevelsAvgOrderByAggregateInput = {
+    XP?: SortOrder
+    RequiredXp?: SortOrder
+    Level?: SortOrder
+  }
+
+  export type LevelsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    XP?: SortOrder
+    RequiredXp?: SortOrder
+    Level?: SortOrder
+    UserId?: SortOrder
+    GuildId?: SortOrder
+  }
+
+  export type LevelsMinOrderByAggregateInput = {
+    id?: SortOrder
+    XP?: SortOrder
+    RequiredXp?: SortOrder
+    Level?: SortOrder
+    UserId?: SortOrder
+    GuildId?: SortOrder
+  }
+
+  export type LevelsSumOrderByAggregateInput = {
+    XP?: SortOrder
+    RequiredXp?: SortOrder
+    Level?: SortOrder
+  }
+
   export type ApisListRelationFilter = {
     every?: ApisWhereInput
     some?: ApisWhereInput
@@ -96611,11 +103800,6 @@ export namespace Prisma {
     GloablVotes?: SortOrder
     CustomerBots?: SortOrder
     BackupCount?: SortOrder
-  }
-
-  export type UsersScalarRelationFilter = {
-    is?: UsersWhereInput
-    isNot?: UsersWhereInput
   }
 
   export type ApisCountOrderByAggregateInput = {
@@ -97121,6 +104305,12 @@ export namespace Prisma {
     connect?: GuildUserModerationWhereUniqueInput | GuildUserModerationWhereUniqueInput[]
   }
 
+  export type LevelSettingsCreateNestedOneWithoutGuildsInput = {
+    create?: XOR<LevelSettingsCreateWithoutGuildsInput, LevelSettingsUncheckedCreateWithoutGuildsInput>
+    connectOrCreate?: LevelSettingsCreateOrConnectWithoutGuildsInput
+    connect?: LevelSettingsWhereUniqueInput
+  }
+
   export type GuildAutoDeletesUncheckedCreateNestedManyWithoutGuildsInput = {
     create?: XOR<GuildAutoDeletesCreateWithoutGuildsInput, GuildAutoDeletesUncheckedCreateWithoutGuildsInput> | GuildAutoDeletesCreateWithoutGuildsInput[] | GuildAutoDeletesUncheckedCreateWithoutGuildsInput[]
     connectOrCreate?: GuildAutoDeletesCreateOrConnectWithoutGuildsInput | GuildAutoDeletesCreateOrConnectWithoutGuildsInput[]
@@ -97310,6 +104500,12 @@ export namespace Prisma {
     connectOrCreate?: GuildUserModerationCreateOrConnectWithoutGuildsInput | GuildUserModerationCreateOrConnectWithoutGuildsInput[]
     createMany?: GuildUserModerationCreateManyGuildsInputEnvelope
     connect?: GuildUserModerationWhereUniqueInput | GuildUserModerationWhereUniqueInput[]
+  }
+
+  export type LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput = {
+    create?: XOR<LevelSettingsCreateWithoutGuildsInput, LevelSettingsUncheckedCreateWithoutGuildsInput>
+    connectOrCreate?: LevelSettingsCreateOrConnectWithoutGuildsInput
+    connect?: LevelSettingsWhereUniqueInput
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -97674,6 +104870,16 @@ export namespace Prisma {
     deleteMany?: GuildUserModerationScalarWhereInput | GuildUserModerationScalarWhereInput[]
   }
 
+  export type LevelSettingsUpdateOneWithoutGuildsNestedInput = {
+    create?: XOR<LevelSettingsCreateWithoutGuildsInput, LevelSettingsUncheckedCreateWithoutGuildsInput>
+    connectOrCreate?: LevelSettingsCreateOrConnectWithoutGuildsInput
+    upsert?: LevelSettingsUpsertWithoutGuildsInput
+    disconnect?: LevelSettingsWhereInput | boolean
+    delete?: LevelSettingsWhereInput | boolean
+    connect?: LevelSettingsWhereUniqueInput
+    update?: XOR<XOR<LevelSettingsUpdateToOneWithWhereWithoutGuildsInput, LevelSettingsUpdateWithoutGuildsInput>, LevelSettingsUncheckedUpdateWithoutGuildsInput>
+  }
+
   export type GuildAutoDeletesUncheckedUpdateManyWithoutGuildsNestedInput = {
     create?: XOR<GuildAutoDeletesCreateWithoutGuildsInput, GuildAutoDeletesUncheckedCreateWithoutGuildsInput> | GuildAutoDeletesCreateWithoutGuildsInput[] | GuildAutoDeletesUncheckedCreateWithoutGuildsInput[]
     connectOrCreate?: GuildAutoDeletesCreateOrConnectWithoutGuildsInput | GuildAutoDeletesCreateOrConnectWithoutGuildsInput[]
@@ -98030,6 +105236,16 @@ export namespace Prisma {
     update?: GuildUserModerationUpdateWithWhereUniqueWithoutGuildsInput | GuildUserModerationUpdateWithWhereUniqueWithoutGuildsInput[]
     updateMany?: GuildUserModerationUpdateManyWithWhereWithoutGuildsInput | GuildUserModerationUpdateManyWithWhereWithoutGuildsInput[]
     deleteMany?: GuildUserModerationScalarWhereInput | GuildUserModerationScalarWhereInput[]
+  }
+
+  export type LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput = {
+    create?: XOR<LevelSettingsCreateWithoutGuildsInput, LevelSettingsUncheckedCreateWithoutGuildsInput>
+    connectOrCreate?: LevelSettingsCreateOrConnectWithoutGuildsInput
+    upsert?: LevelSettingsUpsertWithoutGuildsInput
+    disconnect?: LevelSettingsWhereInput | boolean
+    delete?: LevelSettingsWhereInput | boolean
+    connect?: LevelSettingsWhereUniqueInput
+    update?: XOR<XOR<LevelSettingsUpdateToOneWithWhereWithoutGuildsInput, LevelSettingsUpdateWithoutGuildsInput>, LevelSettingsUncheckedUpdateWithoutGuildsInput>
   }
 
   export type GuildCommandMangerCreateCommandsInput = {
@@ -100222,19 +107438,10 @@ export namespace Prisma {
     update?: XOR<XOR<GuildsUpdateToOneWithWhereWithoutGuildLeaveSetupInput, GuildsUpdateWithoutGuildLeaveSetupInput>, GuildsUncheckedUpdateWithoutGuildLeaveSetupInput>
   }
 
-  export type WelcomeLeaveImageDataCreateEnvelopeInput = {
-    set?: WelcomeLeaveImageDataCreateInput
-  }
-
   export type GuildsCreateNestedOneWithoutGuildWelcomeSetupInput = {
     create?: XOR<GuildsCreateWithoutGuildWelcomeSetupInput, GuildsUncheckedCreateWithoutGuildWelcomeSetupInput>
     connectOrCreate?: GuildsCreateOrConnectWithoutGuildWelcomeSetupInput
     connect?: GuildsWhereUniqueInput
-  }
-
-  export type WelcomeLeaveImageDataUpdateEnvelopeInput = {
-    set?: WelcomeLeaveImageDataCreateInput
-    update?: WelcomeLeaveImageDataUpdateInput
   }
 
   export type GuildsUpdateOneRequiredWithoutGuildWelcomeSetupNestedInput = {
@@ -101155,6 +108362,303 @@ export namespace Prisma {
     update?: XOR<XOR<GuildsUpdateToOneWithWhereWithoutYoutubeNotificationsInput, GuildsUpdateWithoutYoutubeNotificationsInput>, GuildsUncheckedUpdateWithoutYoutubeNotificationsInput>
   }
 
+  export type LevelSettingsCreateExcludedChannelIdsInput = {
+    set: string[]
+  }
+
+  export type LevelSettingsCreateExcludeUserIdsInput = {
+    set: string[]
+  }
+
+  export type LevelSettingsCreateExcludeRoleIdsInput = {
+    set: string[]
+  }
+
+  export type LevelRolesCreateNestedManyWithoutLevelSettingsInput = {
+    create?: XOR<LevelRolesCreateWithoutLevelSettingsInput, LevelRolesUncheckedCreateWithoutLevelSettingsInput> | LevelRolesCreateWithoutLevelSettingsInput[] | LevelRolesUncheckedCreateWithoutLevelSettingsInput[]
+    connectOrCreate?: LevelRolesCreateOrConnectWithoutLevelSettingsInput | LevelRolesCreateOrConnectWithoutLevelSettingsInput[]
+    createMany?: LevelRolesCreateManyLevelSettingsInputEnvelope
+    connect?: LevelRolesWhereUniqueInput | LevelRolesWhereUniqueInput[]
+  }
+
+  export type XPDropsCreateNestedManyWithoutLevelSettingsInput = {
+    create?: XOR<XPDropsCreateWithoutLevelSettingsInput, XPDropsUncheckedCreateWithoutLevelSettingsInput> | XPDropsCreateWithoutLevelSettingsInput[] | XPDropsUncheckedCreateWithoutLevelSettingsInput[]
+    connectOrCreate?: XPDropsCreateOrConnectWithoutLevelSettingsInput | XPDropsCreateOrConnectWithoutLevelSettingsInput[]
+    createMany?: XPDropsCreateManyLevelSettingsInputEnvelope
+    connect?: XPDropsWhereUniqueInput | XPDropsWhereUniqueInput[]
+  }
+
+  export type XPStreaksCreateNestedManyWithoutLevelSettingsInput = {
+    create?: XOR<XPStreaksCreateWithoutLevelSettingsInput, XPStreaksUncheckedCreateWithoutLevelSettingsInput> | XPStreaksCreateWithoutLevelSettingsInput[] | XPStreaksUncheckedCreateWithoutLevelSettingsInput[]
+    connectOrCreate?: XPStreaksCreateOrConnectWithoutLevelSettingsInput | XPStreaksCreateOrConnectWithoutLevelSettingsInput[]
+    createMany?: XPStreaksCreateManyLevelSettingsInputEnvelope
+    connect?: XPStreaksWhereUniqueInput | XPStreaksWhereUniqueInput[]
+  }
+
+  export type LevelsCreateNestedManyWithoutLevelSettingsInput = {
+    create?: XOR<LevelsCreateWithoutLevelSettingsInput, LevelsUncheckedCreateWithoutLevelSettingsInput> | LevelsCreateWithoutLevelSettingsInput[] | LevelsUncheckedCreateWithoutLevelSettingsInput[]
+    connectOrCreate?: LevelsCreateOrConnectWithoutLevelSettingsInput | LevelsCreateOrConnectWithoutLevelSettingsInput[]
+    createMany?: LevelsCreateManyLevelSettingsInputEnvelope
+    connect?: LevelsWhereUniqueInput | LevelsWhereUniqueInput[]
+  }
+
+  export type GuildsCreateNestedOneWithoutLevelSettingsInput = {
+    create?: XOR<GuildsCreateWithoutLevelSettingsInput, GuildsUncheckedCreateWithoutLevelSettingsInput>
+    connectOrCreate?: GuildsCreateOrConnectWithoutLevelSettingsInput
+    connect?: GuildsWhereUniqueInput
+  }
+
+  export type LevelRolesUncheckedCreateNestedManyWithoutLevelSettingsInput = {
+    create?: XOR<LevelRolesCreateWithoutLevelSettingsInput, LevelRolesUncheckedCreateWithoutLevelSettingsInput> | LevelRolesCreateWithoutLevelSettingsInput[] | LevelRolesUncheckedCreateWithoutLevelSettingsInput[]
+    connectOrCreate?: LevelRolesCreateOrConnectWithoutLevelSettingsInput | LevelRolesCreateOrConnectWithoutLevelSettingsInput[]
+    createMany?: LevelRolesCreateManyLevelSettingsInputEnvelope
+    connect?: LevelRolesWhereUniqueInput | LevelRolesWhereUniqueInput[]
+  }
+
+  export type XPDropsUncheckedCreateNestedManyWithoutLevelSettingsInput = {
+    create?: XOR<XPDropsCreateWithoutLevelSettingsInput, XPDropsUncheckedCreateWithoutLevelSettingsInput> | XPDropsCreateWithoutLevelSettingsInput[] | XPDropsUncheckedCreateWithoutLevelSettingsInput[]
+    connectOrCreate?: XPDropsCreateOrConnectWithoutLevelSettingsInput | XPDropsCreateOrConnectWithoutLevelSettingsInput[]
+    createMany?: XPDropsCreateManyLevelSettingsInputEnvelope
+    connect?: XPDropsWhereUniqueInput | XPDropsWhereUniqueInput[]
+  }
+
+  export type XPStreaksUncheckedCreateNestedManyWithoutLevelSettingsInput = {
+    create?: XOR<XPStreaksCreateWithoutLevelSettingsInput, XPStreaksUncheckedCreateWithoutLevelSettingsInput> | XPStreaksCreateWithoutLevelSettingsInput[] | XPStreaksUncheckedCreateWithoutLevelSettingsInput[]
+    connectOrCreate?: XPStreaksCreateOrConnectWithoutLevelSettingsInput | XPStreaksCreateOrConnectWithoutLevelSettingsInput[]
+    createMany?: XPStreaksCreateManyLevelSettingsInputEnvelope
+    connect?: XPStreaksWhereUniqueInput | XPStreaksWhereUniqueInput[]
+  }
+
+  export type LevelsUncheckedCreateNestedManyWithoutLevelSettingsInput = {
+    create?: XOR<LevelsCreateWithoutLevelSettingsInput, LevelsUncheckedCreateWithoutLevelSettingsInput> | LevelsCreateWithoutLevelSettingsInput[] | LevelsUncheckedCreateWithoutLevelSettingsInput[]
+    connectOrCreate?: LevelsCreateOrConnectWithoutLevelSettingsInput | LevelsCreateOrConnectWithoutLevelSettingsInput[]
+    createMany?: LevelsCreateManyLevelSettingsInputEnvelope
+    connect?: LevelsWhereUniqueInput | LevelsWhereUniqueInput[]
+  }
+
+  export type LevelSettingsUpdateExcludedChannelIdsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type LevelSettingsUpdateExcludeUserIdsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type LevelSettingsUpdateExcludeRoleIdsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type LevelRolesUpdateManyWithoutLevelSettingsNestedInput = {
+    create?: XOR<LevelRolesCreateWithoutLevelSettingsInput, LevelRolesUncheckedCreateWithoutLevelSettingsInput> | LevelRolesCreateWithoutLevelSettingsInput[] | LevelRolesUncheckedCreateWithoutLevelSettingsInput[]
+    connectOrCreate?: LevelRolesCreateOrConnectWithoutLevelSettingsInput | LevelRolesCreateOrConnectWithoutLevelSettingsInput[]
+    upsert?: LevelRolesUpsertWithWhereUniqueWithoutLevelSettingsInput | LevelRolesUpsertWithWhereUniqueWithoutLevelSettingsInput[]
+    createMany?: LevelRolesCreateManyLevelSettingsInputEnvelope
+    set?: LevelRolesWhereUniqueInput | LevelRolesWhereUniqueInput[]
+    disconnect?: LevelRolesWhereUniqueInput | LevelRolesWhereUniqueInput[]
+    delete?: LevelRolesWhereUniqueInput | LevelRolesWhereUniqueInput[]
+    connect?: LevelRolesWhereUniqueInput | LevelRolesWhereUniqueInput[]
+    update?: LevelRolesUpdateWithWhereUniqueWithoutLevelSettingsInput | LevelRolesUpdateWithWhereUniqueWithoutLevelSettingsInput[]
+    updateMany?: LevelRolesUpdateManyWithWhereWithoutLevelSettingsInput | LevelRolesUpdateManyWithWhereWithoutLevelSettingsInput[]
+    deleteMany?: LevelRolesScalarWhereInput | LevelRolesScalarWhereInput[]
+  }
+
+  export type XPDropsUpdateManyWithoutLevelSettingsNestedInput = {
+    create?: XOR<XPDropsCreateWithoutLevelSettingsInput, XPDropsUncheckedCreateWithoutLevelSettingsInput> | XPDropsCreateWithoutLevelSettingsInput[] | XPDropsUncheckedCreateWithoutLevelSettingsInput[]
+    connectOrCreate?: XPDropsCreateOrConnectWithoutLevelSettingsInput | XPDropsCreateOrConnectWithoutLevelSettingsInput[]
+    upsert?: XPDropsUpsertWithWhereUniqueWithoutLevelSettingsInput | XPDropsUpsertWithWhereUniqueWithoutLevelSettingsInput[]
+    createMany?: XPDropsCreateManyLevelSettingsInputEnvelope
+    set?: XPDropsWhereUniqueInput | XPDropsWhereUniqueInput[]
+    disconnect?: XPDropsWhereUniqueInput | XPDropsWhereUniqueInput[]
+    delete?: XPDropsWhereUniqueInput | XPDropsWhereUniqueInput[]
+    connect?: XPDropsWhereUniqueInput | XPDropsWhereUniqueInput[]
+    update?: XPDropsUpdateWithWhereUniqueWithoutLevelSettingsInput | XPDropsUpdateWithWhereUniqueWithoutLevelSettingsInput[]
+    updateMany?: XPDropsUpdateManyWithWhereWithoutLevelSettingsInput | XPDropsUpdateManyWithWhereWithoutLevelSettingsInput[]
+    deleteMany?: XPDropsScalarWhereInput | XPDropsScalarWhereInput[]
+  }
+
+  export type XPStreaksUpdateManyWithoutLevelSettingsNestedInput = {
+    create?: XOR<XPStreaksCreateWithoutLevelSettingsInput, XPStreaksUncheckedCreateWithoutLevelSettingsInput> | XPStreaksCreateWithoutLevelSettingsInput[] | XPStreaksUncheckedCreateWithoutLevelSettingsInput[]
+    connectOrCreate?: XPStreaksCreateOrConnectWithoutLevelSettingsInput | XPStreaksCreateOrConnectWithoutLevelSettingsInput[]
+    upsert?: XPStreaksUpsertWithWhereUniqueWithoutLevelSettingsInput | XPStreaksUpsertWithWhereUniqueWithoutLevelSettingsInput[]
+    createMany?: XPStreaksCreateManyLevelSettingsInputEnvelope
+    set?: XPStreaksWhereUniqueInput | XPStreaksWhereUniqueInput[]
+    disconnect?: XPStreaksWhereUniqueInput | XPStreaksWhereUniqueInput[]
+    delete?: XPStreaksWhereUniqueInput | XPStreaksWhereUniqueInput[]
+    connect?: XPStreaksWhereUniqueInput | XPStreaksWhereUniqueInput[]
+    update?: XPStreaksUpdateWithWhereUniqueWithoutLevelSettingsInput | XPStreaksUpdateWithWhereUniqueWithoutLevelSettingsInput[]
+    updateMany?: XPStreaksUpdateManyWithWhereWithoutLevelSettingsInput | XPStreaksUpdateManyWithWhereWithoutLevelSettingsInput[]
+    deleteMany?: XPStreaksScalarWhereInput | XPStreaksScalarWhereInput[]
+  }
+
+  export type LevelsUpdateManyWithoutLevelSettingsNestedInput = {
+    create?: XOR<LevelsCreateWithoutLevelSettingsInput, LevelsUncheckedCreateWithoutLevelSettingsInput> | LevelsCreateWithoutLevelSettingsInput[] | LevelsUncheckedCreateWithoutLevelSettingsInput[]
+    connectOrCreate?: LevelsCreateOrConnectWithoutLevelSettingsInput | LevelsCreateOrConnectWithoutLevelSettingsInput[]
+    upsert?: LevelsUpsertWithWhereUniqueWithoutLevelSettingsInput | LevelsUpsertWithWhereUniqueWithoutLevelSettingsInput[]
+    createMany?: LevelsCreateManyLevelSettingsInputEnvelope
+    set?: LevelsWhereUniqueInput | LevelsWhereUniqueInput[]
+    disconnect?: LevelsWhereUniqueInput | LevelsWhereUniqueInput[]
+    delete?: LevelsWhereUniqueInput | LevelsWhereUniqueInput[]
+    connect?: LevelsWhereUniqueInput | LevelsWhereUniqueInput[]
+    update?: LevelsUpdateWithWhereUniqueWithoutLevelSettingsInput | LevelsUpdateWithWhereUniqueWithoutLevelSettingsInput[]
+    updateMany?: LevelsUpdateManyWithWhereWithoutLevelSettingsInput | LevelsUpdateManyWithWhereWithoutLevelSettingsInput[]
+    deleteMany?: LevelsScalarWhereInput | LevelsScalarWhereInput[]
+  }
+
+  export type GuildsUpdateOneRequiredWithoutLevelSettingsNestedInput = {
+    create?: XOR<GuildsCreateWithoutLevelSettingsInput, GuildsUncheckedCreateWithoutLevelSettingsInput>
+    connectOrCreate?: GuildsCreateOrConnectWithoutLevelSettingsInput
+    upsert?: GuildsUpsertWithoutLevelSettingsInput
+    connect?: GuildsWhereUniqueInput
+    update?: XOR<XOR<GuildsUpdateToOneWithWhereWithoutLevelSettingsInput, GuildsUpdateWithoutLevelSettingsInput>, GuildsUncheckedUpdateWithoutLevelSettingsInput>
+  }
+
+  export type LevelRolesUncheckedUpdateManyWithoutLevelSettingsNestedInput = {
+    create?: XOR<LevelRolesCreateWithoutLevelSettingsInput, LevelRolesUncheckedCreateWithoutLevelSettingsInput> | LevelRolesCreateWithoutLevelSettingsInput[] | LevelRolesUncheckedCreateWithoutLevelSettingsInput[]
+    connectOrCreate?: LevelRolesCreateOrConnectWithoutLevelSettingsInput | LevelRolesCreateOrConnectWithoutLevelSettingsInput[]
+    upsert?: LevelRolesUpsertWithWhereUniqueWithoutLevelSettingsInput | LevelRolesUpsertWithWhereUniqueWithoutLevelSettingsInput[]
+    createMany?: LevelRolesCreateManyLevelSettingsInputEnvelope
+    set?: LevelRolesWhereUniqueInput | LevelRolesWhereUniqueInput[]
+    disconnect?: LevelRolesWhereUniqueInput | LevelRolesWhereUniqueInput[]
+    delete?: LevelRolesWhereUniqueInput | LevelRolesWhereUniqueInput[]
+    connect?: LevelRolesWhereUniqueInput | LevelRolesWhereUniqueInput[]
+    update?: LevelRolesUpdateWithWhereUniqueWithoutLevelSettingsInput | LevelRolesUpdateWithWhereUniqueWithoutLevelSettingsInput[]
+    updateMany?: LevelRolesUpdateManyWithWhereWithoutLevelSettingsInput | LevelRolesUpdateManyWithWhereWithoutLevelSettingsInput[]
+    deleteMany?: LevelRolesScalarWhereInput | LevelRolesScalarWhereInput[]
+  }
+
+  export type XPDropsUncheckedUpdateManyWithoutLevelSettingsNestedInput = {
+    create?: XOR<XPDropsCreateWithoutLevelSettingsInput, XPDropsUncheckedCreateWithoutLevelSettingsInput> | XPDropsCreateWithoutLevelSettingsInput[] | XPDropsUncheckedCreateWithoutLevelSettingsInput[]
+    connectOrCreate?: XPDropsCreateOrConnectWithoutLevelSettingsInput | XPDropsCreateOrConnectWithoutLevelSettingsInput[]
+    upsert?: XPDropsUpsertWithWhereUniqueWithoutLevelSettingsInput | XPDropsUpsertWithWhereUniqueWithoutLevelSettingsInput[]
+    createMany?: XPDropsCreateManyLevelSettingsInputEnvelope
+    set?: XPDropsWhereUniqueInput | XPDropsWhereUniqueInput[]
+    disconnect?: XPDropsWhereUniqueInput | XPDropsWhereUniqueInput[]
+    delete?: XPDropsWhereUniqueInput | XPDropsWhereUniqueInput[]
+    connect?: XPDropsWhereUniqueInput | XPDropsWhereUniqueInput[]
+    update?: XPDropsUpdateWithWhereUniqueWithoutLevelSettingsInput | XPDropsUpdateWithWhereUniqueWithoutLevelSettingsInput[]
+    updateMany?: XPDropsUpdateManyWithWhereWithoutLevelSettingsInput | XPDropsUpdateManyWithWhereWithoutLevelSettingsInput[]
+    deleteMany?: XPDropsScalarWhereInput | XPDropsScalarWhereInput[]
+  }
+
+  export type XPStreaksUncheckedUpdateManyWithoutLevelSettingsNestedInput = {
+    create?: XOR<XPStreaksCreateWithoutLevelSettingsInput, XPStreaksUncheckedCreateWithoutLevelSettingsInput> | XPStreaksCreateWithoutLevelSettingsInput[] | XPStreaksUncheckedCreateWithoutLevelSettingsInput[]
+    connectOrCreate?: XPStreaksCreateOrConnectWithoutLevelSettingsInput | XPStreaksCreateOrConnectWithoutLevelSettingsInput[]
+    upsert?: XPStreaksUpsertWithWhereUniqueWithoutLevelSettingsInput | XPStreaksUpsertWithWhereUniqueWithoutLevelSettingsInput[]
+    createMany?: XPStreaksCreateManyLevelSettingsInputEnvelope
+    set?: XPStreaksWhereUniqueInput | XPStreaksWhereUniqueInput[]
+    disconnect?: XPStreaksWhereUniqueInput | XPStreaksWhereUniqueInput[]
+    delete?: XPStreaksWhereUniqueInput | XPStreaksWhereUniqueInput[]
+    connect?: XPStreaksWhereUniqueInput | XPStreaksWhereUniqueInput[]
+    update?: XPStreaksUpdateWithWhereUniqueWithoutLevelSettingsInput | XPStreaksUpdateWithWhereUniqueWithoutLevelSettingsInput[]
+    updateMany?: XPStreaksUpdateManyWithWhereWithoutLevelSettingsInput | XPStreaksUpdateManyWithWhereWithoutLevelSettingsInput[]
+    deleteMany?: XPStreaksScalarWhereInput | XPStreaksScalarWhereInput[]
+  }
+
+  export type LevelsUncheckedUpdateManyWithoutLevelSettingsNestedInput = {
+    create?: XOR<LevelsCreateWithoutLevelSettingsInput, LevelsUncheckedCreateWithoutLevelSettingsInput> | LevelsCreateWithoutLevelSettingsInput[] | LevelsUncheckedCreateWithoutLevelSettingsInput[]
+    connectOrCreate?: LevelsCreateOrConnectWithoutLevelSettingsInput | LevelsCreateOrConnectWithoutLevelSettingsInput[]
+    upsert?: LevelsUpsertWithWhereUniqueWithoutLevelSettingsInput | LevelsUpsertWithWhereUniqueWithoutLevelSettingsInput[]
+    createMany?: LevelsCreateManyLevelSettingsInputEnvelope
+    set?: LevelsWhereUniqueInput | LevelsWhereUniqueInput[]
+    disconnect?: LevelsWhereUniqueInput | LevelsWhereUniqueInput[]
+    delete?: LevelsWhereUniqueInput | LevelsWhereUniqueInput[]
+    connect?: LevelsWhereUniqueInput | LevelsWhereUniqueInput[]
+    update?: LevelsUpdateWithWhereUniqueWithoutLevelSettingsInput | LevelsUpdateWithWhereUniqueWithoutLevelSettingsInput[]
+    updateMany?: LevelsUpdateManyWithWhereWithoutLevelSettingsInput | LevelsUpdateManyWithWhereWithoutLevelSettingsInput[]
+    deleteMany?: LevelsScalarWhereInput | LevelsScalarWhereInput[]
+  }
+
+  export type XPDropsCreateChannelIdsInput = {
+    set: string[]
+  }
+
+  export type LevelSettingsCreateNestedOneWithoutXPDropsInput = {
+    create?: XOR<LevelSettingsCreateWithoutXPDropsInput, LevelSettingsUncheckedCreateWithoutXPDropsInput>
+    connectOrCreate?: LevelSettingsCreateOrConnectWithoutXPDropsInput
+    connect?: LevelSettingsWhereUniqueInput
+  }
+
+  export type XPDropsUpdateChannelIdsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type LevelSettingsUpdateOneRequiredWithoutXPDropsNestedInput = {
+    create?: XOR<LevelSettingsCreateWithoutXPDropsInput, LevelSettingsUncheckedCreateWithoutXPDropsInput>
+    connectOrCreate?: LevelSettingsCreateOrConnectWithoutXPDropsInput
+    upsert?: LevelSettingsUpsertWithoutXPDropsInput
+    connect?: LevelSettingsWhereUniqueInput
+    update?: XOR<XOR<LevelSettingsUpdateToOneWithWhereWithoutXPDropsInput, LevelSettingsUpdateWithoutXPDropsInput>, LevelSettingsUncheckedUpdateWithoutXPDropsInput>
+  }
+
+  export type XPStreaksCreateRoleRewardIdsInput = {
+    set: string[]
+  }
+
+  export type LevelSettingsCreateNestedOneWithoutXPStreaksInput = {
+    create?: XOR<LevelSettingsCreateWithoutXPStreaksInput, LevelSettingsUncheckedCreateWithoutXPStreaksInput>
+    connectOrCreate?: LevelSettingsCreateOrConnectWithoutXPStreaksInput
+    connect?: LevelSettingsWhereUniqueInput
+  }
+
+  export type XPStreaksUpdateRoleRewardIdsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type LevelSettingsUpdateOneRequiredWithoutXPStreaksNestedInput = {
+    create?: XOR<LevelSettingsCreateWithoutXPStreaksInput, LevelSettingsUncheckedCreateWithoutXPStreaksInput>
+    connectOrCreate?: LevelSettingsCreateOrConnectWithoutXPStreaksInput
+    upsert?: LevelSettingsUpsertWithoutXPStreaksInput
+    connect?: LevelSettingsWhereUniqueInput
+    update?: XOR<XOR<LevelSettingsUpdateToOneWithWhereWithoutXPStreaksInput, LevelSettingsUpdateWithoutXPStreaksInput>, LevelSettingsUncheckedUpdateWithoutXPStreaksInput>
+  }
+
+  export type LevelSettingsCreateNestedOneWithoutLevelRolesInput = {
+    create?: XOR<LevelSettingsCreateWithoutLevelRolesInput, LevelSettingsUncheckedCreateWithoutLevelRolesInput>
+    connectOrCreate?: LevelSettingsCreateOrConnectWithoutLevelRolesInput
+    connect?: LevelSettingsWhereUniqueInput
+  }
+
+  export type LevelSettingsUpdateOneRequiredWithoutLevelRolesNestedInput = {
+    create?: XOR<LevelSettingsCreateWithoutLevelRolesInput, LevelSettingsUncheckedCreateWithoutLevelRolesInput>
+    connectOrCreate?: LevelSettingsCreateOrConnectWithoutLevelRolesInput
+    upsert?: LevelSettingsUpsertWithoutLevelRolesInput
+    connect?: LevelSettingsWhereUniqueInput
+    update?: XOR<XOR<LevelSettingsUpdateToOneWithWhereWithoutLevelRolesInput, LevelSettingsUpdateWithoutLevelRolesInput>, LevelSettingsUncheckedUpdateWithoutLevelRolesInput>
+  }
+
+  export type UsersCreateNestedOneWithoutLevelsInput = {
+    create?: XOR<UsersCreateWithoutLevelsInput, UsersUncheckedCreateWithoutLevelsInput>
+    connectOrCreate?: UsersCreateOrConnectWithoutLevelsInput
+    connect?: UsersWhereUniqueInput
+  }
+
+  export type LevelSettingsCreateNestedOneWithoutLevelsInput = {
+    create?: XOR<LevelSettingsCreateWithoutLevelsInput, LevelSettingsUncheckedCreateWithoutLevelsInput>
+    connectOrCreate?: LevelSettingsCreateOrConnectWithoutLevelsInput
+    connect?: LevelSettingsWhereUniqueInput
+  }
+
+  export type UsersUpdateOneRequiredWithoutLevelsNestedInput = {
+    create?: XOR<UsersCreateWithoutLevelsInput, UsersUncheckedCreateWithoutLevelsInput>
+    connectOrCreate?: UsersCreateOrConnectWithoutLevelsInput
+    upsert?: UsersUpsertWithoutLevelsInput
+    connect?: UsersWhereUniqueInput
+    update?: XOR<XOR<UsersUpdateToOneWithWhereWithoutLevelsInput, UsersUpdateWithoutLevelsInput>, UsersUncheckedUpdateWithoutLevelsInput>
+  }
+
+  export type LevelSettingsUpdateOneRequiredWithoutLevelsNestedInput = {
+    create?: XOR<LevelSettingsCreateWithoutLevelsInput, LevelSettingsUncheckedCreateWithoutLevelsInput>
+    connectOrCreate?: LevelSettingsCreateOrConnectWithoutLevelsInput
+    upsert?: LevelSettingsUpsertWithoutLevelsInput
+    connect?: LevelSettingsWhereUniqueInput
+    update?: XOR<XOR<LevelSettingsUpdateToOneWithWhereWithoutLevelsInput, LevelSettingsUpdateWithoutLevelsInput>, LevelSettingsUncheckedUpdateWithoutLevelsInput>
+  }
+
   export type ApisCreateNestedManyWithoutUsersInput = {
     create?: XOR<ApisCreateWithoutUsersInput, ApisUncheckedCreateWithoutUsersInput> | ApisCreateWithoutUsersInput[] | ApisUncheckedCreateWithoutUsersInput[]
     connectOrCreate?: ApisCreateOrConnectWithoutUsersInput | ApisCreateOrConnectWithoutUsersInput[]
@@ -101176,6 +108680,13 @@ export namespace Prisma {
     connect?: VanitysWhereUniqueInput | VanitysWhereUniqueInput[]
   }
 
+  export type LevelsCreateNestedManyWithoutUsersInput = {
+    create?: XOR<LevelsCreateWithoutUsersInput, LevelsUncheckedCreateWithoutUsersInput> | LevelsCreateWithoutUsersInput[] | LevelsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: LevelsCreateOrConnectWithoutUsersInput | LevelsCreateOrConnectWithoutUsersInput[]
+    createMany?: LevelsCreateManyUsersInputEnvelope
+    connect?: LevelsWhereUniqueInput | LevelsWhereUniqueInput[]
+  }
+
   export type ApisUncheckedCreateNestedManyWithoutUsersInput = {
     create?: XOR<ApisCreateWithoutUsersInput, ApisUncheckedCreateWithoutUsersInput> | ApisCreateWithoutUsersInput[] | ApisUncheckedCreateWithoutUsersInput[]
     connectOrCreate?: ApisCreateOrConnectWithoutUsersInput | ApisCreateOrConnectWithoutUsersInput[]
@@ -101195,6 +108706,13 @@ export namespace Prisma {
     connectOrCreate?: VanitysCreateOrConnectWithoutUsersInput | VanitysCreateOrConnectWithoutUsersInput[]
     createMany?: VanitysCreateManyUsersInputEnvelope
     connect?: VanitysWhereUniqueInput | VanitysWhereUniqueInput[]
+  }
+
+  export type LevelsUncheckedCreateNestedManyWithoutUsersInput = {
+    create?: XOR<LevelsCreateWithoutUsersInput, LevelsUncheckedCreateWithoutUsersInput> | LevelsCreateWithoutUsersInput[] | LevelsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: LevelsCreateOrConnectWithoutUsersInput | LevelsCreateOrConnectWithoutUsersInput[]
+    createMany?: LevelsCreateManyUsersInputEnvelope
+    connect?: LevelsWhereUniqueInput | LevelsWhereUniqueInput[]
   }
 
   export type ApisUpdateManyWithoutUsersNestedInput = {
@@ -101239,6 +108757,20 @@ export namespace Prisma {
     deleteMany?: VanitysScalarWhereInput | VanitysScalarWhereInput[]
   }
 
+  export type LevelsUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<LevelsCreateWithoutUsersInput, LevelsUncheckedCreateWithoutUsersInput> | LevelsCreateWithoutUsersInput[] | LevelsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: LevelsCreateOrConnectWithoutUsersInput | LevelsCreateOrConnectWithoutUsersInput[]
+    upsert?: LevelsUpsertWithWhereUniqueWithoutUsersInput | LevelsUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: LevelsCreateManyUsersInputEnvelope
+    set?: LevelsWhereUniqueInput | LevelsWhereUniqueInput[]
+    disconnect?: LevelsWhereUniqueInput | LevelsWhereUniqueInput[]
+    delete?: LevelsWhereUniqueInput | LevelsWhereUniqueInput[]
+    connect?: LevelsWhereUniqueInput | LevelsWhereUniqueInput[]
+    update?: LevelsUpdateWithWhereUniqueWithoutUsersInput | LevelsUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: LevelsUpdateManyWithWhereWithoutUsersInput | LevelsUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: LevelsScalarWhereInput | LevelsScalarWhereInput[]
+  }
+
   export type ApisUncheckedUpdateManyWithoutUsersNestedInput = {
     create?: XOR<ApisCreateWithoutUsersInput, ApisUncheckedCreateWithoutUsersInput> | ApisCreateWithoutUsersInput[] | ApisUncheckedCreateWithoutUsersInput[]
     connectOrCreate?: ApisCreateOrConnectWithoutUsersInput | ApisCreateOrConnectWithoutUsersInput[]
@@ -101279,6 +108811,20 @@ export namespace Prisma {
     update?: VanitysUpdateWithWhereUniqueWithoutUsersInput | VanitysUpdateWithWhereUniqueWithoutUsersInput[]
     updateMany?: VanitysUpdateManyWithWhereWithoutUsersInput | VanitysUpdateManyWithWhereWithoutUsersInput[]
     deleteMany?: VanitysScalarWhereInput | VanitysScalarWhereInput[]
+  }
+
+  export type LevelsUncheckedUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<LevelsCreateWithoutUsersInput, LevelsUncheckedCreateWithoutUsersInput> | LevelsCreateWithoutUsersInput[] | LevelsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: LevelsCreateOrConnectWithoutUsersInput | LevelsCreateOrConnectWithoutUsersInput[]
+    upsert?: LevelsUpsertWithWhereUniqueWithoutUsersInput | LevelsUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: LevelsCreateManyUsersInputEnvelope
+    set?: LevelsWhereUniqueInput | LevelsWhereUniqueInput[]
+    disconnect?: LevelsWhereUniqueInput | LevelsWhereUniqueInput[]
+    delete?: LevelsWhereUniqueInput | LevelsWhereUniqueInput[]
+    connect?: LevelsWhereUniqueInput | LevelsWhereUniqueInput[]
+    update?: LevelsUpdateWithWhereUniqueWithoutUsersInput | LevelsUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: LevelsUpdateManyWithWhereWithoutUsersInput | LevelsUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: LevelsScalarWhereInput | LevelsScalarWhereInput[]
   }
 
   export type ApisCreateFlagsInput = {
@@ -102549,7 +110095,7 @@ export namespace Prisma {
     MessageTemplateId: string
     ChannelId: string
     Image: boolean
-    ImageData: XOR<WelcomeLeaveImageDataCreateEnvelopeInput, WelcomeLeaveImageDataCreateInput>
+    ImageData?: XOR<WelcomeLeaveImageDataNullableCreateEnvelopeInput, WelcomeLeaveImageDataCreateInput> | null
   }
 
   export type GuildWelcomeSetupUncheckedCreateWithoutGuildsInput = {
@@ -102557,7 +110103,7 @@ export namespace Prisma {
     MessageTemplateId: string
     ChannelId: string
     Image: boolean
-    ImageData: XOR<WelcomeLeaveImageDataCreateEnvelopeInput, WelcomeLeaveImageDataCreateInput>
+    ImageData?: XOR<WelcomeLeaveImageDataNullableCreateEnvelopeInput, WelcomeLeaveImageDataCreateInput> | null
   }
 
   export type GuildWelcomeSetupCreateOrConnectWithoutGuildsInput = {
@@ -102815,6 +110361,59 @@ export namespace Prisma {
 
   export type GuildUserModerationCreateManyGuildsInputEnvelope = {
     data: GuildUserModerationCreateManyGuildsInput | GuildUserModerationCreateManyGuildsInput[]
+  }
+
+  export type LevelSettingsCreateWithoutGuildsInput = {
+    id?: string
+    LevelUpChannelId: string
+    LevelUoMessageTemplateId: string
+    LeaderboardMessageTemplateId: string
+    LeaderboardDisplayAmount: number
+    RequiredXPForFirstLevel: number
+    Format: string
+    MessageXP: boolean
+    MessageXPRange: string
+    MesssageXPCooldown: string
+    MessageXPType: string
+    VoiceXP: boolean
+    VoiceXPRange: string
+    VoiceXPCooldown: number
+    ExcludedChannelIds?: LevelSettingsCreateExcludedChannelIdsInput | string[]
+    ExcludeUserIds?: LevelSettingsCreateExcludeUserIdsInput | string[]
+    ExcludeRoleIds?: LevelSettingsCreateExcludeRoleIdsInput | string[]
+    LevelRoles?: LevelRolesCreateNestedManyWithoutLevelSettingsInput
+    XPDrops?: XPDropsCreateNestedManyWithoutLevelSettingsInput
+    XPStreaks?: XPStreaksCreateNestedManyWithoutLevelSettingsInput
+    Levels?: LevelsCreateNestedManyWithoutLevelSettingsInput
+  }
+
+  export type LevelSettingsUncheckedCreateWithoutGuildsInput = {
+    id?: string
+    LevelUpChannelId: string
+    LevelUoMessageTemplateId: string
+    LeaderboardMessageTemplateId: string
+    LeaderboardDisplayAmount: number
+    RequiredXPForFirstLevel: number
+    Format: string
+    MessageXP: boolean
+    MessageXPRange: string
+    MesssageXPCooldown: string
+    MessageXPType: string
+    VoiceXP: boolean
+    VoiceXPRange: string
+    VoiceXPCooldown: number
+    ExcludedChannelIds?: LevelSettingsCreateExcludedChannelIdsInput | string[]
+    ExcludeUserIds?: LevelSettingsCreateExcludeUserIdsInput | string[]
+    ExcludeRoleIds?: LevelSettingsCreateExcludeRoleIdsInput | string[]
+    LevelRoles?: LevelRolesUncheckedCreateNestedManyWithoutLevelSettingsInput
+    XPDrops?: XPDropsUncheckedCreateNestedManyWithoutLevelSettingsInput
+    XPStreaks?: XPStreaksUncheckedCreateNestedManyWithoutLevelSettingsInput
+    Levels?: LevelsUncheckedCreateNestedManyWithoutLevelSettingsInput
+  }
+
+  export type LevelSettingsCreateOrConnectWithoutGuildsInput = {
+    where: LevelSettingsWhereUniqueInput
+    create: XOR<LevelSettingsCreateWithoutGuildsInput, LevelSettingsUncheckedCreateWithoutGuildsInput>
   }
 
   export type GuildAutoDeletesUpsertWithWhereUniqueWithoutGuildsInput = {
@@ -103482,14 +111081,14 @@ export namespace Prisma {
     MessageTemplateId?: StringFieldUpdateOperationsInput | string
     ChannelId?: StringFieldUpdateOperationsInput | string
     Image?: BoolFieldUpdateOperationsInput | boolean
-    ImageData?: XOR<WelcomeLeaveImageDataUpdateEnvelopeInput, WelcomeLeaveImageDataCreateInput>
+    ImageData?: XOR<WelcomeLeaveImageDataNullableUpdateEnvelopeInput, WelcomeLeaveImageDataCreateInput> | null
   }
 
   export type GuildWelcomeSetupUncheckedUpdateWithoutGuildsInput = {
     MessageTemplateId?: StringFieldUpdateOperationsInput | string
     ChannelId?: StringFieldUpdateOperationsInput | string
     Image?: BoolFieldUpdateOperationsInput | boolean
-    ImageData?: XOR<WelcomeLeaveImageDataUpdateEnvelopeInput, WelcomeLeaveImageDataCreateInput>
+    ImageData?: XOR<WelcomeLeaveImageDataNullableUpdateEnvelopeInput, WelcomeLeaveImageDataCreateInput> | null
   }
 
   export type GuildYoutubeNotificationsUpsertWithWhereUniqueWithoutGuildsInput = {
@@ -103753,6 +111352,63 @@ export namespace Prisma {
     GuildId?: StringFilter<"GuildUserModeration"> | string
   }
 
+  export type LevelSettingsUpsertWithoutGuildsInput = {
+    update: XOR<LevelSettingsUpdateWithoutGuildsInput, LevelSettingsUncheckedUpdateWithoutGuildsInput>
+    create: XOR<LevelSettingsCreateWithoutGuildsInput, LevelSettingsUncheckedCreateWithoutGuildsInput>
+    where?: LevelSettingsWhereInput
+  }
+
+  export type LevelSettingsUpdateToOneWithWhereWithoutGuildsInput = {
+    where?: LevelSettingsWhereInput
+    data: XOR<LevelSettingsUpdateWithoutGuildsInput, LevelSettingsUncheckedUpdateWithoutGuildsInput>
+  }
+
+  export type LevelSettingsUpdateWithoutGuildsInput = {
+    LevelUpChannelId?: StringFieldUpdateOperationsInput | string
+    LevelUoMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardDisplayAmount?: IntFieldUpdateOperationsInput | number
+    RequiredXPForFirstLevel?: IntFieldUpdateOperationsInput | number
+    Format?: StringFieldUpdateOperationsInput | string
+    MessageXP?: BoolFieldUpdateOperationsInput | boolean
+    MessageXPRange?: StringFieldUpdateOperationsInput | string
+    MesssageXPCooldown?: StringFieldUpdateOperationsInput | string
+    MessageXPType?: StringFieldUpdateOperationsInput | string
+    VoiceXP?: BoolFieldUpdateOperationsInput | boolean
+    VoiceXPRange?: StringFieldUpdateOperationsInput | string
+    VoiceXPCooldown?: IntFieldUpdateOperationsInput | number
+    ExcludedChannelIds?: LevelSettingsUpdateExcludedChannelIdsInput | string[]
+    ExcludeUserIds?: LevelSettingsUpdateExcludeUserIdsInput | string[]
+    ExcludeRoleIds?: LevelSettingsUpdateExcludeRoleIdsInput | string[]
+    LevelRoles?: LevelRolesUpdateManyWithoutLevelSettingsNestedInput
+    XPDrops?: XPDropsUpdateManyWithoutLevelSettingsNestedInput
+    XPStreaks?: XPStreaksUpdateManyWithoutLevelSettingsNestedInput
+    Levels?: LevelsUpdateManyWithoutLevelSettingsNestedInput
+  }
+
+  export type LevelSettingsUncheckedUpdateWithoutGuildsInput = {
+    LevelUpChannelId?: StringFieldUpdateOperationsInput | string
+    LevelUoMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardDisplayAmount?: IntFieldUpdateOperationsInput | number
+    RequiredXPForFirstLevel?: IntFieldUpdateOperationsInput | number
+    Format?: StringFieldUpdateOperationsInput | string
+    MessageXP?: BoolFieldUpdateOperationsInput | boolean
+    MessageXPRange?: StringFieldUpdateOperationsInput | string
+    MesssageXPCooldown?: StringFieldUpdateOperationsInput | string
+    MessageXPType?: StringFieldUpdateOperationsInput | string
+    VoiceXP?: BoolFieldUpdateOperationsInput | boolean
+    VoiceXPRange?: StringFieldUpdateOperationsInput | string
+    VoiceXPCooldown?: IntFieldUpdateOperationsInput | number
+    ExcludedChannelIds?: LevelSettingsUpdateExcludedChannelIdsInput | string[]
+    ExcludeUserIds?: LevelSettingsUpdateExcludeUserIdsInput | string[]
+    ExcludeRoleIds?: LevelSettingsUpdateExcludeRoleIdsInput | string[]
+    LevelRoles?: LevelRolesUncheckedUpdateManyWithoutLevelSettingsNestedInput
+    XPDrops?: XPDropsUncheckedUpdateManyWithoutLevelSettingsNestedInput
+    XPStreaks?: XPStreaksUncheckedUpdateManyWithoutLevelSettingsNestedInput
+    Levels?: LevelsUncheckedUpdateManyWithoutLevelSettingsNestedInput
+  }
+
   export type BuildInCommandsCreateWithoutGuildCommandMangersInput = {
     id?: string
     UUID: string
@@ -103815,6 +111471,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildCommandMangerInput = {
@@ -103850,6 +111507,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildCommandMangerInput = {
@@ -103930,6 +111588,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildCommandMangerInput = {
@@ -103964,6 +111623,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildCommandMangerCreateWithoutBuildInCommandsInput = {
@@ -104049,6 +111709,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildComponentManagerInput = {
@@ -104084,6 +111745,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildComponentManagerInput = {
@@ -104134,6 +111796,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildComponentManagerInput = {
@@ -104168,6 +111831,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutGuildInteractionPermissionsInput = {
@@ -104203,6 +111867,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildInteractionPermissionsInput = {
@@ -104238,6 +111903,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildInteractionPermissionsInput = {
@@ -104288,6 +111954,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildInteractionPermissionsInput = {
@@ -104322,6 +111989,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutAutoAutoDeletesInput = {
@@ -104357,6 +112025,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutAutoAutoDeletesInput = {
@@ -104392,6 +112061,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutAutoAutoDeletesInput = {
@@ -104442,6 +112112,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutAutoAutoDeletesInput = {
@@ -104476,6 +112147,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutAutoPublishInput = {
@@ -104511,6 +112183,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutAutoPublishInput = {
@@ -104546,6 +112219,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutAutoPublishInput = {
@@ -104596,6 +112270,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutAutoPublishInput = {
@@ -104630,6 +112305,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutAutoReactsInput = {
@@ -104665,6 +112341,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutAutoReactsInput = {
@@ -104700,6 +112377,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutAutoReactsInput = {
@@ -104750,6 +112428,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutAutoReactsInput = {
@@ -104784,6 +112463,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutAutoRolesInput = {
@@ -104819,6 +112499,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutAutoRolesInput = {
@@ -104854,6 +112535,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutAutoRolesInput = {
@@ -104904,6 +112586,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutAutoRolesInput = {
@@ -104938,6 +112621,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type ModerationScoutUserAppealsCreateWithoutModerationScoutInput = {
@@ -105126,6 +112810,7 @@ export namespace Prisma {
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutModerationScoutInput = {
@@ -105161,6 +112846,7 @@ export namespace Prisma {
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutModerationScoutInput = {
@@ -105362,6 +113048,7 @@ export namespace Prisma {
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutModerationScoutInput = {
@@ -105396,6 +113083,7 @@ export namespace Prisma {
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildUserModerationCreateWithoutModerationScoutCasesInput = {
@@ -106368,6 +114056,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildModerationInput = {
@@ -106403,6 +114092,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildModerationInput = {
@@ -106636,6 +114326,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildModerationInput = {
@@ -106670,6 +114361,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildModerationCreateWithoutGuildUserModerationSettingBanInput = {
@@ -107138,6 +114830,7 @@ export namespace Prisma {
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildUserModerationInput = {
@@ -107173,6 +114866,7 @@ export namespace Prisma {
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildUserModerationInput = {
@@ -107254,6 +114948,7 @@ export namespace Prisma {
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildUserModerationInput = {
@@ -107288,6 +114983,7 @@ export namespace Prisma {
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildDisBotAutoModerationMessagesCreateWithoutGuildDisBotAutoModerationInput = {
@@ -107530,6 +115226,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildDisBotAutoModerationInput = {
@@ -107565,6 +115262,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildDisBotAutoModerationInput = {
@@ -107827,6 +115525,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildDisBotAutoModerationInput = {
@@ -107861,6 +115560,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildDisBotAutoModerationCreateWithoutMessageSpamInput = {
@@ -108329,6 +116029,7 @@ export namespace Prisma {
     GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildChannelLinksInput = {
@@ -108364,6 +116065,7 @@ export namespace Prisma {
     GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildChannelLinksInput = {
@@ -108443,6 +116145,7 @@ export namespace Prisma {
     GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildChannelLinksInput = {
@@ -108477,6 +116180,7 @@ export namespace Prisma {
     GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildChannelLinksCreateWithoutSyncedChannelLinkMessageInput = {
@@ -108570,6 +116274,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutDiscordAddonsInput = {
@@ -108605,6 +116310,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutDiscordAddonsInput = {
@@ -108655,6 +116361,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutDiscordAddonsInput = {
@@ -108689,6 +116396,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutGiveawaysInput = {
@@ -108724,6 +116432,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGiveawaysInput = {
@@ -108759,6 +116468,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGiveawaysInput = {
@@ -108809,6 +116519,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGiveawaysInput = {
@@ -108843,6 +116554,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type TempVoiceChannelsCreateWithoutTempVoicesInput = {
@@ -108901,6 +116613,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutTempVoicesInput = {
@@ -108936,6 +116649,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutTempVoicesInput = {
@@ -109013,6 +116727,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutTempVoicesInput = {
@@ -109047,6 +116762,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type TempVoicesCreateWithoutTempVoiceChannelsInput = {
@@ -109140,6 +116856,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildLeaveSetupInput = {
@@ -109175,6 +116892,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildLeaveSetupInput = {
@@ -109230,6 +116948,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildLeaveSetupInput = {
@@ -109264,6 +116983,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutGuildWelcomeSetupInput = {
@@ -109299,6 +117019,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildWelcomeSetupInput = {
@@ -109334,21 +117055,12 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildWelcomeSetupInput = {
     where: GuildsWhereUniqueInput
     create: XOR<GuildsCreateWithoutGuildWelcomeSetupInput, GuildsUncheckedCreateWithoutGuildWelcomeSetupInput>
-  }
-
-  export type WelcomeLeaveImageDataUpdateInput = {
-    Title?: StringFieldUpdateOperationsInput | string
-    Text?: StringFieldUpdateOperationsInput | string
-    Subtitle?: StringFieldUpdateOperationsInput | string
-    Background?: StringFieldUpdateOperationsInput | string
-    Theme?: StringFieldUpdateOperationsInput | string
-    Color?: StringFieldUpdateOperationsInput | string
-    Gradient?: StringFieldUpdateOperationsInput | string
   }
 
   export type GuildsUpsertWithoutGuildWelcomeSetupInput = {
@@ -109394,6 +117106,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildWelcomeSetupInput = {
@@ -109428,6 +117141,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutGuildLoggingInput = {
@@ -109463,6 +117177,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildLoggingInput = {
@@ -109498,6 +117213,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildLoggingInput = {
@@ -109548,6 +117264,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildLoggingInput = {
@@ -109582,6 +117299,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutGuildLogsInput = {
@@ -109617,6 +117335,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildLogsInput = {
@@ -109652,6 +117371,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildLogsInput = {
@@ -109702,6 +117422,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildLogsInput = {
@@ -109736,6 +117457,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutMessageTemplatesInput = {
@@ -109771,6 +117493,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutMessageTemplatesInput = {
@@ -109806,6 +117529,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutMessageTemplatesInput = {
@@ -109856,6 +117580,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutMessageTemplatesInput = {
@@ -109890,6 +117615,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutReactionRoleInput = {
@@ -109925,6 +117651,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutReactionRoleInput = {
@@ -109960,6 +117687,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutReactionRoleInput = {
@@ -110020,6 +117748,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutReactionRoleInput = {
@@ -110054,6 +117783,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type VerificationGatesCreateWithoutVerificationGatesInput = {
@@ -110126,6 +117856,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutSecurityInput = {
@@ -110161,6 +117892,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutSecurityInput = {
@@ -110244,6 +117976,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutSecurityInput = {
@@ -110278,6 +118011,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type VerificationGatesPermissionCreateWithoutVerificationGatesInput = {
@@ -110472,6 +118206,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutSpotifyNotificationsInput = {
@@ -110507,6 +118242,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutSpotifyNotificationsInput = {
@@ -110557,6 +118293,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutSpotifyNotificationsInput = {
@@ -110591,6 +118328,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutTagsInput = {
@@ -110626,6 +118364,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutTagsInput = {
@@ -110661,6 +118400,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutTagsInput = {
@@ -110711,6 +118451,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutTagsInput = {
@@ -110745,6 +118486,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type PollOptionsCreateWithoutPollsInput = {
@@ -110830,6 +118572,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutPollsInput = {
@@ -110865,6 +118608,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutPollsInput = {
@@ -110970,6 +118714,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutPollsInput = {
@@ -111004,6 +118749,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type PollsCreateWithoutPollOptionsInput = {
@@ -111350,6 +119096,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutTicketSetupsInput = {
@@ -111385,6 +119132,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutTicketSetupsInput = {
@@ -111579,6 +119327,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutTicketSetupsInput = {
@@ -111613,6 +119362,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type TicketsUpsertWithWhereUniqueWithoutTicketSetupInput = {
@@ -112417,6 +120167,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutGuildFeatureToggleInput = {
@@ -112452,6 +120203,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutGuildFeatureToggleInput = {
@@ -112502,6 +120254,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutGuildFeatureToggleInput = {
@@ -112536,6 +120289,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutTwitchNotificationsInput = {
@@ -112571,6 +120325,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutTwitchNotificationsInput = {
@@ -112606,6 +120361,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutTwitchNotificationsInput = {
@@ -112656,6 +120412,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutTwitchNotificationsInput = {
@@ -112690,6 +120447,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsCreateWithoutYoutubeNotificationsInput = {
@@ -112725,6 +120483,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutYoutubeNotificationsInput = {
@@ -112760,6 +120519,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutYoutubeNotificationsInput = {
@@ -112810,6 +120570,7 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutYoutubeNotificationsInput = {
@@ -112844,6 +120605,899 @@ export namespace Prisma {
     GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
+  }
+
+  export type LevelRolesCreateWithoutLevelSettingsInput = {
+    id?: string
+    Level: number
+    Multiplier: number
+    Type: string
+    RoleId: string
+  }
+
+  export type LevelRolesUncheckedCreateWithoutLevelSettingsInput = {
+    id?: string
+    Level: number
+    Multiplier: number
+    Type: string
+    RoleId: string
+  }
+
+  export type LevelRolesCreateOrConnectWithoutLevelSettingsInput = {
+    where: LevelRolesWhereUniqueInput
+    create: XOR<LevelRolesCreateWithoutLevelSettingsInput, LevelRolesUncheckedCreateWithoutLevelSettingsInput>
+  }
+
+  export type LevelRolesCreateManyLevelSettingsInputEnvelope = {
+    data: LevelRolesCreateManyLevelSettingsInput | LevelRolesCreateManyLevelSettingsInput[]
+  }
+
+  export type XPDropsCreateWithoutLevelSettingsInput = {
+    id?: string
+    XPRange: string
+    ClaimType: number
+    TimeToRespawn: string
+    ChannelIds?: XPDropsCreateChannelIdsInput | string[]
+  }
+
+  export type XPDropsUncheckedCreateWithoutLevelSettingsInput = {
+    id?: string
+    XPRange: string
+    ClaimType: number
+    TimeToRespawn: string
+    ChannelIds?: XPDropsCreateChannelIdsInput | string[]
+  }
+
+  export type XPDropsCreateOrConnectWithoutLevelSettingsInput = {
+    where: XPDropsWhereUniqueInput
+    create: XOR<XPDropsCreateWithoutLevelSettingsInput, XPDropsUncheckedCreateWithoutLevelSettingsInput>
+  }
+
+  export type XPDropsCreateManyLevelSettingsInputEnvelope = {
+    data: XPDropsCreateManyLevelSettingsInput | XPDropsCreateManyLevelSettingsInput[]
+  }
+
+  export type XPStreaksCreateWithoutLevelSettingsInput = {
+    id?: string
+    Days: number
+    Nickname: string
+    BonusLevels: number
+    BonusXP: number
+    ChannelId: string
+    MessageTemplateId: string
+    Multiplier: number
+    RoleRewardIds?: XPStreaksCreateRoleRewardIdsInput | string[]
+  }
+
+  export type XPStreaksUncheckedCreateWithoutLevelSettingsInput = {
+    id?: string
+    Days: number
+    Nickname: string
+    BonusLevels: number
+    BonusXP: number
+    ChannelId: string
+    MessageTemplateId: string
+    Multiplier: number
+    RoleRewardIds?: XPStreaksCreateRoleRewardIdsInput | string[]
+  }
+
+  export type XPStreaksCreateOrConnectWithoutLevelSettingsInput = {
+    where: XPStreaksWhereUniqueInput
+    create: XOR<XPStreaksCreateWithoutLevelSettingsInput, XPStreaksUncheckedCreateWithoutLevelSettingsInput>
+  }
+
+  export type XPStreaksCreateManyLevelSettingsInputEnvelope = {
+    data: XPStreaksCreateManyLevelSettingsInput | XPStreaksCreateManyLevelSettingsInput[]
+  }
+
+  export type LevelsCreateWithoutLevelSettingsInput = {
+    id?: string
+    XP: number
+    RequiredXp: number
+    Level: number
+    Users: UsersCreateNestedOneWithoutLevelsInput
+  }
+
+  export type LevelsUncheckedCreateWithoutLevelSettingsInput = {
+    id?: string
+    XP: number
+    RequiredXp: number
+    Level: number
+    UserId: string
+  }
+
+  export type LevelsCreateOrConnectWithoutLevelSettingsInput = {
+    where: LevelsWhereUniqueInput
+    create: XOR<LevelsCreateWithoutLevelSettingsInput, LevelsUncheckedCreateWithoutLevelSettingsInput>
+  }
+
+  export type LevelsCreateManyLevelSettingsInputEnvelope = {
+    data: LevelsCreateManyLevelSettingsInput | LevelsCreateManyLevelSettingsInput[]
+  }
+
+  export type GuildsCreateWithoutLevelSettingsInput = {
+    id?: string
+    GuildId: string
+    GuildName: string
+    GuildOwner: string
+    AutoAutoDeletes?: GuildAutoDeletesCreateNestedManyWithoutGuildsInput
+    AutoPublish?: GuildAutoPublishCreateNestedOneWithoutGuildsInput
+    AutoReacts?: GuildAutoReactsCreateNestedManyWithoutGuildsInput
+    AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
+    GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
+    GuildDisBotAutoModeration?: GuildDisBotAutoModerationCreateNestedOneWithoutGuildsInput
+    DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
+    Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
+    GuildLeaveSetup?: GuildLeaveSetupCreateNestedOneWithoutGuildsInput
+    GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
+    MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
+    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
+    Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
+    SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
+    Tags?: TagsCreateNestedManyWithoutGuildsInput
+    Polls?: PollsCreateNestedManyWithoutGuildsInput
+    TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
+    GuildFeatureToggle?: GuildFeatureTogglesCreateNestedOneWithoutGuildsInput
+    TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
+    GuildWelcomeSetup?: GuildWelcomeSetupCreateNestedOneWithoutGuildsInput
+    YoutubeNotifications?: GuildYoutubeNotificationsCreateNestedManyWithoutGuildsInput
+    GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
+    GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
+    GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
+    GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
+  }
+
+  export type GuildsUncheckedCreateWithoutLevelSettingsInput = {
+    id?: string
+    GuildId: string
+    GuildName: string
+    GuildOwner: string
+    AutoAutoDeletes?: GuildAutoDeletesUncheckedCreateNestedManyWithoutGuildsInput
+    AutoPublish?: GuildAutoPublishUncheckedCreateNestedOneWithoutGuildsInput
+    AutoReacts?: GuildAutoReactsUncheckedCreateNestedManyWithoutGuildsInput
+    AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
+    GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
+    GuildDisBotAutoModeration?: GuildDisBotAutoModerationUncheckedCreateNestedOneWithoutGuildsInput
+    DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
+    Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
+    GuildLeaveSetup?: GuildLeaveSetupUncheckedCreateNestedOneWithoutGuildsInput
+    GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
+    MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
+    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
+    Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
+    SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
+    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
+    Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
+    TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
+    GuildFeatureToggle?: GuildFeatureTogglesUncheckedCreateNestedOneWithoutGuildsInput
+    TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
+    GuildWelcomeSetup?: GuildWelcomeSetupUncheckedCreateNestedOneWithoutGuildsInput
+    YoutubeNotifications?: GuildYoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
+    GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
+    GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
+    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
+    GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
+  }
+
+  export type GuildsCreateOrConnectWithoutLevelSettingsInput = {
+    where: GuildsWhereUniqueInput
+    create: XOR<GuildsCreateWithoutLevelSettingsInput, GuildsUncheckedCreateWithoutLevelSettingsInput>
+  }
+
+  export type LevelRolesUpsertWithWhereUniqueWithoutLevelSettingsInput = {
+    where: LevelRolesWhereUniqueInput
+    update: XOR<LevelRolesUpdateWithoutLevelSettingsInput, LevelRolesUncheckedUpdateWithoutLevelSettingsInput>
+    create: XOR<LevelRolesCreateWithoutLevelSettingsInput, LevelRolesUncheckedCreateWithoutLevelSettingsInput>
+  }
+
+  export type LevelRolesUpdateWithWhereUniqueWithoutLevelSettingsInput = {
+    where: LevelRolesWhereUniqueInput
+    data: XOR<LevelRolesUpdateWithoutLevelSettingsInput, LevelRolesUncheckedUpdateWithoutLevelSettingsInput>
+  }
+
+  export type LevelRolesUpdateManyWithWhereWithoutLevelSettingsInput = {
+    where: LevelRolesScalarWhereInput
+    data: XOR<LevelRolesUpdateManyMutationInput, LevelRolesUncheckedUpdateManyWithoutLevelSettingsInput>
+  }
+
+  export type LevelRolesScalarWhereInput = {
+    AND?: LevelRolesScalarWhereInput | LevelRolesScalarWhereInput[]
+    OR?: LevelRolesScalarWhereInput[]
+    NOT?: LevelRolesScalarWhereInput | LevelRolesScalarWhereInput[]
+    id?: StringFilter<"LevelRoles"> | string
+    Level?: IntFilter<"LevelRoles"> | number
+    Multiplier?: IntFilter<"LevelRoles"> | number
+    Type?: StringFilter<"LevelRoles"> | string
+    RoleId?: StringFilter<"LevelRoles"> | string
+    GuildId?: StringFilter<"LevelRoles"> | string
+  }
+
+  export type XPDropsUpsertWithWhereUniqueWithoutLevelSettingsInput = {
+    where: XPDropsWhereUniqueInput
+    update: XOR<XPDropsUpdateWithoutLevelSettingsInput, XPDropsUncheckedUpdateWithoutLevelSettingsInput>
+    create: XOR<XPDropsCreateWithoutLevelSettingsInput, XPDropsUncheckedCreateWithoutLevelSettingsInput>
+  }
+
+  export type XPDropsUpdateWithWhereUniqueWithoutLevelSettingsInput = {
+    where: XPDropsWhereUniqueInput
+    data: XOR<XPDropsUpdateWithoutLevelSettingsInput, XPDropsUncheckedUpdateWithoutLevelSettingsInput>
+  }
+
+  export type XPDropsUpdateManyWithWhereWithoutLevelSettingsInput = {
+    where: XPDropsScalarWhereInput
+    data: XOR<XPDropsUpdateManyMutationInput, XPDropsUncheckedUpdateManyWithoutLevelSettingsInput>
+  }
+
+  export type XPDropsScalarWhereInput = {
+    AND?: XPDropsScalarWhereInput | XPDropsScalarWhereInput[]
+    OR?: XPDropsScalarWhereInput[]
+    NOT?: XPDropsScalarWhereInput | XPDropsScalarWhereInput[]
+    id?: StringFilter<"XPDrops"> | string
+    GuildId?: StringFilter<"XPDrops"> | string
+    XPRange?: StringFilter<"XPDrops"> | string
+    ClaimType?: IntFilter<"XPDrops"> | number
+    TimeToRespawn?: StringFilter<"XPDrops"> | string
+    ChannelIds?: StringNullableListFilter<"XPDrops">
+  }
+
+  export type XPStreaksUpsertWithWhereUniqueWithoutLevelSettingsInput = {
+    where: XPStreaksWhereUniqueInput
+    update: XOR<XPStreaksUpdateWithoutLevelSettingsInput, XPStreaksUncheckedUpdateWithoutLevelSettingsInput>
+    create: XOR<XPStreaksCreateWithoutLevelSettingsInput, XPStreaksUncheckedCreateWithoutLevelSettingsInput>
+  }
+
+  export type XPStreaksUpdateWithWhereUniqueWithoutLevelSettingsInput = {
+    where: XPStreaksWhereUniqueInput
+    data: XOR<XPStreaksUpdateWithoutLevelSettingsInput, XPStreaksUncheckedUpdateWithoutLevelSettingsInput>
+  }
+
+  export type XPStreaksUpdateManyWithWhereWithoutLevelSettingsInput = {
+    where: XPStreaksScalarWhereInput
+    data: XOR<XPStreaksUpdateManyMutationInput, XPStreaksUncheckedUpdateManyWithoutLevelSettingsInput>
+  }
+
+  export type XPStreaksScalarWhereInput = {
+    AND?: XPStreaksScalarWhereInput | XPStreaksScalarWhereInput[]
+    OR?: XPStreaksScalarWhereInput[]
+    NOT?: XPStreaksScalarWhereInput | XPStreaksScalarWhereInput[]
+    id?: StringFilter<"XPStreaks"> | string
+    Days?: IntFilter<"XPStreaks"> | number
+    Nickname?: StringFilter<"XPStreaks"> | string
+    BonusLevels?: IntFilter<"XPStreaks"> | number
+    BonusXP?: IntFilter<"XPStreaks"> | number
+    ChannelId?: StringFilter<"XPStreaks"> | string
+    MessageTemplateId?: StringFilter<"XPStreaks"> | string
+    Multiplier?: IntFilter<"XPStreaks"> | number
+    RoleRewardIds?: StringNullableListFilter<"XPStreaks">
+    GuildId?: StringFilter<"XPStreaks"> | string
+  }
+
+  export type LevelsUpsertWithWhereUniqueWithoutLevelSettingsInput = {
+    where: LevelsWhereUniqueInput
+    update: XOR<LevelsUpdateWithoutLevelSettingsInput, LevelsUncheckedUpdateWithoutLevelSettingsInput>
+    create: XOR<LevelsCreateWithoutLevelSettingsInput, LevelsUncheckedCreateWithoutLevelSettingsInput>
+  }
+
+  export type LevelsUpdateWithWhereUniqueWithoutLevelSettingsInput = {
+    where: LevelsWhereUniqueInput
+    data: XOR<LevelsUpdateWithoutLevelSettingsInput, LevelsUncheckedUpdateWithoutLevelSettingsInput>
+  }
+
+  export type LevelsUpdateManyWithWhereWithoutLevelSettingsInput = {
+    where: LevelsScalarWhereInput
+    data: XOR<LevelsUpdateManyMutationInput, LevelsUncheckedUpdateManyWithoutLevelSettingsInput>
+  }
+
+  export type LevelsScalarWhereInput = {
+    AND?: LevelsScalarWhereInput | LevelsScalarWhereInput[]
+    OR?: LevelsScalarWhereInput[]
+    NOT?: LevelsScalarWhereInput | LevelsScalarWhereInput[]
+    id?: StringFilter<"Levels"> | string
+    XP?: IntFilter<"Levels"> | number
+    RequiredXp?: IntFilter<"Levels"> | number
+    Level?: IntFilter<"Levels"> | number
+    UserId?: StringFilter<"Levels"> | string
+    GuildId?: StringFilter<"Levels"> | string
+  }
+
+  export type GuildsUpsertWithoutLevelSettingsInput = {
+    update: XOR<GuildsUpdateWithoutLevelSettingsInput, GuildsUncheckedUpdateWithoutLevelSettingsInput>
+    create: XOR<GuildsCreateWithoutLevelSettingsInput, GuildsUncheckedCreateWithoutLevelSettingsInput>
+    where?: GuildsWhereInput
+  }
+
+  export type GuildsUpdateToOneWithWhereWithoutLevelSettingsInput = {
+    where?: GuildsWhereInput
+    data: XOR<GuildsUpdateWithoutLevelSettingsInput, GuildsUncheckedUpdateWithoutLevelSettingsInput>
+  }
+
+  export type GuildsUpdateWithoutLevelSettingsInput = {
+    GuildId?: StringFieldUpdateOperationsInput | string
+    GuildName?: StringFieldUpdateOperationsInput | string
+    GuildOwner?: StringFieldUpdateOperationsInput | string
+    AutoAutoDeletes?: GuildAutoDeletesUpdateManyWithoutGuildsNestedInput
+    AutoPublish?: GuildAutoPublishUpdateOneWithoutGuildsNestedInput
+    AutoReacts?: GuildAutoReactsUpdateManyWithoutGuildsNestedInput
+    AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
+    GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
+    GuildDisBotAutoModeration?: GuildDisBotAutoModerationUpdateOneWithoutGuildsNestedInput
+    DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
+    Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
+    GuildLeaveSetup?: GuildLeaveSetupUpdateOneWithoutGuildsNestedInput
+    GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
+    MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
+    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
+    Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
+    SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
+    Tags?: TagsUpdateManyWithoutGuildsNestedInput
+    Polls?: PollsUpdateManyWithoutGuildsNestedInput
+    TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
+    GuildFeatureToggle?: GuildFeatureTogglesUpdateOneWithoutGuildsNestedInput
+    TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
+    GuildWelcomeSetup?: GuildWelcomeSetupUpdateOneWithoutGuildsNestedInput
+    YoutubeNotifications?: GuildYoutubeNotificationsUpdateManyWithoutGuildsNestedInput
+    GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
+    GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
+    GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
+    GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
+  }
+
+  export type GuildsUncheckedUpdateWithoutLevelSettingsInput = {
+    GuildId?: StringFieldUpdateOperationsInput | string
+    GuildName?: StringFieldUpdateOperationsInput | string
+    GuildOwner?: StringFieldUpdateOperationsInput | string
+    AutoAutoDeletes?: GuildAutoDeletesUncheckedUpdateManyWithoutGuildsNestedInput
+    AutoPublish?: GuildAutoPublishUncheckedUpdateOneWithoutGuildsNestedInput
+    AutoReacts?: GuildAutoReactsUncheckedUpdateManyWithoutGuildsNestedInput
+    AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildDisBotAutoModeration?: GuildDisBotAutoModerationUncheckedUpdateOneWithoutGuildsNestedInput
+    DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
+    Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildLeaveSetup?: GuildLeaveSetupUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
+    MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
+    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
+    Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
+    SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
+    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
+    Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
+    TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildFeatureToggle?: GuildFeatureTogglesUncheckedUpdateOneWithoutGuildsNestedInput
+    TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildWelcomeSetup?: GuildWelcomeSetupUncheckedUpdateOneWithoutGuildsNestedInput
+    YoutubeNotifications?: GuildYoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
+    GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
+    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
+    GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
+  }
+
+  export type LevelSettingsCreateWithoutXPDropsInput = {
+    id?: string
+    LevelUpChannelId: string
+    LevelUoMessageTemplateId: string
+    LeaderboardMessageTemplateId: string
+    LeaderboardDisplayAmount: number
+    RequiredXPForFirstLevel: number
+    Format: string
+    MessageXP: boolean
+    MessageXPRange: string
+    MesssageXPCooldown: string
+    MessageXPType: string
+    VoiceXP: boolean
+    VoiceXPRange: string
+    VoiceXPCooldown: number
+    ExcludedChannelIds?: LevelSettingsCreateExcludedChannelIdsInput | string[]
+    ExcludeUserIds?: LevelSettingsCreateExcludeUserIdsInput | string[]
+    ExcludeRoleIds?: LevelSettingsCreateExcludeRoleIdsInput | string[]
+    LevelRoles?: LevelRolesCreateNestedManyWithoutLevelSettingsInput
+    XPStreaks?: XPStreaksCreateNestedManyWithoutLevelSettingsInput
+    Levels?: LevelsCreateNestedManyWithoutLevelSettingsInput
+    Guilds: GuildsCreateNestedOneWithoutLevelSettingsInput
+  }
+
+  export type LevelSettingsUncheckedCreateWithoutXPDropsInput = {
+    id?: string
+    LevelUpChannelId: string
+    LevelUoMessageTemplateId: string
+    LeaderboardMessageTemplateId: string
+    LeaderboardDisplayAmount: number
+    RequiredXPForFirstLevel: number
+    Format: string
+    MessageXP: boolean
+    MessageXPRange: string
+    MesssageXPCooldown: string
+    MessageXPType: string
+    VoiceXP: boolean
+    VoiceXPRange: string
+    VoiceXPCooldown: number
+    ExcludedChannelIds?: LevelSettingsCreateExcludedChannelIdsInput | string[]
+    ExcludeUserIds?: LevelSettingsCreateExcludeUserIdsInput | string[]
+    ExcludeRoleIds?: LevelSettingsCreateExcludeRoleIdsInput | string[]
+    GuildId: string
+    LevelRoles?: LevelRolesUncheckedCreateNestedManyWithoutLevelSettingsInput
+    XPStreaks?: XPStreaksUncheckedCreateNestedManyWithoutLevelSettingsInput
+    Levels?: LevelsUncheckedCreateNestedManyWithoutLevelSettingsInput
+  }
+
+  export type LevelSettingsCreateOrConnectWithoutXPDropsInput = {
+    where: LevelSettingsWhereUniqueInput
+    create: XOR<LevelSettingsCreateWithoutXPDropsInput, LevelSettingsUncheckedCreateWithoutXPDropsInput>
+  }
+
+  export type LevelSettingsUpsertWithoutXPDropsInput = {
+    update: XOR<LevelSettingsUpdateWithoutXPDropsInput, LevelSettingsUncheckedUpdateWithoutXPDropsInput>
+    create: XOR<LevelSettingsCreateWithoutXPDropsInput, LevelSettingsUncheckedCreateWithoutXPDropsInput>
+    where?: LevelSettingsWhereInput
+  }
+
+  export type LevelSettingsUpdateToOneWithWhereWithoutXPDropsInput = {
+    where?: LevelSettingsWhereInput
+    data: XOR<LevelSettingsUpdateWithoutXPDropsInput, LevelSettingsUncheckedUpdateWithoutXPDropsInput>
+  }
+
+  export type LevelSettingsUpdateWithoutXPDropsInput = {
+    LevelUpChannelId?: StringFieldUpdateOperationsInput | string
+    LevelUoMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardDisplayAmount?: IntFieldUpdateOperationsInput | number
+    RequiredXPForFirstLevel?: IntFieldUpdateOperationsInput | number
+    Format?: StringFieldUpdateOperationsInput | string
+    MessageXP?: BoolFieldUpdateOperationsInput | boolean
+    MessageXPRange?: StringFieldUpdateOperationsInput | string
+    MesssageXPCooldown?: StringFieldUpdateOperationsInput | string
+    MessageXPType?: StringFieldUpdateOperationsInput | string
+    VoiceXP?: BoolFieldUpdateOperationsInput | boolean
+    VoiceXPRange?: StringFieldUpdateOperationsInput | string
+    VoiceXPCooldown?: IntFieldUpdateOperationsInput | number
+    ExcludedChannelIds?: LevelSettingsUpdateExcludedChannelIdsInput | string[]
+    ExcludeUserIds?: LevelSettingsUpdateExcludeUserIdsInput | string[]
+    ExcludeRoleIds?: LevelSettingsUpdateExcludeRoleIdsInput | string[]
+    LevelRoles?: LevelRolesUpdateManyWithoutLevelSettingsNestedInput
+    XPStreaks?: XPStreaksUpdateManyWithoutLevelSettingsNestedInput
+    Levels?: LevelsUpdateManyWithoutLevelSettingsNestedInput
+    Guilds?: GuildsUpdateOneRequiredWithoutLevelSettingsNestedInput
+  }
+
+  export type LevelSettingsUncheckedUpdateWithoutXPDropsInput = {
+    LevelUpChannelId?: StringFieldUpdateOperationsInput | string
+    LevelUoMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardDisplayAmount?: IntFieldUpdateOperationsInput | number
+    RequiredXPForFirstLevel?: IntFieldUpdateOperationsInput | number
+    Format?: StringFieldUpdateOperationsInput | string
+    MessageXP?: BoolFieldUpdateOperationsInput | boolean
+    MessageXPRange?: StringFieldUpdateOperationsInput | string
+    MesssageXPCooldown?: StringFieldUpdateOperationsInput | string
+    MessageXPType?: StringFieldUpdateOperationsInput | string
+    VoiceXP?: BoolFieldUpdateOperationsInput | boolean
+    VoiceXPRange?: StringFieldUpdateOperationsInput | string
+    VoiceXPCooldown?: IntFieldUpdateOperationsInput | number
+    ExcludedChannelIds?: LevelSettingsUpdateExcludedChannelIdsInput | string[]
+    ExcludeUserIds?: LevelSettingsUpdateExcludeUserIdsInput | string[]
+    ExcludeRoleIds?: LevelSettingsUpdateExcludeRoleIdsInput | string[]
+    GuildId?: StringFieldUpdateOperationsInput | string
+    LevelRoles?: LevelRolesUncheckedUpdateManyWithoutLevelSettingsNestedInput
+    XPStreaks?: XPStreaksUncheckedUpdateManyWithoutLevelSettingsNestedInput
+    Levels?: LevelsUncheckedUpdateManyWithoutLevelSettingsNestedInput
+  }
+
+  export type LevelSettingsCreateWithoutXPStreaksInput = {
+    id?: string
+    LevelUpChannelId: string
+    LevelUoMessageTemplateId: string
+    LeaderboardMessageTemplateId: string
+    LeaderboardDisplayAmount: number
+    RequiredXPForFirstLevel: number
+    Format: string
+    MessageXP: boolean
+    MessageXPRange: string
+    MesssageXPCooldown: string
+    MessageXPType: string
+    VoiceXP: boolean
+    VoiceXPRange: string
+    VoiceXPCooldown: number
+    ExcludedChannelIds?: LevelSettingsCreateExcludedChannelIdsInput | string[]
+    ExcludeUserIds?: LevelSettingsCreateExcludeUserIdsInput | string[]
+    ExcludeRoleIds?: LevelSettingsCreateExcludeRoleIdsInput | string[]
+    LevelRoles?: LevelRolesCreateNestedManyWithoutLevelSettingsInput
+    XPDrops?: XPDropsCreateNestedManyWithoutLevelSettingsInput
+    Levels?: LevelsCreateNestedManyWithoutLevelSettingsInput
+    Guilds: GuildsCreateNestedOneWithoutLevelSettingsInput
+  }
+
+  export type LevelSettingsUncheckedCreateWithoutXPStreaksInput = {
+    id?: string
+    LevelUpChannelId: string
+    LevelUoMessageTemplateId: string
+    LeaderboardMessageTemplateId: string
+    LeaderboardDisplayAmount: number
+    RequiredXPForFirstLevel: number
+    Format: string
+    MessageXP: boolean
+    MessageXPRange: string
+    MesssageXPCooldown: string
+    MessageXPType: string
+    VoiceXP: boolean
+    VoiceXPRange: string
+    VoiceXPCooldown: number
+    ExcludedChannelIds?: LevelSettingsCreateExcludedChannelIdsInput | string[]
+    ExcludeUserIds?: LevelSettingsCreateExcludeUserIdsInput | string[]
+    ExcludeRoleIds?: LevelSettingsCreateExcludeRoleIdsInput | string[]
+    GuildId: string
+    LevelRoles?: LevelRolesUncheckedCreateNestedManyWithoutLevelSettingsInput
+    XPDrops?: XPDropsUncheckedCreateNestedManyWithoutLevelSettingsInput
+    Levels?: LevelsUncheckedCreateNestedManyWithoutLevelSettingsInput
+  }
+
+  export type LevelSettingsCreateOrConnectWithoutXPStreaksInput = {
+    where: LevelSettingsWhereUniqueInput
+    create: XOR<LevelSettingsCreateWithoutXPStreaksInput, LevelSettingsUncheckedCreateWithoutXPStreaksInput>
+  }
+
+  export type LevelSettingsUpsertWithoutXPStreaksInput = {
+    update: XOR<LevelSettingsUpdateWithoutXPStreaksInput, LevelSettingsUncheckedUpdateWithoutXPStreaksInput>
+    create: XOR<LevelSettingsCreateWithoutXPStreaksInput, LevelSettingsUncheckedCreateWithoutXPStreaksInput>
+    where?: LevelSettingsWhereInput
+  }
+
+  export type LevelSettingsUpdateToOneWithWhereWithoutXPStreaksInput = {
+    where?: LevelSettingsWhereInput
+    data: XOR<LevelSettingsUpdateWithoutXPStreaksInput, LevelSettingsUncheckedUpdateWithoutXPStreaksInput>
+  }
+
+  export type LevelSettingsUpdateWithoutXPStreaksInput = {
+    LevelUpChannelId?: StringFieldUpdateOperationsInput | string
+    LevelUoMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardDisplayAmount?: IntFieldUpdateOperationsInput | number
+    RequiredXPForFirstLevel?: IntFieldUpdateOperationsInput | number
+    Format?: StringFieldUpdateOperationsInput | string
+    MessageXP?: BoolFieldUpdateOperationsInput | boolean
+    MessageXPRange?: StringFieldUpdateOperationsInput | string
+    MesssageXPCooldown?: StringFieldUpdateOperationsInput | string
+    MessageXPType?: StringFieldUpdateOperationsInput | string
+    VoiceXP?: BoolFieldUpdateOperationsInput | boolean
+    VoiceXPRange?: StringFieldUpdateOperationsInput | string
+    VoiceXPCooldown?: IntFieldUpdateOperationsInput | number
+    ExcludedChannelIds?: LevelSettingsUpdateExcludedChannelIdsInput | string[]
+    ExcludeUserIds?: LevelSettingsUpdateExcludeUserIdsInput | string[]
+    ExcludeRoleIds?: LevelSettingsUpdateExcludeRoleIdsInput | string[]
+    LevelRoles?: LevelRolesUpdateManyWithoutLevelSettingsNestedInput
+    XPDrops?: XPDropsUpdateManyWithoutLevelSettingsNestedInput
+    Levels?: LevelsUpdateManyWithoutLevelSettingsNestedInput
+    Guilds?: GuildsUpdateOneRequiredWithoutLevelSettingsNestedInput
+  }
+
+  export type LevelSettingsUncheckedUpdateWithoutXPStreaksInput = {
+    LevelUpChannelId?: StringFieldUpdateOperationsInput | string
+    LevelUoMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardDisplayAmount?: IntFieldUpdateOperationsInput | number
+    RequiredXPForFirstLevel?: IntFieldUpdateOperationsInput | number
+    Format?: StringFieldUpdateOperationsInput | string
+    MessageXP?: BoolFieldUpdateOperationsInput | boolean
+    MessageXPRange?: StringFieldUpdateOperationsInput | string
+    MesssageXPCooldown?: StringFieldUpdateOperationsInput | string
+    MessageXPType?: StringFieldUpdateOperationsInput | string
+    VoiceXP?: BoolFieldUpdateOperationsInput | boolean
+    VoiceXPRange?: StringFieldUpdateOperationsInput | string
+    VoiceXPCooldown?: IntFieldUpdateOperationsInput | number
+    ExcludedChannelIds?: LevelSettingsUpdateExcludedChannelIdsInput | string[]
+    ExcludeUserIds?: LevelSettingsUpdateExcludeUserIdsInput | string[]
+    ExcludeRoleIds?: LevelSettingsUpdateExcludeRoleIdsInput | string[]
+    GuildId?: StringFieldUpdateOperationsInput | string
+    LevelRoles?: LevelRolesUncheckedUpdateManyWithoutLevelSettingsNestedInput
+    XPDrops?: XPDropsUncheckedUpdateManyWithoutLevelSettingsNestedInput
+    Levels?: LevelsUncheckedUpdateManyWithoutLevelSettingsNestedInput
+  }
+
+  export type LevelSettingsCreateWithoutLevelRolesInput = {
+    id?: string
+    LevelUpChannelId: string
+    LevelUoMessageTemplateId: string
+    LeaderboardMessageTemplateId: string
+    LeaderboardDisplayAmount: number
+    RequiredXPForFirstLevel: number
+    Format: string
+    MessageXP: boolean
+    MessageXPRange: string
+    MesssageXPCooldown: string
+    MessageXPType: string
+    VoiceXP: boolean
+    VoiceXPRange: string
+    VoiceXPCooldown: number
+    ExcludedChannelIds?: LevelSettingsCreateExcludedChannelIdsInput | string[]
+    ExcludeUserIds?: LevelSettingsCreateExcludeUserIdsInput | string[]
+    ExcludeRoleIds?: LevelSettingsCreateExcludeRoleIdsInput | string[]
+    XPDrops?: XPDropsCreateNestedManyWithoutLevelSettingsInput
+    XPStreaks?: XPStreaksCreateNestedManyWithoutLevelSettingsInput
+    Levels?: LevelsCreateNestedManyWithoutLevelSettingsInput
+    Guilds: GuildsCreateNestedOneWithoutLevelSettingsInput
+  }
+
+  export type LevelSettingsUncheckedCreateWithoutLevelRolesInput = {
+    id?: string
+    LevelUpChannelId: string
+    LevelUoMessageTemplateId: string
+    LeaderboardMessageTemplateId: string
+    LeaderboardDisplayAmount: number
+    RequiredXPForFirstLevel: number
+    Format: string
+    MessageXP: boolean
+    MessageXPRange: string
+    MesssageXPCooldown: string
+    MessageXPType: string
+    VoiceXP: boolean
+    VoiceXPRange: string
+    VoiceXPCooldown: number
+    ExcludedChannelIds?: LevelSettingsCreateExcludedChannelIdsInput | string[]
+    ExcludeUserIds?: LevelSettingsCreateExcludeUserIdsInput | string[]
+    ExcludeRoleIds?: LevelSettingsCreateExcludeRoleIdsInput | string[]
+    GuildId: string
+    XPDrops?: XPDropsUncheckedCreateNestedManyWithoutLevelSettingsInput
+    XPStreaks?: XPStreaksUncheckedCreateNestedManyWithoutLevelSettingsInput
+    Levels?: LevelsUncheckedCreateNestedManyWithoutLevelSettingsInput
+  }
+
+  export type LevelSettingsCreateOrConnectWithoutLevelRolesInput = {
+    where: LevelSettingsWhereUniqueInput
+    create: XOR<LevelSettingsCreateWithoutLevelRolesInput, LevelSettingsUncheckedCreateWithoutLevelRolesInput>
+  }
+
+  export type LevelSettingsUpsertWithoutLevelRolesInput = {
+    update: XOR<LevelSettingsUpdateWithoutLevelRolesInput, LevelSettingsUncheckedUpdateWithoutLevelRolesInput>
+    create: XOR<LevelSettingsCreateWithoutLevelRolesInput, LevelSettingsUncheckedCreateWithoutLevelRolesInput>
+    where?: LevelSettingsWhereInput
+  }
+
+  export type LevelSettingsUpdateToOneWithWhereWithoutLevelRolesInput = {
+    where?: LevelSettingsWhereInput
+    data: XOR<LevelSettingsUpdateWithoutLevelRolesInput, LevelSettingsUncheckedUpdateWithoutLevelRolesInput>
+  }
+
+  export type LevelSettingsUpdateWithoutLevelRolesInput = {
+    LevelUpChannelId?: StringFieldUpdateOperationsInput | string
+    LevelUoMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardDisplayAmount?: IntFieldUpdateOperationsInput | number
+    RequiredXPForFirstLevel?: IntFieldUpdateOperationsInput | number
+    Format?: StringFieldUpdateOperationsInput | string
+    MessageXP?: BoolFieldUpdateOperationsInput | boolean
+    MessageXPRange?: StringFieldUpdateOperationsInput | string
+    MesssageXPCooldown?: StringFieldUpdateOperationsInput | string
+    MessageXPType?: StringFieldUpdateOperationsInput | string
+    VoiceXP?: BoolFieldUpdateOperationsInput | boolean
+    VoiceXPRange?: StringFieldUpdateOperationsInput | string
+    VoiceXPCooldown?: IntFieldUpdateOperationsInput | number
+    ExcludedChannelIds?: LevelSettingsUpdateExcludedChannelIdsInput | string[]
+    ExcludeUserIds?: LevelSettingsUpdateExcludeUserIdsInput | string[]
+    ExcludeRoleIds?: LevelSettingsUpdateExcludeRoleIdsInput | string[]
+    XPDrops?: XPDropsUpdateManyWithoutLevelSettingsNestedInput
+    XPStreaks?: XPStreaksUpdateManyWithoutLevelSettingsNestedInput
+    Levels?: LevelsUpdateManyWithoutLevelSettingsNestedInput
+    Guilds?: GuildsUpdateOneRequiredWithoutLevelSettingsNestedInput
+  }
+
+  export type LevelSettingsUncheckedUpdateWithoutLevelRolesInput = {
+    LevelUpChannelId?: StringFieldUpdateOperationsInput | string
+    LevelUoMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardDisplayAmount?: IntFieldUpdateOperationsInput | number
+    RequiredXPForFirstLevel?: IntFieldUpdateOperationsInput | number
+    Format?: StringFieldUpdateOperationsInput | string
+    MessageXP?: BoolFieldUpdateOperationsInput | boolean
+    MessageXPRange?: StringFieldUpdateOperationsInput | string
+    MesssageXPCooldown?: StringFieldUpdateOperationsInput | string
+    MessageXPType?: StringFieldUpdateOperationsInput | string
+    VoiceXP?: BoolFieldUpdateOperationsInput | boolean
+    VoiceXPRange?: StringFieldUpdateOperationsInput | string
+    VoiceXPCooldown?: IntFieldUpdateOperationsInput | number
+    ExcludedChannelIds?: LevelSettingsUpdateExcludedChannelIdsInput | string[]
+    ExcludeUserIds?: LevelSettingsUpdateExcludeUserIdsInput | string[]
+    ExcludeRoleIds?: LevelSettingsUpdateExcludeRoleIdsInput | string[]
+    GuildId?: StringFieldUpdateOperationsInput | string
+    XPDrops?: XPDropsUncheckedUpdateManyWithoutLevelSettingsNestedInput
+    XPStreaks?: XPStreaksUncheckedUpdateManyWithoutLevelSettingsNestedInput
+    Levels?: LevelsUncheckedUpdateManyWithoutLevelSettingsNestedInput
+  }
+
+  export type UsersCreateWithoutLevelsInput = {
+    id?: string
+    Username: string
+    UserId: string
+    Votes?: number
+    GloablVotes?: number
+    LastVote?: Date | string | null
+    CustomerBots?: number
+    BackupCount?: number
+    Apis?: ApisCreateNestedManyWithoutUsersInput
+    GuildBackups?: GuildBackupsCreateNestedManyWithoutUsersInput
+    Vanitys?: VanitysCreateNestedManyWithoutUsersInput
+  }
+
+  export type UsersUncheckedCreateWithoutLevelsInput = {
+    id?: string
+    Username: string
+    UserId: string
+    Votes?: number
+    GloablVotes?: number
+    LastVote?: Date | string | null
+    CustomerBots?: number
+    BackupCount?: number
+    Apis?: ApisUncheckedCreateNestedManyWithoutUsersInput
+    GuildBackups?: GuildBackupsUncheckedCreateNestedManyWithoutUsersInput
+    Vanitys?: VanitysUncheckedCreateNestedManyWithoutUsersInput
+  }
+
+  export type UsersCreateOrConnectWithoutLevelsInput = {
+    where: UsersWhereUniqueInput
+    create: XOR<UsersCreateWithoutLevelsInput, UsersUncheckedCreateWithoutLevelsInput>
+  }
+
+  export type LevelSettingsCreateWithoutLevelsInput = {
+    id?: string
+    LevelUpChannelId: string
+    LevelUoMessageTemplateId: string
+    LeaderboardMessageTemplateId: string
+    LeaderboardDisplayAmount: number
+    RequiredXPForFirstLevel: number
+    Format: string
+    MessageXP: boolean
+    MessageXPRange: string
+    MesssageXPCooldown: string
+    MessageXPType: string
+    VoiceXP: boolean
+    VoiceXPRange: string
+    VoiceXPCooldown: number
+    ExcludedChannelIds?: LevelSettingsCreateExcludedChannelIdsInput | string[]
+    ExcludeUserIds?: LevelSettingsCreateExcludeUserIdsInput | string[]
+    ExcludeRoleIds?: LevelSettingsCreateExcludeRoleIdsInput | string[]
+    LevelRoles?: LevelRolesCreateNestedManyWithoutLevelSettingsInput
+    XPDrops?: XPDropsCreateNestedManyWithoutLevelSettingsInput
+    XPStreaks?: XPStreaksCreateNestedManyWithoutLevelSettingsInput
+    Guilds: GuildsCreateNestedOneWithoutLevelSettingsInput
+  }
+
+  export type LevelSettingsUncheckedCreateWithoutLevelsInput = {
+    id?: string
+    LevelUpChannelId: string
+    LevelUoMessageTemplateId: string
+    LeaderboardMessageTemplateId: string
+    LeaderboardDisplayAmount: number
+    RequiredXPForFirstLevel: number
+    Format: string
+    MessageXP: boolean
+    MessageXPRange: string
+    MesssageXPCooldown: string
+    MessageXPType: string
+    VoiceXP: boolean
+    VoiceXPRange: string
+    VoiceXPCooldown: number
+    ExcludedChannelIds?: LevelSettingsCreateExcludedChannelIdsInput | string[]
+    ExcludeUserIds?: LevelSettingsCreateExcludeUserIdsInput | string[]
+    ExcludeRoleIds?: LevelSettingsCreateExcludeRoleIdsInput | string[]
+    GuildId: string
+    LevelRoles?: LevelRolesUncheckedCreateNestedManyWithoutLevelSettingsInput
+    XPDrops?: XPDropsUncheckedCreateNestedManyWithoutLevelSettingsInput
+    XPStreaks?: XPStreaksUncheckedCreateNestedManyWithoutLevelSettingsInput
+  }
+
+  export type LevelSettingsCreateOrConnectWithoutLevelsInput = {
+    where: LevelSettingsWhereUniqueInput
+    create: XOR<LevelSettingsCreateWithoutLevelsInput, LevelSettingsUncheckedCreateWithoutLevelsInput>
+  }
+
+  export type UsersUpsertWithoutLevelsInput = {
+    update: XOR<UsersUpdateWithoutLevelsInput, UsersUncheckedUpdateWithoutLevelsInput>
+    create: XOR<UsersCreateWithoutLevelsInput, UsersUncheckedCreateWithoutLevelsInput>
+    where?: UsersWhereInput
+  }
+
+  export type UsersUpdateToOneWithWhereWithoutLevelsInput = {
+    where?: UsersWhereInput
+    data: XOR<UsersUpdateWithoutLevelsInput, UsersUncheckedUpdateWithoutLevelsInput>
+  }
+
+  export type UsersUpdateWithoutLevelsInput = {
+    Username?: StringFieldUpdateOperationsInput | string
+    UserId?: StringFieldUpdateOperationsInput | string
+    Votes?: IntFieldUpdateOperationsInput | number
+    GloablVotes?: IntFieldUpdateOperationsInput | number
+    LastVote?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    CustomerBots?: IntFieldUpdateOperationsInput | number
+    BackupCount?: IntFieldUpdateOperationsInput | number
+    Apis?: ApisUpdateManyWithoutUsersNestedInput
+    GuildBackups?: GuildBackupsUpdateManyWithoutUsersNestedInput
+    Vanitys?: VanitysUpdateManyWithoutUsersNestedInput
+  }
+
+  export type UsersUncheckedUpdateWithoutLevelsInput = {
+    Username?: StringFieldUpdateOperationsInput | string
+    UserId?: StringFieldUpdateOperationsInput | string
+    Votes?: IntFieldUpdateOperationsInput | number
+    GloablVotes?: IntFieldUpdateOperationsInput | number
+    LastVote?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    CustomerBots?: IntFieldUpdateOperationsInput | number
+    BackupCount?: IntFieldUpdateOperationsInput | number
+    Apis?: ApisUncheckedUpdateManyWithoutUsersNestedInput
+    GuildBackups?: GuildBackupsUncheckedUpdateManyWithoutUsersNestedInput
+    Vanitys?: VanitysUncheckedUpdateManyWithoutUsersNestedInput
+  }
+
+  export type LevelSettingsUpsertWithoutLevelsInput = {
+    update: XOR<LevelSettingsUpdateWithoutLevelsInput, LevelSettingsUncheckedUpdateWithoutLevelsInput>
+    create: XOR<LevelSettingsCreateWithoutLevelsInput, LevelSettingsUncheckedCreateWithoutLevelsInput>
+    where?: LevelSettingsWhereInput
+  }
+
+  export type LevelSettingsUpdateToOneWithWhereWithoutLevelsInput = {
+    where?: LevelSettingsWhereInput
+    data: XOR<LevelSettingsUpdateWithoutLevelsInput, LevelSettingsUncheckedUpdateWithoutLevelsInput>
+  }
+
+  export type LevelSettingsUpdateWithoutLevelsInput = {
+    LevelUpChannelId?: StringFieldUpdateOperationsInput | string
+    LevelUoMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardDisplayAmount?: IntFieldUpdateOperationsInput | number
+    RequiredXPForFirstLevel?: IntFieldUpdateOperationsInput | number
+    Format?: StringFieldUpdateOperationsInput | string
+    MessageXP?: BoolFieldUpdateOperationsInput | boolean
+    MessageXPRange?: StringFieldUpdateOperationsInput | string
+    MesssageXPCooldown?: StringFieldUpdateOperationsInput | string
+    MessageXPType?: StringFieldUpdateOperationsInput | string
+    VoiceXP?: BoolFieldUpdateOperationsInput | boolean
+    VoiceXPRange?: StringFieldUpdateOperationsInput | string
+    VoiceXPCooldown?: IntFieldUpdateOperationsInput | number
+    ExcludedChannelIds?: LevelSettingsUpdateExcludedChannelIdsInput | string[]
+    ExcludeUserIds?: LevelSettingsUpdateExcludeUserIdsInput | string[]
+    ExcludeRoleIds?: LevelSettingsUpdateExcludeRoleIdsInput | string[]
+    LevelRoles?: LevelRolesUpdateManyWithoutLevelSettingsNestedInput
+    XPDrops?: XPDropsUpdateManyWithoutLevelSettingsNestedInput
+    XPStreaks?: XPStreaksUpdateManyWithoutLevelSettingsNestedInput
+    Guilds?: GuildsUpdateOneRequiredWithoutLevelSettingsNestedInput
+  }
+
+  export type LevelSettingsUncheckedUpdateWithoutLevelsInput = {
+    LevelUpChannelId?: StringFieldUpdateOperationsInput | string
+    LevelUoMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardMessageTemplateId?: StringFieldUpdateOperationsInput | string
+    LeaderboardDisplayAmount?: IntFieldUpdateOperationsInput | number
+    RequiredXPForFirstLevel?: IntFieldUpdateOperationsInput | number
+    Format?: StringFieldUpdateOperationsInput | string
+    MessageXP?: BoolFieldUpdateOperationsInput | boolean
+    MessageXPRange?: StringFieldUpdateOperationsInput | string
+    MesssageXPCooldown?: StringFieldUpdateOperationsInput | string
+    MessageXPType?: StringFieldUpdateOperationsInput | string
+    VoiceXP?: BoolFieldUpdateOperationsInput | boolean
+    VoiceXPRange?: StringFieldUpdateOperationsInput | string
+    VoiceXPCooldown?: IntFieldUpdateOperationsInput | number
+    ExcludedChannelIds?: LevelSettingsUpdateExcludedChannelIdsInput | string[]
+    ExcludeUserIds?: LevelSettingsUpdateExcludeUserIdsInput | string[]
+    ExcludeRoleIds?: LevelSettingsUpdateExcludeRoleIdsInput | string[]
+    GuildId?: StringFieldUpdateOperationsInput | string
+    LevelRoles?: LevelRolesUncheckedUpdateManyWithoutLevelSettingsNestedInput
+    XPDrops?: XPDropsUncheckedUpdateManyWithoutLevelSettingsNestedInput
+    XPStreaks?: XPStreaksUncheckedUpdateManyWithoutLevelSettingsNestedInput
   }
 
   export type ApisCreateWithoutUsersInput = {
@@ -112931,6 +121585,31 @@ export namespace Prisma {
 
   export type VanitysCreateManyUsersInputEnvelope = {
     data: VanitysCreateManyUsersInput | VanitysCreateManyUsersInput[]
+  }
+
+  export type LevelsCreateWithoutUsersInput = {
+    id?: string
+    XP: number
+    RequiredXp: number
+    Level: number
+    LevelSettings: LevelSettingsCreateNestedOneWithoutLevelsInput
+  }
+
+  export type LevelsUncheckedCreateWithoutUsersInput = {
+    id?: string
+    XP: number
+    RequiredXp: number
+    Level: number
+    GuildId: string
+  }
+
+  export type LevelsCreateOrConnectWithoutUsersInput = {
+    where: LevelsWhereUniqueInput
+    create: XOR<LevelsCreateWithoutUsersInput, LevelsUncheckedCreateWithoutUsersInput>
+  }
+
+  export type LevelsCreateManyUsersInputEnvelope = {
+    data: LevelsCreateManyUsersInput | LevelsCreateManyUsersInput[]
   }
 
   export type ApisUpsertWithWhereUniqueWithoutUsersInput = {
@@ -113021,6 +121700,22 @@ export namespace Prisma {
     UserId?: StringFilter<"Vanitys"> | string
   }
 
+  export type LevelsUpsertWithWhereUniqueWithoutUsersInput = {
+    where: LevelsWhereUniqueInput
+    update: XOR<LevelsUpdateWithoutUsersInput, LevelsUncheckedUpdateWithoutUsersInput>
+    create: XOR<LevelsCreateWithoutUsersInput, LevelsUncheckedCreateWithoutUsersInput>
+  }
+
+  export type LevelsUpdateWithWhereUniqueWithoutUsersInput = {
+    where: LevelsWhereUniqueInput
+    data: XOR<LevelsUpdateWithoutUsersInput, LevelsUncheckedUpdateWithoutUsersInput>
+  }
+
+  export type LevelsUpdateManyWithWhereWithoutUsersInput = {
+    where: LevelsScalarWhereInput
+    data: XOR<LevelsUpdateManyMutationInput, LevelsUncheckedUpdateManyWithoutUsersInput>
+  }
+
   export type UsersCreateWithoutApisInput = {
     id?: string
     Username: string
@@ -113032,6 +121727,7 @@ export namespace Prisma {
     BackupCount?: number
     GuildBackups?: GuildBackupsCreateNestedManyWithoutUsersInput
     Vanitys?: VanitysCreateNestedManyWithoutUsersInput
+    Levels?: LevelsCreateNestedManyWithoutUsersInput
   }
 
   export type UsersUncheckedCreateWithoutApisInput = {
@@ -113045,6 +121741,7 @@ export namespace Prisma {
     BackupCount?: number
     GuildBackups?: GuildBackupsUncheckedCreateNestedManyWithoutUsersInput
     Vanitys?: VanitysUncheckedCreateNestedManyWithoutUsersInput
+    Levels?: LevelsUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type UsersCreateOrConnectWithoutApisInput = {
@@ -113073,6 +121770,7 @@ export namespace Prisma {
     BackupCount?: IntFieldUpdateOperationsInput | number
     GuildBackups?: GuildBackupsUpdateManyWithoutUsersNestedInput
     Vanitys?: VanitysUpdateManyWithoutUsersNestedInput
+    Levels?: LevelsUpdateManyWithoutUsersNestedInput
   }
 
   export type UsersUncheckedUpdateWithoutApisInput = {
@@ -113085,6 +121783,7 @@ export namespace Prisma {
     BackupCount?: IntFieldUpdateOperationsInput | number
     GuildBackups?: GuildBackupsUncheckedUpdateManyWithoutUsersNestedInput
     Vanitys?: VanitysUncheckedUpdateManyWithoutUsersNestedInput
+    Levels?: LevelsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type UsersCreateWithoutGuildBackupsInput = {
@@ -113098,6 +121797,7 @@ export namespace Prisma {
     BackupCount?: number
     Apis?: ApisCreateNestedManyWithoutUsersInput
     Vanitys?: VanitysCreateNestedManyWithoutUsersInput
+    Levels?: LevelsCreateNestedManyWithoutUsersInput
   }
 
   export type UsersUncheckedCreateWithoutGuildBackupsInput = {
@@ -113111,6 +121811,7 @@ export namespace Prisma {
     BackupCount?: number
     Apis?: ApisUncheckedCreateNestedManyWithoutUsersInput
     Vanitys?: VanitysUncheckedCreateNestedManyWithoutUsersInput
+    Levels?: LevelsUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type UsersCreateOrConnectWithoutGuildBackupsInput = {
@@ -113139,6 +121840,7 @@ export namespace Prisma {
     BackupCount?: IntFieldUpdateOperationsInput | number
     Apis?: ApisUpdateManyWithoutUsersNestedInput
     Vanitys?: VanitysUpdateManyWithoutUsersNestedInput
+    Levels?: LevelsUpdateManyWithoutUsersNestedInput
   }
 
   export type UsersUncheckedUpdateWithoutGuildBackupsInput = {
@@ -113151,6 +121853,7 @@ export namespace Prisma {
     BackupCount?: IntFieldUpdateOperationsInput | number
     Apis?: ApisUncheckedUpdateManyWithoutUsersNestedInput
     Vanitys?: VanitysUncheckedUpdateManyWithoutUsersNestedInput
+    Levels?: LevelsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type VanityAnalyticCreateWithoutVanitysInput = {
@@ -113218,6 +121921,7 @@ export namespace Prisma {
     BackupCount?: number
     Apis?: ApisCreateNestedManyWithoutUsersInput
     GuildBackups?: GuildBackupsCreateNestedManyWithoutUsersInput
+    Levels?: LevelsCreateNestedManyWithoutUsersInput
   }
 
   export type UsersUncheckedCreateWithoutVanitysInput = {
@@ -113231,6 +121935,7 @@ export namespace Prisma {
     BackupCount?: number
     Apis?: ApisUncheckedCreateNestedManyWithoutUsersInput
     GuildBackups?: GuildBackupsUncheckedCreateNestedManyWithoutUsersInput
+    Levels?: LevelsUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type UsersCreateOrConnectWithoutVanitysInput = {
@@ -113321,6 +122026,7 @@ export namespace Prisma {
     BackupCount?: IntFieldUpdateOperationsInput | number
     Apis?: ApisUpdateManyWithoutUsersNestedInput
     GuildBackups?: GuildBackupsUpdateManyWithoutUsersNestedInput
+    Levels?: LevelsUpdateManyWithoutUsersNestedInput
   }
 
   export type UsersUncheckedUpdateWithoutVanitysInput = {
@@ -113333,6 +122039,7 @@ export namespace Prisma {
     BackupCount?: IntFieldUpdateOperationsInput | number
     Apis?: ApisUncheckedUpdateManyWithoutUsersNestedInput
     GuildBackups?: GuildBackupsUncheckedUpdateManyWithoutUsersNestedInput
+    Levels?: LevelsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type VanityEmbedAuthorCreateWithoutVanityEmbedsInput = {
@@ -115215,6 +123922,16 @@ export namespace Prisma {
     OwnerId?: StringFieldUpdateOperationsInput | string
   }
 
+  export type WelcomeLeaveImageDataUpdateInput = {
+    Title?: StringFieldUpdateOperationsInput | string
+    Text?: StringFieldUpdateOperationsInput | string
+    Subtitle?: StringFieldUpdateOperationsInput | string
+    Background?: StringFieldUpdateOperationsInput | string
+    Theme?: StringFieldUpdateOperationsInput | string
+    Color?: StringFieldUpdateOperationsInput | string
+    Gradient?: StringFieldUpdateOperationsInput | string
+  }
+
   export type ReactionRoleButtonUpdateInput = {
     Emoji?: StringFieldUpdateOperationsInput | string
     Type?: StringFieldUpdateOperationsInput | string
@@ -115601,6 +124318,138 @@ export namespace Prisma {
     OnlyClaimMode?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
+  export type LevelRolesCreateManyLevelSettingsInput = {
+    id?: string
+    Level: number
+    Multiplier: number
+    Type: string
+    RoleId: string
+  }
+
+  export type XPDropsCreateManyLevelSettingsInput = {
+    id?: string
+    XPRange: string
+    ClaimType: number
+    TimeToRespawn: string
+    ChannelIds?: XPDropsCreateChannelIdsInput | string[]
+  }
+
+  export type XPStreaksCreateManyLevelSettingsInput = {
+    id?: string
+    Days: number
+    Nickname: string
+    BonusLevels: number
+    BonusXP: number
+    ChannelId: string
+    MessageTemplateId: string
+    Multiplier: number
+    RoleRewardIds?: XPStreaksCreateRoleRewardIdsInput | string[]
+  }
+
+  export type LevelsCreateManyLevelSettingsInput = {
+    id?: string
+    XP: number
+    RequiredXp: number
+    Level: number
+    UserId: string
+  }
+
+  export type LevelRolesUpdateWithoutLevelSettingsInput = {
+    Level?: IntFieldUpdateOperationsInput | number
+    Multiplier?: IntFieldUpdateOperationsInput | number
+    Type?: StringFieldUpdateOperationsInput | string
+    RoleId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LevelRolesUncheckedUpdateWithoutLevelSettingsInput = {
+    Level?: IntFieldUpdateOperationsInput | number
+    Multiplier?: IntFieldUpdateOperationsInput | number
+    Type?: StringFieldUpdateOperationsInput | string
+    RoleId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LevelRolesUncheckedUpdateManyWithoutLevelSettingsInput = {
+    Level?: IntFieldUpdateOperationsInput | number
+    Multiplier?: IntFieldUpdateOperationsInput | number
+    Type?: StringFieldUpdateOperationsInput | string
+    RoleId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type XPDropsUpdateWithoutLevelSettingsInput = {
+    XPRange?: StringFieldUpdateOperationsInput | string
+    ClaimType?: IntFieldUpdateOperationsInput | number
+    TimeToRespawn?: StringFieldUpdateOperationsInput | string
+    ChannelIds?: XPDropsUpdateChannelIdsInput | string[]
+  }
+
+  export type XPDropsUncheckedUpdateWithoutLevelSettingsInput = {
+    XPRange?: StringFieldUpdateOperationsInput | string
+    ClaimType?: IntFieldUpdateOperationsInput | number
+    TimeToRespawn?: StringFieldUpdateOperationsInput | string
+    ChannelIds?: XPDropsUpdateChannelIdsInput | string[]
+  }
+
+  export type XPDropsUncheckedUpdateManyWithoutLevelSettingsInput = {
+    XPRange?: StringFieldUpdateOperationsInput | string
+    ClaimType?: IntFieldUpdateOperationsInput | number
+    TimeToRespawn?: StringFieldUpdateOperationsInput | string
+    ChannelIds?: XPDropsUpdateChannelIdsInput | string[]
+  }
+
+  export type XPStreaksUpdateWithoutLevelSettingsInput = {
+    Days?: IntFieldUpdateOperationsInput | number
+    Nickname?: StringFieldUpdateOperationsInput | string
+    BonusLevels?: IntFieldUpdateOperationsInput | number
+    BonusXP?: IntFieldUpdateOperationsInput | number
+    ChannelId?: StringFieldUpdateOperationsInput | string
+    MessageTemplateId?: StringFieldUpdateOperationsInput | string
+    Multiplier?: IntFieldUpdateOperationsInput | number
+    RoleRewardIds?: XPStreaksUpdateRoleRewardIdsInput | string[]
+  }
+
+  export type XPStreaksUncheckedUpdateWithoutLevelSettingsInput = {
+    Days?: IntFieldUpdateOperationsInput | number
+    Nickname?: StringFieldUpdateOperationsInput | string
+    BonusLevels?: IntFieldUpdateOperationsInput | number
+    BonusXP?: IntFieldUpdateOperationsInput | number
+    ChannelId?: StringFieldUpdateOperationsInput | string
+    MessageTemplateId?: StringFieldUpdateOperationsInput | string
+    Multiplier?: IntFieldUpdateOperationsInput | number
+    RoleRewardIds?: XPStreaksUpdateRoleRewardIdsInput | string[]
+  }
+
+  export type XPStreaksUncheckedUpdateManyWithoutLevelSettingsInput = {
+    Days?: IntFieldUpdateOperationsInput | number
+    Nickname?: StringFieldUpdateOperationsInput | string
+    BonusLevels?: IntFieldUpdateOperationsInput | number
+    BonusXP?: IntFieldUpdateOperationsInput | number
+    ChannelId?: StringFieldUpdateOperationsInput | string
+    MessageTemplateId?: StringFieldUpdateOperationsInput | string
+    Multiplier?: IntFieldUpdateOperationsInput | number
+    RoleRewardIds?: XPStreaksUpdateRoleRewardIdsInput | string[]
+  }
+
+  export type LevelsUpdateWithoutLevelSettingsInput = {
+    XP?: IntFieldUpdateOperationsInput | number
+    RequiredXp?: IntFieldUpdateOperationsInput | number
+    Level?: IntFieldUpdateOperationsInput | number
+    Users?: UsersUpdateOneRequiredWithoutLevelsNestedInput
+  }
+
+  export type LevelsUncheckedUpdateWithoutLevelSettingsInput = {
+    XP?: IntFieldUpdateOperationsInput | number
+    RequiredXp?: IntFieldUpdateOperationsInput | number
+    Level?: IntFieldUpdateOperationsInput | number
+    UserId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LevelsUncheckedUpdateManyWithoutLevelSettingsInput = {
+    XP?: IntFieldUpdateOperationsInput | number
+    RequiredXp?: IntFieldUpdateOperationsInput | number
+    Level?: IntFieldUpdateOperationsInput | number
+    UserId?: StringFieldUpdateOperationsInput | string
+  }
+
   export type ApisCreateManyUsersInput = {
     id?: string
     Flags?: ApisCreateFlagsInput | string[]
@@ -115627,6 +124476,14 @@ export namespace Prisma {
     InDiscovery?: boolean | null
     IsBannedFromDiscover?: boolean | null
     CreatedAt: Date | string
+  }
+
+  export type LevelsCreateManyUsersInput = {
+    id?: string
+    XP: number
+    RequiredXp: number
+    Level: number
+    GuildId: string
   }
 
   export type ApisUpdateWithoutUsersInput = {
@@ -115706,6 +124563,27 @@ export namespace Prisma {
     InDiscovery?: NullableBoolFieldUpdateOperationsInput | boolean | null
     IsBannedFromDiscover?: NullableBoolFieldUpdateOperationsInput | boolean | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LevelsUpdateWithoutUsersInput = {
+    XP?: IntFieldUpdateOperationsInput | number
+    RequiredXp?: IntFieldUpdateOperationsInput | number
+    Level?: IntFieldUpdateOperationsInput | number
+    LevelSettings?: LevelSettingsUpdateOneRequiredWithoutLevelsNestedInput
+  }
+
+  export type LevelsUncheckedUpdateWithoutUsersInput = {
+    XP?: IntFieldUpdateOperationsInput | number
+    RequiredXp?: IntFieldUpdateOperationsInput | number
+    Level?: IntFieldUpdateOperationsInput | number
+    GuildId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LevelsUncheckedUpdateManyWithoutUsersInput = {
+    XP?: IntFieldUpdateOperationsInput | number
+    RequiredXp?: IntFieldUpdateOperationsInput | number
+    Level?: IntFieldUpdateOperationsInput | number
+    GuildId?: StringFieldUpdateOperationsInput | string
   }
 
   export type DisbotsLogsUpdateInput = {

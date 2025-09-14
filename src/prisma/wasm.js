@@ -827,6 +827,67 @@ exports.Prisma.GuildYoutubeNotificationsScalarFieldEnum = {
   GuildId: 'GuildId'
 };
 
+exports.Prisma.LevelSettingsScalarFieldEnum = {
+  id: 'id',
+  LevelUpChannelId: 'LevelUpChannelId',
+  LevelUoMessageTemplateId: 'LevelUoMessageTemplateId',
+  LeaderboardMessageTemplateId: 'LeaderboardMessageTemplateId',
+  LeaderboardDisplayAmount: 'LeaderboardDisplayAmount',
+  RequiredXPForFirstLevel: 'RequiredXPForFirstLevel',
+  Format: 'Format',
+  MessageXP: 'MessageXP',
+  MessageXPRange: 'MessageXPRange',
+  MesssageXPCooldown: 'MesssageXPCooldown',
+  MessageXPType: 'MessageXPType',
+  VoiceXP: 'VoiceXP',
+  VoiceXPRange: 'VoiceXPRange',
+  VoiceXPCooldown: 'VoiceXPCooldown',
+  ExcludedChannelIds: 'ExcludedChannelIds',
+  ExcludeUserIds: 'ExcludeUserIds',
+  ExcludeRoleIds: 'ExcludeRoleIds',
+  GuildId: 'GuildId'
+};
+
+exports.Prisma.XPDropsScalarFieldEnum = {
+  id: 'id',
+  GuildId: 'GuildId',
+  XPRange: 'XPRange',
+  ClaimType: 'ClaimType',
+  TimeToRespawn: 'TimeToRespawn',
+  ChannelIds: 'ChannelIds'
+};
+
+exports.Prisma.XPStreaksScalarFieldEnum = {
+  id: 'id',
+  Days: 'Days',
+  Nickname: 'Nickname',
+  BonusLevels: 'BonusLevels',
+  BonusXP: 'BonusXP',
+  ChannelId: 'ChannelId',
+  MessageTemplateId: 'MessageTemplateId',
+  Multiplier: 'Multiplier',
+  RoleRewardIds: 'RoleRewardIds',
+  GuildId: 'GuildId'
+};
+
+exports.Prisma.LevelRolesScalarFieldEnum = {
+  id: 'id',
+  Level: 'Level',
+  Multiplier: 'Multiplier',
+  Type: 'Type',
+  RoleId: 'RoleId',
+  GuildId: 'GuildId'
+};
+
+exports.Prisma.LevelsScalarFieldEnum = {
+  id: 'id',
+  XP: 'XP',
+  RequiredXp: 'RequiredXp',
+  Level: 'Level',
+  UserId: 'UserId',
+  GuildId: 'GuildId'
+};
+
 exports.Prisma.UsersScalarFieldEnum = {
   id: 'id',
   Username: 'Username',
@@ -989,6 +1050,11 @@ exports.Prisma.ModelName = {
   GuildFeatureToggles: 'GuildFeatureToggles',
   GuildTwitchNotifications: 'GuildTwitchNotifications',
   GuildYoutubeNotifications: 'GuildYoutubeNotifications',
+  LevelSettings: 'LevelSettings',
+  XPDrops: 'XPDrops',
+  XPStreaks: 'XPStreaks',
+  LevelRoles: 'LevelRoles',
+  Levels: 'Levels',
   Users: 'Users',
   Apis: 'Apis',
   GuildBackups: 'GuildBackups',

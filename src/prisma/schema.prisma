@@ -44,6 +44,7 @@ model Guilds {
   GuildChannelLinks           GuildChannelLinks[]
   ModerationScout             ModerationScout?
   GuildUserModeration         GuildUserModeration[]
+  LevelSettings               LevelSettings?
 }
 
 model GuildCommandManger {
@@ -541,13 +542,13 @@ model GuildLeaveSetup {
 
 // UPDATE SOON
 model GuildWelcomeSetup {
-  id                String                @id @default(auto()) @map("_id") @db.ObjectId
+  id                String                 @id @default(auto()) @map("_id") @db.ObjectId
   MessageTemplateId String
   ChannelId         String
   Image             Boolean
-  ImageData         WelcomeLeaveImageData
-  GuildId           String                @unique
-  Guilds            Guilds                @relation(fields: [GuildId], references: [GuildId])
+  ImageData         WelcomeLeaveImageData?
+  GuildId           String                 @unique
+  Guilds            Guilds                 @relation(fields: [GuildId], references: [GuildId])
 }
 
 type WelcomeLeaveImageData {
@@ -898,6 +899,83 @@ model GuildYoutubeNotifications {
   Guilds            Guilds   @relation(fields: [GuildId], references: [GuildId])
 }
 
+model LevelSettings {
+  id                           String @id @default(auto()) @map("_id") @db.ObjectId
+  LevelUpChannelId             String
+  LevelUoMessageTemplateId     String
+  LeaderboardMessageTemplateId String
+  LeaderboardDisplayAmount     Int
+
+  RequiredXPForFirstLevel Int
+  Format                  String
+
+  MessageXP          Boolean
+  MessageXPRange     String
+  MesssageXPCooldown String
+  MessageXPType      String // Per Message(Every Message get'S XP), Cooldown only(Message not sent in the Cooldown get's XP) 
+
+  VoiceXP         Boolean
+  VoiceXPRange    String
+  VoiceXPCooldown Int
+
+  ExcludedChannelIds String[]
+  ExcludeUserIds     String[]
+  ExcludeRoleIds     String[]
+
+  LevelRoles LevelRoles[]
+  XPDrops    XPDrops[]
+  XPStreaks  XPStreaks[]
+
+  Levels  Levels[]
+  GuildId String   @unique
+  Guilds  Guilds   @relation(fields: [GuildId], references: [GuildId])
+}
+
+model XPDrops {
+  id            String        @id @default(auto()) @map("_id") @db.ObjectId
+  GuildId       String
+  XPRange       String
+  ClaimType     Int
+  TimeToRespawn String // <from>:<to>
+  ChannelIds    String[]
+  LevelSettings LevelSettings @relation(fields: [GuildId], references: [GuildId])
+}
+
+model XPStreaks {
+  id                String        @id @default(auto()) @map("_id") @db.ObjectId
+  Days              Int
+  Nickname          String
+  BonusLevels       Int
+  BonusXP           Int
+  ChannelId         String
+  MessageTemplateId String
+  Multiplier        Int
+  RoleRewardIds     String[]
+  GuildId           String
+  LevelSettings     LevelSettings @relation(fields: [GuildId], references: [GuildId])
+}
+
+model LevelRoles {
+  id            String        @id @default(auto()) @map("_id") @db.ObjectId
+  Level         Int
+  Multiplier    Int
+  Type          String // Add Role By LevelUp, Remove Role by LevelUp, 
+  RoleId        String
+  GuildId       String
+  LevelSettings LevelSettings @relation(fields: [GuildId], references: [GuildId])
+}
+
+model Levels {
+  id            String        @id @default(auto()) @map("_id") @db.ObjectId
+  XP            Int
+  RequiredXp    Int
+  Level         Int
+  UserId        String
+  GuildId       String
+  Users         Users         @relation(fields: [UserId], references: [UserId])
+  LevelSettings LevelSettings @relation(fields: [GuildId], references: [GuildId])
+}
+
 // Users
 model Users {
   id           String         @id @default(auto()) @map("_id") @db.ObjectId
@@ -912,6 +990,7 @@ model Users {
   // CURRENTLY NO USE!
   CustomerBots Int            @default(1)
   BackupCount  Int            @default(10000)
+  Levels       Levels[]
 }
 
 model Apis {

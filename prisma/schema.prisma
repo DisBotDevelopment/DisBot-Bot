@@ -542,13 +542,13 @@ model GuildLeaveSetup {
 
 // UPDATE SOON
 model GuildWelcomeSetup {
-  id                String                @id @default(auto()) @map("_id") @db.ObjectId
+  id                String                 @id @default(auto()) @map("_id") @db.ObjectId
   MessageTemplateId String
   ChannelId         String
   Image             Boolean
-  ImageData         WelcomeLeaveImageData
-  GuildId           String                @unique
-  Guilds            Guilds                @relation(fields: [GuildId], references: [GuildId])
+  ImageData         WelcomeLeaveImageData?
+  GuildId           String                 @unique
+  Guilds            Guilds                 @relation(fields: [GuildId], references: [GuildId])
 }
 
 type WelcomeLeaveImageData {
