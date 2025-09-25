@@ -41,7 +41,7 @@ export default {
             interaction.guild,
             interaction.channel as TextChannel | PrivateThreadChannel,
             uuid,
-            confirm ? Boolean(confirm) : null,
+            true,
             null,
             false,
             interaction

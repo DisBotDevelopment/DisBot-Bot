@@ -337,7 +337,7 @@ export async function ticketHelper(
 
     let messageData = await database.messageTemplates.findFirst({
         where: {
-            Name: data.MessageTemplateId ?? ""
+            Name: data.MessageTemplateId.length >= 2 ? data.MessageTemplateId : ""
         }
     })
 
