@@ -35,9 +35,7 @@ jobs:
           cache: "npm"
 
       - name: TSDoc Action
-        uses: erikyo/tsdoc-action@v1
-        with:
-          options: "typedoc.json"
+        run: npm i && typedoc
 
 
       - name: Setup Pages
