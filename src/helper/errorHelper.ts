@@ -26,7 +26,14 @@ export async function errorHandler(interaction: ButtonInteraction | ModalSubmitI
         botType: Config.BotType.toString() || "Unknown",
         action: LoggingAction.Interaction,
     });
-    await interaction.followUp({
+
+    if (!interaction.deferred) {
+        await interaction.deferReply({
+            flags: MessageFlags.Ephemeral
+        })
+    }
+
+    await interaction.editReply({
         components: [
             new ContainerBuilder()
                 .addSectionComponents(
@@ -90,7 +97,7 @@ export async function errorHandler(interaction: ButtonInteraction | ModalSubmitI
 
 
         ],
-        flags: MessageFlags.IsComponentsV2 | MessageFlags.Ephemeral,
+        flags: MessageFlags.IsComponentsV2,
     })
 
     const collector = interaction.channel?.createMessageComponentCollector({

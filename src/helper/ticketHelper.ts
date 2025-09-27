@@ -1159,6 +1159,7 @@ export async function ticketLookAction(channel: TextChannel | PrivateThreadChann
             content: `## ${await convertToEmojiPng("lockopen", client.user.id)} You unlocked the Ticket successfully!`,
             flags: MessageFlags.Ephemeral,
         })
+        return
     }
 
     await database.tickets.update({
