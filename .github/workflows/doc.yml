@@ -30,7 +30,7 @@ jobs:
       - uses: oven-sh/setup-bun@v2
 
       - name: TSDoc Action
-        run: npm i && bunx typedoc && ls
+        run: npm i && bunx typedoc && cd docs && ls -a
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
@@ -39,6 +39,7 @@ jobs:
         uses: actions/upload-pages-artifact@v4
         with:
           name: 'github-pages'
+          path: ''
 
       - name: Deploy to GitHub Pages
         id: deployment
