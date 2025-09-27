@@ -1,0 +1,11 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": [
+    "./src/*"
+  ],
+  "tsconfig": "./tsconfig.json",
+  "out": "doc",
+  "basePath": "/docs",
+  "html": "true",
+  "name": "DisBot"
+}
