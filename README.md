@@ -51,7 +51,7 @@ More information is available in the [Documentation](https://doc.xyzhub.link/s/d
 ## 📄 License
 
 This project is licensed under the **PolyForm Noncommercial License 1.0.0**.  
-See the [LICENSE](./LICENSE) file for details.  
+See the [LICENSE](LICENSE.md) file for details.  
 For commercial use, see:  
 🔗 [Approved Organizations](https://xyzhub.link/pages/allowed-organisation-to-use-disbot-commercial)
 

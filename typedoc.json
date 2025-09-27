@@ -1,11 +1,13 @@
 {
   "$schema": "https://typedoc.org/schema.json",
   "entryPoints": [
-    "./src/*"
+    "./src"
   ],
-  "tsconfig": "./tsconfig.json",
-  "out": "doc",
-  "basePath": "/docs",
-  "html": "true",
+  "entryPointStrategy": "expand",
+  "out": "./docs",
+  "favicon": "https://disbot.app/_next/image?url=%2Fdisbot.webp",
+  "theme": "default",
+  "html": "docs",
+  "darkHighlightTheme": "dark-plus",
   "name": "DisBot"
 }
