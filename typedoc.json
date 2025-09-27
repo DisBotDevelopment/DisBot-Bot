@@ -9,5 +9,6 @@
   "theme": "default",
   "html": "docs",
   "darkHighlightTheme": "dark-plus",
-  "name": "DisBot"
+  "name": "DisBot",
+  "githubPages": true
 }
