@@ -19,12 +19,26 @@ export default {
                 TicketId: interaction.customId.split(":")[1]
             }
         })
-
         if (!data) {
-            await interaction.deferUpdate()
+            await interaction.deferReply({
+                flags: MessageFlags.Ephemeral,
+            })
+            return await interaction.editReply({
+                content: `-# You only can use this in ticket Channels!`
+            })
+
+
         }
+
+        if (!data?.TicketId) {
+            await interaction.deferReply({
+                flags: MessageFlags.Ephemeral,
+            })
+            return await interaction.editReply({
+                content: `-# No Ticket with the ID found!`
+            })
+        }
+
         await ticketActionsHelper(client, data.TicketId, interaction)
-
-
     }
 };

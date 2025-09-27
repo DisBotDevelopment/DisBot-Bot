@@ -4,7 +4,7 @@ import {
     ButtonInteraction,
     ButtonStyle,
     ChannelType,
-    ContainerBuilder,
+    ContainerBuilder, MessageFlags,
     PrivateThreadChannel,
     TextChannel,
     TextDisplayBuilder,
@@ -35,6 +35,23 @@ export default {
         if (!data) {
             return ticketErrorMessage("No Ticket found", interaction, client)
         }
+        
+        if (interaction.customId.split(":")[2] == "delete") {
+            return await interaction.reply({
+                flags: MessageFlags.Ephemeral,
+                content: "-# **You need to confirm your action**",
+                components: [
+                    new ActionRowBuilder<ButtonBuilder>().addComponents(
+                        new ButtonBuilder()
+                            .setCustomId("ticket-delete:" + data.TicketId + ":" + "true")
+                            .setStyle(ButtonStyle.Secondary)
+                            .setLabel("Confirm")
+                            .setEmoji("<:check:1320090167444377713>")
+                    )
+                ]
+            })
+        }
+        
 
         await handleCloseAction(
             client,

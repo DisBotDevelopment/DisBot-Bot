@@ -13,7 +13,7 @@ import {convertToEmojiPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {LoggingAction} from "../../../enums/loggingTypes.js";
 import {Logger} from "../../../main/logger.js";
-import {initGuildsToDatabase, initUsersToDatabase} from "../../../helper/databaseHelper.js";
+import {initGuildsToDatabase, initGuildToDatabase, initUsersToDatabase} from "../../../helper/databaseHelper.js";
 import {Config} from "../../../main/config.js";
 import {CommandHelper} from "../../../helper/CommandHelper.js";
 
@@ -37,13 +37,10 @@ export default {
             botType: Config.BotType.toString() || "Unknown",
             action: LoggingAction.Event,
         });
-        await CommandHelper.loadCommands(client);
-        await initGuildsToDatabase(client)
+        await CommandHelper.loadCommandsForGuild(client, guild);
+        await initGuildToDatabase(client, guild)
         guild.members.cache.forEach(async (member) => {
             await initUsersToDatabase(client, member.user)
         })
-        
-        
-        
     }
 };

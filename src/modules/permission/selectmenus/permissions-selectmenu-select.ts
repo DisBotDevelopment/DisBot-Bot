@@ -63,8 +63,8 @@ export default {
                                 .setContent(
                                     [`## ${await convertToEmojiPng("selectmenu", client.user.id)} ${data.CustomId} (${data.UUID})`,
                                         ``,
-                                        `**Interaction Name:** ${client.selectmenus.get(data.CommandName).interactionName ?? "N/A"}`,
-                                        `**Description:** ${client.selectmenus.get(data.CommandName).interactionDescription ?? "N/A"}`,
+                                        `**Interaction Name:** ${client.selectmenus.get(data.CustomId).interactionName ?? "N/A"}`,
+                                        `**Description:** ${client.selectmenus.get(data.CustomId).interactionDescription ?? "N/A"}`,
                                         `**CustomId**: ${data.CustomId}`,
                                         `**Type**: ${data.Type}`,
                                         `**UUID**: ${data.UUID}`,

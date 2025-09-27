@@ -30,6 +30,7 @@ import {cli} from "winston/lib/winston/config/index.js";
 import {createTranscript, ExportReturnType} from "discord-html-transcripts";
 import ticket from "../modules/ticket/commands/ticket.js";
 import {replacePlaceholders} from "../main/placeholder.js";
+import {Logger} from "../main/logger.js";
 
 export async function ticketHelper(
     ticketSetupId: string,
@@ -39,212 +40,105 @@ export async function ticketHelper(
     modal?: ModalSubmitInteraction,
     messageEvent?: Message,
 ) {
-    let guild: Guild;
-    let user: GuildMember
-    if (ticketType == "event") {
-        guild = messageEvent.guild;
-        user = messageEvent.member;
-    } else if (ticketType == "interaction") {
-
-        await interaction.deferReply({
-            flags: MessageFlags.Ephemeral
-        })
-
-        guild = interaction.guild;
-        user = interaction.member as GuildMember;
-    }
-
-
-    const data = await database.ticketSetups.findFirst({
-        include: {
-            ModalOptions: true,
-            TicketPermissions: true,
-            Tickets: true,
-        },
-        where: {
-            CustomId: ticketSetupId
-        }
-    })
-
-    // Validate Ticket
-    if (data.TicketPermissions.length <= 0) {
+    try {
+        let guild: Guild;
+        let user: GuildMember
         if (ticketType == "event") {
-            (messageEvent.channel as TextChannel).send({
-                content: `-# ${await convertToEmojiPng("ticket", client.user.id)} I can't create a Ticket without Moderators `
-            }).then(async (m) => {
-                setTimeout(async () => {
-                    await m.delete()
-                }, 5000)
-            })
-            return;
+            guild = messageEvent.guild;
+            user = messageEvent.member;
         } else if (ticketType == "interaction") {
-            await interaction.editReply({
-                content: `-# ${await convertToEmojiPng("ticket", client.user.id)} I can't create a Ticket without Moderators `
+
+            await interaction.deferReply({
+                flags: MessageFlags.Ephemeral
             })
-            return;
-        }
-    }
 
-    // Check Rate Limit
-    if (data.TicketRateLimit) {
-        const channel = await guild.channels.fetch(data.TicketStatusChannelId) as GuildTextBasedChannel
-        const message = await channel.messages.fetch(data.TicketStatusMessageId)
-        const allTicketsFromComponentCount = (await database.tickets.findMany({
+            guild = interaction.guild;
+            user = interaction.member as GuildMember;
+        }
+
+
+        const data = await database.ticketSetups.findFirst({
+            include: {
+                ModalOptions: true,
+                TicketPermissions: true,
+                Tickets: true,
+            },
             where: {
-                TicketSetupId: data.CustomId,
-                IsClosed: false
-            }
-        })).length
-        if (!message) {
-        }
-
-        async function checkStatus(currentTickets: number, green: number, yellow: number, red: number) {
-            const greenEmoji = await convertToEmojiPng("sirengreen", client.user.id)
-            const yellowEmoji = await convertToEmojiPng("sirenyellow", client.user.id)
-            const redEmoji = await convertToEmojiPng("sirenred", client.user.id)
-
-            let status = {
-                current: "ㅤ",
-                green: "ㅤ",
-                yellow: "ㅤ",
-                red: "ㅤ"
-            }
-
-            if (currentTickets == 0) {
-                status = {
-                    current: greenEmoji,
-                    green: greenEmoji,
-                    yellow: status.yellow,
-                    red: status.red
-                }
-            }
-
-            if (currentTickets <= green && currentTickets <= yellow) {
-                status = {
-                    current: greenEmoji,
-                    green: greenEmoji,
-                    yellow: status.yellow,
-                    red: status.red
-                }
-            }
-            if (currentTickets >= green && currentTickets <= yellow && currentTickets <= red) {
-                status = {
-                    current: yellowEmoji,
-                    green: status.green,
-                    yellow: yellowEmoji,
-                    red: status.red
-                }
-            }
-            if (currentTickets >= yellow && currentTickets <= red) {
-                status = {
-                    current: redEmoji,
-                    green: status.green,
-                    yellow: status.yellow,
-                    red: redEmoji
-                }
-            }
-
-            return status
-        }
-
-        const current = allTicketsFromComponentCount
-        const greenState = Number(data.TicketRateLimit.split(",")[0])
-        const yellowState = Number(data.TicketRateLimit.split(",")[1])
-        const redState = Number(data.TicketRateLimit.split(",")[2])
-
-        const statusMessageTemplate = await database.messageTemplates.findFirst({
-            where: {
-                Name: data.TicketStatusMessageTemplateId
+                CustomId: ticketSetupId
             }
         })
-        if (!statusMessageTemplate) {
-        }
-        if (message.author.id != client.user.id) {
-        }
 
-        const ticketPlaceholderType = {
-            ticket: {
-                status: {
-                    current: (await checkStatus(current, greenState, yellowState, redState)).current,
-                    green: (await checkStatus(current, greenState, yellowState, redState)).green,
-                    yellow: (await checkStatus(current, greenState, yellowState, redState)).yellow,
-                    red: (await checkStatus(current, greenState, yellowState, redState)).red,
-                }
+        // Validate Ticket
+        if (data?.TicketPermissions?.length <= 0) {
+            if (ticketType == "event") {
+                (messageEvent.channel as TextChannel).send({
+                    content: `-# ${await convertToEmojiPng("ticket", client.user.id)} I can't create a Ticket without Moderators `
+                }).then(async (m) => {
+                    setTimeout(async () => {
+                        await m.delete()
+                    }, 5000)
+                })
+                return;
+            } else if (ticketType == "interaction") {
+                await interaction.editReply({
+                    content: `-# ${await convertToEmojiPng("ticket", client.user.id)} I can't create a Ticket without Moderators `
+                })
+                return;
             }
         }
 
-        if (statusMessageTemplate.EmbedJSON)
-            await message.edit({
-                embeds: [new EmbedBuilder(JSON.parse(replacePlaceholders(statusMessageTemplate.EmbedJSON, ticketPlaceholderType)))],
+        // Check Rate Limit
+        if (data.TicketRateLimit) {
+            const channel = await guild.channels.fetch(data.TicketStatusChannelId) as GuildTextBasedChannel
+            const message = await channel.messages.fetch(data.TicketStatusMessageId)
+            const allTicketsFromComponentCount = (await database.tickets.findMany({
+                where: {
+                    TicketSetupId: data.CustomId,
+                    IsClosed: false
+                }
+            })).length
+            if (!message) {
+            }
+
+            const current = allTicketsFromComponentCount
+            const greenState = Number(data.TicketRateLimit.split(",")[0])
+            const yellowState = Number(data.TicketRateLimit.split(",")[1])
+            const redState = Number(data.TicketRateLimit.split(",")[2])
+
+            const statusMessageTemplate = await database.messageTemplates.findFirst({
+                where: {
+                    Name: data.TicketStatusMessageTemplateId
+                }
+            })
+            if (!statusMessageTemplate) {
+            }
+            if (message.author.id != client.user.id) {
+            }
+
+            const ticketPlaceholderType = {
+                ticket: {
+                    status: {
+                        current: (await checkTicketStatus(current, greenState, yellowState, redState, client)).current,
+                        green: (await checkTicketStatus(current, greenState, yellowState, redState, client)).green,
+                        yellow: (await checkTicketStatus(current, greenState, yellowState, redState, client)).yellow,
+                        red: (await checkTicketStatus(current, greenState, yellowState, redState, client)).red,
+                    }
+                }
+            }
+
+            if (statusMessageTemplate.EmbedJSON)
+                await message.edit({
+                    embeds: [new EmbedBuilder(JSON.parse(replacePlaceholders(statusMessageTemplate.EmbedJSON, ticketPlaceholderType)))],
+                    content: statusMessageTemplate.Content ? replacePlaceholders(statusMessageTemplate.Content ?? "", ticketPlaceholderType) : "ㅤ"
+                })
+            else await message.edit({
                 content: statusMessageTemplate.Content ? replacePlaceholders(statusMessageTemplate.Content ?? "", ticketPlaceholderType) : "ㅤ"
             })
-        else await message.edit({
-            content: statusMessageTemplate.Content ? replacePlaceholders(statusMessageTemplate.Content ?? "", ticketPlaceholderType) : "ㅤ"
-        })
 
-        if (allTicketsFromComponentCount >= redState) {
-            if (ticketType == "event") {
-                (messageEvent.channel as TextChannel).send({
-                    content: `-# ${await convertToEmojiPng("sirenred", client.user.id)} At the moment our support team is busy!`
-                }).then(async (m) => {
-                    setTimeout(async () => {
-                        await m.delete()
-                    }, 5000)
-                })
-                return;
-            } else if (ticketType == "interaction") {
-                await interaction.editReply({
-                    content: `-# ${await convertToEmojiPng("sirenred", client.user.id)} At the moment our support team is busy! Please wait for a ${await convertToEmojiPng("sirengreen", client.user.id)}, ${await convertToEmojiPng("sirenyellow", client.user.id)} status!`
-                })
-                return;
-            }
-        }
-    }
-
-
-    // EnableTicketsOnlyFromTime
-    if (data.EnableTicketsOnlyFromTime) {
-
-        const [startStr, endStr] = data.EnableTicketsOnlyFromTime.split(',');
-        const [startHour, startMinute] = startStr.split(':').map(Number);
-
-        const [endHour, endMinute] = endStr.split(':').map(Number);
-
-        const now = new Date();
-        const currentMinutes = now.getHours() * 60 + now.getMinutes();
-        const startMinutes = startHour * 60 + startMinute;
-        const endMinutes = endHour * 60 + endMinute;
-
-        if (!(currentMinutes > startMinutes && currentMinutes <= endMinutes)) {
-            if (ticketType == "event") {
-                (messageEvent.channel as TextChannel).send({
-                    content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You only can open Tickets from ${startStr}-${endStr}!`
-                }).then(async (m) => {
-                    setTimeout(async () => {
-                        await m.delete()
-                    }, 5000)
-                })
-                return;
-            } else if (ticketType == "interaction") {
-                await interaction.editReply({
-                    content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You only can open Tickets from ${startStr}-${endStr}!`
-                })
-                return;
-            }
-        }
-    }
-
-    // Blacklist
-    if (data.TicketBlacklistRoles.length > 0) {
-        for (const roleId of data.TicketBlacklistRoles) {
-            const role = guild.roles.cache.get(roleId)
-            if (!role) {
-                return;
-            }
-            if (user.roles.cache.has(roleId)) {
+            if (allTicketsFromComponentCount >= redState) {
                 if (ticketType == "event") {
                     (messageEvent.channel as TextChannel).send({
-                        content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You are blacklisted for this Ticket!`
+                        content: `-# ${await convertToEmojiPng("sirenred", client.user.id)} At the moment our support team is busy!`
                     }).then(async (m) => {
                         setTimeout(async () => {
                             await m.delete()
@@ -253,340 +147,420 @@ export async function ticketHelper(
                     return;
                 } else if (ticketType == "interaction") {
                     await interaction.editReply({
-                        content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You are blacklisted for this Ticket!`
+                        content: `-# ${await convertToEmojiPng("sirenred", client.user.id)} At the moment our support team is busy! Please wait for a ${await convertToEmojiPng("sirengreen", client.user.id)}, ${await convertToEmojiPng("sirenyellow", client.user.id)} status!`
                     })
                     return;
                 }
             }
         }
-    }
 
-    // Cooldown
-    if (data.TicketCreationCooldownPerUser) {
-        const cooldownTime = 3000
-        const cooldownKey = `${user.id}:${data.CustomId}`;
-        const now = Date.now();
 
-        if (client.cooldowns?.has(cooldownKey)) {
-            const expiration = client.cooldowns.get(cooldownKey)! + cooldownTime;
-            if (now < expiration) {
-                const emoji = await convertToEmojiPng("timer", client.user!.id);
-                const timestamp = Math.floor(expiration / 1000);
+        // EnableTicketsOnlyFromTime
+        if (data.EnableTicketsOnlyFromTime) {
 
-                return await this.sendReply(interaction, emoji, `Please wait <t:${timestamp}:R> before using this command again.`)
+            const [startStr, endStr] = data.EnableTicketsOnlyFromTime.split(',');
+            const [startHour, startMinute] = startStr.split(':').map(Number);
+
+            const [endHour, endMinute] = endStr.split(':').map(Number);
+
+            const now = new Date();
+            const currentMinutes = now.getHours() * 60 + now.getMinutes();
+            const startMinutes = startHour * 60 + startMinute;
+            const endMinutes = endHour * 60 + endMinute;
+
+            if (!(currentMinutes > startMinutes && currentMinutes <= endMinutes)) {
+                if (ticketType == "event") {
+                    (messageEvent.channel as TextChannel).send({
+                        content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You only can open Tickets from ${startStr}-${endStr}!`
+                    }).then(async (m) => {
+                        setTimeout(async () => {
+                            await m.delete()
+                        }, 5000)
+                    })
+                    return;
+                } else if (ticketType == "interaction") {
+                    await interaction.editReply({
+                        content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You only can open Tickets from ${startStr}-${endStr}!`
+                    })
+                    return;
+                }
             }
         }
-        client.cooldowns?.set(cooldownKey, now)
-        setTimeout(() => client.cooldowns?.delete(cooldownKey), cooldownTime)
-    }
 
-    // RequiredRoles
-    if (data.RequiredRoles.length > 0) {
-        if (!user.roles.cache.some((r) => data.RequiredRoles.includes(r.id))) {
-
-            if (ticketType == "event") {
-                (messageEvent.channel as TextChannel).send({
-                    allowedMentions: {
-                        repliedUser: false,
-                    },
-                    content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You need one of the Required Roles! \n > -# ${data.RequiredRoles.map((r) => `<@&${r}>`).join(", ")}`
-                }).then(async (m) => {
-                    setTimeout(async () => {
-                        await m.delete()
-                    }, 5000)
-                })
-                return;
-            } else if (ticketType == "interaction") {
-                await interaction.editReply({
-                    content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You need one of the Required Roles! \n > -# ${data.RequiredRoles.map((r) => `<@&${r}>`).join(", ")}`
-                })
-                return;
+        // Blacklist
+        if (data.TicketBlacklistRoles.length > 0) {
+            for (const roleId of data.TicketBlacklistRoles) {
+                const role = guild.roles.cache.get(roleId)
+                if (!role) {
+                    return;
+                }
+                if (user.roles.cache.has(roleId)) {
+                    if (ticketType == "event") {
+                        (messageEvent.channel as TextChannel).send({
+                            content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You are blacklisted for this Ticket!`
+                        }).then(async (m) => {
+                            setTimeout(async () => {
+                                await m.delete()
+                            }, 5000)
+                        })
+                        return;
+                    } else if (ticketType == "interaction") {
+                        await interaction.editReply({
+                            content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You are blacklisted for this Ticket!`
+                        })
+                        return;
+                    }
+                }
             }
         }
-    }
 
-    // TicketLimit
-    if (data.TicketLimit) {
-        const ticketsPerUser = await database.tickets.findMany({
+        // Cooldown
+        if (data.TicketCreationCooldownPerUser) {
+            const cooldownTime = 3000
+            const cooldownKey = `${user.id}:${data.CustomId}`;
+            const now = Date.now();
+
+            if (client.cooldowns?.has(cooldownKey)) {
+                const expiration = client.cooldowns.get(cooldownKey)! + cooldownTime;
+                if (now < expiration) {
+                    const emoji = await convertToEmojiPng("timer", client.user!.id);
+                    const timestamp = Math.floor(expiration / 1000);
+
+                    return await this.sendReply(interaction, emoji, `Please wait <t:${timestamp}:R> before using this command again.`)
+                }
+            }
+            client.cooldowns?.set(cooldownKey, now)
+            setTimeout(() => client.cooldowns?.delete(cooldownKey), cooldownTime)
+        }
+
+        // RequiredRoles
+        if (data.RequiredRoles.length > 0) {
+            if (!user.roles.cache.some((r) => data.RequiredRoles.includes(r.id))) {
+
+                if (ticketType == "event") {
+                    (messageEvent.channel as TextChannel).send({
+                        allowedMentions: {
+                            repliedUser: false,
+                        },
+                        content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You need one of the Required Roles! \n > -# ${data.RequiredRoles.map((r) => `<@&${r}>`).join(", ")}`
+                    }).then(async (m) => {
+                        setTimeout(async () => {
+                            await m.delete()
+                        }, 5000)
+                    })
+                    return;
+                } else if (ticketType == "interaction") {
+                    await interaction.editReply({
+                        content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You need one of the Required Roles! \n > -# ${data.RequiredRoles.map((r) => `<@&${r}>`).join(", ")}`
+                    })
+                    return;
+                }
+            }
+        }
+
+        // TicketLimit
+        if (data.TicketLimit) {
+            const ticketsPerUser = await database.tickets.findMany({
+                where: {
+                    IsClosed: false,
+                    TicketOwnerId: user.id
+                }
+            })
+
+            if (ticketsPerUser.length >= data.TicketLimit) {
+                if (ticketType == "event") {
+                    (messageEvent.channel as TextChannel).send({
+                        content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You have reached the ticket limit! You can only open ${data.TicketLimit} more tickets.`
+                    }).then(async (m) => {
+                        setTimeout(async () => {
+                            await m.delete()
+                        }, 5000)
+                    })
+                    return;
+                } else if (ticketType == "interaction") {
+                    await interaction.editReply({
+                        content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You have reached the ticket limit! You can only open ${data.TicketLimit} more tickets.`
+                    })
+                    return;
+                }
+            }
+
+        }
+
+
+        let messageData = await database.messageTemplates.findFirst({
             where: {
-                IsClosed: false,
-                TicketOwnerId: user.id
+                Name: data?.MessageTemplateId?.length >= 2 ? data.MessageTemplateId : ""
             }
         })
 
-        if (ticketsPerUser.length >= data.TicketLimit) {
-            if (ticketType == "event") {
-                (messageEvent.channel as TextChannel).send({
-                    content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You have reached the ticket limit! You can only open ${data.TicketLimit} more tickets.`
-                }).then(async (m) => {
-                    setTimeout(async () => {
-                        await m.delete()
-                    }, 5000)
-                })
-                return;
-            } else if (ticketType == "interaction") {
-                await interaction.editReply({
-                    content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You have reached the ticket limit! You can only open ${data.TicketLimit} more tickets.`
-                })
-                return;
+        if (!messageData) {
+            const ticketTemplateMessage = await fetch("https://cdn.xyzhub.link/raw/VqvWD9.json?download=true")
+            const ticketTemplateMessageData = await ticketTemplateMessage.json()
+            messageData = {
+                id: "not-used",
+                GuildId: guild.id,
+                Content: null,
+                EmbedJSON: JSON.stringify(ticketTemplateMessageData),
+                Name: "ticket-not-found",
+                OtherEmbeds: []
             }
         }
 
-    }
-
-
-    let messageData = await database.messageTemplates.findFirst({
-        where: {
-            Name: data.MessageTemplateId.length >= 2 ? data.MessageTemplateId : ""
-        }
-    })
-
-    if (!messageData) {
-        const ticketTemplateMessage = await fetch("https://cdn.xyzhub.link/raw/VqvWD9.json?download=true")
-        const ticketTemplateMessageData = await ticketTemplateMessage.json()
-        messageData = {
-            id: "not-used",
-            GuildId: guild.id,
-            Content: null,
-            EmbedJSON: JSON.stringify(ticketTemplateMessageData),
-            Name: "ticket-not-found",
-            OtherEmbeds: []
-        }
-    }
-
-    const ticketId = randomUUID()
-    const ticketPlaceholderType = {
-        member: {
-            name: user.user.username,
-            username: user.user.username,
-            tag: `<@${user.user.id}>`,
-            id: user.user.id,
-            displayName: user.user.displayName,
-            globalName: user.user.globalName,
-            avatar: user.displayAvatarURL()
-        },
-        ticket: {
-            id: ticketId,
-            autoCloseAfterInactivity: data.AutoCloseAfterInactivity / 1000,
-            autoCloseAfterTime: data.AutoCloseAfterTime / 1000,
-        },
-        modal: {
-            option: {
-                1: modal?.fields?.getTextInputValue("0") ?? "N/A",
-                2: modal?.fields?.getTextInputValue("1") ?? "N/A",
-                3: modal?.fields?.getTextInputValue("2") ?? "N/A",
-                4: modal?.fields?.getTextInputValue("3") ?? "N/A",
-                5: modal?.fields?.getTextInputValue("4") ?? "N/A",
-            }
-        }
-    }
-
-    const category = await guild.channels.fetch(data.CategoryId)
-    let channel: TextChannel | ThreadChannel
-    const IsThread = data.ChannelType == ChannelType.PrivateThread
-    const IsChannel = data.ChannelType == ChannelType.GuildCategory
-    if (data.ChannelType == ChannelType.GuildCategory) {
-        channel = await guild.channels.create({
-            name: replacePlaceholders(data.TicketChannelName, ticketPlaceholderType),
-            parent: category.id,
-            type: ChannelType.GuildText
-        })
-    } else if (data.ChannelType == ChannelType.PrivateThread) {
-        channel = await (category as TextChannel).threads.create({
-            name: replacePlaceholders(data.TicketChannelName, ticketPlaceholderType),
-            type: ChannelType.PrivateThread
-        })
-    } else {
-        return
-    }
-
-    // Pre Permissions
-    if (IsChannel) await (channel as TextChannel).permissionOverwrites.create(user.id, {
-        ViewChannel: true,
-        SendMessages: true
-    });
-    if (IsThread) await (channel as ThreadChannel).members.add(user.id)
-
-    // Ticket Permissions
-    if (data.TicketPermissions) {
-        // Channel Perms
-        if (IsChannel) {
-            for (const perms of data.TicketPermissions) {
-                const permissions: Record<string, boolean> = {};
-
-                if (Array.isArray(perms.DeniedDiscordPermissions)) {
-                    const denyList = new PermissionsBitField(perms.DeniedDiscordPermissions).toArray();
-                    for (const d of denyList) {
-                        permissions[d] = false;
-                    }
-                }
-
-                if (Array.isArray(perms.AllowedDiscordPermissions)) {
-                    const allowList = new PermissionsBitField(perms.AllowedDiscordPermissions).toArray();
-                    for (const a of allowList) {
-                        permissions[a] = true;
-                    }
-                }
-
-                const target = perms.DiscordRoleId ?? perms.DiscordUserId;
-                if (target) {
-                    await (channel as TextChannel).permissionOverwrites.create(target, permissions);
-                }
-            }
-            await (channel as TextChannel).permissionOverwrites.create(data.GuildId, {
-                ViewChannel: false,
-            });
-        }
-        // Thread Perms
-        if (IsThread) {
-            for (const perms of data.TicketPermissions) {
-                if (perms.DiscordRoleId) {
-                    await channel.guild.members.fetch();
-                    const role = await channel.guild.roles.fetch(perms.DiscordRoleId);
-                    for (const memberId of role.members.values()) {
-                        await (channel as ThreadChannel).members.add(memberId)
-                    }
-                } else if (perms.DiscordUserId) {
-                    await (channel as ThreadChannel).members.add(perms.DiscordUserId)
+        const ticketId = randomUUID()
+        const ticketPlaceholderType = {
+            member: {
+                name: user.user.username,
+                username: user.user.username,
+                tag: `<@${user.user.id}>`,
+                id: user.user.id,
+                displayName: user.user.displayName,
+                globalName: user.user.globalName,
+                avatar: user.displayAvatarURL()
+            },
+            ticket: {
+                id: ticketId,
+                autoCloseAfterInactivity: data.AutoCloseAfterInactivity / 1000,
+                autoCloseAfterTime: data.AutoCloseAfterTime / 1000,
+            },
+            modal: {
+                option: {
+                    1: modal?.fields?.getTextInputValue("0") ?? "N/A",
+                    2: modal?.fields?.getTextInputValue("1") ?? "N/A",
+                    3: modal?.fields?.getTextInputValue("2") ?? "N/A",
+                    4: modal?.fields?.getTextInputValue("3") ?? "N/A",
+                    5: modal?.fields?.getTextInputValue("4") ?? "N/A",
                 }
             }
         }
 
-        // Shadow Ping
-        for (const perms of data.TicketPermissions) {
-            if (perms.HasShadowPing) {
-                // Thread
-                // Threads cannot have shadow pings because I add the member from the role in lines 328-335, and this pings the member!
-
-                // Channel
-                if (IsChannel && perms.DiscordRoleId) {
-                    channel.send({
-                        content: `<@&${perms.DiscordRoleId}>`
-                    }).then(async (m) => {
-                        await m.delete()
-                    })
-                } else if (IsChannel && perms.DiscordUserId) {
-                    channel.send({
-                        content: `<@${perms.DiscordUserId}>`
-                    }).then(async (m) => {
-                        await m.delete()
-                    })
-                }
-            }
-        }
-    }
-
-    if (messageData.EmbedJSON) {
-        await channel.send({
-            content: messageData.Content ? replacePlaceholders(messageData.Content ?? "", ticketPlaceholderType) : null,
-            embeds: [
-                new EmbedBuilder(JSON.parse(replacePlaceholders(messageData.EmbedJSON, ticketPlaceholderType)))
-            ]
-        })
-    } else {
-        await channel.send({
-            content: replacePlaceholders(messageData.Content ?? "", ticketPlaceholderType) ?? null,
-        })
-    }
-
-    let autoHandler: string
-
-    if (data.AutoAssignHandler) {
-        const role = guild.roles.cache.get(data.AutoAssignHandler)
-        if (!role) {
+        const category = await guild.channels.fetch(data.CategoryId)
+        let channel: TextChannel | ThreadChannel
+        const IsThread = data.ChannelType == ChannelType.PrivateThread
+        const IsChannel = data.ChannelType == ChannelType.GuildCategory
+        if (data.ChannelType == ChannelType.GuildCategory) {
+            channel = await guild.channels.create({
+                name: replacePlaceholders(data.TicketChannelName, ticketPlaceholderType),
+                parent: category.id,
+                type: ChannelType.GuildText
+            })
+        } else if (data.ChannelType == ChannelType.PrivateThread) {
+            channel = await (category as TextChannel).threads.create({
+                name: replacePlaceholders(data.TicketChannelName, ticketPlaceholderType),
+                type: ChannelType.PrivateThread
+            })
+        } else {
             return
         }
-        const randomNum = Math.random() * role.members.size
 
-        autoHandler = role.members[randomNum].id
-    }
+        // Pre Permissions
+        if (IsChannel) await (channel as TextChannel).permissionOverwrites.create(user.id, {
+            ViewChannel: true,
+            SendMessages: true
+        });
+        if (IsThread) await (channel as ThreadChannel).members.add(user.id)
 
+        // Ticket Permissions
+        if (data.TicketPermissions) {
+            // Channel Perms
+            if (IsChannel) {
+                for (const perms of data.TicketPermissions) {
+                    const permissions: Record<string, boolean> = {};
 
-    await channel.send({
-        components: [
-            new ActionRowBuilder<ButtonBuilder>().addComponents(
-                new ButtonBuilder()
-                    .setCustomId("ticket-actions:" + ticketId)
-                    .setEmoji("<:ticket:1400577766205816852>")
-                    .setStyle(ButtonStyle.Secondary)
-            )
-        ]
-    }).then(async (m) => {
-        await m.pin("Ticket-Manage-Component")
-        const lastMessage = channel.messages.cache.get(channel.lastMessageId)
-        await lastMessage.delete()
-    })
-    await database.tickets.create({
-        data: {
-            GuildId: guild.id,
-            TicketId: ticketId,
-            TicketOwnerId: user.id,
-            CreatedAt: new Date,
-            IsClosed: false,
-            IsLocked: false,
-            TicketNotes: [],
-            ChannelType: data.ChannelType,
-            ...(data.ChannelType == ChannelType.PrivateThread ? {ThreadId: channel.id} : {ChannelId: channel.id}),
-            ...(data.AutoAssignHandler ? {
-                UserWhoHasClaimedId: autoHandler,
-                IsClaimed: true,
-                AutoAssignHandler: data.AutoAssignHandler
-            } : {
-                IsClaimed: false
-            }),
-            ...(data.WithTicketFeedback ? {
-                WithTicketFeedback: data.WithTicketFeedback,
-                TicketFeedbackChannelId: data.TicketFeedbackChannelId,
-            } : {
-                WithTicketFeedback: false
-            }),
-            ...(data.UserDMWhenCloseMessageTemplateId ? {
-                UserDMWhenCloseMessageTemplateId: data.UserDMWhenCloseMessageTemplateId,
-            } : {}),
-            ...(data.AutoReplyMessageTemplateId ? {
-                AutoReplyMessageTemplateId: data.AutoReplyMessageTemplateId,
-            } : {}),
-            ...(data.AutoCloseAction ? {
-                AutoCloseAction: data.AutoCloseAction,
-            } : {
-                AutoCloseAction: []
-            }),
-            ...(data.OldTicketCategoryId ? {
-                OldTicketCategoryId: data.OldTicketCategoryId,
-            } : {}),
-            ...(data.SendTranscriptToUser ? {
-                SendTranscriptToUser: data.SendTranscriptToUser,
-            } : {}),
-            IsArchived: false,
-            ...(data.TranscriptChannelId ? {
-                TranscriptChannelId: data.TranscriptChannelId,
-            } : {}),
-            OnlyClaimMode: data.OnlyClaimMode ?? false,
-            TicketSetup: {
-                connect: {
-                    CustomId: data.CustomId
+                    if (Array.isArray(perms.DeniedDiscordPermissions)) {
+                        const denyList = new PermissionsBitField(perms.DeniedDiscordPermissions).toArray();
+                        for (const d of denyList) {
+                            permissions[d] = false;
+                        }
+                    }
+
+                    if (Array.isArray(perms.AllowedDiscordPermissions)) {
+                        const allowList = new PermissionsBitField(perms.AllowedDiscordPermissions).toArray();
+                        for (const a of allowList) {
+                            permissions[a] = true;
+                        }
+                    }
+
+                    const target = perms.DiscordRoleId ?? perms.DiscordUserId;
+                    if (target) {
+                        await (channel as TextChannel).permissionOverwrites.create(target, permissions);
+                    }
+                }
+                await (channel as TextChannel).permissionOverwrites.create(data.GuildId, {
+                    ViewChannel: false,
+                });
+            }
+            // Thread Perms
+            if (IsThread) {
+                for (const perms of data.TicketPermissions) {
+                    if (perms.DiscordRoleId) {
+                        await channel.guild.members.fetch();
+                        const role = await channel.guild.roles.fetch(perms.DiscordRoleId);
+                        for (const memberId of role.members.values()) {
+                            await (channel as ThreadChannel).members.add(memberId)
+                        }
+                    } else if (perms.DiscordUserId) {
+                        await (channel as ThreadChannel).members.add(perms.DiscordUserId)
+                    }
+                }
+            }
+
+            // Shadow Ping
+            for (const perms of data.TicketPermissions) {
+                if (perms.HasShadowPing) {
+                    // Thread
+                    // Threads cannot have shadow pings because I add the member from the role in lines 328-335, and this pings the member!
+
+                    // Channel
+                    if (IsChannel && perms.DiscordRoleId) {
+                        channel.send({
+                            content: `<@&${perms.DiscordRoleId}>`
+                        }).then(async (m) => {
+                            await m.delete()
+                        })
+                    } else if (IsChannel && perms.DiscordUserId) {
+                        channel.send({
+                            content: `<@${perms.DiscordUserId}>`
+                        }).then(async (m) => {
+                            await m.delete()
+                        })
+                    }
                 }
             }
         }
-    })
 
-    if (ticketType == "event") {
-        (messageEvent.channel as TextChannel).send({
-            allowedMentions: {
-                repliedUser: false,
-            },
-            content: `-# ${await convertToEmojiPng("ticket", client.user.id)} Your ticket has beed created here ${channel.url}`
+        if (messageData.EmbedJSON) {
+            await channel.send({
+                content: messageData.Content ? replacePlaceholders(messageData.Content ?? "", ticketPlaceholderType) : null,
+                embeds: [
+                    new EmbedBuilder(JSON.parse(replacePlaceholders(messageData.EmbedJSON, ticketPlaceholderType)))
+                ]
+            })
+        } else {
+            await channel.send({
+                content: replacePlaceholders(messageData.Content ?? "", ticketPlaceholderType) ?? null,
+            })
+        }
+
+        let autoHandler: string
+
+        if (data.AutoAssignHandler) {
+            const role = guild.roles.cache.get(data.AutoAssignHandler)
+            if (!role) {
+                return
+            }
+            const randomNum = Math.random() * role.members.size
+
+            autoHandler = role.members[randomNum].id
+        }
+
+
+        await channel.send({
+            components: [
+                new ActionRowBuilder<ButtonBuilder>().addComponents(
+                    new ButtonBuilder()
+                        .setCustomId("ticket-actions:" + ticketId)
+                        .setEmoji("<:ticket:1400577766205816852>")
+                        .setStyle(ButtonStyle.Secondary)
+                )
+            ]
         }).then(async (m) => {
-            setTimeout(async () => {
-                await m.delete()
-            }, 5000)
+            await m.pin("Ticket-Manage-Component")
+            const lastMessage = channel.messages.cache.get(channel.lastMessageId)
+            await lastMessage.delete()
         })
-        return;
-    } else if (ticketType == "interaction") {
-        await interaction.editReply({
-            content: `-# ${await convertToEmojiPng("ticket", client.user.id)} Your ticket has beed created here ${channel.url}`
+        await database.tickets.create({
+            data: {
+                GuildId: guild.id,
+                TicketId: ticketId,
+                TicketOwnerId: user.id,
+                CreatedAt: new Date,
+                IsClosed: false,
+                IsLocked: false,
+                TicketNotes: [],
+                ChannelType: data.ChannelType,
+                ...(data.ChannelType == ChannelType.PrivateThread ? {ThreadId: channel.id} : {ChannelId: channel.id}),
+                ...(data.AutoAssignHandler ? {
+                    UserWhoHasClaimedId: autoHandler,
+                    IsClaimed: true,
+                    AutoAssignHandler: data.AutoAssignHandler
+                } : {
+                    IsClaimed: false
+                }),
+                ...(data.WithTicketFeedback ? {
+                    WithTicketFeedback: data.WithTicketFeedback,
+                    TicketFeedbackChannelId: data.TicketFeedbackChannelId,
+                } : {
+                    WithTicketFeedback: false
+                }),
+                ...(data.UserDMWhenCloseMessageTemplateId ? {
+                    UserDMWhenCloseMessageTemplateId: data.UserDMWhenCloseMessageTemplateId,
+                } : {}),
+                ...(data.AutoReplyMessageTemplateId ? {
+                    AutoReplyMessageTemplateId: data.AutoReplyMessageTemplateId,
+                } : {}),
+                ...(data.AutoCloseAction ? {
+                    AutoCloseAction: data.AutoCloseAction,
+                } : {
+                    AutoCloseAction: []
+                }),
+                ...(data.OldTicketCategoryId ? {
+                    OldTicketCategoryId: data.OldTicketCategoryId,
+                } : {}),
+                ...(data.SendTranscriptToUser ? {
+                    SendTranscriptToUser: data.SendTranscriptToUser,
+                } : {}),
+                IsArchived: false,
+                ...(data.TranscriptChannelId ? {
+                    TranscriptChannelId: data.TranscriptChannelId,
+                } : {}),
+                OnlyClaimMode: data.OnlyClaimMode ?? false,
+                TicketSetup: {
+                    connect: {
+                        CustomId: data.CustomId
+                    }
+                }
+            }
         })
-        return;
+
+        if (ticketType == "event") {
+            (messageEvent.channel as TextChannel).send({
+                allowedMentions: {
+                    repliedUser: false,
+                },
+                content: `-# ${await convertToEmojiPng("ticket", client.user.id)} Your ticket has beed created here ${channel.url}`
+            }).then(async (m) => {
+                setTimeout(async () => {
+                    await m.delete()
+                }, 5000)
+            })
+            return;
+        } else if (ticketType == "interaction") {
+            await interaction.editReply({
+                content: `-# ${await convertToEmojiPng("ticket", client.user.id)} Your ticket has beed created here ${channel.url}`
+            })
+            return;
+        }
+    } catch (e) {
+        Logger.error(e)
+        if (ticketType == "event") {
+            (messageEvent.channel as TextChannel).send({
+                allowedMentions: {
+                    repliedUser: false,
+                },
+                content: `-# ${await convertToEmojiPng("ticket", client.user.id)} Please wait a moment and try again.`
+            }).then(async (m) => {
+                setTimeout(async () => {
+                    await m.delete()
+                }, 5000)
+            })
+            return;
+        } else if (ticketType == "interaction") {
+            await interaction.editReply({
+                content: `-# ${await convertToEmojiPng("ticket", client.user.id)} Please wait a moment and try again.`
+            })
+            return;
+        }
     }
 }
 
@@ -678,55 +652,7 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
             }
         })).length
         if (!message) {
-        }
-
-        async function checkStatus(currentTickets: number, green: number, yellow: number, red: number) {
-            const greenEmoji = await convertToEmojiPng("sirengreen", client.user.id)
-            const yellowEmoji = await convertToEmojiPng("sirenyellow", client.user.id)
-            const redEmoji = await convertToEmojiPng("sirenred", client.user.id)
-
-            let status = {
-                current: "ㅤ",
-                green: "ㅤ",
-                yellow: "ㅤ",
-                red: "ㅤ"
-            }
-
-            if (currentTickets == 0) {
-                status = {
-                    current: greenEmoji,
-                    green: greenEmoji,
-                    yellow: status.yellow,
-                    red: status.red
-                }
-            }
-
-            if (currentTickets <= green && currentTickets <= yellow) {
-                status = {
-                    current: greenEmoji,
-                    green: greenEmoji,
-                    yellow: status.yellow,
-                    red: status.red
-                }
-            }
-            if (currentTickets >= green && currentTickets <= yellow && currentTickets <= red) {
-                status = {
-                    current: yellowEmoji,
-                    green: status.green,
-                    yellow: yellowEmoji,
-                    red: status.red
-                }
-            }
-            if (currentTickets >= yellow && currentTickets <= red) {
-                status = {
-                    current: redEmoji,
-                    green: status.green,
-                    yellow: status.yellow,
-                    red: redEmoji
-                }
-            }
-
-            return status
+            return
         }
 
         const current = allTicketsFromComponentCount
@@ -740,17 +666,19 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
             }
         })
         if (!statusMessageTemplate) {
+            return
         }
         if (message.author.id != client.user.id) {
+            return
         }
 
         const ticketPlaceholderType = {
             ticket: {
                 status: {
-                    current: (await checkStatus(current, greenState, yellowState, redState)).current,
-                    green: (await checkStatus(current, greenState, yellowState, redState)).green,
-                    yellow: (await checkStatus(current, greenState, yellowState, redState)).yellow,
-                    red: (await checkStatus(current, greenState, yellowState, redState)).red,
+                    current: (await checkTicketStatus(current, greenState, yellowState, redState, client)).current,
+                    green: (await checkTicketStatus(current, greenState, yellowState, redState, client)).green,
+                    yellow: (await checkTicketStatus(current, greenState, yellowState, redState, client)).yellow,
+                    red: (await checkTicketStatus(current, greenState, yellowState, redState, client)).red,
                 }
             }
         }
@@ -816,7 +744,7 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
         }
 
         await owner.send({
-            content: `-# Message from ${interaction.guild.name}. Ticket Closed with ID ${ticketId}.`,
+            content: `-# Message from ${channel.guild.name}. Ticket Closed with ID ${ticketId}.`,
         })
     }
     if (data.WithTicketFeedback) {
@@ -939,7 +867,9 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
             channel,
             client,
             ticketId,
-            true
+            true,
+            interaction ? interaction : null,
+            isAuto ?? null
         )
     }
     if (actions.includes("archive")) {
@@ -954,7 +884,8 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
             channel,
             client,
             ticketId,
-            true
+            true,
+            interaction ? interaction : null,
         )
     }
     if (actions.includes("channel")) {
@@ -969,7 +900,9 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
             channel,
             client,
             ticketId,
-            true
+            true,
+            interaction ? interaction : null,
+            isAuto ?? null
         )
     }
     if (actions.includes("remove_user_from_ticket")) {
@@ -1004,6 +937,9 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
 
         }
     }
+    if (!actions.includes("not_thread_close")) {
+        await (channel as ThreadChannel).setInvitable(true, "Moderator Action from Ticket with Id " + ticketId)
+    }
     if (data.TranscriptChannelId) {
         actionCounter += 1
 
@@ -1019,8 +955,8 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
             client,
             guild,
             channel,
-            null,
-            null
+            owner ?? null,
+            interaction ?? null
         )
 
         const message = await tChannel.send(transcript as MessageCreateOptions)
@@ -1048,21 +984,23 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
         },
         data: {
             IsClosed: true,
-            IsAutoDone: true,
+            IsAutoDone: isAuto ?? false,
             ClosedAt: new Date
         }
     })
 
-    actionCounter += 1
-    await channel.send({
-        flags: MessageFlags.IsComponentsV2,
-        components: [
-            new ContainerBuilder()
-                .addTextDisplayComponents(
-                    new TextDisplayBuilder().setContent(`### ${await convertToEmojiPng("ticket", client.user.id)} Ticket has beed closed!${reason ? `\n> ### ${await convertToEmojiPng("info", client.user.id)} ***Reason: ${reason}***` : ``}`)
-                )
-        ]
-    })
+    if (!actions.includes("no_close_message")) {
+        actionCounter += 1
+        await channel.send({
+            flags: MessageFlags.IsComponentsV2,
+            components: [
+                new ContainerBuilder()
+                    .addTextDisplayComponents(
+                        new TextDisplayBuilder().setContent(`### ${await convertToEmojiPng("ticket", client.user.id)} Ticket has been closed!${reason ? `\n> ### ${await convertToEmojiPng("info", client.user.id)} ***Reason: ${reason}***` : ``}`)
+                    )
+            ]
+        })
+    }
 
     if (!isAuto)
         await interaction.editReply({
@@ -1149,7 +1087,7 @@ export async function ticketArchiveAction(channel: TextChannel | PrivateThreadCh
 
     if (data.ChannelType == ChannelType.PrivateThread) {
 
-        await (channel as PrivateThreadChannel).setLocked(true, "Moderator Action from Ticket with Id " + uuid)
+        await (channel as PrivateThreadChannel).setArchived(true, "Moderator Action from Ticket with Id " + uuid)
 
     } else if (data.ChannelType == ChannelType.GuildCategory) {
 
@@ -1174,7 +1112,7 @@ export async function ticketLookAction(channel: TextChannel | PrivateThreadChann
         }
     })
 
-    if (!data && !isAuto) {
+    if (!data && !isAuto && interaction != null) {
         return ticketErrorMessage("No Ticket found", interaction, client)
     }
 
@@ -1217,7 +1155,7 @@ export async function ticketLookAction(channel: TextChannel | PrivateThreadChann
 
         }
 
-        if (!isAuto) await interaction.reply({
+        if (!isAuto && !isClose) await interaction.reply({
             content: `## ${await convertToEmojiPng("lockopen", client.user.id)} You unlocked the Ticket successfully!`,
             flags: MessageFlags.Ephemeral,
         })
@@ -1460,6 +1398,7 @@ export async function ticketActionsHelper(client: ExtendedClient, ticketId: stri
     const member = interaction.member as GuildMember;
 
     const permissions = {
+        delete: await hasTicketPermission("delete", member, data.TicketId, client),
         close: await hasTicketPermission("close", member, data.TicketId, client),
         archive: await hasTicketPermission("archive", member, data.TicketId, client),
         reopen: await hasTicketPermission("reopen", member, data.TicketId, client),
@@ -1488,6 +1427,13 @@ export async function ticketActionsHelper(client: ExtendedClient, ticketId: stri
                         .setStyle(ButtonStyle.Secondary),
 
                     new ButtonBuilder()
+                        .setCustomId(`ticket-delete:${ticketId}`)
+                        .setLabel("Delete Ticket")
+                        .setEmoji("<:trash:1259432932234367069>")
+                        .setDisabled(!(permissions.delete || permissions.all))
+                        .setStyle(ButtonStyle.Secondary),
+
+                    new ButtonBuilder()
                         .setCustomId(`ticket-archive:${ticketId}`)
                         .setLabel("Archive Ticket")
                         .setEmoji("<:package:1365715766623604746>")
@@ -1507,16 +1453,16 @@ export async function ticketActionsHelper(client: ExtendedClient, ticketId: stri
                         .setEmoji("<:subtitle:1321938231788568586>")
                         .setDisabled(!(permissions.claim || permissions.all))
                         .setStyle(ButtonStyle.Secondary),
-
-                    new ButtonBuilder()
-                        .setCustomId(`ticket-transcript:${ticketId}`)
-                        .setLabel("Transcript Ticket")
-                        .setEmoji("<:file:1381000301124911134>")
-                        .setDisabled(!(permissions.transcript || permissions.all))
-                        .setStyle(ButtonStyle.Secondary),
                 ))
                 .addActionRowComponents(
                     new ActionRowBuilder<ButtonBuilder>().addComponents(
+                        new ButtonBuilder()
+                            .setCustomId(`ticket-transcript:${ticketId}`)
+                            .setLabel("Transcript Ticket")
+                            .setEmoji("<:file:1381000301124911134>")
+                            .setDisabled(!(permissions.transcript || permissions.all))
+                            .setStyle(ButtonStyle.Secondary),
+
                         new ButtonBuilder()
                             .setCustomId(`ticket-close-request:${ticketId}`)
                             .setLabel("Close Request Ticket")
@@ -1571,6 +1517,11 @@ export const ticketActions = [
     {
         label: "Close",
         value: "close",
+        emoji: "<:permissions:1277170947761111130>"
+    },
+    {
+        label: "Delete",
+        value: "delete",
         emoji: "<:permissions:1277170947761111130>"
     },
     {
@@ -1673,7 +1624,7 @@ export async function hasTicketPermission(permission: string, user: GuildMember,
             TicketId: ticketId
         }
     })
-    const guildMember = client.guilds.cache.get(data.GuildId).members.cache.get(user.id)
+    const guildMember = await (await client.guilds.fetch(data.GuildId)).members.fetch(user.id)
 
 
     for (const perms of data.TicketSetup.TicketPermissions) {
@@ -1712,4 +1663,53 @@ export async function ticketModalHelper(customId: string, title: string, modalDa
         await interaction.showModal(modal)
 
     }
+}
+
+async function checkTicketStatus(currentTickets: number, green: number, yellow: number, red: number, client: ExtendedClient) {
+    const greenEmoji = await convertToEmojiPng("sirengreen", client.user.id)
+    const yellowEmoji = await convertToEmojiPng("sirenyellow", client.user.id)
+    const redEmoji = await convertToEmojiPng("sirenred", client.user.id)
+
+    let status = {
+        current: "ㅤ",
+        green: "ㅤ",
+        yellow: "ㅤ",
+        red: "ㅤ"
+    }
+
+    if (currentTickets == 0) {
+        status = {
+            current: greenEmoji,
+            green: greenEmoji,
+            yellow: status.yellow,
+            red: status.red
+        }
+    }
+
+    if (currentTickets <= green && currentTickets <= yellow) {
+        status = {
+            current: greenEmoji,
+            green: greenEmoji,
+            yellow: status.yellow,
+            red: status.red
+        }
+    }
+    if (currentTickets >= green && currentTickets <= yellow && currentTickets <= red) {
+        status = {
+            current: yellowEmoji,
+            green: status.green,
+            yellow: yellowEmoji,
+            red: status.red
+        }
+    }
+    if (currentTickets >= yellow && currentTickets <= red) {
+        status = {
+            current: redEmoji,
+            green: status.green,
+            yellow: status.yellow,
+            red: redEmoji
+        }
+    }
+
+    return status
 }

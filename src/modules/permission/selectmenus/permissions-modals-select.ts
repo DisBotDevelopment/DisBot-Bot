@@ -63,8 +63,8 @@ export default {
                                 .setContent(
                                     [`## ${await convertToEmojiPng("renamesolid24", client.user.id)} ${data.CustomId} (${data.UUID})`,
                                         ``,
-                                        `**Interaction Name:** ${client.modals.get(data.CommandName).interactionName ?? "N/A"}`,
-                                        `**Description:** ${client.modals.get(data.CommandName).interactionDescription ?? "N/A"}`,
+                                        `**Interaction Name:** ${client.modals.get(data.CustomId).interactionName ?? "N/A"}`,
+                                        `**Description:** ${client.modals.get(data.CustomId).interactionDescription ?? "N/A"}`,
                                         `**CustomId**: ${data.CustomId}`,
                                         `**Type**: ${data.Type}`,
                                         `**UUID**: ${data.UUID}`,

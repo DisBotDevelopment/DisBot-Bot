@@ -37,6 +37,12 @@ export default {
                         content: `## ${await convertToEmojiPng("error", client.user.id)} You cant use this option for the Channel Type`
                     })
                 }
+                if (value == "not_thread_close") {
+                    return await interaction.reply({
+                        flags: MessageFlags.Ephemeral,
+                        content: `## ${await convertToEmojiPng("error", client.user.id)} You cant use this option for the Channel Type`
+                    })
+                }
             }
 
         }

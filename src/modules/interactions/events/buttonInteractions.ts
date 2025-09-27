@@ -68,8 +68,8 @@ export default {
                 const interactionPermission = await database.guildInteractionPermissions.findFirst({
                     where: {
                         GuildId: interaction.guildId,
-                        CommandName: activeHandler?.data?.name ? activeHandler.data.name : activeHandler.subCommand ? activeHandler.subCommand : activeHandler.subCommandGroup,
-                        Type: activeHandler?.data?.name ? GuildPermissionType.COMMAND : activeHandler.subCommand ? GuildPermissionType.SUBCOMMAND : GuildPermissionType.SUBCOMMANDGROUP
+                        CustomId: activeHandler.id,
+                        Type: GuildPermissionType.BUTTON
                     }
                 })
 

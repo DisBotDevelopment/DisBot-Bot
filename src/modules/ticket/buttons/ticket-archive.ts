@@ -26,7 +26,11 @@ export default {
         await ticketArchiveAction(
             interaction.channel as TextChannel | PrivateThreadChannel,
             client,
-            interaction.customId.split(":")[1]
+            interaction.customId.split(":")[1],
+            null,
+            interaction,
         )
+
+        await interaction.deferUpdate();
     },
 };

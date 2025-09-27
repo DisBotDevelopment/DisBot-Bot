@@ -31,7 +31,10 @@ export default {
         await ticketLookAction(
             interaction.channel as TextChannel | PrivateThreadChannel,
             client,
-            interaction.customId.split(":")[1]
+            interaction.customId.split(":")[1],
+            null,
+            interaction,
+            null
         )
     },
 };

@@ -130,6 +130,4 @@ export default {
             .setRequired(true)
         )
     )
-
-  //Das ist unsere Methode, wo wir unsere Interaction abfangen, diese ist async
 };

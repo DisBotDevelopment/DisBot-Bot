@@ -103,6 +103,16 @@ export default {
                                             emoji: "<:threds:1395716084870549575>"
                                         },
                                         {
+                                            label: "No Close Message (Both)",
+                                            value: "no_close_message",
+                                            emoji: "<:threds:1395716084870549575>"
+                                        },
+                                        {
+                                            label: "Not \"Close\" Thread (Thread)",
+                                            value: "not_thread_close",
+                                            emoji: "<:threds:1395716084870549575>"
+                                        },
+                                        {
                                             label: "Require Reason (Both)",
                                             value: "reason",
                                             emoji: "<:threds:1395716084870549575>"

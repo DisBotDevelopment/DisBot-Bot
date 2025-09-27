@@ -38,14 +38,22 @@ export default {
             await interaction.deferReply({
                 flags: MessageFlags.Ephemeral,
             })
-            await interaction.editReply({
+            return await interaction.editReply({
                 content: `-# You only can use this in ticket Channels!`
             })
-
-            setTimeout(() => interaction.deferReply({}), 2000)
-
         }
-        await ticketActionsHelper(client, data.TicketId, interaction)
 
+        if (!data?.TicketId) {
+            await interaction.deferReply({
+                flags: MessageFlags.Ephemeral,
+            })
+            return await interaction.editReply({
+                content: `-# No Ticket with the ID found!`
+            })
+        }
+
+        if (!data?.TicketId) {
+            await ticketActionsHelper(client, data.TicketId, interaction)
+        }
     }
 };

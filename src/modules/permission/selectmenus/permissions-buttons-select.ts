@@ -36,7 +36,7 @@ export default {
                 await database.guildInteractionPermissions.create({
                     data: {
                         UUID: randomUUID(),
-                        Type: GuildPermissionType.SUBCOMMANDGROUP,
+                        Type: GuildPermissionType.BUTTON,
                         CustomId: commandName,
                         Guilds: {
                             connect: {
@@ -63,8 +63,8 @@ export default {
                                 .setContent(
                                     [`## ${await convertToEmojiPng("button", client.user.id)} ${data.CustomId} (${data.UUID})`,
                                         ``,
-                                        `**Interaction Name:** ${client.buttons.get(data.CommandName).interactionName ?? "N/A"}`,
-                                        `**Description:** ${client.buttons.get(data.CommandName).interactionDescription ?? "N/A"}`,
+                                        `**Interaction Name:** ${client.buttons.get(data.CustomId).interactionName ?? "N/A"}`,
+                                        `**Description:** ${client.buttons.get(data.CustomId).interactionDescription ?? "N/A"}`,
                                         `**CustomId**: ${data.CustomId}`,
                                         `**Type**: ${data.Type}`,
                                         `**UUID**: ${data.UUID}`,
