@@ -38,8 +38,9 @@ jobs:
         uses: erikyo/tsdoc-action@v1
         with:
           source_dir: .
-          output_dir: ./docs
+          name: DisBot Code Docs
           front_page: README.md
+          htmlLang: true
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
