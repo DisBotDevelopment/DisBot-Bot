@@ -30,8 +30,7 @@ jobs:
       - uses: oven-sh/setup-bun@v2
 
       - name: TSDoc Action
-        run: npm i && typedoc
-
+        run: npm i && bunx typedoc
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
