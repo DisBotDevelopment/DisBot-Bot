@@ -40,7 +40,10 @@ jobs:
           source_dir: .
           name: DisBot Code Docs
           front_page: README.md
-          htmlLang: true
+          htmlLang: ""
+          basePath: /docs
+          darkHighlightTheme: ""
+        
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
