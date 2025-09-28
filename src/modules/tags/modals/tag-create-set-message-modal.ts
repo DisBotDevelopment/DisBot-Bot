@@ -58,7 +58,7 @@ export default {
                     UUID: UUID
                 },
                 data: {
-                    MessageId: interaction.fields.getTextInputValue(
+                    MessageTemplateId: interaction.fields.getTextInputValue(
                         "tag-create-set-message-input-id"
                     )
                 }

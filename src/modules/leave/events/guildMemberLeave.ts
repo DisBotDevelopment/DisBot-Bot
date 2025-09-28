@@ -10,6 +10,7 @@ import {
 import {ExtendedClient} from "../../../types/client.js";
 import {drawCard, LinearGradient} from "discord-welcome-card";
 import {database} from "../../../main/database.js";
+import {drawCardCanvas} from "../../../helper/utilityHelper.js";
 
 export default {
     name: Events.GuildMemberRemove,
@@ -70,7 +71,7 @@ export default {
 
         let imageBuffer = null;
         if (data.Image) {
-            imageBuffer = await drawCard({
+            imageBuffer = await drawCardCanvas({
                 theme: (data.ImageData?.Theme as "dark" | "circuit" | "code") ?? "dark",
                 text: {
                     title: replaceVars(data.ImageData?.Title) ?? "Goodbye!",
@@ -83,28 +84,20 @@ export default {
                 avatar: {
                     image: member.displayAvatarURL({extension: "png"}),
                     outlineWidth: 5,
-                    outlineColor: new LinearGradient({
-                        col: data.ImageData?.Gradient?.split(",")[0] ?? "#fff",
-                        off: 0,
-                        offset: 1,
-                        color: data.ImageData?.Gradient?.split(",")[1] ?? "#000"
-                    })
+                    outlineColor: data.ImageData?.Gradient?.split(",")[0] ?? "#fff"
                 },
                 card: {
-                    background: data.ImageData?.Background ?? "https://i.imgur.com/kjEQRRI.png",
+                    background: data.ImageData?.Background ?? "https://cdn.xyzhub.link/u/czdZgx.png",
                     blur: 1,
                     border: true,
                     rounded: true
                 }
             });
         }
-
-        const payload: Parameters<TextChannel["send"]>[0] = {};
-        if (embedJson) payload.embeds = [new EmbedBuilder(embedJson)];
-        if (content) payload.content = content;
-        if (imageBuffer) payload.files = [imageBuffer];
-
-        if (Object.keys(payload).length === 0) return;
-        await channel.send(payload);
+        await channel.send({
+            content: content ? content : "ㅤ",
+            embeds: embedJson ? [new EmbedBuilder(embedJson)] : [],
+            files: imageBuffer ? [new AttachmentBuilder(imageBuffer)] : []
+        });
     }
 };

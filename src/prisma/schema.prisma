@@ -686,9 +686,9 @@ model Tags {
   UUID                   String   @unique
   TagId                  String   @unique
   TriggerKeywords        String[] // SOON && NEW
-  MessageId              String
+  MessageTemplateId      String?
   IsShlashCommand        Boolean
-  ShlashCommandId        String   @unique
+  ShlashCommandId        String?
   IsTextInputCommand     Boolean
   IsEnabled              Boolean
   PermissionRoleId       String?

@@ -3,7 +3,7 @@ import {
     ButtonInteraction, ChatInputCommandInteraction, Message, MessageFlags,
     ModalSubmitInteraction
 } from "discord.js";
-import {createCanvas} from "canvas";
+import {createCanvas, loadImage} from "canvas";
 import FormData from "form-data";
 import {Config} from "../main/config.js";
 import axios from "axios";
@@ -12,6 +12,7 @@ import {ExtendedClient} from "../types/client.js";
 import {convertToEmojiPng} from "./emojis.js";
 import fs from "fs";
 import path from "path";
+import {DrawCardOptions} from "../types/drawcardoptions.js";
 
 export function getInteractionData(interaction: ButtonInteraction | ModalSubmitInteraction | AnySelectMenuInteraction, split: number) {
     return interaction.customId.split(":")[split];
@@ -115,4 +116,70 @@ export async function isInDevelopment(
             content: `## ${emoji} ${message}`,
         })
     }
-} 
+}
+
+export async function drawCardCanvas(opts: DrawCardOptions): Promise<Buffer> {
+    const width = 800;
+    const height = 300;
+    const canvas = createCanvas(width, height);
+    const ctx = canvas.getContext("2d");
+
+    const bg = await loadImage(opts.card.background);
+    ctx.drawImage(bg, 0, 0, width, height);
+
+
+    if (opts.card.rounded) {
+        ctx.save();
+        ctx.beginPath();
+        const radius = 25;
+        ctx.moveTo(radius, 0);
+        ctx.lineTo(width - radius, 0);
+        ctx.quadraticCurveTo(width, 0, width, radius);
+        ctx.lineTo(width, height - radius);
+        ctx.quadraticCurveTo(width, height, width - radius, height);
+        ctx.lineTo(radius, height);
+        ctx.quadraticCurveTo(0, height, 0, height - radius);
+        ctx.lineTo(0, radius);
+        ctx.quadraticCurveTo(0, 0, radius, 0);
+        ctx.closePath();
+        ctx.clip();
+        ctx.drawImage(bg, 0, 0, width, height);
+        ctx.restore();
+    }
+
+    if (opts.card.border) {
+        ctx.lineWidth = 6;
+        ctx.strokeStyle = "#555252";
+        ctx.strokeRect(0, 0, width, height);
+    }
+
+    const avatar = await loadImage(opts.avatar.image);
+    const avatarSize = 128;
+    const avatarX = 40;
+    const avatarY = height / 2 - avatarSize / 2;
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(avatarX + avatarSize / 2, avatarY + avatarSize / 2, avatarSize / 2, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.clip();
+    ctx.drawImage(avatar, avatarX, avatarY, avatarSize, avatarSize);
+    ctx.restore();
+
+    ctx.beginPath();
+    ctx.arc(avatarX + avatarSize / 2, avatarY + avatarSize / 2, avatarSize / 2 + opts.avatar.outlineWidth, 0, Math.PI * 2);
+    ctx.strokeStyle = opts.avatar.outlineColor;
+    ctx.lineWidth = opts.avatar.outlineWidth;
+    ctx.stroke();
+    ctx.fillStyle = opts.text.color;
+    ctx.font = "bold 36px Sans";
+    ctx.fillText(opts.text.title, 200, 100);
+
+    ctx.font = "24px Sans";
+    ctx.fillText(opts.text.subtitle, 200, 150);
+
+    ctx.font = "20px Sans";
+    ctx.fillText(opts.text.text, 200, 200);
+
+    return canvas.toBuffer("image/png");
+}

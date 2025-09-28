@@ -49,7 +49,7 @@ export default {
         );
         if (!client.user) throw new Error("Client not found");
 
-        interaction.reply({
+        await interaction.reply({
             content: `## ${await convertToEmojiPng(
                 "check",
                 client.user.id

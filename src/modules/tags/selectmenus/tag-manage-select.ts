@@ -51,7 +51,7 @@ export default {
             ``,
             `> **UUID:** \`${data.UUID}\``,
             `> **Tag Name:** \`${data.TagId}\``,
-            `> **Tag Message:** \`${data.MessageId || `No Message`}\``,
+            `> **Tag Message:** \`${data.MessageTemplateId || `No Message`}\``,
             `> **TextCommand:** \`${data.IsTextInputCommand ? "Yes" : "No"}\``,
             `> **SlashCommand:** \`${data.IsShlashCommand ? "Yes" : "No"}\``,
             `> **Enabled:** \`${data.IsEnabled ? "Yes" : "No"}\``,

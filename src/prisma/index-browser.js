@@ -639,7 +639,7 @@ exports.Prisma.TagsScalarFieldEnum = {
   UUID: 'UUID',
   TagId: 'TagId',
   TriggerKeywords: 'TriggerKeywords',
-  MessageId: 'MessageId',
+  MessageTemplateId: 'MessageTemplateId',
   IsShlashCommand: 'IsShlashCommand',
   ShlashCommandId: 'ShlashCommandId',
   IsTextInputCommand: 'IsTextInputCommand',

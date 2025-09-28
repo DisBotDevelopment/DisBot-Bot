@@ -315,3 +315,11 @@ export async function initUsersToDatabase(client: ExtendedClient, user: User) {
 
     }
 }
+
+export async function migrateDataBase(client: ExtendedClient) {
+
+    let migrations = 0
+
+    Logger.info(`Loaded ${migrations} migrations for the Database`.magenta)
+
+}

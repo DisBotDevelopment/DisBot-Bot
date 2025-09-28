@@ -1,7 +1,7 @@
-import { Events, GuildMember, Interaction, MessageFlags } from "discord.js";
-import { ExtendedClient } from "../../../types/client.js";
-import { convertToEmojiPng } from "../../../helper/emojis.js";
-import { database } from "../../../main/database.js";
+import {Events, GuildMember, Interaction, MessageFlags} from "discord.js";
+import {ExtendedClient} from "../../../types/client.js";
+import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {database} from "../../../main/database.js";
 
 /**
  * @param {ExtendedClient} client
@@ -46,7 +46,7 @@ export default {
 
             const messageData = await database.messageTemplates.findFirst({
                 where: {
-                    Name: tag.MessageId
+                    Name: tag?.MessageTemplateId
                 }
             });
             if (!client.user) return;
@@ -63,12 +63,12 @@ export default {
             if (!messageData) return;
 
             if (messageData.EmbedJSON) {
-                interaction.reply({
+                await interaction.reply({
                     content: messageData.Content ?? "",
                     embeds: [JSON.parse(messageData.EmbedJSON)]
                 });
             } else {
-                interaction.reply({
+                await interaction.reply({
                     content: messageData.Content ?? ""
                 });
             }

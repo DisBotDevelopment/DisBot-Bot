@@ -2,7 +2,7 @@ import {
     ActionRowBuilder,
     ButtonBuilder,
     ButtonStyle,
-    EmbedBuilder,
+    EmbedBuilder, MessageFlags,
     ModalSubmitInteraction,
     TextInputStyle
 } from "discord.js";
@@ -109,7 +109,7 @@ export default {
                     .setColor("#2B2D31")
             ],
             components: [row],
-            ephemeral: false
+            flags: MessageFlags.Ephemeral
         });
     }
 };

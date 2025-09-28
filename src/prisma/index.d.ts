@@ -59543,7 +59543,7 @@ export namespace Prisma {
     id: string | null
     UUID: string | null
     TagId: string | null
-    MessageId: string | null
+    MessageTemplateId: string | null
     IsShlashCommand: boolean | null
     ShlashCommandId: string | null
     IsTextInputCommand: boolean | null
@@ -59557,7 +59557,7 @@ export namespace Prisma {
     id: string | null
     UUID: string | null
     TagId: string | null
-    MessageId: string | null
+    MessageTemplateId: string | null
     IsShlashCommand: boolean | null
     ShlashCommandId: string | null
     IsTextInputCommand: boolean | null
@@ -59572,7 +59572,7 @@ export namespace Prisma {
     UUID: number
     TagId: number
     TriggerKeywords: number
-    MessageId: number
+    MessageTemplateId: number
     IsShlashCommand: number
     ShlashCommandId: number
     IsTextInputCommand: number
@@ -59589,7 +59589,7 @@ export namespace Prisma {
     id?: true
     UUID?: true
     TagId?: true
-    MessageId?: true
+    MessageTemplateId?: true
     IsShlashCommand?: true
     ShlashCommandId?: true
     IsTextInputCommand?: true
@@ -59603,7 +59603,7 @@ export namespace Prisma {
     id?: true
     UUID?: true
     TagId?: true
-    MessageId?: true
+    MessageTemplateId?: true
     IsShlashCommand?: true
     ShlashCommandId?: true
     IsTextInputCommand?: true
@@ -59618,7 +59618,7 @@ export namespace Prisma {
     UUID?: true
     TagId?: true
     TriggerKeywords?: true
-    MessageId?: true
+    MessageTemplateId?: true
     IsShlashCommand?: true
     ShlashCommandId?: true
     IsTextInputCommand?: true
@@ -59707,9 +59707,9 @@ export namespace Prisma {
     UUID: string
     TagId: string
     TriggerKeywords: string[]
-    MessageId: string
+    MessageTemplateId: string | null
     IsShlashCommand: boolean
-    ShlashCommandId: string
+    ShlashCommandId: string | null
     IsTextInputCommand: boolean
     IsEnabled: boolean
     PermissionRoleId: string | null
@@ -59740,7 +59740,7 @@ export namespace Prisma {
     UUID?: boolean
     TagId?: boolean
     TriggerKeywords?: boolean
-    MessageId?: boolean
+    MessageTemplateId?: boolean
     IsShlashCommand?: boolean
     ShlashCommandId?: boolean
     IsTextInputCommand?: boolean
@@ -59759,7 +59759,7 @@ export namespace Prisma {
     UUID?: boolean
     TagId?: boolean
     TriggerKeywords?: boolean
-    MessageId?: boolean
+    MessageTemplateId?: boolean
     IsShlashCommand?: boolean
     ShlashCommandId?: boolean
     IsTextInputCommand?: boolean
@@ -59770,7 +59770,7 @@ export namespace Prisma {
     GuildId?: boolean
   }
 
-  export type TagsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "UUID" | "TagId" | "TriggerKeywords" | "MessageId" | "IsShlashCommand" | "ShlashCommandId" | "IsTextInputCommand" | "IsEnabled" | "PermissionRoleId" | "CommandDescription" | "FilterTextFromMessages" | "GuildId", ExtArgs["result"]["tags"]>
+  export type TagsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "UUID" | "TagId" | "TriggerKeywords" | "MessageTemplateId" | "IsShlashCommand" | "ShlashCommandId" | "IsTextInputCommand" | "IsEnabled" | "PermissionRoleId" | "CommandDescription" | "FilterTextFromMessages" | "GuildId", ExtArgs["result"]["tags"]>
   export type TagsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
   }
@@ -59785,9 +59785,9 @@ export namespace Prisma {
       UUID: string
       TagId: string
       TriggerKeywords: string[]
-      MessageId: string
+      MessageTemplateId: string | null
       IsShlashCommand: boolean
-      ShlashCommandId: string
+      ShlashCommandId: string | null
       IsTextInputCommand: boolean
       IsEnabled: boolean
       PermissionRoleId: string | null
@@ -60191,7 +60191,7 @@ export namespace Prisma {
     readonly UUID: FieldRef<"Tags", 'String'>
     readonly TagId: FieldRef<"Tags", 'String'>
     readonly TriggerKeywords: FieldRef<"Tags", 'String[]'>
-    readonly MessageId: FieldRef<"Tags", 'String'>
+    readonly MessageTemplateId: FieldRef<"Tags", 'String'>
     readonly IsShlashCommand: FieldRef<"Tags", 'Boolean'>
     readonly ShlashCommandId: FieldRef<"Tags", 'String'>
     readonly IsTextInputCommand: FieldRef<"Tags", 'Boolean'>
@@ -88139,7 +88139,7 @@ export namespace Prisma {
     UUID: 'UUID',
     TagId: 'TagId',
     TriggerKeywords: 'TriggerKeywords',
-    MessageId: 'MessageId',
+    MessageTemplateId: 'MessageTemplateId',
     IsShlashCommand: 'IsShlashCommand',
     ShlashCommandId: 'ShlashCommandId',
     IsTextInputCommand: 'IsTextInputCommand',
@@ -92220,9 +92220,9 @@ export namespace Prisma {
     UUID?: StringFilter<"Tags"> | string
     TagId?: StringFilter<"Tags"> | string
     TriggerKeywords?: StringNullableListFilter<"Tags">
-    MessageId?: StringFilter<"Tags"> | string
+    MessageTemplateId?: StringNullableFilter<"Tags"> | string | null
     IsShlashCommand?: BoolFilter<"Tags"> | boolean
-    ShlashCommandId?: StringFilter<"Tags"> | string
+    ShlashCommandId?: StringNullableFilter<"Tags"> | string | null
     IsTextInputCommand?: BoolFilter<"Tags"> | boolean
     IsEnabled?: BoolFilter<"Tags"> | boolean
     PermissionRoleId?: StringNullableFilter<"Tags"> | string | null
@@ -92237,7 +92237,7 @@ export namespace Prisma {
     UUID?: SortOrder
     TagId?: SortOrder
     TriggerKeywords?: SortOrder
-    MessageId?: SortOrder
+    MessageTemplateId?: SortOrder
     IsShlashCommand?: SortOrder
     ShlashCommandId?: SortOrder
     IsTextInputCommand?: SortOrder
@@ -92253,13 +92253,13 @@ export namespace Prisma {
     id?: string
     UUID?: string
     TagId?: string
-    ShlashCommandId?: string
     AND?: TagsWhereInput | TagsWhereInput[]
     OR?: TagsWhereInput[]
     NOT?: TagsWhereInput | TagsWhereInput[]
     TriggerKeywords?: StringNullableListFilter<"Tags">
-    MessageId?: StringFilter<"Tags"> | string
+    MessageTemplateId?: StringNullableFilter<"Tags"> | string | null
     IsShlashCommand?: BoolFilter<"Tags"> | boolean
+    ShlashCommandId?: StringNullableFilter<"Tags"> | string | null
     IsTextInputCommand?: BoolFilter<"Tags"> | boolean
     IsEnabled?: BoolFilter<"Tags"> | boolean
     PermissionRoleId?: StringNullableFilter<"Tags"> | string | null
@@ -92267,14 +92267,14 @@ export namespace Prisma {
     FilterTextFromMessages?: StringNullableListFilter<"Tags">
     GuildId?: StringFilter<"Tags"> | string
     Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
-  }, "id" | "UUID" | "TagId" | "ShlashCommandId">
+  }, "id" | "UUID" | "TagId">
 
   export type TagsOrderByWithAggregationInput = {
     id?: SortOrder
     UUID?: SortOrder
     TagId?: SortOrder
     TriggerKeywords?: SortOrder
-    MessageId?: SortOrder
+    MessageTemplateId?: SortOrder
     IsShlashCommand?: SortOrder
     ShlashCommandId?: SortOrder
     IsTextInputCommand?: SortOrder
@@ -92296,9 +92296,9 @@ export namespace Prisma {
     UUID?: StringWithAggregatesFilter<"Tags"> | string
     TagId?: StringWithAggregatesFilter<"Tags"> | string
     TriggerKeywords?: StringNullableListFilter<"Tags">
-    MessageId?: StringWithAggregatesFilter<"Tags"> | string
+    MessageTemplateId?: StringNullableWithAggregatesFilter<"Tags"> | string | null
     IsShlashCommand?: BoolWithAggregatesFilter<"Tags"> | boolean
-    ShlashCommandId?: StringWithAggregatesFilter<"Tags"> | string
+    ShlashCommandId?: StringNullableWithAggregatesFilter<"Tags"> | string | null
     IsTextInputCommand?: BoolWithAggregatesFilter<"Tags"> | boolean
     IsEnabled?: BoolWithAggregatesFilter<"Tags"> | boolean
     PermissionRoleId?: StringNullableWithAggregatesFilter<"Tags"> | string | null
@@ -98069,9 +98069,9 @@ export namespace Prisma {
     UUID: string
     TagId: string
     TriggerKeywords?: TagsCreateTriggerKeywordsInput | string[]
-    MessageId: string
+    MessageTemplateId?: string | null
     IsShlashCommand: boolean
-    ShlashCommandId: string
+    ShlashCommandId?: string | null
     IsTextInputCommand: boolean
     IsEnabled: boolean
     PermissionRoleId?: string | null
@@ -98085,9 +98085,9 @@ export namespace Prisma {
     UUID: string
     TagId: string
     TriggerKeywords?: TagsCreateTriggerKeywordsInput | string[]
-    MessageId: string
+    MessageTemplateId?: string | null
     IsShlashCommand: boolean
-    ShlashCommandId: string
+    ShlashCommandId?: string | null
     IsTextInputCommand: boolean
     IsEnabled: boolean
     PermissionRoleId?: string | null
@@ -98100,9 +98100,9 @@ export namespace Prisma {
     UUID?: StringFieldUpdateOperationsInput | string
     TagId?: StringFieldUpdateOperationsInput | string
     TriggerKeywords?: TagsUpdateTriggerKeywordsInput | string[]
-    MessageId?: StringFieldUpdateOperationsInput | string
+    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     IsShlashCommand?: BoolFieldUpdateOperationsInput | boolean
-    ShlashCommandId?: StringFieldUpdateOperationsInput | string
+    ShlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
     IsTextInputCommand?: BoolFieldUpdateOperationsInput | boolean
     IsEnabled?: BoolFieldUpdateOperationsInput | boolean
     PermissionRoleId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -98115,9 +98115,9 @@ export namespace Prisma {
     UUID?: StringFieldUpdateOperationsInput | string
     TagId?: StringFieldUpdateOperationsInput | string
     TriggerKeywords?: TagsUpdateTriggerKeywordsInput | string[]
-    MessageId?: StringFieldUpdateOperationsInput | string
+    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     IsShlashCommand?: BoolFieldUpdateOperationsInput | boolean
-    ShlashCommandId?: StringFieldUpdateOperationsInput | string
+    ShlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
     IsTextInputCommand?: BoolFieldUpdateOperationsInput | boolean
     IsEnabled?: BoolFieldUpdateOperationsInput | boolean
     PermissionRoleId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -98131,9 +98131,9 @@ export namespace Prisma {
     UUID: string
     TagId: string
     TriggerKeywords?: TagsCreateTriggerKeywordsInput | string[]
-    MessageId: string
+    MessageTemplateId?: string | null
     IsShlashCommand: boolean
-    ShlashCommandId: string
+    ShlashCommandId?: string | null
     IsTextInputCommand: boolean
     IsEnabled: boolean
     PermissionRoleId?: string | null
@@ -98146,9 +98146,9 @@ export namespace Prisma {
     UUID?: StringFieldUpdateOperationsInput | string
     TagId?: StringFieldUpdateOperationsInput | string
     TriggerKeywords?: TagsUpdateTriggerKeywordsInput | string[]
-    MessageId?: StringFieldUpdateOperationsInput | string
+    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     IsShlashCommand?: BoolFieldUpdateOperationsInput | boolean
-    ShlashCommandId?: StringFieldUpdateOperationsInput | string
+    ShlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
     IsTextInputCommand?: BoolFieldUpdateOperationsInput | boolean
     IsEnabled?: BoolFieldUpdateOperationsInput | boolean
     PermissionRoleId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -98160,9 +98160,9 @@ export namespace Prisma {
     UUID?: StringFieldUpdateOperationsInput | string
     TagId?: StringFieldUpdateOperationsInput | string
     TriggerKeywords?: TagsUpdateTriggerKeywordsInput | string[]
-    MessageId?: StringFieldUpdateOperationsInput | string
+    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     IsShlashCommand?: BoolFieldUpdateOperationsInput | boolean
-    ShlashCommandId?: StringFieldUpdateOperationsInput | string
+    ShlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
     IsTextInputCommand?: BoolFieldUpdateOperationsInput | boolean
     IsEnabled?: BoolFieldUpdateOperationsInput | boolean
     PermissionRoleId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -102732,7 +102732,7 @@ export namespace Prisma {
     UUID?: SortOrder
     TagId?: SortOrder
     TriggerKeywords?: SortOrder
-    MessageId?: SortOrder
+    MessageTemplateId?: SortOrder
     IsShlashCommand?: SortOrder
     ShlashCommandId?: SortOrder
     IsTextInputCommand?: SortOrder
@@ -102747,7 +102747,7 @@ export namespace Prisma {
     id?: SortOrder
     UUID?: SortOrder
     TagId?: SortOrder
-    MessageId?: SortOrder
+    MessageTemplateId?: SortOrder
     IsShlashCommand?: SortOrder
     ShlashCommandId?: SortOrder
     IsTextInputCommand?: SortOrder
@@ -102761,7 +102761,7 @@ export namespace Prisma {
     id?: SortOrder
     UUID?: SortOrder
     TagId?: SortOrder
-    MessageId?: SortOrder
+    MessageTemplateId?: SortOrder
     IsShlashCommand?: SortOrder
     ShlashCommandId?: SortOrder
     IsTextInputCommand?: SortOrder
@@ -109864,9 +109864,9 @@ export namespace Prisma {
     UUID: string
     TagId: string
     TriggerKeywords?: TagsCreateTriggerKeywordsInput | string[]
-    MessageId: string
+    MessageTemplateId?: string | null
     IsShlashCommand: boolean
-    ShlashCommandId: string
+    ShlashCommandId?: string | null
     IsTextInputCommand: boolean
     IsEnabled: boolean
     PermissionRoleId?: string | null
@@ -109879,9 +109879,9 @@ export namespace Prisma {
     UUID: string
     TagId: string
     TriggerKeywords?: TagsCreateTriggerKeywordsInput | string[]
-    MessageId: string
+    MessageTemplateId?: string | null
     IsShlashCommand: boolean
-    ShlashCommandId: string
+    ShlashCommandId?: string | null
     IsTextInputCommand: boolean
     IsEnabled: boolean
     PermissionRoleId?: string | null
@@ -110896,9 +110896,9 @@ export namespace Prisma {
     UUID?: StringFilter<"Tags"> | string
     TagId?: StringFilter<"Tags"> | string
     TriggerKeywords?: StringNullableListFilter<"Tags">
-    MessageId?: StringFilter<"Tags"> | string
+    MessageTemplateId?: StringNullableFilter<"Tags"> | string | null
     IsShlashCommand?: BoolFilter<"Tags"> | boolean
-    ShlashCommandId?: StringFilter<"Tags"> | string
+    ShlashCommandId?: StringNullableFilter<"Tags"> | string | null
     IsTextInputCommand?: BoolFilter<"Tags"> | boolean
     IsEnabled?: BoolFilter<"Tags"> | boolean
     PermissionRoleId?: StringNullableFilter<"Tags"> | string | null
@@ -122487,9 +122487,9 @@ export namespace Prisma {
     UUID: string
     TagId: string
     TriggerKeywords?: TagsCreateTriggerKeywordsInput | string[]
-    MessageId: string
+    MessageTemplateId?: string | null
     IsShlashCommand: boolean
-    ShlashCommandId: string
+    ShlashCommandId?: string | null
     IsTextInputCommand: boolean
     IsEnabled: boolean
     PermissionRoleId?: string | null
@@ -122856,9 +122856,9 @@ export namespace Prisma {
     UUID?: StringFieldUpdateOperationsInput | string
     TagId?: StringFieldUpdateOperationsInput | string
     TriggerKeywords?: TagsUpdateTriggerKeywordsInput | string[]
-    MessageId?: StringFieldUpdateOperationsInput | string
+    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     IsShlashCommand?: BoolFieldUpdateOperationsInput | boolean
-    ShlashCommandId?: StringFieldUpdateOperationsInput | string
+    ShlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
     IsTextInputCommand?: BoolFieldUpdateOperationsInput | boolean
     IsEnabled?: BoolFieldUpdateOperationsInput | boolean
     PermissionRoleId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -122870,9 +122870,9 @@ export namespace Prisma {
     UUID?: StringFieldUpdateOperationsInput | string
     TagId?: StringFieldUpdateOperationsInput | string
     TriggerKeywords?: TagsUpdateTriggerKeywordsInput | string[]
-    MessageId?: StringFieldUpdateOperationsInput | string
+    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     IsShlashCommand?: BoolFieldUpdateOperationsInput | boolean
-    ShlashCommandId?: StringFieldUpdateOperationsInput | string
+    ShlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
     IsTextInputCommand?: BoolFieldUpdateOperationsInput | boolean
     IsEnabled?: BoolFieldUpdateOperationsInput | boolean
     PermissionRoleId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -122884,9 +122884,9 @@ export namespace Prisma {
     UUID?: StringFieldUpdateOperationsInput | string
     TagId?: StringFieldUpdateOperationsInput | string
     TriggerKeywords?: TagsUpdateTriggerKeywordsInput | string[]
-    MessageId?: StringFieldUpdateOperationsInput | string
+    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     IsShlashCommand?: BoolFieldUpdateOperationsInput | boolean
-    ShlashCommandId?: StringFieldUpdateOperationsInput | string
+    ShlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
     IsTextInputCommand?: BoolFieldUpdateOperationsInput | boolean
     IsEnabled?: BoolFieldUpdateOperationsInput | boolean
     PermissionRoleId?: NullableStringFieldUpdateOperationsInput | string | null

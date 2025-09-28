@@ -3,7 +3,7 @@ import {PrismaClient} from "../prisma/index.js";
 import {LoggingAction} from "../enums/loggingTypes.js";
 import {Logger} from "./logger.js";
 import colors from "colors"
-import {initGuildsToDatabase, setupDisBotConfig} from "../helper/databaseHelper.js";
+import {initGuildsToDatabase, migrateDataBase, setupDisBotConfig} from "../helper/databaseHelper.js";
 import {Config} from "./config.js";
 import * as process from "node:process";
 
@@ -37,6 +37,7 @@ export async function connectToDatabase(client: ExtendedClient) {
 export async function initDataToDatabase(client: ExtendedClient) {
 
     try {
+        await migrateDataBase(client)
         await initGuildsToDatabase(client)
         await setupDisBotConfig(client)
 

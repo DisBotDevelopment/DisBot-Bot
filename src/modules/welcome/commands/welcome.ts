@@ -41,9 +41,9 @@ export default {
         .addSubcommand((subCommand) =>
             subCommand
                 .setName("image")
-                .setDescription("OoO, This Command is currently disabled because we are re-coding the image generation")
+                .setDescription("Create a Image to your welcome message")
                 .setDescriptionLocalizations({
-                    de: "OoO, This Command is currently disabled because we are re-coding the image generation"
+                    de: "Erstelle ein Image zu deiner Willkommens nachricht"
                 })
 
                 .addChannelOption((options) =>

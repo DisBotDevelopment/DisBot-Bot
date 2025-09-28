@@ -48,7 +48,7 @@ export default {
                             ``,
                             `> **UUID:** \`${embed.UUID}\``,
                             `> **Tag Name:** \`${embed.TagId}\``,
-                            `> **Tag Message:** \`${embed.MessageId || `No Message`}\``,
+                            `> **Tag Message:** \`${embed.MessageTemplateId || `No Message`}\``,
                             `> **TextCommand:** \`${embed.IsTextInputCommand ? "Yes" : "No"
                             }\``,
                             `> **SlashCommand:** \`${embed.IsShlashCommand ? "Yes" : "No"}\``,
