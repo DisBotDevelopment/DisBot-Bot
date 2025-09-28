@@ -73,22 +73,13 @@ export default {
             .setPlaceholder("#ffffff")
             .setRequired(true);
 
-        channel
-            .setLabel("Channel ID")
-            .setCustomId("leave-message-create-channel")
-            .setStyle(TextInputStyle.Short)
-            .setPlaceholder("NOT CHANGE")
-            .setValue(`${interaction.options.getChannel("channel")?.id}`)
-            .setRequired(false);
-
         modal.addComponents(
             new ActionRowBuilder<TextInputBuilder>().addComponents(title),
             new ActionRowBuilder<TextInputBuilder>().addComponents(subtitle),
             new ActionRowBuilder<TextInputBuilder>().addComponents(text),
             new ActionRowBuilder<TextInputBuilder>().addComponents(color),
-            new ActionRowBuilder<TextInputBuilder>().addComponents(channel)
         );
 
-        interaction.showModal(modal);
+        await interaction.showModal(modal);
     }
 };

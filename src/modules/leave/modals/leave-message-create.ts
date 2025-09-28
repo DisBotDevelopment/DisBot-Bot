@@ -19,20 +19,10 @@ export default {
             }
         });
 
-        if (!data) {
-            await database.guildLeaveSetup.create({
-                data: {
-                    GuildId: interaction.guild?.id,
-                    MessageTemplateId: interaction.fields.getTextInputValue(
-                        "leave-message-create-name"
-                    ),
-                    ChannelId: interaction.fields.getTextInputValue(
-                        "leave-message-create-channel"
-                    ),
-                    Image: true,
-                }
-            });
-        }
+        if (!data.ChannelId) return interaction.reply({
+            content: `## ${await convertToEmojiPng("error", client.user.id)} There are no Channel set.`,
+            flags: MessageFlags.Ephemeral,
+        })
 
         await database.guildLeaveSetup.update(
             {
@@ -43,10 +33,7 @@ export default {
                     MessageTemplateId: interaction.fields.getTextInputValue(
                         "leave-message-create-name"
                     ),
-                    ChannelId: interaction.fields.getTextInputValue(
-                        "leave-message-create-channel"
-                    ),
-                    Image: true,
+                    Image: data.Image,
                 }
             }
         );

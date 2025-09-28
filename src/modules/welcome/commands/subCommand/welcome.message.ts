@@ -39,26 +39,18 @@ export default {
         const modal = new ModalBuilder();
 
         const message = new TextInputBuilder();
-        const channel = new TextInputBuilder();
 
         modal.setTitle("Create a Message").setCustomId("welcome-message-create");
 
         message
             .setLabel("Message Template")
             .setCustomId("welcome-message-create-name")
-            .setStyle(TextInputStyle.Paragraph)
-            .setRequired(true);
-        channel
-            .setLabel("Channel ID")
-            .setCustomId("welcome-message-create-channel")
             .setStyle(TextInputStyle.Short)
-            .setPlaceholder("NOT CHANGE")
-            .setValue(`${interaction.options.getChannel("channel")?.id}`)
-            .setRequired(false);
+            .setRequired(true);
+
 
         modal.addComponents(
             new ActionRowBuilder<TextInputBuilder>().addComponents(message),
-            new ActionRowBuilder<TextInputBuilder>().addComponents(channel)
         );
 
         await interaction.showModal(modal);

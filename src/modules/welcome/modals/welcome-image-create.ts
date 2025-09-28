@@ -8,6 +8,7 @@ import {
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
+import {convertToEmojiPng} from "../../../helper/emojis.js";
 
 export default {
     id: "welcome-image-create",
@@ -25,40 +26,11 @@ export default {
             }
         });
 
-        if (!data) {
-            await database.guildWelcomeSetup.create({
-                data: {
-                    Guilds: {
-                        connect: {
-                            GuildId: interaction.guild?.id,
-                        }
-                    },
-                    ChannelId: interaction.fields.getTextInputValue(
-                        "welcome-message-create-channel"
-                    ),
-                    MessageTemplateId: null,
-                    Image: true,
-                    ImageData: {
-                        Title: interaction.fields.getTextInputValue(
-                            "welcome-image-create-title"
-                        ),
-                        Subtitle: interaction.fields.getTextInputValue(
-                            "welcome-image-create-subtitle"
-                        ),
-                        Text: interaction.fields.getTextInputValue(
-                            "welcome-image-create-text"
-                        ),
-                        Color: interaction.fields.getTextInputValue(
-                            "welcome-image-create-color"
-                        ),
-                        Gradient: "",
-                        Theme: "",
-                        Background: ""
-                    }
-                }
-            });
-        }
-
+        if (!data.ChannelId) return interaction.reply({
+            content: `## ${await  convertToEmojiPng("error", client.user.id)} There are no Channel set.`,
+            flags: MessageFlags.Ephemeral,
+        })
+        
         await database.guildWelcomeSetup.update(
             {
                 where: {
@@ -90,19 +62,16 @@ export default {
         const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
             new ButtonBuilder()
                 .setCustomId("welcome-image-create-button-setup")
-                .setLabel("Setup the Image")
-                .setStyle(ButtonStyle.Success)
+                .setLabel("Image Card Setup")
+                .setStyle(ButtonStyle.Secondary)
         );
 
-        interaction.reply({
-            content: `${interaction.fields.getTextInputValue(
-                "welcome-message-create-channel"
-            )}`,
+        await interaction.reply({
             embeds: [
                 new EmbedBuilder()
                     .setDescription(
                         [
-                            `## DONE! Image text has been set up!`,
+                            `## ${await convertToEmojiPng("image", client.user.id)} Image text has been set up!`,
                             `Now Edit the image and background. Use the Button below to setup the image.`
                         ].join("\n")
                     )

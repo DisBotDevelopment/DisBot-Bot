@@ -23,12 +23,22 @@ export default {
                 .setDescriptionLocalizations({
                     de: "Nutze eine Nachricht für das Leave System"
                 })
+        )
+        .addSubcommand((subCommand) =>
+            subCommand
+                .setName("channel")
+                .setDescription("Set your Leave Channel")
+                .setDescriptionLocalizations({
+                    de: "Setze den \"Verlassen\" Kanal"
+                })
 
                 .addChannelOption((options) =>
                     options
                         .setName("channel")
                         .setDescription("Set the Leave Channel")
-                        .setDescriptionLocalizations({de: "Setze den Leave Channel"})
+                        .setDescriptionLocalizations({
+                            de: "Setze den \"Verlassen\" Channel"
+                        })
                         .addChannelTypes(
                             ChannelType.GuildText,
                             ChannelType.GuildAnnouncement
@@ -43,18 +53,6 @@ export default {
                 .setDescriptionLocalizations({
                     de: "Erstelle ein Image zu deiner Willkommens nachricht"
                 })
-
-                .addChannelOption((options) =>
-                    options
-                        .setName("channel")
-                        .setDescription("Set the Willkommen Channel")
-                        .setDescriptionLocalizations({de: "Setze den Willkommen Channel"})
-                        .addChannelTypes(
-                            ChannelType.GuildText,
-                            ChannelType.GuildAnnouncement
-                        )
-                        .setRequired(true)
-                )
         )
 
         .addSubcommand((subCommand) =>

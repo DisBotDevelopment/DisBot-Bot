@@ -543,7 +543,7 @@ model GuildLeaveSetup {
 // UPDATE SOON
 model GuildWelcomeSetup {
   id                String                 @id @default(auto()) @map("_id") @db.ObjectId
-  MessageTemplateId String
+  MessageTemplateId String?
   ChannelId         String
   Image             Boolean
   ImageData         WelcomeLeaveImageData?

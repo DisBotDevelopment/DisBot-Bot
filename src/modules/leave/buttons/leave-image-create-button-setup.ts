@@ -10,13 +10,11 @@ export default {
      * @param {ExtendedClient} client
      */
     async execute(interaction: ButtonInteraction, client: ExtendedClient) {
-        const message = await interaction.message.fetch();
         const modal = new ModalBuilder();
 
         const background = new TextInputBuilder();
         const theme = new TextInputBuilder();
         const color = new TextInputBuilder();
-        const channel = new TextInputBuilder();
 
         modal.setTitle("Create a Image").setCustomId("leave-image-create-setup");
 
@@ -40,22 +38,13 @@ export default {
             .setStyle(TextInputStyle.Short)
             .setPlaceholder("Usage: #ffffff,#000000 - (Without the Space)")
             .setRequired(true);
-        channel
-            .setLabel("Channel ID")
-            .setCustomId("leave-message-create-channel")
-            .setStyle(TextInputStyle.Short)
-            .setPlaceholder("NOT CHANGE this value if you not know what you are doing")
-            .setValue(`${message.content}`)
-            .setRequired(true);
 
         modal.addComponents(
             new ActionRowBuilder<TextInputBuilder>().addComponents(background),
             new ActionRowBuilder<TextInputBuilder>().addComponents(theme),
             new ActionRowBuilder<TextInputBuilder>().addComponents(color),
-            new ActionRowBuilder<TextInputBuilder>().addComponents(channel)
         );
 
-        interaction.showModal(modal);
-        await message.delete();
+        await interaction.showModal(modal);
     }
 };

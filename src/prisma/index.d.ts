@@ -50442,7 +50442,7 @@ export namespace Prisma {
 
   export type GuildWelcomeSetupGroupByOutputType = {
     id: string
-    MessageTemplateId: string
+    MessageTemplateId: string | null
     ChannelId: string
     Image: boolean
     GuildId: string
@@ -50497,7 +50497,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      MessageTemplateId: string
+      MessageTemplateId: string | null
       ChannelId: string
       Image: boolean
       GuildId: string
@@ -91550,7 +91550,7 @@ export namespace Prisma {
     OR?: GuildWelcomeSetupWhereInput[]
     NOT?: GuildWelcomeSetupWhereInput | GuildWelcomeSetupWhereInput[]
     id?: StringFilter<"GuildWelcomeSetup"> | string
-    MessageTemplateId?: StringFilter<"GuildWelcomeSetup"> | string
+    MessageTemplateId?: StringNullableFilter<"GuildWelcomeSetup"> | string | null
     ChannelId?: StringFilter<"GuildWelcomeSetup"> | string
     Image?: BoolFilter<"GuildWelcomeSetup"> | boolean
     ImageData?: XOR<WelcomeLeaveImageDataNullableCompositeFilter, WelcomeLeaveImageDataObjectEqualityInput> | null
@@ -91574,7 +91574,7 @@ export namespace Prisma {
     AND?: GuildWelcomeSetupWhereInput | GuildWelcomeSetupWhereInput[]
     OR?: GuildWelcomeSetupWhereInput[]
     NOT?: GuildWelcomeSetupWhereInput | GuildWelcomeSetupWhereInput[]
-    MessageTemplateId?: StringFilter<"GuildWelcomeSetup"> | string
+    MessageTemplateId?: StringNullableFilter<"GuildWelcomeSetup"> | string | null
     ChannelId?: StringFilter<"GuildWelcomeSetup"> | string
     Image?: BoolFilter<"GuildWelcomeSetup"> | boolean
     ImageData?: XOR<WelcomeLeaveImageDataNullableCompositeFilter, WelcomeLeaveImageDataObjectEqualityInput> | null
@@ -91597,7 +91597,7 @@ export namespace Prisma {
     OR?: GuildWelcomeSetupScalarWhereWithAggregatesInput[]
     NOT?: GuildWelcomeSetupScalarWhereWithAggregatesInput | GuildWelcomeSetupScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"GuildWelcomeSetup"> | string
-    MessageTemplateId?: StringWithAggregatesFilter<"GuildWelcomeSetup"> | string
+    MessageTemplateId?: StringNullableWithAggregatesFilter<"GuildWelcomeSetup"> | string | null
     ChannelId?: StringWithAggregatesFilter<"GuildWelcomeSetup"> | string
     Image?: BoolWithAggregatesFilter<"GuildWelcomeSetup"> | boolean
     GuildId?: StringWithAggregatesFilter<"GuildWelcomeSetup"> | string
@@ -97361,7 +97361,7 @@ export namespace Prisma {
 
   export type GuildWelcomeSetupCreateInput = {
     id?: string
-    MessageTemplateId: string
+    MessageTemplateId?: string | null
     ChannelId: string
     Image: boolean
     ImageData?: XOR<WelcomeLeaveImageDataNullableCreateEnvelopeInput, WelcomeLeaveImageDataCreateInput> | null
@@ -97370,7 +97370,7 @@ export namespace Prisma {
 
   export type GuildWelcomeSetupUncheckedCreateInput = {
     id?: string
-    MessageTemplateId: string
+    MessageTemplateId?: string | null
     ChannelId: string
     Image: boolean
     ImageData?: XOR<WelcomeLeaveImageDataNullableCreateEnvelopeInput, WelcomeLeaveImageDataCreateInput> | null
@@ -97378,7 +97378,7 @@ export namespace Prisma {
   }
 
   export type GuildWelcomeSetupUpdateInput = {
-    MessageTemplateId?: StringFieldUpdateOperationsInput | string
+    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     ChannelId?: StringFieldUpdateOperationsInput | string
     Image?: BoolFieldUpdateOperationsInput | boolean
     ImageData?: XOR<WelcomeLeaveImageDataNullableUpdateEnvelopeInput, WelcomeLeaveImageDataCreateInput> | null
@@ -97386,7 +97386,7 @@ export namespace Prisma {
   }
 
   export type GuildWelcomeSetupUncheckedUpdateInput = {
-    MessageTemplateId?: StringFieldUpdateOperationsInput | string
+    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     ChannelId?: StringFieldUpdateOperationsInput | string
     Image?: BoolFieldUpdateOperationsInput | boolean
     ImageData?: XOR<WelcomeLeaveImageDataNullableUpdateEnvelopeInput, WelcomeLeaveImageDataCreateInput> | null
@@ -97395,7 +97395,7 @@ export namespace Prisma {
 
   export type GuildWelcomeSetupCreateManyInput = {
     id?: string
-    MessageTemplateId: string
+    MessageTemplateId?: string | null
     ChannelId: string
     Image: boolean
     ImageData?: XOR<WelcomeLeaveImageDataNullableCreateEnvelopeInput, WelcomeLeaveImageDataCreateInput> | null
@@ -97403,14 +97403,14 @@ export namespace Prisma {
   }
 
   export type GuildWelcomeSetupUpdateManyMutationInput = {
-    MessageTemplateId?: StringFieldUpdateOperationsInput | string
+    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     ChannelId?: StringFieldUpdateOperationsInput | string
     Image?: BoolFieldUpdateOperationsInput | boolean
     ImageData?: XOR<WelcomeLeaveImageDataNullableUpdateEnvelopeInput, WelcomeLeaveImageDataCreateInput> | null
   }
 
   export type GuildWelcomeSetupUncheckedUpdateManyInput = {
-    MessageTemplateId?: StringFieldUpdateOperationsInput | string
+    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     ChannelId?: StringFieldUpdateOperationsInput | string
     Image?: BoolFieldUpdateOperationsInput | boolean
     ImageData?: XOR<WelcomeLeaveImageDataNullableUpdateEnvelopeInput, WelcomeLeaveImageDataCreateInput> | null
@@ -110092,7 +110092,7 @@ export namespace Prisma {
 
   export type GuildWelcomeSetupCreateWithoutGuildsInput = {
     id?: string
-    MessageTemplateId: string
+    MessageTemplateId?: string | null
     ChannelId: string
     Image: boolean
     ImageData?: XOR<WelcomeLeaveImageDataNullableCreateEnvelopeInput, WelcomeLeaveImageDataCreateInput> | null
@@ -110100,7 +110100,7 @@ export namespace Prisma {
 
   export type GuildWelcomeSetupUncheckedCreateWithoutGuildsInput = {
     id?: string
-    MessageTemplateId: string
+    MessageTemplateId?: string | null
     ChannelId: string
     Image: boolean
     ImageData?: XOR<WelcomeLeaveImageDataNullableCreateEnvelopeInput, WelcomeLeaveImageDataCreateInput> | null
@@ -111078,14 +111078,14 @@ export namespace Prisma {
   }
 
   export type GuildWelcomeSetupUpdateWithoutGuildsInput = {
-    MessageTemplateId?: StringFieldUpdateOperationsInput | string
+    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     ChannelId?: StringFieldUpdateOperationsInput | string
     Image?: BoolFieldUpdateOperationsInput | boolean
     ImageData?: XOR<WelcomeLeaveImageDataNullableUpdateEnvelopeInput, WelcomeLeaveImageDataCreateInput> | null
   }
 
   export type GuildWelcomeSetupUncheckedUpdateWithoutGuildsInput = {
-    MessageTemplateId?: StringFieldUpdateOperationsInput | string
+    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     ChannelId?: StringFieldUpdateOperationsInput | string
     Image?: BoolFieldUpdateOperationsInput | boolean
     ImageData?: XOR<WelcomeLeaveImageDataNullableUpdateEnvelopeInput, WelcomeLeaveImageDataCreateInput> | null

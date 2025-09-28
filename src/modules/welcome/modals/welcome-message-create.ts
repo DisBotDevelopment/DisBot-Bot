@@ -19,25 +19,10 @@ export default {
             }
         });
 
-        if (!data) {
-            await database.guildWelcomeSetup.create({
-                data: {
-                    Guilds: {
-                        connect: {
-                            GuildId: interaction.guild?.id,
-                        }
-                    },
-                    MessageTemplateId: interaction.fields.getTextInputValue(
-                        "welcome-message-create-name"
-                    ),
-                    ChannelId: interaction.fields.getTextInputValue(
-                        "welcome-message-create-channel"
-                    ),
-                    Image: false,
-                    ImageData: null,
-                }
-            });
-        }
+        if (!data.ChannelId) return interaction.reply({
+            content: `## ${await convertToEmojiPng("error", client.user.id)} There are no Channel set.`,
+            flags: MessageFlags.Ephemeral,
+        })
 
         await database.guildWelcomeSetup.update({
                 where: {
@@ -47,17 +32,14 @@ export default {
                     MessageTemplateId: interaction.fields.getTextInputValue(
                         "welcome-message-create-name"
                     ),
-                    ChannelId: interaction.fields.getTextInputValue(
-                        "welcome-message-create-channel"
-                    ),
-                    Image: false
+                    Image: data.Image
                 }
             }
         );
 
         if (!client.user) throw new Error("Client user is not defined");
 
-        interaction.reply({
+        await interaction.reply({
             content: `## ${await convertToEmojiPng(
                 "check",
                 client.user.id

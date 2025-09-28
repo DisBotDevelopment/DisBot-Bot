@@ -23,6 +23,14 @@ export default {
                 .setDescriptionLocalizations({
                     de: "Nutze eine Nachricht für das Willkommens System"
                 })
+        )
+        .addSubcommand((subCommand) =>
+            subCommand
+                .setName("channel")
+                .setDescription("Set your Welcome Channel")
+                .setDescriptionLocalizations({
+                    de: "Setze den Willkommen Kanal"
+                })
 
                 .addChannelOption((options) =>
                     options
@@ -45,20 +53,6 @@ export default {
                 .setDescriptionLocalizations({
                     de: "Erstelle ein Image zu deiner Willkommens nachricht"
                 })
-
-                .addChannelOption((options) =>
-                    options
-                        .setName("channel")
-                        .setDescription("Set the Welcome Channel")
-                        .setDescriptionLocalizations({
-                            de: "Setze den Willkommens Channel"
-                        })
-                        .addChannelTypes(
-                            ChannelType.GuildText,
-                            ChannelType.GuildAnnouncement
-                        )
-                        .setRequired(true)
-                )
         )
         .addSubcommand((subCommand) =>
             subCommand

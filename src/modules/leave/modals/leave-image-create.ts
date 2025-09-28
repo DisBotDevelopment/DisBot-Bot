@@ -26,32 +26,10 @@ export default {
             }
         });
 
-        if (!data) {
-            await database.guildLeaveSetup.create({
-                data: {
-                    GuildId: interaction.guild?.id,
-                    ChannelId: interaction.fields.getTextInputValue(
-                        "leave-message-create-channel"
-                    ),
-                    Image: true,
-                    ImageData: {
-                        Title: interaction.fields.getTextInputValue(
-                            "leave-image-create-title"
-                        ),
-                        Subtitle: interaction.fields.getTextInputValue(
-                            "leave-image-create-subtitle"
-                        ),
-                        Text: interaction.fields.getTextInputValue("leave-image-create-text"),
-                        Color: interaction.fields.getTextInputValue(
-                            "leave-image-create-color"
-                        ),
-                        Gradient: "",
-                        Theme: "",
-                        Background: ""
-                    }
-                }
-            });
-        }
+        if (!data.ChannelId) return interaction.reply({
+            content: `## ${await convertToEmojiPng("error", client.user.id)} There are no Channel set.`,
+            flags: MessageFlags.Ephemeral,
+        })
 
         await database.guildLeaveSetup.update(
             {
@@ -82,8 +60,8 @@ export default {
         const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
             new ButtonBuilder()
                 .setCustomId("leave-image-create-button-setup")
-                .setLabel("Setup the Image")
-                .setStyle(ButtonStyle.Success)
+                .setLabel("Image Card Setup")
+                .setStyle(ButtonStyle.Secondary)
         );
 
         await interaction.reply({
