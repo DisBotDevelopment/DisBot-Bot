@@ -33,7 +33,7 @@ export default {
 
         const channel = interaction.options.getChannel("channel");
 
-        const data = database.guildWelcomeSetup.findFirst({
+        const data = await database.guildWelcomeSetup.findFirst({
             where: {
                 GuildId: interaction.guild.id
             }
