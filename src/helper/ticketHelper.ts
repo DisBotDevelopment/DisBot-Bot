@@ -41,6 +41,7 @@ export async function ticketHelper(
     messageEvent?: Message,
 ) {
     try {
+        let message: Message
         let guild: Guild;
         let user: GuildMember
         if (ticketType == "event") {
@@ -52,6 +53,9 @@ export async function ticketHelper(
                 flags: MessageFlags.Ephemeral
             })
 
+            if (interaction instanceof ModalSubmitInteraction || interaction instanceof ButtonInteraction || interaction instanceof StringSelectMenuInteraction) {
+                message = interaction.message
+            }
             guild = interaction.guild;
             user = interaction.member as GuildMember;
         }
@@ -523,6 +527,13 @@ export async function ticketHelper(
             }
         })
 
+        // Refresh the Message to reuse the options - is need because discord not do it... (AHAAHAH)
+        if (message) {
+            await message.edit({
+                content: message.content
+            })
+        }
+
         if (ticketType == "event") {
             (messageEvent.channel as TextChannel).send({
                 allowedMentions: {
@@ -585,6 +596,17 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
     if (!data && interaction) {
         return await ticketErrorMessage("No Data!", interaction, client)
     }
+
+    await database.tickets.update({
+        where: {
+            TicketId: ticketId
+        },
+        data: {
+            IsClosed: true,
+            IsAutoDone: isAuto ?? false,
+            ClosedAt: new Date
+        }
+    })
 
     // Default Ticket Close Actions
     const owner = await guild.members.fetch(data.TicketOwnerId)
@@ -938,7 +960,7 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
         }
     }
     if (!actions.includes("not_thread_close")) {
-        await (channel as ThreadChannel).setInvitable(true, "Moderator Action from Ticket with Id " + ticketId)
+        await (channel as ThreadChannel).setArchived(true, "Moderator Action from Ticket with Id " + ticketId)
     }
     if (data.TranscriptChannelId) {
         actionCounter += 1
@@ -955,7 +977,7 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
             client,
             guild,
             channel,
-            owner ?? null,
+            null,
             interaction ?? null
         )
 
@@ -977,18 +999,6 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
         if (data.ChannelType == ChannelType.PrivateThread) return
         await (channel as TextChannel).setParent(data.OldTicketCategoryId)
     }
-
-    await database.tickets.update({
-        where: {
-            TicketId: ticketId
-        },
-        data: {
-            IsClosed: true,
-            IsAutoDone: isAuto ?? false,
-            ClosedAt: new Date
-        }
-    })
-
     if (!actions.includes("no_close_message")) {
         actionCounter += 1
         await channel.send({
@@ -1025,6 +1035,9 @@ export async function ticketArchiveAction(channel: TextChannel | PrivateThreadCh
     const uuid = ticketId
 
     const data = await database.tickets.findFirst({
+        include: {
+            TicketSetup: true
+        },
         where: {
             TicketId: uuid
         }
@@ -1087,7 +1100,9 @@ export async function ticketArchiveAction(channel: TextChannel | PrivateThreadCh
 
     if (data.ChannelType == ChannelType.PrivateThread) {
 
-        await (channel as PrivateThreadChannel).setArchived(true, "Moderator Action from Ticket with Id " + uuid)
+        if (!data.TicketSetup.AutoCloseAction.includes("not_thread_close")) {
+            await (channel as ThreadChannel).setArchived(true, "Moderator Action from Ticket with Id " + ticketId)
+        }
 
     } else if (data.ChannelType == ChannelType.GuildCategory) {
 

@@ -78,7 +78,7 @@ export default {
 
         if (data.ChannelType == ChannelType.PrivateThread) {
 
-            await (interaction.channel as PrivateThreadChannel).setInvitable(false, "Moderator Action from Ticket with Id " + uuid)
+            await (interaction.channel as PrivateThreadChannel).setArchived(false, "Moderator Action from Ticket with Id " + uuid)
             await (interaction.channel as PrivateThreadChannel).setLocked(false, "Moderator Action from Ticket with Id " + uuid)
 
         } else if (data.ChannelType == ChannelType.GuildCategory) {

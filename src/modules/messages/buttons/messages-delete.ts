@@ -36,6 +36,7 @@ export default {
 
         if (!client.user) throw new Error("Client not Found");
         interaction.reply({
+            flags: MessageFlags.Ephemeral,
             content: `## ${await convertToEmojiPng("check", client.user?.id)} Message Template Deleted (ID:  
         ${interaction.customId.split(":")[1]})`,
         }).then(() => {
