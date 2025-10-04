@@ -24,26 +24,27 @@ export default {
         );
 
         const data = await database.guildWelcomeSetup.findFirst({
+            include: {
+                ImageData: true
+            },
             where: {
                 GuildId: interaction.guild?.id
             }
         });
 
-        await database.guildWelcomeSetup.update(
+        await database.welcomeImageData.update(
             {
                 where: {
-                    GuildId: interaction.guild?.id
+                    GuildWelcomeSetupId: interaction.guild?.id
                 },
                 data: {
-                    ImageData: {
-                        Background: background,
-                        Theme: theme,
-                        Gradient: color,
-                        Color: data?.ImageData?.Color,
-                        Title: data?.ImageData?.Title,
-                        Subtitle: data?.ImageData?.Subtitle,
-                        Text: data?.ImageData?.Text
-                    }
+                    Background: background,
+                    Theme: theme,
+                    Gradient: color,
+                    Color: data?.ImageData?.Color,
+                    Title: data?.ImageData?.Title,
+                    Subtitle: data?.ImageData?.Subtitle,
+                    Text: data?.ImageData?.Text
                 }
             }
         );

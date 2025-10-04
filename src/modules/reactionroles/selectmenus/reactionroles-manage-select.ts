@@ -22,6 +22,10 @@ export default {
             const guildId = interaction.guild?.id;
 
             const nextEmbed = await database.guildReactionRoles.findFirst({
+                include: {
+                    Button: true,
+                    SelectMenu: true
+                },
                 where: {
                     GuildId: guildId,
                     UUID: uuid

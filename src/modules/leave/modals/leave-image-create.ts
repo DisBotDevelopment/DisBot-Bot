@@ -38,21 +38,28 @@ export default {
                 },
                 data: {
                     Image: true,
-                    ImageData: {
-                        Title: interaction.fields.getTextInputValue(
-                            "leave-image-create-title"
-                        ),
-                        Subtitle: interaction.fields.getTextInputValue(
-                            "leave-image-create-subtitle"
-                        ),
-                        Text: interaction.fields.getTextInputValue("leave-image-create-text"),
-                        Color: interaction.fields.getTextInputValue(
-                            "leave-image-create-color"
-                        ),
-                        Gradient: "",
-                        Theme: "",
-                        Background: ""
-                    }
+                }
+            }
+        );
+        await database.leaveImageData.update(
+            {
+                where: {
+                    GuildLeaveSetupId: interaction.guild?.id
+                },
+                data: {
+                    Title: interaction.fields.getTextInputValue(
+                        "leave-image-create-title"
+                    ),
+                    Subtitle: interaction.fields.getTextInputValue(
+                        "leave-image-create-subtitle"
+                    ),
+                    Text: interaction.fields.getTextInputValue("leave-image-create-text"),
+                    Color: interaction.fields.getTextInputValue(
+                        "leave-image-create-color"
+                    ),
+                    Gradient: "",
+                    Theme: "",
+                    Background: ""
                 }
             }
         );

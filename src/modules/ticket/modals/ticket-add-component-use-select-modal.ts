@@ -2,13 +2,14 @@ import {
     ActionRow,
     ActionRowBuilder,
     AnyComponentBuilder,
-    ComponentType,
+    ComponentType, Message,
     MessageActionRowComponent, MessageFlags,
     ModalSubmitInteraction,
     StringSelectMenuBuilder, TextBasedChannel,
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {errorHandler} from "../../../helper/errorHelper.js";
 
 export default {
     id: "ticket-add-component-use-select-modal",
@@ -39,9 +40,31 @@ export default {
             "placeholder"
         );
 
-        const channel = await interaction.guild.channels.fetch(channelId) as TextBasedChannel
-        const message = await channel?.messages.fetch(messageId);
-        if (!message) throw new Error("Message not found!");
+        let channel: TextBasedChannel;
+        let message: Message
+        try {
+            channel = await interaction.guild.channels.fetch(channelId) as TextBasedChannel
+            message = await channel?.messages.fetch(messageId);
+            if (!message) {
+                const error = new Error("The Bot can't fetch the Message from your URL");
+                return await errorHandler(
+                    interaction,
+                    client,
+                    error,
+                    "Please check your Message Url",
+                    "The input of the message url can't be fetched!"
+                );
+            }
+        } catch (e) {
+            const error = new Error("Error while fetching message url");
+            return await errorHandler(
+                interaction,
+                client,
+                error,
+                "Please check your Message Url",
+                "The input of the message url can't be fetched!"
+            );
+        }
         const uuid = interaction.customId.split(":")[1];
 
         const newOption = {

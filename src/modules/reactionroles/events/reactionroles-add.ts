@@ -35,12 +35,6 @@ export default {
             return
         }
 
-        const addMessageData = await database.messageTemplates.findFirst({
-            where: {
-                Name: reactionroles.AddMessage ?? ""
-            }
-        });
-
         if (!reactionroles.Roles || !Array.isArray(reactionroles.Roles)) {
             throw new Error("Roles are not defined in the reaction role.");
         }

@@ -1,7 +1,14 @@
-import { GuildTextBasedChannel, MessageFlags, ModalSubmitInteraction, TextBasedChannel, TextChannel, TextInputStyle } from "discord.js";
-import { ExtendedClient } from "../../../types/client.js";
-import { convertToEmojiPng } from "../../../helper/emojis.js";
-import { database } from "../../../main/database.js";
+import {
+    GuildTextBasedChannel,
+    MessageFlags,
+    ModalSubmitInteraction,
+    TextBasedChannel,
+    TextChannel,
+    TextInputStyle
+} from "discord.js";
+import {ExtendedClient} from "../../../types/client.js";
+import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {database} from "../../../main/database.js";
 
 export default {
     id: "reactionroles-type-emoji-modal",
@@ -15,6 +22,10 @@ export default {
         const uuid = interaction.customId.split(":")[1];
 
         const reactData = await database.guildReactionRoles.findFirst({
+            include: {
+                SelectMenu: true,
+                Button: true,
+            },
             where: {
                 UUID: uuid
             }
@@ -37,14 +48,14 @@ export default {
         const reactMessage = (reactChannel as TextBasedChannel).messages.cache.get(reactData.MessageId)
 
         if (reactMessage.reactions.cache.has(interaction.fields.getTextInputValue(
-                        "reactionroles-types-emoji-emoji"
-                    ))) return interaction.reply({
-                        content: `## ${await convertToEmojiPng("error", client.user.id)} You can't use the same emoji again.`
-                    })
+            "reactionroles-types-emoji-emoji"
+        ))) return interaction.reply({
+            content: `## ${await convertToEmojiPng("error", client.user.id)} You can't use the same emoji again.`
+        })
 
         await database.guildReactionRoles.update(
             {
-                where: { UUID: uuid },
+                where: {UUID: uuid},
                 data: {
                     Emoji: interaction.fields.getTextInputValue(
                         "reactionroles-types-emoji-emoji"

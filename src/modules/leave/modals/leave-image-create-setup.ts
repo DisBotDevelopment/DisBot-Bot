@@ -24,26 +24,27 @@ export default {
         );
 
         const data = await database.guildLeaveSetup.findFirst({
+            include: {
+                ImageData: true
+            },
             where: {
                 GuildId: interaction.guild?.id
             }
         });
 
-        await database.guildLeaveSetup.update(
+        await database.leaveImageData.update(
             {
                 where: {
-                    GuildId: interaction.guild?.id
+                    GuildLeaveSetupId: interaction.guild?.id
                 },
                 data: {
-                    ImageData: {
-                        Background: background,
-                        Theme: theme,
-                        Gradient: color,
-                        Color: data?.ImageData?.Color,
-                        Title: data?.ImageData?.Title,
-                        Subtitle: data?.ImageData?.Subtitle,
-                        Text: data?.ImageData?.Text
-                    }
+                    Background: background,
+                    Theme: theme,
+                    Gradient: color,
+                    Color: data?.ImageData?.Color,
+                    Title: data?.ImageData?.Title,
+                    Subtitle: data?.ImageData?.Subtitle,
+                    Text: data?.ImageData?.Text
                 }
             }
         );

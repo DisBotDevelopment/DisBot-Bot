@@ -30,6 +30,8 @@ export default {
      */
     async execute(interaction: ChatInputCommandInteraction, client: ExtendedClient) {
 
+        await interaction.deferReply({flags: MessageFlags.Ephemeral})
+
         const channel = interaction.options.getChannel("channel");
 
         const data = await database.guildLeaveSetup.findFirst({
@@ -37,7 +39,7 @@ export default {
                 GuildId: interaction.guild.id
             }
         })
-        
+
         if (!data) {
             await database.guildLeaveSetup.create({
                 data: {
@@ -61,8 +63,7 @@ export default {
             }
         })
 
-        await interaction.reply({
-            flags: MessageFlags.Ephemeral,
+        await interaction.editReply({
             content: `## ${await convertToEmojiPng("check", client.user.id)} Set Channel ${channel} for your welcome module.`
         })
     },

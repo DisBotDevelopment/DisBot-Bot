@@ -31,7 +31,7 @@ export async function checkTwitch(client: ExtendedClient) {
             if (!channelData || channelData.length == 0) {
                 await database.guildTwitchNotifications.deleteMany({
                     where: {
-                        id: twitchDocument.id,
+                        Id: twitchDocument.Id,
                     }
                 })
                 continue;

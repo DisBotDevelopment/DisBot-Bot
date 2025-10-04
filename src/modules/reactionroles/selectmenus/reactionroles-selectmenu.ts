@@ -40,21 +40,28 @@ export default {
                 });
             }
 
-            const addMessageData = await database.messageTemplates.findFirst({
-                where: {Name: reactionroles.AddMessage}
-            });
+            let addMessageData;
+            let removeMessageData;
 
-            const removeMessageData = await database.messageTemplates.findFirst({
-                where: {
-                    Name: reactionroles.RemoveMessage
-                }
-            });
+            if (reactionroles.AddMessage)
+                addMessageData = await database.messageTemplates.findFirst({
+                    where: {
+                        Name: reactionroles.AddMessage
+                    }
+                });
+
+            if (reactionroles.RemoveMessage)
+                removeMessageData = await database.messageTemplates.findFirst({
+                    where: {
+                        Name: reactionroles.RemoveMessage
+                    }
+                });
 
             if (
                 Array.isArray(reactionroles.Roles) &&
                 reactionroles.Roles.length > 0
             ) {
-                reactionroles.Roles.forEach(async (role) => {
+                for (const role of reactionroles.Roles) {
                     const guildRole = interaction.guild?.roles.cache.get(role);
 
                     const allroles = reactionroles.Roles.map((r) => `<@&${r}>`);
@@ -152,7 +159,7 @@ export default {
                             } catch (error) {
                                 if (!client.user)
                                     throw new Error("Client user is not defined in cache.");
-                                return interaction.editReply({
+                                interaction.editReply({
                                     content: `## ${await convertToEmojiPng("error", client.user?.id)} OOps! I couldn't remove the role from you.`
                                 });
                             }
@@ -160,7 +167,7 @@ export default {
                             if (removeMessageData) {
                                 await interaction.deferReply({flags: MessageFlags.Ephemeral});
                                 await (interaction.message as Message).edit({});
-                                return interaction.editReply({
+                                interaction.editReply({
                                     ...removemessage
                                 });
                             } else {
@@ -172,14 +179,14 @@ export default {
                             } catch (error) {
                                 if (!client.user)
                                     throw new Error("Client user is not defined in cache.");
-                                return interaction.editReply({
+                                interaction.editReply({
                                     content: `## ${await convertToEmojiPng("error", client.user?.id)} OOps! I couldn't add the role to you.`
                                 });
                             }
 
                             if (addMessageData) {
                                 await (interaction.message as Message).edit({});
-                                return interaction.editReply({
+                                interaction.editReply({
                                     ...addmessage
                                 });
                             } else {
@@ -187,7 +194,7 @@ export default {
                             }
                         }
                     }
-                });
+                }
                 if (!addMessageData || !removeMessageData) {
                     interaction.deleteReply();
                 }

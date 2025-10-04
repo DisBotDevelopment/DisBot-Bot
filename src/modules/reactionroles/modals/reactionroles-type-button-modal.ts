@@ -34,6 +34,10 @@ export default {
         if (style == "Success") styleId = 3;
 
         const reactData = await database.guildReactionRoles.findFirst({
+            include: {
+                SelectMenu: true,
+                Button: true,
+            },
             where: {
                 UUID: uuid
             }
@@ -52,28 +56,32 @@ export default {
             });
         }
 
-        await database.guildReactionRoles.update(
+        await database.reactionRoleButton.update(
             {
-                where: {UUID: uuid},
+                where: {
+                    GuildReactionRoleId: uuid
+                },
                 data: {
-                    Button: {
-                        Label: interaction.fields.getTextInputValue(
+                    Label: interaction.fields.getTextInputValue(
+                        "reactionroles-type-button-label"
+                    )
+                        ? interaction.fields.getTextInputValue(
                             "reactionroles-type-button-label"
                         )
-                            ? interaction.fields.getTextInputValue(
-                                "reactionroles-type-button-label"
-                            )
-                            : null,
-                        Emoji: interaction.fields.getTextInputValue(
-                            "reactionroles-type-button-emoji"
-                        ),
-                        Type: styleId.toString(),
-                    }
+                        : null,
+                    Emoji: interaction.fields.getTextInputValue(
+                        "reactionroles-type-button-emoji"
+                    ),
+                    Type: styleId.toString(),
                 }
             }
         );
 
         const data = await database.guildReactionRoles.findFirst({
+            include: {
+                SelectMenu: true,
+                Button: true,
+            },
             where: {
                 UUID: uuid
             }

@@ -24,6 +24,10 @@ export default {
 
         // Fetch the reaction role data
         const reactData = await database.guildReactionRoles.findFirst({
+            include: {
+                SelectMenu: true,
+                Button: true,
+            },
             where: {
                 UUID: uuid
             }
@@ -49,24 +53,22 @@ export default {
             });
         }
 
-        await database.guildReactionRoles.update(
+        await database.reactionRoleSelectmenu.update(
             {
-                where: {UUID: uuid},
+                where: {GuildReactionRoleId: uuid},
                 data: {
-                    SelectMenu: {
-                        Emoji:
-                            interaction.fields.getTextInputValue(
-                                "reactionroles-type-select-emoji"
-                            ) ?? null,
-                        Label:
-                            interaction.fields.getTextInputValue(
-                                "reactionroles-type-select-label"
-                            ) ?? null,
-                        Description:
-                            interaction.fields.getTextInputValue(
-                                "reactionroles-type-select-description"
-                            ) ?? null
-                    }
+                    Emoji:
+                        interaction.fields.getTextInputValue(
+                            "reactionroles-type-select-emoji"
+                        ) ?? null,
+                    Label:
+                        interaction.fields.getTextInputValue(
+                            "reactionroles-type-select-label"
+                        ) ?? null,
+                    Description:
+                        interaction.fields.getTextInputValue(
+                            "reactionroles-type-select-description"
+                        ) ?? null
                 }
             }
         );

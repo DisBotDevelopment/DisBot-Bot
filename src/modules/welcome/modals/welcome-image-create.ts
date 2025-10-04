@@ -27,10 +27,34 @@ export default {
         });
 
         if (!data.ChannelId) return interaction.reply({
-            content: `## ${await  convertToEmojiPng("error", client.user.id)} There are no Channel set.`,
+            content: `## ${await convertToEmojiPng("error", client.user.id)} There are no Channel set.`,
             flags: MessageFlags.Ephemeral,
         })
-        
+
+        await database.welcomeImageData.update(
+            {
+                where: {
+                    GuildWelcomeSetupId: interaction.guild?.id
+                },
+                data: {
+                    Title: interaction.fields.getTextInputValue(
+                        "welcome-image-create-title"
+                    ),
+                    Subtitle: interaction.fields.getTextInputValue(
+                        "welcome-image-create-subtitle"
+                    ),
+                    Text: interaction.fields.getTextInputValue(
+                        "welcome-image-create-text"
+                    ),
+                    Color: interaction.fields.getTextInputValue(
+                        "welcome-image-create-color"
+                    ),
+                    Gradient: "",
+                    Theme: "",
+                    Background: ""
+                }
+            }
+        );
         await database.guildWelcomeSetup.update(
             {
                 where: {
@@ -38,23 +62,6 @@ export default {
                 },
                 data: {
                     Image: true,
-                    ImageData: {
-                        Title: interaction.fields.getTextInputValue(
-                            "welcome-image-create-title"
-                        ),
-                        Subtitle: interaction.fields.getTextInputValue(
-                            "welcome-image-create-subtitle"
-                        ),
-                        Text: interaction.fields.getTextInputValue(
-                            "welcome-image-create-text"
-                        ),
-                        Color: interaction.fields.getTextInputValue(
-                            "welcome-image-create-color"
-                        ),
-                        Gradient: "",
-                        Theme: "",
-                        Background: ""
-                    }
                 }
             }
         );

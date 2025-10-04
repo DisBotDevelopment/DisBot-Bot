@@ -22,6 +22,10 @@ export default {
         const uuid = interaction.customId.split(":")[1];
 
         const data = await database.guildReactionRoles.findFirst({
+            include: {
+                SelectMenu: true,
+                Button: true,
+            },
             where: {
                 UUID: uuid
             }

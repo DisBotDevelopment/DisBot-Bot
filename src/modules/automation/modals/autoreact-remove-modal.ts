@@ -33,7 +33,7 @@ export default {
 
         await database.guildAutoReacts.delete({
             where: {
-                id: data.id,
+                Id: data.Id,
                 GuildId: guild?.id,
                 ChannelId: channel,
                 Emoji: emoji,

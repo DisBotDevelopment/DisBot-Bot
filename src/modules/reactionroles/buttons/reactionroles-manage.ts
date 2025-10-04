@@ -29,6 +29,10 @@ export default {
         try {
             const allEmbeds = await database.guildReactionRoles
                 .findMany({
+                    include: {
+                        SelectMenu: true,
+                        Button: true,
+                    },
                     where: {
                         GuildId: guildId
                     }

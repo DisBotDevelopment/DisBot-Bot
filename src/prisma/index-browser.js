@@ -113,15 +113,22 @@ Prisma.NullTypes = {
  * Enums
  */
 
+exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
+  ReadUncommitted: 'ReadUncommitted',
+  ReadCommitted: 'ReadCommitted',
+  RepeatableRead: 'RepeatableRead',
+  Serializable: 'Serializable'
+});
+
 exports.Prisma.GuildsScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   GuildId: 'GuildId',
   GuildName: 'GuildName',
   GuildOwner: 'GuildOwner'
 };
 
 exports.Prisma.GuildCommandMangerScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   Commands: 'Commands',
   SubCommands: 'SubCommands',
   SubCommandGroups: 'SubCommandGroups',
@@ -130,7 +137,7 @@ exports.Prisma.GuildCommandMangerScalarFieldEnum = {
 };
 
 exports.Prisma.BuildInCommandsScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   CustomName: 'CustomName',
   Description: 'Description',
@@ -141,7 +148,7 @@ exports.Prisma.BuildInCommandsScalarFieldEnum = {
 };
 
 exports.Prisma.GuildComponentManagerScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   Selectmenus: 'Selectmenus',
   Buttons: 'Buttons',
   Modals: 'Modals',
@@ -149,7 +156,7 @@ exports.Prisma.GuildComponentManagerScalarFieldEnum = {
 };
 
 exports.Prisma.GuildInteractionPermissionsScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   RoleIds: 'RoleIds',
   UserIds: 'UserIds',
@@ -164,7 +171,7 @@ exports.Prisma.GuildInteractionPermissionsScalarFieldEnum = {
 };
 
 exports.Prisma.GuildAutoDeletesScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   ChannelId: 'ChannelId',
   IsActive: 'IsActive',
   Time: 'Time',
@@ -176,26 +183,26 @@ exports.Prisma.GuildAutoDeletesScalarFieldEnum = {
 };
 
 exports.Prisma.GuildAutoPublishScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   Channels: 'Channels',
   GuildId: 'GuildId'
 };
 
 exports.Prisma.GuildAutoReactsScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   ChannelId: 'ChannelId',
   Emoji: 'Emoji',
   GuildId: 'GuildId'
 };
 
 exports.Prisma.GuildAutoRolesScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   RoleId: 'RoleId',
   GuildId: 'GuildId'
 };
 
 exports.Prisma.ModerationScoutScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   PublicBanListUrl: 'PublicBanListUrl',
   AdminBanList: 'AdminBanList',
@@ -214,7 +221,7 @@ exports.Prisma.ModerationScoutScalarFieldEnum = {
 };
 
 exports.Prisma.ModerationScoutCasesScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   MessageId: 'MessageId',
   Channelid: 'Channelid',
@@ -225,14 +232,14 @@ exports.Prisma.ModerationScoutCasesScalarFieldEnum = {
 };
 
 exports.Prisma.ModerationScoutFormsScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   Sorting: 'Sorting',
   Actions: 'Actions'
 };
 
 exports.Prisma.ModerationScoutFormsDataScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   Type: 'Type',
   Label: 'Label',
@@ -242,7 +249,7 @@ exports.Prisma.ModerationScoutFormsDataScalarFieldEnum = {
 };
 
 exports.Prisma.ModerationScoutUserAppealsScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   Token: 'Token',
   UserId: 'UserId',
@@ -256,7 +263,7 @@ exports.Prisma.ModerationScoutUserAppealsScalarFieldEnum = {
 };
 
 exports.Prisma.ModerationScoutReportModalDataScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   Name: 'Name',
   Placeholder: 'Placeholder',
@@ -269,7 +276,7 @@ exports.Prisma.ModerationScoutReportModalDataScalarFieldEnum = {
 };
 
 exports.Prisma.ModerationScoutReportsScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   UserId: 'UserId',
   SusUserId: 'SusUserId',
@@ -280,12 +287,12 @@ exports.Prisma.ModerationScoutReportsScalarFieldEnum = {
 };
 
 exports.Prisma.GuildModerationScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   GuildId: 'GuildId'
 };
 
 exports.Prisma.GuildUserModerationSettingBanScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   DefaultReason: 'DefaultReason',
   AuditLogReason: 'AuditLogReason',
   Duration: 'Duration',
@@ -295,7 +302,7 @@ exports.Prisma.GuildUserModerationSettingBanScalarFieldEnum = {
 };
 
 exports.Prisma.GuildUserModerationSettingUnbanScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   DefaultReason: 'DefaultReason',
   AuditLogReason: 'AuditLogReason',
   NeedReason: 'NeedReason',
@@ -303,7 +310,7 @@ exports.Prisma.GuildUserModerationSettingUnbanScalarFieldEnum = {
 };
 
 exports.Prisma.GuildUserModerationSettinKickScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   DefaultReason: 'DefaultReason',
   AuditLogReason: 'AuditLogReason',
   NeedReason: 'NeedReason',
@@ -311,7 +318,7 @@ exports.Prisma.GuildUserModerationSettinKickScalarFieldEnum = {
 };
 
 exports.Prisma.GuildUserModerationSettingWarnScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   DefaultReason: 'DefaultReason',
   AuditLogReason: 'AuditLogReason',
   Duration: 'Duration',
@@ -322,7 +329,7 @@ exports.Prisma.GuildUserModerationSettingWarnScalarFieldEnum = {
 };
 
 exports.Prisma.GuildUserModerationSettingUnwarnScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   DefaultReason: 'DefaultReason',
   AuditLogReason: 'AuditLogReason',
   Actions: 'Actions',
@@ -331,7 +338,7 @@ exports.Prisma.GuildUserModerationSettingUnwarnScalarFieldEnum = {
 };
 
 exports.Prisma.GuildUserModerationSettingMuteScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   DefaultReason: 'DefaultReason',
   AuditLogReason: 'AuditLogReason',
   Duration: 'Duration',
@@ -343,7 +350,7 @@ exports.Prisma.GuildUserModerationSettingMuteScalarFieldEnum = {
 };
 
 exports.Prisma.GuildUserModerationSettingUnmuteScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   DefaultReason: 'DefaultReason',
   AuditLogReason: 'AuditLogReason',
   Actions: 'Actions',
@@ -352,7 +359,7 @@ exports.Prisma.GuildUserModerationSettingUnmuteScalarFieldEnum = {
 };
 
 exports.Prisma.GuildUserModerationScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   Duration: 'Duration',
   UserIds: 'UserIds',
@@ -367,12 +374,12 @@ exports.Prisma.GuildUserModerationScalarFieldEnum = {
 };
 
 exports.Prisma.GuildDisBotAutoModerationScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   GuildId: 'GuildId'
 };
 
 exports.Prisma.GuildDisBotAutoModerationMessagesScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   RegexPetterns: 'RegexPetterns',
   ExcludedChannels: 'ExcludedChannels',
@@ -383,7 +390,7 @@ exports.Prisma.GuildDisBotAutoModerationMessagesScalarFieldEnum = {
 };
 
 exports.Prisma.GuildDisBotAutoModerationMentionsScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   RegexPetterns: 'RegexPetterns',
   ExcludedChannels: 'ExcludedChannels',
@@ -394,7 +401,7 @@ exports.Prisma.GuildDisBotAutoModerationMentionsScalarFieldEnum = {
 };
 
 exports.Prisma.GuildDisBotAutoModerationAttachmentsScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   RegexPetterns: 'RegexPetterns',
   ExcludedChannels: 'ExcludedChannels',
@@ -405,7 +412,7 @@ exports.Prisma.GuildDisBotAutoModerationAttachmentsScalarFieldEnum = {
 };
 
 exports.Prisma.GuildDisBotAutoModerationEmojisScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   RegexPetterns: 'RegexPetterns',
   ExcludedChannels: 'ExcludedChannels',
@@ -416,7 +423,7 @@ exports.Prisma.GuildDisBotAutoModerationEmojisScalarFieldEnum = {
 };
 
 exports.Prisma.GuildDisBotAutoModerationBlockedWordsScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   RegexPetterns: 'RegexPetterns',
   ExcludedChannels: 'ExcludedChannels',
@@ -427,7 +434,7 @@ exports.Prisma.GuildDisBotAutoModerationBlockedWordsScalarFieldEnum = {
 };
 
 exports.Prisma.GuildDisBotAutoModerationBlockLinksScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   RegexPetterns: 'RegexPetterns',
   ExcludedChannels: 'ExcludedChannels',
@@ -439,7 +446,7 @@ exports.Prisma.GuildDisBotAutoModerationBlockLinksScalarFieldEnum = {
 };
 
 exports.Prisma.GuildDisBotAutoModerationBlockInvitesScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   RegexPetterns: 'RegexPetterns',
   ExcludedChannels: 'ExcludedChannels',
@@ -451,7 +458,7 @@ exports.Prisma.GuildDisBotAutoModerationBlockInvitesScalarFieldEnum = {
 };
 
 exports.Prisma.GuildChannelLinksScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   ChannelId: 'ChannelId',
   WebhookUrl: 'WebhookUrl',
@@ -462,7 +469,7 @@ exports.Prisma.GuildChannelLinksScalarFieldEnum = {
 };
 
 exports.Prisma.SyncedChannelLinkMessagesScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   GuildId: 'GuildId',
   UserMessageId: 'UserMessageId',
   WebhookMessageId: 'WebhookMessageId',
@@ -472,7 +479,7 @@ exports.Prisma.SyncedChannelLinkMessagesScalarFieldEnum = {
 };
 
 exports.Prisma.DiscordGuildAddonScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   OnlyMedia: 'OnlyMedia',
   NoLinkEmbeds: 'NoLinkEmbeds',
   InvitesPaused: 'InvitesPaused',
@@ -480,7 +487,7 @@ exports.Prisma.DiscordGuildAddonScalarFieldEnum = {
 };
 
 exports.Prisma.GiveawaysScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   MessageId: 'MessageId',
   ChannelId: 'ChannelId',
@@ -505,7 +512,7 @@ exports.Prisma.GiveawaysScalarFieldEnum = {
 };
 
 exports.Prisma.TempVoicesScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   Name: 'Name',
   JointoCreateChannel: 'JointoCreateChannel',
@@ -516,7 +523,7 @@ exports.Prisma.TempVoicesScalarFieldEnum = {
 };
 
 exports.Prisma.TempVoiceChannelsScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   GuildId: 'GuildId',
   ChannelId: 'ChannelId',
   OwnerId: 'OwnerId',
@@ -524,23 +531,47 @@ exports.Prisma.TempVoiceChannelsScalarFieldEnum = {
 };
 
 exports.Prisma.GuildLeaveSetupScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   MessageTemplateId: 'MessageTemplateId',
   ChannelId: 'ChannelId',
   Image: 'Image',
   GuildId: 'GuildId'
+};
+
+exports.Prisma.LeaveImageDataScalarFieldEnum = {
+  Id: 'Id',
+  Title: 'Title',
+  Text: 'Text',
+  Subtitle: 'Subtitle',
+  Background: 'Background',
+  Theme: 'Theme',
+  Color: 'Color',
+  Gradient: 'Gradient',
+  GuildLeaveSetupId: 'GuildLeaveSetupId'
 };
 
 exports.Prisma.GuildWelcomeSetupScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   MessageTemplateId: 'MessageTemplateId',
   ChannelId: 'ChannelId',
   Image: 'Image',
   GuildId: 'GuildId'
 };
 
+exports.Prisma.WelcomeImageDataScalarFieldEnum = {
+  Id: 'Id',
+  Title: 'Title',
+  Text: 'Text',
+  Subtitle: 'Subtitle',
+  Background: 'Background',
+  Theme: 'Theme',
+  Color: 'Color',
+  Gradient: 'Gradient',
+  GuildWelcomeSetupId: 'GuildWelcomeSetupId'
+};
+
 exports.Prisma.GuildLoggingScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   AutoMod: 'AutoMod',
   Channel: 'Channel',
   Emoji: 'Emoji',
@@ -566,7 +597,7 @@ exports.Prisma.GuildLoggingScalarFieldEnum = {
 };
 
 exports.Prisma.GuildLogsScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   Notes: 'Notes',
   LogMessage: 'LogMessage',
@@ -575,7 +606,7 @@ exports.Prisma.GuildLogsScalarFieldEnum = {
 };
 
 exports.Prisma.MessageTemplatesScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   Content: 'Content',
   EmbedJSON: 'EmbedJSON',
   OtherEmbeds: 'OtherEmbeds',
@@ -584,7 +615,7 @@ exports.Prisma.MessageTemplatesScalarFieldEnum = {
 };
 
 exports.Prisma.GuildReactionRolesScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   Roles: 'Roles',
   MessageId: 'MessageId',
@@ -595,15 +626,31 @@ exports.Prisma.GuildReactionRolesScalarFieldEnum = {
   GuildId: 'GuildId'
 };
 
+exports.Prisma.ReactionRoleSelectmenuScalarFieldEnum = {
+  Id: 'Id',
+  Emoji: 'Emoji',
+  Label: 'Label',
+  Description: 'Description',
+  GuildReactionRoleId: 'GuildReactionRoleId'
+};
+
+exports.Prisma.ReactionRoleButtonScalarFieldEnum = {
+  Id: 'Id',
+  Emoji: 'Emoji',
+  Type: 'Type',
+  Label: 'Label',
+  GuildReactionRoleId: 'GuildReactionRoleId'
+};
+
 exports.Prisma.GuildSecurityScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   InviteLoggingActive: 'InviteLoggingActive',
   MaxAccountAge: 'MaxAccountAge',
   GuildId: 'GuildId'
 };
 
 exports.Prisma.VerificationGatesScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   ChannelId: 'ChannelId',
   MessageId: 'MessageId',
@@ -617,25 +664,25 @@ exports.Prisma.VerificationGatesScalarFieldEnum = {
 };
 
 exports.Prisma.VerificationGatesPermissionScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   Permission: 'Permission',
   ChannelId: 'ChannelId',
   VerificationGateId: 'VerificationGateId'
 };
 
 exports.Prisma.GuildSpotifyNotificationsScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
+  UUID: 'UUID',
   ShowId: 'ShowId',
   ChannelId: 'ChannelId',
   Latests: 'Latests',
   MessageTemplateId: 'MessageTemplateId',
   PingRoles: 'PingRoles',
-  UUID: 'UUID',
   GuildId: 'GuildId'
 };
 
 exports.Prisma.TagsScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   TagId: 'TagId',
   TriggerKeywords: 'TriggerKeywords',
@@ -651,7 +698,7 @@ exports.Prisma.TagsScalarFieldEnum = {
 };
 
 exports.Prisma.PollsScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   MessageId: 'MessageId',
   ChannelId: 'ChannelId',
@@ -666,7 +713,7 @@ exports.Prisma.PollsScalarFieldEnum = {
 };
 
 exports.Prisma.PollOptionsScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   Label: 'Label',
   Description: 'Description',
@@ -676,14 +723,14 @@ exports.Prisma.PollOptionsScalarFieldEnum = {
 };
 
 exports.Prisma.PollAnswersScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   PollOptionId: 'PollOptionId',
   PollId: 'PollId'
 };
 
 exports.Prisma.TicketSetupsScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   CategoryId: 'CategoryId',
   ChannelType: 'ChannelType',
   CustomId: 'CustomId',
@@ -720,7 +767,7 @@ exports.Prisma.TicketSetupsScalarFieldEnum = {
 };
 
 exports.Prisma.TicketModalDataScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   Name: 'Name',
   Placeholder: 'Placeholder',
@@ -732,7 +779,7 @@ exports.Prisma.TicketModalDataScalarFieldEnum = {
 };
 
 exports.Prisma.TicketPermissionsScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   DiscordUserId: 'DiscordUserId',
   DiscordRoleId: 'DiscordRoleId',
@@ -745,7 +792,7 @@ exports.Prisma.TicketPermissionsScalarFieldEnum = {
 };
 
 exports.Prisma.TicketsScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   TicketId: 'TicketId',
   CreatedAt: 'CreatedAt',
   ClosedAt: 'ClosedAt',
@@ -781,7 +828,7 @@ exports.Prisma.TicketsScalarFieldEnum = {
 };
 
 exports.Prisma.TicketFeedbackScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   TicketId: 'TicketId',
   Rating: 'Rating',
   Comment: 'Comment',
@@ -790,7 +837,7 @@ exports.Prisma.TicketFeedbackScalarFieldEnum = {
 };
 
 exports.Prisma.GuildFeatureTogglesScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   LevelEnabled: 'LevelEnabled',
   WecomeEnabled: 'WecomeEnabled',
   LeaveEnabled: 'LeaveEnabled',
@@ -806,7 +853,7 @@ exports.Prisma.GuildFeatureTogglesScalarFieldEnum = {
 };
 
 exports.Prisma.GuildTwitchNotificationsScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   TwitchChannelName: 'TwitchChannelName',
   ChannelId: 'ChannelId',
@@ -817,7 +864,7 @@ exports.Prisma.GuildTwitchNotificationsScalarFieldEnum = {
 };
 
 exports.Prisma.GuildYoutubeNotificationsScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   YoutubeChannelId: 'YoutubeChannelId',
   ChannelId: 'ChannelId',
   Latest: 'Latest',
@@ -828,7 +875,7 @@ exports.Prisma.GuildYoutubeNotificationsScalarFieldEnum = {
 };
 
 exports.Prisma.LevelSettingsScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   LevelUpChannelId: 'LevelUpChannelId',
   LevelUoMessageTemplateId: 'LevelUoMessageTemplateId',
   LeaderboardMessageTemplateId: 'LeaderboardMessageTemplateId',
@@ -849,7 +896,7 @@ exports.Prisma.LevelSettingsScalarFieldEnum = {
 };
 
 exports.Prisma.XPDropsScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   GuildId: 'GuildId',
   XPRange: 'XPRange',
   ClaimType: 'ClaimType',
@@ -858,7 +905,7 @@ exports.Prisma.XPDropsScalarFieldEnum = {
 };
 
 exports.Prisma.XPStreaksScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   Days: 'Days',
   Nickname: 'Nickname',
   BonusLevels: 'BonusLevels',
@@ -871,7 +918,7 @@ exports.Prisma.XPStreaksScalarFieldEnum = {
 };
 
 exports.Prisma.LevelRolesScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   Level: 'Level',
   Multiplier: 'Multiplier',
   Type: 'Type',
@@ -880,7 +927,7 @@ exports.Prisma.LevelRolesScalarFieldEnum = {
 };
 
 exports.Prisma.LevelsScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   XP: 'XP',
   RequiredXp: 'RequiredXp',
   Level: 'Level',
@@ -889,7 +936,7 @@ exports.Prisma.LevelsScalarFieldEnum = {
 };
 
 exports.Prisma.UsersScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   Username: 'Username',
   UserId: 'UserId',
   Votes: 'Votes',
@@ -900,7 +947,7 @@ exports.Prisma.UsersScalarFieldEnum = {
 };
 
 exports.Prisma.ApisScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   Flags: 'Flags',
   AccessibleGuilds: 'AccessibleGuilds',
   Key: 'Key',
@@ -908,7 +955,7 @@ exports.Prisma.ApisScalarFieldEnum = {
 };
 
 exports.Prisma.GuildBackupsScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   BackupJSON: 'BackupJSON',
   CreatedAt: 'CreatedAt',
   UUID: 'UUID',
@@ -918,7 +965,7 @@ exports.Prisma.GuildBackupsScalarFieldEnum = {
 };
 
 exports.Prisma.VanitysScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   UUID: 'UUID',
   Slug: 'Slug',
   Host: 'Host',
@@ -931,7 +978,7 @@ exports.Prisma.VanitysScalarFieldEnum = {
 };
 
 exports.Prisma.VanityEmbedScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   Title: 'Title',
   Description: 'Description',
   Color: 'Color',
@@ -941,7 +988,7 @@ exports.Prisma.VanityEmbedScalarFieldEnum = {
 };
 
 exports.Prisma.VanityEmbedAuthorScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   Name: 'Name',
   URL: 'URL',
   IconURL: 'IconURL',
@@ -949,7 +996,7 @@ exports.Prisma.VanityEmbedAuthorScalarFieldEnum = {
 };
 
 exports.Prisma.VanityAnalyticScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   Click: 'Click',
   TrackInviteWithLog: 'TrackInviteWithLog',
   TrackMessageId: 'TrackMessageId',
@@ -961,7 +1008,7 @@ exports.Prisma.VanityAnalyticScalarFieldEnum = {
 };
 
 exports.Prisma.VanityAnalyticsLatest30DayScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
   Click: 'Click',
   UniqueClick: 'UniqueClick',
   Date: 'Date',
@@ -970,7 +1017,8 @@ exports.Prisma.VanityAnalyticsLatest30DayScalarFieldEnum = {
 };
 
 exports.Prisma.DisBotScalarFieldEnum = {
-  id: 'id',
+  Id: 'Id',
+  Logs: 'Logs',
   SpotifyToken: 'SpotifyToken',
   TwitchToken: 'TwitchToken',
   Version: 'Version',
@@ -982,9 +1030,29 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
+};
+
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 
 
@@ -1029,11 +1097,15 @@ exports.Prisma.ModelName = {
   TempVoices: 'TempVoices',
   TempVoiceChannels: 'TempVoiceChannels',
   GuildLeaveSetup: 'GuildLeaveSetup',
+  LeaveImageData: 'LeaveImageData',
   GuildWelcomeSetup: 'GuildWelcomeSetup',
+  WelcomeImageData: 'WelcomeImageData',
   GuildLogging: 'GuildLogging',
   GuildLogs: 'GuildLogs',
   MessageTemplates: 'MessageTemplates',
   GuildReactionRoles: 'GuildReactionRoles',
+  ReactionRoleSelectmenu: 'ReactionRoleSelectmenu',
+  ReactionRoleButton: 'ReactionRoleButton',
   GuildSecurity: 'GuildSecurity',
   VerificationGates: 'VerificationGates',
   VerificationGatesPermission: 'VerificationGatesPermission',

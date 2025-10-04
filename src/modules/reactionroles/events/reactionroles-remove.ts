@@ -48,21 +48,6 @@ export default {
         if (!reactionroles.Roles || !Array.isArray(reactionroles.Roles)) {
             throw new Error("Roles are not defined in the reaction role.");
         }
-        const allroles = reactionroles.Roles.map((r: any) => {
-            const role = guild.roles.cache.get(r);
-            return `${role?.name}`;
-        });
-
-        let addmessage: {
-            content: string;
-            embeds?: EmbedBuilder[];
-        };
-
-        let removemessage: {
-            content: string;
-            embeds?: EmbedBuilder[];
-        };
-
 
         if (Array.isArray(reactionroles.Roles) && reactionroles.Roles.length > 0) {
             for (const role of reactionroles?.Roles) {

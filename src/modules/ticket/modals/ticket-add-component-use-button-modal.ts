@@ -5,7 +5,7 @@ import {
     ButtonStyle,
     ChannelSelectMenuBuilder,
     ChannelType,
-    EmbedBuilder,
+    EmbedBuilder, Message,
     MessageActionRowComponent,
     MessageFlags,
     ModalSubmitInteraction,
@@ -15,6 +15,7 @@ import {ExtendedClient} from "../../../types/client.js";
 import {randomUUID} from "crypto";
 import {database} from "../../../main/database.js";
 import {convertToEmojiGif, convertToEmojiPng} from "../../../helper/emojis.js";
+import {errorHandler} from "../../../helper/errorHelper.js";
 
 export default {
     id: "ticket-add-component-use-button-modal",
@@ -41,8 +42,31 @@ export default {
         const style = interaction.fields.getTextInputValue(
             "style"
         );
-        const channel = await interaction.guild.channels.fetch(channelId) as TextBasedChannel
-        const message = await channel?.messages.fetch(messageId);
+        let channel: TextBasedChannel;
+        let message: Message
+        try {
+            channel = await interaction.guild.channels.fetch(channelId) as TextBasedChannel
+            message = await channel?.messages.fetch(messageId);
+            if (!message) {
+                const error = new Error("The Bot can't fetch the Message from your URL");
+                return await errorHandler(
+                    interaction,
+                    client,
+                    error,
+                    "Please check your Message Url",
+                    "The input of the message url can't be fetched!"
+                );
+            }
+        } catch (e) {
+            const error = new Error("Error while fetching message url");
+            return await errorHandler(
+                interaction,
+                client,
+                error,
+                "Please check your Message Url",
+                "The input of the message url can't be fetched!"
+            );
+        }
         const uuid = interaction.customId.split(":")[1];
 
         // Map styles

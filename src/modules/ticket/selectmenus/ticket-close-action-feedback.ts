@@ -68,7 +68,7 @@ export default {
 
             await database.ticketFeedback.update({
                 where: {
-                    id: feedback.id
+                    Id: feedback.Id
                 },
                 data: {
                     SubmittedAt: new Date(),

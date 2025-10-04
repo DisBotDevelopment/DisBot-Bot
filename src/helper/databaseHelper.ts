@@ -7,7 +7,9 @@ import {LoggingAction} from "../enums/loggingTypes.js";
 import colors from "colors"
 import {Guild, User} from "discord.js";
 import {Config} from "../main/config.js";
-import * as cluster from "node:cluster";
+import fs from "fs";
+import path from "path";
+import {PrismaClient} from "../prisma/index.js";
 
 colors.enable();
 
@@ -316,10 +318,6 @@ export async function initUsersToDatabase(client: ExtendedClient, user: User) {
     }
 }
 
-export async function migrateDataBase(client: ExtendedClient) {
-
-    let migrations = 0
-
-    Logger.info(`Loaded ${migrations} migrations for the Database`.magenta)
-
+export async function migrateDataBase(client?: ExtendedClient) {
+   
 }

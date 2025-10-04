@@ -302,7 +302,7 @@ export async function ticketHelper(
             const ticketTemplateMessage = await fetch("https://cdn.xyzhub.link/raw/VqvWD9.json?download=true")
             const ticketTemplateMessageData = await ticketTemplateMessage.json()
             messageData = {
-                id: "not-used",
+                Id: Number(Math.random() * 134324),
                 GuildId: guild.id,
                 Content: null,
                 EmbedJSON: JSON.stringify(ticketTemplateMessageData),

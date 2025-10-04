@@ -46,6 +46,10 @@ export default {
             const message = await channel.messages.fetch(messageURL.split("/")[6]);
 
             const data = await database.guildReactionRoles.findFirst({
+                include: {
+                    SelectMenu: true,
+                    Button: true,
+                },
                 where: {
                     GuildId: interaction.guild?.id,
                     UUID: interaction.customId.split(":")[1]
@@ -231,7 +235,7 @@ export default {
         }
 
         if (!client.user) throw new Error("Client user is not defined");
-        interaction.reply({
+        await interaction.reply({
             content: `## ${await convertToEmojiPng("check", client.user?.id)} The reaction role has been added to the message.`,
             flags: MessageFlags.Ephemeral
         });

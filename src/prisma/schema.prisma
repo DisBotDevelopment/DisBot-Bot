@@ -5,13 +5,13 @@ generator client {
 }
 
 datasource db {
-  provider = "mongodb"
-  url      = env("MONGODBURL")
+  provider = "postgresql"
+  url      = env("POSTGRESQL")
 }
 
 // Guilds
 model Guilds {
-  id                          String                        @id @default(auto()) @map("_id") @db.ObjectId
+  Id                          Int                           @id @default(autoincrement())
   GuildId                     String                        @unique
   GuildName                   String
   GuildOwner                  String
@@ -48,7 +48,7 @@ model Guilds {
 }
 
 model GuildCommandManger {
-  id               String            @id @default(auto()) @map("_id") @db.ObjectId
+  Id               Int               @id @default(autoincrement())
   Commands         Json[] // SOON
   SubCommands      Json[] // SOON
   SubCommandGroups Json[] // SOON
@@ -59,7 +59,7 @@ model GuildCommandManger {
 }
 
 model BuildInCommands {
-  id                   String             @id @default(auto()) @map("_id") @db.ObjectId
+  Id                   Int                @id @default(autoincrement())
   UUID                 String             @unique
   CustomName           String
   Description          String?
@@ -71,7 +71,7 @@ model BuildInCommands {
 }
 
 model GuildComponentManager {
-  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  Id          Int    @id @default(autoincrement())
   Selectmenus Json[] // SOON
   Buttons     Json[] // SOON
   Modals      Json[] // SOON
@@ -80,7 +80,7 @@ model GuildComponentManager {
 }
 
 model GuildInteractionPermissions {
-  id                            String   @id @default(auto()) @map("_id") @db.ObjectId
+  Id                            Int      @id @default(autoincrement())
   UUID                          String   @unique
   RoleIds                       String[]
   UserIds                       String[]
@@ -96,7 +96,7 @@ model GuildInteractionPermissions {
 }
 
 model GuildAutoDeletes {
-  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
+  Id                  Int      @id @default(autoincrement())
   ChannelId           String?
   IsActive            Boolean?
   Time                String?
@@ -109,14 +109,14 @@ model GuildAutoDeletes {
 }
 
 model GuildAutoPublish {
-  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  Id       Int      @id @default(autoincrement())
   Channels String[]
   GuildId  String   @unique
   Guilds   Guilds   @relation(fields: [GuildId], references: [GuildId])
 }
 
 model GuildAutoReacts {
-  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  Id        Int    @id @default(autoincrement())
   ChannelId String
   Emoji     String
   GuildId   String
@@ -124,14 +124,14 @@ model GuildAutoReacts {
 }
 
 model GuildAutoRoles {
-  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  Id      Int    @id @default(autoincrement())
   RoleId  String
   GuildId String
   Guilds  Guilds @relation(fields: [GuildId], references: [GuildId])
 }
 
 model ModerationScout {
-  id                             String                           @id @default(auto()) @map("_id") @db.ObjectId
+  Id                             Int                              @id @default(autoincrement())
   UUID                           String                           @unique
   PublicBanListUrl               String?                          @default("https://api.disbot.app/v2/banList")
   AdminBanList                   Json // Only for the Guild set in the Config
@@ -159,7 +159,7 @@ model ModerationScout {
 
 // TODO: NOT DONE!
 model ModerationScoutCases {
-  id                  String                @id @default(auto()) @map("_id") @db.ObjectId
+  Id                  Int                   @id @default(autoincrement())
   UUID                String                @unique
   MessageId           String
   Channelid           String
@@ -173,7 +173,7 @@ model ModerationScoutCases {
 
 // Appeals
 model ModerationScoutForms {
-  id                         String                       @id @default(auto()) @map("_id") @db.ObjectId
+  Id                         Int                          @id @default(autoincrement())
   UUID                       String                       @unique
   Sorting                    String[]
   Actions                    String[] // Format: action:<optionalData> | Open Ticket, Send Message, Send DM, UNBAN (to make tickets required*), Resolve DM
@@ -184,7 +184,7 @@ model ModerationScoutForms {
 
 // Appeals
 model ModerationScoutFormsData {
-  id                   String               @id @default(auto()) @map("_id") @db.ObjectId
+  Id                   Int                  @id @default(autoincrement())
   UUID                 String               @unique
   Type                 String // DropDown, CheckBox, Short Text, Long Text, Spacing, ReadOnly
   Label                String
@@ -196,7 +196,7 @@ model ModerationScoutFormsData {
 
 // Appeals
 model ModerationScoutUserAppeals {
-  id                    String               @id @default(auto()) @map("_id") @db.ObjectId
+  Id                    Int                  @id @default(autoincrement())
   UUID                  String               @unique
   Token                 String
   UserId                String
@@ -213,7 +213,7 @@ model ModerationScoutUserAppeals {
 
 // Reports
 model ModerationScoutReportModalData {
-  id                String          @id @default(auto()) @map("_id") @db.ObjectId
+  Id                Int             @id @default(autoincrement())
   UUID              String          @unique
   Name              String
   Placeholder       String?
@@ -228,7 +228,7 @@ model ModerationScoutReportModalData {
 
 // Reports
 model ModerationScoutReports {
-  id                       String          @id @default(auto()) @map("_id") @db.ObjectId
+  Id                       Int             @id @default(autoincrement())
   UUID                     String          @unique
   UserId                   String
   SusUserId                String
@@ -241,7 +241,7 @@ model ModerationScoutReports {
 
 // Soon Implemented!
 model GuildModeration {
-  id                               String                            @id @default(auto()) @map("_id") @db.ObjectId
+  Id                               Int                               @id @default(autoincrement())
   GuildUserModerationSettingWarn   GuildUserModerationSettingWarn?
   GuildUserModerationSettingUnwarn GuildUserModerationSettingUnwarn?
   GuildUserModerationSettingBan    GuildUserModerationSettingBan?
@@ -254,7 +254,7 @@ model GuildModeration {
 }
 
 model GuildUserModerationSettingBan {
-  id                           String          @id @default(auto()) @map("_id") @db.ObjectId
+  Id                           Int             @id @default(autoincrement())
   DefaultReason                String
   AuditLogReason               String
   Duration                     Int
@@ -265,7 +265,7 @@ model GuildUserModerationSettingBan {
 }
 
 model GuildUserModerationSettingUnban {
-  id                           String          @id @default(auto()) @map("_id") @db.ObjectId
+  Id                           Int             @id @default(autoincrement())
   DefaultReason                String
   AuditLogReason               String
   NeedReason                   Boolean
@@ -274,7 +274,7 @@ model GuildUserModerationSettingUnban {
 }
 
 model GuildUserModerationSettinKick {
-  id                           String          @id @default(auto()) @map("_id") @db.ObjectId
+  Id                           Int             @id @default(autoincrement())
   DefaultReason                String
   AuditLogReason               String
   NeedReason                   Boolean
@@ -283,7 +283,7 @@ model GuildUserModerationSettinKick {
 }
 
 model GuildUserModerationSettingWarn {
-  id                           String          @id @default(auto()) @map("_id") @db.ObjectId
+  Id                           Int             @id @default(autoincrement())
   DefaultReason                String
   AuditLogReason               String
   Duration                     Int
@@ -295,7 +295,7 @@ model GuildUserModerationSettingWarn {
 }
 
 model GuildUserModerationSettingUnwarn {
-  id                           String          @id @default(auto()) @map("_id") @db.ObjectId
+  Id                           Int             @id @default(autoincrement())
   DefaultReason                String
   AuditLogReason               String
   Actions                      Json[]
@@ -305,7 +305,7 @@ model GuildUserModerationSettingUnwarn {
 }
 
 model GuildUserModerationSettingMute {
-  id                           String          @id @default(auto()) @map("_id") @db.ObjectId
+  Id                           Int             @id @default(autoincrement())
   DefaultReason                String
   AuditLogReason               String
   Duration                     Int
@@ -318,7 +318,7 @@ model GuildUserModerationSettingMute {
 }
 
 model GuildUserModerationSettingUnmute {
-  id                           String          @id @default(auto()) @map("_id") @db.ObjectId
+  Id                           Int             @id @default(autoincrement())
   DefaultReason                String
   AuditLogReason               String
   Actions                      Json
@@ -328,7 +328,7 @@ model GuildUserModerationSettingUnmute {
 }
 
 model GuildUserModeration {
-  id                   String               @id @default(auto()) @map("_id") @db.ObjectId
+  Id                   Int                  @id @default(autoincrement())
   UUID                 String               @unique
   Duration             String?
   UserIds              String[]
@@ -346,7 +346,7 @@ model GuildUserModeration {
 
 // UPDATE SOON - move to /moderation automod - Options Disocrd(Recommended!!!) DisBot
 model GuildDisBotAutoModeration {
-  id             String                                  @id @default(auto()) @map("_id") @db.ObjectId
+  Id             Int                                     @id @default(autoincrement())
   MessageSpam    GuildDisBotAutoModerationMessages[]
   MentionSpam    GuildDisBotAutoModerationMentions[]
   AttachmentSpam GuildDisBotAutoModerationAttachments[]
@@ -359,7 +359,7 @@ model GuildDisBotAutoModeration {
 }
 
 model GuildDisBotAutoModerationMessages {
-  id                          String                    @id @default(auto()) @map("_id") @db.ObjectId
+  Id                          Int                       @id @default(autoincrement())
   UUID                        String                    @unique
   RegexPetterns               String[]
   ExcludedChannels            String[]
@@ -371,7 +371,7 @@ model GuildDisBotAutoModerationMessages {
 }
 
 model GuildDisBotAutoModerationMentions {
-  id                          String                    @id @default(auto()) @map("_id") @db.ObjectId
+  Id                          Int                       @id @default(autoincrement())
   UUID                        String                    @unique
   RegexPetterns               String[]
   ExcludedChannels            String[]
@@ -383,7 +383,7 @@ model GuildDisBotAutoModerationMentions {
 }
 
 model GuildDisBotAutoModerationAttachments {
-  id                          String                    @id @default(auto()) @map("_id") @db.ObjectId
+  Id                          Int                       @id @default(autoincrement())
   UUID                        String                    @unique
   RegexPetterns               String[]
   ExcludedChannels            String[]
@@ -395,7 +395,7 @@ model GuildDisBotAutoModerationAttachments {
 }
 
 model GuildDisBotAutoModerationEmojis {
-  id                          String                    @id @default(auto()) @map("_id") @db.ObjectId
+  Id                          Int                       @id @default(autoincrement())
   UUID                        String                    @unique
   RegexPetterns               String[]
   ExcludedChannels            String[]
@@ -407,7 +407,7 @@ model GuildDisBotAutoModerationEmojis {
 }
 
 model GuildDisBotAutoModerationBlockedWords {
-  id                          String                    @id @default(auto()) @map("_id") @db.ObjectId
+  Id                          Int                       @id @default(autoincrement())
   UUID                        String                    @unique
   RegexPetterns               String[]
   ExcludedChannels            String[]
@@ -419,7 +419,7 @@ model GuildDisBotAutoModerationBlockedWords {
 }
 
 model GuildDisBotAutoModerationBlockLinks {
-  id                          String                    @id @default(auto()) @map("_id") @db.ObjectId
+  Id                          Int                       @id @default(autoincrement())
   UUID                        String                    @unique
   RegexPetterns               String[]
   ExcludedChannels            String[]
@@ -432,7 +432,7 @@ model GuildDisBotAutoModerationBlockLinks {
 }
 
 model GuildDisBotAutoModerationBlockInvites {
-  id                          String                    @id @default(auto()) @map("_id") @db.ObjectId
+  Id                          Int                       @id @default(autoincrement())
   UUID                        String                    @unique
   RegexPetterns               String[]
   ExcludedChannels            String[]
@@ -445,7 +445,7 @@ model GuildDisBotAutoModerationBlockInvites {
 }
 
 model GuildChannelLinks {
-  id                       String                      @id @default(auto()) @map("_id") @db.ObjectId
+  Id                       Int                         @id @default(autoincrement())
   UUID                     String                      @unique
   ChannelId                String                      @unique
   WebhookUrl               String                      @unique
@@ -458,7 +458,7 @@ model GuildChannelLinks {
 }
 
 model SyncedChannelLinkMessages {
-  id               String            @id @default(auto()) @map("_id") @db.ObjectId
+  Id               Int               @id @default(autoincrement())
   GuildId          String
   UserMessageId    String
   WebhookMessageId String
@@ -470,7 +470,7 @@ model SyncedChannelLinkMessages {
 
 // UPDATE SOON
 model DiscordGuildAddon {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  Id            Int      @id @default(autoincrement())
   OnlyMedia     String[]
   NoLinkEmbeds  String[]
   InvitesPaused Boolean
@@ -480,7 +480,7 @@ model DiscordGuildAddon {
 
 // UPDATE SOON
 model Giveaways {
-  id                    String    @id @default(auto()) @map("_id") @db.ObjectId
+  Id                    Int       @id @default(autoincrement())
   UUID                  String    @unique
   MessageId             String    @unique
   ChannelId             String?
@@ -507,7 +507,7 @@ model Giveaways {
 
 // UPDATE SOON
 model TempVoices {
-  id                   String              @id @default(auto()) @map("_id") @db.ObjectId
+  Id                   Int                 @id @default(autoincrement())
   UUID                 String              @unique
   Name                 String?
   JointoCreateChannel  String
@@ -521,7 +521,7 @@ model TempVoices {
 
 // UPDATE SOON
 model TempVoiceChannels {
-  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  Id          Int        @id @default(autoincrement())
   GuildId     String
   ChannelId   String     @unique
   OwnerId     String     @unique
@@ -531,38 +531,54 @@ model TempVoiceChannels {
 
 // UPDATE SOON
 model GuildLeaveSetup {
-  id                String                 @id @default(auto()) @map("_id") @db.ObjectId
+  Id                Int             @id @default(autoincrement())
   MessageTemplateId String?
-  ChannelId         String                 @unique
+  ChannelId         String          @unique
   Image             Boolean?
-  ImageData         WelcomeLeaveImageData?
-  GuildId           String                 @unique
-  Guilds            Guilds                 @relation(fields: [GuildId], references: [GuildId])
+  ImageData         LeaveImageData?
+  GuildId           String          @unique
+  Guilds            Guilds          @relation(fields: [GuildId], references: [GuildId])
+}
+
+model LeaveImageData {
+  Id                Int             @id @default(autoincrement())
+  Title             String
+  Text              String
+  Subtitle          String
+  Background        String
+  Theme             String
+  Color             String
+  Gradient          String
+  GuildLeaveSetupId String          @unique
+  GuildLeaveSetup   GuildLeaveSetup @relation(fields: [GuildLeaveSetupId], references: [GuildId])
 }
 
 // UPDATE SOON
 model GuildWelcomeSetup {
-  id                String                 @id @default(auto()) @map("_id") @db.ObjectId
+  Id                Int               @id @default(autoincrement())
   MessageTemplateId String?
   ChannelId         String
   Image             Boolean
-  ImageData         WelcomeLeaveImageData?
-  GuildId           String                 @unique
-  Guilds            Guilds                 @relation(fields: [GuildId], references: [GuildId])
+  ImageData         WelcomeImageData?
+  GuildId           String            @unique
+  Guilds            Guilds            @relation(fields: [GuildId], references: [GuildId])
 }
 
-type WelcomeLeaveImageData {
-  Title      String
-  Text       String
-  Subtitle   String
-  Background String
-  Theme      String
-  Color      String
-  Gradient   String
+model WelcomeImageData {
+  Id                  Int               @id @default(autoincrement())
+  Title               String
+  Text                String
+  Subtitle            String
+  Background          String
+  Theme               String
+  Color               String
+  Gradient            String
+  GuildWelcomeSetupId String            @unique
+  GuildWelcomeSetup   GuildWelcomeSetup @relation(fields: [GuildWelcomeSetupId], references: [GuildId])
 }
 
 model GuildLogging {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  Id          Int     @id @default(autoincrement())
   AutoMod     String?
   Channel     String?
   Emoji       String?
@@ -589,7 +605,7 @@ model GuildLogging {
 }
 
 model GuildLogs {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  Id         Int      @id @default(autoincrement())
   UUID       String   @unique
   Notes      String[]
   LogMessage String
@@ -599,7 +615,7 @@ model GuildLogs {
 }
 
 model MessageTemplates {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  Id          Int      @id @default(autoincrement())
   Content     String?
   EmbedJSON   String?
   OtherEmbeds String[]
@@ -609,7 +625,7 @@ model MessageTemplates {
 }
 
 model GuildReactionRoles {
-  id            String                  @id @default(auto()) @map("_id") @db.ObjectId
+  Id            Int                     @id @default(autoincrement())
   UUID          String                  @unique
   Roles         String[]
   MessageId     String?
@@ -623,20 +639,26 @@ model GuildReactionRoles {
   Guilds        Guilds                  @relation(fields: [GuildId], references: [GuildId])
 }
 
-type ReactionRoleSelectmenu {
-  Emoji       String
-  Label       String
-  Description String
+model ReactionRoleSelectmenu {
+  Id                  Int                @id @default(autoincrement())
+  Emoji               String?
+  Label               String?
+  Description         String?
+  GuildReactionRoleId String             @unique
+  GuildReactionRoles  GuildReactionRoles @relation(fields: [GuildReactionRoleId], references: [UUID])
 }
 
-type ReactionRoleButton {
-  Emoji String
-  Type  String
-  Label String
+model ReactionRoleButton {
+  Id                  Int                @id @default(autoincrement())
+  Emoji               String?
+  Type                String?
+  Label               String?
+  GuildReactionRoleId String             @unique
+  GuildReactionRoles  GuildReactionRoles @relation(fields: [GuildReactionRoleId], references: [UUID])
 }
 
 model GuildSecurity {
-  id                  String              @id @default(auto()) @map("_id") @db.ObjectId
+  Id                  Int                 @id @default(autoincrement())
   InviteLoggingActive String?
   MaxAccountAge       Int?
   VerificationGates   VerificationGates[]
@@ -645,7 +667,7 @@ model GuildSecurity {
 }
 
 model VerificationGates {
-  id                 String                        @id @default(auto()) @map("_id") @db.ObjectId
+  Id                 Int                           @id @default(autoincrement())
   UUID               String                        @unique
   ChannelId          String
   MessageId          String
@@ -661,7 +683,7 @@ model VerificationGates {
 }
 
 model VerificationGatesPermission {
-  id                 String            @id @default(auto()) @map("_id") @db.ObjectId
+  Id                 Int               @id @default(autoincrement())
   Permission         String[]
   ChannelId          String
   VerificationGateId String
@@ -669,20 +691,20 @@ model VerificationGatesPermission {
 }
 
 model GuildSpotifyNotifications {
-  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  Id                Int      @id @default(autoincrement())
+  UUID              String   @unique
   ShowId            String
   ChannelId         String
   Latests           String[]
   MessageTemplateId String
   PingRoles         String[]
-  UUID              String   @unique
   GuildId           String
   Guilds            Guilds   @relation(fields: [GuildId], references: [GuildId])
 }
 
 // UPDATE SOON -  and modal name update....
 model Tags {
-  id                     String   @id @default(auto()) @map("_id") @db.ObjectId
+  Id                     Int      @id @default(autoincrement())
   UUID                   String   @unique
   TagId                  String   @unique
   TriggerKeywords        String[] // SOON && NEW
@@ -699,7 +721,7 @@ model Tags {
 }
 
 model Polls {
-  id                String        @id @default(auto()) @map("_id") @db.ObjectId
+  Id                Int           @id @default(autoincrement())
   UUID              String        @unique
   MessageId         String?
   ChannelId         String?
@@ -717,7 +739,7 @@ model Polls {
 }
 
 model PollOptions {
-  id          String        @id @default(auto()) @map("_id") @db.ObjectId
+  Id          Int           @id @default(autoincrement())
   UUID        String        @unique
   Label       String
   Description String
@@ -729,7 +751,7 @@ model PollOptions {
 }
 
 model PollAnswers {
-  id           String      @id @default(auto()) @map("_id") @db.ObjectId
+  Id           Int         @id @default(autoincrement())
   UUID         String      @unique
   PollOptionId String
   PollOptions  PollOptions @relation(fields: [PollOptionId], references: [UUID])
@@ -738,7 +760,7 @@ model PollAnswers {
 }
 
 model TicketSetups {
-  id                               String              @id @default(auto()) @map("_id") @db.ObjectId
+  Id                               Int                 @id @default(autoincrement())
   CategoryId                       String?
   ChannelType                      Int?
   TicketPermissions                TicketPermissions[]
@@ -784,7 +806,7 @@ model TicketSetups {
 }
 
 model TicketModalData {
-  id            String       @id @default(auto()) @map("_id") @db.ObjectId
+  Id            Int          @id @default(autoincrement())
   UUID          String       @unique
   Name          String
   Placeholder   String?
@@ -797,7 +819,7 @@ model TicketModalData {
 }
 
 model TicketPermissions {
-  id                        String       @id @default(auto()) @map("_id") @db.ObjectId
+  Id                        Int          @id @default(autoincrement())
   UUID                      String       @unique
   DiscordUserId             String?
   DiscordRoleId             String?
@@ -811,7 +833,7 @@ model TicketPermissions {
 }
 
 model Tickets {
-  id                               String          @id @default(auto()) @map("_id") @db.ObjectId
+  Id                               Int             @id @default(autoincrement())
   TicketId                         String          @unique
   CreatedAt                        DateTime
   ClosedAt                         DateTime?
@@ -849,7 +871,7 @@ model Tickets {
 }
 
 model TicketFeedback {
-  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  Id          Int       @id @default(autoincrement())
   TicketId    String    @unique
   Rating      Int? // 1–5 
   Comment     String?
@@ -859,7 +881,7 @@ model TicketFeedback {
 }
 
 model GuildFeatureToggles {
-  id                 String  @id @default(auto()) @map("_id") @db.ObjectId
+  Id                 Int     @id @default(autoincrement())
   LevelEnabled       Boolean @default(false)
   WecomeEnabled      Boolean @default(false)
   LeaveEnabled       Boolean @default(false)
@@ -876,7 +898,7 @@ model GuildFeatureToggles {
 }
 
 model GuildTwitchNotifications {
-  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  Id                Int      @id @default(autoincrement())
   UUID              String   @unique
   TwitchChannelName String
   ChannelId         String
@@ -888,7 +910,7 @@ model GuildTwitchNotifications {
 }
 
 model GuildYoutubeNotifications {
-  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  Id                Int      @id @default(autoincrement())
   YoutubeChannelId  String
   ChannelId         String
   Latest            String[]
@@ -900,7 +922,7 @@ model GuildYoutubeNotifications {
 }
 
 model LevelSettings {
-  id                           String @id @default(auto()) @map("_id") @db.ObjectId
+  Id                           Int    @id @default(autoincrement())
   LevelUpChannelId             String
   LevelUoMessageTemplateId     String
   LeaderboardMessageTemplateId String
@@ -932,7 +954,7 @@ model LevelSettings {
 }
 
 model XPDrops {
-  id            String        @id @default(auto()) @map("_id") @db.ObjectId
+  Id            Int           @id @default(autoincrement())
   GuildId       String
   XPRange       String
   ClaimType     Int
@@ -942,7 +964,7 @@ model XPDrops {
 }
 
 model XPStreaks {
-  id                String        @id @default(auto()) @map("_id") @db.ObjectId
+  Id                Int           @id @default(autoincrement())
   Days              Int
   Nickname          String
   BonusLevels       Int
@@ -956,7 +978,7 @@ model XPStreaks {
 }
 
 model LevelRoles {
-  id            String        @id @default(auto()) @map("_id") @db.ObjectId
+  Id            Int           @id @default(autoincrement())
   Level         Int
   Multiplier    Int
   Type          String // Add Role By LevelUp, Remove Role by LevelUp, 
@@ -966,7 +988,7 @@ model LevelRoles {
 }
 
 model Levels {
-  id            String        @id @default(auto()) @map("_id") @db.ObjectId
+  Id            Int           @id @default(autoincrement())
   XP            Int
   RequiredXp    Int
   Level         Int
@@ -978,7 +1000,7 @@ model Levels {
 
 // Users
 model Users {
-  id           String         @id @default(auto()) @map("_id") @db.ObjectId
+  Id           Int            @id @default(autoincrement())
   Username     String
   UserId       String         @unique
   Apis         Apis[]
@@ -994,7 +1016,7 @@ model Users {
 }
 
 model Apis {
-  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  Id               Int      @id @default(autoincrement())
   Flags            String[]
   AccessibleGuilds String[]
   Key              String   @unique
@@ -1004,7 +1026,7 @@ model Apis {
 
 // UPDATE SOON
 model GuildBackups {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  Id         Int      @id @default(autoincrement())
   BackupJSON Json
   CreatedAt  DateTime
   UUID       String   @unique
@@ -1015,7 +1037,7 @@ model GuildBackups {
 }
 
 model Vanitys {
-  id                   String          @id @default(auto()) @map("_id") @db.ObjectId
+  Id                   Int             @id @default(autoincrement())
   UUID                 String          @unique
   Slug                 String          @unique
   Host                 String
@@ -1031,7 +1053,7 @@ model Vanitys {
 }
 
 model VanityEmbed {
-  id           String             @id @default(auto()) @map("_id") @db.ObjectId
+  Id           Int                @id @default(autoincrement())
   Title        String
   Description  String
   Color        String
@@ -1043,7 +1065,7 @@ model VanityEmbed {
 }
 
 model VanityEmbedAuthor {
-  id             String      @id @default(auto()) @map("_id") @db.ObjectId
+  Id             Int         @id @default(autoincrement())
   Name           String?
   URL            String?
   IconURL        String?
@@ -1052,7 +1074,7 @@ model VanityEmbedAuthor {
 }
 
 model VanityAnalytic {
-  id                 String                      @id @default(auto()) @map("_id") @db.ObjectId
+  Id                 Int                         @id @default(autoincrement())
   Click              Int
   TrackInviteWithLog String?
   TrackMessageId     String?
@@ -1066,7 +1088,7 @@ model VanityAnalytic {
 }
 
 model VanityAnalyticsLatest30Day {
-  id                String         @id @default(auto()) @map("_id") @db.ObjectId
+  Id                Int            @id @default(autoincrement())
   Click             Int?
   UniqueClick       Int?
   Date              DateTime?
@@ -1077,24 +1099,10 @@ model VanityAnalyticsLatest30Day {
 
 // DisBot
 model DisBot {
-  id           String        @id @default(auto()) @map("_id") @db.ObjectId
-  Logs         DisbotsLogs[]
+  Id           Int    @id @default(autoincrement())
+  Logs         Json[] // Change
   SpotifyToken String
   TwitchToken  String
   Version      String
-  GetConf      String        @unique
-}
-
-type DisbotsLogs {
-  Action    String
-  BotType   String
-  ChannelId String
-  GuildId   String
-  Label     String
-  Level     String
-  Message   String
-  MessageId String
-  Timestamp String
-  UUID      String
-  UserId    String
+  GetConf      String @unique
 }

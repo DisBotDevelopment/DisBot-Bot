@@ -2,7 +2,7 @@ import {ChatInputCommandInteraction, EmbedBuilder, Events, GuildMember, MessageF
 import {inviteTracker} from "../../../systems/inviteTracker/inviteTracker.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
-import {ticketHelper, ticketModalHelper} from "../../../helper/ticketHelper.js";
+import {ticketErrorMessage, ticketHelper, ticketModalHelper} from "../../../helper/ticketHelper.js";
 import {convertToEmojiPng} from "../../../helper/emojis.js";
 import {cli} from "winston/lib/winston/config/index.js";
 
@@ -26,6 +26,7 @@ export default {
                 }
             })
             if (!data) {
+                return await ticketErrorMessage("No Data!", interaction, client)
             } else {
 
                 if (data.HasModal) {

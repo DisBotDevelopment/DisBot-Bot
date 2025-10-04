@@ -33,7 +33,7 @@ export default {
             } else {
                 await database.guildAutoRoles.delete({
                     where: {
-                        id: data.id
+                        Id: data.Id
                     }
                 })
             }

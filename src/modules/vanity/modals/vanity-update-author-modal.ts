@@ -37,7 +37,7 @@ export default {
 
         await database.vanityEmbedAuthor.update({
                 where: {
-                    id: data.id,
+                    Id: data.Id,
                 },
                 data: {
                     Name: newSlug,

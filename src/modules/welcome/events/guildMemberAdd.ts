@@ -30,6 +30,9 @@ export default {
         if (!toggleData?.WecomeEnabled) return;
 
         const data = await database.guildWelcomeSetup.findFirst({
+            include: {
+                ImageData: true
+            },
             where: {GuildId: guild.id}
         });
         if (!data?.ChannelId) return;

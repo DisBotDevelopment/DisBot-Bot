@@ -7,12 +7,12 @@ import {
     GuildMember, GuildTextBasedChannel,
     Message,
     MessageFlags,
-    ButtonStyle, ChannelType
+    ButtonStyle, ChannelType, TextBasedChannel
 } from "discord.js";
 import {inviteTracker} from "../../../systems/inviteTracker/inviteTracker.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
-import {ticketHelper, ticketModalHelper} from "../../../helper/ticketHelper.js";
+import {ticketErrorMessage, ticketHelper, ticketModalHelper} from "../../../helper/ticketHelper.js";
 import {convertToEmojiPng} from "../../../helper/emojis.js";
 
 export default {
@@ -25,7 +25,7 @@ export default {
     async execute(message: Message, client: ExtendedClient) {
         if (message.channel.type == ChannelType.DM) return;
         if (message.author.bot) return;
-        
+
         const data = await database.ticketSetups.findFirst({
             include: {
                 ModalOptions: true
@@ -36,6 +36,9 @@ export default {
             }
         })
         if (!data) {
+            await (message.channel as GuildTextBasedChannel).send({
+                content: `-# ${await convertToEmojiPng("error", client.user.id)} No Data!`
+            })
         } else {
             await message.delete();
             if (data.HasModal) {

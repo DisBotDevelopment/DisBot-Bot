@@ -28,6 +28,9 @@ export default {
         if (!toggleData?.LeaveEnabled) return;
 
         const data = await database.guildLeaveSetup.findFirst({
+            include: {
+                ImageData: true
+            },
             where: {GuildId: guild.id}
         });
         if (!data?.ChannelId) return;

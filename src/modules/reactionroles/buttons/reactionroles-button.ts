@@ -36,17 +36,22 @@ export default {
             });
         }
 
-        const addMessageData = await database.messageTemplates.findFirst({
-            where: {
-                Name: reactionroles.AddMessage
-            }
-        });
+        let addMessageData;
+        let removeMessageData;
 
-        const removeMessageData = await database.messageTemplates.findFirst({
-            where: {
-                Name: reactionroles.RemoveMessage
-            }
-        });
+        if (reactionroles.AddMessage)
+            addMessageData = await database.messageTemplates.findFirst({
+                where: {
+                    Name: reactionroles.AddMessage
+                }
+            });
+
+        if (reactionroles.RemoveMessage)
+            removeMessageData = await database.messageTemplates.findFirst({
+                where: {
+                    Name: reactionroles.RemoveMessage
+                }
+            });
 
         if (Array.isArray(reactionroles.Roles) && reactionroles.Roles.length > 0) {
             for (const role of reactionroles.Roles) {

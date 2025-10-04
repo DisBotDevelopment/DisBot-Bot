@@ -15,7 +15,7 @@ import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 import {randomUUID} from "crypto";
-import {ticketHelper, ticketModalHelper} from "../../../helper/ticketHelper.js";
+import {ticketErrorMessage, ticketHelper, ticketModalHelper} from "../../../helper/ticketHelper.js";
 
 export default {
     id: "ticket-create-button",
@@ -38,7 +38,11 @@ export default {
             }
         })
 
-        if (data.HasModal) {
+        if (!data) {
+            return await ticketErrorMessage("No Data!", interaction, client)
+        }
+
+        if (data?.HasModal) {
             await ticketModalHelper(
                 data.CustomId,
                 data.ModalTitle,

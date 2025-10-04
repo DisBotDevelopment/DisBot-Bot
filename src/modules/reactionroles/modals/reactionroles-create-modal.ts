@@ -111,6 +111,12 @@ export default {
                     : null,
                 MessageId: message.id,
                 Roles: [],
+                SelectMenu: {
+                    create: {}
+                },
+                Button: {
+                    create: {}
+                }
             }
         });
 

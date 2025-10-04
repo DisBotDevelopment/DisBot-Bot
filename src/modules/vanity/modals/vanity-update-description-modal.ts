@@ -35,7 +35,7 @@ export default {
 
         await database.vanityEmbed.update({
             where: {
-                id: data.id,
+                Id: data.Id,
             },
             data: {
                 Description: newSlug
