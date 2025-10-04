@@ -26,7 +26,6 @@ export default {
                 }
             })
             if (!data) {
-                return await ticketErrorMessage("No Data!", interaction, client)
             } else {
 
                 if (data.HasModal) {
