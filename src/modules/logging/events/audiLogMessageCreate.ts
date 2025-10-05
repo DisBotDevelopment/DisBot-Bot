@@ -44,7 +44,7 @@ export default {
 
             if (!loggingData?.Message) return;
 
-            const webhook = new WebhookClient({url: loggingData.Integration});
+            const webhook = new WebhookClient({url: loggingData.Message});
 
             // Prepare message content with proper truncation
             const truncatedContent = message.content.length > 1500

@@ -13,6 +13,8 @@ export const IMAGE_PLACEHOLDER = {
     "{spotify.author.image}": "https://cdn.xyzhub.link/u/HsqWSk.png",
     "{inviter.avatar}": "https://i.imgur.com/kjEQRRI.png",
     "{polls.image}": "https://i.imgur.com/FHBicGA.png",
+    "{stream.vod}": "https://twitch.tv/vod.png",
+    "{thumbnail}": "https://youtube.com/thumbnail.png"
 };
 
 export const TIMESTAMP_PLACEHOLDER = {

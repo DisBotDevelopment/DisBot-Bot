@@ -42,7 +42,7 @@ export async function checkTwitch(client: ExtendedClient) {
                 `https://api.twitch.tv/helix/streams?user_login=${twitchDocument.TwitchChannelName}`,
                 {
                     headers: {
-                        "Client-Id": "dtqw2suy9vbzzhpoure8ibuq8r0vnj",
+                        "Client-Id": Config.Modules.Notifications.TwitchClientId,
                         Authorization: `Bearer ${config?.TwitchToken}`,
                         "Content-Type": "application/json",
                     },
@@ -121,7 +121,7 @@ export async function checkTwitch(client: ExtendedClient) {
                             .replace("{pingrole}", `<@&${twitchDocument.PingRoles[0]}>`)
                             .replace("{stream.viewer_count}", `${stream.viewer_count}`)
                             .replace("{stream.game_name}", `${stream.game_name}`)
-                            .replace("{stream.vod}", `${thumbnailUrl}`)
+                            .replace("https://twitch.tv/vod.png", `${thumbnailUrl}`)
                             .replace(
                                 "https://static-cdn.jtvnw.net/previews-ttv/live_user_streamer-1920x1080.jpg",
                                 `${thumbnailUrl}`
