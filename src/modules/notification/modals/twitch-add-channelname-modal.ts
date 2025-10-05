@@ -5,6 +5,7 @@ const {uuid} = pkg
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
+import {randomUUID} from "crypto";
 
 
 export default {
@@ -17,7 +18,7 @@ export default {
      */
 
     async execute(interaction: ModalSubmitInteraction, client: ExtendedClient) {
-        const uuids = uuid();
+        const uuids = randomUUID();
         if (!client.user) throw new Error("Client is not ready yet!");
 
         const getChannelName = interaction.fields.getTextInputValue(
@@ -45,11 +46,15 @@ export default {
 
         await database.guildTwitchNotifications.create({
             data: {
-                GuildId: interaction.guild?.id,
+                Guilds: {
+                    connect: {
+                        GuildId: interaction.guild?.id
+                    }
+                },
                 TwitchChannelName: getChannelName,
-                ChannelId: null,
+                ChannelId: "",
                 Live: false,
-                MessageTemplateId: null,
+                MessageTemplateId: "",
                 PingRoles: [],
                 UUID: uuids
             }

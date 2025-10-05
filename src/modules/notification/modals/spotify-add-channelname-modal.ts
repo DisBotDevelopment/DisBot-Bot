@@ -6,6 +6,7 @@ const {uuid} = pkg;
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
+import {randomUUID} from "crypto";
 
 export default {
     id: "spotify-add-channelname-modal",
@@ -54,15 +55,19 @@ export default {
             });
             return;
         }
-        const uuids = uuid();
+        const uuids = randomUUID();
 
         await database.guildSpotifyNotifications.create({
             data: {
-                GuildId: interaction.guild?.id,
-                ChannelId: null,
+                Guilds: {
+                    connect: {
+                        GuildId: interaction.guild?.id
+                    }
+                },
+                ChannelId: "",
                 Latests: [],
                 ShowId: channelName,
-                MessageTemplateId: null,
+                MessageTemplateId: "",
                 PingRoles: [],
                 UUID: uuids,
             }

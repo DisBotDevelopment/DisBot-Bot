@@ -5,6 +5,7 @@ const {uuid} = pkg;
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
+import {randomUUID} from "crypto";
 
 export default {
     id: "youtube-add-channelname-modal",
@@ -18,7 +19,7 @@ export default {
     async execute(interaction: ModalSubmitInteraction, client: ExtendedClient) {
         if (!client.user) throw new Error("Client user is not defined");
 
-        const uuids = uuid();
+        const uuids = randomUUID();
 
         const getChannelName = interaction.fields.getTextInputValue(
             "youtube-add-channelname"
@@ -45,10 +46,14 @@ export default {
 
         await database.guildYoutubeNotifications.create({
             data: {
-                GuildId: interaction.guild?.id,
+                Guilds: {
+                    connect: {
+                        GuildId: interaction.guild?.id
+                    }
+                },
                 YoutubeChannelId: getChannelName,
-                ChannelId: null,
-                MessageTemplateId: null,
+                ChannelId: "",
+                MessageTemplateId: "",
                 PingRoles: [],
                 UUID: uuids,
                 Latest: []

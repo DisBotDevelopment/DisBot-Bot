@@ -2,6 +2,7 @@ import {ExtendedClient} from "../types/client.js";
 import axios from "axios";
 import {EmbedBuilder, Guild, NewsChannel, TextChannel, ThreadChannel,} from "discord.js";
 import {database} from "../main/database.js";
+import {Config} from "../main/config.js";
 
 /**
  *
@@ -11,7 +12,7 @@ export async function checkTwitch(client: ExtendedClient) {
 
     const config = await database.disBot.findFirst({where: {GetConf: "config"}});
     const twitchdata = await database.guildTwitchNotifications.findMany()
-
+    
     if (!twitchdata) return;
 
     for (const twitchDocument of twitchdata) {
@@ -20,7 +21,7 @@ export async function checkTwitch(client: ExtendedClient) {
 
             const isChannel = await axios.get(`https://api.twitch.tv/helix/users?login=${twitchDocument.TwitchChannelName}`, {
                 headers: {
-                    "Client-Id": "dtqw2suy9vbzzhpoure8ibuq8r0vnj",
+                    "Client-Id": Config.Modules.Notifications.TwitchClientId,
                     Authorization: `Bearer ${config?.TwitchToken}`,
                     "Content-Type": "application/json",
                 },
