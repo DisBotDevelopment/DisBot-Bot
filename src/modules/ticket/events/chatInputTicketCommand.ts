@@ -36,9 +36,6 @@ export default {
             }
         })
         if (!data) {
-            await (message.channel as GuildTextBasedChannel).send({
-                content: `-# ${await convertToEmojiPng("error", client.user.id)} No Data!`
-            })
         } else {
             await message.delete();
             if (data.HasModal) {
