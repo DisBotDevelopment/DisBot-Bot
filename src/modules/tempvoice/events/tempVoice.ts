@@ -24,8 +24,29 @@ export default {
         newState: VoiceState,
         client: ExtendedClient
     ) {
-
         const {guild, member} = newState;
+        const oldChannel = oldState.channel;
+        const newChannel = newState.channel;
+
+        const data = await database.tempVoiceChannels.findFirst({
+            where: {
+                ChannelId: oldChannel?.id
+            }
+        });
+        if (data &&
+            data?.ChannelId &&
+            oldChannel?.id == data.ChannelId &&
+            oldChannel.members.size == 0 &&
+            (!newChannel || newChannel.id !== data.ChannelId)
+        ) {
+            oldChannel.delete("Your Channel Deleted").catch((error) => {
+            });
+            await database.tempVoiceChannels.deleteMany({
+                where: {
+                    OwnerId: oldState.member?.id
+                }
+            });
+        }
 
         const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
             new ButtonBuilder()
@@ -74,23 +95,22 @@ export default {
                 .setStyle(ButtonStyle.Secondary)
         );
 
-        const oldChannel = oldState.channel;
-        const newChannel = newState.channel;
-        if (oldChannel === newChannel) return;
-
         const vcdata = await database.tempVoices.findMany({
             where: {
                 GuildId: guild.id
             }
         });
-        if (!vcdata) return;
-        if (vcdata.length <= 0) return;
 
-        vcdata.forEach(async (jointocreateDocument) => {
-            if (newState.channelId == jointocreateDocument.JointoCreateChannel) {
+
+        for (const jointocreateDocument of vcdata) {
+            if (newState.channelId == jointocreateDocument?.JointoCreateChannel) {
                 const parent = guild.channels.cache.get(
                     jointocreateDocument.JointoCreateCategory as string
                 );
+
+                if (!vcdata) return;
+                if (vcdata.length <= 0) return;
+                if (oldChannel == newChannel) return;
 
                 // Add Placeholder like {count} to the name
                 const name = jointocreateDocument.Name
@@ -130,7 +150,7 @@ export default {
                         ]
                     })
                     .then(async (channel) => {
-                        member?.voice.setChannel(channel);
+                        await member?.voice.setChannel(channel);
 
                         if (!client.user) throw new Error("Client user is not defined");
 
@@ -221,7 +241,7 @@ export default {
                             });
                         }
 
-                        return await database.tempVoiceChannels.create({
+                        await database.tempVoiceChannels.create({
                             data: {
                                 GuildId: guild.id,
                                 ChannelId: channel.id,
@@ -231,28 +251,6 @@ export default {
                         });
                     });
             }
-        });
-
-        const data = await database.tempVoiceChannels.findFirst({
-            where: {
-                ChannelId: oldChannel?.id
-            }
-        });
-        if (!data) return;
-
-        if (
-            data.ChannelId &&
-            oldChannel?.id == data.ChannelId &&
-            oldChannel.members.size == 0 &&
-            (!newChannel || newChannel.id !== data.ChannelId)
-        ) {
-            oldChannel.delete("Your Channel Deleted").catch((error) => {
-            });
-            await database.tempVoiceChannels.deleteMany({
-                where: {
-                    OwnerId: oldState.member?.id
-                }
-            });
         }
     },
 

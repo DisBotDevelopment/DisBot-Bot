@@ -115,11 +115,11 @@ export default {
                             .setContent(`## ${await convertToEmojiPng("export", client.user.id)} Download your GuildData Export ${new Date().toDateString()}`)
                     )
                     .addFileComponents(
-                        new FileBuilder().setURL(`attachment://UserData-${interaction.user.displayName}.json`).setSpoiler(true)
+                        new FileBuilder().setURL(`attachment://GuildData-${interaction.guild.name}.json`).setSpoiler(true)
                     )
             ],
             files: [
-                new AttachmentBuilder(Buffer.from(string)).setName(`UserData-${interaction.user.displayName}.json`),
+                new AttachmentBuilder(Buffer.from(string)).setName(`GuildData-${interaction.guild.name}.json`),
             ]
         })
 

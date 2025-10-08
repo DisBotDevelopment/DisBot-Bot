@@ -50,11 +50,13 @@ export default {
                             new ButtonBuilder()
                                 .setEmoji("<:export:1321939859228721172>")
                                 .setLabel("Export Guild Data")
+                                .setDisabled(!(interaction.guild.ownerId == interaction.user.id))
                                 .setStyle(ButtonStyle.Secondary)
                                 .setCustomId("utility-export-guild"),
                             new ButtonBuilder()
                                 .setEmoji("<:export:1321939859228721172>")
-                                .setLabel("Delete Guild Data")
+                                .setLabel("Delete Guild Data (SOON)")
+                                .setDisabled(true)
                                 .setStyle(ButtonStyle.Danger)
                                 .setCustomId("utility-export-guild-delete"),
                         )
