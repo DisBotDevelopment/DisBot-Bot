@@ -3,13 +3,11 @@
   "main": "./.build/startup.js",
   "version": "v.1.6.2r17.4",
   "scripts": {
-    "disbot": "node ./.build/src/main/startup.js",
-    "customer": "cd /home/disbot && node ./.build/src/main/startup.js",
-    "customerdev": "bun run build && node ./.build/src/main/startup.js",
+    "disbot": "npx prisma migrate deploy && node ./.build/src/main/startup.js",
     "disbotdev": "bun run build && node ./.build/src/main/startup.js",
     "build": "tsc && bun run setup:prisma",
-    "typedoc": "bun x typedoc --entryPointStrategy Expand src",
     "setup:prisma": "copyfiles -u 1 \"src/prisma/**/*\" .build/src",
+    "typedoc": "bun x typedoc --entryPointStrategy Expand src",
     "sentry:sourcemaps": "sentry-cli sourcemaps inject --org nexocrew --project disbot-client ./.build && sentry-cli sourcemaps upload --org nexocrew --project disbot-client ./.build"
   },
   "keywords": [

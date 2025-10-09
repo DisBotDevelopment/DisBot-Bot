@@ -9,52 +9,51 @@ datasource db {
   url      = env("POSTGRESQL")
 }
 
-// Guilds
 model Guilds {
   Id                          Int                           @id @default(autoincrement())
   GuildId                     String                        @unique
   GuildName                   String
   GuildOwner                  String
+  DiscordAddons               DiscordGuildAddon?
+  Giveaways                   Giveaways[]
   AutoAutoDeletes             GuildAutoDeletes[]
   AutoPublish                 GuildAutoPublish?
   AutoReacts                  GuildAutoReacts[]
   AutoRoles                   GuildAutoRoles[]
-  GuildModeration             GuildModeration?
+  GuildChannelLinks           GuildChannelLinks[]
+  GuildCommandManger          GuildCommandManger?
+  GuildComponentManager       GuildComponentManager?
   GuildDisBotAutoModeration   GuildDisBotAutoModeration?
-  DiscordAddons               DiscordGuildAddon?
-  Giveaways                   Giveaways[]
-  TempVoices                  TempVoices[]
+  GuildFeatureToggle          GuildFeatureToggles?
+  GuildInteractionPermissions GuildInteractionPermissions[]
   GuildLeaveSetup             GuildLeaveSetup?
   GuildLogging                GuildLogging?
-  MessageTemplates            MessageTemplates[]
+  GuildLogs                   GuildLogs[]
+  GuildModeration             GuildModeration?
   ReactionRole                GuildReactionRoles[]
   Security                    GuildSecurity?
   SpotifyNotifications        GuildSpotifyNotifications[]
-  Tags                        Tags[]
-  Polls                       Polls[]
-  TicketSetups                TicketSetups[]
-  GuildFeatureToggle          GuildFeatureToggles?
   TwitchNotifications         GuildTwitchNotifications[]
+  GuildUserModeration         GuildUserModeration[]
   GuildWelcomeSetup           GuildWelcomeSetup?
   YoutubeNotifications        GuildYoutubeNotifications[]
-  GuildLogs                   GuildLogs[]
-  GuildInteractionPermissions GuildInteractionPermissions[]
-  GuildCommandManger          GuildCommandManger?
-  GuildComponentManager       GuildComponentManager?
-  GuildChannelLinks           GuildChannelLinks[]
-  ModerationScout             ModerationScout?
-  GuildUserModeration         GuildUserModeration[]
   LevelSettings               LevelSettings?
+  MessageTemplates            MessageTemplates[]
+  ModerationScout             ModerationScout?
+  Polls                       Polls[]
+  Tags                        Tags[]
+  TempVoices                  TempVoices[]
+  TicketSetups                TicketSetups[]
 }
 
 model GuildCommandManger {
   Id               Int               @id @default(autoincrement())
-  Commands         Json[] // SOON
-  SubCommands      Json[] // SOON
-  SubCommandGroups Json[] // SOON
-  ContextMenus     Json[] // SOON
-  BuildInCommands  BuildInCommands[]
+  Commands         Json[]
+  SubCommands      Json[]
+  SubCommandGroups Json[]
+  ContextMenus     Json[]
   GuildId          String            @unique
+  BuildInCommands  BuildInCommands[]
   Guilds           Guilds            @relation(fields: [GuildId], references: [GuildId])
 }
 
@@ -65,16 +64,16 @@ model BuildInCommands {
   Description          String?
   Permissions          String?
   IsEnabled            Boolean?           @default(false)
-  CodeName             String // Command: <name> | SubCommand: <name>.<subCommand> | SubCommandGroup: <name>.<subCommand>.<subCommandGroup> | ContextMenu: <name>
+  CodeName             String
   GuildCommandMangerId String
   GuildCommandMangers  GuildCommandManger @relation(fields: [GuildCommandMangerId], references: [GuildId])
 }
 
 model GuildComponentManager {
   Id          Int    @id @default(autoincrement())
-  Selectmenus Json[] // SOON
-  Buttons     Json[] // SOON
-  Modals      Json[] // SOON
+  Selectmenus Json[]
+  Buttons     Json[]
+  Modals      Json[]
   GuildId     String @unique
   Guilds      Guilds @relation(fields: [GuildId], references: [GuildId])
 }
@@ -87,7 +86,7 @@ model GuildInteractionPermissions {
   ChannelIds                    String[]
   CustomId                      String?
   CommandName                   String?
-  Type                          String // BUTTON, SELECTMENU, COMMAND, SUBCOMMAND, SUBCOMMANDGROUP, MODAL (GuildPermissionType)
+  Type                          String
   DisableInternalUserPermission Boolean? @default(false)
   NeedsGuildOwner               Boolean?
   Cooldown                      Int?
@@ -131,33 +130,30 @@ model GuildAutoRoles {
 }
 
 model ModerationScout {
-  Id                             Int                              @id @default(autoincrement())
-  UUID                           String                           @unique
-  PublicBanListUrl               String?                          @default("https://api.disbot.app/v2/banList")
-  AdminBanList                   Json // Only for the Guild set in the Config
-  CurrentUserModerations         Json[] // Storage for Bans, Wans, Mutes, Kicks (Alos you can create a custom one!)
-  PublicBanListEnabled           Boolean                          @default(false)
+  Id                             Int                             @id @default(autoincrement())
+  UUID                           String                          @unique
+  PublicBanListUrl               String?                         @default("https://api.disbot.app/v2/banList")
+  AdminBanList                   Json
+  CurrentUserModerations         Json[]
+  PublicBanListEnabled           Boolean                         @default(false)
   NeedsModeratorApprove          Boolean
   ModeratorRoles                 String[]
-  // Appeals
-  UserAppeals                    ModerationScoutUserAppeals[]
-  ModerationScoutForms           ModerationScoutForms[]
-  // Reports
   ReportCommandId                String
   ReportMesageContextId          String
   ReportUserContextId            String
   ImmuneReportRoles              String[]
   NotAllowedToReportRoles        String[]
   SuccssReportMessageId          String
-  ReportActions                  String[] // Format: action:<optionalData> | Open Ticket, Send Message, Send DM
-  ModerationScoutReports         ModerationScoutReports[]
-  ModerationScoutReportModalData ModerationScoutReportModalData[]
-  ModerationScoutCases           ModerationScoutCases[]
-  GuildId                        String                           @unique
-  Guilds                         Guilds                           @relation(fields: [GuildId], references: [GuildId])
+  ReportActions                  String[]
+  GuildId                        String                          @unique
+  Guilds                         Guilds                          @relation(fields: [GuildId], references: [GuildId])
+  ModerationScoutCases           ModerationScoutCases?
+  ModerationScoutForms           ModerationScoutForms?
+  ModerationScoutReportModalData ModerationScoutReportModalData?
+  ModerationScoutReports         ModerationScoutReports?
+  UserAppeals                    ModerationScoutUserAppeals?
 }
 
-// TODO: NOT DONE!
 model ModerationScoutCases {
   Id                  Int                   @id @default(autoincrement())
   UUID                String                @unique
@@ -166,27 +162,25 @@ model ModerationScoutCases {
   UserId              String
   ModeratorId         String
   Data                Json
-  GuildUserModeration GuildUserModeration[]
   ModerationScoutId   String                @unique
+  GuildUserModeration GuildUserModeration[]
   ModerationScout     ModerationScout       @relation(fields: [ModerationScoutId], references: [GuildId])
 }
 
-// Appeals
 model ModerationScoutForms {
   Id                         Int                          @id @default(autoincrement())
   UUID                       String                       @unique
   Sorting                    String[]
-  Actions                    String[] // Format: action:<optionalData> | Open Ticket, Send Message, Send DM, UNBAN (to make tickets required*), Resolve DM
+  Actions                    String[]
   ModerationScout            ModerationScout              @relation(fields: [UUID], references: [UUID])
-  ModerationScoutFormsData   ModerationScoutFormsData[]
+  ModerationScoutFormsData   ModerationScoutFormsData?
   ModerationScoutUserAppeals ModerationScoutUserAppeals[]
 }
 
-// Appeals
 model ModerationScoutFormsData {
   Id                   Int                  @id @default(autoincrement())
   UUID                 String               @unique
-  Type                 String // DropDown, CheckBox, Short Text, Long Text, Spacing, ReadOnly
+  Type                 String
   Label                String
   Description          String
   Placeholder          String
@@ -194,13 +188,12 @@ model ModerationScoutFormsData {
   ModerationScoutForms ModerationScoutForms @relation(fields: [UUID], references: [UUID])
 }
 
-// Appeals
 model ModerationScoutUserAppeals {
   Id                    Int                  @id @default(autoincrement())
   UUID                  String               @unique
   Token                 String
   UserId                String
-  Case                  String // REPORT, MODERATION, BAN, MUTE, WARN, CUSTOM
+  Case                  String
   FormId                String
   ModerationScoutFormId String
   Data                  Json
@@ -211,7 +204,6 @@ model ModerationScoutUserAppeals {
   ModerationScout       ModerationScout      @relation(fields: [UUID], references: [UUID])
 }
 
-// Reports
 model ModerationScoutReportModalData {
   Id                Int             @id @default(autoincrement())
   UUID              String          @unique
@@ -221,12 +213,11 @@ model ModerationScoutReportModalData {
   MinLength         Int?
   MaxLength         Int?
   Required          Boolean
-  InteractionType   String // MESSAGE_CONTEXT, USER_CONTEXT, COMMAND
+  InteractionType   String
   ModerationScoutId String
   ModerationScout   ModerationScout @relation(fields: [UUID], references: [UUID])
 }
 
-// Reports
 model ModerationScoutReports {
   Id                       Int             @id @default(autoincrement())
   UUID                     String          @unique
@@ -239,18 +230,17 @@ model ModerationScoutReports {
   ModerationScout          ModerationScout @relation(fields: [UUID], references: [UUID])
 }
 
-// Soon Implemented!
 model GuildModeration {
   Id                               Int                               @id @default(autoincrement())
-  GuildUserModerationSettingWarn   GuildUserModerationSettingWarn?
-  GuildUserModerationSettingUnwarn GuildUserModerationSettingUnwarn?
-  GuildUserModerationSettingBan    GuildUserModerationSettingBan?
-  GuildUserModerationSettingUnban  GuildUserModerationSettingUnban?
-  GuildUserModerationSettinKick    GuildUserModerationSettinKick?
-  GuildUserModerationSettingMute   GuildUserModerationSettingMute?
-  GuildUserModerationSettingUnmute GuildUserModerationSettingUnmute?
   GuildId                          String                            @unique
   Guilds                           Guilds                            @relation(fields: [GuildId], references: [GuildId])
+  GuildUserModerationSettinKick    GuildUserModerationSettinKick?
+  GuildUserModerationSettingBan    GuildUserModerationSettingBan?
+  GuildUserModerationSettingMute   GuildUserModerationSettingMute?
+  GuildUserModerationSettingUnban  GuildUserModerationSettingUnban?
+  GuildUserModerationSettingUnmute GuildUserModerationSettingUnmute?
+  GuildUserModerationSettingUnwarn GuildUserModerationSettingUnwarn?
+  GuildUserModerationSettingWarn   GuildUserModerationSettingWarn?
 }
 
 model GuildUserModerationSettingBan {
@@ -335,27 +325,26 @@ model GuildUserModeration {
   Reason               String?
   ModeratorId          String?
   DmMessage            String?
-  Type                 String? // BAN, Warn, Kick, Mute
+  Type                 String?
   Notes                String[]
   LinkedCaseId         String
   CreatedAt            DateTime?
-  ModerationScoutCases ModerationScoutCases @relation(fields: [LinkedCaseId], references: [UUID])
   GuildId              String
   Guilds               Guilds               @relation(fields: [GuildId], references: [GuildId])
+  ModerationScoutCases ModerationScoutCases @relation(fields: [LinkedCaseId], references: [UUID])
 }
 
-// UPDATE SOON - move to /moderation automod - Options Disocrd(Recommended!!!) DisBot
 model GuildDisBotAutoModeration {
   Id             Int                                     @id @default(autoincrement())
-  MessageSpam    GuildDisBotAutoModerationMessages[]
-  MentionSpam    GuildDisBotAutoModerationMentions[]
-  AttachmentSpam GuildDisBotAutoModerationAttachments[]
-  EmojiSpam      GuildDisBotAutoModerationEmojis[]
-  BlockedWords   GuildDisBotAutoModerationBlockedWords[]
-  BlockLinks     GuildDisBotAutoModerationBlockLinks[]
-  BlockInvites   GuildDisBotAutoModerationBlockInvites[]
   GuildId        String                                  @unique
   Guilds         Guilds                                  @relation(fields: [GuildId], references: [GuildId])
+  AttachmentSpam GuildDisBotAutoModerationAttachments[]
+  BlockInvites   GuildDisBotAutoModerationBlockInvites[]
+  BlockLinks     GuildDisBotAutoModerationBlockLinks[]
+  BlockedWords   GuildDisBotAutoModerationBlockedWords[]
+  EmojiSpam      GuildDisBotAutoModerationEmojis[]
+  MentionSpam    GuildDisBotAutoModerationMentions[]
+  MessageSpam    GuildDisBotAutoModerationMessages[]
 }
 
 model GuildDisBotAutoModerationMessages {
@@ -364,8 +353,8 @@ model GuildDisBotAutoModerationMessages {
   RegexPetterns               String[]
   ExcludedChannels            String[]
   ExcludedRoles               String[]
-  Trigger                     Json // {"type": ">,=", "amount": 3, "time": "5s"}
-  Actions                     Json[] // Open Ticket, Open Case, Send Message, Dm User, Log Message - {"type": "action",...}
+  Trigger                     Json
+  Actions                     Json[]
   GuildDisBotAutoModerationId String
   GuildDisBotAutoModeration   GuildDisBotAutoModeration @relation(fields: [GuildDisBotAutoModerationId], references: [GuildId])
 }
@@ -376,8 +365,8 @@ model GuildDisBotAutoModerationMentions {
   RegexPetterns               String[]
   ExcludedChannels            String[]
   ExcludedRoles               String[]
-  Trigger                     Json // {"type": ">,=", "amount": 3, "time": "5s"}
-  Actions                     Json[] // Open Ticket, Open Case, Send Message, Dm User, Log Message - {"type": "action",...}
+  Trigger                     Json
+  Actions                     Json[]
   GuildDisBotAutoModerationId String
   GuildDisBotAutoModeration   GuildDisBotAutoModeration @relation(fields: [GuildDisBotAutoModerationId], references: [GuildId])
 }
@@ -388,8 +377,8 @@ model GuildDisBotAutoModerationAttachments {
   RegexPetterns               String[]
   ExcludedChannels            String[]
   ExcludedRoles               String[]
-  Trigger                     Json // {"type": ">,=", "amount": 3, "time": "5s"}
-  Actions                     Json[] // Open Ticket, Open Case, Send Message, Dm User, Log Message - {"type": "action",...}
+  Trigger                     Json
+  Actions                     Json[]
   GuildDisBotAutoModerationId String
   GuildDisBotAutoModeration   GuildDisBotAutoModeration @relation(fields: [GuildDisBotAutoModerationId], references: [GuildId])
 }
@@ -400,8 +389,8 @@ model GuildDisBotAutoModerationEmojis {
   RegexPetterns               String[]
   ExcludedChannels            String[]
   ExcludedRoles               String[]
-  Trigger                     Json // {"type": ">,=", "amount": 3, "time": "5s"}
-  Actions                     Json[] // Open Ticket, Open Case, Send Message, Dm User, Log Message - {"type": "action",...}
+  Trigger                     Json
+  Actions                     Json[]
   GuildDisBotAutoModerationId String
   GuildDisBotAutoModeration   GuildDisBotAutoModeration @relation(fields: [GuildDisBotAutoModerationId], references: [GuildId])
 }
@@ -412,8 +401,8 @@ model GuildDisBotAutoModerationBlockedWords {
   RegexPetterns               String[]
   ExcludedChannels            String[]
   ExcludedRoles               String[]
-  Trigger                     Json // {"type": ">,=", "amount": 3, "time": "5s"}
-  Actions                     Json[] // Open Ticket, Open Case, Send Message, Dm User, Log Message - {"type": "action",...}
+  Trigger                     Json
+  Actions                     Json[]
   GuildDisBotAutoModerationId String
   GuildDisBotAutoModeration   GuildDisBotAutoModeration @relation(fields: [GuildDisBotAutoModerationId], references: [GuildId])
 }
@@ -425,8 +414,8 @@ model GuildDisBotAutoModerationBlockLinks {
   ExcludedChannels            String[]
   ExcludedRoles               String[]
   ExcludedLinks               String[]
-  Trigger                     Json // {"type": ">,=", "amount": 3, "time": "5s"}
-  Actions                     Json[] // Open Ticket, Open Case, Send Message, Dm User, Log Message - {"type": "action",...}
+  Trigger                     Json
+  Actions                     Json[]
   GuildDisBotAutoModerationId String
   GuildDisBotAutoModeration   GuildDisBotAutoModeration @relation(fields: [GuildDisBotAutoModerationId], references: [GuildId])
 }
@@ -438,8 +427,8 @@ model GuildDisBotAutoModerationBlockInvites {
   ExcludedChannels            String[]
   ExcludedRoles               String[]
   ExcludedGuildIds            String[]
-  Trigger                     Json // {"type": ">,=", "amount": 3, "time": "5s"}
-  Actions                     Json[] // Open Ticket, Open Case, Send Message, Dm User, Log Message - {"type": "action",...}
+  Trigger                     Json
+  Actions                     Json[]
   GuildDisBotAutoModerationId String
   GuildDisBotAutoModeration   GuildDisBotAutoModeration @relation(fields: [GuildDisBotAutoModerationId], references: [GuildId])
 }
@@ -449,12 +438,12 @@ model GuildChannelLinks {
   UUID                     String                      @unique
   ChannelId                String                      @unique
   WebhookUrl               String                      @unique
-  SyncedChannelLinkMessage SyncedChannelLinkMessages[]
-  SyncFlags                String[] // See selectmenu from Channel Link flags
+  SyncFlags                String[]
   LinkedWith               String[]
   UsersCanSelectIds        String[]
   GuildId                  String
   Guilds                   Guilds                      @relation(fields: [GuildId], references: [GuildId])
+  SyncedChannelLinkMessage SyncedChannelLinkMessages[]
 }
 
 model SyncedChannelLinkMessages {
@@ -468,7 +457,6 @@ model SyncedChannelLinkMessages {
   ChannelLinks     GuildChannelLinks @relation(fields: [ChannelLinkId], references: [UUID])
 }
 
-// UPDATE SOON
 model DiscordGuildAddon {
   Id            Int      @id @default(autoincrement())
   OnlyMedia     String[]
@@ -478,7 +466,6 @@ model DiscordGuildAddon {
   Guilds        Guilds   @relation(fields: [GuildId], references: [GuildId])
 }
 
-// UPDATE SOON
 model Giveaways {
   Id                    Int       @id @default(autoincrement())
   UUID                  String    @unique
@@ -495,17 +482,16 @@ model Giveaways {
   EndedMessage          String?
   Rerolled              Boolean
   WinnerIds             String[]
-  WinnerMessageTemplate String? // SOON In use
+  WinnerMessageTemplate String?
   HostedBy              String
   MessageTemplate       String?
   Content               String?
   Entrys                String[]
-  Requirements          String[] // Currently only Roles (One role) - More will frollow
+  Requirements          String[]
   GuildId               String
   Guilds                Guilds    @relation(fields: [GuildId], references: [GuildId])
 }
 
-// UPDATE SOON
 model TempVoices {
   Id                   Int                 @id @default(autoincrement())
   UUID                 String              @unique
@@ -514,12 +500,11 @@ model TempVoices {
   JointoCreateCategory String
   Manage               Boolean
   PresetLimit          Int?
-  TempVoiceChannels    TempVoiceChannels[]
   GuildId              String
+  TempVoiceChannels    TempVoiceChannels[]
   Guilds               Guilds              @relation(fields: [GuildId], references: [GuildId])
 }
 
-// UPDATE SOON
 model TempVoiceChannels {
   Id          Int        @id @default(autoincrement())
   GuildId     String
@@ -529,15 +514,14 @@ model TempVoiceChannels {
   TempVoices  TempVoices @relation(fields: [TempVoiceId], references: [UUID])
 }
 
-// UPDATE SOON
 model GuildLeaveSetup {
   Id                Int             @id @default(autoincrement())
   MessageTemplateId String?
   ChannelId         String          @unique
   Image             Boolean?
-  ImageData         LeaveImageData?
   GuildId           String          @unique
   Guilds            Guilds          @relation(fields: [GuildId], references: [GuildId])
+  ImageData         LeaveImageData?
 }
 
 model LeaveImageData {
@@ -553,15 +537,14 @@ model LeaveImageData {
   GuildLeaveSetup   GuildLeaveSetup @relation(fields: [GuildLeaveSetupId], references: [GuildId])
 }
 
-// UPDATE SOON
 model GuildWelcomeSetup {
   Id                Int               @id @default(autoincrement())
   MessageTemplateId String?
   ChannelId         String
   Image             Boolean
-  ImageData         WelcomeImageData?
   GuildId           String            @unique
   Guilds            Guilds            @relation(fields: [GuildId], references: [GuildId])
+  ImageData         WelcomeImageData?
 }
 
 model WelcomeImageData {
@@ -634,11 +617,11 @@ model GuildReactionRoles {
   ChannelId     String?
   AddMessage    String?
   RemoveMessage String?
-  Button        ReactionRoleButton?
-  SelectMenu    ReactionRoleSelectmenu?
   Emoji         String?
   GuildId       String
   Guilds        Guilds                  @relation(fields: [GuildId], references: [GuildId])
+  Button        ReactionRoleButton?
+  SelectMenu    ReactionRoleSelectmenu?
 }
 
 model ReactionRoleSelectmenu {
@@ -663,9 +646,9 @@ model GuildSecurity {
   Id                  Int                 @id @default(autoincrement())
   InviteLoggingActive String?
   MaxAccountAge       Int?
-  VerificationGates   VerificationGates[]
   GuildId             String              @unique
   Guilds              Guilds              @relation(fields: [GuildId], references: [GuildId])
+  VerificationGates   VerificationGates[]
 }
 
 model VerificationGates {
@@ -675,13 +658,13 @@ model VerificationGates {
   MessageId          String
   Action             String?
   ActionType         String?
-  ChannelPermissions VerificationGatesPermission[]
   Roles              String[]
   VerifiedUsers      String[]
   CreatedAt          DateTime
   Active             Boolean?
   SecurityId         String
   VerificationGates  GuildSecurity                 @relation(fields: [SecurityId], references: [GuildId])
+  ChannelPermissions VerificationGatesPermission[]
 }
 
 model VerificationGatesPermission {
@@ -704,15 +687,16 @@ model GuildSpotifyNotifications {
   Guilds            Guilds   @relation(fields: [GuildId], references: [GuildId])
 }
 
-// UPDATE SOON -  and modal name update....
 model Tags {
   Id                     Int      @id @default(autoincrement())
   UUID                   String   @unique
   TagId                  String   @unique
-  TriggerKeywords        String[] // SOON && NEW
+  TriggerKeywords        String[]
   MessageTemplateId      String?
-  IsSlashCommand         Boolean
+  IsSlashCommand         Boolean  @default(false)
   SlashCommandId         String?
+  IsShlashCommand        Boolean  @default(false) // UNUSED
+  ShlashCommandId        String? // UNUSED
   IsTextInputCommand     Boolean
   IsEnabled              Boolean
   PermissionRoleId       String?
@@ -731,12 +715,12 @@ model Polls {
   MultiAnswers      Int
   Time              Int?
   Entrys            String[]
-  Type              Int // SELECTMENU, BUTTON - max 25 Options
-  Requirements      String[] // Currently only Roles (One role) - More will frollow
-  PollOptions       PollOptions[]
-  PollAnswers       PollAnswers[]
+  Type              Int
+  Requirements      String[]
   CreatedAt         DateTime
   GuildId           String
+  PollAnswers       PollAnswers[]
+  PollOptions       PollOptions[]
   Guilds            Guilds        @relation(fields: [GuildId], references: [GuildId])
 }
 
@@ -746,26 +730,25 @@ model PollOptions {
   Label       String
   Description String
   Emoji       String?
-  UserIds     String[] // Selected this Option
+  UserIds     String[]
   PollId      String
-  Polls       Polls         @relation(fields: [PollId], references: [UUID])
   PollAnswers PollAnswers[]
+  Polls       Polls         @relation(fields: [PollId], references: [UUID])
 }
 
 model PollAnswers {
   Id           Int         @id @default(autoincrement())
   UUID         String      @unique
   PollOptionId String
-  PollOptions  PollOptions @relation(fields: [PollOptionId], references: [UUID])
   PollId       String
   Polls        Polls       @relation(fields: [PollId], references: [UUID])
+  PollOptions  PollOptions @relation(fields: [PollOptionId], references: [UUID])
 }
 
 model TicketSetups {
   Id                               Int                 @id @default(autoincrement())
   CategoryId                       String?
   ChannelType                      Int?
-  TicketPermissions                TicketPermissions[]
   CustomId                         String              @unique
   TicketChannelName                String?
   EnableTicketsOnlyFromTime        String?
@@ -774,7 +757,6 @@ model TicketSetups {
   TranscriptChannelId              String?
   HasModal                         Boolean?
   ModalTitle                       String?
-  ModalOptions                     TicketModalData[]
   OnlyClaimMode                    Boolean?
   TicketLimit                      Int?
   UserDMWhenCloseMessageTemplateId String?
@@ -789,7 +771,7 @@ model TicketSetups {
   TicketStatusMessageTemplateId    String?
   TicketStatusMessageId            String?
   TicketStatusChannelId            String?
-  AutoCloseAction                  String[] // LOOK (THREAD), ARCHIVE (BOTH), MOVE_TO_OLD_CHANNEL (Channel), DELETE (BOTH), WITH_CONFIRM (BOTH), TRANSCRIPT (BOTH), REASON (BOTH), REMOVE_USER_FROM_TICKET (BOTH) - !!! SUGGEST MORE !!!
+  AutoCloseAction                  String[]
   OldTicketCategoryId              String?
   RequiredRoles                    String[]
   SlashCommandId                   String?
@@ -798,13 +780,10 @@ model TicketSetups {
   TextCommandName                  String?
   SendTranscriptToUser             Boolean?
   GuildId                          String
+  ModalOptions                     TicketModalData[]
+  TicketPermissions                TicketPermissions[]
   Guilds                           Guilds              @relation(fields: [GuildId], references: [GuildId])
   Tickets                          Tickets[]
-
-  // TODO: API Support
-  // WebhookOnOpen
-  // WebhookOnClose
-  // WebhookOn...
 }
 
 model TicketModalData {
@@ -865,17 +844,17 @@ model Tickets {
   AutoAssignHandler                String?
   TicketFeedbackChannelId          String?
   WithTicketFeedback               Boolean?
-  TicketFeedback                   TicketFeedback?
   UserDMWhenCloseMessageTemplateId String?
   OnlyClaimMode                    Boolean?
   TicketSetupId                    String
+  TicketFeedback                   TicketFeedback?
   TicketSetup                      TicketSetups    @relation(fields: [TicketSetupId], references: [CustomId])
 }
 
 model TicketFeedback {
   Id          Int       @id @default(autoincrement())
   TicketId    String    @unique
-  Rating      Int? // 1–5 
+  Rating      Int?
   Comment     String?
   Sent        Boolean   @default(false)
   SubmittedAt DateTime? @default(now())
@@ -924,35 +903,29 @@ model GuildYoutubeNotifications {
 }
 
 model LevelSettings {
-  Id                           Int    @id @default(autoincrement())
+  Id                           Int          @id @default(autoincrement())
   LevelUpChannelId             String
   LevelUoMessageTemplateId     String
   LeaderboardMessageTemplateId String
   LeaderboardDisplayAmount     Int
-
-  RequiredXPForFirstLevel Int
-  Format                  String
-
-  MessageXP          Boolean
-  MessageXPRange     String
-  MesssageXPCooldown String
-  MessageXPType      String // Per Message(Every Message get'S XP), Cooldown only(Message not sent in the Cooldown get's XP) 
-
-  VoiceXP         Boolean
-  VoiceXPRange    String
-  VoiceXPCooldown Int
-
-  ExcludedChannelIds String[]
-  ExcludeUserIds     String[]
-  ExcludeRoleIds     String[]
-
-  LevelRoles LevelRoles[]
-  XPDrops    XPDrops[]
-  XPStreaks  XPStreaks[]
-
-  Levels  Levels[]
-  GuildId String   @unique
-  Guilds  Guilds   @relation(fields: [GuildId], references: [GuildId])
+  RequiredXPForFirstLevel      Int
+  Format                       String
+  MessageXP                    Boolean
+  MessageXPRange               String
+  MesssageXPCooldown           String
+  MessageXPType                String
+  VoiceXP                      Boolean
+  VoiceXPRange                 String
+  VoiceXPCooldown              Int
+  ExcludedChannelIds           String[]
+  ExcludeUserIds               String[]
+  ExcludeRoleIds               String[]
+  GuildId                      String       @unique
+  LevelRoles                   LevelRoles[]
+  Guilds                       Guilds       @relation(fields: [GuildId], references: [GuildId])
+  Levels                       Levels[]
+  XPDrops                      XPDrops[]
+  XPStreaks                    XPStreaks[]
 }
 
 model XPDrops {
@@ -960,7 +933,7 @@ model XPDrops {
   GuildId       String
   XPRange       String
   ClaimType     Int
-  TimeToRespawn String // <from>:<to>
+  TimeToRespawn String
   ChannelIds    String[]
   LevelSettings LevelSettings @relation(fields: [GuildId], references: [GuildId])
 }
@@ -983,7 +956,7 @@ model LevelRoles {
   Id            Int           @id @default(autoincrement())
   Level         Int
   Multiplier    Int
-  Type          String // Add Role By LevelUp, Remove Role by LevelUp, 
+  Type          String
   RoleId        String
   GuildId       String
   LevelSettings LevelSettings @relation(fields: [GuildId], references: [GuildId])
@@ -996,25 +969,23 @@ model Levels {
   Level         Int
   UserId        String
   GuildId       String
-  Users         Users         @relation(fields: [UserId], references: [UserId])
   LevelSettings LevelSettings @relation(fields: [GuildId], references: [GuildId])
+  Users         Users         @relation(fields: [UserId], references: [UserId])
 }
 
-// Users
 model Users {
   Id           Int            @id @default(autoincrement())
   Username     String
   UserId       String         @unique
-  Apis         Apis[]
-  GuildBackups GuildBackups[]
-  Vanitys      Vanitys[]
   Votes        Int            @default(0)
   GloablVotes  Int            @default(0)
   LastVote     DateTime?
-  // CURRENTLY NO USE!
   CustomerBots Int            @default(1)
   BackupCount  Int            @default(10000)
+  Apis         Apis?
+  GuildBackups GuildBackups[]
   Levels       Levels[]
+  Vanitys      Vanitys[]
 }
 
 model Apis {
@@ -1026,7 +997,6 @@ model Apis {
   Users            Users    @relation(fields: [UserId], references: [UserId])
 }
 
-// UPDATE SOON
 model GuildBackups {
   Id         Int      @id @default(autoincrement())
   BackupJSON Json
@@ -1047,10 +1017,10 @@ model Vanitys {
   Invite               String
   InDiscovery          Boolean?        @default(false)
   IsBannedFromDiscover Boolean?        @default(false)
-  Analytics            VanityAnalytic?
   CreatedAt            DateTime
-  Embed                VanityEmbed?
   UserId               String
+  Analytics            VanityAnalytic?
+  Embed                VanityEmbed?
   Users                Users           @relation(fields: [UserId], references: [UserId])
 }
 
@@ -1059,11 +1029,11 @@ model VanityEmbed {
   Title        String
   Description  String
   Color        String
-  Author       VanityEmbedAuthor?
   ImageUrl     String?
   ThumbnailUrl String?
   VanityId     String             @unique
   Vanitys      Vanitys            @relation(fields: [VanityId], references: [UUID])
+  Author       VanityEmbedAuthor?
 }
 
 model VanityEmbedAuthor {
@@ -1080,13 +1050,13 @@ model VanityAnalytic {
   Click              Int
   TrackInviteWithLog String?
   TrackMessageId     String?
-  Latest30Days       VanityAnalyticsLatest30Day?
   Update             DateTime?
   UniqueClick        Int?
   JoinedWithCode     Int?
   LoggedIPs          String[]
   VanityId           String                      @unique
   Vanitys            Vanitys                     @relation(fields: [VanityId], references: [UUID])
+  Latest30Days       VanityAnalyticsLatest30Day?
 }
 
 model VanityAnalyticsLatest30Day {
@@ -1099,10 +1069,9 @@ model VanityAnalyticsLatest30Day {
   VanityAnalytics   VanityAnalytic @relation(fields: [VanityAnalyticsId], references: [VanityId])
 }
 
-// DisBot
 model DisBot {
   Id           Int    @id @default(autoincrement())
-  Logs         Json[] // Change
+  Logs         Json[]
   SpotifyToken String
   TwitchToken  String
   Version      String

@@ -691,6 +691,8 @@ exports.Prisma.TagsScalarFieldEnum = {
   MessageTemplateId: 'MessageTemplateId',
   IsSlashCommand: 'IsSlashCommand',
   SlashCommandId: 'SlashCommandId',
+  IsShlashCommand: 'IsShlashCommand',
+  ShlashCommandId: 'ShlashCommandId',
   IsTextInputCommand: 'IsTextInputCommand',
   IsEnabled: 'IsEnabled',
   PermissionRoleId: 'PermissionRoleId',
