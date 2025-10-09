@@ -1,7 +1,7 @@
 import {ExtendedClient} from "../types/client.js";
 import {default as axios} from "axios";
 import {database} from "../main/database.js";
-import {botData} from "../main/version.js";
+import {versionData} from "../main/version.js";
 import {Logger} from "../main/logger.js";
 import {LoggingAction} from "../enums/loggingTypes.js";
 import colors from "colors"
@@ -40,24 +40,24 @@ export async function setupDisBotConfig(client: ExtendedClient): Promise<void> {
                 GetConf: "config"
             }
         })
+        const version = await versionData()
         if (!disbotConfig) {
             await database.disBot.create({
                 data: {
                     GetConf: "config",
-                    Version: botData.version,
+                    Version: version.version,
                     Logs: [],
                     SpotifyToken: authData.access_token,
                     TwitchToken: twitchAccessToken
                 }
             })
         }
-
         await database.disBot.update({
             where: {
                 GetConf: "config",
             },
             data: {
-                Version: botData.version,
+                Version: version.version,
                 Logs: [],
                 SpotifyToken: authData.access_token,
                 TwitchToken: twitchAccessToken
@@ -319,5 +319,5 @@ export async function initUsersToDatabase(client: ExtendedClient, user: User) {
 }
 
 export async function migrateDataBase(client?: ExtendedClient) {
-   
+
 }

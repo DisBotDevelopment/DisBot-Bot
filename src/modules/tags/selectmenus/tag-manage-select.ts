@@ -25,7 +25,7 @@ export default {
   ) {
     const uuid = interaction.customId.split(":")[1];
 
-    interaction.values.forEach(async (value) => {
+    for (const value of interaction.values) {
       const data = await database.tags.findFirst({
         where: {
           UUID: uuid
@@ -33,12 +33,12 @@ export default {
       });
       if (!client.user) throw new Error("No User found.");
       if (!data) {
-        return interaction.reply({
-          content: `## ${await convertToEmojiPng(
-            "error",
-            client.user.id
-          )} The tag you are trying to manage does not exist.`,
-          flags: MessageFlags.Ephemeral
+        interaction.reply({
+            content: `## ${await convertToEmojiPng(
+                "error",
+                client.user.id
+            )} The tag you are trying to manage does not exist.`,
+            flags: MessageFlags.Ephemeral
         });
       }
       if (!client.user) throw new Error("No User found.");
@@ -53,7 +53,7 @@ export default {
             `> **Tag Name:** \`${data.TagId}\``,
             `> **Tag Message:** \`${data.MessageTemplateId || `No Message`}\``,
             `> **TextCommand:** \`${data.IsTextInputCommand ? "Yes" : "No"}\``,
-            `> **SlashCommand:** \`${data.IsShlashCommand ? "Yes" : "No"}\``,
+            `> **SlashCommand:** \`${data.IsSlashCommand ? "Yes" : "No"}\``,
             `> **Enabled:** \`${data.IsEnabled ? "Yes" : "No"}\``,
             `> **Permission Role:** ${data.PermissionRoleId
               ? `<@&${data.PermissionRoleId}>`
@@ -109,6 +109,6 @@ export default {
         embeds: [embed],
         components: [row, row2]
       });
-    });
+    }
   }
 };

@@ -18,13 +18,13 @@ export default {
         const tag = await database.tags.findFirst({
             where: {
                 GuildId: interaction.guildId,
-                ShlashCommandId: commandID
+                SlashCommandId: commandID
             }
         });
 
         if (!tag) return;
 
-        if (tag.ShlashCommandId == commandID) {
+        if (tag.SlashCommandId == commandID) {
             if (tag.IsEnabled == false) return;
 
             if (tag.PermissionRoleId) {

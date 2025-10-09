@@ -1,9 +1,9 @@
 import * as YAML from "yaml";
 import fs from "fs";
-import { botData } from "./version.js";
 import colors from "colors";
 import { DisBotConfigData } from "../types/config.js";
 import { YAMLMap } from "yaml";
+import {configVersion} from "./data.js";
 
 colors.enable();
 
@@ -75,13 +75,13 @@ export async function configStartup() {
                 GitHubAPIToken: ""
             },
             BotType: "DISBOT",
-            CONFIG_VERSION: botData.configVersion,
+            CONFIG_VERSION: configVersion,
         };
 
 
         const doc = new YAML.Document(configData);
 
-        doc.commentBefore = ` DisBot Config v${botData.configVersion} of version ${botData.version}.`;
+        doc.commentBefore = ` DisBot Config v${configVersion} of version ${configVersion}.`;
 
         generateConfigCommentBeforeIn(doc, ["Bot", "DiscordBotToken"], " Discord Bot Token from https://discord.com/developers/applications/<bot-id>/bot")
         generateConfigCommentBeforeIn(doc, ["Bot", "DiscordApplicationId"], " Discord Bot Token from https://discord.com/developers/applications/<bot-id>/information")
@@ -115,7 +115,7 @@ export async function configStartup() {
 
     console.log("DisBot Config is loaded and exported! (Logger, Startup, Bot)".bold)
 
-    if (Config.CONFIG_VERSION != botData.configVersion) {
+    if (Config.CONFIG_VERSION != configVersion) {
         console.error(`Please recreate your Bot Config`.red)
         process.exit(0);
     }

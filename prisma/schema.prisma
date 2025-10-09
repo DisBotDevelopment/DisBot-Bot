@@ -615,13 +615,15 @@ model GuildLogs {
 }
 
 model MessageTemplates {
-  Id          Int      @id @default(autoincrement())
-  Content     String?
-  EmbedJSON   String?
-  OtherEmbeds String[]
-  Name        String   @unique
-  GuildId     String
-  Guilds      Guilds   @relation(fields: [GuildId], references: [GuildId])
+  Id                    Int      @id @default(autoincrement())
+  Content               String?
+  EmbedJSON             String?
+  ComponentJSON         String?
+  IsComponentsV2Message Boolean  @default(false)
+  OtherEmbeds           String[]
+  Name                  String   @unique
+  GuildId               String
+  Guilds                Guilds   @relation(fields: [GuildId], references: [GuildId])
 }
 
 model GuildReactionRoles {
@@ -709,8 +711,8 @@ model Tags {
   TagId                  String   @unique
   TriggerKeywords        String[] // SOON && NEW
   MessageTemplateId      String?
-  IsShlashCommand        Boolean
-  ShlashCommandId        String?
+  IsSlashCommand         Boolean
+  SlashCommandId         String?
   IsTextInputCommand     Boolean
   IsEnabled              Boolean
   PermissionRoleId       String?

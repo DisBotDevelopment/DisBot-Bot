@@ -58,8 +58,8 @@ export default {
                 UUID: uuids,
                 MessageTemplateId: null,
                 IsEnabled: true,
-                IsShlashCommand: false,
-                ShlashCommandId: null,
+                IsSlashCommand: false,
+                SlashCommandId: null,
                 IsTextInputCommand: false,
             }
         });

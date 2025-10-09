@@ -18,10 +18,9 @@ import {loadSelectMenus} from "../handler/files/selectmenus.js";
 import {ExtendedClient} from "../types/client.js";
 import {Logger} from "./logger.js";
 import {LoggingAction} from "../enums/loggingTypes.js";
-import {connectToDatabase, initDataToDatabase} from "./database.js";
-import {botData} from "./version.js";
+import {connectToDatabase} from "./database.js";
 import {CommandHelper} from "../helper/CommandHelper.js";
-import {clientReady} from "../helper/readyHelper.js";
+
 import {Config, configStartup} from "./config.js";
 
 colors.enable();
@@ -140,9 +139,6 @@ async function initializeClient() {
     await loadModals(client);
     await loadButtons(client);
     await loadEvents(client);
-
-    await CommandHelper.loadCommands(client);
-    await CommandHelper.guildLoadCommands(client);
 }
 
 initializeClient()
@@ -179,11 +175,6 @@ client
             botType: Config.BotType.toString() || "Unknown",
             action: LoggingAction.Other,
         });
-        client.once(Events.ClientReady, async () => {
-            clientReady(client);
-            await initDataToDatabase(client)
-        });
-
         process.setMaxListeners(0);
         client.setMaxListeners(0);
         if (process.env.SENTRY_DSN) {
@@ -191,7 +182,6 @@ client
                 dsn: process.env.SENTRY_DSN,
                 tracesSampleRate: 1.0,
                 environment: process.env.NODE_ENV || "development",
-                release: botData.version,
             });
         }
     })

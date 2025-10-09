@@ -51,7 +51,7 @@ export default {
                             `> **Tag Message:** \`${embed.MessageTemplateId || `No Message`}\``,
                             `> **TextCommand:** \`${embed.IsTextInputCommand ? "Yes" : "No"
                             }\``,
-                            `> **SlashCommand:** \`${embed.IsShlashCommand ? "Yes" : "No"}\``,
+                            `> **SlashCommand:** \`${embed.IsSlashCommand ? "Yes" : "No"}\``,
                             `> **Enabled:** \`${embed.IsEnabled ? "Yes" : "No"}\``,
                             `> **Permission Role:** ${embed.PermissionRoleId
                                 ? `<@&${embed.PermissionRoleId}>`

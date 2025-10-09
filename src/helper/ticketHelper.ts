@@ -971,22 +971,23 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
             })
 
         const tChannel = await guild.channels.fetch(data.TranscriptChannelId) as TextChannel | PrivateThreadChannel
+        if (tChannel) {
+            const transcript = await ticketTranscriptBuilder(
+                ticketId,
+                client,
+                guild,
+                channel,
+                null,
+                interaction ?? null
+            )
 
-        const transcript = await ticketTranscriptBuilder(
-            ticketId,
-            client,
-            guild,
-            channel,
-            null,
-            interaction ?? null
-        )
+            const message = await tChannel.send(transcript as MessageCreateOptions)
 
-        const message = await tChannel.send(transcript as MessageCreateOptions)
-
-        if (!isAuto)
-            await interaction.editReply({
-                content: `## ${await convertToEmojiPng("check", client.user.id)} Exported Ticket-Transcript ${message.url}`,
-            })
+            if (!isAuto)
+                await interaction.editReply({
+                    content: `## ${await convertToEmojiPng("check", client.user.id)} Exported Ticket-Transcript ${message.url}`,
+                })
+        }
     }
     if (data.OldTicketCategoryId) {
         actionCounter += 1

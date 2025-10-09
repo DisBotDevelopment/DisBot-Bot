@@ -34,7 +34,7 @@ export default {
 
         const commands = client.commands;
 
-        if (!data.ShlashCommandId && data.IsShlashCommand == false) {
+        if (!data.SlashCommandId && data.IsSlashCommand == false) {
             if (!commands) {
                 return interaction.reply({
                     content: `## ${await convertToEmojiPng(
@@ -58,7 +58,7 @@ export default {
             }
         }
 
-        if (data.IsShlashCommand === false) {
+        if (data.IsSlashCommand === false) {
             const command = await interaction.guild?.commands.create({
                 name: data.TagId || "",
                 description:
@@ -73,8 +73,8 @@ export default {
                 {
                     where: {UUID: UUID},
                     data: {
-                        IsShlashCommand: true,
-                        ShlashCommandId: command?.id,
+                        IsSlashCommand: true,
+                        SlashCommandId: command?.id,
                         CommandDescription: interaction.fields.getTextInputValue(
                             "tag-create-set-iscommand-modal-description"
                         ),
@@ -90,13 +90,13 @@ export default {
                 flags: MessageFlags.Ephemeral,
             });
         } else {
-            await interaction.guild?.commands.delete(data.ShlashCommandId as string);
+            await interaction.guild?.commands.delete(data.SlashCommandId as string);
 
             await database.tags.update(
                 {
                     where: {UUID: UUID},
                     data: {
-                        IsShlashCommand: false,
+                        IsSlashCommand: false,
                     }
                 }
             );

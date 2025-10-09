@@ -21,7 +21,13 @@ export default {
         await loadEvents(client);
 
         await CommandHelper.loadCommands(client);
-        await CommandHelper.guildLoadCommands(client);
+        await CommandHelper.adminGuildLoadCommands(client);
+
+        const guilds = await client.guilds.fetch();
+        for (const fakeGuild of guilds.values()) {
+            const guild = await client.guilds.fetch(fakeGuild.id)
+            await CommandHelper.loadCommandsForGuild(client, guild);
+        }
 
         await interaction.reply({
             content: "## Reload the Bot Modules",

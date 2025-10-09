@@ -5,7 +5,7 @@ import multer from "multer";
 import {Logger} from "../../main/logger.js";
 import {LoggingAction} from "../../enums/loggingTypes.js";
 import cors from "cors";
-import {botData} from "../../main/version.js";
+import {versionData} from "../../main/version.js";
 import {Config} from "../../main/config.js";
 import {discoveryApi} from "./routes/get/discovery.js";
 import {banList} from "./routes/get/banlist.js";
@@ -13,8 +13,6 @@ import {banList} from "./routes/get/banlist.js";
 export const APIServer = express();
 
 export async function api(client: ExtendedClient) {
-    const upload = multer();
-
     // Default Values
     APIServer.set("client", client);
     APIServer.use(cors());
@@ -26,7 +24,8 @@ export async function api(client: ExtendedClient) {
     APIServer.get("/v2/bot/discovery", discoveryApi);
 
     APIServer.get("/version", async (req, res): Promise<void> => {
-        res.status(200).json({version: botData.version});
+        const version = (await versionData()).version
+        res.status(200).json({version: version});
     });
 
     APIServer.get("/", async (req, res): Promise<void> => {
