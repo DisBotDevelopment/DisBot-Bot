@@ -305,6 +305,8 @@ export async function ticketHelper(
                 Id: Number(Math.random() * 134324),
                 GuildId: guild.id,
                 Content: null,
+                ComponentJSON: null,
+                IsComponentsV2Message: false,
                 EmbedJSON: JSON.stringify(ticketTemplateMessageData),
                 Name: "ticket-not-found",
                 OtherEmbeds: []
