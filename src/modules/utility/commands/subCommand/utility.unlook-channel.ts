@@ -1,6 +1,6 @@
 import { ChannelType, ChatInputCommandInteraction, MessageFlags, PermissionFlagsBits, RoleResolvable, TextChannel } from "discord.js";
 import { ExtendedClient } from "../../../../types/client.js";
-import { convertToEmojiPng } from "../../../../helper/emojis.js";
+import { convertToEmojiToPng } from "../../../../helper/emojis.js";
 import { PermissionType } from "../../../../enums/permissionType.js";
 
 export default {
@@ -30,14 +30,14 @@ export default {
 
         if (!channel) {
             return await interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} Please use this command in a text channel`,
+                content: `## ${await convertToEmojiToPng("error")} Please use this command in a text channel`,
                 flags: MessageFlags.Ephemeral
             });
         }
 
         if (channel.type !== ChannelType.GuildText) {
             return await interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} Please use this command in a text channel`,
+                content: `## ${await convertToEmojiToPng("error")} Please use this command in a text channel`,
                 flags: MessageFlags.Ephemeral
             });
         }
@@ -79,7 +79,7 @@ export default {
         }
 
         await interaction.reply({
-            content: `## ${await convertToEmojiPng("check", client.user.id)} Removed the lock from the channel ${channel} for the role ${role}`,
+            content: `## ${await convertToEmojiToPng("check")} Removed the lock from the channel ${channel} for the role ${role}`,
             flags: MessageFlags.Ephemeral
         });
     }

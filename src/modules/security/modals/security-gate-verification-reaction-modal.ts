@@ -9,7 +9,7 @@ import {
     TextBasedChannel
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -32,7 +32,7 @@ export default {
 
         if (!data?.Action && !data?.ChannelId && !data?.MessageId && !data?.ActionType) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} No security gate verification action found for this button.`,
+                content: `## ${await convertToEmojiToPng("error")} No security gate verification action found for this button.`,
                 flags: MessageFlags.Ephemeral
             });
         }
@@ -45,7 +45,7 @@ export default {
 
             if (!message) {
                 return interaction.reply({
-                    content: `## ${await convertToEmojiPng("error", client.user?.id)} The message for the security gate verification button was not found.`,
+                    content: `## ${await convertToEmojiToPng("error")} The message for the security gate verification button was not found.`,
                     flags: MessageFlags.Ephemeral
                 });
             }
@@ -53,14 +53,14 @@ export default {
             await message?.react(emojiInput)
 
             await interaction.reply({
-                content: `## ${await convertToEmojiPng("check", client.user?.id)} Security gate verification reaction has been set successfully!`,
+                content: `## ${await convertToEmojiToPng("check")} Security gate verification reaction has been set successfully!`,
                 flags: MessageFlags.Ephemeral
             });
 
         } catch (error) {
             console.error("Error setting security gate verification button:", error);
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} An error occurred while setting the security gate verification reaction.`,
+                content: `## ${await convertToEmojiToPng("error")} An error occurred while setting the security gate verification reaction.`,
                 flags: MessageFlags.Ephemeral
             });
         }

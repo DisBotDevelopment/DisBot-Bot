@@ -6,7 +6,7 @@ import {
     ContainerBuilder,
     MessageFlags, TextDisplayBuilder
 } from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 
 export default {
@@ -21,7 +21,7 @@ export default {
         if (!client.user) throw new Error("Client User is not defined");
         if (interaction.user.id !== interaction.guild?.ownerId) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} Only the server owner can use this command.`,
+                content: `## ${await convertToEmojiToPng("error")} Only the server owner can use this command.`,
                 flags: MessageFlags.Ephemeral
             });
         }
@@ -31,7 +31,7 @@ export default {
             flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
             components: [
                 new ContainerBuilder().addTextDisplayComponents(
-                    new TextDisplayBuilder().setContent(`## ${await convertToEmojiPng("package", client.user?.id)} Confirm your backup restore process \n\n-# ⚠️ **Warning**: This will override all your current server settings and data`)
+                    new TextDisplayBuilder().setContent(`## ${await convertToEmojiToPng("package")} Confirm your backup restore process \n\n-# ⚠️ **Warning**: This will override all your current server settings and data`)
                 ).addActionRowComponents(
                     new ActionRowBuilder<ButtonBuilder>().addComponents(
                         new ButtonBuilder()

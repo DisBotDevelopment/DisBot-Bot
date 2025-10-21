@@ -9,7 +9,7 @@ import {
     SlashCommandBuilder, TextDisplayBuilder, UserSelectMenuBuilder
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {PermissionType} from "../../../enums/permissionType.js";
 
 export default {
@@ -57,7 +57,7 @@ export default {
                         new TextDisplayBuilder()
                             .setContent(
                                 [
-                                    `## ${await convertToEmojiPng("permission", client.user.id)} Permissions`,
+                                    `## ${await convertToEmojiToPng("permission")} Permissions`,
                                     ``,
                                     `- Click the buttons below to manage permissions from a Button base on the CustomId or Name!`,
                                     `- Manage Permission related setting for every command, button, modal and selectmenu.`,

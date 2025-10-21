@@ -1,5 +1,5 @@
 import {ButtonStyle, Client, MessageFlags, TextInputStyle, UserSelectMenuInteraction} from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -29,7 +29,7 @@ export default {
             if (!client.user) throw new Error("Client user not found");
             await interaction.update(
                 {
-                    content: `## ${await convertToEmojiPng("check", client.user?.id)} Update Notification Channel`,
+                    content: `## ${await convertToEmojiToPng("check")} Update Notification Channel`,
                     embeds: [],
                     components: [],
                 }

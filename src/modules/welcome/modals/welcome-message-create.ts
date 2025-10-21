@@ -1,6 +1,6 @@
 import {MessageFlags, ModalSubmitInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -20,7 +20,7 @@ export default {
         });
 
         if (!data.ChannelId) return interaction.reply({
-            content: `## ${await convertToEmojiPng("error", client.user.id)} There are no Channel set.`,
+            content: `## ${await convertToEmojiToPng("error")} There are no Channel set.`,
             flags: MessageFlags.Ephemeral,
         })
 
@@ -40,9 +40,8 @@ export default {
         if (!client.user) throw new Error("Client user is not defined");
 
         await interaction.reply({
-            content: `## ${await convertToEmojiPng(
-                "check",
-                client.user.id
+            content: `## ${await convertToEmojiToPng(
+                "check"
             )} Welcome message has been set!`,
             flags: MessageFlags.Ephemeral
         });

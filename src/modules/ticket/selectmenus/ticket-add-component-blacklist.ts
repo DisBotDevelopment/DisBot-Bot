@@ -1,7 +1,7 @@
 import {ChannelType, Client, MessageFlags, UserSelectMenuInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "ticket-add-component-blacklist",
@@ -19,7 +19,7 @@ export default {
             const role = interaction.guild.roles.cache.get(value);
             if (role.managed) {
                 return await interaction.reply({
-                    content: `## ${await convertToEmojiPng("error", client.user.id)} You can't select a managed role.`,
+                    content: `## ${await convertToEmojiToPng("error")} You can't select a managed role.`,
                     flags: MessageFlags.Ephemeral,
                 })
             }

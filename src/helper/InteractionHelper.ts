@@ -9,7 +9,7 @@ import {
 } from "discord.js";
 import {DisBotInteractionType} from "../enums/disBotInteractionType.js";
 import {PermissionType} from "../enums/permissionType.js";
-import {convertToEmojiPng} from "./emojis.js";
+import {convertToEmojiToPng} from "./emojis.js";
 import {ExtendedClient} from "../types/client.js";
 import {database} from "../main/database.js";
 
@@ -33,7 +33,7 @@ export class InteractionHelper {
         if (cooldown && client.cooldowns?.has(cooldownKey)) {
             const expiration = client.cooldowns.get(cooldownKey)! + cooldownTime;
             if (now < expiration) {
-                const emoji = await convertToEmojiPng("timer", client.user!.id);
+                const emoji = await convertToEmojiToPng("timer");
                 const timestamp = Math.floor(expiration / 1000);
 
                 return await this.sendReply(interaction, emoji, `Please wait <t:${timestamp}:R> before using this command again.`)
@@ -54,7 +54,7 @@ export class InteractionHelper {
         const missingPermissions = botPermissions.filter(permission => !interaction.guild?.members.me?.permissions.has(permission));
 
         if (missingPermissions.length > 0) {
-            const emoji = await convertToEmojiPng("permission", client.user!.id);
+            const emoji = await convertToEmojiToPng("permission");
             const bitfield = missingPermissions.reduce((a, b) => a | Number(b), 0);
             const readable = new PermissionsBitField(BigInt(bitfield)).toArray();
             const formatted = readable.map(p => `\`${p}\``).join(", ");
@@ -76,7 +76,7 @@ export class InteractionHelper {
         const missingPermissions = userPermissions.filter(permission => !(interaction.member as GuildMember).permissions.has(permission));
 
         if (missingPermissions.length > 0) {
-            const emoji = await convertToEmojiPng("permission", client.user!.id);
+            const emoji = await convertToEmojiToPng("permission");
             const bitfield = missingPermissions.reduce((a, b) => a | Number(b), 0);
             const readable = new PermissionsBitField(BigInt(bitfield)).toArray();
             const formatted = readable.map(p => `\`${p}\``).join(", ");
@@ -97,7 +97,7 @@ export class InteractionHelper {
 
         if (guild.ownerId !== member.id) {
             return await (interaction as any).reply({
-                content: `## ${await convertToEmojiPng("permission", client.user!.id)} OoO, You need to be the server owner to execute this interaction.`,
+                content: `## ${await convertToEmojiToPng("permission")} OoO, You need to be the server owner to execute this interaction.`,
                 flags: MessageFlags.Ephemeral
             })
         }

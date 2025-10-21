@@ -7,7 +7,7 @@ import {
     TextInputStyle
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -38,7 +38,7 @@ export default {
         ) {
             if (!client.user) throw new Error("Client user is not cached");
             return interaction.update({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} You have already set a type for this reaction role`,
+                content: `## ${await convertToEmojiToPng("error")} You have already set a type for this reaction role`,
                 components: [],
             });
         }

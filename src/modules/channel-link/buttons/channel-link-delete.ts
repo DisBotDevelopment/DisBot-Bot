@@ -8,7 +8,7 @@ import {
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "channel-link-delete",
@@ -30,7 +30,7 @@ export default {
         await interaction.update({
                 components: [
                     new ContainerBuilder()
-                        .addTextDisplayComponents(new TextDisplayBuilder().setContent(`## ${await convertToEmojiPng("check", client.user.id)} Successfully deleted your Channel Link`))
+                        .addTextDisplayComponents(new TextDisplayBuilder().setContent(`## ${await convertToEmojiToPng("check")} Successfully deleted your Channel Link`))
                 ]
             }
         )

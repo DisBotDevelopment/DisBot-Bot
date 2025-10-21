@@ -13,7 +13,7 @@ import {
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 import {handleCloseAction, hasTicketPermission, ticketErrorMessage} from "../../../helper/ticketHelper.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {cli} from "winston/lib/winston/config/index.js";
 import {PaginationData} from "../../../types/pagination.js";
 import {PaginationBuilder} from "../../../helper/paginationHelper.js";
@@ -31,6 +31,8 @@ export default {
         const [action, uuid, currentIndexStr] = interaction.customId.split(":");
         const currentIndex = parseInt(currentIndexStr) || 0;
         const pageSize = 3;
+
+        console.log(uuid)
 
         const data = await database.tickets.findFirst({
             where: {

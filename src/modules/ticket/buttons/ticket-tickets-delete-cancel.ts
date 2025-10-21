@@ -11,7 +11,7 @@ import {
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 import {handleCloseAction, hasTicketPermission, ticketErrorMessage} from "../../../helper/ticketHelper.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {cli} from "winston/lib/winston/config/index.js";
 
 export default {

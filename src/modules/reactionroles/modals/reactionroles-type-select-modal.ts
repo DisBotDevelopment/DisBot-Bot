@@ -9,7 +9,7 @@ import {
     TextChannel
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -35,7 +35,7 @@ export default {
         if (!client.user) throw new Error("Client user is not cached");
         if (!reactData) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} No data found.`,
+                content: `## ${await convertToEmojiToPng("error")} No data found.`,
                 flags: MessageFlags.Ephemeral
             });
         }
@@ -47,7 +47,7 @@ export default {
         ) {
             if (!client.user) throw new Error("Client user is not cached");
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} You have already set a type for this reaction role`,
+                content: `## ${await convertToEmojiToPng("error")} You have already set a type for this reaction role`,
                 components: [],
                 flags: MessageFlags.Ephemeral
             });
@@ -82,7 +82,7 @@ export default {
 
         if (!message) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} Message not found.`,
+                content: `## ${await convertToEmojiToPng("error")} Message not found.`,
                 flags: MessageFlags.Ephemeral
             });
         }
@@ -203,13 +203,13 @@ export default {
         } catch (error) {
             console.error(error);
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} An error occurred while updating the message.`,
+                content: `## ${await convertToEmojiToPng("error")} An error occurred while updating the message.`,
                 flags: MessageFlags.Ephemeral
             });
         }
         // Respond to the interaction
         return interaction.reply({
-            content: `## ${await convertToEmojiPng("check", client.user?.id)} Reaction Role SelectMenu updated successfully.`,
+            content: `## ${await convertToEmojiToPng("check")} Reaction Role SelectMenu updated successfully.`,
             flags: MessageFlags.Ephemeral
         });
     }

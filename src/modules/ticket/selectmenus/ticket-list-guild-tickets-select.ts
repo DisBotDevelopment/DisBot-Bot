@@ -20,7 +20,7 @@ import {
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ticketErrorMessage} from "../../../helper/ticketHelper.js";
 
 export default {
@@ -91,7 +91,7 @@ export default {
             const container = new ContainerBuilder()
                 .addTextDisplayComponents(
                     new TextDisplayBuilder().setContent([
-                        `## ${await convertToEmojiPng("ticket", client.user.id)} Ticket from <@${data.TicketOwnerId}> (${channelName ?? "N/A"})`,
+                        `## ${await convertToEmojiToPng("ticket")} Ticket from <@${data.TicketOwnerId}> (${channelName ?? "N/A"})`,
                         ``,
                         `**Ticket Owner**: <@${data.TicketOwnerId}>`,
                         `**Ticket Channel**: ${channel?.url ?? "N/A"}`,

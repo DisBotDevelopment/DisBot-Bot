@@ -7,7 +7,7 @@ import {
     SlashCommandBuilder, TextDisplayBuilder
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     help: {
@@ -36,7 +36,7 @@ export default {
                 new ContainerBuilder()
                     .addTextDisplayComponents(
                         new TextDisplayBuilder().setContent(
-                            [`# ${await convertToEmojiPng("ticket", client.user.id)} Tickets`,
+                            [`# ${await convertToEmojiToPng("ticket")} Tickets`,
                                 `> - Manage you tickets and ticket Components`,
                                 `> - Create, Manage, Delete Ticket Components`,
                             ].join("\n"))

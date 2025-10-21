@@ -11,7 +11,7 @@ import {
 import pkg from "short-uuid";
 const { uuid } = pkg;
 import { ExtendedClient } from "../../../../types/client.js";
-import { convertToEmojiPng } from "../../../../helper/emojis.js";
+import { convertToEmojiToPng } from "../../../../helper/emojis.js";
 import { PermissionType } from "../../../../enums/permissionType.js";
 
 export default {
@@ -47,9 +47,8 @@ export default {
     ) {
       if (!client.user) throw new Error("Client is not defined");
       return interaction.editReply({
-        content: `## ${await convertToEmojiPng(
-          "error",
-          client.user?.id
+        content: `## ${await convertToEmojiToPng(
+          "error"
         )} I don't have the required permissions to mute members`,
       });
     }
@@ -69,9 +68,8 @@ export default {
     ) {
       if (!client.user) throw new Error("Client is not defined");
       return interaction.editReply({
-        content: `## ${await convertToEmojiPng(
-          "error",
-          client.user?.id
+        content: `## ${await convertToEmojiToPng(
+          "error"
         )} You don't have the required permissions to mute members`,
       });
     }
@@ -112,7 +110,7 @@ export default {
 
     if (!client.user) throw new Error("Client is not ready");
     interaction.editReply({
-      content: `## ${await convertToEmojiPng("user", client.user.id)} Create a new timeout action and select the user to timeout`,
+      content: `## ${await convertToEmojiToPng("user")} Create a new timeout action and select the user to timeout`,
       components: [row, row2],
     });
   },

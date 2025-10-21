@@ -1,6 +1,6 @@
 import {Client, EmbedBuilder, MessageFlags, ModalSubmitInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {IMAGE_PLACEHOLDER} from "../../../main/placeholder.js";
 
 export default {
@@ -35,8 +35,8 @@ export default {
             const oldFooter = embeds[embedIndex].data.footer
 
             embeds[embedIndex].setFooter({
-                text: oldFooter?.text ?? '',
-                iconURL: imgURL
+                text: oldFooter?.text ?? null,
+                iconURL: imgURL ?? null
             });
 
             if (message.webhookId) {
@@ -61,7 +61,7 @@ export default {
             console.error(error);
             if (!client.user) throw new Error("No Client");
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} An error occurred while trying to set the image. - **Please set a Footer first**`,
+                content: `## ${await convertToEmojiToPng("error")} An error occurred while trying to set the image. - **Please set a Footer first**`,
                 flags: MessageFlags.Ephemeral,
             });
         }

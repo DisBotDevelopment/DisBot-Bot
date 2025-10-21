@@ -12,7 +12,7 @@ import {
 import {ExtendedClient} from "../../../types/client.js";
 import {randomUUID} from "crypto";
 import {database} from "../../../main/database.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "ticket-add-component-only-claim",
@@ -45,7 +45,7 @@ export default {
 
             await interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("check", client.user.id)} Disabled Claim Mode`
+                content: `## ${await convertToEmojiToPng("check")} Disabled Claim Mode`
             })
 
         } else {
@@ -61,7 +61,7 @@ export default {
 
             await interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("check", client.user.id)} Enabled Claim Mode`
+                content: `## ${await convertToEmojiToPng("check")} Enabled Claim Mode`
             })
         }
     }

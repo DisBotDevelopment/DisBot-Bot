@@ -12,7 +12,7 @@ import {
 import {ExtendedClient} from "../../../types/client.js";
 import {randomUUID} from "crypto";
 import {database} from "../../../main/database.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "ticket-add-component-feedback",
@@ -45,7 +45,7 @@ export default {
 
             await interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("check", client.user.id)} Disabled User Feedback after Close`
+                content: `## ${await convertToEmojiToPng("check")} Disabled User Feedback after Close`
             })
 
         } else {

@@ -49,7 +49,7 @@ export default {
                                 )
                                 .setCustomId("embed-create-options-title:" + uuid)
                         );
-                    interaction.reply({flags: MessageFlags.Ephemeral, components: [titlesec]});
+                    await interaction.reply({flags: MessageFlags.Ephemeral, components: [titlesec]});
 
                     break;
                 }
@@ -194,13 +194,13 @@ export default {
                         .setCustomId("embed-create-options-thumbnail-thumbnail-input")
                         .setMaxLength(2000)
                         .setStyle(TextInputStyle.Paragraph)
-                        .setRequired(true);
+                        .setRequired(false);
 
                     modal.addComponents(
                         new ActionRowBuilder<TextInputBuilder>().addComponents(thumbnail)
                     );
 
-                    interaction.showModal(modal);
+                    await interaction.showModal(modal);
                     break;
                 }
                 case "image": {
@@ -225,13 +225,13 @@ export default {
                         .setPlaceholder("https://example.com/image.png")
                         .setMaxLength(2000)
                         .setStyle(TextInputStyle.Paragraph)
-                        .setRequired(true);
+                        .setRequired(false);
 
                     modal.addComponents(
                         new ActionRowBuilder<TextInputBuilder>().addComponents(image)
                     );
 
-                    interaction.showModal(modal);
+                    await interaction.showModal(modal);
                     break;
                 }
                 case "timestamp": {

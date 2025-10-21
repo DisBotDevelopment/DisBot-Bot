@@ -7,7 +7,7 @@ import {
     StringSelectMenuBuilder,
     TextDisplayBuilder, UserSelectMenuBuilder
 } from "discord.js";
-import {convertToEmojiPng} from "./emojis.js";
+import {convertToEmojiToPng} from "./emojis.js";
 import {PaginationData} from "../types/pagination.js";
 
 export async function PaginationBuilder(data: PaginationData) {
@@ -20,7 +20,7 @@ export async function PaginationBuilder(data: PaginationData) {
         if (data.paginationData.length <= 0) {
             if (!data.client.user) throw new Error("Client User is not defined");
             return data.interaction.reply({
-                content: `## ${await convertToEmojiPng("error", data.client.user?.id)} No data for pagination found! Failed to Build Message`,
+                content: `## ${await convertToEmojiToPng("error")} No data for pagination found! Failed to Build Message`,
                 flags: MessageFlags.Ephemeral
             });
         }

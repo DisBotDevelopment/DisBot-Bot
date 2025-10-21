@@ -3,7 +3,7 @@ import {PaginationBuilder} from "../../../helper/paginationHelper.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {PaginationData} from "../../../types/pagination.js";
 import {database} from "../../../main/database.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "permissions-manage-user-permission",
@@ -23,7 +23,7 @@ export default {
 
         if (!data) return await interaction.reply({
             flags: MessageFlags.Ephemeral,
-            content: `## ${await convertToEmojiPng("error", client.user.id)} No Data!`
+            content: `## ${await convertToEmojiToPng("error")} No Data!`
         })
 
         if (data.DisableInternalUserPermission) {
@@ -38,7 +38,7 @@ export default {
 
             await interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("check", client.user.id)} This interaction is now resection the internal user permission!`
+                content: `## ${await convertToEmojiToPng("check")} This interaction is now resection the internal user permission!`
             })
 
         } else {
@@ -53,7 +53,7 @@ export default {
 
             await interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("check", client.user.id)} This interaction is now ignoring the internal user permission!`
+                content: `## ${await convertToEmojiToPng("check")} This interaction is now ignoring the internal user permission!`
             })
 
         }

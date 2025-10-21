@@ -1,6 +1,6 @@
 import {ChannelType, MessageFlags, UserSelectMenuInteraction,} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -23,7 +23,7 @@ export default {
         if (!client.user) throw new Error("Client not Found");
         if (!data) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} The message you are trying to delete does not exist.`,
+                content: `## ${await convertToEmojiToPng("error")} The message you are trying to delete does not exist.`,
                 flags: MessageFlags.Ephemeral,
             });
         }
@@ -37,7 +37,7 @@ export default {
         if (!client.user) throw new Error("Client not Found");
         interaction.reply({
             flags: MessageFlags.Ephemeral,
-            content: `## ${await convertToEmojiPng("check", client.user?.id)} Message Template Deleted (ID:  
+            content: `## ${await convertToEmojiToPng("check")} Message Template Deleted (ID:  
         ${interaction.customId.split(":")[1]})`,
         }).then(() => {
             setTimeout(() => {

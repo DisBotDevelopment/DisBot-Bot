@@ -34,9 +34,9 @@ export default {
             const oldAuthor = embeds[embedIndex].data.author;
             
             embeds[embedIndex].setAuthor({
-                name: oldAuthor?.name ?? "",
-                iconURL: imageUrl,
-                url: oldAuthor?.url ?? undefined,
+                name: oldAuthor?.name ?? null,
+                iconURL: imageUrl ?? null,
+                url: oldAuthor?.url ?? null,
             });
 
             if (message.webhookId) {

@@ -1,6 +1,6 @@
 import {ButtonInteraction, ButtonStyle, MessageFlags} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -22,7 +22,7 @@ export default {
 
         if (!data) {
             await interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} This vanity URL is not found.`,
+                content: `## ${await convertToEmojiToPng("error")} This vanity URL is not found.`,
                 flags: MessageFlags.Ephemeral
             });
             return;
@@ -38,7 +38,7 @@ export default {
 
         if (!newInvite) {
             await interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} Failed to regenerate invite.`,
+                content: `## ${await convertToEmojiToPng("error")} Failed to regenerate invite.`,
                 flags: MessageFlags.Ephemeral
             });
             return;
@@ -54,7 +54,7 @@ export default {
         })
 
         await interaction.reply({
-            content: `## ${await convertToEmojiPng("check", client.user.id)} Successfully regenerated the invite for this vanity URL.`,
+            content: `## ${await convertToEmojiToPng("check")} Successfully regenerated the invite for this vanity URL.`,
             flags: MessageFlags.Ephemeral
         })
 

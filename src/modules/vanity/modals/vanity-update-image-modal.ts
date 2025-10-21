@@ -1,6 +1,6 @@
 import {ButtonStyle, MessageFlags, ModalSubmitInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -29,21 +29,21 @@ export default {
 
         if (!data) {
             await interaction.editReply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} This vanity URL is not found.`,
+                content: `## ${await convertToEmojiToPng("error")} This vanity URL is not found.`,
             });
             return;
         }
 
         if (!newSlug.startsWith("http") || !newSlug.endsWith(".png") && !newSlug.endsWith(".jpg") && !newSlug.endsWith(".jpeg")) {
             await interaction.editReply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} The thumbnail URL must start with "http" and end with ".png", ".jpg" or ".jpeg".`,
+                content: `## ${await convertToEmojiToPng("error")} The thumbnail URL must start with "http" and end with ".png", ".jpg" or ".jpeg".`,
             });
             return;
         }
 
         if (!newImage.startsWith("http") || !newImage.endsWith(".png") && !newImage.endsWith(".jpg") && !newImage.endsWith(".jpeg")) {
             await interaction.editReply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} The image URL must start with "http" and end with ".png", ".jpg" or ".jpeg".`,
+                content: `## ${await convertToEmojiToPng("error")} The image URL must start with "http" and end with ".png", ".jpg" or ".jpeg".`,
             });
             return;
         }
@@ -60,7 +60,7 @@ export default {
         })
 
         await interaction.editReply({
-            content: `## ${await convertToEmojiPng("check", client.user.id)} The image and thumbnail of the vanity URL have been updated.`,
+            content: `## ${await convertToEmojiToPng("check")} The image and thumbnail of the vanity URL have been updated.`,
         })
 
     }

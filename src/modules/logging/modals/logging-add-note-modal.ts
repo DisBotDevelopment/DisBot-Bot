@@ -7,7 +7,7 @@ import {
     ModalSubmitInteraction
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 import {randomUUID} from "crypto";
 
@@ -32,7 +32,7 @@ export default {
         })
 
         if (!data) return interaction.reply({
-            content: `## ${await convertToEmojiPng("error", client.user.id)} There is no such message. Please try again later.`,
+            content: `## ${await convertToEmojiToPng("error")} There is no such message. Please try again later.`,
             flags: MessageFlags.Ephemeral,
         })
 
@@ -48,7 +48,7 @@ export default {
         })
 
         await interaction.reply({
-            content: `## ${await convertToEmojiPng("check", client.user.id)} Note added successfully.`,
+            content: `## ${await convertToEmojiToPng("check")} Note added successfully.`,
             flags: MessageFlags.Ephemeral,
         })
 

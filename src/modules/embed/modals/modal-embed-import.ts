@@ -1,6 +1,6 @@
 import {EmbedBuilder, MessageFlags, ModalSubmitInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "modal-embed-import",
@@ -26,7 +26,7 @@ export default {
                 newEmbed = new EmbedBuilder(json);
             } catch (err) {
                 return interaction.reply({
-                    content: `## ${await convertToEmojiPng("error", client.user?.id)} Invalid JSON!`,
+                    content: `## ${await convertToEmojiToPng("error")} Invalid JSON!`,
                     flags: MessageFlags.Ephemeral,
                 });
             }
@@ -42,7 +42,7 @@ export default {
 
                 if (!webhook) {
                     return interaction.reply({
-                        content: `## ${await convertToEmojiPng("error", client.user?.id)} I can't find the webhook for this message!`,
+                        content: `## ${await convertToEmojiToPng("error")} I can't find the webhook for this message!`,
                         flags: MessageFlags.Ephemeral,
                     });
                 }
@@ -53,7 +53,7 @@ export default {
                 } catch (err) {
                     console.error(err);
                     return interaction.reply({
-                        content: `## ${await convertToEmojiPng("error", client.user?.id)} Failed to edit the message via webhook!`,
+                        content: `## ${await convertToEmojiToPng("error")} Failed to edit the message via webhook!`,
                         flags: MessageFlags.Ephemeral,
                     });
                 }
@@ -61,7 +61,7 @@ export default {
 
             await message.edit({embeds});
             await interaction.reply({
-                content: `## ${await convertToEmojiPng("check", client.user?.id || "")} The embed has been imported successfully.`,
+                content: `## ${await convertToEmojiToPng("check")} The embed has been imported successfully.`,
                 flags: MessageFlags.Ephemeral
             });
 

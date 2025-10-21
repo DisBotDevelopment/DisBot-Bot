@@ -8,7 +8,7 @@ import {
     TextChannel, TextDisplayBuilder
 } from "discord.js";
 import {ExtendedClient} from "../../../../types/client.js";
-import {convertToEmojiPng} from "../../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 
 export default {
@@ -38,7 +38,7 @@ export default {
                 new ContainerBuilder()
                     .addTextDisplayComponents(
                         new TextDisplayBuilder()
-                            .setContent(`## ${await convertToEmojiPng("export", client.user.id)} Export your UserData or GuildData from this guild or your Account!`)
+                            .setContent(`## ${await convertToEmojiToPng("export")} Export your UserData or GuildData from this guild or your Account!`)
                     )
                     .addActionRowComponents(
                         new ActionRowBuilder<ButtonBuilder>().addComponents(

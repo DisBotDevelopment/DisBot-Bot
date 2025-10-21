@@ -11,7 +11,7 @@ import {
     StringSelectMenuBuilder,
     TextDisplayBuilder
 } from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {PermissionType} from "../../../enums/permissionType.js";
 
@@ -88,13 +88,13 @@ export default {
             components: [
                 new ContainerBuilder()
                     .addTextDisplayComponents(new TextDisplayBuilder().setContent([
-                            `## ${await convertToEmojiPng("workflow", client.user?.id)} Automation`,
+                            `## ${await convertToEmojiToPng("workflow")} Automation`,
                             ``,
                             `**Manage all automations**`,
-                            `> ${await convertToEmojiPng("packageplus", client.user?.id)} AutoRoles - Automatically assign roles to new members`,
-                            `> ${await convertToEmojiPng("megaphone", client.user?.id)} AutoPublish - Automatically publish messages in announcement channels`,
-                            `> ${await convertToEmojiPng("smileplus", client.user?.id)} AutoReact - Automatically react to messages`,
-                            `> ${await convertToEmojiPng("error", client.user?.id)} AutoDelete - Automatically delete messages \`NEW\``,
+                            `> ${await convertToEmojiToPng("packageplus")} AutoRoles - Automatically assign roles to new members`,
+                            `> ${await convertToEmojiToPng("megaphone")} AutoPublish - Automatically publish messages in announcement channels`,
+                            `> ${await convertToEmojiToPng("smileplus")} AutoReact - Automatically react to messages`,
+                            `> ${await convertToEmojiToPng("error")} AutoDelete - Automatically delete messages \`NEW\``,
                             ``
                         ].join("\n"))
                     )

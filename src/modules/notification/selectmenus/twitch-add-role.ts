@@ -2,7 +2,7 @@ import {ActionRowBuilder, ChannelSelectMenuBuilder, ChannelType, Client, UserSel
 import pkg from "short-uuid";
 
 const {uuid} = pkg;
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -48,9 +48,8 @@ export default {
                 );
 
             interaction.update({
-                content: `## ${await convertToEmojiPng(
-                    "text",
-                    client.user.id
+                content: `## ${await convertToEmojiToPng(
+                    "text"
                 )} Please select a Channel/Thread to send the message.`, components: [row]
             });
         }

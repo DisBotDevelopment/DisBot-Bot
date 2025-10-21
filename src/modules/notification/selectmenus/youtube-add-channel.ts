@@ -1,5 +1,5 @@
 import {ActionRowBuilder, ButtonBuilder, ButtonStyle, Client, UserSelectMenuInteraction} from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -39,9 +39,8 @@ export default {
             );
 
             interaction.update({
-                content: `## ${await convertToEmojiPng(
-                    "text",
-                    client.user.id
+                content: `## ${await convertToEmojiToPng(
+                    "text"
                 )} Use a message template for the message that will be sent to the channel.`, components: [row]
             });
         }

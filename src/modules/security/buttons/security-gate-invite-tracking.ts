@@ -1,5 +1,5 @@
 import {ButtonInteraction, MessageFlags, TextInputStyle} from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -33,7 +33,7 @@ export default {
 
             await interaction.reply(
                 {
-                    content: `## ${await convertToEmojiPng("locate", client.user.id)} Invite Tracking has been disabled!`,
+                    content: `## ${await convertToEmojiToPng("locate")} Invite Tracking has been disabled!`,
                     flags: MessageFlags.Ephemeral
                 }
             )
@@ -51,7 +51,7 @@ export default {
 
             await interaction.reply(
                 {
-                    content: `## ${await convertToEmojiPng("locate", client.user.id)} Invite Tracking has been enabled in ${interaction.guild?.safetyAlertsChannel ?? interaction.channel}`,
+                    content: `## ${await convertToEmojiToPng("locate")} Invite Tracking has been enabled in ${interaction.guild?.safetyAlertsChannel ?? interaction.channel}`,
                     flags: MessageFlags.Ephemeral
                 }
             )

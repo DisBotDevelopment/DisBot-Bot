@@ -7,7 +7,7 @@ import {
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {cli} from "winston/lib/winston/config/index.js";
 import {PermissionType} from "../../../enums/permissionType.js";
 
@@ -50,7 +50,7 @@ export default {
             const channel = await interaction.guild.channels.fetch(value)
             if (!channel.isSendable()) {
                 return interaction.reply({
-                    content: `## ${await convertToEmojiPng("error", client.user.id)} I can't send a message to this channel!`,
+                    content: `## ${await convertToEmojiToPng("error")} I can't send a message to this channel!`,
                     flags: MessageFlags.Ephemeral,
                 })
             }
@@ -69,7 +69,7 @@ export default {
             })
 
             interaction.reply({
-                content: `## ${await convertToEmojiPng("check", client.user.id)} Message sent to this channel!`,
+                content: `## ${await convertToEmojiToPng("check")} Message sent to this channel!`,
                 flags: MessageFlags.Ephemeral,
             })
 

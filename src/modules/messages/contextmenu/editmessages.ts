@@ -10,7 +10,7 @@ import {
     PermissionFlagsBits, TextDisplayBuilder, TextDisplayComponent
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {DisBotInteractionType} from "../../../enums/disBotInteractionType.js";
 import {PermissionType} from "../../../enums/permissionType.js";
 
@@ -59,7 +59,7 @@ export default {
 
         if (messageToEdit.author.id != client.user.id && messageToEdit.webhookId == null) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("errors", client.user.id)} You can only edit messages sent by me or a webhook.`,
+                content: `## ${await convertToEmojiToPng("errors")} You can only edit messages sent by me or a webhook.`,
                 flags: MessageFlags.Ephemeral,
             });
         }
@@ -67,7 +67,7 @@ export default {
         const container = new ContainerBuilder()
             .addTextDisplayComponents(
                 new TextDisplayBuilder()
-                    .setContent(`## ${await convertToEmojiPng("edit", client.user.id)} Edit the message content or embed.\n-# **In the Future you can edit it in the DisBot Editor**`)
+                    .setContent(`## ${await convertToEmojiToPng("edit")} Edit the message content or embed.\n-# **In the Future you can edit it in the DisBot Editor**`)
             )
             .addActionRowComponents(
                 new ActionRowBuilder<ButtonBuilder>().addComponents(

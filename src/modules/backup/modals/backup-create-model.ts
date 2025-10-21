@@ -1,7 +1,7 @@
 import "dotenv/config";
 import backup from "../../../systems/backup/index.js";
 import { ExtendedClient } from "../../../types/client.js";
-import { convertToEmojiGif, convertToEmojiPng } from "../../../helper/emojis.js";
+import { convertToEmojiGif, convertToEmojiToPng } from "../../../helper/emojis.js";
 import { Guild, MessageFlags, ModalSubmitInteraction } from "discord.js";
 import pkg from "short-uuid";
 const { uuid } = pkg;
@@ -26,9 +26,8 @@ export default {
 
     if (Number(maxMessagesPerChannel) <= 1) {
       return interaction.editReply({
-        content: `## ${await convertToEmojiPng(
-          "error",
-          client.user.id
+        content: `## ${await convertToEmojiToPng(
+          "error"
         )} Please enter a valid number for max messages per channel.`,
       });
     }
@@ -41,9 +40,8 @@ export default {
         !doNotBackup.split(",").includes("channels"))
     ) {
       return interaction.editReply({
-        content: `## ${await convertToEmojiPng(
-          "error",
-          client.user.id
+        content: `## ${await convertToEmojiToPng(
+          "error"
         )} Please enter a valid value for do not backup. (bans, roles, emojis, channels)`,
       });
     }
@@ -51,9 +49,8 @@ export default {
     let boolean = false;
     if (backupMembers !== "true" && backupMembers !== "false") {
       return interaction.editReply({
-        content: `## ${await convertToEmojiPng(
-          "error",
-          client.user.id
+        content: `## ${await convertToEmojiToPng(
+          "error"
         )} Please enter a valid value for backup members. (true or false)`,
       });
     }
@@ -92,8 +89,7 @@ export default {
     if (!client.user) throw new Error("Client user not found");
     interaction.editReply({
       content: `## ${await convertToEmojiGif(
-        "loading",
-        client.user.id
+        "loading"
       )} Creating backup and loading data...`,
       embeds: [],
       components: [],
@@ -107,9 +103,8 @@ export default {
 
         if (!client.user) throw new Error("Client user not found");
         interaction.editReply({
-          content: `## ${await convertToEmojiPng(
-            "check",
-            client.user.id
+          content: `## ${await convertToEmojiToPng(
+            "check"
           )} Backup created successfully in ${Math.round(time / 1000)} seconds.`,
           embeds: [],
         });

@@ -10,7 +10,7 @@ import {
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 import {handleCloseAction, hasTicketPermission, ticketErrorMessage} from "../../../helper/ticketHelper.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {cli} from "winston/lib/winston/config/index.js";
 
 export default {
@@ -102,13 +102,13 @@ export default {
             components: [
                 new ContainerBuilder()
                     .addTextDisplayComponents(
-                        new TextDisplayBuilder().setContent(`### ${await convertToEmojiPng("ticket", client.user.id)} Ticket has been reopened by ${interaction.user}`)
+                        new TextDisplayBuilder().setContent(`### ${await convertToEmojiToPng("ticket")} Ticket has been reopened by ${interaction.user}`)
                     )
             ]
         })
 
         await interaction.editReply({
-            content: `-# ${await convertToEmojiPng("ticket", client.user.id)} Ticket has beed re-opened!`
+            content: `-# ${await convertToEmojiToPng("ticket")} Ticket has beed re-opened!`
         })
     },
 };

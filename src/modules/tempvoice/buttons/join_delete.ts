@@ -1,6 +1,6 @@
 import { ButtonInteraction, ButtonStyle, EmbedBuilder, GuildMember, MessageFlags, TextInputStyle } from "discord.js";
 import { ExtendedClient } from "../../../types/client.js";
-import { convertToEmojiPng } from "../../../helper/emojis.js";
+import { convertToEmojiToPng } from "../../../helper/emojis.js";
 import { database } from "../../../main/database.js";
 
 export default {
@@ -23,11 +23,11 @@ export default {
     if (!client.user) throw new Error("Client not found");
 
     let owner;
-    await convertToEmojiPng("owner", client.user.id).then((result: any) => {
+    await convertToEmojiToPng("owner").then((result: any) => {
       owner = result;
     });
     let trash;
-    await convertToEmojiPng("trash", client.user.id).then((result: any) => {
+    await convertToEmojiToPng("trash").then((result: any) => {
       trash = result;
     });
 

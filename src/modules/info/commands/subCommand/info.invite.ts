@@ -1,6 +1,6 @@
 import { ChatInputCommandInteraction, EmbedBuilder, MessageFlags, PermissionFlagsBits } from "discord.js";
 import { ExtendedClient } from "../../../../types/client.js";
-import { convertToEmojiPng } from "../../../../helper/emojis.js";
+import { convertToEmojiToPng } from "../../../../helper/emojis.js";
 import { PermissionType } from "../../../../enums/permissionType.js";
 
 export default {
@@ -44,9 +44,8 @@ export default {
       invite = await client.fetchInvite(input as string);
     } catch (error) {
       return interaction.editReply({
-        content: `## ${await convertToEmojiPng(
-          "error",
-          client.user.id
+        content: `## ${await convertToEmojiToPng(
+          "error"
         )} I can't find the invite \`\`${input}\`\``
       });
     }

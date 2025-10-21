@@ -1,5 +1,5 @@
 import {ButtonInteraction, ContainerBuilder, MessageFlags, TextDisplayBuilder} from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -26,7 +26,7 @@ export default {
 
         if (!data) {
             await interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} No AutoDelete setup found with UUID: \`${uuid}\``,
+                content: `## ${await convertToEmojiToPng("error")} No AutoDelete setup found with UUID: \`${uuid}\``,
                 flags: MessageFlags.Ephemeral
             });
             return;
@@ -34,7 +34,7 @@ export default {
 
         if (!data.ChannelId) {
             await interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} No channel has been set for AutoDelete setup with UUID: \`${uuid}\``,
+                content: `## ${await convertToEmojiToPng("error")} No channel has been set for AutoDelete setup with UUID: \`${uuid}\``,
                 flags: MessageFlags.Ephemeral
             });
             return;
@@ -42,7 +42,7 @@ export default {
 
         if (!data.Time || Number(data.Time) <= 0) {
             await interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} No timer has been set for AutoDelete setup with UUID: \`${uuid}\``,
+                content: `## ${await convertToEmojiToPng("error")} No timer has been set for AutoDelete setup with UUID: \`${uuid}\``,
                 flags: MessageFlags.Ephemeral
             });
             return;
@@ -65,7 +65,7 @@ export default {
                 new ContainerBuilder()
                     .addTextDisplayComponents(
                         new TextDisplayBuilder()
-                            .setContent(`## ${await convertToEmojiPng("check", client.user?.id)} AutoDelete setup has been saved successfully!`))
+                            .setContent(`## ${await convertToEmojiToPng("check")} AutoDelete setup has been saved successfully!`))
             ],
         })
     }

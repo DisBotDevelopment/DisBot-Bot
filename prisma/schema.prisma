@@ -605,7 +605,7 @@ model MessageTemplates {
   IsComponentsV2Message Boolean  @default(false)
   OtherEmbeds           String[]
   Name                  String   @unique
-  GuildId               String
+  GuildId               String 
   Guilds                Guilds   @relation(fields: [GuildId], references: [GuildId])
 }
 

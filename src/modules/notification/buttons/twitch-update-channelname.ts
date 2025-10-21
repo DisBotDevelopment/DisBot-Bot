@@ -1,6 +1,6 @@
 import {ActionRowBuilder, ButtonInteraction, ChannelSelectMenuBuilder, ChannelType, MessageFlags} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
   id: "twitch-update-channelname",
@@ -29,9 +29,8 @@ export default {
     if (!client.user) throw new Error("Client User is not defined");
 
     interaction.reply({
-      content: `## ${await convertToEmojiPng(
-        "text",
-        client.user.id
+      content: `## ${await convertToEmojiToPng(
+        "text"
       )} Please select a Channel/Thread to send the message.`,
       components: [row],
        flags: MessageFlags.Ephemeral

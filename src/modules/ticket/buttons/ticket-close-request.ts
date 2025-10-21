@@ -5,7 +5,7 @@ import {
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 import {handleCloseAction, hasTicketPermission, ticketErrorMessage} from "../../../helper/ticketHelper.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {cli} from "winston/lib/winston/config/index.js";
 
 export default {
@@ -50,7 +50,7 @@ export default {
                     .addTextDisplayComponents(new TextDisplayBuilder()
                         .setContent(
                             [
-                                `### ${await convertToEmojiPng("ticket", client.user.id)} ${interaction.user} ask to close this ticket from <@${data.TicketOwnerId}>`,
+                                `### ${await convertToEmojiToPng("ticket")} ${interaction.user} ask to close this ticket from <@${data.TicketOwnerId}>`,
                                 `> -# Claimed: ${data.IsClaimed ? "Yes" : "No"}`,
                                 `> -# User Claimed:  ${data.UserWhoHasClaimedId ? `<@${data.UserWhoHasClaimedId}>` : "N/A"}`,
                             ].join("\n")))

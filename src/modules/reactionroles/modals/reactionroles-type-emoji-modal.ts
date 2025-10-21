@@ -7,7 +7,7 @@ import {
     TextInputStyle
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -38,7 +38,7 @@ export default {
         ) {
             if (!client.user) throw new Error("Client user is not cached");
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} You have already set a type for this reaction role`,
+                content: `## ${await convertToEmojiToPng("error")} You have already set a type for this reaction role`,
                 components: []
                 , flags: MessageFlags.Ephemeral
             });
@@ -50,7 +50,7 @@ export default {
         if (reactMessage.reactions.cache.has(interaction.fields.getTextInputValue(
             "reactionroles-types-emoji-emoji"
         ))) return interaction.reply({
-            content: `## ${await convertToEmojiPng("error", client.user.id)} You can't use the same emoji again.`
+            content: `## ${await convertToEmojiToPng("error")} You can't use the same emoji again.`
         })
 
         await database.guildReactionRoles.update(
@@ -73,7 +73,7 @@ export default {
         if (!client.user) throw new Error("Client user is not cached");
         if (!data) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} No data found`,
+                content: `## ${await convertToEmojiToPng("error")} No data found`,
                 flags: MessageFlags.Ephemeral
             });
         }
@@ -88,7 +88,7 @@ export default {
         await message.react(data?.Emoji as string);
 
         await interaction.reply({
-            content: `## ${await convertToEmojiPng("check", client.user?.id)} Reaction Role created successfully with type: Emoji`,
+            content: `## ${await convertToEmojiToPng("check")} Reaction Role created successfully with type: Emoji`,
             flags: MessageFlags.Ephemeral
         });
     }

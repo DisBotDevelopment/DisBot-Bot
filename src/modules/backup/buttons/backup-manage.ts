@@ -3,7 +3,7 @@ import {
     MessageFlags,
     StringSelectMenuBuilder, TextDisplayBuilder,
 } from "discord.js";
-import { convertToEmojiPng } from "../../../helper/emojis.js";
+import { convertToEmojiToPng } from "../../../helper/emojis.js";
 import { BackupData } from "../../../systems/backup/types/BackupData.js";
 import { ExtendedClient } from "../../../types/client.js";
 import { PaginationData } from "../../../types/pagination.js";
@@ -27,7 +27,7 @@ export default {
         if (!client.user) throw new Error("Client User is not defined");
         if (interaction.user.id !== interaction.guild?.ownerId) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} Only the server owner can use this button.`,
+                content: `## ${await convertToEmojiToPng("error")} Only the server owner can use this button.`,
                 flags: MessageFlags.Ephemeral
             });
         }
@@ -43,7 +43,7 @@ export default {
 
         if (data.length <= 0) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} No Backup found for your user account`, flags: MessageFlags.Ephemeral
+                content: `## ${await convertToEmojiToPng("error")} No Backup found for your user account`, flags: MessageFlags.Ephemeral
             })
         }
 

@@ -1,5 +1,5 @@
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {
     ActionRowBuilder,
     AttachmentBuilder,
@@ -38,14 +38,14 @@ export default {
 
         if (data?.Active === false) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} This security gate is not active.`,
+                content: `## ${await convertToEmojiToPng("error")} This security gate is not active.`,
                 flags: MessageFlags.Ephemeral
             });
         }
 
         if (!data) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} This security gate does not exist.`,
+                content: `## ${await convertToEmojiToPng("error")} This security gate does not exist.`,
                 flags: MessageFlags.Ephemeral
             });
         }
@@ -77,7 +77,7 @@ export default {
                 break;
             case VerificationActionType.Reaction: {
                 return interaction.reply({
-                    content: `## ${await convertToEmojiPng("error", client.user?.id)} This security gate type is not supported.`,
+                    content: `## ${await convertToEmojiToPng("error")} This security gate type is not supported.`,
                     flags: MessageFlags.Ephemeral
                 });
             }
@@ -87,20 +87,20 @@ export default {
 
                 if (verify == false) {
                     return interaction.reply({
-                        content: `## ${await convertToEmojiPng("check", client.user?.id)} You unverified yourself! and removed all permissions and roles.`,
+                        content: `## ${await convertToEmojiToPng("check")} You unverified yourself! and removed all permissions and roles.`,
                         flags: MessageFlags.Ephemeral
                     });
                 }
 
                 interaction.reply({
-                    content: `## ${await convertToEmojiPng("check", client.user?.id)} You have successfully verified yourself!`,
+                    content: `## ${await convertToEmojiToPng("check")} You have successfully verified yourself!`,
                     flags: MessageFlags.Ephemeral
                 });
             }
                 break;
             case VerificationActionType.Authorize: {
                 interaction.reply({
-                    content: `## ${await convertToEmojiPng("check", client.user?.id)} OoO... This security gate is not supported yet. The Button setup is not a Link!`,
+                    content: `## ${await convertToEmojiToPng("check")} OoO... This security gate is not supported yet. The Button setup is not a Link!`,
                     flags: MessageFlags.Ephemeral
                 });
             }
@@ -130,7 +130,7 @@ export default {
 
                 const attachment = new AttachmentBuilder(imageBuffer, {name: "captcha.png"});
                 await interaction.reply({
-                    content: `## ${await convertToEmojiPng("bot", client.user?.id)} Please solve the captcha to verify yourself.`,
+                    content: `## ${await convertToEmojiToPng("bot")} Please solve the captcha to verify yourself.`,
                     files: [attachment],
                     flags: MessageFlags.Ephemeral,
                     components: [
@@ -147,7 +147,7 @@ export default {
                 break;
             default: {
                 return interaction.reply({
-                    content: `## ${await convertToEmojiPng("error", client.user?.id)} This security gate type is not supported.`,
+                    content: `## ${await convertToEmojiToPng("error")} This security gate type is not supported.`,
                     flags: MessageFlags.Ephemeral
                 });
             }

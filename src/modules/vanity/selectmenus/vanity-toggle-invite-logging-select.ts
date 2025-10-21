@@ -1,6 +1,6 @@
 import "dotenv/config";
 import {MessageFlags, StringSelectMenuInteraction} from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -25,7 +25,7 @@ export default {
 
             if (!data) {
                 await interaction.reply({
-                    content: `## ${await convertToEmojiPng("error", client.user.id)}  No vanity data found for this UUID.`,
+                    content: `## ${await convertToEmojiToPng("error")}  No vanity data found for this UUID.`,
                     flags: MessageFlags.Ephemeral
                 })
             }
@@ -33,14 +33,14 @@ export default {
             const channel = interaction.guild?.channels.cache.get(value);
             if (!channel) {
                 await interaction.reply({
-                    content: `## ${await convertToEmojiPng("error", client.user.id)}  Channel not found.`,
+                    content: `## ${await convertToEmojiToPng("error")}  Channel not found.`,
                     flags: MessageFlags.Ephemeral
                 });
                 return;
             }
 
             if (!data?.Analytics?.TrackMessageId) return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)}  No tracking message ID found. Please set up the message Id for the channel first.`,
+                content: `## ${await convertToEmojiToPng("error")}  No tracking message ID found. Please set up the message Id for the channel first.`,
                 flags: MessageFlags.Ephemeral
             });
 
@@ -55,7 +55,7 @@ export default {
                 })
 
             await interaction.reply({
-                content: `## ${await convertToEmojiPng("check", client.user.id)}  Invite logging channel set to <#${channel.id}>.`,
+                content: `## ${await convertToEmojiToPng("check")}  Invite logging channel set to <#${channel.id}>.`,
                 flags: MessageFlags.Ephemeral
             })
         }

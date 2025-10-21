@@ -13,7 +13,7 @@ import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 import {handleCloseAction, ticketErrorMessage, ticketTranscriptBuilder} from "../../../helper/ticketHelper.js";
 import {Converter} from "typedoc";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "ticket-claim",
@@ -56,7 +56,7 @@ export default {
                 components: [
                     new ContainerBuilder()
                         .addTextDisplayComponents(
-                            new TextDisplayBuilder().setContent(`### ${await convertToEmojiPng("ticket", client.user.id)} ${interaction.user} has unclaimed the ticket waiting for a new Moderator!`)
+                            new TextDisplayBuilder().setContent(`### ${await convertToEmojiToPng("ticket")} ${interaction.user} has unclaimed the ticket waiting for a new Moderator!`)
                         )
                 ]
             })
@@ -78,7 +78,7 @@ export default {
                 components: [
                     new ContainerBuilder()
                         .addTextDisplayComponents(
-                            new TextDisplayBuilder().setContent(`### ${await convertToEmojiPng("ticket", client.user.id)} ${interaction.user} has claimed the ticket! Please wait for a reply!`)
+                            new TextDisplayBuilder().setContent(`### ${await convertToEmojiToPng("ticket")} ${interaction.user} has claimed the ticket! Please wait for a reply!`)
                         )
                 ]
             })

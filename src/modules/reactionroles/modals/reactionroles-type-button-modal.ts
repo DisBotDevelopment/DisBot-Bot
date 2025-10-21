@@ -9,7 +9,7 @@ import {
     TextChannel
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -50,7 +50,7 @@ export default {
         ) {
             if (!client.user) throw new Error("Client user is not cached");
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} You have already set a type for this reaction role`,
+                content: `## ${await convertToEmojiToPng("error")} You have already set a type for this reaction role`,
                 components: [],
                 flags: MessageFlags.Ephemeral
             });
@@ -90,7 +90,7 @@ export default {
         if (!client.user) throw new Error("Client user is not cached");
         if (!data) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} No data found`,
+                content: `## ${await convertToEmojiToPng("error")} No data found`,
                 flags: MessageFlags.Ephemeral
             });
         }
@@ -104,7 +104,7 @@ export default {
 
         if (!message) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} Message not found.`,
+                content: `## ${await convertToEmojiToPng("error")} Message not found.`,
                 flags: MessageFlags.Ephemeral
             });
         }
@@ -121,14 +121,14 @@ export default {
                     component.type === ComponentType.MentionableSelect
                 ) {
                     return interaction.reply({
-                        content: `## ${await convertToEmojiPng("error", client.user?.id)} A SelectMenu exists in this message, cannot add buttons.`,
+                        content: `## ${await convertToEmojiToPng("error")} A SelectMenu exists in this message, cannot add buttons.`,
                         flags: MessageFlags.Ephemeral
                     });
                 }
 
                 if (!component.customId?.includes("reactionroles-button")) {
                     return interaction.reply({
-                        content: `## ${await convertToEmojiPng("error", client.user?.id)} There is already a button not related to Reaction Roles!`,
+                        content: `## ${await convertToEmojiToPng("error")} There is already a button not related to Reaction Roles!`,
                         flags: MessageFlags.Ephemeral
                     });
                 }
@@ -175,7 +175,7 @@ export default {
         });
 
         await interaction.reply({
-            content: `## ${await convertToEmojiPng("check", client.user?.id)} Reaction Role button added successfully.`,
+            content: `## ${await convertToEmojiToPng("check")} Reaction Role button added successfully.`,
             flags: MessageFlags.Ephemeral
         });
     }

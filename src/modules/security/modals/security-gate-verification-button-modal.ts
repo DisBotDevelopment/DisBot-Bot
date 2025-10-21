@@ -9,7 +9,7 @@ import {
     TextBasedChannel
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {VerificationActionType} from "../../../enums/verification.js";
 import {database} from "../../../main/database.js";
 import {Config} from "../../../main/config.js";
@@ -34,7 +34,7 @@ export default {
 
         if (!data?.Action && !data?.ChannelId && !data?.MessageId && !data?.ActionType) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} No security gate verification action found for this button.`,
+                content: `## ${await convertToEmojiToPng("error")} No security gate verification action found for this button.`,
                 flags: MessageFlags.Ephemeral
             });
         }
@@ -47,14 +47,14 @@ export default {
         if (!client.user) throw new Error("Client user is not defined.");
         if (!label) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} You must provide a label for the button.`,
+                content: `## ${await convertToEmojiToPng("error")} You must provide a label for the button.`,
                 flags: MessageFlags.Ephemeral
             });
         }
 
         if (!style || !["PRIMARY", "SECONDARY", "SUCCESS", "DANGER", "LINK"].includes(style.toUpperCase())) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} You must provide a valid style for the button. Valid styles are: PRIMARY, SECONDARY, SUCCESS, DANGER, LINK.`,
+                content: `## ${await convertToEmojiToPng("error")} You must provide a valid style for the button. Valid styles are: PRIMARY, SECONDARY, SUCCESS, DANGER, LINK.`,
                 flags: MessageFlags.Ephemeral
             });
         }
@@ -80,7 +80,7 @@ export default {
 
             if (!message) {
                 return interaction.reply({
-                    content: `## ${await convertToEmojiPng("error", client.user?.id)} The message for the security gate verification button was not found.`,
+                    content: `## ${await convertToEmojiToPng("error")} The message for the security gate verification button was not found.`,
                     flags: MessageFlags.Ephemeral
                 });
             }
@@ -116,14 +116,14 @@ export default {
 
 
             await interaction.reply({
-                content: `## ${await convertToEmojiPng("check", client.user?.id)} Security gate verification button has been set successfully!`,
+                content: `## ${await convertToEmojiToPng("check")} Security gate verification button has been set successfully!`,
                 flags: MessageFlags.Ephemeral
             });
 
         } catch (error) {
             console.error("Error setting security gate verification button:", error);
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} An error occurred while setting the security gate verification button.`,
+                content: `## ${await convertToEmojiToPng("error")} An error occurred while setting the security gate verification button.`,
                 flags: MessageFlags.Ephemeral
             });
         }

@@ -7,7 +7,7 @@ import {
     TextInputStyle
 } from "discord.js";
 import {ExtendedClient} from "../../../../types/client.js";
-import {convertToEmojiPng} from "../../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 import {database} from "../../../../main/database.js";
 
@@ -46,14 +46,14 @@ export default {
         if (!client.user) return;
         if (!data) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} A giveaway with this message URL does not exist.`,
+                content: `## ${await convertToEmojiToPng("error")} A giveaway with this message URL does not exist.`,
                 flags: MessageFlags.Ephemeral,
             });
         }
 
         if (data.Ended == false) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} The giveaway has not ended yet.`,
+                content: `## ${await convertToEmojiToPng("error")} The giveaway has not ended yet.`,
                 flags: MessageFlags.Ephemeral,
             });
         }
@@ -74,7 +74,7 @@ export default {
         const message = await (giveawyChannel as any).messages.fetch(data.EndedMessage as string)
         if (!message) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} A giveaway with this message URL does not exist.`,
+                content: `## ${await convertToEmojiToPng("error")} A giveaway with this message URL does not exist.`,
                 flags: MessageFlags.Ephemeral,
             });
         }
@@ -82,7 +82,7 @@ export default {
         const timeStamp = Math.floor(Number(data.EndedAt?.getTime()) / 1000)
 
         const endedMsg = await message.edit({
-            content: `## ${await convertToEmojiPng("giveaway", client.user?.id)} **Giveaway Reroll**` +
+            content: `## ${await convertToEmojiToPng("giveaway")} **Giveaway Reroll**` +
                 `\n**Winners:** \n` +
                 `${doneWinners.map((winner) => `<@${winner}>`).join(", ") || "No winners"}` +
                 `\n> **Giveaway ended at:** <t:${timeStamp}:F>` +
@@ -111,7 +111,7 @@ export default {
             })
 
         await interaction.reply({
-            content: `## ${await convertToEmojiPng("giveaway", client.user?.id)} Reroll done!`,
+            content: `## ${await convertToEmojiToPng("giveaway")} Reroll done!`,
             flags: MessageFlags.Ephemeral,
         });
 

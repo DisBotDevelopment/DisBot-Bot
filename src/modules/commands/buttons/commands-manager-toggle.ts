@@ -7,7 +7,7 @@ import {
     TextInputBuilder,
     TextInputStyle
 } from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {protectedCommands} from "../../../main/data.js";
 import {database} from "../../../main/database.js";
@@ -35,14 +35,14 @@ export default {
         if (!data) {
             return await interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("error", client.user.id)} No Data!`
+                content: `## ${await convertToEmojiToPng("error")} No Data!`
             })
         }
 
         if (protectedCommands.includes(data.CustomName) || protectedCommands.includes(data.CodeName)) {
             return await interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("error", client.user.id)} ${data.CustomName} can't not be toggled on or off!`
+                content: `## ${await convertToEmojiToPng("error")} ${data.CustomName} can't not be toggled on or off!`
             })
         }
         try {
@@ -87,7 +87,7 @@ export default {
 
                     return await interaction.reply({
                         flags: MessageFlags.Ephemeral,
-                        content: `## ${await convertToEmojiPng("check", client.user.id)} Added command to the guild.`
+                        content: `## ${await convertToEmojiToPng("check")} Added command to the guild.`
                     })
 
                 } else if (
@@ -105,7 +105,7 @@ export default {
                     })
                     return await interaction.reply({
                         flags: MessageFlags.Ephemeral,
-                        content: `## ${await convertToEmojiPng("check", client.user.id)} Removed command successfully!`
+                        content: `## ${await convertToEmojiToPng("check")} Removed command successfully!`
                     })
                 }
             }
@@ -113,7 +113,7 @@ export default {
             Logger.error(error);
             return await interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("error", client.user.id)} Can't remove this command from the Guild!`
+                content: `## ${await convertToEmojiToPng("error")} Can't remove this command from the Guild!`
             })
         }
 

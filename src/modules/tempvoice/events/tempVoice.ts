@@ -9,7 +9,7 @@ import {
     PermissionsBitField,
     VoiceState
 } from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -40,12 +40,16 @@ export default {
             (!newChannel || newChannel.id !== data.ChannelId)
         ) {
             oldChannel.delete("Your Channel Deleted").catch((error) => {
+                console.log(error);
             });
-            await database.tempVoiceChannels.deleteMany({
+            await database.tempVoiceChannels.delete({
                 where: {
-                    OwnerId: oldState.member?.id
+                    ChannelId: oldChannel.id
                 }
-            });
+            }).catch((error) => {
+                console.log(error);
+            })
+            return
         }
 
         const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
@@ -95,33 +99,42 @@ export default {
                 .setStyle(ButtonStyle.Secondary)
         );
 
-        const vcdata = await database.tempVoices.findMany({
+        const tempVoices = await database.tempVoices.findMany({
+            include: {
+                TempVoiceChannels: true
+            },
             where: {
                 GuildId: guild.id
             }
         });
 
 
-        for (const jointocreateDocument of vcdata) {
-            if (newState.channelId == jointocreateDocument?.JointoCreateChannel) {
-                const parent = guild.channels.cache.get(
-                    jointocreateDocument.JointoCreateCategory as string
+        for (const tempVoice of tempVoices) {
+            if (newState.channelId == tempVoice?.JointoCreateChannel) {
+                const parent = await guild.channels.fetch(
+                    tempVoice.JointoCreateCategory as string
                 );
 
-                if (!vcdata) return;
-                if (vcdata.length <= 0) return;
+                for (const tempChannel of tempVoice.TempVoiceChannels) {
+                    if (member.id == tempChannel.OwnerId) {
+                        return;
+                    }
+                }
+
+                if (!tempVoices) return;
+                if (tempVoices.length <= 0) return;
                 if (oldChannel == newChannel) return;
 
                 // Add Placeholder like {count} to the name
-                const name = jointocreateDocument.Name
-                    ? jointocreateDocument.Name
+                const name = tempVoice.Name
+                    ? tempVoice.Name
                     : member?.user.username + "'s Channel";
 
                 if (!name) throw new Error("Name is not defined");
 
                 const vc = await guild.channels
                     .create({
-                        name: jointocreateDocument?.Name
+                        name: tempVoice?.Name
                             ? name
                                 .replace(
                                     "{member.username}",
@@ -135,7 +148,7 @@ export default {
                             : `${member?.user.username}'s Channel`,
                         type: ChannelType.GuildVoice,
                         parent: parent?.id,
-                        userLimit: jointocreateDocument.PresetLimit || 0,
+                        userLimit: tempVoice.PresetLimit || 0,
                         permissionOverwrites: [
                             {
                                 id: member?.id as string,
@@ -155,60 +168,60 @@ export default {
                         if (!client.user) throw new Error("Client user is not defined");
 
                         let renamesolid24;
-                        await convertToEmojiPng("renamesolid24", client.user.id).then(
+                        await convertToEmojiToPng("renamesolid24").then(
                             (emoji: any) => {
                                 renamesolid24 = emoji;
                             }
                         );
                         let user;
-                        await convertToEmojiPng("user", client.user.id).then(
+                        await convertToEmojiToPng("user").then(
                             (emoji: any) => {
                                 user = emoji;
                             }
                         );
                         let shieldquarter;
-                        await convertToEmojiPng("shieldquarter", client.user.id).then(
+                        await convertToEmojiToPng("shieldquarter").then(
                             (emoji: any) => {
                                 shieldquarter = emoji;
                             }
                         );
                         let usercheck;
-                        await convertToEmojiPng("usercheck", client.user.id).then(
+                        await convertToEmojiToPng("usercheck").then(
                             (emoji: any) => {
                                 usercheck = emoji;
                             }
                         );
                         let userx;
-                        await convertToEmojiPng("userx", client.user.id).then(
+                        await convertToEmojiToPng("userx").then(
                             (emoji: any) => {
                                 userx = emoji;
                             }
                         );
                         let uservoice;
-                        await convertToEmojiPng("uservoice", client.user.id).then(
+                        await convertToEmojiToPng("uservoice").then(
                             (emoji: any) => {
                                 uservoice = emoji;
                             }
                         );
                         let globe;
-                        await convertToEmojiPng("globe", client.user.id).then(
+                        await convertToEmojiToPng("globe").then(
                             (emoji: any) => {
                                 globe = emoji;
                             }
                         );
                         let crown;
-                        await convertToEmojiPng("crown", client.user.id).then(
+                        await convertToEmojiToPng("crown").then(
                             (emoji: any) => {
                                 crown = emoji;
                             }
                         );
                         let trash;
-                        await convertToEmojiPng("trash", client.user.id).then(
+                        await convertToEmojiToPng("trash").then(
                             (emoji: any) => {
                                 trash = emoji;
                             }
                         );
-                        if (jointocreateDocument.Manage == false) {
+                        if (tempVoice.Manage == false) {
                             await channel.send({
                                 embeds: [
                                     new EmbedBuilder()
@@ -245,8 +258,8 @@ export default {
                             data: {
                                 GuildId: guild.id,
                                 ChannelId: channel.id,
-                                OwnerId: newState.member?.id,
-                                TempVoiceId: jointocreateDocument.UUID
+                                OwnerId: member?.id,
+                                TempVoiceId: tempVoice.UUID
                             }
                         });
                     });

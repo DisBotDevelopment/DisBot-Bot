@@ -1,7 +1,7 @@
 import { ChatInputCommandInteraction, MessageFlags, PermissionFlagsBits, TextChannel } from "discord.js";
 import ms, { StringValue } from "ms";
 import { ExtendedClient } from "../../../../types/client.js";
-import { convertToEmojiPng } from "../../../../helper/emojis.js";
+import { convertToEmojiToPng } from "../../../../helper/emojis.js";
 import { PermissionType } from "../../../../enums/permissionType.js";
 
 export default {
@@ -29,7 +29,7 @@ export default {
 
         if (!channel || channel.type !== 0) { // 0 = GuildText
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} Please run this in a text channel.`,
+                content: `## ${await convertToEmojiToPng("error")} Please run this in a text channel.`,
                 flags: MessageFlags.Ephemeral
             });
         }
@@ -37,7 +37,7 @@ export default {
         const timeInMS = ms(stringTime as StringValue);
         if (!timeInMS || isNaN(timeInMS)) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} Invalid time format.`,
+                content: `## ${await convertToEmojiToPng("error")} Invalid time format.`,
                 flags: MessageFlags.Ephemeral
             });
         }
@@ -46,7 +46,7 @@ export default {
 
         if (timeInSeconds > 21600) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} The slowmode time is too long. Use a time under 6 hours.`,
+                content: `## ${await convertToEmojiToPng("error")} The slowmode time is too long. Use a time under 6 hours.`,
                 flags: MessageFlags.Ephemeral
             });
         }
@@ -54,7 +54,7 @@ export default {
         await channel.setRateLimitPerUser(timeInSeconds, "User ran the /discord slowmode command");
 
         return interaction.reply({
-            content: `## ${await convertToEmojiPng("check", client.user.id)} Slowmode set to ${timeInSeconds} seconds.`,
+            content: `## ${await convertToEmojiToPng("check")} Slowmode set to ${timeInSeconds} seconds.`,
             flags: MessageFlags.Ephemeral
         });
     }

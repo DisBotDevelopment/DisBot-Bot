@@ -1,7 +1,7 @@
 import {MessageFlags, ModalSubmitInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "ticket-add-component-add-dm-message-modal",
@@ -27,7 +27,7 @@ export default {
 
         if (uuid && !message) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} Message Template with name \`${uuid}\` was not found.`,
+                content: `## ${await convertToEmojiToPng("error")} Message Template with name \`${uuid}\` was not found.`,
                 flags: MessageFlags.Ephemeral
             });
         }

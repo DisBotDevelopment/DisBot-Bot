@@ -1,5 +1,5 @@
 import {ButtonInteraction, ButtonStyle, MessageFlags} from "discord.js";
-import { convertToEmojiPng } from "../../../helper/emojis.js";
+import { convertToEmojiToPng } from "../../../helper/emojis.js";
 import { ExtendedClient } from "../../../types/client.js";
 
 export default {
@@ -15,7 +15,7 @@ export default {
         if (!client.user) throw new Error("Client User is not defined");
 
         return interaction.update({
-            content: `## ${await convertToEmojiPng("package", client.user?.id)} Backup restore process has been cancelled`,
+            content: `## ${await convertToEmojiToPng("package")} Backup restore process has been cancelled`,
             components: []
         });
     }

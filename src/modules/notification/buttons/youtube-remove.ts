@@ -1,6 +1,6 @@
 import {ButtonInteraction, ButtonStyle, MessageFlags, TextInputStyle} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -23,9 +23,8 @@ export default {
 
         if (!youtubeData)
             return interaction.reply({
-                content: `## ${await convertToEmojiPng(
-                    "error",
-                    client.user.id
+                content: `## ${await convertToEmojiToPng(
+                    "error"
                 )} There are no Youtube Channels added!`,
                 flags: MessageFlags.Ephemeral
             });
@@ -38,9 +37,8 @@ export default {
         });
 
         await interaction.update({
-            content: `## ${await convertToEmojiPng(
-                "check",
-                client.user.id
+            content: `## ${await convertToEmojiToPng(
+                "check"
             )} The Channel ${youtubeData.YoutubeChannelId} has been Removed!`,
             components: [],
             embeds: []

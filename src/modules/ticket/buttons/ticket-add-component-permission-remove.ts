@@ -1,7 +1,7 @@
 import {ButtonInteraction, ChannelType, GuildChannel, MessageFlags, TextChannel, TextDisplayBuilder} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "ticket-add-component-permission-remove",
@@ -25,7 +25,7 @@ export default {
         await interaction.update({
             flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
             components: [
-                new TextDisplayBuilder().setContent(`## ${await convertToEmojiPng("check", client.user.id)} Ticket Permission with Id ${uuid} successfully deleted!`)
+                new TextDisplayBuilder().setContent(`## ${await convertToEmojiToPng("check")} Ticket Permission with Id ${uuid} successfully deleted!`)
             ]
         })
 

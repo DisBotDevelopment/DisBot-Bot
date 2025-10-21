@@ -9,7 +9,7 @@ import {
     SlashCommandBuilder
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {PermissionType} from "../../../enums/permissionType.js";
 import {database} from "../../../main/database.js";
 
@@ -67,7 +67,7 @@ export default {
 
         const embed = new EmbedBuilder()
             .setDescription([
-                `## ${await convertToEmojiPng("shield", client.user.id)} Security Gate Management`,
+                `## ${await convertToEmojiToPng("shield")} Security Gate Management`,
                 ``,
                 `Welcome to the Security Gate Management!`,
                 `Current Features from the Security Gate are:`,

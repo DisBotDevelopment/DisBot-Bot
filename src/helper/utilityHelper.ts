@@ -9,7 +9,7 @@ import {Config} from "../main/config.js";
 import axios from "axios";
 import * as process from "node:process";
 import {ExtendedClient} from "../types/client.js";
-import {convertToEmojiPng} from "./emojis.js";
+import {convertToEmojiToPng} from "./emojis.js";
 import fs from "fs";
 import path from "path";
 import {DrawCardOptions} from "../types/drawcardoptions.js";
@@ -105,7 +105,7 @@ export async function isInDevelopment(
     emoji?: string,
 ) {
     // Default
-    emoji = await convertToEmojiPng("barrier", client.user.id)
+    emoji = await convertToEmojiToPng("barrier")
     message = "Failed to handle this feature, it is in Development!"
 
     if (process.env.ENVIRONMENT == "DEV") {

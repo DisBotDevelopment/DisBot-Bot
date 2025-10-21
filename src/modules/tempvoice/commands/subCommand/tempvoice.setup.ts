@@ -9,7 +9,7 @@ import {
     TextChannel
 } from "discord.js";
 import {ExtendedClient} from "../../../../types/client.js";
-import {convertToEmojiPng} from "../../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 import {database} from "../../../../main/database.js";
 import {randomUUID} from "crypto";
@@ -54,9 +54,8 @@ export default {
             if (channel?.id == data.JointoCreateChannel) {
                 if (!client.user) throw new Error("Client user not found");
                 return interaction.editReply({
-                    content: `## ${await convertToEmojiPng(
-                        "error",
-                        client.user.id
+                    content: `## ${await convertToEmojiToPng(
+                        "error"
                     )} This Channel is already a TempVC channel!`
                 });
             }
@@ -69,9 +68,8 @@ export default {
                     if (channel?.id == data.JointoCreateChannel) {
                         if (!client.user) throw new Error("Client user not found");
                         return interaction.editReply({
-                            content: `## ${await convertToEmojiPng(
-                                "error",
-                                client.user.id
+                            content: `## ${await convertToEmojiToPng(
+                                "error"
                             )} This Channel is already a TempVC channel!`
                         });
                     }
@@ -129,9 +127,8 @@ export default {
                     if (channel?.id == data.JointoCreateChannel) {
                         if (!client.user) throw new Error("Client user not found");
                         return interaction.editReply({
-                            content: `## ${await convertToEmojiPng(
-                                "error",
-                                client.user.id
+                            content: `## ${await convertToEmojiToPng(
+                                "error"
                             )} This Channel is already a TempVC channel!`
                         });
                     }
@@ -197,53 +194,53 @@ export default {
                 });
 
                 let renamesolid24;
-                await convertToEmojiPng("renamesolid24", client.user.id).then(
+                await convertToEmojiToPng("renamesolid24").then(
                     (emoji: any) => {
                         renamesolid24 = emoji;
                     }
                 );
                 let user;
-                await convertToEmojiPng("user", client.user.id).then((emoji: any) => {
+                await convertToEmojiToPng("user").then((emoji: any) => {
                     user = emoji;
                 });
                 let shieldquarter;
-                await convertToEmojiPng("shieldquarter", client.user.id).then(
+                await convertToEmojiToPng("shieldquarter").then(
                     (emoji: any) => {
                         shieldquarter = emoji;
                     }
                 );
                 let usercheck;
-                await convertToEmojiPng("usercheck", client.user.id).then(
+                await convertToEmojiToPng("usercheck").then(
                     (emoji: any) => {
                         usercheck = emoji;
                     }
                 );
                 let userx;
-                await convertToEmojiPng("userx", client.user.id).then(
+                await convertToEmojiToPng("userx").then(
                     (emoji: any) => {
                         userx = emoji;
                     }
                 );
                 let uservoice;
-                await convertToEmojiPng("uservoice", client.user.id).then(
+                await convertToEmojiToPng("uservoice").then(
                     (emoji: any) => {
                         uservoice = emoji;
                     }
                 );
                 let globe;
-                await convertToEmojiPng("globe", client.user.id).then(
+                await convertToEmojiToPng("globe").then(
                     (emoji: any) => {
                         globe = emoji;
                     }
                 );
                 let crown;
-                await convertToEmojiPng("crown", client.user.id).then(
+                await convertToEmojiToPng("crown").then(
                     (emoji: any) => {
                         crown = emoji;
                     }
                 );
                 let trash;
-                await convertToEmojiPng("trash", client.user.id).then(
+                await convertToEmojiToPng("trash").then(
                     (emoji: any) => {
                         trash = emoji;
                     }
@@ -280,9 +277,8 @@ export default {
                 });
 
                 interaction.editReply({
-                    content: `## ${await convertToEmojiPng(
-                        "check",
-                        client.user.id
+                    content: `## ${await convertToEmojiToPng(
+                        "check"
                     )} The Channel <#${channel?.id}> was added to the TempVC Channels`
                 });
             }

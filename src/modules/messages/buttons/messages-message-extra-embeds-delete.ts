@@ -1,7 +1,7 @@
 import {ActionRowBuilder, ButtonInteraction, Message, ModalBuilder, TextInputBuilder, TextInputStyle} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "messages-message-extra-embeds-delete",
@@ -34,7 +34,7 @@ export default {
         await interaction.update({
             embeds: [],
             components: [],
-            content: `## ${await convertToEmojiPng("check", client.user.id)} Embed has been deleted successfully!`
+            content: `## ${await convertToEmojiToPng("check")} Embed has been deleted successfully!`
         })
     }
 };

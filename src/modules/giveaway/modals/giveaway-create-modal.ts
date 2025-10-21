@@ -7,7 +7,7 @@ import {
     ModalSubmitInteraction
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 import {randomUUID} from "crypto";
 
@@ -63,7 +63,7 @@ export default {
 
 
         await interaction.reply({
-            content: `## ${await convertToEmojiPng("giveaway", client.user?.id)} Giveaway created! Please confirm the giveaway and send it to the channel.`,
+            content: `## ${await convertToEmojiToPng("giveaway")} Giveaway created! Please confirm the giveaway and send it to the channel.`,
             flags: MessageFlags.Ephemeral,
             components: [
                 new ActionRowBuilder<ChannelSelectMenuBuilder>()

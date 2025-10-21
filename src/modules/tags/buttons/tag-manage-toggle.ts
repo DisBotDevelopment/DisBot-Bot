@@ -1,6 +1,6 @@
 import {ButtonInteraction, MessageFlags, TextInputStyle} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -24,9 +24,8 @@ export default {
 
         if (!data) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng(
-                    "tag",
-                    client.user.id
+                content: `## ${await convertToEmojiToPng(
+                    "tag"
                 )} This tag does not exist`,
                 flags: MessageFlags.Ephemeral
             });
@@ -40,9 +39,8 @@ export default {
             );
 
             return interaction.reply({
-                content: `## ${await convertToEmojiPng(
-                    "toggleoff",
-                    client.user.id
+                content: `## ${await convertToEmojiToPng(
+                    "toggleoff"
                 )} The tag has been disabled`,
                 flags: MessageFlags.Ephemeral
             });
@@ -53,9 +51,8 @@ export default {
                 }
             );
             return interaction.reply({
-                content: `## ${await convertToEmojiPng(
-                    "toggleon",
-                    client.user.id
+                content: `## ${await convertToEmojiToPng(
+                    "toggleon"
                 )} The tag has been enabled`,
                 flags: MessageFlags.Ephemeral
             });

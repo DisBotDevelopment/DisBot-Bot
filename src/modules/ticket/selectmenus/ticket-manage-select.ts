@@ -8,7 +8,7 @@ import {
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "ticket-manage-select",
@@ -40,7 +40,7 @@ export default {
                         .addTextDisplayComponents(
                             new TextDisplayBuilder().setContent(
                                 [
-                                    `# ${await convertToEmojiPng("ticket", client.user.id)} Component ${data.TicketChannelName}`,
+                                    `# ${await convertToEmojiToPng("ticket")} Component ${data.TicketChannelName}`,
                                     `> **Component Id**: ${data.CustomId}`,
                                     `- Use the Buttons and Menus to Setup your Ticket Component`,
                                     `- If you need help with this you can read more here: https://docs.disbot.app/docs/features/ticket`,

@@ -1,6 +1,6 @@
 import "dotenv/config";
 import {MessageFlags, StringSelectMenuInteraction,} from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -47,7 +47,7 @@ export default {
 
         if (!client.user) throw new Error("Client user is not cached.");
         await interaction.editReply({
-            content: `## ${await convertToEmojiPng("check", client.user?.id)} Channel(s) added to autopublish successfully (${interaction.values.length} channels)`,
+            content: `## ${await convertToEmojiToPng("check")} Channel(s) added to autopublish successfully (${interaction.values.length} channels)`,
         });
 
     },

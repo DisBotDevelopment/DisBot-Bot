@@ -1,6 +1,6 @@
 import {MessageFlags, ModalSubmitInteraction,} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
   id: "moderation-kick-dmmessage-modal",
@@ -23,7 +23,7 @@ export default {
 
     if (!client.user) throw new Error("Client not found");
     interaction.reply({
-      content: `## ${await convertToEmojiPng("check", client.user.id)} DM Message has been set to \n\`${reason}\``,
+      content: `## ${await convertToEmojiToPng("check")} DM Message has been set to \n\`${reason}\``,
       flags: MessageFlags.Ephemeral,
     });
   },

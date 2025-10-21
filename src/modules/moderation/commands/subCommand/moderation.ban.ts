@@ -12,7 +12,7 @@ import pkg from "short-uuid";
 
 const {uuid} = pkg;
 import {ExtendedClient} from "../../../../types/client.js";
-import {convertToEmojiPng} from "../../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 import {database} from "../../../../main/database.js";
 import {isInDevelopment} from "../../../../helper/utilityHelper.js";
@@ -54,9 +54,8 @@ export default {
         ) {
             if (!client.user) throw new Error("Client is not defined");
             return interaction.editReply({
-                content: `## ${await convertToEmojiPng(
-                    "error",
-                    client.user?.id
+                content: `## ${await convertToEmojiToPng(
+                    "error"
                 )} I don't have the required permissions to ban members`,
             });
         }
@@ -74,9 +73,8 @@ export default {
         ) {
             if (!client.user) throw new Error("Client is not defined");
             return interaction.editReply({
-                content: `## ${await convertToEmojiPng(
-                    "error",
-                    client.user?.id
+                content: `## ${await convertToEmojiToPng(
+                    "error"
                 )} You don't have the required permissions to ban members`,
             });
         }
@@ -129,7 +127,7 @@ export default {
 
         if (!client.user) throw new Error("Client is not defined");
         interaction.editReply({
-            content: `## ${await convertToEmojiPng("user", client.user.id)} Edit you ban settings and then select the user to ban`,
+            content: `## ${await convertToEmojiToPng("user")} Edit you ban settings and then select the user to ban`,
             components: [row, row2],
         });
     },

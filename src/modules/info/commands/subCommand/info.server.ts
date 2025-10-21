@@ -1,6 +1,6 @@
 import { ChannelType, ChatInputCommandInteraction, EmbedBuilder, MessageFlags, PermissionFlagsBits } from "discord.js";
 import { ExtendedClient } from "../../../../types/client.js";
-import { convertToEmojiGif, convertToEmojiPng } from "../../../../helper/emojis.js";
+import { convertToEmojiGif, convertToEmojiToPng } from "../../../../helper/emojis.js";
 import { PermissionType } from "../../../../enums/permissionType.js";
 
 export default {
@@ -62,15 +62,14 @@ export default {
       ``,
       `**Roles:**`,
       `> **[${rolemap.join(``).replace("@everyone", "") || "None"}]**`,
-      `> ${await convertToEmojiPng(
-        "moremembers",
-        client.user.id
+      `> ${await convertToEmojiToPng(
+        "moremembers"
       )} **Total**: ${guild.roles.cache.size - 1}`,
       ``,
-      `**${await convertToEmojiPng("members", client.user.id)} Members:**`,
+      `**${await convertToEmojiToPng("members")} Members:**`,
       `> 👤 **Members**: ${members.cache.filter((member) => !member.user.bot).size
       }`,
-      `> ${await convertToEmojiPng("textbot", client.user.id)} **Bots**: ${members.cache.filter((member) => member.user.bot).size
+      `> ${await convertToEmojiToPng("textbot")} **Bots**: ${members.cache.filter((member) => member.user.bot).size
       }`,
       `> **:globe_with_meridians: Total**: ${memberCount}`,
       ``,
@@ -78,16 +77,16 @@ export default {
       `> ${guild.channels.cache.filter(
         (channel) => channel.type === ChannelType.GuildText
       ).size
-      } ${await convertToEmojiPng("text", client.user.id)} ${guild.channels.cache.filter(
+      } ${await convertToEmojiToPng("text")} ${guild.channels.cache.filter(
         (channel) => channel.type === ChannelType.GuildVoice
       ).size
-      } ${await convertToEmojiPng("voice", client.user.id)} ${guild.channels.cache.filter(
+      } ${await convertToEmojiToPng("voice")} ${guild.channels.cache.filter(
         (channel) => channel.type === ChannelType.GuildCategory
       ).size
-      } ${await convertToEmojiPng("cate", client.user.id)} ${guild.channels.cache.filter(
+      } ${await convertToEmojiToPng("cate")} ${guild.channels.cache.filter(
         (channel) => channel.type === ChannelType.PublicThread
       ).size
-      } ${await convertToEmojiPng("thread", client.user.id)}
+      } ${await convertToEmojiToPng("thread")}
       > **:globe_with_meridians: Total**: ${channels.cache.size}`,
       ``,
       `**:art: Emojis & Stickers:**`,
@@ -100,11 +99,11 @@ export default {
       `> - **Total**: ${guild.emojis.cache.size}`,
       ``,
       `**:gem: Nitro Statistics:**`,
-      `> ${await convertToEmojiGif("boosting", client.user.id)} **Tier**: ${guild.premiumTier
+      `> ${await convertToEmojiGif("boosting")} **Tier**: ${guild.premiumTier
       }`,
-      `> ${await convertToEmojiPng("boost", client.user.id)} **Boosts**: ${guild.premiumSubscriptionCount
+      `> ${await convertToEmojiToPng("boost")} **Boosts**: ${guild.premiumSubscriptionCount
       }`,
-      `> ${await convertToEmojiPng("nitro", client.user.id)} **Boosters**: ${members.cache.filter((member) => member.premiumSince).size
+      `> ${await convertToEmojiToPng("nitro")} **Boosters**: ${members.cache.filter((member) => member.premiumSince).size
       }`
     ].join("\n");
 

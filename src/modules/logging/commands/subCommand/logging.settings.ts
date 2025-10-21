@@ -6,7 +6,7 @@ import {
     TextChannel, Webhook,
 } from "discord.js";
 import {ExtendedClient} from "../../../../types/client.js";
-import {convertToEmojiPng} from "../../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 import {database} from "../../../../main/database.js";
 
@@ -42,7 +42,7 @@ export default {
             });
         } catch (e) {
             return interaction.editReply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} The Limit of the webhooks has been reached.`,
+                content: `## ${await convertToEmojiToPng("error")} The Limit of the webhooks has been reached.`,
             });
         }
 
@@ -62,7 +62,7 @@ export default {
             });
         };
 
-        const emoji = await convertToEmojiPng("check", client.user.id);
+        const emoji = await convertToEmojiToPng("check");
 
         switch (getLogType) {
             case "all":
@@ -209,7 +209,7 @@ export default {
 
             default:
                 return interaction.editReply({
-                    content: `## ${await convertToEmojiPng("error", client.user.id)} Please select a valid logging type!`,
+                    content: `## ${await convertToEmojiToPng("error")} Please select a valid logging type!`,
                 });
         }
     },

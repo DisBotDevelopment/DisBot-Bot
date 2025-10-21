@@ -1,6 +1,6 @@
 import {ChatInputCommandInteraction, MessageFlags, PermissionFlagsBits} from "discord.js";
 import {ExtendedClient} from "../../../../types/client.js";
-import {convertToEmojiPng} from "../../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 import {database} from "../../../../main/database.js";
 
@@ -46,7 +46,7 @@ export default {
 
         if (!data) {
             return interaction.editReply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} You have not set any logging yet`
+                content: `## ${await convertToEmojiToPng("error")} You have not set any logging yet`
             });
         }
 
@@ -57,7 +57,7 @@ export default {
             });
 
             return interaction.editReply({
-                content: `## ${await convertToEmojiPng("check", client.user.id)} You have successfully reset ${fieldName} logging`
+                content: `## ${await convertToEmojiToPng("check")} You have successfully reset ${fieldName} logging`
             });
         };
 
@@ -91,7 +91,7 @@ export default {
                 });
 
                 return interaction.editReply({
-                    content: `## ${await convertToEmojiPng("check", client.user.id)} You have successfully reset all logging`
+                    content: `## ${await convertToEmojiToPng("check")} You have successfully reset all logging`
                 });
             }
 
@@ -136,7 +136,7 @@ export default {
 
             default:
                 return interaction.editReply({
-                    content: `## ${await convertToEmojiPng("error", client.user.id)} Unknown logging type`
+                    content: `## ${await convertToEmojiToPng("error")} Unknown logging type`
                 });
         }
     }

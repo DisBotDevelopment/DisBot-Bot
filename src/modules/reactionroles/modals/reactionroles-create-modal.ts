@@ -1,6 +1,6 @@
 import {ActionRowBuilder, MessageFlags, ModalSubmitInteraction, RoleSelectMenuBuilder, TextChannel} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {randomUUID} from "crypto";
 import {database} from "../../../main/database.js";
 
@@ -22,7 +22,7 @@ export default {
 
         if (!messageURL) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} Please provide a message URL and emojis`,
+                content: `## ${await convertToEmojiToPng("error")} Please provide a message URL and emojis`,
                 flags: "Ephemeral",
             });
         }
@@ -31,7 +31,7 @@ export default {
 
         if (!messageURLValue) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} Please provide a message URL and emojis`,
+                content: `## ${await convertToEmojiToPng("error")} Please provide a message URL and emojis`,
                 flags: "Ephemeral",
             });
         }
@@ -43,7 +43,7 @@ export default {
 
         if (!channel) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} Please provide a valid message URL`,
+                content: `## ${await convertToEmojiToPng("error")} Please provide a valid message URL`,
                 flags: "Ephemeral",
             });
         }
@@ -70,7 +70,7 @@ export default {
         ) {
             if (!removemessageTemplate) {
                 return interaction.reply({
-                    content: `## ${await convertToEmojiPng("error", client.user?.id)} Please provide a valid message ID`,
+                    content: `## ${await convertToEmojiToPng("error")} Please provide a valid message ID`,
                     flags: "Ephemeral",
                 });
             }
@@ -80,7 +80,7 @@ export default {
         ) {
             if (!addmessageTemplate) {
                 return interaction.reply({
-                    content: `## ${await convertToEmojiPng("error", client.user?.id)} Please provide a valid message ID`,
+                    content: `## ${await convertToEmojiToPng("error")} Please provide a valid message ID`,
                     flags: "Ephemeral",
                 });
             }
@@ -128,7 +128,7 @@ export default {
         );
 
         await interaction.reply({
-            content: `## ${await convertToEmojiPng("role", client.user?.id)} Select your Roles by reacting to the message`,
+            content: `## ${await convertToEmojiToPng("role")} Select your Roles by reacting to the message`,
             components: [row],
             flags: MessageFlags.Ephemeral
         });

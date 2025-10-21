@@ -9,7 +9,7 @@ import {
 } from "discord.js";
 import moment from "moment";
 import ms from "ms";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -36,14 +36,14 @@ export default {
             });
 
             if (!data) await interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} No data found!`,
+                content: `## ${await convertToEmojiToPng("error")} No data found!`,
                 flags: MessageFlags.Ephemeral
             });
 
 
             const channel = interaction.guild?.channels.cache.get(value) as GuildTextBasedChannel
             if (!channel?.isSendable()) return await interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} I cannot send messages in this channel!`,
+                content: `## ${await convertToEmojiToPng("error")} I cannot send messages in this channel!`,
                 flags: MessageFlags.Ephemeral
             })
 
@@ -82,7 +82,7 @@ export default {
             });
 
             await interaction.update({
-                content: `## ${await convertToEmojiPng("giveaway", client.user?.id)} Giveaway successfully created in ${message.url}`,
+                content: `## ${await convertToEmojiToPng("giveaway")} Giveaway successfully created in ${message.url}`,
                 embeds: [],
                 components: [],
             });

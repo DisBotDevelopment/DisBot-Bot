@@ -15,7 +15,7 @@ import {
 import pkg from "short-uuid";
 
 const {uuid} = pkg;
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {PermissionType} from "../../../enums/permissionType.js";
 import {database} from "../../../main/database.js";
@@ -54,9 +54,8 @@ export default {
         ) {
             if (!client.user) throw new Error("Client is not defined");
             return interaction.reply({
-                content: `## ${await convertToEmojiPng(
-                    "error",
-                    client.user?.id
+                content: `## ${await convertToEmojiToPng(
+                    "error"
                 )} I don't have the required permissions to ban members`,
                 flags: MessageFlags.Ephemeral,
             });
@@ -75,9 +74,8 @@ export default {
         ) {
             if (!client.user) throw new Error("Client is not defined");
             return interaction.reply({
-                content: `## ${await convertToEmojiPng(
-                    "error",
-                    client.user?.id
+                content: `## ${await convertToEmojiToPng(
+                    "error"
                 )} You don't have the required permissions to ban members`,
                 flags: MessageFlags.Ephemeral,
             });
@@ -132,7 +130,7 @@ export default {
 
         if (!client.user) throw new Error("Client is not defined");
         interaction.reply({
-            content: `## ${await convertToEmojiPng("user", client.user.id)} Edit you ban settings and then select the user to ban`,
+            content: `## ${await convertToEmojiToPng("user")} Edit you ban settings and then select the user to ban`,
             components: [row, row2],
             flags: MessageFlags.Ephemeral,
         });

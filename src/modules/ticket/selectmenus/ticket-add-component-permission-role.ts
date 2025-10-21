@@ -9,7 +9,7 @@ import {
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 import {randomUUID} from "crypto";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {cli} from "winston/lib/winston/config/index.js";
 import {ticketActions} from "../../../helper/ticketHelper.js";
 
@@ -44,14 +44,14 @@ export default {
             if (isRoleInDB) {
                 return await interaction.reply({
                     flags: MessageFlags.Ephemeral,
-                    content: `## ${await convertToEmojiPng("error", client.user.id)} This Role is used please delete the entry!`
+                    content: `## ${await convertToEmojiToPng("error")} This Role is used please delete the entry!`
                 })
             }
 
             if (!data.ChannelType) {
                 return await interaction.reply({
                     flags: MessageFlags.Ephemeral,
-                    content: `## ${await convertToEmojiPng("error", client.user.id)} Please first select a Channel Type`
+                    content: `## ${await convertToEmojiToPng("error")} Please first select a Channel Type`
                 })
             }
 

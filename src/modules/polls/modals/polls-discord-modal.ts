@@ -9,7 +9,7 @@ import {
     TextChannel
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 import ms from "ms";
 
@@ -32,7 +32,7 @@ export default {
             if (multi !== 'Yes' && multi !== 'No') {
                 return await interaction.reply({
                     flags: MessageFlags.Ephemeral,
-                    content: `## ${await convertToEmojiPng("error", client.user.id)} Please use Yes or No in "Multi Answers"`
+                    content: `## ${await convertToEmojiToPng("error")} Please use Yes or No in "Multi Answers"`
                 });
             }
 
@@ -43,7 +43,7 @@ export default {
 
                 if (!emoji || !text) return await interaction.reply({
                     flags: MessageFlags.Ephemeral,
-                    content: `## ${await convertToEmojiPng("error", client.user.id)} You input was incorrect! Please try again.`
+                    content: `## ${await convertToEmojiToPng("error")} You input was incorrect! Please try again.`
                 })
                 const option: PollAnswerData = {
                     text: text,
@@ -64,14 +64,14 @@ export default {
 
             await interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("check", client.user.id)} Poll created in your channel`
+                content: `## ${await convertToEmojiToPng("check")} Poll created in your channel`
             })
 
         } catch (e) {
             console.log(e)
             return await interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("error", client.user.id)} You input was incorrect! Please try again.`
+                content: `## ${await convertToEmojiToPng("error")} You input was incorrect! Please try again.`
             })
 
         }

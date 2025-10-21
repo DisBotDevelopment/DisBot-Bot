@@ -12,7 +12,7 @@ import {
 import {ExtendedClient} from "../../../types/client.js";
 import {randomUUID} from "crypto";
 import {database} from "../../../main/database.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "ticket-add-component-automation",
@@ -43,7 +43,7 @@ export default {
                         new TextDisplayBuilder().setContent
                         (
                             [
-                                `# ${await convertToEmojiPng("workflow", client.user.id)} Ticket Automation`,
+                                `# ${await convertToEmojiToPng("workflow")} Ticket Automation`,
                                 ``
                             ].join("\n")
                         )

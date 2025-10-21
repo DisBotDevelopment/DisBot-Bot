@@ -5,7 +5,7 @@ import {
 } from "discord.js";
 import {ExtendedClient} from "../../../../types/client.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
-import {convertToEmojiPng} from "../../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 
 export default {
     subCommand: "moderation.automod",
@@ -36,7 +36,7 @@ export default {
                         new TextDisplayBuilder()
                             .setContent(
                                 [
-                                    `## ${await convertToEmojiPng("automod", client.user.id)} Automod`,
+                                    `## ${await convertToEmojiToPng("automod")} Automod`,
                                     ``,
                                     `- Automoderate your server to be save!`,
                                     `- Use Discord automod to do extra actions and moderate members`,

@@ -1,7 +1,7 @@
 import {MessageFlags, ModalSubmitInteraction, PermissionFlagsBits, TextInputStyle,} from "discord.js";
 
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -24,9 +24,8 @@ export default {
 
         if (!data) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng(
-                    "error",
-                    client.user?.id
+                content: `## ${await convertToEmojiToPng(
+                    "error"
                 )} The tag does not exist.`,
                 flags: MessageFlags.Ephemeral,
             });
@@ -37,9 +36,8 @@ export default {
         if (!data.SlashCommandId && data.IsSlashCommand == false) {
             if (!commands) {
                 return interaction.reply({
-                    content: `## ${await convertToEmojiPng(
-                        "error",
-                        client.user.id
+                    content: `## ${await convertToEmojiToPng(
+                        "error"
                     )} No commands found.`,
                     flags: MessageFlags.Ephemeral,
                 });
@@ -48,9 +46,8 @@ export default {
             for (const cmd of commands.values()) {
                 if (cmd.name == data.TagId) {
                     return interaction.reply({
-                        content: `## ${await convertToEmojiPng(
-                            "error",
-                            client.user.id
+                        content: `## ${await convertToEmojiToPng(
+                            "error"
                         )} This tag can't be a Slash Command because it is a built-in command.`,
                         flags: MessageFlags.Ephemeral,
                     });
@@ -83,9 +80,8 @@ export default {
             );
 
             return interaction.reply({
-                content: `## ${await convertToEmojiPng(
-                    "tag",
-                    client.user.id
+                content: `## ${await convertToEmojiToPng(
+                    "tag"
                 )} The tag \`${data.TagId}\` is now a Slash Command.`,
                 flags: MessageFlags.Ephemeral,
             });
@@ -102,9 +98,8 @@ export default {
             );
 
             return interaction.reply({
-                content: `## ${await convertToEmojiPng(
-                    "tag",
-                    client.user.id
+                content: `## ${await convertToEmojiToPng(
+                    "tag"
                 )} The tag \`${data.TagId}\` is no longer a Slash Command.`,
                 flags: MessageFlags.Ephemeral,
             });

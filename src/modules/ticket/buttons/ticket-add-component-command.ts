@@ -12,7 +12,7 @@ import {
 import {ExtendedClient} from "../../../types/client.js";
 import {randomUUID} from "crypto";
 import {database} from "../../../main/database.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "ticket-add-component-command",
@@ -43,7 +43,7 @@ export default {
                         new TextDisplayBuilder().setContent
                         (
                             [
-                                `# ${await convertToEmojiPng("terminal", client.user.id)} Ticket Command`,
+                                `# ${await convertToEmojiToPng("terminal")} Ticket Command`,
                                 ``
                             ].join("\n")
                         )

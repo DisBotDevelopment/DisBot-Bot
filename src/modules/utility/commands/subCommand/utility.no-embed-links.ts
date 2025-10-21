@@ -1,6 +1,6 @@
 import {ChannelType, ChatInputCommandInteraction, MessageFlags, PermissionFlagsBits, TextChannel} from "discord.js";
 import {ExtendedClient} from "../../../../types/client.js";
-import {convertToEmojiPng} from "../../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 import {database} from "../../../../main/database.js";
 
@@ -61,7 +61,7 @@ export default {
                 }
             })
             return interaction.editReply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} This channel is already disabled for No-Link-Embeds and will be removed from the list!`
+                content: `## ${await convertToEmojiToPng("error")} This channel is already disabled for No-Link-Embeds and will be removed from the list!`
             })
         } else {
             await database.discordGuildAddon.update({
@@ -75,7 +75,7 @@ export default {
                 }
             })
             return interaction.editReply({
-                content: `## ${await convertToEmojiPng("check", client.user.id)} This channel is now enabled for NoLinkEmbeds!`
+                content: `## ${await convertToEmojiToPng("check")} This channel is now enabled for NoLinkEmbeds!`
             })
         }
     }

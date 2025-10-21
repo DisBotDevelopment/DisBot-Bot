@@ -1,6 +1,6 @@
 import {ButtonStyle, MessageFlags, ModalSubmitInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -28,21 +28,21 @@ export default {
 
         if (!data) {
             await interaction.editReply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} This vanity URL is not found.`,
+                content: `## ${await convertToEmojiToPng("error")} This vanity URL is not found.`,
             });
             return;
         }
 
         if (!newSlug || newSlug.length < 3 || newSlug.length > 7) {
             await interaction.editReply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} The color must be between 3 and 7 characters long.`,
+                content: `## ${await convertToEmojiToPng("error")} The color must be between 3 and 7 characters long.`,
             });
             return;
         }
 
         if (!newSlug.includes("#")) {
             await interaction.editReply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} The color must start with a \`#\` character.`,
+                content: `## ${await convertToEmojiToPng("error")} The color must start with a \`#\` character.`,
             });
             return;
         }
@@ -57,7 +57,7 @@ export default {
         })
 
         await interaction.editReply({
-            content: `## ${await convertToEmojiPng("check", client.user.id)} The color of the vanity URL has been updated to \`${newSlug}\`.`,
+            content: `## ${await convertToEmojiToPng("check")} The color of the vanity URL has been updated to \`${newSlug}\`.`,
         })
 
     }

@@ -5,7 +5,7 @@ import {
     ContainerBuilder, InteractionContextType, MessageFlags, PermissionFlagsBits, SlashCommandBuilder, TextDisplayBuilder
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     options: {
@@ -44,7 +44,7 @@ export default {
                     .addTextDisplayComponents(new TextDisplayBuilder()
                         .setContent(
                             [
-                                `## ${await convertToEmojiPng("cable", client.user.id)} Channel Links`,
+                                `## ${await convertToEmojiToPng("cable")} Channel Links`,
                                 ``,
                                 `- Add channel to link them together to sync messages from this to other servers.`,
                                 `- Select what types of messages you want to sync.`,

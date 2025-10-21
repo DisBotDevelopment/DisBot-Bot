@@ -1,7 +1,7 @@
 import {MessageFlags, ModalSubmitInteraction,} from "discord.js";
 import ms from "ms";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -24,7 +24,7 @@ export default {
         } catch (error) {
             if (!client.user) throw new Error("Client not found");
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} Invalid duration`,
+                content: `## ${await convertToEmojiToPng("error")} Invalid duration`,
                 flags: MessageFlags.Ephemeral,
             });
         }
@@ -40,7 +40,7 @@ export default {
 
         if (!client.user) throw new Error("Client not found");
         interaction.reply({
-            content: `## ${await convertToEmojiPng("check", client.user.id)} Duration has been set to \`${duration}\``,
+            content: `## ${await convertToEmojiToPng("check")} Duration has been set to \`${duration}\``,
             flags: MessageFlags.Ephemeral,
         });
     },

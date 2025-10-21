@@ -1,5 +1,5 @@
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {
     ActionRowBuilder,
     ButtonBuilder,
@@ -31,32 +31,32 @@ export default {
 
         if (!data) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} Verification Gate not found`,
+                content: `## ${await convertToEmojiToPng("error")} Verification Gate not found`,
                 flags: MessageFlags.Ephemeral,
             });
         }
 
         if (!data.MessageId) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} Verification Gate message not found`,
+                content: `## ${await convertToEmojiToPng("error")} Verification Gate message not found`,
                 flags: MessageFlags.Ephemeral,
             });
         }
         if (!data.ChannelId) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} Verification Gate channel not found`,
+                content: `## ${await convertToEmojiToPng("error")} Verification Gate channel not found`,
                 flags: MessageFlags.Ephemeral,
             });
         }
         if (!data.Action) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} Verification Gate action not found`,
+                content: `## ${await convertToEmojiToPng("error")} Verification Gate action not found`,
                 flags: MessageFlags.Ephemeral,
             });
         }
         if (!data.ActionType) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} Verification Gate action type not found`,
+                content: `## ${await convertToEmojiToPng("error")} Verification Gate action type not found`,
                 flags: MessageFlags.Ephemeral,
             });
         }
@@ -73,7 +73,7 @@ export default {
         );
 
         return interaction.update({
-            content: `## ${await convertToEmojiPng("check", client.user.id)} Verification Gate finished`,
+            content: `## ${await convertToEmojiToPng("check")} Verification Gate finished`,
             components: [],
             embeds: []
         })

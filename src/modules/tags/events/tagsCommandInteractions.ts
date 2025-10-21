@@ -1,6 +1,6 @@
 import {Events, GuildMember, Interaction, MessageFlags} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 /**
@@ -35,9 +35,8 @@ export default {
                     )
                 ) {
                     return interaction.reply({
-                        content: `## ${await convertToEmojiPng(
-                            "tag",
-                            client.user?.id ?? "unknown"
+                        content: `## ${await convertToEmojiToPng(
+                            "tag"
                         )} You do not have the permission to use this tag.`,
                         flags: MessageFlags.Ephemeral
                     });
@@ -53,9 +52,8 @@ export default {
 
             if (!messageData)
                 return interaction.reply({
-                    content: `## ${await convertToEmojiPng(
-                        "tag",
-                        client.user.id
+                    content: `## ${await convertToEmojiToPng(
+                        "tag"
                     )} No message found.`,
                     flags: MessageFlags.Ephemeral
                 });

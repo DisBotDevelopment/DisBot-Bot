@@ -25,11 +25,11 @@ export default {
         const oldFooter = embeds[embedIndex].data.footer
         
         embeds[embedIndex].setFooter({
-            text: text,
+            text: text ?? undefined,
         });
         if (oldFooter?.icon_url) embeds[embedIndex].setFooter({
-            text: text,
-            iconURL: oldFooter?.icon_url ?? undefined
+            text: text ?? null,
+            iconURL: oldFooter?.icon_url ?? null
         });
 
         if (message.webhookId) {

@@ -13,7 +13,7 @@ import {
     TextDisplayBuilder,
     UserSelectMenuBuilder
 } from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -36,7 +36,7 @@ export default {
 
             if (!data) {
                 await interaction.reply({
-                    content: `## ${await convertToEmojiPng("error", client.user?.id)} No AutoDelete setup found with UUID: \`${value}\``,
+                    content: `## ${await convertToEmojiToPng("error")} No AutoDelete setup found with UUID: \`${value}\``,
                     flags: MessageFlags.Ephemeral
                 });
                 continue;

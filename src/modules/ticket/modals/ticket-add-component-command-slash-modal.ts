@@ -1,7 +1,7 @@
 import {ClientUser, MessageFlags, ModalSubmitInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import ms, {StringValue} from "ms";
 
 export default {
@@ -43,7 +43,7 @@ export default {
             await interaction.guild.commands.delete(data.SlashCommandId)
             return await interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("check", client.user.id)} Removed command from guild and Ticket Component!`
+                content: `## ${await convertToEmojiToPng("check")} Removed command from guild and Ticket Component!`
             })
         }
 
@@ -51,7 +51,7 @@ export default {
                 if (commandName.name === text) {
                     return await interaction.reply({
                         flags: MessageFlags.Ephemeral,
-                        content: `## ${await convertToEmojiPng("error", client.user.id)} This name is already taken from a Slash Command.`,
+                        content: `## ${await convertToEmojiToPng("error")} This name is already taken from a Slash Command.`,
                     })
 
                 }
@@ -83,7 +83,7 @@ export default {
         );
 
         await interaction.reply({
-            content: `## ${await convertToEmojiPng("check", client.user.id)} Added Slash Command to Ticket Component.`,
+            content: `## ${await convertToEmojiToPng("check")} Added Slash Command to Ticket Component.`,
             flags: MessageFlags.Ephemeral,
         });
     }

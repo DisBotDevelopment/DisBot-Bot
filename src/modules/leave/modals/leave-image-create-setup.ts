@@ -1,6 +1,6 @@
 import {MessageFlags, ModalSubmitInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -52,9 +52,8 @@ export default {
         if (!client.user) throw new Error("Client user is not cached.");
 
         await interaction.reply({
-            content: `## ${await convertToEmojiPng(
-                "check",
-                client.user.id
+            content: `## ${await convertToEmojiToPng(
+                "check"
             )} Leave Image has been updated!`,
             flags: MessageFlags.Ephemeral
         });

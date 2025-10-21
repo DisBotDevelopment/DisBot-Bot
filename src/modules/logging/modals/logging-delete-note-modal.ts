@@ -7,7 +7,7 @@ import {
     ModalSubmitInteraction
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 import {randomUUID} from "crypto";
 import {cli} from "winston/lib/winston/config/index.js";
@@ -35,7 +35,7 @@ export default {
 
 
         if (!data) return interaction.reply({
-            content: `## ${await convertToEmojiPng("error", client.user.id)} There is no such message. Please try again later.`,
+            content: `## ${await convertToEmojiToPng("error")} There is no such message. Please try again later.`,
             flags: MessageFlags.Ephemeral,
         })
 
@@ -65,7 +65,7 @@ export default {
         })
 
         interaction.reply({
-            content: `## ${await convertToEmojiPng("check", client.user.id)} Deleted your note with the Id ${number}`,
+            content: `## ${await convertToEmojiToPng("check")} Deleted your note with the Id ${number}`,
             flags: MessageFlags.Ephemeral,
         })
 

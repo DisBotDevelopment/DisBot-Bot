@@ -1,6 +1,6 @@
 import {ButtonStyle, MessageFlags, ModalSubmitInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -27,21 +27,21 @@ export default {
 
         if (!data) {
             await interaction.editReply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} This vanity URL is not found.`,
+                content: `## ${await convertToEmojiToPng("error")} This vanity URL is not found.`,
             });
             return;
         }
 
         if (data.Slug == newSlug) {
             await interaction.editReply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} The new slug is the same as the old one.`
+                content: `## ${await convertToEmojiToPng("error")} The new slug is the same as the old one.`
             });
             return;
         }
 
         if (newSlug.length < 2) {
             await interaction.editReply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} The slug must be between 3 and 32 characters long.`
+                content: `## ${await convertToEmojiToPng("error")} The slug must be between 3 and 32 characters long.`
             });
             return;
         }
@@ -54,7 +54,7 @@ export default {
 
         if (isSlug) {
             await interaction.editReply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} The slug \`${newSlug}\` is already in use. Please choose a different one.`
+                content: `## ${await convertToEmojiToPng("error")} The slug \`${newSlug}\` is already in use. Please choose a different one.`
             });
             return;
         }
@@ -69,7 +69,7 @@ export default {
         })
 
         await interaction.editReply({
-            content: `## ${await convertToEmojiPng("check", client.user.id)} The slug has been changed to \`${newSlug}\`.`
+            content: `## ${await convertToEmojiToPng("check")} The slug has been changed to \`${newSlug}\`.`
         });
 
 

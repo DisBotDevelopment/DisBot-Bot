@@ -1,6 +1,6 @@
 import {ChatInputCommandInteraction, EmbedBuilder, MessageFlags, PermissionFlagsBits, TextChannel} from "discord.js";
 import {ExtendedClient} from "../../../../types/client.js";
-import {convertToEmojiPng} from "../../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 import {database} from "../../../../main/database.js";
 
@@ -39,9 +39,8 @@ export default {
 
         if (data.length <= 0)
             return interaction.editReply({
-                content: `## ${await convertToEmojiPng(
-                    "error",
-                    client.user.id
+                content: `## ${await convertToEmojiToPng(
+                    "error"
                 )} No TempVoice Channels found in this server`
             });
 
@@ -51,9 +50,8 @@ export default {
         });
 
         await interaction.editReply({
-            content: `## ${await convertToEmojiPng(
-                "check",
-                client.user.id
+            content: `## ${await convertToEmojiToPng(
+                "check"
             )} Current setups from this server.\n${list}`
         });
     }

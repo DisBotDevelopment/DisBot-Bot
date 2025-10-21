@@ -8,7 +8,7 @@ import {
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "leave-image-create",
@@ -27,7 +27,7 @@ export default {
         });
 
         if (!data.ChannelId) return interaction.reply({
-            content: `## ${await convertToEmojiPng("error", client.user.id)} There are no Channel set.`,
+            content: `## ${await convertToEmojiToPng("error")} There are no Channel set.`,
             flags: MessageFlags.Ephemeral,
         })
 
@@ -73,7 +73,7 @@ export default {
 
         await interaction.reply({
             components: [row],
-            content: `## ${await convertToEmojiPng("image", client.user.id)} Please setup the background and other image related options.`,
+            content: `## ${await convertToEmojiToPng("image")} Please setup the background and other image related options.`,
             flags: MessageFlags.Ephemeral
         });
     }

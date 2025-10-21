@@ -7,7 +7,7 @@ import {
     MessageFlags,
     StringSelectMenuInteraction
 } from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -33,7 +33,7 @@ export default {
 
             if (!data) {
                 await interaction.editReply({
-                    content: `## ${await convertToEmojiPng("error", client.user.id)} This vanity URL is not found.`,
+                    content: `## ${await convertToEmojiToPng("error")} This vanity URL is not found.`,
                 });
             }
 
@@ -41,14 +41,14 @@ export default {
                 .setColor("#2B2D31")
                 .setDescription(
                     [
-                        `## ${await convertToEmojiPng("link", client.user.id)} Manage your vanity URL's`,
+                        `## ${await convertToEmojiToPng("link")} Manage your vanity URL's`,
                         ``,
-                        `${await convertToEmojiPng("link", client.user.id)} **Vanity**: \`${data?.Slug}\``,
-                        `${await convertToEmojiPng("status", client.user.id)} **Host**: \`${data?.Host}\``,
-                        `${await convertToEmojiPng("group", client.user.id)} **Guild**: ${await client.guilds.fetch(data?.GuildId as string).then(g => g.name)} (\`${data?.GuildId}\`)`,
-                        `${await convertToEmojiPng("link", client.user.id)} **Invite**: [Invite](${data?.Invite})`,
-                        `${await convertToEmojiPng("link", client.user.id)} **Vanity-Link**: [Vanity Link](https://dchat.link/${data?.Slug})`,
-                        `${await convertToEmojiPng("uuid", client.user.id)} **UUID**: \`\`\`${data?.UUID}\`\`\``
+                        `${await convertToEmojiToPng("link")} **Vanity**: \`${data?.Slug}\``,
+                        `${await convertToEmojiToPng("status")} **Host**: \`${data?.Host}\``,
+                        `${await convertToEmojiToPng("group")} **Guild**: ${await client.guilds.fetch(data?.GuildId as string).then(g => g.name)} (\`${data?.GuildId}\`)`,
+                        `${await convertToEmojiToPng("link")} **Invite**: [Invite](${data?.Invite})`,
+                        `${await convertToEmojiToPng("link")} **Vanity-Link**: [Vanity Link](https://dchat.link/${data?.Slug})`,
+                        `${await convertToEmojiToPng("uuid")} **UUID**: \`\`\`${data?.UUID}\`\`\``
                     ].join("\n")
                 );
 

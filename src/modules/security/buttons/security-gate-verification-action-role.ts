@@ -1,5 +1,5 @@
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {
     ActionRowBuilder,
     ButtonBuilder,
@@ -33,7 +33,7 @@ export default {
         });
         if (data?.Action == VerificationAction.AddPermissionToChannel) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} You have already selected a channel for this verification action.`,
+                content: `## ${await convertToEmojiToPng("error")} You have already selected a channel for this verification action.`,
                 flags: MessageFlags.Ephemeral,
             });
         }

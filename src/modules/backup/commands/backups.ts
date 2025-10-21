@@ -10,7 +10,7 @@ import {
     SlashCommandBuilder, TextDisplayBuilder
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {PermissionType} from "../../../enums/permissionType.js";
 
 export default {
@@ -68,7 +68,7 @@ export default {
             components: [
 
                 new ContainerBuilder().addTextDisplayComponents(
-                    new TextDisplayBuilder().setContent([`## ${await convertToEmojiPng("package", client.user.id)} Backups`,
+                    new TextDisplayBuilder().setContent([`## ${await convertToEmojiToPng("package")} Backups`,
                         ``,
                         `> Create and and setup backups of the server.`,
                         `> Load and restore backups of the server.`,

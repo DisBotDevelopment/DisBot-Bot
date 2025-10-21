@@ -8,7 +8,7 @@ import {
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "welcome-image-create",
@@ -27,7 +27,7 @@ export default {
         });
 
         if (!data.ChannelId) return interaction.reply({
-            content: `## ${await convertToEmojiPng("error", client.user.id)} There are no Channel set.`,
+            content: `## ${await convertToEmojiToPng("error")} There are no Channel set.`,
             flags: MessageFlags.Ephemeral,
         })
 
@@ -78,7 +78,7 @@ export default {
                 new EmbedBuilder()
                     .setDescription(
                         [
-                            `## ${await convertToEmojiPng("image", client.user.id)} Image text has been set up!`,
+                            `## ${await convertToEmojiToPng("image")} Image text has been set up!`,
                             `Now Edit the image and background. Use the Button below to setup the image.`
                         ].join("\n")
                     )

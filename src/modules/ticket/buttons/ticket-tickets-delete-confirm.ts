@@ -11,7 +11,7 @@ import {
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 import {handleCloseAction, hasTicketPermission, ticketErrorMessage} from "../../../helper/ticketHelper.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {cli} from "winston/lib/winston/config/index.js";
 
 export default {
@@ -37,7 +37,7 @@ export default {
             components: [
                 new ContainerBuilder()
                     .addTextDisplayComponents(
-                        new TextDisplayBuilder().setContent(`> ${await convertToEmojiPng("check", client.user.id)} Successfully Deleted your Ticket (${uuid})\n> -# Your Ticket-Channel can be deleted if not\n> -# All Data to this ticket are fully deleted!`)
+                        new TextDisplayBuilder().setContent(`> ${await convertToEmojiToPng("check")} Successfully Deleted your Ticket (${uuid})\n> -# Your Ticket-Channel can be deleted if not\n> -# All Data to this ticket are fully deleted!`)
                     )
             ]
         })

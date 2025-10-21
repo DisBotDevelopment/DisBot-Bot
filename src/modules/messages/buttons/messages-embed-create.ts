@@ -12,7 +12,7 @@ import {
     TextDisplayBuilder,
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -37,7 +37,7 @@ export default {
 
         if (isExtra && data.OtherEmbeds.length >= 9 && !isExtraEdit) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} You only can have 9 Embeds & your Main-Embed!`,
+                content: `## ${await convertToEmojiToPng("error")} You only can have 9 Embeds & your Main-Embed!`,
                 flags: MessageFlags.Ephemeral
             })
         }
@@ -52,7 +52,7 @@ export default {
         }
 
         if (!client.user) throw new Error("No Client")
-        if (!interaction.channel.isSendable() || !interaction.channel?.isTextBased()) return interaction.reply({content: `## ${await convertToEmojiPng("error", client.user?.id)} This channel not supports message sending!`})
+        if (!interaction.channel.isSendable() || !interaction.channel?.isTextBased()) return interaction.reply({content: `## ${await convertToEmojiToPng("error")} This channel not supports message sending!`})
 
         const sentMsg = await interaction.channel.send({embeds: [embed]});
         const messageId = sentMsg.id;
@@ -215,7 +215,7 @@ export default {
                     .addActionRowComponents(buttonRow)
                     .addTextDisplayComponents(
                         new TextDisplayBuilder().setContent(
-                            `**Use the ${await convertToEmojiPng("message", client.user.id)} button to clear the message from the channel**\n-# To Export the Embed as JSON File use the ${await convertToEmojiPng("refresh", client.user.id)} button below.\n-# To Import a JSON File use the ${await convertToEmojiPng("import", client.user.id)} button.`
+                            `**Use the ${await convertToEmojiToPng("message")} button to clear the message from the channel**\n-# To Export the Embed as JSON File use the ${await convertToEmojiToPng("refresh")} button below.\n-# To Import a JSON File use the ${await convertToEmojiToPng("import")} button.`
                         )
                     )
                     .addFileComponents(

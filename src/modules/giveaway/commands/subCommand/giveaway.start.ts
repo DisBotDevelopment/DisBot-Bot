@@ -12,7 +12,7 @@ import {
 import moment from "moment";
 import ms from "ms";
 import {ExtendedClient} from "../../../../types/client.js";
-import {convertToEmojiPng} from "../../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 import {database} from "../../../../main/database.js";
 
@@ -52,20 +52,20 @@ export default {
         if (!client.user) return;
         if (!data) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} A giveaway with this message URL does not exist.`,
+                content: `## ${await convertToEmojiToPng("error")} A giveaway with this message URL does not exist.`,
                 flags: MessageFlags.Ephemeral,
             });
         }
         if (data.Paused == false) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} This giveaway is already started.`,
+                content: `## ${await convertToEmojiToPng("error")} This giveaway is already started.`,
                 flags: MessageFlags.Ephemeral,
             });
         }
 
         if (data.Ended == true) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} This giveaway has ended.`,
+                content: `## ${await convertToEmojiToPng("error")} This giveaway has ended.`,
                 flags: MessageFlags.Ephemeral,
             });
         }
@@ -84,13 +84,13 @@ export default {
         );
 
         interaction.reply({
-            content: `## ${await convertToEmojiPng("giveaway", client.user?.id)} The giveaway has been started.`,
+            content: `## ${await convertToEmojiToPng("giveaway")} The giveaway has been started.`,
             flags: MessageFlags.Ephemeral,
         });
 
         const channelObj = client.guilds.cache.get(interaction.guild?.id as string)?.channels.cache.get(channelId);
         if (!channelObj?.isSendable()) return interaction.reply({
-            content: `## ${await convertToEmojiPng("error", client.user?.id)} I cannot send messages in this channel.`,
+            content: `## ${await convertToEmojiToPng("error")} I cannot send messages in this channel.`,
             flags: MessageFlags.Ephemeral,
         });
 
@@ -107,7 +107,7 @@ export default {
             components: [
                 new ContainerBuilder().addTextDisplayComponents(
                     new TextDisplayBuilder()
-                        .setContent(data.Content.replace("{action.message}", `**${await convertToEmojiPng("giveaway", client.user.id)} Giveaway Started**`).replace("{prize}", data.Prize as string).replace("{winner}", String(data.Winners)).replace("{requirements}", role ? `<@&${role.id}>` : "No requirements").replace("{hostedBy}", `<@${interaction.user.id}>`).replace("{duration}", `<t:${timeStamp}:R>`).replace("{entrys}", data.Entrys ? data.Entrys.length.toString() : "N/A")
+                        .setContent(data.Content.replace("{action.message}", `**${await convertToEmojiToPng("giveaway")} Giveaway Started**`).replace("{prize}", data.Prize as string).replace("{winner}", String(data.Winners)).replace("{requirements}", role ? `<@&${role.id}>` : "No requirements").replace("{hostedBy}", `<@${interaction.user.id}>`).replace("{duration}", `<t:${timeStamp}:R>`).replace("{entrys}", data.Entrys ? data.Entrys.length.toString() : "N/A")
                         )).addActionRowComponents(new ActionRowBuilder<ButtonBuilder>().addComponents(
                     new ButtonBuilder()
                         .setCustomId(`giveaway-enter:${data.UUID}`)

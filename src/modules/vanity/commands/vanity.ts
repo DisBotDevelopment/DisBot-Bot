@@ -9,7 +9,7 @@ import {
     SlashCommandBuilder
 } from "discord.js";
 import { ExtendedClient } from "../../../types/client.js";
-import { convertToEmojiPng } from "../../../helper/emojis.js";
+import { convertToEmojiToPng } from "../../../helper/emojis.js";
 import { PermissionType } from "../../../enums/permissionType.js";
 
 export default {
@@ -56,7 +56,7 @@ export default {
                 embed
                     .setColor("#2B2D31")
                     .setDescription(
-                        `## ${await convertToEmojiPng("link", client.user.id)} Manage your vanity URL's`
+                        `## ${await convertToEmojiToPng("link")} Manage your vanity URL's`
                     )
             ],
             components: [

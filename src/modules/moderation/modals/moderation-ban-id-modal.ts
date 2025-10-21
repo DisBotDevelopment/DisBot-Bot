@@ -1,6 +1,6 @@
 import {MessageFlags, ModalSubmitInteraction,} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
   id: "moderation-ban-id-modal",
@@ -23,7 +23,7 @@ export default {
 
     if (!client.user) throw new Error("Client not found");
     interaction.reply({
-      content: `## ${await convertToEmojiPng("check", client.user?.id)} User has been banned`,
+      content: `## ${await convertToEmojiToPng("check")} User has been banned`,
       flags: MessageFlags.Ephemeral,
     });
   },

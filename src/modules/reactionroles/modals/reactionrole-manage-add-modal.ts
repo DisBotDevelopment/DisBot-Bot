@@ -14,7 +14,7 @@ import pkg from "short-uuid";
 
 const {uuid} = pkg;
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -30,7 +30,7 @@ export default {
         const handleError = async (error: any, userMessage: any) => {
             if (!client.user) throw new Error("Client user is not defined");
             await interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} ${userMessage}`,
+                content: `## ${await convertToEmojiToPng("error")} ${userMessage}`,
                 flags: MessageFlags.Ephemeral
             });
         };
@@ -236,7 +236,7 @@ export default {
 
         if (!client.user) throw new Error("Client user is not defined");
         await interaction.reply({
-            content: `## ${await convertToEmojiPng("check", client.user?.id)} The reaction role has been added to the message.`,
+            content: `## ${await convertToEmojiToPng("check")} The reaction role has been added to the message.`,
             flags: MessageFlags.Ephemeral
         });
     }

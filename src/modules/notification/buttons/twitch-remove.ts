@@ -1,6 +1,6 @@
 import {ButtonInteraction, ButtonStyle, MessageFlags, TextInputStyle} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -20,9 +20,8 @@ export default {
         });
         if (!data) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng(
-                    "error",
-                    client.user.id
+                content: `## ${await convertToEmojiToPng(
+                    "error"
                 )} The Channel has already been removed!`,
                 flags: MessageFlags.Ephemeral
             });
@@ -35,9 +34,8 @@ export default {
             }
         });
         await interaction.update({
-            content: `## ${await convertToEmojiPng(
-                "check",
-                client.user.id
+            content: `## ${await convertToEmojiToPng(
+                "check"
             )} The Channels ${data.TwitchChannelName} has been Removed!`,
             components: [],
             embeds: []

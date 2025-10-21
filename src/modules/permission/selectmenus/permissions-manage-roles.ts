@@ -7,7 +7,7 @@ import {
     MessageFlags, RoleSelectMenuBuilder, RoleSelectMenuInteraction, TextDisplayBuilder, UserSelectMenuBuilder,
     UserSelectMenuInteraction
 } from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 import {GuildPermissionType} from "../../../enums/permissionType.js";
 import {randomUUID} from "crypto";
@@ -32,7 +32,7 @@ export default {
 
         if (!data) return interaction.reply({
             flags: MessageFlags.Ephemeral,
-            content: `## ${await convertToEmojiPng("error", client.user.id)} No Data!`
+            content: `## ${await convertToEmojiToPng("error")} No Data!`
         })
 
         await database.guildInteractionPermissions.update({

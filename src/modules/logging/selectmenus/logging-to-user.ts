@@ -7,7 +7,7 @@ import {
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {cli} from "winston/lib/winston/config/index.js";
 import {PermissionType} from "../../../enums/permissionType.js";
 
@@ -51,7 +51,7 @@ export default {
             const dmChannel = await user.createDM(true)
 
             if (!dmChannel) return await interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} I can't send a DM to this user!`,
+                content: `## ${await convertToEmojiToPng("error")} I can't send a DM to this user!`,
                 flags: MessageFlags.Ephemeral,
             })
 
@@ -70,7 +70,7 @@ export default {
             })
 
             await interaction.reply({
-                content: `## ${await convertToEmojiPng("check", client.user.id)} Message sent to this user!`,
+                content: `## ${await convertToEmojiToPng("check")} Message sent to this user!`,
                 flags: MessageFlags.Ephemeral,
             })
 

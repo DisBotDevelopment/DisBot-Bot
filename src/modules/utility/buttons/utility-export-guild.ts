@@ -9,8 +9,7 @@ import {
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
-import {ticketActionsHelper} from "../../../helper/ticketHelper.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "utility-export-guild",
@@ -26,7 +25,7 @@ export default {
         if (interaction.user.id != interaction.guild.ownerId) {
             return interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("errorred", client.user.id)} This interaction is only for guild owners.`
+                content: `## ${await convertToEmojiToPng("errorred")} This interaction is only for guild owners.`
             })
         }
 
@@ -112,7 +111,7 @@ export default {
                 new ContainerBuilder()
                     .addTextDisplayComponents(
                         new TextDisplayBuilder()
-                            .setContent(`## ${await convertToEmojiPng("export", client.user.id)} Download your GuildData Export ${new Date().toDateString()}`)
+                            .setContent(`## ${await convertToEmojiToPng("export")} Download your GuildData Export ${new Date().toDateString()}`)
                     )
                     .addFileComponents(
                         new FileBuilder().setURL(`attachment://GuildData-${interaction.guild.name}.json`).setSpoiler(true)

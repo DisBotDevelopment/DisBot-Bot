@@ -14,7 +14,7 @@ import {
     UserSelectMenuBuilder,
     UserSelectMenuInteraction
 } from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 import {GuildPermissionType} from "../../../enums/permissionType.js";
 import {randomUUID} from "crypto";
@@ -68,7 +68,7 @@ export default {
                         .addTextDisplayComponents(
                             new TextDisplayBuilder()
                                 .setContent(
-                                    [`## ${await convertToEmojiPng("terminal", client.user.id)} ${data.CustomName} (Build-in Command)`,
+                                    [`## ${await convertToEmojiToPng("terminal")} ${data.CustomName} (Build-in Command)`,
                                         ``,
                                         `**Custom Name:** ${data.CustomName}`,
                                         `**Description:** ${client.commands.get(data.CodeName).data.description ?? "N/A"}`,

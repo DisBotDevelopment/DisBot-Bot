@@ -1,5 +1,5 @@
 import { ButtonInteraction, Guild, MessageFlags } from "discord.js";
-import { convertToEmojiPng } from "../../../helper/emojis.js";
+import { convertToEmojiToPng } from "../../../helper/emojis.js";
 import backup from "../../../systems/backup/index.js";
 import { ExtendedClient } from "../../../types/client.js";
 import { database } from "../../../main/database.js";
@@ -25,7 +25,7 @@ export default {
 
         if (!backupData) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} Backup not found`,
+                content: `## ${await convertToEmojiToPng("error")} Backup not found`,
                 flags: MessageFlags.Ephemeral
             });
         }

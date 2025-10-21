@@ -11,7 +11,7 @@ import {
 } from "discord.js";
 import {DisBotInteractionType} from "../../../enums/disBotInteractionType.js";
 import {PermissionType} from "../../../enums/permissionType.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -40,7 +40,7 @@ export default {
 
             if (!data) {
                 return await interaction.reply({
-                    content: `## ${await convertToEmojiPng("error", client.user.id)} Verification Gate not found`,
+                    content: `## ${await convertToEmojiToPng("error")} Verification Gate not found`,
                     flags: MessageFlags.Ephemeral
                 });
             }
@@ -62,7 +62,7 @@ export default {
             );
 
             await interaction.update({
-                content: `## ${await convertToEmojiPng("check", client.user.id)} Role has been ${data.Roles.includes(value) ? "added" : "removed"} to the security gate verification action.`,
+                content: `## ${await convertToEmojiToPng("check")} Role has been ${data.Roles.includes(value) ? "added" : "removed"} to the security gate verification action.`,
             })
         }
     }

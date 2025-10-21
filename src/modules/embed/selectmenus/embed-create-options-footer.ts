@@ -25,7 +25,7 @@ export default {
             interaction.customId.split(":")[1]
         );
         const embed = message.embeds[0];
-        interaction.values.forEach(async (value) => {
+        for (const value of interaction.values) {
             switch (value) {
                 case "text": {
                     const modal = new ModalBuilder();
@@ -43,13 +43,13 @@ export default {
                         .setPlaceholder("Cool Footer Text!")
                         .setMaxLength(256)
                         .setStyle(TextInputStyle.Short)
-                        .setRequired(true);
+                        .setRequired(false);
 
                     modal.addComponents(
                         new ActionRowBuilder<TextInputBuilder>().addComponents(text)
                     );
 
-                    interaction.showModal(modal);
+                    await interaction.showModal(modal);
 
                     break;
                 }
@@ -72,17 +72,17 @@ export default {
                         .setCustomId("embed-create-options-footer-img-input")
                         .setMaxLength(256)
                         .setStyle(TextInputStyle.Paragraph)
-                        .setRequired(true);
+                        .setRequired(false);
 
                     modal.addComponents(
                         new ActionRowBuilder<TextInputBuilder>().addComponents(img)
                     );
 
-                    interaction.showModal(modal);
+                    await interaction.showModal(modal);
 
                     break;
                 }
             }
-        });
+        }
     }
 };

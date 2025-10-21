@@ -10,7 +10,7 @@ import {
     MessageFlags,
     TextDisplayBuilder
 } from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -40,7 +40,7 @@ export default {
             flags: MessageFlags.IsComponentsV2,
             components: [
                 new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder().setContent([
-                        `## ${await convertToEmojiPng("megaphone", client.user?.id)} AutoPublish`,
+                        `## ${await convertToEmojiToPng("megaphone")} AutoPublish`,
                         ``,
                         `### **Manage all autopublish**`,
                         `> Toggle the automation on or off`,
@@ -48,7 +48,7 @@ export default {
                         `> Remove Channels from the automation`,
                         `### **Data**`,
                         `> *Channels*: ${autoPublishData?.Channels.map((channel) => ` <#${channel}> `).join(", ") || "None"}`,
-                        `> *Toggle*: ${toggleData?.AutorolesEnabled ? `${await convertToEmojiPng("toggleon", client.user.id)} Enabled` : `${await convertToEmojiPng("toggleoff", client.user.id)} Disabled`}`,
+                        `> *Toggle*: ${toggleData?.AutorolesEnabled ? `${await convertToEmojiToPng("toggleon")} Enabled` : `${await convertToEmojiToPng("toggleoff")} Disabled`}`,
                         ``
                     ].join("\n"))
                 ).addActionRowComponents(

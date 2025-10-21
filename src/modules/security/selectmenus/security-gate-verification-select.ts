@@ -8,7 +8,7 @@ import {
 } from "discord.js";
 import {DisBotInteractionType} from "../../../enums/disBotInteractionType.js";
 import {PermissionType} from "../../../enums/permissionType.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -45,7 +45,7 @@ export default {
             });
 
             if (!data) return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} There is no gate Setup with your ID`
+                content: `## ${await convertToEmojiToPng("error")} There is no gate Setup with your ID`
             })
 
             await database.verificationGates.update
@@ -61,7 +61,7 @@ export default {
 
             if (!client.user) throw new Error("User not found");
             await interaction.update({
-                content: `## ${await convertToEmojiPng("check", client.user.id)} Your Gate is Created, please follow the setup and set a Action.\n> After you have this setup you can click the Finish Button.`,
+                content: `## ${await convertToEmojiToPng("check")} Your Gate is Created, please follow the setup and set a Action.\n> After you have this setup you can click the Finish Button.`,
                 components: [
                     new ActionRowBuilder<ButtonBuilder>().addComponents(
                         new ButtonBuilder()

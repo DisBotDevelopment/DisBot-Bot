@@ -1,6 +1,6 @@
 import {ChannelType, ChatInputCommandInteraction, MessageFlags} from "discord.js";
 import {ExtendedClient} from "../../../../types/client.js";
-import {convertToEmojiPng} from "../../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 
 export default {
     subCommandGroup: "utility.pause.direct-message",
@@ -30,12 +30,12 @@ export default {
                 }
             )
             return interaction.editReply({
-                content: `## ${await convertToEmojiPng("check", client.user.id)} You set DM to be disabled until ${interaction.guild?.incidentsData?.dmsDisabledUntil}`
+                content: `## ${await convertToEmojiToPng("check")} You set DM to be disabled until ${interaction.guild?.incidentsData?.dmsDisabledUntil}`
             })
         } else {
             await interaction.guild?.setIncidentActions({dmsDisabledUntil: Date.now() + 24 * 60 * 60 * 1000});
             return interaction.editReply({
-                content: `## ${await convertToEmojiPng("check", client.user.id)} You set DM to be enabled until ${interaction.guild?.incidentsData?.dmsDisabledUntil}`
+                content: `## ${await convertToEmojiToPng("check")} You set DM to be enabled until ${interaction.guild?.incidentsData?.dmsDisabledUntil}`
             })
         }
     }

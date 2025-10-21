@@ -1,5 +1,5 @@
 import {Events, Message} from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -30,7 +30,7 @@ export default {
 
                     if (!message.member?.roles.cache.has(data.PermissionRoleId)) {
                         const msg = message.reply({
-                            content: `## ${await convertToEmojiPng("tag", client.user?.id)} You do not have the permission to use this tag.`
+                            content: `## ${await convertToEmojiToPng("tag")} You do not have the permission to use this tag.`
                         });
 
                         setTimeout(async () => {

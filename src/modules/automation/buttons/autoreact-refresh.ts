@@ -9,7 +9,7 @@ import {
     MessageFlags,
     TextDisplayBuilder
 } from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -46,7 +46,7 @@ export default {
             flags: MessageFlags.IsComponentsV2,
             components: [
                 new ContainerBuilder().addTextDisplayComponents(new TextDisplayBuilder()
-                    .setContent([`## ${await convertToEmojiPng("smileplus", client.user?.id)} Autoreact`,
+                    .setContent([`## ${await convertToEmojiToPng("smileplus")} Autoreact`,
                         ``,
                         `### **Manage all autoreact**`,
                         `> Toggle the automation on or off`,
@@ -56,7 +56,7 @@ export default {
                         `> *Channels*: ${channels.map((r) => r ? `<#${r}>` : "N/A")}`,
                         `> *Emojis*: ${emojis.map((r) => r ? r : "N/A")}`,
                         `> -# This list is from all the channels and emojis in the database`,
-                        `> *Toggle*: ${toggleData?.AutoreactEnabled ? `${await convertToEmojiPng("toggleon", client.user.id)} Enabled` : `${await convertToEmojiPng("toggleoff", client.user.id)} Disabled`} `,
+                        `> *Toggle*: ${toggleData?.AutoreactEnabled ? `${await convertToEmojiToPng("toggleon")} Enabled` : `${await convertToEmojiToPng("toggleoff")} Disabled`} `,
                         ``].join("\n"))).addActionRowComponents(
                     new ActionRowBuilder<ButtonBuilder>().addComponents(
                         new ButtonBuilder()

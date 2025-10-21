@@ -1,7 +1,7 @@
 import "dotenv/config";
 import {MessageFlags, ModalSubmitInteraction,} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -25,7 +25,7 @@ export default {
         if (!data) {
             if (!client.user) throw new Error("Client user is not cached.");
             await interaction.reply({
-                content: `## ${await convertToEmojiPng("cross", client.user?.id)} Autoreact not found for <#${channel}> with the emoji ${emoji}`,
+                content: `## ${await convertToEmojiToPng("cross")} Autoreact not found for <#${channel}> with the emoji ${emoji}`,
                 flags: MessageFlags.Ephemeral
             });
             return;
@@ -42,7 +42,7 @@ export default {
 
         if (!client.user) throw new Error("Client user is not cached.");
         await interaction.reply({
-            content: `## ${await convertToEmojiPng("check", client.user?.id)} Autoreact successfully removed from <#${channel}> with the emoji ${emoji}`,
+            content: `## ${await convertToEmojiToPng("check")} Autoreact successfully removed from <#${channel}> with the emoji ${emoji}`,
             flags: MessageFlags.Ephemeral
         });
     },

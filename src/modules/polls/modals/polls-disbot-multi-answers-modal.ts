@@ -4,7 +4,7 @@ import {
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 import {getInteractionData} from "../../../helper/utilityHelper.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {NUM} from "undici/lib/llhttp/constants.js";
 
 export default {
@@ -30,14 +30,14 @@ export default {
         if (!data) {
             return await interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("error", client.user.id)} No Poll Data found!`
+                content: `## ${await convertToEmojiToPng("error")} No Poll Data found!`
             })
         }
 
         if (data.PollOptions.length <= 1) {
             return await interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("error", client.user.id)} You need to create 2 Options!`
+                content: `## ${await convertToEmojiToPng("error")} You need to create 2 Options!`
             })
         }
 
@@ -47,7 +47,7 @@ export default {
         ) {
             return await interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("error", client.user.id)} The Count must be under 25 and 1 or above`
+                content: `## ${await convertToEmojiToPng("error")} The Count must be under 25 and 1 or above`
             })
         }
 
@@ -63,7 +63,7 @@ export default {
 
         await interaction.reply({
             flags: MessageFlags.Ephemeral,
-            content: `## ${await convertToEmojiPng("check", client.user.id)} Updated your Multi Answers to ${(interaction.fields.getTextInputValue("answerscount") as unknown as number) ?? "Default"}`
+            content: `## ${await convertToEmojiToPng("check")} Updated your Multi Answers to ${(interaction.fields.getTextInputValue("answerscount") as unknown as number) ?? "Default"}`
         })
 
 

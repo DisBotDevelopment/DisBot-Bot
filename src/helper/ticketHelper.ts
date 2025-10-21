@@ -22,7 +22,7 @@ import {
     ThreadChannel,
     User
 } from "discord.js";
-import {convertToEmojiPng} from "./emojis.js";
+import {convertToEmojiToPng} from "./emojis.js";
 import {ExtendedClient} from "../types/client.js";
 import {ModalData} from "../types/ticket.js";
 import {randomUUID} from "crypto";
@@ -76,7 +76,7 @@ export async function ticketHelper(
         if (data?.TicketPermissions?.length <= 0) {
             if (ticketType == "event") {
                 (messageEvent.channel as TextChannel).send({
-                    content: `-# ${await convertToEmojiPng("ticket", client.user.id)} I can't create a Ticket without Moderators `
+                    content: `-# ${await convertToEmojiToPng("ticket")} I can't create a Ticket without Moderators `
                 }).then(async (m) => {
                     setTimeout(async () => {
                         await m.delete()
@@ -85,7 +85,7 @@ export async function ticketHelper(
                 return;
             } else if (ticketType == "interaction") {
                 await interaction.editReply({
-                    content: `-# ${await convertToEmojiPng("ticket", client.user.id)} I can't create a Ticket without Moderators `
+                    content: `-# ${await convertToEmojiToPng("ticket")} I can't create a Ticket without Moderators `
                 })
                 return;
             }
@@ -142,7 +142,7 @@ export async function ticketHelper(
             if (allTicketsFromComponentCount >= redState) {
                 if (ticketType == "event") {
                     (messageEvent.channel as TextChannel).send({
-                        content: `-# ${await convertToEmojiPng("sirenred", client.user.id)} At the moment our support team is busy!`
+                        content: `-# ${await convertToEmojiToPng("sirenred")} At the moment our support team is busy!`
                     }).then(async (m) => {
                         setTimeout(async () => {
                             await m.delete()
@@ -151,7 +151,7 @@ export async function ticketHelper(
                     return;
                 } else if (ticketType == "interaction") {
                     await interaction.editReply({
-                        content: `-# ${await convertToEmojiPng("sirenred", client.user.id)} At the moment our support team is busy! Please wait for a ${await convertToEmojiPng("sirengreen", client.user.id)}, ${await convertToEmojiPng("sirenyellow", client.user.id)} status!`
+                        content: `-# ${await convertToEmojiToPng("sirenred")} At the moment our support team is busy! Please wait for a ${await convertToEmojiToPng("sirengreen")}, ${await convertToEmojiToPng("sirenyellow")} status!`
                     })
                     return;
                 }
@@ -175,7 +175,7 @@ export async function ticketHelper(
             if (!(currentMinutes > startMinutes && currentMinutes <= endMinutes)) {
                 if (ticketType == "event") {
                     (messageEvent.channel as TextChannel).send({
-                        content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You only can open Tickets from ${startStr}-${endStr}!`
+                        content: `-# ${await convertToEmojiToPng("ticket")} You only can open Tickets from ${startStr}-${endStr}!`
                     }).then(async (m) => {
                         setTimeout(async () => {
                             await m.delete()
@@ -184,7 +184,7 @@ export async function ticketHelper(
                     return;
                 } else if (ticketType == "interaction") {
                     await interaction.editReply({
-                        content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You only can open Tickets from ${startStr}-${endStr}!`
+                        content: `-# ${await convertToEmojiToPng("ticket")} You only can open Tickets from ${startStr}-${endStr}!`
                     })
                     return;
                 }
@@ -201,7 +201,7 @@ export async function ticketHelper(
                 if (user.roles.cache.has(roleId)) {
                     if (ticketType == "event") {
                         (messageEvent.channel as TextChannel).send({
-                            content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You are blacklisted for this Ticket!`
+                            content: `-# ${await convertToEmojiToPng("ticket")} You are blacklisted for this Ticket!`
                         }).then(async (m) => {
                             setTimeout(async () => {
                                 await m.delete()
@@ -210,7 +210,7 @@ export async function ticketHelper(
                         return;
                     } else if (ticketType == "interaction") {
                         await interaction.editReply({
-                            content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You are blacklisted for this Ticket!`
+                            content: `-# ${await convertToEmojiToPng("ticket")} You are blacklisted for this Ticket!`
                         })
                         return;
                     }
@@ -227,7 +227,7 @@ export async function ticketHelper(
             if (client.cooldowns?.has(cooldownKey)) {
                 const expiration = client.cooldowns.get(cooldownKey)! + cooldownTime;
                 if (now < expiration) {
-                    const emoji = await convertToEmojiPng("timer", client.user!.id);
+                    const emoji = await convertToEmojiToPng("timer");
                     const timestamp = Math.floor(expiration / 1000);
 
                     return await this.sendReply(interaction, emoji, `Please wait <t:${timestamp}:R> before using this command again.`)
@@ -246,7 +246,7 @@ export async function ticketHelper(
                         allowedMentions: {
                             repliedUser: false,
                         },
-                        content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You need one of the Required Roles! \n > -# ${data.RequiredRoles.map((r) => `<@&${r}>`).join(", ")}`
+                        content: `-# ${await convertToEmojiToPng("ticket")} You need one of the Required Roles! \n > -# ${data.RequiredRoles.map((r) => `<@&${r}>`).join(", ")}`
                     }).then(async (m) => {
                         setTimeout(async () => {
                             await m.delete()
@@ -255,7 +255,7 @@ export async function ticketHelper(
                     return;
                 } else if (ticketType == "interaction") {
                     await interaction.editReply({
-                        content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You need one of the Required Roles! \n > -# ${data.RequiredRoles.map((r) => `<@&${r}>`).join(", ")}`
+                        content: `-# ${await convertToEmojiToPng("ticket")} You need one of the Required Roles! \n > -# ${data.RequiredRoles.map((r) => `<@&${r}>`).join(", ")}`
                     })
                     return;
                 }
@@ -274,7 +274,7 @@ export async function ticketHelper(
             if (ticketsPerUser.length >= data.TicketLimit) {
                 if (ticketType == "event") {
                     (messageEvent.channel as TextChannel).send({
-                        content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You have reached the ticket limit! You can only open ${data.TicketLimit} more tickets.`
+                        content: `-# ${await convertToEmojiToPng("ticket")} You have reached the ticket limit! You can only open ${data.TicketLimit} more tickets.`
                     }).then(async (m) => {
                         setTimeout(async () => {
                             await m.delete()
@@ -283,7 +283,7 @@ export async function ticketHelper(
                     return;
                 } else if (ticketType == "interaction") {
                     await interaction.editReply({
-                        content: `-# ${await convertToEmojiPng("ticket", client.user.id)} You have reached the ticket limit! You can only open ${data.TicketLimit} more tickets.`
+                        content: `-# ${await convertToEmojiToPng("ticket")} You have reached the ticket limit! You can only open ${data.TicketLimit} more tickets.`
                     })
                     return;
                 }
@@ -541,7 +541,7 @@ export async function ticketHelper(
                 allowedMentions: {
                     repliedUser: false,
                 },
-                content: `-# ${await convertToEmojiPng("ticket", client.user.id)} Your ticket has beed created here ${channel.url}`
+                content: `-# ${await convertToEmojiToPng("ticket")} Your ticket has beed created here ${channel.url}`
             }).then(async (m) => {
                 setTimeout(async () => {
                     await m.delete()
@@ -550,7 +550,7 @@ export async function ticketHelper(
             return;
         } else if (ticketType == "interaction") {
             await interaction.editReply({
-                content: `-# ${await convertToEmojiPng("ticket", client.user.id)} Your ticket has beed created here ${channel.url}`
+                content: `-# ${await convertToEmojiToPng("ticket")} Your ticket has beed created here ${channel.url}`
             })
             return;
         }
@@ -561,7 +561,7 @@ export async function ticketHelper(
                 allowedMentions: {
                     repliedUser: false,
                 },
-                content: `-# ${await convertToEmojiPng("ticket", client.user.id)} Please wait a moment and try again.`
+                content: `-# ${await convertToEmojiToPng("ticket")} Please wait a moment and try again.`
             }).then(async (m) => {
                 setTimeout(async () => {
                     await m.delete()
@@ -570,7 +570,7 @@ export async function ticketHelper(
             return;
         } else if (ticketType == "interaction") {
             await interaction.editReply({
-                content: `-# ${await convertToEmojiPng("ticket", client.user.id)} Please wait a moment and try again.`
+                content: `-# ${await convertToEmojiToPng("ticket")} Please wait a moment and try again.`
             })
             return;
         }
@@ -580,7 +580,7 @@ export async function ticketHelper(
 export async function ticketErrorMessage(message: string, interaction: ChatInputCommandInteraction | ButtonInteraction | ModalSubmitInteraction | AnySelectMenuInteraction, client: ExtendedClient) {
     return await interaction.reply({
         flags: MessageFlags.Ephemeral,
-        content: `## ${await convertToEmojiPng("error", client.user.id)} Your ticket action failed with: ${message}`,
+        content: `## ${await convertToEmojiToPng("error")} Your ticket action failed with: ${message}`,
     })
 }
 
@@ -723,7 +723,7 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
 
         if (!isAuto)
             await interaction.editReply({
-                content: `## ${await convertToEmojiPng("check", client.user.id)} User DM has been sent.`,
+                content: `## ${await convertToEmojiToPng("check")} User DM has been sent.`,
             })
 
         const messageData = await database.messageTemplates.findFirst({
@@ -776,7 +776,7 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
 
         if (!isAuto)
             await interaction.editReply({
-                content: `## ${await convertToEmojiPng("check", client.user.id)} Feedback message sent to user`,
+                content: `## ${await convertToEmojiToPng("check")} Feedback message sent to user`,
             })
 
         await owner.createDM(true)
@@ -787,7 +787,7 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
                     .addTextDisplayComponents(
                         new TextDisplayBuilder().setContent(
                             [
-                                `## ${await convertToEmojiPng("star", client.user.id)} Feedback`,
+                                `## ${await convertToEmojiToPng("star")} Feedback`,
                                 ``,
                                 `We’d love to hear your thoughts!`,
                                 `Please rate our support team from 1 to 5 stars and let us know the reason for your rating.`,
@@ -863,7 +863,7 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
 
         if (!isAuto)
             await interaction.editReply({
-                content: `## ${await convertToEmojiPng("check", client.user.id)} Transcript sent to user`,
+                content: `## ${await convertToEmojiToPng("check")} Transcript sent to user`,
             })
 
         await ticketTranscriptBuilder(
@@ -884,7 +884,7 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
 
         if (!isAuto)
             await interaction.editReply({
-                content: `## ${await convertToEmojiPng("check", client.user.id)} Thread has beed looked!`,
+                content: `## ${await convertToEmojiToPng("check")} Thread has beed looked!`,
             })
 
         await ticketLookAction(
@@ -901,7 +901,7 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
 
         if (!isAuto)
             await interaction.editReply({
-                content: `## ${await convertToEmojiPng("check", client.user.id)} Ticket has beed archived.`,
+                content: `## ${await convertToEmojiToPng("check")} Ticket has beed archived.`,
             })
 
         await ticketArchiveAction(
@@ -917,7 +917,7 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
 
         if (!isAuto)
             await interaction.editReply({
-                content: `## ${await convertToEmojiPng("check", client.user.id)} Channel has beed looked!`,
+                content: `## ${await convertToEmojiToPng("check")} Channel has beed looked!`,
             })
 
         await ticketLookAction(
@@ -933,7 +933,7 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
         actionCounter += 1
 
         await interaction.editReply({
-            content: `## ${await convertToEmojiPng("check", client.user.id)} Removed user from ticket.`,
+            content: `## ${await convertToEmojiToPng("check")} Removed user from ticket.`,
         })
 
         const addedMembers = data.AddedMemberIds
@@ -969,7 +969,7 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
 
         if (!isAuto)
             await interaction.editReply({
-                content: `## ${await convertToEmojiPng("check", client.user.id)} Exported Ticket-Transcript to Channel.`,
+                content: `## ${await convertToEmojiToPng("check")} Exported Ticket-Transcript to Channel.`,
             })
 
         const tChannel = await guild.channels.fetch(data.TranscriptChannelId) as TextChannel | PrivateThreadChannel
@@ -987,7 +987,7 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
 
             if (!isAuto)
                 await interaction.editReply({
-                    content: `## ${await convertToEmojiPng("check", client.user.id)} Exported Ticket-Transcript ${message.url}`,
+                    content: `## ${await convertToEmojiToPng("check")} Exported Ticket-Transcript ${message.url}`,
                 })
         }
     }
@@ -996,7 +996,7 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
 
         if (!isAuto)
             await interaction.editReply({
-                content: `## ${await convertToEmojiPng("check", client.user.id)} Moved Channel to <#${data.OldTicketCategoryId}>`,
+                content: `## ${await convertToEmojiToPng("check")} Moved Channel to <#${data.OldTicketCategoryId}>`,
             })
 
         if (data.ChannelType == ChannelType.PrivateThread) return
@@ -1009,7 +1009,7 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
             components: [
                 new ContainerBuilder()
                     .addTextDisplayComponents(
-                        new TextDisplayBuilder().setContent(`### ${await convertToEmojiPng("ticket", client.user.id)} Ticket has been closed!${reason ? `\n> ### ${await convertToEmojiPng("info", client.user.id)} ***Reason: ${reason}***` : ``}`)
+                        new TextDisplayBuilder().setContent(`### ${await convertToEmojiToPng("ticket")} Ticket has been closed!${reason ? `\n> ### ${await convertToEmojiToPng("info")} ***Reason: ${reason}***` : ``}`)
                     )
             ]
         })
@@ -1017,7 +1017,7 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
 
     if (!isAuto)
         await interaction.editReply({
-            content: `## ${await convertToEmojiPng("check", client.user.id)} Ticket Close actions successfully executed! (${actionCounter} executed)`,
+            content: `## ${await convertToEmojiToPng("check")} Ticket Close actions successfully executed! (${actionCounter} executed)`,
         })
 
     // To prevent errors, execute at the end!
@@ -1026,7 +1026,7 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
 
         if (!isAuto)
             await interaction.editReply({
-                content: `## ${await convertToEmojiPng("check", client.user.id)} Channel Deleted!`,
+                content: `## ${await convertToEmojiToPng("check")} Channel Deleted!`,
             })
 
         await interaction.channel.delete(`Ticket Close action by ${interaction.user.username} (${interaction.user.id})`)
@@ -1150,7 +1150,7 @@ export async function ticketLookAction(channel: TextChannel | PrivateThreadChann
             components: [
                 new ContainerBuilder()
                     .addTextDisplayComponents(
-                        new TextDisplayBuilder().setContent(`### ${await convertToEmojiPng("ticket", client.user.id)} ${interaction.user} has unlocked the ticket.`)
+                        new TextDisplayBuilder().setContent(`### ${await convertToEmojiToPng("ticket")} ${interaction.user} has unlocked the ticket.`)
                     )
             ]
         })
@@ -1174,7 +1174,7 @@ export async function ticketLookAction(channel: TextChannel | PrivateThreadChann
         }
 
         if (!isAuto && !isClose) await interaction.reply({
-            content: `## ${await convertToEmojiPng("lockopen", client.user.id)} You unlocked the Ticket successfully!`,
+            content: `## ${await convertToEmojiToPng("lockopen")} You unlocked the Ticket successfully!`,
             flags: MessageFlags.Ephemeral,
         })
         return
@@ -1212,13 +1212,13 @@ export async function ticketLookAction(channel: TextChannel | PrivateThreadChann
         components: [
             new ContainerBuilder()
                 .addTextDisplayComponents(
-                    new TextDisplayBuilder().setContent(`### ${await convertToEmojiPng("ticket", client.user.id)} ${interaction?.user ?? "System"} has locked the ticket.`)
+                    new TextDisplayBuilder().setContent(`### ${await convertToEmojiToPng("ticket")} ${interaction?.user ?? "System"} has locked the ticket.`)
                 )
         ]
     })
     if (!isClose && !isAuto) {
         return await interaction.reply({
-            content: `## ${await convertToEmojiPng("lock", client.user.id)} You locked the Ticket successfully! Unlock the ticket with a new Click.`,
+            content: `## ${await convertToEmojiToPng("lock")} You locked the Ticket successfully! Unlock the ticket with a new Click.`,
             flags: MessageFlags.Ephemeral,
         })
     }
@@ -1371,7 +1371,7 @@ export async function ticketTranscriptBuilder(
                 new ContainerBuilder()
                     .addTextDisplayComponents(
                         new TextDisplayBuilder().setContent([
-                            `## ${await convertToEmojiPng("ticket", client.user.id)} Ticket-Transcript Export`,
+                            `## ${await convertToEmojiToPng("ticket")} Ticket-Transcript Export`,
                             ``,
                             `> **Ticket-ID**: \`${data.TicketId}\``,
                             `> **Owner**: <@${data.TicketOwnerId}>`,
@@ -1408,6 +1408,10 @@ export async function ticketTranscriptBuilder(
 
 export async function ticketActionsHelper(client: ExtendedClient, ticketId: string, interaction: ButtonInteraction | ChatInputCommandInteraction) {
 
+    if (!interaction.deferred) await interaction.deferReply({
+        flags: MessageFlags.Ephemeral,
+    })
+
     const data = await database.tickets.findFirst({
         where: {
             TicketId: ticketId
@@ -1432,11 +1436,11 @@ export async function ticketActionsHelper(client: ExtendedClient, ticketId: stri
         all: await hasTicketPermission("all", member, data.TicketId, client)
     };
 
-    await interaction.reply({
-        flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
+    await interaction.editReply({
+        flags: MessageFlags.IsComponentsV2,
         components: [
             new ContainerBuilder()
-                .addTextDisplayComponents(new TextDisplayBuilder().setContent(`### **${await convertToEmojiPng("ticket", client.user.id)} Manage the Ticket with the buttons you see.**`))
+                .addTextDisplayComponents(new TextDisplayBuilder().setContent(`### **${await convertToEmojiToPng("ticket")} Manage the Ticket with the buttons you see.**`))
                 .addActionRowComponents(new ActionRowBuilder<ButtonBuilder>().addComponents(
                     new ButtonBuilder()
                         .setCustomId(`ticket-close:${ticketId}`)
@@ -1496,7 +1500,7 @@ export async function ticketActionsHelper(client: ExtendedClient, ticketId: stri
                             .setDisabled(!(permissions.infos || permissions.all))
                             .setStyle(ButtonStyle.Secondary),
                         new ButtonBuilder()
-                            .setCustomId(`ticket-notes:{ ticketId} `)
+                            .setCustomId(`ticket-notes:${ticketId}`)
                             .setLabel("Ticket Notes")
                             .setEmoji("<:notebook:1402343486833033317>")
                             .setDisabled(!(permissions.notes || permissions.all))
@@ -1685,9 +1689,9 @@ export async function ticketModalHelper(customId: string, title: string, modalDa
 }
 
 async function checkTicketStatus(currentTickets: number, green: number, yellow: number, red: number, client: ExtendedClient) {
-    const greenEmoji = await convertToEmojiPng("sirengreen", client.user.id)
-    const yellowEmoji = await convertToEmojiPng("sirenyellow", client.user.id)
-    const redEmoji = await convertToEmojiPng("sirenred", client.user.id)
+    const greenEmoji = await convertToEmojiToPng("sirengreen")
+    const yellowEmoji = await convertToEmojiToPng("sirenyellow")
+    const redEmoji = await convertToEmojiToPng("sirenred")
 
     let status = {
         current: "ㅤ",

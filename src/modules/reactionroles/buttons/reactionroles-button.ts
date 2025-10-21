@@ -1,6 +1,6 @@
 import {ButtonInteraction, ButtonStyle, Client, EmbedBuilder, Message, MessageFlags} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -22,7 +22,7 @@ export default {
 
         if (!reactionroles) {
             return interaction.editReply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} OOps! I couldn't find the reaction role data.`
+                content: `## ${await convertToEmojiToPng("error")} OOps! I couldn't find the reaction role data.`
             });
         }
 
@@ -32,7 +32,7 @@ export default {
 
         if (!member) {
             return interaction.editReply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} OOps! You are not in the server.`
+                content: `## ${await convertToEmojiToPng("error")} OOps! You are not in the server.`
             });
         }
 
@@ -153,7 +153,7 @@ export default {
                             if (!client.user)
                                 throw new Error("Client user is not defined in cache.");
                             interaction.editReply({
-                                content: `## ${await convertToEmojiPng("error", client.user?.id)} OOps! I couldn't remove the role from you.`
+                                content: `## ${await convertToEmojiToPng("error")} OOps! I couldn't remove the role from you.`
                             });
                         }
 
@@ -172,7 +172,7 @@ export default {
                             if (!client.user)
                                 throw new Error("Client user is not defined in cache.");
                             interaction.editReply({
-                                content: `## ${await convertToEmojiPng("error", client.user?.id)} OOps! I couldn't add the role to you.`
+                                content: `## ${await convertToEmojiToPng("error")} OOps! I couldn't add the role to you.`
                             });
                         }
 

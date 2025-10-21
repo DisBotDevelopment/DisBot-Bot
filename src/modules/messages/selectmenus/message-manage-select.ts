@@ -11,7 +11,7 @@ import {
     UserSelectMenuInteraction
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {cli} from "winston/lib/winston/config/index.js";
 import {database} from "../../../main/database.js";
 
@@ -38,7 +38,7 @@ export default {
             if (!nextEmbed) {
                 if (!client.user) throw new Error("No Client User found.");
                 return interaction.reply({
-                    content: `## ${await convertToEmojiPng("error", client.user?.id)} No message template found with UUID: ${uuid}`,
+                    content: `## ${await convertToEmojiToPng("error")} No message template found with UUID: ${uuid}`,
                     flags: MessageFlags.Ephemeral
                 });
             }

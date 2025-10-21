@@ -13,7 +13,7 @@ import {
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 import {handleCloseAction, hasTicketPermission, ticketErrorMessage} from "../../../helper/ticketHelper.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {cli} from "winston/lib/winston/config/index.js";
 
 export default {
@@ -55,6 +55,7 @@ export default {
                                 .setCustomId("ticket-members-list:" + uuid)
                                 .setEmoji("<:list:1404137033496002591>")
                                 .setLabel("List Members")
+                                .setStyle(ButtonStyle.Secondary)
                                 .setDisabled(data.ChannelType == ChannelType.PrivateThread)
                         )
                     )
@@ -70,7 +71,7 @@ export default {
                         new ActionRowBuilder<UserSelectMenuBuilder>().addComponents(
                             new UserSelectMenuBuilder()
                                 .setCustomId("ticket-members-remove:" + uuid)
-                                .setPlaceholder("Remove a member to the ticket")
+                                .setPlaceholder("Remove a member from the ticket")
                                 .setDisabled(data.ChannelType == ChannelType.PrivateThread && !(await hasTicketPermission("remove_user_from_ticket", interaction.member as GuildMember, data.TicketId, client) || await hasTicketPermission("all", interaction.member as GuildMember, data.TicketId, client)))
                         )
                     )

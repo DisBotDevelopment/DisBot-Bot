@@ -8,7 +8,7 @@ import {
   PermissionFlagsBits
 } from "discord.js";
 import { ExtendedClient } from "../../../../types/client.js";
-import { convertToEmojiPng } from "../../../../helper/emojis.js";
+import { convertToEmojiToPng } from "../../../../helper/emojis.js";
 import { PermissionType } from "../../../../enums/permissionType.js";
 import { database } from "../../../../main/database.js";
 
@@ -44,7 +44,7 @@ export default {
     const embed = new EmbedBuilder()
       .setDescription(
         [
-          `## ${await convertToEmojiPng("youtube", client.user.id)} YouTube`,
+          `## ${await convertToEmojiToPng("youtube")} YouTube`,
           ``,
           `**Enable YouTube Notifications** - Toggle YouTube Notifications`,
           `**Add a YouTube Channel** - Add a YouTube Channel to the System`,

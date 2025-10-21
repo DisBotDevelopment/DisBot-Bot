@@ -12,7 +12,7 @@ import {ExtendedClient} from "../../../types/client.js";
 import {PaginationData} from "../../../types/pagination.js";
 import {database} from "../../../main/database.js";
 import {createPollImage, getInteractionData} from "../../../helper/utilityHelper.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {replacePlaceholders} from "../../../main/placeholder.js";
 import {randomUUID} from "crypto";
 
@@ -55,7 +55,7 @@ export default {
             if (!data) {
                 return await interaction.reply({
                     flags: MessageFlags.Ephemeral,
-                    content: `## ${await convertToEmojiPng("error", client.user.id)} No Poll Data found!`
+                    content: `## ${await convertToEmojiToPng("error")} No Poll Data found!`
                 })
             }
             const timestamp = Math.floor((data.Polls.CreatedAt.getTime() + (data.Polls.Time ?? 0)) / 1000);
@@ -76,14 +76,14 @@ export default {
                 })
                 return await interaction.reply({
                     flags: MessageFlags.Ephemeral,
-                    content: `## ${await convertToEmojiPng("error", client.user.id)} This Vote has been closed!`
+                    content: `## ${await convertToEmojiToPng("error")} This Vote has been closed!`
                 })
             }
 
             if (data.Polls.MultiAnswers == 1 && data.UserIds.includes(interaction.user.id)) {
                 return await interaction.reply({
                     flags: MessageFlags.Ephemeral,
-                    content: `## ${await convertToEmojiPng("error", client.user.id)} You only can vote once.`
+                    content: `## ${await convertToEmojiToPng("error")} You only can vote once.`
                 })
             }
 
@@ -91,7 +91,7 @@ export default {
             if (data.Polls.MultiAnswers + (data.Polls.MultiAnswers == 0 ? 1 : 0) == userVotes.length && !data.UserIds.includes(interaction.user.id)) {
                 return await interaction.reply({
                     flags: MessageFlags.Ephemeral,
-                    content: `## ${await convertToEmojiPng("error", client.user.id)} You have voted ${userVotes.length}/${data.Polls.MultiAnswers} times!`
+                    content: `## ${await convertToEmojiToPng("error")} You have voted ${userVotes.length}/${data.Polls.MultiAnswers} times!`
                 })
             }
 
@@ -130,7 +130,7 @@ export default {
 
                 await interaction.reply({
                     flags: MessageFlags.Ephemeral,
-                    content: `## ${await convertToEmojiPng("error", client.user.id)} Your vote has been removed!\n-# You already voted for this Option!`
+                    content: `## ${await convertToEmojiToPng("error")} Your vote has been removed!\n-# You already voted for this Option!`
                 })
             }
 
@@ -303,7 +303,7 @@ export default {
 
             await interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("vote", client.user.id)} You voted for this Poll Option.`
+                content: `## ${await convertToEmojiToPng("vote")} You voted for this Poll Option.`
             })
 
         } catch (e) {

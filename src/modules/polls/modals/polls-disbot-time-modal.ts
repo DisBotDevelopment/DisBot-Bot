@@ -12,7 +12,7 @@ import {ExtendedClient} from "../../../types/client.js";
 import {PaginationData} from "../../../types/pagination.js";
 import {database} from "../../../main/database.js";
 import {getInteractionData} from "../../../helper/utilityHelper.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import ms from "ms";
 import {NUM} from "undici/lib/llhttp/constants.js";
 
@@ -36,7 +36,7 @@ export default {
         if (!data) {
             return await interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("error", client.user.id)} No Poll Data found!`
+                content: `## ${await convertToEmojiToPng("error")} No Poll Data found!`
             })
         }
         try {
@@ -46,7 +46,7 @@ export default {
             if (!timeMs) {
                 return await interaction.reply({
                     flags: MessageFlags.Ephemeral,
-                    content: `## ${await convertToEmojiPng("error", client.user.id)} Please use the Time Format 1m, 10m, 20m, etc.`
+                    content: `## ${await convertToEmojiToPng("error")} Please use the Time Format 1m, 10m, 20m, etc.`
                 });
             }
 
@@ -57,13 +57,13 @@ export default {
 
             await interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("check", client.user.id)} Updated your Time to ${timeInput}`
+                content: `## ${await convertToEmojiToPng("check")} Updated your Time to ${timeInput}`
             });
 
         } catch (e) {
             await interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("error", client.user.id)} Something went wrong.`
+                content: `## ${await convertToEmojiToPng("error")} Something went wrong.`
             });
         }
     }

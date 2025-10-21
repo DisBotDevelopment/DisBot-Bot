@@ -9,7 +9,7 @@ import {
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 import {ticketErrorMessage} from "../../../helper/ticketHelper.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "ticket-delete",
@@ -79,7 +79,7 @@ export default {
                     .addTextDisplayComponents(
                         new TextDisplayBuilder().setContent(
                             [
-                                `### ${await convertToEmojiPng("trash", client.user.id)} All Ticket Data has been deleted! (Ticket Data)`,
+                                `### ${await convertToEmojiToPng("trash")} All Ticket Data has been deleted! (Ticket Data)`,
                                 `-# **Deleting Channel...**`
                             ].join("\n"))
                     )

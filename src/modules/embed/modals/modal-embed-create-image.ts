@@ -30,7 +30,7 @@ export default {
                     imgUrl = imgUrl.replace(key, value);
                 }
             }
-            embeds[embedIndex].setImage(imgUrl);
+            embeds[embedIndex].setImage(imgUrl ?? null);
 
             if (message.webhookId) {
                 const webhooks = await interaction.guild?.fetchWebhooks();

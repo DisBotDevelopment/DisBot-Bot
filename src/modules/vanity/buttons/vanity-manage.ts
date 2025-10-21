@@ -8,7 +8,7 @@ import {
     StringSelectMenuBuilder
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -36,7 +36,7 @@ export default {
 
             if (!allEmbeds.length) {
                 return interaction.reply({
-                    content: `## ${await convertToEmojiPng("error", client.user?.id)} You don't have any vanity URL's`,
+                    content: `## ${await convertToEmojiToPng("error")} You don't have any vanity URL's`,
                     flags: MessageFlags.Ephemeral
                 });
             }

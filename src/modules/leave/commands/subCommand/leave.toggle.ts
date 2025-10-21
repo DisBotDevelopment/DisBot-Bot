@@ -1,6 +1,6 @@
 import {ChatInputCommandInteraction, MessageFlags, PermissionFlagsBits} from "discord.js";
 import {ExtendedClient} from "../../../../types/client.js";
-import {convertToEmojiPng} from "../../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 import {database} from "../../../../main/database.js";
 
@@ -54,9 +54,8 @@ export default {
                 );
 
                 await interaction.reply({
-                    content: `## ${await convertToEmojiPng(
-                        "toggleon",
-                        client.user.id
+                    content: `## ${await convertToEmojiToPng(
+                        "toggleon"
                     )} Leave System is now enabled`,
                     flags: MessageFlags.Ephemeral
                 });
@@ -84,9 +83,8 @@ export default {
                 );
 
                 await interaction.reply({
-                    content: `## ${await convertToEmojiPng(
-                        "toggleoff",
-                        client.user.id
+                    content: `## ${await convertToEmojiToPng(
+                        "toggleoff"
                     )} Leave System is now disabled`,
                     flags: MessageFlags.Ephemeral
                 });

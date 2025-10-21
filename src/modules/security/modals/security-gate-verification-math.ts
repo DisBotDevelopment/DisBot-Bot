@@ -1,5 +1,5 @@
 import {VerificationAction} from "../../../enums/verification.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {verifyAction} from "../../../systems/verifictionAction.js";
 import {ExtendedClient} from "../../../types/client.js"
 import {GuildMember, MessageFlags, ModalSubmitInteraction,} from "discord.js";
@@ -28,7 +28,7 @@ export default {
 
         if (result !== answer) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} Incorrect answer. Please try again.`,
+                content: `## ${await convertToEmojiToPng("error")} Incorrect answer. Please try again.`,
                 flags: MessageFlags.Ephemeral
             });
         }
@@ -37,13 +37,13 @@ export default {
 
         if (verify == false) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("check", client.user?.id)} You unverified yourself! and removed all permissions and roles.`,
+                content: `## ${await convertToEmojiToPng("check")} You unverified yourself! and removed all permissions and roles.`,
                 flags: MessageFlags.Ephemeral
             });
         }
 
         interaction.reply({
-            content: `## ${await convertToEmojiPng("check", client.user?.id)} You have successfully completed the math verification!`,
+            content: `## ${await convertToEmojiToPng("check")} You have successfully completed the math verification!`,
             flags: MessageFlags.Ephemeral
         });
     }

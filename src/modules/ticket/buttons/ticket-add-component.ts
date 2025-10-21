@@ -12,7 +12,7 @@ import {
 import {ExtendedClient} from "../../../types/client.js";
 import {randomUUID} from "crypto";
 import {database} from "../../../main/database.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "ticket-add-component",
@@ -48,9 +48,9 @@ export default {
                     .addTextDisplayComponents(
                         new TextDisplayBuilder().setContent(
                             [
-                                `# ${await convertToEmojiPng("puzzle", client.user.id)} Component Editor`,
+                                `# ${await convertToEmojiToPng("puzzle")} Component Editor`,
                                 `- Use the Buttons and Menus to Setup your Ticket Component`,
-                                `- If you need help with this you can read more here: https://docs.disbot.app/docs/features/ticket`,
+                                `- If you need help with this you can read more here: https://doc.xyzhub.link/s/disbot/doc/tickets-2mWrLmYgMh`,
                                 ``
                             ].join("\n")
                         )

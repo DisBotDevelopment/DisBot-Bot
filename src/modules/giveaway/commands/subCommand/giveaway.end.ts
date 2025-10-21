@@ -7,7 +7,7 @@ import {
     TextInputStyle
 } from "discord.js";
 import {ExtendedClient} from "../../../../types/client.js";
-import {convertToEmojiPng} from "../../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 import {database} from "../../../../main/database.js";
 
@@ -47,14 +47,14 @@ export default {
         if (!client.user) return;
         if (!data) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} A giveaway with this message URL does not exist.`,
+                content: `## ${await convertToEmojiToPng("error")} A giveaway with this message URL does not exist.`,
                 flags: MessageFlags.Ephemeral,
             });
         }
 
         if (data.Ended == true) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} The giveaway has already ended.`,
+                content: `## ${await convertToEmojiToPng("error")} The giveaway has already ended.`,
                 flags: MessageFlags.Ephemeral,
             });
         }
@@ -73,7 +73,7 @@ export default {
         );
 
         await interaction.reply({
-            content: `## ${await convertToEmojiPng("giveaway", client.user?.id)} The giveaway will end in 10 seconds.`,
+            content: `## ${await convertToEmojiToPng("giveaway")} The giveaway will end in 10 seconds.`,
             flags: MessageFlags.Ephemeral,
         });
 

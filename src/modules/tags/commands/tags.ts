@@ -9,7 +9,7 @@ import {
   SlashCommandBuilder
 } from "discord.js";
 import { ExtendedClient } from "../../../types/client.js";
-import { convertToEmojiPng } from "../../../helper/emojis.js";
+import { convertToEmojiToPng } from "../../../helper/emojis.js";
 import { PermissionType } from "../../../enums/permissionType.js";
 
 export default {
@@ -54,7 +54,7 @@ export default {
     const embed = new EmbedBuilder()
       .setDescription(
         [
-          `# ${await convertToEmojiPng("tag", client.user.id)} Tags`,
+          `# ${await convertToEmojiToPng("tag")} Tags`,
           ``,
           `> Create a tag to send a frequently used message more easily. And to manage it by using the message templates.`,
           ``

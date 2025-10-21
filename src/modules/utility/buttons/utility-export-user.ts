@@ -9,8 +9,7 @@ import {
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
-import {ticketActionsHelper} from "../../../helper/ticketHelper.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "utility-export-user",
@@ -54,7 +53,7 @@ export default {
                 new ContainerBuilder()
                     .addTextDisplayComponents(
                         new TextDisplayBuilder()
-                            .setContent(`## ${await convertToEmojiPng("export", client.user.id)} Download your UserData Export ${new Date().toDateString()}`)
+                            .setContent(`## ${await convertToEmojiToPng("export")} Download your UserData Export ${new Date().toDateString()}`)
                     )
                     .addFileComponents(
                         new FileBuilder().setURL(`attachment://UserData-${interaction.user.displayName}.json`).setSpoiler(true)

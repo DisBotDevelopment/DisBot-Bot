@@ -12,7 +12,7 @@ import {
 } from "discord.js";
 import {PermissionType} from "../../../enums/permissionType.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 
@@ -67,7 +67,7 @@ export default {
             components: [new ContainerBuilder().addTextDisplayComponents(
                 new TextDisplayBuilder().setContent(
                     [
-                        `## ${await convertToEmojiPng("terminal", client.user.id)} Commands`,
+                        `## ${await convertToEmojiToPng("terminal")} Commands`,
                         `You can create, manage and use the Command Manager`,
                         ``,
                         `**Create Commands** - Create a new Commands.`,

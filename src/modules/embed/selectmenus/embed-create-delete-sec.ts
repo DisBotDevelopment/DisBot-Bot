@@ -1,5 +1,5 @@
 import {EmbedBuilder, MessageFlags, UserSelectMenuInteraction} from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 
 export default {
@@ -15,7 +15,7 @@ export default {
     ) {
         try {
 
-            const messageId = interaction.customId.split(":")[1] + ":" + (interaction.customId.split(":")[2] ?? "0");
+            const [, messageId, embedIndexStr] = interaction.customId.split(":");
 
             for (const value of interaction.values) {
                 switch (value) {
@@ -122,44 +122,39 @@ export default {
                         const embed = message.embeds[0];
 
                         const updateembed = new EmbedBuilder(embed.data).setTimestamp(null);
-
-                        message.edit({embeds: [updateembed]});
-                        interaction.deferUpdate();
+                        await message.edit({embeds: [updateembed]});
+                        await interaction.deferUpdate();
                         break;
                     }
                     case "field": {
                         if (!client.user) throw new Error("No User found.");
-                        interaction.reply({
-                            content: `## ${await convertToEmojiPng(
-                                "info",
-                                client.user.id
+                        await interaction.reply({
+                            content: `## ${await convertToEmojiToPng(
+                                "info"
                             )} Please select the field option from the add menu.`,
                             flags: MessageFlags.Ephemeral
                         });
                         break;
                     }
                     case "color": {
-                        if (!interaction.guild) throw new Error("No Guild found.");
-                        if (!interaction.channel) throw new Error("No Channel found.");
                         const message = await interaction.channel.messages.fetch(
                             messageId
                         );
                         const embed = message.embeds[0];
 
                         const updateembed = new EmbedBuilder(embed.data).setColor(null);
-                        message.edit({embeds: [updateembed]});
-                        interaction.deferUpdate();
+                        await message.edit({embeds: [updateembed]});
+                        await interaction.deferUpdate();
                     }
                         break;
                 }
             }
         } catch (error) {
             if (!client.user) throw new Error("No User found.");
-            interaction.reply({
-                content: `## ${await convertToEmojiPng(
-                    "info",
-                    client.user.id
-                )} You must set have one of this: Description, Thumbnail, Image, Title`,
+            await interaction.reply({
+                content: `## ${await convertToEmojiToPng(
+                    "error"
+                )} Embed Editor Error ${error.message}`,
                 flags: MessageFlags.Ephemeral
             });
         }

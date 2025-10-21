@@ -11,7 +11,7 @@ import {
 } from "discord.js";
 import {DisBotInteractionType} from "../../../enums/disBotInteractionType.js";
 import {PermissionType} from "../../../enums/permissionType.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 import {getInteractionData} from "../../../helper/utilityHelper.js";
@@ -48,7 +48,7 @@ export default {
             if (!data) {
                 return await interaction.reply({
                     flags: MessageFlags.Ephemeral,
-                    content: `## ${await convertToEmojiPng("error", client.user.id)} No Poll Data found!`
+                    content: `## ${await convertToEmojiToPng("error")} No Poll Data found!`
                 })
             }
 
@@ -61,7 +61,7 @@ export default {
 
             await interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("check", client.user.id)} Removed Poll Option with ID ${value}`
+                content: `## ${await convertToEmojiToPng("check")} Removed Poll Option with ID ${value}`
             })
         }
     }

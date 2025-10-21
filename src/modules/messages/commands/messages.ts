@@ -12,7 +12,7 @@ import {
 } from "discord.js";
 import {PermissionType} from "../../../enums/permissionType.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 
 export default {
@@ -61,7 +61,7 @@ export default {
             components: [new ContainerBuilder().addTextDisplayComponents(
                 new TextDisplayBuilder().setContent(
                     [
-                        `## ${await convertToEmojiPng("message", client.user.id)} Messages`,
+                        `## ${await convertToEmojiToPng("message")} Messages`,
                         `You can create and manage Messages using the buttons below.`,
                         ``,
                         `**Create Messages** - Create a new Messages.`,

@@ -1,6 +1,6 @@
 import {MessageFlags, ModalSubmitInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "editmessages-message-message-modal",
@@ -18,14 +18,14 @@ export default {
 
         if (!messageToEdit) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} I can't find that message!`,
+                content: `## ${await convertToEmojiToPng("error")} I can't find that message!`,
                 flags: MessageFlags.Ephemeral,
             });
         }
 
         if (messageToEdit.author.id !== client.user?.id && !messageToEdit.webhookId) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} You can only edit messages sent by me.`,
+                content: `## ${await convertToEmojiToPng("error")} You can only edit messages sent by me.`,
                 flags: MessageFlags.Ephemeral,
             });
         }
@@ -36,14 +36,14 @@ export default {
 
         if (!content) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} You must provide a message content!`,
+                content: `## ${await convertToEmojiToPng("error")} You must provide a message content!`,
                 flags: MessageFlags.Ephemeral,
             });
         }
 
         if (content.length > 2000) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} The message content cannot exceed 2000 characters!`,
+                content: `## ${await convertToEmojiToPng("error")} The message content cannot exceed 2000 characters!`,
                 flags: MessageFlags.Ephemeral,
             });
         }
@@ -55,7 +55,7 @@ export default {
             );
             if (!webhook) {
                 return interaction.reply({
-                    content: `## ${await convertToEmojiPng("error", client.user?.id)} I can't find the webhook for this message!`,
+                    content: `## ${await convertToEmojiToPng("error")} I can't find the webhook for this message!`,
                     flags: MessageFlags.Ephemeral,
                 });
             }
@@ -65,7 +65,7 @@ export default {
             } catch (err) {
                 console.error(err);
                 return interaction.reply({
-                    content: `## ${await convertToEmojiPng("error", client.user?.id)} Failed to edit the message via webhook!`,
+                    content: `## ${await convertToEmojiToPng("error")} Failed to edit the message via webhook!`,
                     flags: MessageFlags.Ephemeral,
                 });
             }
@@ -73,7 +73,7 @@ export default {
 
         messageToEdit.edit(content);
         interaction.reply({
-            content: `## ${await convertToEmojiPng("check", client.user?.id)} Message edited successfully!`,
+            content: `## ${await convertToEmojiToPng("check")} Message edited successfully!`,
             flags: MessageFlags.Ephemeral,
         });
     },

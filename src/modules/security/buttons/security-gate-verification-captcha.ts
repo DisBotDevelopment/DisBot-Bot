@@ -1,5 +1,5 @@
 import { ExtendedClient } from "../../../types/client.js";
-import { convertToEmojiPng } from "../../../helper/emojis.js";
+import { convertToEmojiToPng } from "../../../helper/emojis.js";
 import {
     ActionRowBuilder,
     ButtonBuilder,

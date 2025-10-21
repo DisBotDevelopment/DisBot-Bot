@@ -1,6 +1,6 @@
 import {ChatInputCommandInteraction, MessageFlags, PermissionFlagsBits} from "discord.js";
 import {ExtendedClient} from "../../../../types/client.js";
-import {convertToEmojiPng} from "../../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 import {database} from "../../../../main/database.js";
 
@@ -62,9 +62,8 @@ export default {
                 if (!client.user) throw new Error("Client is not ready yet");
 
                 return await interaction.editReply({
-                    content: `## ${await convertToEmojiPng(
-                        "toggleon",
-                        client.user.id
+                    content: `## ${await convertToEmojiToPng(
+                        "toggleon"
                     )} Logging is now enabled`
                 });
             }
@@ -92,9 +91,8 @@ export default {
                 if (!client.user) throw new Error("Client is not ready yet");
 
                 return await interaction.editReply({
-                    content: `## ${await convertToEmojiPng(
-                        "toggleoff",
-                        client.user.id
+                    content: `## ${await convertToEmojiToPng(
+                        "toggleoff"
                     )} Logging is now disabled`
                 });
             }

@@ -1,6 +1,6 @@
 import {Client, EmbedBuilder, MessageFlags, ModalSubmitInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "modal-embed-create-filds-remove",
@@ -19,9 +19,8 @@ export default {
 
             if (isNaN(fieldIndex) || fieldIndex < 0) {
                 return interaction.reply({
-                    content: `## ${await convertToEmojiPng(
-                        "error",
-                        client.user.id
+                    content: `## ${await convertToEmojiToPng(
+                        "error"
                     )} Invalid field number. Please try again.`,
                     flags: MessageFlags.Ephemeral
                 });
@@ -56,9 +55,8 @@ export default {
             console.error("Error in embed editor while removing field:", error);
             if (!client.user) throw new Error("Client user is not available");
             interaction.reply({
-                content: `## ${await convertToEmojiPng(
-                    "error",
-                    client.user.id
+                content: `## ${await convertToEmojiToPng(
+                    "error"
                 )} An error occurred while removing the field. Please try again.`,
                 flags: MessageFlags.Ephemeral
             });

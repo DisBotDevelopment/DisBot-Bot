@@ -9,7 +9,7 @@ import {
     TextInputStyle
 } from "discord.js";
 import {ExtendedClient} from "../../../../types/client.js";
-import {convertToEmojiPng} from "../../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 
 export default {
@@ -43,7 +43,7 @@ export default {
 
         if (!client.user) return;
         await interaction.reply({
-            content: `## ${await convertToEmojiPng("check", client.user?.id)} Click on the button below to see the list of giveaways.`,
+            content: `## ${await convertToEmojiToPng("check")} Click on the button below to see the list of giveaways.`,
             flags: MessageFlags.Ephemeral,
             components: [row]
         });

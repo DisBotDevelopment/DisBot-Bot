@@ -18,7 +18,7 @@ import {
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {hasTicketPermission, ticketErrorMessage} from "../../../helper/ticketHelper.js";
 
 export default {
@@ -49,6 +49,17 @@ export default {
                 return await ticketErrorMessage("This member was added already!", interaction, client)
             }
 
+            await database.tickets.update({
+                where: {
+                    TicketId: uuid
+                },
+                data: {
+                    AddedMemberIds: {
+                        push: value
+                    }
+                }
+            })
+            
             if (data.ChannelType == ChannelType.PrivateThread) {
 
                 await (interaction.channel as PrivateThreadChannel).members.add(value)

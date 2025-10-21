@@ -7,7 +7,7 @@ import {
     MessageFlags,
     TextDisplayBuilder
 } from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {BackupData} from "../../../systems/backup/types/BackupData.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
@@ -29,7 +29,7 @@ export default {
         if (!data) {
             if (!client.user) throw new Error("Client User is not defined");
             return interaction.editReply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} No Backup Found`,
+                content: `## ${await convertToEmojiToPng("error")} No Backup Found`,
             });
         }
 
@@ -43,7 +43,7 @@ export default {
         await interaction.reply({
             components: [
                 new ContainerBuilder().addTextDisplayComponents(
-                    new TextDisplayBuilder().setContent(`## ${await convertToEmojiPng("package", client.user.id)} Share and Download your Backup\n-# ⚠️ Please keep in mind that you store sensitive data in this backup. Make sure to keep it safe and not share it with anyone you don't trust.`)
+                    new TextDisplayBuilder().setContent(`## ${await convertToEmojiToPng("package")} Share and Download your Backup\n-# ⚠️ Please keep in mind that you store sensitive data in this backup. Make sure to keep it safe and not share it with anyone you don't trust.`)
                 ).addFileComponents(
                     new FileBuilder().setURL(`attachment://${fileName}`)
                 )

@@ -13,7 +13,7 @@ import {
 } from "discord.js";
 import pkg from "short-uuid";
 const { uuid } = pkg;
-import { convertToEmojiPng } from "../../../helper/emojis.js";
+import { convertToEmojiToPng } from "../../../helper/emojis.js";
 import { ExtendedClient } from "../../../types/client.js";
 import { PermissionType } from "../../../enums/permissionType.js";
 
@@ -52,9 +52,8 @@ export default {
     ) {
       if (!client.user) throw new Error("Client is not defined");
       return interaction.reply({
-        content: `## ${await convertToEmojiPng(
-          "error",
-          client.user?.id
+        content: `## ${await convertToEmojiToPng(
+          "error"
         )} I don't have the required permissions to mute members`,
         flags: MessageFlags.Ephemeral,
       });
@@ -75,9 +74,8 @@ export default {
     ) {
       if (!client.user) throw new Error("Client is not defined");
       return interaction.reply({
-        content: `## ${await convertToEmojiPng(
-          "error",
-          client.user?.id
+        content: `## ${await convertToEmojiToPng(
+          "error"
         )} You don't have the required permissions to mute members`,
         flags: MessageFlags.Ephemeral,
       });
@@ -120,7 +118,7 @@ export default {
 
     if (!client.user) throw new Error("Client is not ready");
     interaction.reply({
-      content: `## ${await convertToEmojiPng("user", client.user.id)} Create a new timeout action and select the user to timeout`,
+      content: `## ${await convertToEmojiToPng("user")} Create a new timeout action and select the user to timeout`,
       components: [row, row2],
       flags: MessageFlags.Ephemeral,
     });

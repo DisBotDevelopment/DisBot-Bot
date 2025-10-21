@@ -8,7 +8,7 @@ import {
     PermissionsString
 } from "discord.js";
 import {ExtendedClient} from "../../../../types/client.js";
-import {convertToEmojiGif, convertToEmojiPng} from "../../../../helper/emojis.js";
+import {convertToEmojiGif, convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 import {Config} from "../../../../main/config.js";
 
@@ -43,7 +43,7 @@ export default {
             (interaction.member as GuildMember);
 
         let loading;
-        await convertToEmojiGif("loading", client.user.id).then((emoji) => {
+        await convertToEmojiGif("loading").then((emoji) => {
             loading = emoji;
         });
 
@@ -71,9 +71,8 @@ export default {
                 badgeNames.map(async (badge) => {
                     if (!client.user) throw new Error("Client user not found");
                     if (badgeMap[badge]) {
-                        const emoji = await convertToEmojiPng(
-                            badgeMap[badge],
-                            client.user?.id
+                        const emoji = await convertToEmojiToPng(
+                            badgeMap[badge]
                         );
 
                         return ` ${emoji} `;
@@ -93,7 +92,7 @@ export default {
         if (!rolemap.length) rolemap = [];
 
         let boost;
-        await convertToEmojiPng("boost", client.user.id).then((emoji) => {
+        await convertToEmojiToPng("boost").then((emoji) => {
             boost = emoji;
         });
 

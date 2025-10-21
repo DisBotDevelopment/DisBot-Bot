@@ -1,5 +1,5 @@
 import {ButtonStyle, Client, EmbedBuilder, Message, MessageFlags, UserSelectMenuInteraction} from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -26,7 +26,7 @@ export default {
 
             if (!reactionroles) {
                 interaction.editReply({
-                    content: `## ${await convertToEmojiPng("error", client.user?.id)} OOps! I couldn't find the reaction role data.`
+                    content: `## ${await convertToEmojiToPng("error")} OOps! I couldn't find the reaction role data.`
                 });
             }
 
@@ -36,7 +36,7 @@ export default {
 
             if (!member) {
                 return await interaction.editReply({
-                    content: `## ${await convertToEmojiPng("error", client.user?.id)} OOps! You are not in the server.`
+                    content: `## ${await convertToEmojiToPng("error")} OOps! You are not in the server.`
                 });
             }
 
@@ -160,7 +160,7 @@ export default {
                                 if (!client.user)
                                     throw new Error("Client user is not defined in cache.");
                                 interaction.editReply({
-                                    content: `## ${await convertToEmojiPng("error", client.user?.id)} OOps! I couldn't remove the role from you.`
+                                    content: `## ${await convertToEmojiToPng("error")} OOps! I couldn't remove the role from you.`
                                 });
                             }
 
@@ -180,7 +180,7 @@ export default {
                                 if (!client.user)
                                     throw new Error("Client user is not defined in cache.");
                                 interaction.editReply({
-                                    content: `## ${await convertToEmojiPng("error", client.user?.id)} OOps! I couldn't add the role to you.`
+                                    content: `## ${await convertToEmojiToPng("error")} OOps! I couldn't add the role to you.`
                                 });
                             }
 

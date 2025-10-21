@@ -1,5 +1,5 @@
 import {ButtonStyle, Client, MessageFlags, Role, TextChannel, UserSelectMenuInteraction} from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 
 export default {
@@ -31,9 +31,8 @@ export default {
           }
 
           interaction.editReply({
-            content: `## ${await convertToEmojiPng(
-              "check",
-              client.user.id
+            content: `## ${await convertToEmojiToPng(
+              "check"
             )} You have successfully set the Channel to Visible`
           });
 
@@ -50,9 +49,8 @@ export default {
             );
           }
           interaction.editReply({
-            content: `## ${await convertToEmojiPng(
-              "check",
-              client.user.id
+            content: `## ${await convertToEmojiToPng(
+              "check"
             )} You have successfully set the Channel to Invisible`
           });
 
@@ -68,9 +66,8 @@ export default {
             }
           );
           interaction.editReply({
-            content: `## ${await convertToEmojiPng(
-              "check",
-              client.user.id
+            content: `## ${await convertToEmojiToPng(
+              "check"
             )} You have looked the Channel`
           });
 
@@ -84,9 +81,8 @@ export default {
             );
           }
           interaction.editReply({
-            content: `## ${await convertToEmojiPng(
-              "check",
-              client.user.id
+            content: `## ${await convertToEmojiToPng(
+              "check"
             )} You have unlooked the Channel`
           });
 
@@ -98,9 +94,8 @@ export default {
             interaction.guild.roles.everyone
           );
           interaction.editReply({
-            content: `## ${await convertToEmojiPng(
-              "check",
-              client.user.id
+            content: `## ${await convertToEmojiToPng(
+              "check"
             )} The Text Channel is now open`
           });
 
@@ -116,9 +111,8 @@ export default {
             }
           );
           interaction.editReply({
-            content: `## ${await convertToEmojiPng(
-              "check",
-              client.user.id
+            content: `## ${await convertToEmojiToPng(
+              "check"
             )} The Text Channel is now closed`
           });
 

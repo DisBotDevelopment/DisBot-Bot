@@ -7,7 +7,7 @@ import {
     MessageFlags
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -32,7 +32,7 @@ export default {
 
         if (!data) {
             await interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} This vanity URL is not found.`,
+                content: `## ${await convertToEmojiToPng("error")} This vanity URL is not found.`,
                 flags: MessageFlags.Ephemeral
             });
             return;
@@ -48,7 +48,7 @@ export default {
                 }
             );
             await interaction.reply({
-                content: `## ${await convertToEmojiPng("check", client.user.id)} Invite logging has been disabled for this vanity URL.`,
+                content: `## ${await convertToEmojiToPng("check")} Invite logging has been disabled for this vanity URL.`,
                 flags: MessageFlags.Ephemeral
             });
         }

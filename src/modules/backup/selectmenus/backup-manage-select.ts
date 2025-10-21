@@ -9,7 +9,7 @@ import {
 } from "discord.js";
 import { ExtendedClient } from "../../../types/client.js";
 import { BackupData } from "../../../systems/backup/types/BackupData.js";
-import { convertToEmojiPng } from "../../../helper/emojis.js";
+import { convertToEmojiToPng } from "../../../helper/emojis.js";
 import { database } from "../../../main/database.js";
 
 export default {
@@ -31,7 +31,7 @@ export default {
             if (!data) {
                 await interaction.reply({
                     flags: MessageFlags.Ephemeral,
-                    content: `## ${await convertToEmojiPng("error", client.user?.id)} No Backup Found`,
+                    content: `## ${await convertToEmojiToPng("error")} No Backup Found`,
                 });
             }
 
@@ -43,17 +43,17 @@ export default {
                     new ContainerBuilder().addTextDisplayComponents(
                         new TextDisplayBuilder()
                             .setContent([
-                                `## ${await convertToEmojiPng("package", client.user.id)} Backup Details`,
+                                `## ${await convertToEmojiToPng("package")} Backup Details`,
                                 ``,
                                 `> **Name:** ${jsonBackupData.name ?? "N/A"}`,
                                 `> **UUID:** ${data.UUID ?? "N/A"}`,
                                 `> **Created At:** ${data.CreatedAt?.toLocaleString() ?? "N/A"}`,
                                 `### Backup Contents`,
-                                `> ${await convertToEmojiPng("user", client.user.id)} **Members:** ${jsonBackupData.members?.length ?? "N/A"}`,
-                                `> ${await convertToEmojiPng("role", client.user.id)} **Roles:** ${jsonBackupData.roles?.length ?? "N/A"}`,
-                                `> ${await convertToEmojiPng("text", client.user.id)} **Channels:** ${(jsonBackupData.channels?.categories?.length ?? 0) + (jsonBackupData.channels?.others?.length ?? 0) || "N/A"
+                                `> ${await convertToEmojiToPng("user")} **Members:** ${jsonBackupData.members?.length ?? "N/A"}`,
+                                `> ${await convertToEmojiToPng("role")} **Roles:** ${jsonBackupData.roles?.length ?? "N/A"}`,
+                                `> ${await convertToEmojiToPng("text")} **Channels:** ${(jsonBackupData.channels?.categories?.length ?? 0) + (jsonBackupData.channels?.others?.length ?? 0) || "N/A"
                                 }`,
-                                `> ${await convertToEmojiPng("smile", client.user.id)} **Emojis:** ${jsonBackupData.emojis?.length ?? "N/A"}`,
+                                `> ${await convertToEmojiToPng("smile")} **Emojis:** ${jsonBackupData.emojis?.length ?? "N/A"}`,
                             ].join("\n"))
                     ).addActionRowComponents(
                         new ActionRowBuilder<ButtonBuilder>().addComponents(

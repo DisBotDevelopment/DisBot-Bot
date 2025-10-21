@@ -1,5 +1,5 @@
 import {VerificationAction, VerificationActionType} from "../../../enums/verification.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {
     ActionRowBuilder,
@@ -31,7 +31,7 @@ export default {
 
         if (data?.Action == VerificationAction.AddRole) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} You have already selected a role for this verification action.`,
+                content: `## ${await convertToEmojiToPng("error")} You have already selected a role for this verification action.`,
                 flags: MessageFlags.Ephemeral,
             });
         }

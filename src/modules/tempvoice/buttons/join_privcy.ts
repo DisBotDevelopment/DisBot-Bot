@@ -7,7 +7,7 @@ import {
   StringSelectMenuOptionBuilder
 } from "discord.js";
 import { ExtendedClient } from "../../../types/client.js";
-import { convertToEmojiPng } from "../../../helper/emojis.js";
+import { convertToEmojiToPng } from "../../../helper/emojis.js";
 import { database } from "../../../main/database.js";
 
 export default {
@@ -44,7 +44,7 @@ export default {
     if (!client.user) throw new Error("Client not found!");
 
     let owner;
-    await convertToEmojiPng("owner", client.user.id).then((result: any) => {
+    await convertToEmojiToPng("owner").then((result: any) => {
       owner = result;
     });
     if (interaction.user.id !== data.OwnerId)

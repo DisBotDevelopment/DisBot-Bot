@@ -1,7 +1,7 @@
 import "dotenv/config";
 import backup from "../../../systems/backup/index.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiGif, convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiGif, convertToEmojiToPng} from "../../../helper/emojis.js";
 import {
     BitFieldResolvable,
     Guild,
@@ -30,7 +30,7 @@ export default {
         if (!data) {
             return await interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("error", client.user.id)} No Data!`
+                content: `## ${await convertToEmojiToPng("error")} No Data!`
             })
         }
 
@@ -67,14 +67,14 @@ export default {
 
                 return await interaction.reply({
                     flags: MessageFlags.Ephemeral,
-                    content: `## ${await convertToEmojiPng("check", client.user.id)} Updated your Permissions of the Command.`
+                    content: `## ${await convertToEmojiToPng("check")} Updated your Permissions of the Command.`
                 });
             }
         }
 
         await interaction.reply({
             flags: MessageFlags.Ephemeral,
-            content: `## ${await convertToEmojiPng("error", client.user.id)} Set Permissions from your input!`
+            content: `## ${await convertToEmojiToPng("error")} Set Permissions from your input!`
         })
 
     },

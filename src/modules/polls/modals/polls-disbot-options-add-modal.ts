@@ -12,7 +12,7 @@ import {ExtendedClient} from "../../../types/client.js";
 import {PaginationData} from "../../../types/pagination.js";
 import {database} from "../../../main/database.js";
 import {getInteractionData} from "../../../helper/utilityHelper.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import ms from "ms";
 import {randomUUID} from "crypto";
 
@@ -42,14 +42,14 @@ export default {
         if (!data) {
             return await interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("error", client.user.id)} No Poll Data found!`
+                content: `## ${await convertToEmojiToPng("error")} No Poll Data found!`
             })
         }
 
         if (data.PollOptions.length >= 25) {
             return await interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("error", client.user.id)} You only can have 25 Options!`
+                content: `## ${await convertToEmojiToPng("error")} You only can have 25 Options!`
             })
         }
 
@@ -70,7 +70,7 @@ export default {
 
         await interaction.reply({
             flags: MessageFlags.Ephemeral,
-            content: `## ${await convertToEmojiPng("check", client.user.id)} Added Poll Option to ${uuid}`
+            content: `## ${await convertToEmojiToPng("check")} Added Poll Option to ${uuid}`
         })
     }
 };

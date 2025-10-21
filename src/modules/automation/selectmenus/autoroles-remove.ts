@@ -1,6 +1,6 @@
 import "dotenv/config";
 import {MessageFlags, StringSelectMenuInteraction,} from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -27,7 +27,7 @@ export default {
             if (!client.user) throw new Error("Client user is not cached.");
             if (!data) {
                 await interaction.editReply({
-                    content: `## ${await convertToEmojiPng("error", client.user?.id)} No AutoRoles data found`,
+                    content: `## ${await convertToEmojiToPng("error")} No AutoRoles data found`,
                 });
                 continue;
             } else {
@@ -38,7 +38,7 @@ export default {
                 })
             }
             await interaction.editReply({
-                content: `## ${await convertToEmojiPng("check", client.user?.id)} Role(s) removed from AutoRoles successfully (${interaction.values.length})`,
+                content: `## ${await convertToEmojiToPng("check")} Role(s) removed from AutoRoles successfully (${interaction.values.length})`,
             });
         }
     },

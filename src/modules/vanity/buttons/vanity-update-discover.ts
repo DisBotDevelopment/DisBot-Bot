@@ -1,6 +1,6 @@
 import {ActionRowBuilder, ButtonBuilder, ButtonInteraction, ButtonStyle, MessageFlags} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -47,7 +47,7 @@ export default {
             return await interaction.reply(
                 {
                     flags: MessageFlags.Ephemeral,
-                    content: `## ${await convertToEmojiPng("error", client.user.id)} Disabled Discovery for this Vanity (You only can have this guild once in the Discovery!)`,
+                    content: `## ${await convertToEmojiToPng("error")} Disabled Discovery for this Vanity (You only can have this guild once in the Discovery!)`,
                 }
             )
         }
@@ -55,7 +55,7 @@ export default {
         if (!data.Embed || !data.Embed.Title || !data.Embed.Author || !data.Embed.Description || !data.Embed.ImageUrl) return await interaction.reply(
             {
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("error", client.user.id)} You need for the Discovery Embed Title, Embed Author (All), Embed Description and the Embed Image!`,
+                content: `## ${await convertToEmojiToPng("error")} You need for the Discovery Embed Title, Embed Author (All), Embed Description and the Embed Image!`,
             }
         )
 
@@ -73,7 +73,7 @@ export default {
         await interaction.reply(
             {
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("check", client.user.id)} Added this Vanity Url to the Discovery.`,
+                content: `## ${await convertToEmojiToPng("check")} Added this Vanity Url to the Discovery.`,
             }
         )
     }

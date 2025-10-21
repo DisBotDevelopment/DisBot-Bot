@@ -9,7 +9,7 @@ import {
     TextInputStyle,
     UserSelectMenuInteraction
 } from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -31,7 +31,7 @@ export default {
             if (!data) {
                 if (!client.user) throw new Error("Client User is not defined");
                 await interaction.reply({
-                    content: `## ${await convertToEmojiPng("error", client.user?.id)} Spotify Show Not Found`,
+                    content: `## ${await convertToEmojiToPng("error")} Spotify Show Not Found`,
                     flags: MessageFlags.Ephemeral
                 });
             }
@@ -55,7 +55,7 @@ export default {
             const embed = new EmbedBuilder()
                 .setDescription(
                     [
-                        `## ${await convertToEmojiPng("spotify", client.user.id)} Spotify`,
+                        `## ${await convertToEmojiToPng("spotify")} Spotify`,
                         ``,
                         `**Show Name**: ${req.data?.name} (\`${data.ShowId}\`)`,
                         `**Channel**: <#${data.ChannelId}>`,

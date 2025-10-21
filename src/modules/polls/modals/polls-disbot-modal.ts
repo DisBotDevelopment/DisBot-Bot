@@ -9,7 +9,7 @@ import {
     TextChannel, TextDisplayBuilder, TextDisplayComponent
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 import ms from "ms";
 import {randomUUID} from "crypto";
@@ -31,7 +31,7 @@ export default {
         if (type != "button" && type != "selectmenu") {
             return await interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("error", client.user.id)} Please use Button or Selectmenu as Type!`
+                content: `## ${await convertToEmojiToPng("error")} Please use Button or Selectmenu as Type!`
             })
         }
 
@@ -42,7 +42,7 @@ export default {
         })
         if (!messageTemplate) return await interaction.reply({
             flags: MessageFlags.Ephemeral,
-            content: `## ${await convertToEmojiPng("error", client.user.id)} No Message Template found.`
+            content: `## ${await convertToEmojiToPng("error")} No Message Template found.`
         })
 
         const roles = await interaction.guild.roles.fetch()
@@ -76,7 +76,7 @@ export default {
                         new TextDisplayBuilder()
                             .setContent(
                                 [
-                                    `## ${await convertToEmojiPng("vote", client.user.id)} Poll Settings (${uuid.substring(0, 8)}...)`,
+                                    `## ${await convertToEmojiToPng("vote")} Poll Settings (${uuid.substring(0, 8)}...)`,
                                     ``,
                                     `- Manage your Poll Options (Create, Remove, Show)`,
                                     `- You can have only 25 Options for one Poll`,

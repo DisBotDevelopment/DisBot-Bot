@@ -1,5 +1,5 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonInteraction, ButtonStyle, ContainerBuilder, MessageFlags, TextDisplayBuilder } from "discord.js";
-import { convertToEmojiPng } from "../../../helper/emojis.js";
+import { convertToEmojiToPng } from "../../../helper/emojis.js";
 import { ExtendedClient } from "../../../types/client.js";
 
 export default {
@@ -17,7 +17,7 @@ export default {
         return interaction.reply({
             components: [
                 new ContainerBuilder().addTextDisplayComponents(
-                    new TextDisplayBuilder().setContent(`## ${await convertToEmojiPng("package", client.user?.id)} Confirm Backup Delete process`)
+                    new TextDisplayBuilder().setContent(`## ${await convertToEmojiToPng("package")} Confirm Backup Delete process`)
                 ).addActionRowComponents(new ActionRowBuilder<ButtonBuilder>().addComponents(
                     new ButtonBuilder()
                         .setCustomId(`backup-delete-confirm:${interaction.customId.split(":")[1]}`)

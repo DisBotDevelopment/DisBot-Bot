@@ -9,7 +9,7 @@ import {LoggingAction} from "../../../enums/loggingTypes.js";
 import {initUsersToDatabase} from "../../../helper/databaseHelper.js";
 import {Config} from "../../../main/config.js";
 import {database} from "../../../main/database.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     name: Events.InteractionCreate,
@@ -91,7 +91,7 @@ export default {
                         )) {
                             return await (interaction as any).reply({
                                 flags: MessageFlags.Ephemeral,
-                                content: `## ${await convertToEmojiPng("permission", client.user.id)} You can't perform this interaction!`
+                                content: `## ${await convertToEmojiToPng("permission")} You can't perform this interaction!`
                             })
                         }
                     }
@@ -105,7 +105,7 @@ export default {
                     if (!allowedToUse.some((a) => a == true)) {
                         return await (interaction as any).reply({
                             flags: MessageFlags.Ephemeral,
-                            content: `## ${await convertToEmojiPng("permission", client.user.id)} You can't perform this interaction!`
+                            content: `## ${await convertToEmojiToPng("permission")} You can't perform this interaction!`
                         })
                     }
 

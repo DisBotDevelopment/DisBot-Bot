@@ -6,7 +6,7 @@ import {
   MessageFlags,
   UserSelectMenuBuilder
 } from "discord.js";
-import { convertToEmojiPng } from "../../../helper/emojis.js";
+import { convertToEmojiToPng } from "../../../helper/emojis.js";
 import { database } from "../../../main/database.js";
 
 export default {
@@ -63,7 +63,7 @@ export default {
         flags: MessageFlags.Ephemeral
       });
     }
-    await convertToEmojiPng("owner", client.user.id).then((result: any) => {
+    await convertToEmojiToPng("owner").then((result: any) => {
       owner = result;
     });
     if ((interaction.member as GuildMember).id !== data.OwnerId)

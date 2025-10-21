@@ -1,5 +1,5 @@
 import { Client, MessageFlags, UserSelectMenuInteraction, VoiceChannel } from "discord.js";
-import { convertToEmojiPng } from "../../../helper/emojis.js";
+import { convertToEmojiToPng } from "../../../helper/emojis.js";
 import { ExtendedClient } from "../../../types/client.js";
 
 export default {
@@ -28,9 +28,8 @@ export default {
 
             if (value == interaction.user.id)
                 return interaction.editReply({
-                    content: `${await convertToEmojiPng(
-                        "error",
-                        client.user.id
+                    content: `${await convertToEmojiToPng(
+                        "error"
                     )} You can't untrust yourself`
                 });
 
@@ -42,9 +41,8 @@ export default {
             const untrust = interaction.guild.members.cache.get(value);
 
             interaction.editReply({
-                content: `## ${await convertToEmojiPng(
-                    "check",
-                    client.user.id
+                content: `## ${await convertToEmojiToPng(
+                    "check"
                 )} You have successfully untrust the channel to <@${value}>`
             });
         });

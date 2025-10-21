@@ -1,5 +1,5 @@
 import {Client, MessageFlags, UserSelectMenuInteraction} from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -26,9 +26,8 @@ export default {
             if (!data) {
                 if (!client.user) throw new Error("No Client found.");
                 return interaction.reply({
-                    content: `## ${await convertToEmojiPng(
-                        "tag",
-                        client?.user?.id
+                    content: `## ${await convertToEmojiToPng(
+                        "tag"
                     )} The tag with the name \`${value}\` does not exist.`,
                     flags: MessageFlags.Ephemeral
                 });
@@ -38,9 +37,8 @@ export default {
             if (!client.user) throw new Error("No Client found.");
             if (!role)
                 return interaction.reply({
-                    content: `## ${await convertToEmojiPng(
-                        "tag",
-                        client.user.id
+                    content: `## ${await convertToEmojiToPng(
+                        "tag"
                     )} The role with the ID \`${value}\` does not exist.`,
                     flags: MessageFlags.Ephemeral
                 });
@@ -53,9 +51,8 @@ export default {
             );
 
             interaction.reply({
-                content: `## ${await convertToEmojiPng(
-                    "tag",
-                    client.user.id
+                content: `## ${await convertToEmojiToPng(
+                    "tag"
                 )} The permission role for the tag \`${data.TagId
                 }\` has been set to ${role}`,
                 flags: MessageFlags.Ephemeral

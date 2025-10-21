@@ -1,6 +1,6 @@
 import {ChatInputCommandInteraction, MessageFlags, PermissionFlagsBits} from "discord.js";
 import {ExtendedClient} from "../../../../types/client.js";
-import {convertToEmojiPng} from "../../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 import {database} from "../../../../main/database.js";
 
@@ -53,9 +53,8 @@ export default {
                 );
                 if (!client.user) throw new Error("Client user not found");
                 interaction.editReply({
-                    content: `## ${await convertToEmojiPng(
-                        "toggleon",
-                        client.user.id
+                    content: `## ${await convertToEmojiToPng(
+                        "toggleon"
                     )} Welcome is now enabled`
                 });
             }
@@ -78,9 +77,8 @@ export default {
                 );
                 if (!client.user) throw new Error("Client user not found");
                 interaction.editReply({
-                    content: `## ${await convertToEmojiPng(
-                        "toggleoff",
-                        client.user.id
+                    content: `## ${await convertToEmojiToPng(
+                        "toggleoff"
                     )} Welcome is now disabled`
                 });
             }

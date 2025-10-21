@@ -1,5 +1,5 @@
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {
     ActionRowBuilder,
     ButtonBuilder,
@@ -25,7 +25,7 @@ export default {
             embeds: [
                 new EmbedBuilder()
                     .setDescription([
-                        `## ${await convertToEmojiPng("shield", client.user?.id)} Security Gate Verification`,
+                        `## ${await convertToEmojiToPng("shield")} Security Gate Verification`,
                         ``,
                         `Welcome to the Security Gate Verification Management!`,
                         `Here you can manage the verification gates for your server.`,

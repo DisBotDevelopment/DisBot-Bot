@@ -7,7 +7,7 @@ import {
     MessageFlags, RoleSelectMenuBuilder, TextDisplayBuilder, UserSelectMenuBuilder,
     UserSelectMenuInteraction
 } from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 import {GuildPermissionType} from "../../../enums/permissionType.js";
 import {randomUUID} from "crypto";
@@ -61,7 +61,7 @@ export default {
                         .addTextDisplayComponents(
                             new TextDisplayBuilder()
                                 .setContent(
-                                    [`## ${await convertToEmojiPng("terminal", client.user.id)} ${data.CommandName.split(".").join(" ")} (${data.UUID})`,
+                                    [`## ${await convertToEmojiToPng("terminal")} ${data.CommandName.split(".").join(" ")} (${data.UUID})`,
                                         ``,
                                         `**Interaction Name:** ${client.subCommands.get(data.CommandName).interactionName ?? "N/A"}`,
                                         `**Description:** ${client.subCommands.get(data.CommandName).interactionDescription ?? "N/A"}`,

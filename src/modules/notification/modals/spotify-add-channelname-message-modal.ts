@@ -1,7 +1,7 @@
 import axios from "axios";
 import {MessageFlags, ModalSubmitInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -31,7 +31,7 @@ export default {
 
         if (!message) {
             await interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} Message Template not found with ID ${messageTemplate}\n-# Setup your message later in the Notification Management`,
+                content: `## ${await convertToEmojiToPng("error")} Message Template not found with ID ${messageTemplate}\n-# Setup your message later in the Notification Management`,
                 flags: MessageFlags.Ephemeral
             });
             return;
@@ -59,7 +59,7 @@ export default {
 
 
         await interaction.reply({
-            content: `## ${await convertToEmojiPng("check", client.user?.id)} Notification for ${req.data.name} has beed saved successfully!\n-# Don't forget to enable the notification`,
+            content: `## ${await convertToEmojiToPng("check")} Notification for ${req.data.name} has beed saved successfully!\n-# Don't forget to enable the notification`,
             flags: MessageFlags.Ephemeral
         });
 

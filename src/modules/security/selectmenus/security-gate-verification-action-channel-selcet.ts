@@ -11,7 +11,7 @@ import {
 } from "discord.js";
 import {DisBotInteractionType} from "../../../enums/disBotInteractionType.js";
 import {PermissionType} from "../../../enums/permissionType.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -54,7 +54,7 @@ export default {
                 });
             if (!data) {
                 return interaction.reply({
-                    content: `## ${await convertToEmojiPng("error", client.user?.id)} No security gate verification action found for this select menu.`,
+                    content: `## ${await convertToEmojiToPng("error")} No security gate verification action found for this select menu.`,
                     flags: MessageFlags.Ephemeral
                 });
             }
@@ -67,14 +67,14 @@ export default {
                     },
                 });
                 return interaction.reply({
-                    content: `## ${await convertToEmojiPng("check", client.user?.id)} Removed channel ${interaction.guild?.channels.cache.get(value)?.name} from the security gate verification action.`,
+                    content: `## ${await convertToEmojiToPng("check")} Removed channel ${interaction.guild?.channels.cache.get(value)?.name} from the security gate verification action.`,
                     flags: MessageFlags.Ephemeral
                 });
             }
 
             if (!interaction.guild?.channels.cache.get(value)) {
                 return interaction.reply({
-                    content: `## ${await convertToEmojiPng("error", client.user?.id)} Channel not found.`,
+                    content: `## ${await convertToEmojiToPng("error")} Channel not found.`,
                     flags: MessageFlags.Ephemeral
                 });
             }

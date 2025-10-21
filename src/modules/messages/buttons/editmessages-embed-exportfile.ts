@@ -16,7 +16,7 @@ import {
     UserSelectMenuInteraction
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {log} from "winston";
 
 export default {
@@ -36,7 +36,7 @@ export default {
         const embed = message.embeds[Number(embedId)]
 
         if (!client.user) throw new Error("No Client")
-        if (!interaction.channel.isSendable() || !interaction.channel?.isTextBased()) return interaction.reply({content: `## ${await convertToEmojiPng("error", client.user?.id)} This channel not supports message sending!`})
+        if (!interaction.channel.isSendable() || !interaction.channel?.isTextBased()) return interaction.reply({content: `## ${await convertToEmojiToPng("error")} This channel not supports message sending!`})
 
 
         const buffer = Buffer.from(JSON.stringify(embed.toJSON()));
@@ -188,7 +188,7 @@ export default {
                     .addActionRowComponents(buttonRow)
                     .addTextDisplayComponents(
                         new TextDisplayBuilder().setContent(
-                            `${await convertToEmojiPng("info", client.user.id)} **__You now live edit your Embed!__**\n-# To Export the Embed as JSON File use the ${await convertToEmojiPng("refresh", client.user.id)} button below.\n-# To Import a JSON File use the ${await convertToEmojiPng("import", client.user.id)} button.`
+                            `${await convertToEmojiToPng("info")} **__You now live edit your Embed!__**\n-# To Export the Embed as JSON File use the ${await convertToEmojiToPng("refresh")} button below.\n-# To Import a JSON File use the ${await convertToEmojiToPng("import")} button.`
                         )
                     )
                     .addFileComponents(

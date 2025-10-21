@@ -3,7 +3,7 @@ import {PaginationBuilder} from "../../../helper/paginationHelper.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {PaginationData} from "../../../types/pagination.js";
 import {database} from "../../../main/database.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "permissions-manage-owner",
@@ -24,7 +24,7 @@ export default {
 
         if (!data) return await interaction.reply({
             flags: MessageFlags.Ephemeral,
-            content: `## ${await convertToEmojiPng("error", client.user.id)} No Data!`
+            content: `## ${await convertToEmojiToPng("error")} No Data!`
         })
 
         if (data.NeedsGuildOwner) {
@@ -39,7 +39,7 @@ export default {
 
             await interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("check", client.user.id)} This interaction not needs an Guild Owner`
+                content: `## ${await convertToEmojiToPng("check")} This interaction not needs an Guild Owner`
             })
 
         } else {
@@ -54,7 +54,7 @@ export default {
 
             await interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("check", client.user.id)} This interaction is needs the guild owner <@${interaction.guild.ownerId}>!`
+                content: `## ${await convertToEmojiToPng("check")} This interaction is needs the guild owner <@${interaction.guild.ownerId}>!`
             })
 
         }

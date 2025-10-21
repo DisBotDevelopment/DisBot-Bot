@@ -7,7 +7,7 @@ import {
     MessageFlags, PermissionsBitField, RoleSelectMenuBuilder, TextDisplayBuilder, UserSelectMenuBuilder,
     UserSelectMenuInteraction
 } from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 import {GuildPermissionType} from "../../../enums/permissionType.js";
 import {randomUUID} from "crypto";
@@ -35,7 +35,7 @@ export default {
                                 new TextDisplayBuilder()
                                     .setContent(
                                         [
-                                            `## ${await convertToEmojiPng("user", client.user.id)} Permissions Info of ${user}`,
+                                            `## ${await convertToEmojiToPng("user")} Permissions Info of ${user}`,
                                             ``,
                                             `### All Permissions:`,
                                             `> ${permissionsString.map((p) => ` \`${p}\` `)}`,

@@ -1,6 +1,6 @@
 import {ButtonStyle, MessageFlags, ModalSubmitInteraction, TextChannel} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 import {randomUUID} from "crypto";
 
@@ -29,7 +29,7 @@ export default {
 
         if (data) {
             return interaction.editReply({
-                content: `## ${await convertToEmojiPng("link", client.user.id)} This vanity URL is already taken.`
+                content: `## ${await convertToEmojiToPng("link")} This vanity URL is already taken.`
             });
         }
 
@@ -109,7 +109,7 @@ export default {
                 });
 
                 return interaction.editReply({
-                    content: `## ${await convertToEmojiPng("link", client.user.id)}Your Vanity URL has been created. - [dchat.link/${query}](https://dchat.link/${query})`
+                    content: `## ${await convertToEmojiToPng("link")}Your Vanity URL has been created. - [dchat.link/${query}](https://dchat.link/${query})`
                 });
             });
     }

@@ -11,7 +11,7 @@ import {
 import moment from "moment";
 import ms from "ms";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -35,14 +35,14 @@ export default {
 
         if (!giveaway) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("giveaway", client.user?.id)} Giveaway not found!`,
+                content: `## ${await convertToEmojiToPng("giveaway")} Giveaway not found!`,
                 flags: MessageFlags.Ephemeral,
             });
         }
 
         if (giveaway.Ended) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("giveaway", client.user?.id)} This giveaway has already ended!`,
+                content: `## ${await convertToEmojiToPng("giveaway")} This giveaway has already ended!`,
                 flags: MessageFlags.Ephemeral,
             });
         }
@@ -50,7 +50,7 @@ export default {
         if (giveaway.Requirements[0] != null && giveaway.Requirements[0] != undefined && giveaway.Requirements[0] != "" && giveaway.Requirements[0] != "null") {
             if (giveaway.Requirements.length >= 1 && !interaction.guild?.members.cache.get(interaction.user.id)?.roles.cache.has(giveaway.Requirements[0])) {
                 return interaction.reply({
-                    content: `## ${await convertToEmojiPng("giveaway", client.user?.id)} You need to have the role <@&${giveaway.Requirements[0]}> to enter this giveaway!`,
+                    content: `## ${await convertToEmojiToPng("giveaway")} You need to have the role <@&${giveaway.Requirements[0]}> to enter this giveaway!`,
                     flags: MessageFlags.Ephemeral,
                 });
             }
@@ -65,7 +65,7 @@ export default {
             );
 
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("giveaway", client.user?.id)} You are already entered in the giveaway!`,
+                content: `## ${await convertToEmojiToPng("giveaway")} You are already entered in the giveaway!`,
                 flags: MessageFlags.Ephemeral,
                 components: [button]
             });
@@ -115,7 +115,7 @@ export default {
         })
 
         return interaction.reply({
-            content: `## ${await convertToEmojiPng("giveaway", client.user?.id)} You have entered the giveaway!`,
+            content: `## ${await convertToEmojiToPng("giveaway")} You have entered the giveaway!`,
             flags: MessageFlags.Ephemeral,
         });
     }

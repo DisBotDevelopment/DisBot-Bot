@@ -18,7 +18,7 @@ import {
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {hasTicketPermission, ticketErrorMessage} from "../../../helper/ticketHelper.js";
 
 export default {

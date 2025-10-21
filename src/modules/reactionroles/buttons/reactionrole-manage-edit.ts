@@ -1,6 +1,6 @@
 import {ActionRowBuilder, ButtonInteraction, MessageFlags, RoleSelectMenuBuilder, TextInputStyle} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -32,14 +32,14 @@ export default {
         if (!nextEmbed) {
             if (!client.user) throw new Error("Client user is not defined");
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} The reaction-role with the UUID \`${uuid}\` does not exist`,
+                content: `## ${await convertToEmojiToPng("error")} The reaction-role with the UUID \`${uuid}\` does not exist`,
                 flags: MessageFlags.Ephemeral
             });
         }
 
         if (!client.user) throw new Error("Client user is not defined");
         interaction.reply({
-            content: `## ${await convertToEmojiPng("edit", client.user?.id)} Please select the roles you want to add to the reaction-role`,
+            content: `## ${await convertToEmojiToPng("edit")} Please select the roles you want to add to the reaction-role`,
             components: [rolesec],
             flags: MessageFlags.Ephemeral
         });

@@ -1,5 +1,5 @@
 import {ExtendedClient} from "../../../types/client.js"
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ActionRowBuilder, MessageFlags, ModalSubmitInteraction, StringSelectMenuBuilder,} from "discord.js";
 import pkg from "short-uuid";
 import {database} from "../../../main/database.js";
@@ -22,7 +22,7 @@ export default {
         const channel = await interaction.guild?.channels.fetch(messageURL.split("/")[5])
         if (!channel || !channel.isTextBased()) {
             await interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} Invalid Channel`,
+                content: `## ${await convertToEmojiToPng("error")} Invalid Channel`,
                 flags: MessageFlags.Ephemeral
             });
             return;
@@ -37,7 +37,7 @@ export default {
 
         if (data) {
             await interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} This message is already used for verification.`,
+                content: `## ${await convertToEmojiToPng("error")} This message is already used for verification.`,
                 flags: MessageFlags.Ephemeral
             });
             return;
@@ -58,7 +58,7 @@ export default {
 
         await interaction.reply(
             {
-                content: `## ${await convertToEmojiPng("check", client.user?.id)} Verification Gate created successfully!`,
+                content: `## ${await convertToEmojiToPng("check")} Verification Gate created successfully!`,
                 flags: MessageFlags.Ephemeral,
                 components: [
                     new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(

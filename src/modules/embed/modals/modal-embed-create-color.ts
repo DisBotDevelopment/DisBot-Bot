@@ -1,6 +1,6 @@
 import {Client, ColorResolvable, EmbedBuilder, ModalSubmitInteraction, MessageFlags} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "modal-embed-create-color",
@@ -46,7 +46,7 @@ export default {
         } catch (e) {
             if (!client.user) throw new Error("No Client");
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} Please use a valid hex color code!`,
+                content: `## ${await convertToEmojiToPng("error")} Please use a valid hex color code!`,
                 flags: MessageFlags.Ephemeral,
             });
         }

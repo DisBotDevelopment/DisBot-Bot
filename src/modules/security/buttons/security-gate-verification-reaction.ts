@@ -1,5 +1,5 @@
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {
     ActionRowBuilder,
     ButtonBuilder,
@@ -36,13 +36,13 @@ export default {
 
         if (!data) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} Verification Gate not found`,
+                content: `## ${await convertToEmojiToPng("error")} Verification Gate not found`,
                 flags: MessageFlags.Ephemeral,
             });
         }
 
         if (data.ActionType != VerificationActionType.Reaction) return interaction.reply({
-            content: `## ${await convertToEmojiPng("error", client.user.id)} This gate is already set to button you can't change it to reaction`,
+            content: `## ${await convertToEmojiToPng("error")} This gate is already set to button you can't change it to reaction`,
             flags: MessageFlags.Ephemeral,
         });
 

@@ -8,7 +8,7 @@ import {
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {cli} from "winston/lib/winston/config/index.js";
 
 export default {
@@ -30,7 +30,7 @@ export default {
 
         if (!data) {
             return await interaction.editReply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} There are no Component Data found`,
+                content: `## ${await convertToEmojiToPng("error")} There are no Component Data found`,
             })
         }
 
@@ -55,7 +55,7 @@ export default {
         })
 
         await interaction.editReply({
-            content: `## ${await convertToEmojiPng("check", client.user.id)} Ticket Component was deleted successfully!`,
+            content: `## ${await convertToEmojiToPng("check")} Ticket Component was deleted successfully!`,
         })
     }
 };

@@ -7,7 +7,7 @@ import {
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "ticket-add-component-show",
@@ -35,7 +35,7 @@ export default {
             });
             return;
         }
-        const ticketEmoji = await convertToEmojiPng("ticket", client.user.id);
+        const ticketEmoji = await convertToEmojiToPng("ticket");
 
         const content = [
             `## ${ticketEmoji} Preview of Ticket Component \`${data.CustomId.substring(0, 10)}...\``,
@@ -68,7 +68,7 @@ export default {
             `**Slash Command ID:** \`${data.SlashCommandId ?? "N/A"}\``,
             `**Text Command Name:** ${data.TextCommandName ?? "_N/A_"}`,
             ``,
-            `${await convertToEmojiPng("info", client.user.id)} Options with _*_ is a Required Option!`,
+            `${await convertToEmojiToPng("info")} Options with _*_ is a Required Option!`,
             ``,
         ].join("\n");
 

@@ -11,7 +11,7 @@ import {
 import moment from "moment";
 import ms from "ms";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -33,14 +33,14 @@ export default {
 
         if (!giveaway) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("giveaway", client.user?.id)} Giveaway not found!`,
+                content: `## ${await convertToEmojiToPng("giveaway")} Giveaway not found!`,
                 flags: MessageFlags.Ephemeral,
             });
         }
 
         if (giveaway.Ended) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("giveaway", client.user?.id)} This giveaway has already ended!`,
+                content: `## ${await convertToEmojiToPng("giveaway")} This giveaway has already ended!`,
                 flags: MessageFlags.Ephemeral,
             });
         }
@@ -92,7 +92,7 @@ export default {
         })
 
         await interaction.update({
-            content: `## ${await convertToEmojiPng("giveaway", client.user?.id)} You have left the giveaway!`,
+            content: `## ${await convertToEmojiToPng("giveaway")} You have left the giveaway!`,
             components: []
         });
     }

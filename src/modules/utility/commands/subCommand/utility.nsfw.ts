@@ -1,6 +1,6 @@
 import { ButtonStyle, ChannelType, ChatInputCommandInteraction, MessageFlags, PermissionFlagsBits, TextChannel } from "discord.js";
 import { ExtendedClient } from "../../../../types/client.js";
-import { convertToEmojiPng } from "../../../../helper/emojis.js";
+import { convertToEmojiToPng } from "../../../../helper/emojis.js";
 import { PermissionType } from "../../../../enums/permissionType.js";
 
 export default {
@@ -28,20 +28,20 @@ export default {
         if (!client.user) throw new Error("No user was found.");
         if (!channel) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} Please run this in as a text channel`,
+                content: `## ${await convertToEmojiToPng("error")} Please run this in as a text channel`,
                 flags: MessageFlags.Ephemeral
             });
         }
         if (!channel.nsfw) {
             await channel.setNSFW(true, "User runed the command /discord nsfw")
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("check", client.user.id)} This channel is now set to NSFW`,
+                content: `## ${await convertToEmojiToPng("check")} This channel is now set to NSFW`,
                 flags: MessageFlags.Ephemeral
             })
         } else {
             await channel.setNSFW(false, "User runed the command /discord nsfw")
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("check", client.user.id)} This channel is now set to not NSFW`,
+                content: `## ${await convertToEmojiToPng("check")} This channel is now set to not NSFW`,
                 flags: MessageFlags.Ephemeral
             })
         }

@@ -1,6 +1,6 @@
 import {MessageFlags, ModalSubmitInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -26,7 +26,7 @@ export default {
 
         if (!data) return interaction.reply({
             flags: MessageFlags.Ephemeral,
-            content: `## ${await convertToEmojiPng("error", client.user.id)} No Data!`
+            content: `## ${await convertToEmojiToPng("error")} No Data!`
         })
 
         await database.guildInteractionPermissions.update({

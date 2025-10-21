@@ -9,7 +9,7 @@ import {
     TextDisplayBuilder,
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {randomUUID} from "crypto";
 import {database} from "../../../main/database.js";
 
@@ -34,9 +34,8 @@ export default {
         if (data) {
             return interaction
                 .reply({
-                    content: `## ${await convertToEmojiPng(
-                        "error",
-                        client.user.id
+                    content: `## ${await convertToEmojiToPng(
+                        "error"
                     )} This message template already exists.`,
                     flags: MessageFlags.Ephemeral,
                 })
@@ -87,9 +86,8 @@ export default {
         await interaction.reply({
             components: [
                 new ContainerBuilder().addTextDisplayComponents(
-                    new TextDisplayBuilder().setContent(`## ${await convertToEmojiPng(
-                        "success",
-                        client.user.id
+                    new TextDisplayBuilder().setContent(`## ${await convertToEmojiToPng(
+                        "success"
                     )} Message template \`\`${name}\`\` created successfully!`)
                 ).addActionRowComponents(row),
             ],

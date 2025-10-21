@@ -1,6 +1,6 @@
 import { ButtonStyle, ChatInputCommandInteraction, MessageFlags, PermissionFlagsBits, TextChannel } from "discord.js";
 import { ExtendedClient } from "../../../../types/client.js";
-import { convertToEmojiPng } from "../../../../helper/emojis.js";
+import { convertToEmojiToPng } from "../../../../helper/emojis.js";
 import { PermissionType } from "../../../../enums/permissionType.js";
 
 export default {
@@ -35,17 +35,15 @@ export default {
       if (!client.user) throw new Error("Client user not found");
 
       return interaction.editReply({
-        content: `## ${await convertToEmojiPng(
-          "check",
-          client.user.id
+        content: `## ${await convertToEmojiToPng(
+          "check"
         )} Deleted ${size} messages.`
       });
     } catch (error) {
       if (!client.user) throw new Error("Client user not found");
       return interaction.editReply({
-        content: `## ${await convertToEmojiPng(
-          "error",
-          client.user.id
+        content: `## ${await convertToEmojiToPng(
+          "error"
         )} I can't delete messages older than 14 days.`
       });
     }

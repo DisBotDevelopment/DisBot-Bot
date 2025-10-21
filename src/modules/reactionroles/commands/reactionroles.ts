@@ -9,7 +9,7 @@ import {
   SlashCommandBuilder
 } from "discord.js";
 import { ExtendedClient } from "../../../types/client.js";
-import { convertToEmojiPng } from "../../../helper/emojis.js";
+import { convertToEmojiToPng } from "../../../helper/emojis.js";
 import { PermissionType } from "../../../enums/permissionType.js";
 
 export default {
@@ -55,7 +55,7 @@ export default {
       .setColor("#2B2D31")
       .setDescription(
         [
-          `## ${await convertToEmojiPng("role", client.user?.id)} Reaction Roles`,
+          `## ${await convertToEmojiToPng("role")} Reaction Roles`,
           ``,
           `> Create and Manage Reaction Roles from the Server`,
           `‎ **User can react to a message to get a role/roles**`,

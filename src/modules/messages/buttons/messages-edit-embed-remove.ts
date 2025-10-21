@@ -1,6 +1,6 @@
 import {ButtonStyle, MessageFlags, UserSelectMenuInteraction,} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -24,9 +24,8 @@ export default {
 
         if (data?.EmbedJSON && data?.Content == null) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng(
-                    "error",
-                    client.user.id
+                content: `## ${await convertToEmojiToPng(
+                    "error"
                 )} You can't remove the embed of a message that has no content.`,
                 flags: MessageFlags.Ephemeral,
             });
@@ -45,9 +44,8 @@ export default {
 
         interaction
             .reply({
-                content: `## ${await convertToEmojiPng(
-                    "check",
-                    client.user.id
+                content: `## ${await convertToEmojiToPng(
+                    "check"
                 )} The embed of the message has been removed.`,
                 flags: MessageFlags.Ephemeral,
             })

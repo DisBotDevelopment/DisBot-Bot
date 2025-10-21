@@ -13,7 +13,7 @@ import {ExtendedClient} from "../types/client.js";
 import {database} from "../main/database.js";
 import {handleCloseAction} from "../helper/ticketHelper.js";
 import {Config} from "../main/config.js";
-import {convertToEmojiPng} from "../helper/emojis.js";
+import {convertToEmojiToPng} from "../helper/emojis.js";
 
 export class Scheduler {
 

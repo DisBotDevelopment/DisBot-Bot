@@ -15,7 +15,7 @@ import {
     ticketErrorMessage,
     ticketLookAction
 } from "../../../helper/ticketHelper.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {PaginationData} from "../../../types/pagination.js";
 import {PaginationBuilder} from "../../../helper/paginationHelper.js";
 

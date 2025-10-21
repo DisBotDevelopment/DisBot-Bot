@@ -1,6 +1,6 @@
 import {ButtonInteraction, ButtonStyle, MessageFlags} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -22,7 +22,7 @@ export default {
 
         if (!data) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("info", client.user.id)} This vanity URL is not found.`,
+                content: `## ${await convertToEmojiToPng("info")} This vanity URL is not found.`,
                 flags: MessageFlags.Ephemeral
             });
         }
@@ -54,7 +54,7 @@ export default {
         });
 
         return interaction.update({
-            content: `## ${await convertToEmojiPng("check", client.user.id)} Vanity URL has been deleted.`,
+            content: `## ${await convertToEmojiToPng("check")} Vanity URL has been deleted.`,
             components: [],
             embeds: []
         });

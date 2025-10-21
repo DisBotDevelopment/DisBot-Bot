@@ -1,6 +1,6 @@
 import {Client, EmbedBuilder, MessageFlags, ModalSubmitInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "modal-embed-create-filds-add",
@@ -20,9 +20,8 @@ export default {
 
         if (inline !== "true" && inline !== "false")
             return interaction.reply({
-                content: `## ${await convertToEmojiPng(
-                    "error",
-                    client.user.id
+                content: `## ${await convertToEmojiToPng(
+                    "error"
                 )} Invalid inline value, please use "true" or "false".`,
                 flags: MessageFlags.Ephemeral
             });

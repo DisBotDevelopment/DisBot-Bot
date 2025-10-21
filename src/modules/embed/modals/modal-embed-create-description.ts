@@ -1,6 +1,6 @@
 import {Client, EmbedBuilder, MessageFlags, ModalSubmitInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "modal-embed-create-description",
@@ -24,7 +24,7 @@ export default {
 
         if (!embeds[embedIndex]) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} I can't find the embed at index ${embedIndex}!`,
+                content: `## ${await convertToEmojiToPng("error")} I can't find the embed at index ${embedIndex}!`,
                 flags: MessageFlags.Ephemeral,
             });
         }
@@ -36,7 +36,7 @@ export default {
 
             if (!webhook) {
                 return interaction.reply({
-                    content: `## ${await convertToEmojiPng("error", client.user?.id)} I can't find the webhook for this message!`,
+                    content: `## ${await convertToEmojiToPng("error")} I can't find the webhook for this message!`,
                     flags: MessageFlags.Ephemeral,
                 });
             }
@@ -47,7 +47,7 @@ export default {
             } catch (err) {
                 console.error(err);
                 return interaction.reply({
-                    content: `## ${await convertToEmojiPng("error", client.user?.id)} Failed to edit the message via webhook!`,
+                    content: `## ${await convertToEmojiToPng("error")} Failed to edit the message via webhook!`,
                     flags: MessageFlags.Ephemeral,
                 });
             }

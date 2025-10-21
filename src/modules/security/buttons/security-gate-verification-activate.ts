@@ -8,7 +8,7 @@ import {
     TextInputStyle
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 import {uuid} from "short-uuid";
 
@@ -31,7 +31,7 @@ export default {
 
 
         if (!data) return interaction.reply({
-            content: `## ${await convertToEmojiPng("error", client.user?.id)} Verification Gate not found`,
+            content: `## ${await convertToEmojiToPng("error")} Verification Gate not found`,
             flags: MessageFlags.Ephemeral
         });
 
@@ -47,7 +47,7 @@ export default {
         );
 
         return interaction.reply({
-            content: `## ${await convertToEmojiPng("check", client.user?.id)} Verification Gate activated successfully`,
+            content: `## ${await convertToEmojiToPng("check")} Verification Gate activated successfully`,
             flags: MessageFlags.Ephemeral
         });
 

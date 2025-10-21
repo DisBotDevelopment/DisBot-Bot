@@ -7,7 +7,7 @@ import {
   MessageFlags,
   UserSelectMenuInteraction,
 } from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 
 export default {
@@ -37,7 +37,7 @@ export default {
         if (!client.user) throw new Error("Client is not defined");
         if (!user) {
           return interaction.reply({
-            content: `## ${await convertToEmojiPng("error", client.user?.id)} A user you selected is not in the server`,
+            content: `## ${await convertToEmojiToPng("error")} A user you selected is not in the server`,
             flags: MessageFlags.Ephemeral,
           });
         }
@@ -48,7 +48,7 @@ export default {
             0) <= user.roles.highest.position
         ) {
           return interaction.reply({
-            content: `## ${await convertToEmojiPng("error", client.user?.id)} You can't ban a user with a higher or equal role`,
+            content: `## ${await convertToEmojiToPng("error")} You can't ban a user with a higher or equal role`,
             flags: MessageFlags.Ephemeral,
           });
         }
@@ -94,16 +94,15 @@ export default {
         await user.timeout(Number(data.time), data.reason);
       });
       interaction.update({
-        content: `## ${await convertToEmojiPng(
-          "check",
-          client.user.id
+        content: `## ${await convertToEmojiToPng(
+          "check"
         )} Successfully timeouted the user(s)`,
         components: [],
       });
     } catch (error) {
       if (!client.user) throw new Error("Client is not defined");
       return interaction.reply({
-        content: `## ${await convertToEmojiPng("error", client.user?.id)} Check the permoissions and try again or ban the user manually (one by one)`,
+        content: `## ${await convertToEmojiToPng("error")} Check the permoissions and try again or ban the user manually (one by one)`,
         flags: MessageFlags.Ephemeral,
       });
     }

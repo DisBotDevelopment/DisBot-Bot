@@ -2,7 +2,7 @@ import "dotenv/config";
 import {MessageFlags, ModalSubmitInteraction} from "discord.js";
 import ms, {StringValue} from "ms";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 
@@ -19,7 +19,7 @@ export default {
         const time = ms(input as StringValue);
         if (!time || time < 0) {
             await interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} Invalid time format. Please use a valid format like \`5m\`, \`1h\`, etc.`,
+                content: `## ${await convertToEmojiToPng("error")} Invalid time format. Please use a valid format like \`5m\`, \`1h\`, etc.`,
                 flags: MessageFlags.Ephemeral,
             });
             return;
@@ -35,7 +35,7 @@ export default {
 
         if (!data) {
             await interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} No setup found with the provided UUID.`,
+                content: `## ${await convertToEmojiToPng("error")} No setup found with the provided UUID.`,
                 flags: MessageFlags.Ephemeral,
             });
             return;
@@ -55,7 +55,7 @@ export default {
         const readableTime = ms(time, {long: true});
 
         await interaction.reply({
-            content: `## ${await convertToEmojiPng("check", client.user.id)} Timer updated successfully!\nNew timer: **${readableTime}** (${time}ms)`,
+            content: `## ${await convertToEmojiToPng("check")} Timer updated successfully!\nNew timer: **${readableTime}** (${time}ms)`,
             flags: MessageFlags.Ephemeral,
         })
     },

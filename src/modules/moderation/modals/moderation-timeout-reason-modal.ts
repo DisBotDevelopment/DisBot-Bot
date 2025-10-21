@@ -1,6 +1,6 @@
 import {MessageFlags, ModalSubmitInteraction,} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
   id: "moderation-timeout-reason-modal",
@@ -23,7 +23,7 @@ export default {
 
     if (!client.user) throw new Error("Client not found");
     interaction.reply({
-      content: `## ${await convertToEmojiPng("check", client.user.id)} Reason has been set`,
+      content: `## ${await convertToEmojiToPng("check")} Reason has been set`,
       flags: MessageFlags.Ephemeral,
     });
   },

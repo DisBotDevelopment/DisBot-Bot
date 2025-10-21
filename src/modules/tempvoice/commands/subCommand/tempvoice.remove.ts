@@ -1,6 +1,6 @@
 import {ButtonStyle, ChatInputCommandInteraction, MessageFlags, PermissionFlagsBits} from "discord.js";
 import {ExtendedClient} from "../../../../types/client.js";
-import {convertToEmojiPng} from "../../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 import {database} from "../../../../main/database.js";
 
@@ -46,7 +46,7 @@ export default {
             const tempVoiceChannel = await interaction.guild.channels.fetch(channels.ChannelId)
             await tempVoiceChannel.delete()
             await interaction.editReply({
-                content: `## ${await convertToEmojiPng("check", client.user?.id)} Deleted old TempVC Channel <#${channels.ChannelId}>!`
+                content: `## ${await convertToEmojiToPng("check")} Deleted old TempVC Channel <#${channels.ChannelId}>!`
             });
         }
 
@@ -65,7 +65,7 @@ export default {
 
                 if (!client.user) throw new Error("Client user not found");
                 await interaction.editReply({
-                    content: `## ${await convertToEmojiPng("check", client.user?.id)} You have removed the Tempvoice Channel`
+                    content: `## ${await convertToEmojiToPng("check")} You have removed the Tempvoice Channel`
                 });
             })
     }

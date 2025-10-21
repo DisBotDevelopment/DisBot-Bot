@@ -1,6 +1,6 @@
 import {ButtonInteraction, ButtonStyle, EmbedBuilder, MessageFlags} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -30,21 +30,21 @@ export default {
         const embed = new EmbedBuilder()
             .setDescription(
                 [
-                    `## ${await convertToEmojiPng("analytics", client.user?.id)} Vanity URL Analytics`,
+                    `## ${await convertToEmojiToPng("analytics")} Vanity URL Analytics`,
                     ``,
                     `### Global Statistics`,
                     ``,
-                    `${await convertToEmojiPng("clicks", client.user?.id)} **Total Clicks**: \`${data?.Analytics?.Click}\``,
-                    `${await convertToEmojiPng("clicks", client.user?.id)} **Total Unique Clicks**: \`${data?.Analytics?.UniqueClick}\``,
-                    `${await convertToEmojiPng("group", client.user?.id)} **Joined Server**: \`${data?.Analytics?.JoinedWithCode}\``,
-                    `${await convertToEmojiPng("created", client.user?.id)} **Created At**: <t:${Math.floor(data?.CreatedAt.getTime() as number / 1000)}:R>`,
+                    `${await convertToEmojiToPng("clicks")} **Total Clicks**: \`${data?.Analytics?.Click}\``,
+                    `${await convertToEmojiToPng("clicks")} **Total Unique Clicks**: \`${data?.Analytics?.UniqueClick}\``,
+                    `${await convertToEmojiToPng("group")} **Joined Server**: \`${data?.Analytics?.JoinedWithCode}\``,
+                    `${await convertToEmojiToPng("created")} **Created At**: <t:${Math.floor(data?.CreatedAt.getTime() as number / 1000)}:R>`,
                     `### 30 Days Statistics`,
                     ``,
-                    `${await convertToEmojiPng("clicks", client.user?.id)} **Total Clicks**: \`${data?.Analytics?.Latest30Days?.Click}\``,
-                    `${await convertToEmojiPng("clicks", client.user?.id)} **Total Unique Clicks**: \`${data?.Analytics?.Latest30Days?.UniqueClick}\``,
-                    `${await convertToEmojiPng("group", client.user?.id)} **Joined Server**: \`${data?.Analytics?.Latest30Days?.JoinedWithCode}\``,
-                    `${await convertToEmojiPng("calendar", client.user?.id)} **Date**: <t:${Math.floor(data?.Analytics?.Latest30Days?.Date?.getTime() as number / 1000)}:R>`,
-                    `${await convertToEmojiPng("calendarupdate", client.user?.id)} **Last Updated**: <t:${Math.floor(data?.Analytics?.Update?.getTime() as number / 1000)}:R>`,
+                    `${await convertToEmojiToPng("clicks")} **Total Clicks**: \`${data?.Analytics?.Latest30Days?.Click}\``,
+                    `${await convertToEmojiToPng("clicks")} **Total Unique Clicks**: \`${data?.Analytics?.Latest30Days?.UniqueClick}\``,
+                    `${await convertToEmojiToPng("group")} **Joined Server**: \`${data?.Analytics?.Latest30Days?.JoinedWithCode}\``,
+                    `${await convertToEmojiToPng("calendar")} **Date**: <t:${Math.floor(data?.Analytics?.Latest30Days?.Date?.getTime() as number / 1000)}:R>`,
+                    `${await convertToEmojiToPng("calendarupdate")} **Last Updated**: <t:${Math.floor(data?.Analytics?.Update?.getTime() as number / 1000)}:R>`,
                 ].join("\n")
             )
 

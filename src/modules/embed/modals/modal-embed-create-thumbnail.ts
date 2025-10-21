@@ -1,7 +1,7 @@
 import {EmbedBuilder, MessageFlags, ModalSubmitInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {IMAGE_PLACEHOLDER} from "../../../main/placeholder.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "modal-embed-create-thumbnail",
@@ -32,7 +32,7 @@ export default {
                 }
             }
 
-            embeds[embedIndex].setThumbnail(imgUrl);
+            embeds[embedIndex].setThumbnail(imgUrl ?? null);
 
             if (message.webhookId) {
                 const webhooks = await interaction.guild?.fetchWebhooks();
@@ -55,7 +55,7 @@ export default {
             console.error(error);
             if (!client.user) throw new Error("No Client");
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} An error occurred while trying to set the image.`,
+                content: `## ${await convertToEmojiToPng("error")} An error occurred while trying to set the image.`,
                 flags: MessageFlags.Ephemeral,
             });
         }

@@ -1,6 +1,6 @@
 import {ActionRowBuilder, ButtonBuilder, ButtonInteraction, ButtonStyle, TextInputStyle} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -70,7 +70,7 @@ export default {
         );
 
         interaction.update({
-            content: `## ${await convertToEmojiPng("check", client.user?.id)} Spotify Notifications are now ${enabled == true ? "enabled" : "disabled"}!`,
+            content: `## ${await convertToEmojiToPng("check")} Spotify Notifications are now ${enabled == true ? "enabled" : "disabled"}!`,
             components: [row]
         });
     }

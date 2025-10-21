@@ -1,5 +1,5 @@
 import { Client, MessageFlags, UserSelectMenuInteraction } from "discord.js";
-import { convertToEmojiPng } from "../../../helper/emojis.js";
+import { convertToEmojiToPng } from "../../../helper/emojis.js";
 import { ExtendedClient } from "../../../types/client.js";
 
 export default {
@@ -26,9 +26,8 @@ export default {
       if (!client.user) throw new Error("No Client found.");
       if (value == interaction.user.id)
         return interaction.followUp({
-          content: `## ${await convertToEmojiPng(
-            "error",
-            client.user.id
+          content: `## ${await convertToEmojiToPng(
+            "error"
           )} You can't kick yourself`,
           flags: MessageFlags.Ephemeral
         });
@@ -38,9 +37,8 @@ export default {
       members?.voice.setChannel(null);
 
       interaction.editReply({
-        content: `## ${await convertToEmojiPng(
-          "check",
-          client.user.id
+        content: `## ${await convertToEmojiToPng(
+          "check"
         )} You have successfully Kicked user from the Channel`
       });
     });

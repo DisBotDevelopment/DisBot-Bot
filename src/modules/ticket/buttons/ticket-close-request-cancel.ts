@@ -5,7 +5,7 @@ import {
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 import {handleCloseAction, hasTicketPermission, ticketErrorMessage} from "../../../helper/ticketHelper.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "ticket-infos",
@@ -49,7 +49,7 @@ export default {
                     .addTextDisplayComponents(new TextDisplayBuilder()
                         .setContent(
                             [
-                                `> ### ${await convertToEmojiPng("ticket", client.user.id)} ${interaction.member} has canceled the close request from the ticket!`,
+                                `> ### ${await convertToEmojiToPng("ticket")} ${interaction.member} has canceled the close request from the ticket!`,
                             ].join("\n")))
             ]
         })

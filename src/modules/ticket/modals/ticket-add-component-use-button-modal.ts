@@ -14,7 +14,7 @@ import {
 import {ExtendedClient} from "../../../types/client.js";
 import {randomUUID} from "crypto";
 import {database} from "../../../main/database.js";
-import {convertToEmojiGif, convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiGif, convertToEmojiToPng} from "../../../helper/emojis.js";
 import {errorHandler} from "../../../helper/errorHelper.js";
 
 export default {
@@ -139,7 +139,7 @@ export default {
         }
 
         await interaction.reply({
-            content: `## ${await convertToEmojiPng("ticket", client.user.id)} Added Component to your Message ${message.url}`,
+            content: `## ${await convertToEmojiToPng("ticket")} Added Component to your Message ${message.url}`,
             flags: MessageFlags.Ephemeral,
         })
     },

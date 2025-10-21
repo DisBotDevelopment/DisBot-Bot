@@ -12,7 +12,7 @@ import {
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 import {handleCloseAction, ticketErrorMessage} from "../../../helper/ticketHelper.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {cli} from "winston/lib/winston/config/index.js";
 
 export default {
@@ -58,7 +58,7 @@ export default {
                 new ContainerBuilder()
                     .addTextDisplayComponents(
                         new TextDisplayBuilder().setContent([
-                            `## ${await convertToEmojiPng("star", client.user.id)} Feedback Result`,
+                            `## ${await convertToEmojiToPng("star")} Feedback Result`,
                             ``,
                             `> **User**: ${interaction.user} (\`${interaction.user.id}\`)`,
                             `> **Ticket Id**: \`${data.TicketId}\``,
@@ -81,7 +81,7 @@ export default {
         })
 
         await interaction.reply({
-            content: `## ${await convertToEmojiPng("star", client.user.id)} Your feedback has beed submitted to the Support Team!`
+            content: `## ${await convertToEmojiToPng("star")} Your feedback has beed submitted to the Support Team!`
         })
 
     },

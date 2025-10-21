@@ -1,7 +1,7 @@
 import "dotenv/config";
 import {MessageFlags, ModalSubmitInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -32,7 +32,7 @@ export default {
         );
 
         await interaction.reply({
-            content: `## ${await convertToEmojiPng("check", client.user.id)} Whitelisted messages added successfully! (${newMessages.length} new messages)`,
+            content: `## ${await convertToEmojiToPng("check")} Whitelisted messages added successfully! (${newMessages.length} new messages)`,
             flags: MessageFlags.Ephemeral,
         })
     },

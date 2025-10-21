@@ -1,6 +1,6 @@
 import {ButtonStyle, MessageFlags, ModalSubmitInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -30,7 +30,7 @@ export default {
 
         if (!data) {
             await interaction.editReply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} This vanity URL is not found.`,
+                content: `## ${await convertToEmojiToPng("error")} This vanity URL is not found.`,
             });
             return;
         }
@@ -48,7 +48,7 @@ export default {
         )
 
         await interaction.editReply({
-            content: `## ${await convertToEmojiPng("check", client.user.id)} The author of the vanity URL has been updated to \`${newSlug}\`.`,
+            content: `## ${await convertToEmojiToPng("check")} The author of the vanity URL has been updated to \`${newSlug}\`.`,
         })
 
     }

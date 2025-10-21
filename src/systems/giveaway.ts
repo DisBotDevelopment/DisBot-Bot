@@ -8,7 +8,7 @@ import {
 } from "discord.js";
 import moment from "moment";
 import ms from "ms";
-import {convertToEmojiPng} from "../helper/emojis.js";
+import {convertToEmojiToPng} from "../helper/emojis.js";
 import {ExtendedClient} from "../types/client.js";
 import {database} from "../main/database.js";
 
@@ -56,7 +56,7 @@ export async function giveaway(client: ExtendedClient) {
                 components: [
                     new ContainerBuilder().addTextDisplayComponents(
                         new TextDisplayBuilder()
-                            .setContent(giveaway1.Content.replace("{action.message}", `**${await convertToEmojiPng("giveaway", client.user.id)} Giveaway ended**`).replace("{prize}", giveaway1.Prize as string).replace("{winner}", String(giveaway1.Winners)).replace("{requirements}", giveaway1.Requirements[0] ? `<@&${giveaway1.Requirements[0]}>` : "No requirements").replace("{hostedBy}", `<@${giveaway1.HostedBy}>`).replace("{duration}", `<t:${timeStamp}:R>`).replace("{entrys}", giveaway1.Entrys.length.toString())
+                            .setContent(giveaway1.Content.replace("{action.message}", `**${await convertToEmojiToPng("giveaway")} Giveaway ended**`).replace("{prize}", giveaway1.Prize as string).replace("{winner}", String(giveaway1.Winners)).replace("{requirements}", giveaway1.Requirements[0] ? `<@&${giveaway1.Requirements[0]}>` : "No requirements").replace("{hostedBy}", `<@${giveaway1.HostedBy}>`).replace("{duration}", `<t:${timeStamp}:R>`).replace("{entrys}", giveaway1.Entrys.length.toString())
                             )).addActionRowComponents(new ActionRowBuilder<ButtonBuilder>().addComponents(
                         new ButtonBuilder()
                             .setCustomId(`giveaway-enter:${giveaway1.UUID}`)
@@ -90,7 +90,7 @@ export async function giveaway(client: ExtendedClient) {
             })
 
             const endedMsg = await message.reply({
-                content: `## ${await convertToEmojiPng("giveaway", client.user?.id)} **Giveaway Winners** \n\n` +
+                content: `## ${await convertToEmojiToPng("giveaway")} **Giveaway Winners** \n\n` +
                     `**Winners:** \n` +
                     `${doneWinners.map((winner) => `<@${winner}>`).join(", ") || "No winners"}` +
                     `\n> **Giveaway ended at:** <t:${timeStamp}:F>` +

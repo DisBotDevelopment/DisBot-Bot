@@ -1,6 +1,6 @@
 import {ButtonStyle, MessageFlags, ModalSubmitInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -27,7 +27,7 @@ export default {
 
         if (!data) {
             await interaction.editReply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} This vanity URL is not found.`,
+                content: `## ${await convertToEmojiToPng("error")} This vanity URL is not found.`,
             });
             return;
         }
@@ -39,7 +39,7 @@ export default {
         })
 
         if (!messageData) return interaction.editReply({
-            content: `## ${await convertToEmojiPng("error", client.user.id)} No message template found for this vanity URL.`,
+            content: `## ${await convertToEmojiToPng("error")} No message template found for this vanity URL.`,
         })
 
         await database.vanityAnalytic.update(
@@ -52,7 +52,7 @@ export default {
             })
 
         await interaction.editReply({
-            content: `## ${await convertToEmojiPng("check", client.user.id)} The invite logging message template has been updated successfully.`,
+            content: `## ${await convertToEmojiToPng("check")} The invite logging message template has been updated successfully.`,
         })
     }
 };

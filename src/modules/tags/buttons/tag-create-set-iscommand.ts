@@ -7,7 +7,7 @@ import {
     TextInputStyle,
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -39,9 +39,8 @@ export default {
             );
 
             return interaction.reply({
-                content: `## ${await convertToEmojiPng(
-                    "check",
-                    client.user?.id
+                content: `## ${await convertToEmojiToPng(
+                    "check"
                 )} This tag is no longer a slash command.`,
                 flags: "Ephemeral",
             });

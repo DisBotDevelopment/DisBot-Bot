@@ -3,7 +3,7 @@ import pkg from "short-uuid";
 
 const {uuid} = pkg;
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 import {randomUUID} from "crypto";
 
@@ -36,9 +36,8 @@ export default {
             return interaction.reply({
                 embeds: [],
                 components: [],
-                content: `## ${await convertToEmojiPng(
-                    "error",
-                    client.user.id
+                content: `## ${await convertToEmojiToPng(
+                    "error"
                 )} You have already added this channel id.`
                 , flags: MessageFlags.Ephemeral
             });
@@ -69,9 +68,8 @@ export default {
         );
 
         interaction.reply({
-            content: `## ${await convertToEmojiPng(
-                "text",
-                client.user.id
+            content: `## ${await convertToEmojiToPng(
+                "text"
             )} Please select a Role to ping member.`, components: [row], flags: MessageFlags.Ephemeral
         });
     }

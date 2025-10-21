@@ -8,7 +8,7 @@ import {
     RoleSelectMenuBuilder
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {randomUUID} from "crypto";
 import {database} from "../../../main/database.js";
 
@@ -39,9 +39,8 @@ export default {
 
         if (data) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng(
-                    "tag",
-                    client.user.id
+                content: `## ${await convertToEmojiToPng(
+                    "tag"
                 )} The tag with the name \`${tagID}\` already exists.`,
                 flags: MessageFlags.Ephemeral
             });
@@ -67,9 +66,8 @@ export default {
         const embed = new EmbedBuilder()
             .setDescription(
                 [
-                    `## ${await convertToEmojiPng(
-                        "tag",
-                        client.user.id
+                    `## ${await convertToEmojiToPng(
+                        "tag"
                     )} Tag \`\`${tagID}\`\` created`,
                     ``,
                     `> 1. Set a Message template`,

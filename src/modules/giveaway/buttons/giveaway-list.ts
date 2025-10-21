@@ -8,7 +8,7 @@ import {
     UserSelectMenuInteraction
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -39,7 +39,7 @@ export default {
             if (!allEmbeds.length) {
                 if (!client.user) throw new Error("Client User is not defined");
                 return interaction.reply({
-                    content: `## ${await convertToEmojiPng("error", client.user?.id)} No Button Found`,
+                    content: `## ${await convertToEmojiToPng("error")} No Button Found`,
                     flags: MessageFlags.Ephemeral
                 });
             }

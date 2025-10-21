@@ -1,6 +1,6 @@
 import { ActionRowBuilder, AttachmentBuilder, ButtonBuilder, ButtonInteraction, ButtonStyle, ComponentType, ContainerBuilder, ContainerComponent, EmbedBuilder, FileBuilder, Message, MessageFlags, StringSelectMenuBuilder, TextDisplayBuilder, UserSelectMenuInteraction } from "discord.js";
 import { ExtendedClient } from "../../../types/client.js";
-import { convertToEmojiPng } from "../../../helper/emojis.js";
+import { convertToEmojiToPng } from "../../../helper/emojis.js";
 import { log } from "winston";
 
 export default {
@@ -30,7 +30,7 @@ export default {
         }
 
         if (!client.user) throw new Error("No Client")
-        if (!interaction.channel.isSendable()) return interaction.reply({ content: `## ${await convertToEmojiPng("error", client.user?.id)} This channel not supports message sending!` })
+        if (!interaction.channel.isSendable()) return interaction.reply({ content: `## ${await convertToEmojiToPng("error")} This channel not supports message sending!` })
 
 
         const buffer = Buffer.from(JSON.stringify(message?.embeds[0].toJSON()));
@@ -191,7 +191,7 @@ export default {
                     .addActionRowComponents(buttonRow)
                     .addTextDisplayComponents(
                         new TextDisplayBuilder().setContent(
-                            `**Use the ${await convertToEmojiPng("message", client.user.id)} button to clear the message from the channel**\n-# To Export the Embed as JSON File use the ${await convertToEmojiPng("refresh", client.user.id)} button below.\n-# To Import a JSON File use the ${await convertToEmojiPng("import", client.user.id)} button.`
+                            `**Use the ${await convertToEmojiToPng("message")} button to clear the message from the channel**\n-# To Export the Embed as JSON File use the ${await convertToEmojiToPng("refresh")} button below.\n-# To Import a JSON File use the ${await convertToEmojiToPng("import")} button.`
                         )
                     )
                     .addFileComponents(

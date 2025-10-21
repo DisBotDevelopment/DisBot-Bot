@@ -1,5 +1,5 @@
 import {ButtonInteraction, MessageFlags} from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -38,7 +38,7 @@ export default {
                     }
                 })
                 await interaction.reply({
-                    content: `## ${await convertToEmojiPng("check", client.user?.id)} Autopublish successfully disabled`,
+                    content: `## ${await convertToEmojiToPng("check")} Autopublish successfully disabled`,
                     flags: MessageFlags.Ephemeral,
                 });
             } else {
@@ -51,7 +51,7 @@ export default {
                     }
                 })
                 await interaction.reply({
-                    content: `## ${await convertToEmojiPng("check", client.user?.id)} Autopublish successfully enabled`,
+                    content: `## ${await convertToEmojiToPng("check")} Autopublish successfully enabled`,
                     flags: MessageFlags.Ephemeral,
                 });
             }

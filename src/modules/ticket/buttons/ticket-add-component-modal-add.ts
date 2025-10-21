@@ -12,7 +12,7 @@ import {
 import {ExtendedClient} from "../../../types/client.js";
 import {randomUUID} from "crypto";
 import {database} from "../../../main/database.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "ticket-add-component-modal-add",
@@ -35,7 +35,7 @@ export default {
         })
         if (allModals.ModalOptions.length >= 5) {
             return await interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} You only can have 5 modal options.`
+                content: `## ${await convertToEmojiToPng("error")} You only can have 5 modal options.`
             })
         }
 

@@ -1,5 +1,5 @@
 import {ButtonInteraction, MessageFlags} from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -23,7 +23,7 @@ export default {
 
         if (!data) {
             await interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} No AutoDelete setup found with UUID: \`${interaction.customId.split(":")[1]}\``,
+                content: `## ${await convertToEmojiToPng("error")} No AutoDelete setup found with UUID: \`${interaction.customId.split(":")[1]}\``,
                 flags: MessageFlags.Ephemeral
             });
             return;
@@ -44,7 +44,7 @@ export default {
         );
 
         await interaction.reply({
-            content: `## ${await convertToEmojiPng(newStatus ? "check" : "error", client.user?.id)} AutoDelete setup is now ${newStatus ? "activated" : "deactivated"}!`,
+            content: `## ${await convertToEmojiToPng(newStatus ? "check" : "error")} AutoDelete setup is now ${newStatus ? "activated" : "deactivated"}!`,
             flags: MessageFlags.Ephemeral
         });
 

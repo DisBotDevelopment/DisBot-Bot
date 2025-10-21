@@ -43,7 +43,7 @@ export default {
                         .setCustomId("embed-create-options-author-input")
                         .setMaxLength(256)
                         .setStyle(TextInputStyle.Paragraph)
-                        .setRequired(true);
+                        .setRequired(false);
 
                     modal.addComponents(
                         new ActionRowBuilder<TextInputBuilder>().addComponents(author)
@@ -72,13 +72,13 @@ export default {
                         .setCustomId("embed-create-options-author-img-input")
                         .setMaxLength(256)
                         .setStyle(TextInputStyle.Paragraph)
-                        .setRequired(true);
+                        .setRequired(false);
 
                     modal.addComponents(
                         new ActionRowBuilder<TextInputBuilder>().addComponents(img)
                     );
 
-                    interaction.showModal(modal);
+                    await interaction.showModal(modal);
 
                     break;
                 }
@@ -98,7 +98,7 @@ export default {
                         .setCustomId("embed-create-options-author-url-input")
                         .setMaxLength(256)
                         .setStyle(TextInputStyle.Paragraph)
-                        .setRequired(true);
+                        .setRequired(false);
 
                     modal.addComponents(
                         new ActionRowBuilder<TextInputBuilder>().addComponents(url)

@@ -7,7 +7,7 @@ import {
     SlashCommandBuilder, TextDisplayBuilder
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ticketActionsHelper} from "../../../helper/ticketHelper.js";
 import {database} from "../../../main/database.js";
 import {Channel} from "diagnostics_channel";

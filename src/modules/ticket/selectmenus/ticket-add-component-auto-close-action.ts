@@ -1,7 +1,7 @@
 import {ChannelType, Client, MessageFlags, UserSelectMenuInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     id: "ticket-add-component-auto-close-action",
@@ -26,7 +26,7 @@ export default {
                 if (value == "channel") {
                     return await interaction.reply({
                         flags: MessageFlags.Ephemeral,
-                        content: `## ${await convertToEmojiPng("error", client.user.id)} You cant use this option for the Channel Type`
+                        content: `## ${await convertToEmojiToPng("error")} You cant use this option for the Channel Type`
                     })
                 }
             }
@@ -34,13 +34,13 @@ export default {
                 if (value == "look") {
                     return await interaction.reply({
                         flags: MessageFlags.Ephemeral,
-                        content: `## ${await convertToEmojiPng("error", client.user.id)} You cant use this option for the Channel Type`
+                        content: `## ${await convertToEmojiToPng("error")} You cant use this option for the Channel Type`
                     })
                 }
                 if (value == "not_thread_close") {
                     return await interaction.reply({
                         flags: MessageFlags.Ephemeral,
-                        content: `## ${await convertToEmojiPng("error", client.user.id)} You cant use this option for the Channel Type`
+                        content: `## ${await convertToEmojiToPng("error")} You cant use this option for the Channel Type`
                     })
                 }
             }

@@ -4,13 +4,12 @@ import {Config} from "../main/config.js";
 /**
  *
  * @param emoji
- * @param {ExtendedClient} client
  */
-export async function convertToEmojiPng(emoji: string, client: string) {
+export async function convertToEmojiToPng(emoji: string) {
 
 
     const response = await axios.get(
-        `https://discord.com/api/applications/${client}/emojis`,
+        `https://discord.com/api/applications/${Config.Bot.DiscordApplicationId}/emojis`,
         {
             headers: {
                 Authorization: `Bot ${Config.Bot.DiscordBotToken}`,
@@ -30,10 +29,10 @@ export async function convertToEmojiPng(emoji: string, client: string) {
     return `<:${emoji}:${findemoji.id}>`;
 }
 
-export async function convertToEmojiGif(emoji: string, client: string) {
+export async function convertToEmojiGif(emoji: string) {
 
     const response = await axios.get(
-        `https://discord.com/api/applications/${client}/emojis`,
+        `https://discord.com/api/applications/${Config.Bot.DiscordApplicationId}/emojis`,
         {
             headers: {
                 Authorization: `Bot ${Config.Bot.DiscordBotToken}`

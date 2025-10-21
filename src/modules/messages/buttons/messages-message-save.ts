@@ -1,6 +1,6 @@
 import {ButtonInteraction, ContainerBuilder, MessageFlags, TextDisplayBuilder} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -26,9 +26,8 @@ export default {
         if (!data?.EmbedJSON && !data?.Content) {
             return interaction
                 .reply({
-                    content: `## ${await convertToEmojiPng(
-                        "error",
-                        client.user.id
+                    content: `## ${await convertToEmojiToPng(
+                        "error"
                     )} The message you are trying to save does not exist.`,
                     flags: MessageFlags.Ephemeral,
                     components: [],
@@ -47,9 +46,8 @@ export default {
                 new ContainerBuilder().addTextDisplayComponents(
                     new TextDisplayBuilder()
                         .setContent(
-                            `## ${await convertToEmojiPng(
-                                "check",
-                                client.user.id
+                            `## ${await convertToEmojiToPng(
+                                "check"
                             )} Message saved successfully.`
                         )
                 )

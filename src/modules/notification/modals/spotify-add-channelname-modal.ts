@@ -4,7 +4,7 @@ import pkg from "short-uuid";
 
 const {uuid} = pkg;
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 import {randomUUID} from "crypto";
 
@@ -43,7 +43,7 @@ export default {
         });
         if (data) {
             await interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} Channel Already Added to the Notification System`,
+                content: `## ${await convertToEmojiToPng("error")} Channel Already Added to the Notification System`,
                 flags: MessageFlags.Ephemeral
             });
             return;
@@ -51,7 +51,7 @@ export default {
 
         if (spotifyChannel.status != 200) {
             await interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} Spotify Channel Not Found`,
+                content: `## ${await convertToEmojiToPng("error")} Spotify Channel Not Found`,
             });
             return;
         }
@@ -74,7 +74,7 @@ export default {
         })
 
         await interaction.reply({
-            content: `## ${await convertToEmojiPng("check", client.user?.id)} Add ${spotifyChannel.data.name} Channel to the Notification System`,
+            content: `## ${await convertToEmojiToPng("check")} Add ${spotifyChannel.data.name} Channel to the Notification System`,
             flags: MessageFlags.Ephemeral,
             components: [
                 new ActionRowBuilder<RoleSelectMenuBuilder>().addComponents(

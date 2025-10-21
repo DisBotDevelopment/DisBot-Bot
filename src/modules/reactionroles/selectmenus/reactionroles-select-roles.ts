@@ -7,7 +7,7 @@ import {
     TextChannel,
     UserSelectMenuInteraction
 } from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -33,7 +33,7 @@ export default {
         if (!client.user) throw new Error("Client user is not cached");
         if (!data) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} No data found`,
+                content: `## ${await convertToEmojiToPng("error")} No data found`,
                 flags: MessageFlags.Ephemeral
             });
         }
@@ -78,7 +78,7 @@ export default {
             ) {
                 if (!client.user) throw new Error("Client user is not cached");
                 await interaction.update({
-                    content: `## ${await convertToEmojiPng("error", client.user?.id)} I can't use ${guildRole} role because it's higher than my highest role.`
+                    content: `## ${await convertToEmojiToPng("error")} I can't use ${guildRole} role because it's higher than my highest role.`
                 });
             }
 
@@ -97,7 +97,7 @@ export default {
         if (!client.user) throw new Error("Client user is not cached");
         interaction.update({
             components: [row],
-            content: `## ${await convertToEmojiPng("role", client.user?.id)} Selcet the Reaction Type for the Role`
+            content: `## ${await convertToEmojiToPng("role")} Selcet the Reaction Type for the Role`
         });
     }
 };

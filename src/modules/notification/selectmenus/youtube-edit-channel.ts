@@ -2,7 +2,7 @@ import {ChannelType, Client, UserSelectMenuInteraction} from "discord.js";
 import pkg from "short-uuid";
 
 const {uuid} = pkg;
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -36,9 +36,8 @@ export default {
             if (!client.user) throw new Error("Client not found");
 
             await interaction.update({
-                content: `## ${await convertToEmojiPng(
-                    "check",
-                    client.user.id
+                content: `## ${await convertToEmojiToPng(
+                    "check"
                 )} The Channel has been Updated!`,
                 components: [],
                 embeds: []

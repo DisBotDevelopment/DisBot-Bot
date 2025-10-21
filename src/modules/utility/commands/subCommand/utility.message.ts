@@ -1,6 +1,6 @@
 import {ButtonStyle, ChannelType, ChatInputCommandInteraction, MessageFlags, PermissionFlagsBits} from "discord.js";
 import {ExtendedClient} from "../../../../types/client.js";
-import {convertToEmojiPng} from "../../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 
 export default {
@@ -34,19 +34,19 @@ export default {
 
         if (!channel) {
             return interaction.editReply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} Please run this in as a text channel`,
+                content: `## ${await convertToEmojiToPng("error")} Please run this in as a text channel`,
             });
         }
 
         if (channel.type !== ChannelType.GuildText) {
             return interaction.editReply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} Please run this in as a text channel`,
+                content: `## ${await convertToEmojiToPng("error")} Please run this in as a text channel`,
             });
         }
 
         if (message?.length === 0) {
             return interaction.editReply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} Please provide a message`,
+                content: `## ${await convertToEmojiToPng("error")} Please provide a message`,
             });
         }
 
@@ -55,7 +55,7 @@ export default {
         });
 
         return interaction.editReply({
-            content: `## ${await convertToEmojiPng("check", client.user.id)} Message sent to ${channel.name}`,
+            content: `## ${await convertToEmojiToPng("check")} Message sent to ${channel.name}`,
         });
     }
 };

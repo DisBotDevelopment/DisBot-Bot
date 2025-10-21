@@ -1,5 +1,5 @@
 import {ButtonInteraction, ButtonStyle, MessageFlags} from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -23,7 +23,7 @@ export default {
 
         if (!client.user) throw new Error("Client User is not defined");
         await interaction.reply({
-            content: `## ${await convertToEmojiPng("check", client.user?.id)} Your backup with the UUID \`${id}\`  was successfully deleted!`,
+            content: `## ${await convertToEmojiToPng("check")} Your backup with the UUID \`${id}\`  was successfully deleted!`,
             flags: MessageFlags.Ephemeral
         });
 

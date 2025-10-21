@@ -5,7 +5,7 @@ import {
     ContainerBuilder, InteractionContextType, MessageFlags, PermissionFlagsBits, SlashCommandBuilder, TextDisplayBuilder
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     options: {
@@ -44,7 +44,7 @@ export default {
                     .addTextDisplayComponents(new TextDisplayBuilder()
                         .setContent(
                             [
-                                `## ${await convertToEmojiPng("vote", client.user.id)} Polls`,
+                                `## ${await convertToEmojiToPng("vote")} Polls`,
                                 ``,
                                 `- Use Discords Poll Feature to create a Poll.`,
                                 `- Create a poll with DisBot like a giveaway!`,

@@ -11,7 +11,7 @@ import {
 import {ExtendedClient} from "../../../../types/client.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 import {database} from "../../../../main/database.js";
-import {convertToEmojiPng} from "../../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 
 export default {
     subCommand: "leave.channel",
@@ -64,7 +64,7 @@ export default {
         })
 
         await interaction.editReply({
-            content: `## ${await convertToEmojiPng("check", client.user.id)} Set Channel ${channel} for your welcome module.`
+            content: `## ${await convertToEmojiToPng("check")} Set Channel ${channel} for your welcome module.`
         })
     },
 };

@@ -1,7 +1,7 @@
 import "dotenv/config";
 import backup from "../../../systems/backup/index.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiGif, convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiGif, convertToEmojiToPng} from "../../../helper/emojis.js";
 import {Guild, MessageFlags, ModalSubmitInteraction} from "discord.js";
 import pkg from "short-uuid";
 import {database} from "../../../main/database.js";
@@ -25,7 +25,7 @@ export default {
         if (!data) {
             return await interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("error", client.user.id)} No Data!`
+                content: `## ${await convertToEmojiToPng("error")} No Data!`
             })
         }
 
@@ -52,14 +52,14 @@ export default {
 
                 return await interaction.reply({
                     flags: MessageFlags.Ephemeral,
-                    content: `## ${await convertToEmojiPng("check", client.user.id)} Updated your Command Name successfully!`
+                    content: `## ${await convertToEmojiToPng("check")} Updated your Command Name successfully!`
                 });
             }
         }
 
         await interaction.reply({
             flags: MessageFlags.Ephemeral,
-            content: `## ${await convertToEmojiPng("error", client.user.id)} Updated your Command Description!`
+            content: `## ${await convertToEmojiToPng("error")} Updated your Command Description!`
         })
     },
 };

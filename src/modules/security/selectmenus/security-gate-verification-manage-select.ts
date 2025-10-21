@@ -10,7 +10,7 @@ import {
 } from "discord.js";
 import {DisBotInteractionType} from "../../../enums/disBotInteractionType.js";
 import {PermissionType} from "../../../enums/permissionType.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -49,7 +49,7 @@ export default {
 
             if (!data) {
                 return interaction.reply({
-                    content: `## ${await convertToEmojiPng("error", client.user.id)} No Verification Gate Found`,
+                    content: `## ${await convertToEmojiToPng("error")} No Verification Gate Found`,
                     flags: MessageFlags.Ephemeral
                 });
             }
@@ -57,7 +57,7 @@ export default {
             const embed = {
                 color: "#2B2D31",
                 description: [
-                    `## ${await convertToEmojiPng("verify", client.user.id)} Verification Gate Details`,
+                    `## ${await convertToEmojiToPng("verify")} Verification Gate Details`,
                     ``,
                     `**UUID:** ${data.UUID}`,
                     `**Channel ID:** ${data.ChannelId}`,

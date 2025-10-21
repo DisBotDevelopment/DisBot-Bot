@@ -1,6 +1,6 @@
 import {ButtonStyle, ChannelType, MessageFlags, UserSelectMenuInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -53,9 +53,8 @@ export default {
 
             return await interaction
                 .reply({
-                    content: `## ${await convertToEmojiPng(
-                        "check",
-                        client.user.id
+                    content: `## ${await convertToEmojiToPng(
+                        "check"
                     )} Added new Embed and removed the old!`,
                     flags: MessageFlags.Ephemeral
                 })
@@ -77,7 +76,7 @@ export default {
 
             if (isExtra && data.OtherEmbeds.length >= 9) {
                 return interaction.reply({
-                    content: `## ${await convertToEmojiPng("error", client.user?.id)} You only can have 9 Embeds & your Main-Embed!`,
+                    content: `## ${await convertToEmojiToPng("error")} You only can have 9 Embeds & your Main-Embed!`,
                     flags: MessageFlags.Ephemeral,
                 })
             }
@@ -103,9 +102,8 @@ export default {
 
             return await interaction
                 .reply({
-                    content: `## ${await convertToEmojiPng(
-                        "check",
-                        client.user.id
+                    content: `## ${await convertToEmojiToPng(
+                        "check"
                     )} You added this embed to \`${uuid}\` as extra Embed!`,
                     flags: MessageFlags.Ephemeral
                 })
@@ -131,9 +129,8 @@ export default {
         if (!client.user) throw new Error("Client not found!");
         await interaction
             .reply({
-                content: `## ${await convertToEmojiPng(
-                    "check",
-                    client.user.id
+                content: `## ${await convertToEmojiToPng(
+                    "check"
                 )} The embed has been saved.\n-# You also can edit but note that you need to save it again.`,
                 flags: MessageFlags.Ephemeral
             })

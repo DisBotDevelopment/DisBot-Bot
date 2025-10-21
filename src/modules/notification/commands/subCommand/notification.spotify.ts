@@ -8,7 +8,7 @@ import {
   PermissionFlagsBits
 } from "discord.js";
 import { ExtendedClient } from "../../../../types/client.js";
-import { convertToEmojiPng } from "../../../../helper/emojis.js";
+import { convertToEmojiToPng } from "../../../../helper/emojis.js";
 import { PermissionType } from "../../../../enums/permissionType.js";
 import { database } from "../../../../main/database.js";
 
@@ -46,7 +46,7 @@ export default {
     const embed = new EmbedBuilder()
       .setDescription(
         [
-          `## ${await convertToEmojiPng("spotify", client.user.id)} Spotify`,
+          `## ${await convertToEmojiToPng("spotify")} Spotify`,
           ``,
           `**Enable Spotify Notifications** - Toggle Spotify Notifications`,
           `**Add a Spotify Channel** - Add a Spotify Channels to the System`,

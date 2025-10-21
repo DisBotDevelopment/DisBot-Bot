@@ -1,5 +1,5 @@
 import {Events, GuildMember} from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -28,7 +28,7 @@ export default {
 
         if (accountAge < data.MaxAccountAge * 24 * 60 * 60 * 1000) {
             member.guild.safetyAlertsChannel?.send(
-                `${await convertToEmojiPng("warn", client.user.id)} **Security Alert**: User ${member.user.tag} (${member.id}) has been kicked for having an account age of less than ${data.MaxAccountAge} days.`
+                `${await convertToEmojiToPng("warn")} **Security Alert**: User ${member.user.tag} (${member.id}) has been kicked for having an account age of less than ${data.MaxAccountAge} days.`
             )
             await member.kick("Account age is below the threshold set by the security gate.");
         } else {

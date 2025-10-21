@@ -1,5 +1,5 @@
 import {ExtendedClient} from "../../../types/client.js"
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ActionRowBuilder, MessageFlags, ModalSubmitInteraction, StringSelectMenuBuilder,} from "discord.js";
 import {database} from "../../../main/database.js";
 
@@ -26,7 +26,7 @@ export default {
 
         if (!data) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} No security gate verification action found for this modal.`,
+                content: `## ${await convertToEmojiToPng("error")} No security gate verification action found for this modal.`,
                 flags: MessageFlags.Ephemeral
             });
         }
@@ -47,7 +47,7 @@ export default {
 
 
         return interaction.reply({
-            content: `## ${await convertToEmojiPng("check", client.user?.id)} Security gate verification Channel action has been successfully added.`,
+            content: `## ${await convertToEmojiToPng("check")} Security gate verification Channel action has been successfully added.`,
             flags: MessageFlags.Ephemeral
         });
     }

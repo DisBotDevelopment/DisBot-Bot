@@ -7,7 +7,7 @@ import {
     TextInputBuilder,
     TextInputStyle
 } from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 
 export default {

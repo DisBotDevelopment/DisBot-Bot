@@ -1,6 +1,6 @@
 import {MessageFlags, ModalSubmitInteraction,} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -27,7 +27,7 @@ export default {
         ) {
             if (!client.user) throw new Error("Client not Found!");
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} You can not remove the content of a message if it has no embed`,
+                content: `## ${await convertToEmojiToPng("error")} You can not remove the content of a message if it has no embed`,
                 flags: MessageFlags.Ephemeral,
             });
         }
@@ -47,7 +47,7 @@ export default {
 
         if (!client.user) throw new Error("Client not Found!");
         interaction.reply({
-            content: `## ${await convertToEmojiPng("check", client.user?.id)} Message updated and saved successfully `,
+            content: `## ${await convertToEmojiToPng("check")} Message updated and saved successfully `,
             flags: MessageFlags.Ephemeral,
         });
     },

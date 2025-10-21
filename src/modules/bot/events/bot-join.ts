@@ -9,7 +9,7 @@ import {
     MessageFlags,
     TextDisplayBuilder
 } from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {LoggingAction} from "../../../enums/loggingTypes.js";
 import {Logger} from "../../../main/logger.js";

@@ -1,5 +1,5 @@
 import {Events, Message, MessageFlags, TextChannel} from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -31,7 +31,7 @@ export default {
             if (message.attachments.size === 0 && message.embeds.length === 0) {
                 await message.delete();
                 const msg = await (message.channel as TextChannel).send({
-                    content: `-# ${await convertToEmojiPng("image", client.user.id)} **OoO, in this channel you can only send media!**`,
+                    content: `-# ${await convertToEmojiToPng("image")} **OoO, in this channel you can only send media!**`,
                 })
                 setTimeout(async () => {
                     await msg.delete();

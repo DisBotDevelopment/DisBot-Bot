@@ -1,6 +1,6 @@
 import {ChannelType, ChatInputCommandInteraction, MessageFlags} from "discord.js";
 import {ExtendedClient} from "../../../../types/client.js";
-import {convertToEmojiPng} from "../../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {database} from "../../../../main/database.js";
 
 export default {
@@ -56,7 +56,7 @@ export default {
                 }
             })
             return interaction.editReply({
-                content: `## ${await convertToEmojiPng("check", client.user.id)} You set Invites to enabled for unlimited time!`
+                content: `## ${await convertToEmojiToPng("check")} You set Invites to enabled for unlimited time!`
             })
         } else {
             await interaction.guild?.disableInvites(true)
@@ -69,7 +69,7 @@ export default {
                 }
             })
             return interaction.editReply({
-                content: `## ${await convertToEmojiPng("check", client.user.id)} You set Invites to disabled for unlimited time!`
+                content: `## ${await convertToEmojiToPng("check")} You set Invites to disabled for unlimited time!`
             })
         }
     }

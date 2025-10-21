@@ -1,6 +1,6 @@
 import {ButtonStyle, ComponentType, MessageFlags, ModalSubmitInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -20,7 +20,7 @@ export default {
 
         if (input === "" || isNaN(parseInt(input)) || parseInt(input) < 1 || parseInt(input) > 365) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user.id)} Please enter a valid number between 1 and 365 for the account age.`,
+                content: `## ${await convertToEmojiToPng("error")} Please enter a valid number between 1 and 365 for the account age.`,
                 flags: MessageFlags.Ephemeral
             })
         }
@@ -36,7 +36,7 @@ export default {
 
 
         return interaction.reply({
-            content: `## ${await convertToEmojiPng("check", client.user.id)} Successfully set the minimum account age to **${input} days**.`,
+            content: `## ${await convertToEmojiToPng("check")} Successfully set the minimum account age to **${input} days**.`,
             flags: MessageFlags.Ephemeral
         });
 

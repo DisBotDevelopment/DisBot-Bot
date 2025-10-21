@@ -9,7 +9,7 @@ import {
     TextDisplayBuilder,
     WebhookClient
 } from "discord.js";
-import {convertToEmojiPng} from "./emojis.js";
+import {convertToEmojiToPng} from "./emojis.js";
 import {LoggingAction} from "../enums/loggingTypes.js";
 import {Logger} from "../main/logger.js";
 import {Config} from "../main/config.js";
@@ -41,7 +41,7 @@ export async function errorHandler(interaction: ButtonInteraction | ModalSubmitI
                         .addTextDisplayComponents(
                             new TextDisplayBuilder()
                                 .setContent([
-                                    `## ${await convertToEmojiPng("error", client.user?.id)} An error occurred while processing your actions.`,
+                                    `## ${await convertToEmojiToPng("error")} An error occurred while processing your actions.`,
                                     `-# **Steps you can do**`,
                                     `-# - Check your Action or Input.`,
                                     `-# - Check the Error Message and the Error Details below.`,
@@ -62,7 +62,7 @@ export async function errorHandler(interaction: ButtonInteraction | ModalSubmitI
                         .setContent([
                             `### ${customMessage ? customMessage : "Process and Action Failed"}`,
                             `-# __${customDescription ? customDescription : "You Interaction or Action failed!"}__`,
-                            `### ${await convertToEmojiPng("box", client.user.id)} Error Message`,
+                            `### ${await convertToEmojiToPng("box")} Error Message`,
                         ].join("\n"))
                 )
                 .addTextDisplayComponents(
@@ -78,7 +78,7 @@ export async function errorHandler(interaction: ButtonInteraction | ModalSubmitI
                         .addTextDisplayComponents(
                             new TextDisplayBuilder()
                                 .setContent([
-                                    `### ${await convertToEmojiPng("info", client.user?.id)} What will happen if you do it.`,
+                                    `### ${await convertToEmojiToPng("info")} What will happen if you do it.`,
                                     `> -# You will share you public user ID`,
                                     `> -# You will send an Error stack trace`,
                                     `> -# You will send Interaction related data`,
@@ -189,7 +189,7 @@ export async function errorHandler(interaction: ButtonInteraction | ModalSubmitI
                             .addTextDisplayComponents(
                                 new TextDisplayBuilder()
                                     .setContent([
-                                        `## ${await convertToEmojiPng("check", client.user?.id)} Successfully sent your Error Report to the Discord!\n-# View your Bug Report on the Discord\n-# - https://discord.com/channels/1084507523492626522/${message.channel_id}/${message.id}\n-# View your Bug Report on the GitHub\n-# - ${issue}`,
+                                        `## ${await convertToEmojiToPng("check")} Successfully sent your Error Report to the Discord!\n-# View your Bug Report on the Discord\n-# - https://discord.com/channels/1084507523492626522/${message.channel_id}/${message.id}\n-# View your Bug Report on the GitHub\n-# - ${issue}`,
                                     ].join("\n"))
                             )
                             .setButtonAccessory(new ButtonBuilder()

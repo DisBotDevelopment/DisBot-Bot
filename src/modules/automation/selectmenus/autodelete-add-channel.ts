@@ -11,7 +11,7 @@ import {
     RoleSelectMenuBuilder,
     StringSelectMenuInteraction
 } from "discord.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -36,7 +36,7 @@ export default {
             if (!client.user) throw new Error("Client user is not defined");
             if (!data) {
                 await interaction.reply({
-                    content: `## ${await convertToEmojiPng("error", client.user?.id)} No AutoDelete setup found with UUID: \`${uuid}\``,
+                    content: `## ${await convertToEmojiToPng("error")} No AutoDelete setup found with UUID: \`${uuid}\``,
                     flags: MessageFlags.Ephemeral
                 });
                 continue;
@@ -44,7 +44,7 @@ export default {
 
             if (data?.ChannelId == value) {
                 await interaction.reply({
-                    content: `## ${await convertToEmojiPng("error", client.user?.id)} This channel is already set for AutoDelete setup with UUID: \`${uuid}\``,
+                    content: `## ${await convertToEmojiToPng("error")} This channel is already set for AutoDelete setup with UUID: \`${uuid}\``,
                     flags: MessageFlags.Ephemeral
                 });
                 continue;
@@ -62,7 +62,7 @@ export default {
             )
 
             await interaction.reply({
-                content: `## ${await convertToEmojiPng("check", client.user?.id)} Channel has been set for AutoDelete setup with UUID: \`${uuid}\``,
+                content: `## ${await convertToEmojiToPng("check")} Channel has been set for AutoDelete setup with UUID: \`${uuid}\``,
                 flags: MessageFlags.Ephemeral
             });
 

@@ -1,6 +1,6 @@
 import {ButtonInteraction, TextInputStyle} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -24,7 +24,7 @@ export default {
         if (!nextEmbed) {
             if (!client.user) throw new Error("Client user is not defined");
             return interaction.reply({
-                content: `## ${await convertToEmojiPng("error", client.user?.id)} The reaction-role with the UUID \`${uuid}\` does not exist`
+                content: `## ${await convertToEmojiToPng("error")} The reaction-role with the UUID \`${uuid}\` does not exist`
             });
         }
 
@@ -37,7 +37,7 @@ export default {
 
         if (!client.user) throw new Error("Client user is not defined");
         await interaction.update({
-            content: `## ${await convertToEmojiPng("check", client.user?.id)} The reaction-role with the ID \`${uuid}\` has been deleted`,
+            content: `## ${await convertToEmojiToPng("check")} The reaction-role with the ID \`${uuid}\` has been deleted`,
             components: [],
             embeds: []
         });

@@ -11,7 +11,7 @@ import {
 } from "discord.js";
 import {DisBotInteractionType} from "../../../enums/disBotInteractionType.js";
 import {PermissionType} from "../../../enums/permissionType.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 import {randomUUID} from "crypto";
@@ -141,7 +141,7 @@ export default {
                 if (allUserChannels.length >= 25) {
                     return await interaction.reply({
                         flags: MessageFlags.Ephemeral,
-                        content: `## ${await convertToEmojiPng("error", client.user.id)} You have more then 25 Channel Links try to remove one!\n-# You only see this because of discords limits if you need more please [DM](https://discord.com/users/850470027026759690) me! `
+                        content: `## ${await convertToEmojiToPng("error")} You have more then 25 Channel Links try to remove one!\n-# You only see this because of discords limits if you need more please [DM](https://discord.com/users/850470027026759690) me! `
                     })
                 }
 
@@ -163,7 +163,7 @@ export default {
                                 new TextDisplayBuilder()
                                     .setContent(
                                         [
-                                            `## ${await convertToEmojiPng("cable", client.user.id)} Manage ${interaction.channel} Channel-Link`,
+                                            `## ${await convertToEmojiToPng("cable")} Manage ${interaction.channel} Channel-Link`,
                                             ``,
                                             `> Select up to 25 Channels from you List to Sync Messages from this Channel to the other.`,
                                             `> Select what Flags can be send and select some settings.`,

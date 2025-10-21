@@ -11,7 +11,7 @@ import {
 } from "discord.js";
 import {DisBotInteractionType} from "../../../enums/disBotInteractionType.js";
 import {PermissionType} from "../../../enums/permissionType.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 import {randomUUID} from "crypto";
@@ -49,7 +49,7 @@ export default {
 
         await interaction.reply({
                 flags: MessageFlags.Ephemeral,
-                content: `## ${await convertToEmojiPng("check", client.user.id)} Updated your Channel-Link Linked Channel! (${interaction.values.length})`
+                content: `## ${await convertToEmojiToPng("check")} Updated your Channel-Link Linked Channel! (${interaction.values.length})`
             }
         )
 

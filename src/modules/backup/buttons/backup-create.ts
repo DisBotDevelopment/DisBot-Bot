@@ -1,5 +1,5 @@
 import { ActionRowBuilder, ButtonInteraction, MessageFlags, ModalBuilder, TextInputBuilder } from "discord.js";
-import { convertToEmojiPng } from "../../../helper/emojis.js";
+import { convertToEmojiToPng } from "../../../helper/emojis.js";
 import { ExtendedClient } from "../../../types/client.js";
 import { database } from "../../../main/database.js";
 
@@ -18,9 +18,8 @@ export default {
         if (!interaction.member) throw new Error("Member not found");
         if (interaction.user.id !== interaction.guild.ownerId) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng(
-                    "error",
-                    client.user.id
+                content: `## ${await convertToEmojiToPng(
+                    "error"
                 )} You must be the owner of the server to create a backup.`, flags: MessageFlags.Ephemeral
             });
         }
@@ -40,9 +39,8 @@ export default {
 
         if ((userBackupCount?.BackupCount as number) <= backups.length) {
             return interaction.reply({
-                content: `## ${await convertToEmojiPng(
-                    "error",
-                    client.user.id
+                content: `## ${await convertToEmojiToPng(
+                    "error"
                 )} You have reached the maximum backup limit. Please delete some backups to create new ones.`,
                 flags: MessageFlags.Ephemeral
             });

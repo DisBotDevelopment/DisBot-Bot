@@ -1,6 +1,6 @@
 import {ActionRowBuilder, ButtonBuilder, ButtonInteraction, ButtonStyle, EmbedBuilder, MessageFlags} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
-import {convertToEmojiPng} from "../../../helper/emojis.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -27,17 +27,17 @@ export default {
             embeds: [
                 new EmbedBuilder()
                     .setDescription(
-                        [`## ${await convertToEmojiPng("link", client.user.id)} Vanity Embed`,
+                        [`## ${await convertToEmojiToPng("link")} Vanity Embed`,
                             ``,
-                            `${await convertToEmojiPng("message", client.user.id)} **Title**: ${data.Title ?? "N/A"}`,
-                            `${await convertToEmojiPng("message", client.user.id)} **Description**: ${data.Description ?? "N/A"}`,
-                            `${await convertToEmojiPng("color", client.user.id)} **Color**: ${data.Color ?? "N/A"}`,
-                            `${await convertToEmojiPng("image", client.user.id)} **Image**: ${data.ImageUrl ?? "N/A"}`,
-                            `${await convertToEmojiPng("image", client.user.id)} **Thumbnail**: ${data.ThumbnailUrl ?? "N/A"}`,
-                            `${await convertToEmojiPng("signature", client.user.id)} **Author**:`,
-                            `- ${await convertToEmojiPng("renamesolid24", client.user.id)} **Name**: ${data.Author?.Name ?? "N/A"}`,
-                            `- ${await convertToEmojiPng("link", client.user.id)} **Url**: ${data.Author?.URL ?? "N/A"}`,
-                            `- ${await convertToEmojiPng("image", client.user.id)} **Icon**: ${data.Author?.IconURL ?? "N/A"}`,
+                            `${await convertToEmojiToPng("message")} **Title**: ${data.Title ?? "N/A"}`,
+                            `${await convertToEmojiToPng("message")} **Description**: ${data.Description ?? "N/A"}`,
+                            `${await convertToEmojiToPng("color")} **Color**: ${data.Color ?? "N/A"}`,
+                            `${await convertToEmojiToPng("image")} **Image**: ${data.ImageUrl ?? "N/A"}`,
+                            `${await convertToEmojiToPng("image")} **Thumbnail**: ${data.ThumbnailUrl ?? "N/A"}`,
+                            `${await convertToEmojiToPng("signature")} **Author**:`,
+                            `- ${await convertToEmojiToPng("renamesolid24")} **Name**: ${data.Author?.Name ?? "N/A"}`,
+                            `- ${await convertToEmojiToPng("link")} **Url**: ${data.Author?.URL ?? "N/A"}`,
+                            `- ${await convertToEmojiToPng("image")} **Icon**: ${data.Author?.IconURL ?? "N/A"}`,
                         ].join("\n"))
             ],
             flags: MessageFlags.Ephemeral,
