@@ -11,7 +11,7 @@
 
 ---
 
-[![GitHub package.json dynamic (branch)](https://img.shields.io/github/package-json/version/DisBotDevelopment/DisBot-Bot)](https://github.com/DisBotDevelopment/DisBot-Bot/releases)
+![GitHub Tag](https://img.shields.io/github/v/tag/DisBotDevelopment/DisBot-Bot?label=version)
 [![Static Badge](https://img.shields.io/badge/Discord-DisBot%20Development?style=social&logo=discord&logoColor=%235865F2&link=https%3A%2F%2Fdisbot.app%2Fdiscord)](https://disbot.app/discord)
 [![Static Badge](https://img.shields.io/badge/Website-DisBot%20Development?style=social&logo=awwwards&logoColor=%235865F2&link=https%3A%2F%2Fdisbot.app)](https://disbot.app)
 [![Static Badge](https://img.shields.io/badge/-Documentation-brightgreen%2CDocumentation?style=social&logo=googledocs&logoColor=%235865F2&link=https%3A%2F%2Fdisbot.app)](https://docs.disbot.app)
