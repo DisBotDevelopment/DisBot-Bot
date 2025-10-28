@@ -279,11 +279,6 @@ export type VerificationGatesPermission = $Result.DefaultSelection<Prisma.$Verif
  */
 export type GuildSpotifyNotifications = $Result.DefaultSelection<Prisma.$GuildSpotifyNotificationsPayload>
 /**
- * Model Tags
- * 
- */
-export type Tags = $Result.DefaultSelection<Prisma.$TagsPayload>
-/**
  * Model Polls
  * 
  */
@@ -1058,16 +1053,6 @@ export class PrismaClient<
   get guildSpotifyNotifications(): Prisma.GuildSpotifyNotificationsDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.tags`: Exposes CRUD operations for the **Tags** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Tags
-    * const tags = await prisma.tags.findMany()
-    * ```
-    */
-  get tags(): Prisma.TagsDelegate<ExtArgs, ClientOptions>;
-
-  /**
    * `prisma.polls`: Exposes CRUD operations for the **Polls** model.
     * Example usage:
     * ```ts
@@ -1809,7 +1794,6 @@ export namespace Prisma {
     VerificationGates: 'VerificationGates',
     VerificationGatesPermission: 'VerificationGatesPermission',
     GuildSpotifyNotifications: 'GuildSpotifyNotifications',
-    Tags: 'Tags',
     Polls: 'Polls',
     PollOptions: 'PollOptions',
     PollAnswers: 'PollAnswers',
@@ -1853,7 +1837,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "guilds" | "guildCommandManger" | "buildInCommands" | "guildComponentManager" | "guildInteractionPermissions" | "guildAutoDeletes" | "guildAutoPublish" | "guildAutoReacts" | "guildAutoRoles" | "moderationScout" | "moderationScoutCases" | "moderationScoutForms" | "moderationScoutFormsData" | "moderationScoutUserAppeals" | "moderationScoutReportModalData" | "moderationScoutReports" | "guildModeration" | "guildUserModerationSettingBan" | "guildUserModerationSettingUnban" | "guildUserModerationSettinKick" | "guildUserModerationSettingWarn" | "guildUserModerationSettingUnwarn" | "guildUserModerationSettingMute" | "guildUserModerationSettingUnmute" | "guildUserModeration" | "guildDisBotAutoModeration" | "guildDisBotAutoModerationMessages" | "guildDisBotAutoModerationMentions" | "guildDisBotAutoModerationAttachments" | "guildDisBotAutoModerationEmojis" | "guildDisBotAutoModerationBlockedWords" | "guildDisBotAutoModerationBlockLinks" | "guildDisBotAutoModerationBlockInvites" | "guildChannelLinks" | "syncedChannelLinkMessages" | "discordGuildAddon" | "giveaways" | "tempVoices" | "tempVoiceChannels" | "guildLeaveSetup" | "leaveImageData" | "guildWelcomeSetup" | "welcomeImageData" | "guildLogging" | "guildLogs" | "messageTemplates" | "guildReactionRoles" | "reactionRoleSelectmenu" | "reactionRoleButton" | "guildSecurity" | "verificationGates" | "verificationGatesPermission" | "guildSpotifyNotifications" | "tags" | "polls" | "pollOptions" | "pollAnswers" | "ticketSetups" | "ticketModalData" | "ticketPermissions" | "tickets" | "ticketFeedback" | "guildFeatureToggles" | "guildTwitchNotifications" | "guildYoutubeNotifications" | "levelSettings" | "xPDrops" | "xPStreaks" | "levelRoles" | "levels" | "users" | "apis" | "guildBackups" | "vanitys" | "vanityEmbed" | "vanityEmbedAuthor" | "vanityAnalytic" | "vanityAnalyticsLatest30Day" | "disBot"
+      modelProps: "guilds" | "guildCommandManger" | "buildInCommands" | "guildComponentManager" | "guildInteractionPermissions" | "guildAutoDeletes" | "guildAutoPublish" | "guildAutoReacts" | "guildAutoRoles" | "moderationScout" | "moderationScoutCases" | "moderationScoutForms" | "moderationScoutFormsData" | "moderationScoutUserAppeals" | "moderationScoutReportModalData" | "moderationScoutReports" | "guildModeration" | "guildUserModerationSettingBan" | "guildUserModerationSettingUnban" | "guildUserModerationSettinKick" | "guildUserModerationSettingWarn" | "guildUserModerationSettingUnwarn" | "guildUserModerationSettingMute" | "guildUserModerationSettingUnmute" | "guildUserModeration" | "guildDisBotAutoModeration" | "guildDisBotAutoModerationMessages" | "guildDisBotAutoModerationMentions" | "guildDisBotAutoModerationAttachments" | "guildDisBotAutoModerationEmojis" | "guildDisBotAutoModerationBlockedWords" | "guildDisBotAutoModerationBlockLinks" | "guildDisBotAutoModerationBlockInvites" | "guildChannelLinks" | "syncedChannelLinkMessages" | "discordGuildAddon" | "giveaways" | "tempVoices" | "tempVoiceChannels" | "guildLeaveSetup" | "leaveImageData" | "guildWelcomeSetup" | "welcomeImageData" | "guildLogging" | "guildLogs" | "messageTemplates" | "guildReactionRoles" | "reactionRoleSelectmenu" | "reactionRoleButton" | "guildSecurity" | "verificationGates" | "verificationGatesPermission" | "guildSpotifyNotifications" | "polls" | "pollOptions" | "pollAnswers" | "ticketSetups" | "ticketModalData" | "ticketPermissions" | "tickets" | "ticketFeedback" | "guildFeatureToggles" | "guildTwitchNotifications" | "guildYoutubeNotifications" | "levelSettings" | "xPDrops" | "xPStreaks" | "levelRoles" | "levels" | "users" | "apis" | "guildBackups" | "vanitys" | "vanityEmbed" | "vanityEmbedAuthor" | "vanityAnalytic" | "vanityAnalyticsLatest30Day" | "disBot"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -5779,80 +5763,6 @@ export namespace Prisma {
           }
         }
       }
-      Tags: {
-        payload: Prisma.$TagsPayload<ExtArgs>
-        fields: Prisma.TagsFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.TagsFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TagsPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.TagsFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TagsPayload>
-          }
-          findFirst: {
-            args: Prisma.TagsFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TagsPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.TagsFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TagsPayload>
-          }
-          findMany: {
-            args: Prisma.TagsFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TagsPayload>[]
-          }
-          create: {
-            args: Prisma.TagsCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TagsPayload>
-          }
-          createMany: {
-            args: Prisma.TagsCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.TagsCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TagsPayload>[]
-          }
-          delete: {
-            args: Prisma.TagsDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TagsPayload>
-          }
-          update: {
-            args: Prisma.TagsUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TagsPayload>
-          }
-          deleteMany: {
-            args: Prisma.TagsDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.TagsUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.TagsUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TagsPayload>[]
-          }
-          upsert: {
-            args: Prisma.TagsUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TagsPayload>
-          }
-          aggregate: {
-            args: Prisma.TagsAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateTags>
-          }
-          groupBy: {
-            args: Prisma.TagsGroupByArgs<ExtArgs>
-            result: $Utils.Optional<TagsGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.TagsCountArgs<ExtArgs>
-            result: $Utils.Optional<TagsCountAggregateOutputType> | number
-          }
-        }
-      }
       Polls: {
         payload: Prisma.$PollsPayload<ExtArgs>
         fields: Prisma.PollsFieldRefs
@@ -7848,7 +7758,6 @@ export namespace Prisma {
     verificationGates?: VerificationGatesOmit
     verificationGatesPermission?: VerificationGatesPermissionOmit
     guildSpotifyNotifications?: GuildSpotifyNotificationsOmit
-    tags?: TagsOmit
     polls?: PollsOmit
     pollOptions?: PollOptionsOmit
     pollAnswers?: PollAnswersOmit
@@ -7968,7 +7877,6 @@ export namespace Prisma {
     YoutubeNotifications: number
     MessageTemplates: number
     Polls: number
-    Tags: number
     TempVoices: number
     TicketSetups: number
   }
@@ -7988,7 +7896,6 @@ export namespace Prisma {
     YoutubeNotifications?: boolean | GuildsCountOutputTypeCountYoutubeNotificationsArgs
     MessageTemplates?: boolean | GuildsCountOutputTypeCountMessageTemplatesArgs
     Polls?: boolean | GuildsCountOutputTypeCountPollsArgs
-    Tags?: boolean | GuildsCountOutputTypeCountTagsArgs
     TempVoices?: boolean | GuildsCountOutputTypeCountTempVoicesArgs
     TicketSetups?: boolean | GuildsCountOutputTypeCountTicketSetupsArgs
   }
@@ -8100,13 +8007,6 @@ export namespace Prisma {
    */
   export type GuildsCountOutputTypeCountPollsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PollsWhereInput
-  }
-
-  /**
-   * GuildsCountOutputType without action
-   */
-  export type GuildsCountOutputTypeCountTagsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TagsWhereInput
   }
 
   /**
@@ -8874,7 +8774,6 @@ export namespace Prisma {
     MessageTemplates?: boolean | Guilds$MessageTemplatesArgs<ExtArgs>
     ModerationScout?: boolean | Guilds$ModerationScoutArgs<ExtArgs>
     Polls?: boolean | Guilds$PollsArgs<ExtArgs>
-    Tags?: boolean | Guilds$TagsArgs<ExtArgs>
     TempVoices?: boolean | Guilds$TempVoicesArgs<ExtArgs>
     TicketSetups?: boolean | Guilds$TicketSetupsArgs<ExtArgs>
     _count?: boolean | GuildsCountOutputTypeDefaultArgs<ExtArgs>
@@ -8930,7 +8829,6 @@ export namespace Prisma {
     MessageTemplates?: boolean | Guilds$MessageTemplatesArgs<ExtArgs>
     ModerationScout?: boolean | Guilds$ModerationScoutArgs<ExtArgs>
     Polls?: boolean | Guilds$PollsArgs<ExtArgs>
-    Tags?: boolean | Guilds$TagsArgs<ExtArgs>
     TempVoices?: boolean | Guilds$TempVoicesArgs<ExtArgs>
     TicketSetups?: boolean | Guilds$TicketSetupsArgs<ExtArgs>
     _count?: boolean | GuildsCountOutputTypeDefaultArgs<ExtArgs>
@@ -8968,7 +8866,6 @@ export namespace Prisma {
       MessageTemplates: Prisma.$MessageTemplatesPayload<ExtArgs>[]
       ModerationScout: Prisma.$ModerationScoutPayload<ExtArgs> | null
       Polls: Prisma.$PollsPayload<ExtArgs>[]
-      Tags: Prisma.$TagsPayload<ExtArgs>[]
       TempVoices: Prisma.$TempVoicesPayload<ExtArgs>[]
       TicketSetups: Prisma.$TicketSetupsPayload<ExtArgs>[]
     }
@@ -9398,7 +9295,6 @@ export namespace Prisma {
     MessageTemplates<T extends Guilds$MessageTemplatesArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$MessageTemplatesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessageTemplatesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ModerationScout<T extends Guilds$ModerationScoutArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$ModerationScoutArgs<ExtArgs>>): Prisma__ModerationScoutClient<$Result.GetResult<Prisma.$ModerationScoutPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     Polls<T extends Guilds$PollsArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$PollsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PollsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Tags<T extends Guilds$TagsArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$TagsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TagsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     TempVoices<T extends Guilds$TempVoicesArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$TempVoicesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TempVoicesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     TicketSetups<T extends Guilds$TicketSetupsArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$TicketSetupsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TicketSetupsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -10402,30 +10298,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PollsScalarFieldEnum | PollsScalarFieldEnum[]
-  }
-
-  /**
-   * Guilds.Tags
-   */
-  export type Guilds$TagsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Tags
-     */
-    select?: TagsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Tags
-     */
-    omit?: TagsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TagsInclude<ExtArgs> | null
-    where?: TagsWhereInput
-    orderBy?: TagsOrderByWithRelationInput | TagsOrderByWithRelationInput[]
-    cursor?: TagsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: TagsScalarFieldEnum | TagsScalarFieldEnum[]
   }
 
   /**
@@ -69615,1220 +69487,6 @@ export namespace Prisma {
 
 
   /**
-   * Model Tags
-   */
-
-  export type AggregateTags = {
-    _count: TagsCountAggregateOutputType | null
-    _avg: TagsAvgAggregateOutputType | null
-    _sum: TagsSumAggregateOutputType | null
-    _min: TagsMinAggregateOutputType | null
-    _max: TagsMaxAggregateOutputType | null
-  }
-
-  export type TagsAvgAggregateOutputType = {
-    Id: number | null
-  }
-
-  export type TagsSumAggregateOutputType = {
-    Id: number | null
-  }
-
-  export type TagsMinAggregateOutputType = {
-    Id: number | null
-    UUID: string | null
-    TagId: string | null
-    MessageTemplateId: string | null
-    IsSlashCommand: boolean | null
-    SlashCommandId: string | null
-    IsShlashCommand: boolean | null
-    ShlashCommandId: string | null
-    IsTextInputCommand: boolean | null
-    IsEnabled: boolean | null
-    PermissionRoleId: string | null
-    CommandDescription: string | null
-    GuildId: string | null
-  }
-
-  export type TagsMaxAggregateOutputType = {
-    Id: number | null
-    UUID: string | null
-    TagId: string | null
-    MessageTemplateId: string | null
-    IsSlashCommand: boolean | null
-    SlashCommandId: string | null
-    IsShlashCommand: boolean | null
-    ShlashCommandId: string | null
-    IsTextInputCommand: boolean | null
-    IsEnabled: boolean | null
-    PermissionRoleId: string | null
-    CommandDescription: string | null
-    GuildId: string | null
-  }
-
-  export type TagsCountAggregateOutputType = {
-    Id: number
-    UUID: number
-    TagId: number
-    TriggerKeywords: number
-    MessageTemplateId: number
-    IsSlashCommand: number
-    SlashCommandId: number
-    IsShlashCommand: number
-    ShlashCommandId: number
-    IsTextInputCommand: number
-    IsEnabled: number
-    PermissionRoleId: number
-    CommandDescription: number
-    FilterTextFromMessages: number
-    GuildId: number
-    _all: number
-  }
-
-
-  export type TagsAvgAggregateInputType = {
-    Id?: true
-  }
-
-  export type TagsSumAggregateInputType = {
-    Id?: true
-  }
-
-  export type TagsMinAggregateInputType = {
-    Id?: true
-    UUID?: true
-    TagId?: true
-    MessageTemplateId?: true
-    IsSlashCommand?: true
-    SlashCommandId?: true
-    IsShlashCommand?: true
-    ShlashCommandId?: true
-    IsTextInputCommand?: true
-    IsEnabled?: true
-    PermissionRoleId?: true
-    CommandDescription?: true
-    GuildId?: true
-  }
-
-  export type TagsMaxAggregateInputType = {
-    Id?: true
-    UUID?: true
-    TagId?: true
-    MessageTemplateId?: true
-    IsSlashCommand?: true
-    SlashCommandId?: true
-    IsShlashCommand?: true
-    ShlashCommandId?: true
-    IsTextInputCommand?: true
-    IsEnabled?: true
-    PermissionRoleId?: true
-    CommandDescription?: true
-    GuildId?: true
-  }
-
-  export type TagsCountAggregateInputType = {
-    Id?: true
-    UUID?: true
-    TagId?: true
-    TriggerKeywords?: true
-    MessageTemplateId?: true
-    IsSlashCommand?: true
-    SlashCommandId?: true
-    IsShlashCommand?: true
-    ShlashCommandId?: true
-    IsTextInputCommand?: true
-    IsEnabled?: true
-    PermissionRoleId?: true
-    CommandDescription?: true
-    FilterTextFromMessages?: true
-    GuildId?: true
-    _all?: true
-  }
-
-  export type TagsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Tags to aggregate.
-     */
-    where?: TagsWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Tags to fetch.
-     */
-    orderBy?: TagsOrderByWithRelationInput | TagsOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: TagsWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Tags from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Tags.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Tags
-    **/
-    _count?: true | TagsCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: TagsAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: TagsSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: TagsMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: TagsMaxAggregateInputType
-  }
-
-  export type GetTagsAggregateType<T extends TagsAggregateArgs> = {
-        [P in keyof T & keyof AggregateTags]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateTags[P]>
-      : GetScalarType<T[P], AggregateTags[P]>
-  }
-
-
-
-
-  export type TagsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TagsWhereInput
-    orderBy?: TagsOrderByWithAggregationInput | TagsOrderByWithAggregationInput[]
-    by: TagsScalarFieldEnum[] | TagsScalarFieldEnum
-    having?: TagsScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: TagsCountAggregateInputType | true
-    _avg?: TagsAvgAggregateInputType
-    _sum?: TagsSumAggregateInputType
-    _min?: TagsMinAggregateInputType
-    _max?: TagsMaxAggregateInputType
-  }
-
-  export type TagsGroupByOutputType = {
-    Id: number
-    UUID: string
-    TagId: string
-    TriggerKeywords: string[]
-    MessageTemplateId: string | null
-    IsSlashCommand: boolean
-    SlashCommandId: string | null
-    IsShlashCommand: boolean
-    ShlashCommandId: string | null
-    IsTextInputCommand: boolean
-    IsEnabled: boolean
-    PermissionRoleId: string | null
-    CommandDescription: string | null
-    FilterTextFromMessages: string[]
-    GuildId: string
-    _count: TagsCountAggregateOutputType | null
-    _avg: TagsAvgAggregateOutputType | null
-    _sum: TagsSumAggregateOutputType | null
-    _min: TagsMinAggregateOutputType | null
-    _max: TagsMaxAggregateOutputType | null
-  }
-
-  type GetTagsGroupByPayload<T extends TagsGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<TagsGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof TagsGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], TagsGroupByOutputType[P]>
-            : GetScalarType<T[P], TagsGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type TagsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    Id?: boolean
-    UUID?: boolean
-    TagId?: boolean
-    TriggerKeywords?: boolean
-    MessageTemplateId?: boolean
-    IsSlashCommand?: boolean
-    SlashCommandId?: boolean
-    IsShlashCommand?: boolean
-    ShlashCommandId?: boolean
-    IsTextInputCommand?: boolean
-    IsEnabled?: boolean
-    PermissionRoleId?: boolean
-    CommandDescription?: boolean
-    FilterTextFromMessages?: boolean
-    GuildId?: boolean
-    Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["tags"]>
-
-  export type TagsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    Id?: boolean
-    UUID?: boolean
-    TagId?: boolean
-    TriggerKeywords?: boolean
-    MessageTemplateId?: boolean
-    IsSlashCommand?: boolean
-    SlashCommandId?: boolean
-    IsShlashCommand?: boolean
-    ShlashCommandId?: boolean
-    IsTextInputCommand?: boolean
-    IsEnabled?: boolean
-    PermissionRoleId?: boolean
-    CommandDescription?: boolean
-    FilterTextFromMessages?: boolean
-    GuildId?: boolean
-    Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["tags"]>
-
-  export type TagsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    Id?: boolean
-    UUID?: boolean
-    TagId?: boolean
-    TriggerKeywords?: boolean
-    MessageTemplateId?: boolean
-    IsSlashCommand?: boolean
-    SlashCommandId?: boolean
-    IsShlashCommand?: boolean
-    ShlashCommandId?: boolean
-    IsTextInputCommand?: boolean
-    IsEnabled?: boolean
-    PermissionRoleId?: boolean
-    CommandDescription?: boolean
-    FilterTextFromMessages?: boolean
-    GuildId?: boolean
-    Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["tags"]>
-
-  export type TagsSelectScalar = {
-    Id?: boolean
-    UUID?: boolean
-    TagId?: boolean
-    TriggerKeywords?: boolean
-    MessageTemplateId?: boolean
-    IsSlashCommand?: boolean
-    SlashCommandId?: boolean
-    IsShlashCommand?: boolean
-    ShlashCommandId?: boolean
-    IsTextInputCommand?: boolean
-    IsEnabled?: boolean
-    PermissionRoleId?: boolean
-    CommandDescription?: boolean
-    FilterTextFromMessages?: boolean
-    GuildId?: boolean
-  }
-
-  export type TagsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Id" | "UUID" | "TagId" | "TriggerKeywords" | "MessageTemplateId" | "IsSlashCommand" | "SlashCommandId" | "IsShlashCommand" | "ShlashCommandId" | "IsTextInputCommand" | "IsEnabled" | "PermissionRoleId" | "CommandDescription" | "FilterTextFromMessages" | "GuildId", ExtArgs["result"]["tags"]>
-  export type TagsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
-  }
-  export type TagsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
-  }
-  export type TagsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
-  }
-
-  export type $TagsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Tags"
-    objects: {
-      Guilds: Prisma.$GuildsPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      Id: number
-      UUID: string
-      TagId: string
-      TriggerKeywords: string[]
-      MessageTemplateId: string | null
-      IsSlashCommand: boolean
-      SlashCommandId: string | null
-      IsShlashCommand: boolean
-      ShlashCommandId: string | null
-      IsTextInputCommand: boolean
-      IsEnabled: boolean
-      PermissionRoleId: string | null
-      CommandDescription: string | null
-      FilterTextFromMessages: string[]
-      GuildId: string
-    }, ExtArgs["result"]["tags"]>
-    composites: {}
-  }
-
-  type TagsGetPayload<S extends boolean | null | undefined | TagsDefaultArgs> = $Result.GetResult<Prisma.$TagsPayload, S>
-
-  type TagsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<TagsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: TagsCountAggregateInputType | true
-    }
-
-  export interface TagsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Tags'], meta: { name: 'Tags' } }
-    /**
-     * Find zero or one Tags that matches the filter.
-     * @param {TagsFindUniqueArgs} args - Arguments to find a Tags
-     * @example
-     * // Get one Tags
-     * const tags = await prisma.tags.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends TagsFindUniqueArgs>(args: SelectSubset<T, TagsFindUniqueArgs<ExtArgs>>): Prisma__TagsClient<$Result.GetResult<Prisma.$TagsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Tags that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {TagsFindUniqueOrThrowArgs} args - Arguments to find a Tags
-     * @example
-     * // Get one Tags
-     * const tags = await prisma.tags.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends TagsFindUniqueOrThrowArgs>(args: SelectSubset<T, TagsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TagsClient<$Result.GetResult<Prisma.$TagsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Tags that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TagsFindFirstArgs} args - Arguments to find a Tags
-     * @example
-     * // Get one Tags
-     * const tags = await prisma.tags.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends TagsFindFirstArgs>(args?: SelectSubset<T, TagsFindFirstArgs<ExtArgs>>): Prisma__TagsClient<$Result.GetResult<Prisma.$TagsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Tags that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TagsFindFirstOrThrowArgs} args - Arguments to find a Tags
-     * @example
-     * // Get one Tags
-     * const tags = await prisma.tags.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends TagsFindFirstOrThrowArgs>(args?: SelectSubset<T, TagsFindFirstOrThrowArgs<ExtArgs>>): Prisma__TagsClient<$Result.GetResult<Prisma.$TagsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Tags that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TagsFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Tags
-     * const tags = await prisma.tags.findMany()
-     * 
-     * // Get first 10 Tags
-     * const tags = await prisma.tags.findMany({ take: 10 })
-     * 
-     * // Only select the `Id`
-     * const tagsWithIdOnly = await prisma.tags.findMany({ select: { Id: true } })
-     * 
-     */
-    findMany<T extends TagsFindManyArgs>(args?: SelectSubset<T, TagsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TagsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Tags.
-     * @param {TagsCreateArgs} args - Arguments to create a Tags.
-     * @example
-     * // Create one Tags
-     * const Tags = await prisma.tags.create({
-     *   data: {
-     *     // ... data to create a Tags
-     *   }
-     * })
-     * 
-     */
-    create<T extends TagsCreateArgs>(args: SelectSubset<T, TagsCreateArgs<ExtArgs>>): Prisma__TagsClient<$Result.GetResult<Prisma.$TagsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Tags.
-     * @param {TagsCreateManyArgs} args - Arguments to create many Tags.
-     * @example
-     * // Create many Tags
-     * const tags = await prisma.tags.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends TagsCreateManyArgs>(args?: SelectSubset<T, TagsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Tags and returns the data saved in the database.
-     * @param {TagsCreateManyAndReturnArgs} args - Arguments to create many Tags.
-     * @example
-     * // Create many Tags
-     * const tags = await prisma.tags.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Tags and only return the `Id`
-     * const tagsWithIdOnly = await prisma.tags.createManyAndReturn({
-     *   select: { Id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends TagsCreateManyAndReturnArgs>(args?: SelectSubset<T, TagsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TagsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Tags.
-     * @param {TagsDeleteArgs} args - Arguments to delete one Tags.
-     * @example
-     * // Delete one Tags
-     * const Tags = await prisma.tags.delete({
-     *   where: {
-     *     // ... filter to delete one Tags
-     *   }
-     * })
-     * 
-     */
-    delete<T extends TagsDeleteArgs>(args: SelectSubset<T, TagsDeleteArgs<ExtArgs>>): Prisma__TagsClient<$Result.GetResult<Prisma.$TagsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Tags.
-     * @param {TagsUpdateArgs} args - Arguments to update one Tags.
-     * @example
-     * // Update one Tags
-     * const tags = await prisma.tags.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends TagsUpdateArgs>(args: SelectSubset<T, TagsUpdateArgs<ExtArgs>>): Prisma__TagsClient<$Result.GetResult<Prisma.$TagsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Tags.
-     * @param {TagsDeleteManyArgs} args - Arguments to filter Tags to delete.
-     * @example
-     * // Delete a few Tags
-     * const { count } = await prisma.tags.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends TagsDeleteManyArgs>(args?: SelectSubset<T, TagsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Tags.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TagsUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Tags
-     * const tags = await prisma.tags.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends TagsUpdateManyArgs>(args: SelectSubset<T, TagsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Tags and returns the data updated in the database.
-     * @param {TagsUpdateManyAndReturnArgs} args - Arguments to update many Tags.
-     * @example
-     * // Update many Tags
-     * const tags = await prisma.tags.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Tags and only return the `Id`
-     * const tagsWithIdOnly = await prisma.tags.updateManyAndReturn({
-     *   select: { Id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends TagsUpdateManyAndReturnArgs>(args: SelectSubset<T, TagsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TagsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Tags.
-     * @param {TagsUpsertArgs} args - Arguments to update or create a Tags.
-     * @example
-     * // Update or create a Tags
-     * const tags = await prisma.tags.upsert({
-     *   create: {
-     *     // ... data to create a Tags
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Tags we want to update
-     *   }
-     * })
-     */
-    upsert<T extends TagsUpsertArgs>(args: SelectSubset<T, TagsUpsertArgs<ExtArgs>>): Prisma__TagsClient<$Result.GetResult<Prisma.$TagsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Tags.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TagsCountArgs} args - Arguments to filter Tags to count.
-     * @example
-     * // Count the number of Tags
-     * const count = await prisma.tags.count({
-     *   where: {
-     *     // ... the filter for the Tags we want to count
-     *   }
-     * })
-    **/
-    count<T extends TagsCountArgs>(
-      args?: Subset<T, TagsCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], TagsCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Tags.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TagsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends TagsAggregateArgs>(args: Subset<T, TagsAggregateArgs>): Prisma.PrismaPromise<GetTagsAggregateType<T>>
-
-    /**
-     * Group by Tags.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TagsGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends TagsGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: TagsGroupByArgs['orderBy'] }
-        : { orderBy?: TagsGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, TagsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTagsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Tags model
-   */
-  readonly fields: TagsFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Tags.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__TagsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    Guilds<T extends GuildsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GuildsDefaultArgs<ExtArgs>>): Prisma__GuildsClient<$Result.GetResult<Prisma.$GuildsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Tags model
-   */
-  interface TagsFieldRefs {
-    readonly Id: FieldRef<"Tags", 'Int'>
-    readonly UUID: FieldRef<"Tags", 'String'>
-    readonly TagId: FieldRef<"Tags", 'String'>
-    readonly TriggerKeywords: FieldRef<"Tags", 'String[]'>
-    readonly MessageTemplateId: FieldRef<"Tags", 'String'>
-    readonly IsSlashCommand: FieldRef<"Tags", 'Boolean'>
-    readonly SlashCommandId: FieldRef<"Tags", 'String'>
-    readonly IsShlashCommand: FieldRef<"Tags", 'Boolean'>
-    readonly ShlashCommandId: FieldRef<"Tags", 'String'>
-    readonly IsTextInputCommand: FieldRef<"Tags", 'Boolean'>
-    readonly IsEnabled: FieldRef<"Tags", 'Boolean'>
-    readonly PermissionRoleId: FieldRef<"Tags", 'String'>
-    readonly CommandDescription: FieldRef<"Tags", 'String'>
-    readonly FilterTextFromMessages: FieldRef<"Tags", 'String[]'>
-    readonly GuildId: FieldRef<"Tags", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Tags findUnique
-   */
-  export type TagsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Tags
-     */
-    select?: TagsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Tags
-     */
-    omit?: TagsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TagsInclude<ExtArgs> | null
-    /**
-     * Filter, which Tags to fetch.
-     */
-    where: TagsWhereUniqueInput
-  }
-
-  /**
-   * Tags findUniqueOrThrow
-   */
-  export type TagsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Tags
-     */
-    select?: TagsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Tags
-     */
-    omit?: TagsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TagsInclude<ExtArgs> | null
-    /**
-     * Filter, which Tags to fetch.
-     */
-    where: TagsWhereUniqueInput
-  }
-
-  /**
-   * Tags findFirst
-   */
-  export type TagsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Tags
-     */
-    select?: TagsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Tags
-     */
-    omit?: TagsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TagsInclude<ExtArgs> | null
-    /**
-     * Filter, which Tags to fetch.
-     */
-    where?: TagsWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Tags to fetch.
-     */
-    orderBy?: TagsOrderByWithRelationInput | TagsOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Tags.
-     */
-    cursor?: TagsWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Tags from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Tags.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Tags.
-     */
-    distinct?: TagsScalarFieldEnum | TagsScalarFieldEnum[]
-  }
-
-  /**
-   * Tags findFirstOrThrow
-   */
-  export type TagsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Tags
-     */
-    select?: TagsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Tags
-     */
-    omit?: TagsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TagsInclude<ExtArgs> | null
-    /**
-     * Filter, which Tags to fetch.
-     */
-    where?: TagsWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Tags to fetch.
-     */
-    orderBy?: TagsOrderByWithRelationInput | TagsOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Tags.
-     */
-    cursor?: TagsWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Tags from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Tags.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Tags.
-     */
-    distinct?: TagsScalarFieldEnum | TagsScalarFieldEnum[]
-  }
-
-  /**
-   * Tags findMany
-   */
-  export type TagsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Tags
-     */
-    select?: TagsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Tags
-     */
-    omit?: TagsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TagsInclude<ExtArgs> | null
-    /**
-     * Filter, which Tags to fetch.
-     */
-    where?: TagsWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Tags to fetch.
-     */
-    orderBy?: TagsOrderByWithRelationInput | TagsOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Tags.
-     */
-    cursor?: TagsWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Tags from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Tags.
-     */
-    skip?: number
-    distinct?: TagsScalarFieldEnum | TagsScalarFieldEnum[]
-  }
-
-  /**
-   * Tags create
-   */
-  export type TagsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Tags
-     */
-    select?: TagsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Tags
-     */
-    omit?: TagsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TagsInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Tags.
-     */
-    data: XOR<TagsCreateInput, TagsUncheckedCreateInput>
-  }
-
-  /**
-   * Tags createMany
-   */
-  export type TagsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Tags.
-     */
-    data: TagsCreateManyInput | TagsCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Tags createManyAndReturn
-   */
-  export type TagsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Tags
-     */
-    select?: TagsSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Tags
-     */
-    omit?: TagsOmit<ExtArgs> | null
-    /**
-     * The data used to create many Tags.
-     */
-    data: TagsCreateManyInput | TagsCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TagsIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Tags update
-   */
-  export type TagsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Tags
-     */
-    select?: TagsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Tags
-     */
-    omit?: TagsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TagsInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Tags.
-     */
-    data: XOR<TagsUpdateInput, TagsUncheckedUpdateInput>
-    /**
-     * Choose, which Tags to update.
-     */
-    where: TagsWhereUniqueInput
-  }
-
-  /**
-   * Tags updateMany
-   */
-  export type TagsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Tags.
-     */
-    data: XOR<TagsUpdateManyMutationInput, TagsUncheckedUpdateManyInput>
-    /**
-     * Filter which Tags to update
-     */
-    where?: TagsWhereInput
-    /**
-     * Limit how many Tags to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Tags updateManyAndReturn
-   */
-  export type TagsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Tags
-     */
-    select?: TagsSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Tags
-     */
-    omit?: TagsOmit<ExtArgs> | null
-    /**
-     * The data used to update Tags.
-     */
-    data: XOR<TagsUpdateManyMutationInput, TagsUncheckedUpdateManyInput>
-    /**
-     * Filter which Tags to update
-     */
-    where?: TagsWhereInput
-    /**
-     * Limit how many Tags to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TagsIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Tags upsert
-   */
-  export type TagsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Tags
-     */
-    select?: TagsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Tags
-     */
-    omit?: TagsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TagsInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Tags to update in case it exists.
-     */
-    where: TagsWhereUniqueInput
-    /**
-     * In case the Tags found by the `where` argument doesn't exist, create a new Tags with this data.
-     */
-    create: XOR<TagsCreateInput, TagsUncheckedCreateInput>
-    /**
-     * In case the Tags was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<TagsUpdateInput, TagsUncheckedUpdateInput>
-  }
-
-  /**
-   * Tags delete
-   */
-  export type TagsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Tags
-     */
-    select?: TagsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Tags
-     */
-    omit?: TagsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TagsInclude<ExtArgs> | null
-    /**
-     * Filter which Tags to delete.
-     */
-    where: TagsWhereUniqueInput
-  }
-
-  /**
-   * Tags deleteMany
-   */
-  export type TagsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Tags to delete
-     */
-    where?: TagsWhereInput
-    /**
-     * Limit how many Tags to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Tags without action
-   */
-  export type TagsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Tags
-     */
-    select?: TagsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Tags
-     */
-    omit?: TagsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TagsInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model Polls
    */
 
@@ -101035,27 +99693,6 @@ export namespace Prisma {
   export type GuildSpotifyNotificationsScalarFieldEnum = (typeof GuildSpotifyNotificationsScalarFieldEnum)[keyof typeof GuildSpotifyNotificationsScalarFieldEnum]
 
 
-  export const TagsScalarFieldEnum: {
-    Id: 'Id',
-    UUID: 'UUID',
-    TagId: 'TagId',
-    TriggerKeywords: 'TriggerKeywords',
-    MessageTemplateId: 'MessageTemplateId',
-    IsSlashCommand: 'IsSlashCommand',
-    SlashCommandId: 'SlashCommandId',
-    IsShlashCommand: 'IsShlashCommand',
-    ShlashCommandId: 'ShlashCommandId',
-    IsTextInputCommand: 'IsTextInputCommand',
-    IsEnabled: 'IsEnabled',
-    PermissionRoleId: 'PermissionRoleId',
-    CommandDescription: 'CommandDescription',
-    FilterTextFromMessages: 'FilterTextFromMessages',
-    GuildId: 'GuildId'
-  };
-
-  export type TagsScalarFieldEnum = (typeof TagsScalarFieldEnum)[keyof typeof TagsScalarFieldEnum]
-
-
   export const PollsScalarFieldEnum: {
     Id: 'Id',
     UUID: 'UUID',
@@ -101648,7 +100285,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesListRelationFilter
     ModerationScout?: XOR<ModerationScoutNullableScalarRelationFilter, ModerationScoutWhereInput> | null
     Polls?: PollsListRelationFilter
-    Tags?: TagsListRelationFilter
     TempVoices?: TempVoicesListRelationFilter
     TicketSetups?: TicketSetupsListRelationFilter
   }
@@ -101685,7 +100321,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesOrderByRelationAggregateInput
     ModerationScout?: ModerationScoutOrderByWithRelationInput
     Polls?: PollsOrderByRelationAggregateInput
-    Tags?: TagsOrderByRelationAggregateInput
     TempVoices?: TempVoicesOrderByRelationAggregateInput
     TicketSetups?: TicketSetupsOrderByRelationAggregateInput
   }
@@ -101725,7 +100360,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesListRelationFilter
     ModerationScout?: XOR<ModerationScoutNullableScalarRelationFilter, ModerationScoutWhereInput> | null
     Polls?: PollsListRelationFilter
-    Tags?: TagsListRelationFilter
     TempVoices?: TempVoicesListRelationFilter
     TicketSetups?: TicketSetupsListRelationFilter
   }, "Id" | "GuildId">
@@ -105515,113 +104149,6 @@ export namespace Prisma {
     GuildId?: StringWithAggregatesFilter<"GuildSpotifyNotifications"> | string
   }
 
-  export type TagsWhereInput = {
-    AND?: TagsWhereInput | TagsWhereInput[]
-    OR?: TagsWhereInput[]
-    NOT?: TagsWhereInput | TagsWhereInput[]
-    Id?: IntFilter<"Tags"> | number
-    UUID?: StringFilter<"Tags"> | string
-    TagId?: StringFilter<"Tags"> | string
-    TriggerKeywords?: StringNullableListFilter<"Tags">
-    MessageTemplateId?: StringNullableFilter<"Tags"> | string | null
-    IsSlashCommand?: BoolFilter<"Tags"> | boolean
-    SlashCommandId?: StringNullableFilter<"Tags"> | string | null
-    IsShlashCommand?: BoolFilter<"Tags"> | boolean
-    ShlashCommandId?: StringNullableFilter<"Tags"> | string | null
-    IsTextInputCommand?: BoolFilter<"Tags"> | boolean
-    IsEnabled?: BoolFilter<"Tags"> | boolean
-    PermissionRoleId?: StringNullableFilter<"Tags"> | string | null
-    CommandDescription?: StringNullableFilter<"Tags"> | string | null
-    FilterTextFromMessages?: StringNullableListFilter<"Tags">
-    GuildId?: StringFilter<"Tags"> | string
-    Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
-  }
-
-  export type TagsOrderByWithRelationInput = {
-    Id?: SortOrder
-    UUID?: SortOrder
-    TagId?: SortOrder
-    TriggerKeywords?: SortOrder
-    MessageTemplateId?: SortOrderInput | SortOrder
-    IsSlashCommand?: SortOrder
-    SlashCommandId?: SortOrderInput | SortOrder
-    IsShlashCommand?: SortOrder
-    ShlashCommandId?: SortOrderInput | SortOrder
-    IsTextInputCommand?: SortOrder
-    IsEnabled?: SortOrder
-    PermissionRoleId?: SortOrderInput | SortOrder
-    CommandDescription?: SortOrderInput | SortOrder
-    FilterTextFromMessages?: SortOrder
-    GuildId?: SortOrder
-    Guilds?: GuildsOrderByWithRelationInput
-  }
-
-  export type TagsWhereUniqueInput = Prisma.AtLeast<{
-    Id?: number
-    UUID?: string
-    TagId?: string
-    AND?: TagsWhereInput | TagsWhereInput[]
-    OR?: TagsWhereInput[]
-    NOT?: TagsWhereInput | TagsWhereInput[]
-    TriggerKeywords?: StringNullableListFilter<"Tags">
-    MessageTemplateId?: StringNullableFilter<"Tags"> | string | null
-    IsSlashCommand?: BoolFilter<"Tags"> | boolean
-    SlashCommandId?: StringNullableFilter<"Tags"> | string | null
-    IsShlashCommand?: BoolFilter<"Tags"> | boolean
-    ShlashCommandId?: StringNullableFilter<"Tags"> | string | null
-    IsTextInputCommand?: BoolFilter<"Tags"> | boolean
-    IsEnabled?: BoolFilter<"Tags"> | boolean
-    PermissionRoleId?: StringNullableFilter<"Tags"> | string | null
-    CommandDescription?: StringNullableFilter<"Tags"> | string | null
-    FilterTextFromMessages?: StringNullableListFilter<"Tags">
-    GuildId?: StringFilter<"Tags"> | string
-    Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
-  }, "Id" | "UUID" | "TagId">
-
-  export type TagsOrderByWithAggregationInput = {
-    Id?: SortOrder
-    UUID?: SortOrder
-    TagId?: SortOrder
-    TriggerKeywords?: SortOrder
-    MessageTemplateId?: SortOrderInput | SortOrder
-    IsSlashCommand?: SortOrder
-    SlashCommandId?: SortOrderInput | SortOrder
-    IsShlashCommand?: SortOrder
-    ShlashCommandId?: SortOrderInput | SortOrder
-    IsTextInputCommand?: SortOrder
-    IsEnabled?: SortOrder
-    PermissionRoleId?: SortOrderInput | SortOrder
-    CommandDescription?: SortOrderInput | SortOrder
-    FilterTextFromMessages?: SortOrder
-    GuildId?: SortOrder
-    _count?: TagsCountOrderByAggregateInput
-    _avg?: TagsAvgOrderByAggregateInput
-    _max?: TagsMaxOrderByAggregateInput
-    _min?: TagsMinOrderByAggregateInput
-    _sum?: TagsSumOrderByAggregateInput
-  }
-
-  export type TagsScalarWhereWithAggregatesInput = {
-    AND?: TagsScalarWhereWithAggregatesInput | TagsScalarWhereWithAggregatesInput[]
-    OR?: TagsScalarWhereWithAggregatesInput[]
-    NOT?: TagsScalarWhereWithAggregatesInput | TagsScalarWhereWithAggregatesInput[]
-    Id?: IntWithAggregatesFilter<"Tags"> | number
-    UUID?: StringWithAggregatesFilter<"Tags"> | string
-    TagId?: StringWithAggregatesFilter<"Tags"> | string
-    TriggerKeywords?: StringNullableListFilter<"Tags">
-    MessageTemplateId?: StringNullableWithAggregatesFilter<"Tags"> | string | null
-    IsSlashCommand?: BoolWithAggregatesFilter<"Tags"> | boolean
-    SlashCommandId?: StringNullableWithAggregatesFilter<"Tags"> | string | null
-    IsShlashCommand?: BoolWithAggregatesFilter<"Tags"> | boolean
-    ShlashCommandId?: StringNullableWithAggregatesFilter<"Tags"> | string | null
-    IsTextInputCommand?: BoolWithAggregatesFilter<"Tags"> | boolean
-    IsEnabled?: BoolWithAggregatesFilter<"Tags"> | boolean
-    PermissionRoleId?: StringNullableWithAggregatesFilter<"Tags"> | string | null
-    CommandDescription?: StringNullableWithAggregatesFilter<"Tags"> | string | null
-    FilterTextFromMessages?: StringNullableListFilter<"Tags">
-    GuildId?: StringWithAggregatesFilter<"Tags"> | string
-  }
-
   export type PollsWhereInput = {
     AND?: PollsWhereInput | PollsWhereInput[]
     OR?: PollsWhereInput[]
@@ -107775,7 +106302,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -107812,7 +106338,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -107848,7 +106373,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -107885,7 +106409,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
@@ -111718,128 +110241,6 @@ export namespace Prisma {
     GuildId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type TagsCreateInput = {
-    UUID: string
-    TagId: string
-    TriggerKeywords?: TagsCreateTriggerKeywordsInput | string[]
-    MessageTemplateId?: string | null
-    IsSlashCommand?: boolean
-    SlashCommandId?: string | null
-    IsShlashCommand?: boolean
-    ShlashCommandId?: string | null
-    IsTextInputCommand: boolean
-    IsEnabled: boolean
-    PermissionRoleId?: string | null
-    CommandDescription?: string | null
-    FilterTextFromMessages?: TagsCreateFilterTextFromMessagesInput | string[]
-    Guilds: GuildsCreateNestedOneWithoutTagsInput
-  }
-
-  export type TagsUncheckedCreateInput = {
-    Id?: number
-    UUID: string
-    TagId: string
-    TriggerKeywords?: TagsCreateTriggerKeywordsInput | string[]
-    MessageTemplateId?: string | null
-    IsSlashCommand?: boolean
-    SlashCommandId?: string | null
-    IsShlashCommand?: boolean
-    ShlashCommandId?: string | null
-    IsTextInputCommand: boolean
-    IsEnabled: boolean
-    PermissionRoleId?: string | null
-    CommandDescription?: string | null
-    FilterTextFromMessages?: TagsCreateFilterTextFromMessagesInput | string[]
-    GuildId: string
-  }
-
-  export type TagsUpdateInput = {
-    UUID?: StringFieldUpdateOperationsInput | string
-    TagId?: StringFieldUpdateOperationsInput | string
-    TriggerKeywords?: TagsUpdateTriggerKeywordsInput | string[]
-    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsSlashCommand?: BoolFieldUpdateOperationsInput | boolean
-    SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsShlashCommand?: BoolFieldUpdateOperationsInput | boolean
-    ShlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsTextInputCommand?: BoolFieldUpdateOperationsInput | boolean
-    IsEnabled?: BoolFieldUpdateOperationsInput | boolean
-    PermissionRoleId?: NullableStringFieldUpdateOperationsInput | string | null
-    CommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    FilterTextFromMessages?: TagsUpdateFilterTextFromMessagesInput | string[]
-    Guilds?: GuildsUpdateOneRequiredWithoutTagsNestedInput
-  }
-
-  export type TagsUncheckedUpdateInput = {
-    Id?: IntFieldUpdateOperationsInput | number
-    UUID?: StringFieldUpdateOperationsInput | string
-    TagId?: StringFieldUpdateOperationsInput | string
-    TriggerKeywords?: TagsUpdateTriggerKeywordsInput | string[]
-    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsSlashCommand?: BoolFieldUpdateOperationsInput | boolean
-    SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsShlashCommand?: BoolFieldUpdateOperationsInput | boolean
-    ShlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsTextInputCommand?: BoolFieldUpdateOperationsInput | boolean
-    IsEnabled?: BoolFieldUpdateOperationsInput | boolean
-    PermissionRoleId?: NullableStringFieldUpdateOperationsInput | string | null
-    CommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    FilterTextFromMessages?: TagsUpdateFilterTextFromMessagesInput | string[]
-    GuildId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type TagsCreateManyInput = {
-    Id?: number
-    UUID: string
-    TagId: string
-    TriggerKeywords?: TagsCreateTriggerKeywordsInput | string[]
-    MessageTemplateId?: string | null
-    IsSlashCommand?: boolean
-    SlashCommandId?: string | null
-    IsShlashCommand?: boolean
-    ShlashCommandId?: string | null
-    IsTextInputCommand: boolean
-    IsEnabled: boolean
-    PermissionRoleId?: string | null
-    CommandDescription?: string | null
-    FilterTextFromMessages?: TagsCreateFilterTextFromMessagesInput | string[]
-    GuildId: string
-  }
-
-  export type TagsUpdateManyMutationInput = {
-    UUID?: StringFieldUpdateOperationsInput | string
-    TagId?: StringFieldUpdateOperationsInput | string
-    TriggerKeywords?: TagsUpdateTriggerKeywordsInput | string[]
-    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsSlashCommand?: BoolFieldUpdateOperationsInput | boolean
-    SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsShlashCommand?: BoolFieldUpdateOperationsInput | boolean
-    ShlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsTextInputCommand?: BoolFieldUpdateOperationsInput | boolean
-    IsEnabled?: BoolFieldUpdateOperationsInput | boolean
-    PermissionRoleId?: NullableStringFieldUpdateOperationsInput | string | null
-    CommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    FilterTextFromMessages?: TagsUpdateFilterTextFromMessagesInput | string[]
-  }
-
-  export type TagsUncheckedUpdateManyInput = {
-    Id?: IntFieldUpdateOperationsInput | number
-    UUID?: StringFieldUpdateOperationsInput | string
-    TagId?: StringFieldUpdateOperationsInput | string
-    TriggerKeywords?: TagsUpdateTriggerKeywordsInput | string[]
-    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsSlashCommand?: BoolFieldUpdateOperationsInput | boolean
-    SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsShlashCommand?: BoolFieldUpdateOperationsInput | boolean
-    ShlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsTextInputCommand?: BoolFieldUpdateOperationsInput | boolean
-    IsEnabled?: BoolFieldUpdateOperationsInput | boolean
-    PermissionRoleId?: NullableStringFieldUpdateOperationsInput | string | null
-    CommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    FilterTextFromMessages?: TagsUpdateFilterTextFromMessagesInput | string[]
-    GuildId?: StringFieldUpdateOperationsInput | string
-  }
-
   export type PollsCreateInput = {
     UUID: string
     MessageId?: string | null
@@ -114287,12 +112688,6 @@ export namespace Prisma {
     none?: PollsWhereInput
   }
 
-  export type TagsListRelationFilter = {
-    every?: TagsWhereInput
-    some?: TagsWhereInput
-    none?: TagsWhereInput
-  }
-
   export type TempVoicesListRelationFilter = {
     every?: TempVoicesWhereInput
     some?: TempVoicesWhereInput
@@ -114358,10 +112753,6 @@ export namespace Prisma {
   }
 
   export type PollsOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type TagsOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -116916,64 +115307,6 @@ export namespace Prisma {
     Id?: SortOrder
   }
 
-  export type TagsCountOrderByAggregateInput = {
-    Id?: SortOrder
-    UUID?: SortOrder
-    TagId?: SortOrder
-    TriggerKeywords?: SortOrder
-    MessageTemplateId?: SortOrder
-    IsSlashCommand?: SortOrder
-    SlashCommandId?: SortOrder
-    IsShlashCommand?: SortOrder
-    ShlashCommandId?: SortOrder
-    IsTextInputCommand?: SortOrder
-    IsEnabled?: SortOrder
-    PermissionRoleId?: SortOrder
-    CommandDescription?: SortOrder
-    FilterTextFromMessages?: SortOrder
-    GuildId?: SortOrder
-  }
-
-  export type TagsAvgOrderByAggregateInput = {
-    Id?: SortOrder
-  }
-
-  export type TagsMaxOrderByAggregateInput = {
-    Id?: SortOrder
-    UUID?: SortOrder
-    TagId?: SortOrder
-    MessageTemplateId?: SortOrder
-    IsSlashCommand?: SortOrder
-    SlashCommandId?: SortOrder
-    IsShlashCommand?: SortOrder
-    ShlashCommandId?: SortOrder
-    IsTextInputCommand?: SortOrder
-    IsEnabled?: SortOrder
-    PermissionRoleId?: SortOrder
-    CommandDescription?: SortOrder
-    GuildId?: SortOrder
-  }
-
-  export type TagsMinOrderByAggregateInput = {
-    Id?: SortOrder
-    UUID?: SortOrder
-    TagId?: SortOrder
-    MessageTemplateId?: SortOrder
-    IsSlashCommand?: SortOrder
-    SlashCommandId?: SortOrder
-    IsShlashCommand?: SortOrder
-    ShlashCommandId?: SortOrder
-    IsTextInputCommand?: SortOrder
-    IsEnabled?: SortOrder
-    PermissionRoleId?: SortOrder
-    CommandDescription?: SortOrder
-    GuildId?: SortOrder
-  }
-
-  export type TagsSumOrderByAggregateInput = {
-    Id?: SortOrder
-  }
-
   export type PollAnswersListRelationFilter = {
     every?: PollAnswersWhereInput
     some?: PollAnswersWhereInput
@@ -118576,13 +116909,6 @@ export namespace Prisma {
     connect?: PollsWhereUniqueInput | PollsWhereUniqueInput[]
   }
 
-  export type TagsCreateNestedManyWithoutGuildsInput = {
-    create?: XOR<TagsCreateWithoutGuildsInput, TagsUncheckedCreateWithoutGuildsInput> | TagsCreateWithoutGuildsInput[] | TagsUncheckedCreateWithoutGuildsInput[]
-    connectOrCreate?: TagsCreateOrConnectWithoutGuildsInput | TagsCreateOrConnectWithoutGuildsInput[]
-    createMany?: TagsCreateManyGuildsInputEnvelope
-    connect?: TagsWhereUniqueInput | TagsWhereUniqueInput[]
-  }
-
   export type TempVoicesCreateNestedManyWithoutGuildsInput = {
     create?: XOR<TempVoicesCreateWithoutGuildsInput, TempVoicesUncheckedCreateWithoutGuildsInput> | TempVoicesCreateWithoutGuildsInput[] | TempVoicesUncheckedCreateWithoutGuildsInput[]
     connectOrCreate?: TempVoicesCreateOrConnectWithoutGuildsInput | TempVoicesCreateOrConnectWithoutGuildsInput[]
@@ -118771,13 +117097,6 @@ export namespace Prisma {
     connectOrCreate?: PollsCreateOrConnectWithoutGuildsInput | PollsCreateOrConnectWithoutGuildsInput[]
     createMany?: PollsCreateManyGuildsInputEnvelope
     connect?: PollsWhereUniqueInput | PollsWhereUniqueInput[]
-  }
-
-  export type TagsUncheckedCreateNestedManyWithoutGuildsInput = {
-    create?: XOR<TagsCreateWithoutGuildsInput, TagsUncheckedCreateWithoutGuildsInput> | TagsCreateWithoutGuildsInput[] | TagsUncheckedCreateWithoutGuildsInput[]
-    connectOrCreate?: TagsCreateOrConnectWithoutGuildsInput | TagsCreateOrConnectWithoutGuildsInput[]
-    createMany?: TagsCreateManyGuildsInputEnvelope
-    connect?: TagsWhereUniqueInput | TagsWhereUniqueInput[]
   }
 
   export type TempVoicesUncheckedCreateNestedManyWithoutGuildsInput = {
@@ -119122,20 +117441,6 @@ export namespace Prisma {
     update?: PollsUpdateWithWhereUniqueWithoutGuildsInput | PollsUpdateWithWhereUniqueWithoutGuildsInput[]
     updateMany?: PollsUpdateManyWithWhereWithoutGuildsInput | PollsUpdateManyWithWhereWithoutGuildsInput[]
     deleteMany?: PollsScalarWhereInput | PollsScalarWhereInput[]
-  }
-
-  export type TagsUpdateManyWithoutGuildsNestedInput = {
-    create?: XOR<TagsCreateWithoutGuildsInput, TagsUncheckedCreateWithoutGuildsInput> | TagsCreateWithoutGuildsInput[] | TagsUncheckedCreateWithoutGuildsInput[]
-    connectOrCreate?: TagsCreateOrConnectWithoutGuildsInput | TagsCreateOrConnectWithoutGuildsInput[]
-    upsert?: TagsUpsertWithWhereUniqueWithoutGuildsInput | TagsUpsertWithWhereUniqueWithoutGuildsInput[]
-    createMany?: TagsCreateManyGuildsInputEnvelope
-    set?: TagsWhereUniqueInput | TagsWhereUniqueInput[]
-    disconnect?: TagsWhereUniqueInput | TagsWhereUniqueInput[]
-    delete?: TagsWhereUniqueInput | TagsWhereUniqueInput[]
-    connect?: TagsWhereUniqueInput | TagsWhereUniqueInput[]
-    update?: TagsUpdateWithWhereUniqueWithoutGuildsInput | TagsUpdateWithWhereUniqueWithoutGuildsInput[]
-    updateMany?: TagsUpdateManyWithWhereWithoutGuildsInput | TagsUpdateManyWithWhereWithoutGuildsInput[]
-    deleteMany?: TagsScalarWhereInput | TagsScalarWhereInput[]
   }
 
   export type TempVoicesUpdateManyWithoutGuildsNestedInput = {
@@ -119498,20 +117803,6 @@ export namespace Prisma {
     update?: PollsUpdateWithWhereUniqueWithoutGuildsInput | PollsUpdateWithWhereUniqueWithoutGuildsInput[]
     updateMany?: PollsUpdateManyWithWhereWithoutGuildsInput | PollsUpdateManyWithWhereWithoutGuildsInput[]
     deleteMany?: PollsScalarWhereInput | PollsScalarWhereInput[]
-  }
-
-  export type TagsUncheckedUpdateManyWithoutGuildsNestedInput = {
-    create?: XOR<TagsCreateWithoutGuildsInput, TagsUncheckedCreateWithoutGuildsInput> | TagsCreateWithoutGuildsInput[] | TagsUncheckedCreateWithoutGuildsInput[]
-    connectOrCreate?: TagsCreateOrConnectWithoutGuildsInput | TagsCreateOrConnectWithoutGuildsInput[]
-    upsert?: TagsUpsertWithWhereUniqueWithoutGuildsInput | TagsUpsertWithWhereUniqueWithoutGuildsInput[]
-    createMany?: TagsCreateManyGuildsInputEnvelope
-    set?: TagsWhereUniqueInput | TagsWhereUniqueInput[]
-    disconnect?: TagsWhereUniqueInput | TagsWhereUniqueInput[]
-    delete?: TagsWhereUniqueInput | TagsWhereUniqueInput[]
-    connect?: TagsWhereUniqueInput | TagsWhereUniqueInput[]
-    update?: TagsUpdateWithWhereUniqueWithoutGuildsInput | TagsUpdateWithWhereUniqueWithoutGuildsInput[]
-    updateMany?: TagsUpdateManyWithWhereWithoutGuildsInput | TagsUpdateManyWithWhereWithoutGuildsInput[]
-    deleteMany?: TagsScalarWhereInput | TagsScalarWhereInput[]
   }
 
   export type TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput = {
@@ -122106,38 +120397,6 @@ export namespace Prisma {
     update?: XOR<XOR<GuildsUpdateToOneWithWhereWithoutSpotifyNotificationsInput, GuildsUpdateWithoutSpotifyNotificationsInput>, GuildsUncheckedUpdateWithoutSpotifyNotificationsInput>
   }
 
-  export type TagsCreateTriggerKeywordsInput = {
-    set: string[]
-  }
-
-  export type TagsCreateFilterTextFromMessagesInput = {
-    set: string[]
-  }
-
-  export type GuildsCreateNestedOneWithoutTagsInput = {
-    create?: XOR<GuildsCreateWithoutTagsInput, GuildsUncheckedCreateWithoutTagsInput>
-    connectOrCreate?: GuildsCreateOrConnectWithoutTagsInput
-    connect?: GuildsWhereUniqueInput
-  }
-
-  export type TagsUpdateTriggerKeywordsInput = {
-    set?: string[]
-    push?: string | string[]
-  }
-
-  export type TagsUpdateFilterTextFromMessagesInput = {
-    set?: string[]
-    push?: string | string[]
-  }
-
-  export type GuildsUpdateOneRequiredWithoutTagsNestedInput = {
-    create?: XOR<GuildsCreateWithoutTagsInput, GuildsUncheckedCreateWithoutTagsInput>
-    connectOrCreate?: GuildsCreateOrConnectWithoutTagsInput
-    upsert?: GuildsUpsertWithoutTagsInput
-    connect?: GuildsWhereUniqueInput
-    update?: XOR<XOR<GuildsUpdateToOneWithWhereWithoutTagsInput, GuildsUpdateWithoutTagsInput>, GuildsUncheckedUpdateWithoutTagsInput>
-  }
-
   export type PollsCreateEntrysInput = {
     set: string[]
   }
@@ -124541,49 +122800,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type TagsCreateWithoutGuildsInput = {
-    UUID: string
-    TagId: string
-    TriggerKeywords?: TagsCreateTriggerKeywordsInput | string[]
-    MessageTemplateId?: string | null
-    IsSlashCommand?: boolean
-    SlashCommandId?: string | null
-    IsShlashCommand?: boolean
-    ShlashCommandId?: string | null
-    IsTextInputCommand: boolean
-    IsEnabled: boolean
-    PermissionRoleId?: string | null
-    CommandDescription?: string | null
-    FilterTextFromMessages?: TagsCreateFilterTextFromMessagesInput | string[]
-  }
-
-  export type TagsUncheckedCreateWithoutGuildsInput = {
-    Id?: number
-    UUID: string
-    TagId: string
-    TriggerKeywords?: TagsCreateTriggerKeywordsInput | string[]
-    MessageTemplateId?: string | null
-    IsSlashCommand?: boolean
-    SlashCommandId?: string | null
-    IsShlashCommand?: boolean
-    ShlashCommandId?: string | null
-    IsTextInputCommand: boolean
-    IsEnabled: boolean
-    PermissionRoleId?: string | null
-    CommandDescription?: string | null
-    FilterTextFromMessages?: TagsCreateFilterTextFromMessagesInput | string[]
-  }
-
-  export type TagsCreateOrConnectWithoutGuildsInput = {
-    where: TagsWhereUniqueInput
-    create: XOR<TagsCreateWithoutGuildsInput, TagsUncheckedCreateWithoutGuildsInput>
-  }
-
-  export type TagsCreateManyGuildsInputEnvelope = {
-    data: TagsCreateManyGuildsInput | TagsCreateManyGuildsInput[]
-    skipDuplicates?: boolean
-  }
-
   export type TempVoicesCreateWithoutGuildsInput = {
     UUID: string
     Name?: string | null
@@ -125589,43 +123805,6 @@ export namespace Prisma {
     GuildId?: StringFilter<"Polls"> | string
   }
 
-  export type TagsUpsertWithWhereUniqueWithoutGuildsInput = {
-    where: TagsWhereUniqueInput
-    update: XOR<TagsUpdateWithoutGuildsInput, TagsUncheckedUpdateWithoutGuildsInput>
-    create: XOR<TagsCreateWithoutGuildsInput, TagsUncheckedCreateWithoutGuildsInput>
-  }
-
-  export type TagsUpdateWithWhereUniqueWithoutGuildsInput = {
-    where: TagsWhereUniqueInput
-    data: XOR<TagsUpdateWithoutGuildsInput, TagsUncheckedUpdateWithoutGuildsInput>
-  }
-
-  export type TagsUpdateManyWithWhereWithoutGuildsInput = {
-    where: TagsScalarWhereInput
-    data: XOR<TagsUpdateManyMutationInput, TagsUncheckedUpdateManyWithoutGuildsInput>
-  }
-
-  export type TagsScalarWhereInput = {
-    AND?: TagsScalarWhereInput | TagsScalarWhereInput[]
-    OR?: TagsScalarWhereInput[]
-    NOT?: TagsScalarWhereInput | TagsScalarWhereInput[]
-    Id?: IntFilter<"Tags"> | number
-    UUID?: StringFilter<"Tags"> | string
-    TagId?: StringFilter<"Tags"> | string
-    TriggerKeywords?: StringNullableListFilter<"Tags">
-    MessageTemplateId?: StringNullableFilter<"Tags"> | string | null
-    IsSlashCommand?: BoolFilter<"Tags"> | boolean
-    SlashCommandId?: StringNullableFilter<"Tags"> | string | null
-    IsShlashCommand?: BoolFilter<"Tags"> | boolean
-    ShlashCommandId?: StringNullableFilter<"Tags"> | string | null
-    IsTextInputCommand?: BoolFilter<"Tags"> | boolean
-    IsEnabled?: BoolFilter<"Tags"> | boolean
-    PermissionRoleId?: StringNullableFilter<"Tags"> | string | null
-    CommandDescription?: StringNullableFilter<"Tags"> | string | null
-    FilterTextFromMessages?: StringNullableListFilter<"Tags">
-    GuildId?: StringFilter<"Tags"> | string
-  }
-
   export type TempVoicesUpsertWithWhereUniqueWithoutGuildsInput = {
     where: TempVoicesWhereUniqueInput
     update: XOR<TempVoicesUpdateWithoutGuildsInput, TempVoicesUncheckedUpdateWithoutGuildsInput>
@@ -125771,7 +123950,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -125807,7 +123985,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -125888,7 +124065,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -125924,7 +124100,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
@@ -126009,7 +124184,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -126045,7 +124219,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -126096,7 +124269,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -126132,7 +124304,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
@@ -126167,7 +124338,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -126203,7 +124373,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -126254,7 +124423,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -126290,7 +124458,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
@@ -126325,7 +124492,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -126361,7 +124527,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -126412,7 +124577,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -126448,7 +124612,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
@@ -126483,7 +124646,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -126519,7 +124681,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -126570,7 +124731,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -126606,7 +124766,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
@@ -126641,7 +124800,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -126677,7 +124835,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -126728,7 +124885,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -126764,7 +124920,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
@@ -126799,7 +124954,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -126835,7 +124989,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -126886,7 +125039,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -126922,7 +125074,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
@@ -126957,7 +125108,6 @@ export namespace Prisma {
     LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -126993,7 +125143,6 @@ export namespace Prisma {
     LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -127172,7 +125321,6 @@ export namespace Prisma {
     LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -127208,7 +125356,6 @@ export namespace Prisma {
     LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
@@ -128194,7 +126341,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -128230,7 +126376,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -128429,7 +126574,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -128465,7 +126609,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
@@ -129096,7 +127239,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -129132,7 +127274,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -129209,7 +127350,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -129245,7 +127385,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
@@ -129312,7 +127451,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -129348,7 +127486,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -129606,7 +127743,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -129642,7 +127778,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
@@ -130295,7 +128430,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -130331,7 +128465,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -130409,7 +128542,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -130445,7 +128577,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
@@ -130567,7 +128698,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -130603,7 +128733,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -130654,7 +128783,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -130690,7 +128818,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
@@ -130725,7 +128852,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -130761,7 +128887,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -130812,7 +128937,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -130848,7 +128972,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
@@ -130907,7 +129030,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -130943,7 +129065,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -131021,7 +129142,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -131057,7 +129177,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -131149,7 +129268,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -131185,7 +129303,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -131262,7 +129379,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -131298,7 +129414,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
@@ -131411,7 +129526,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -131447,7 +129561,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -131524,7 +129637,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -131560,7 +129672,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
@@ -131673,7 +129784,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -131709,7 +129819,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -131760,7 +129869,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -131796,7 +129904,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
@@ -131831,7 +129938,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -131867,7 +129973,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -131918,7 +130023,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -131954,7 +130058,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
@@ -131989,7 +130092,6 @@ export namespace Prisma {
     LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -132025,7 +130127,6 @@ export namespace Prisma {
     LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -132076,7 +130177,6 @@ export namespace Prisma {
     LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -132112,7 +130212,6 @@ export namespace Prisma {
     LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
@@ -132147,7 +130246,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -132183,7 +130281,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -132270,7 +130367,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -132306,7 +130402,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
@@ -132521,7 +130616,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -132557,7 +130651,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -132645,7 +130738,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -132681,7 +130773,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
@@ -132908,7 +130999,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -132944,7 +131034,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -132995,7 +131084,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -133023,165 +131111,6 @@ export namespace Prisma {
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
     ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
-    TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
-    GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
-    GuildWelcomeSetup?: GuildWelcomeSetupUncheckedUpdateOneWithoutGuildsNestedInput
-    YoutubeNotifications?: GuildYoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
-    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
-    MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
-    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
-    Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
-    TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
-  }
-
-  export type GuildsCreateWithoutTagsInput = {
-    GuildId: string
-    GuildName: string
-    GuildOwner: string
-    DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
-    Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
-    AutoAutoDeletes?: GuildAutoDeletesCreateNestedManyWithoutGuildsInput
-    AutoPublish?: GuildAutoPublishCreateNestedOneWithoutGuildsInput
-    AutoReacts?: GuildAutoReactsCreateNestedManyWithoutGuildsInput
-    AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
-    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
-    GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
-    GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
-    GuildDisBotAutoModeration?: GuildDisBotAutoModerationCreateNestedOneWithoutGuildsInput
-    GuildFeatureToggle?: GuildFeatureTogglesCreateNestedOneWithoutGuildsInput
-    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
-    GuildLeaveSetup?: GuildLeaveSetupCreateNestedOneWithoutGuildsInput
-    GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
-    GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
-    GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
-    Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
-    SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
-    TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
-    GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
-    GuildWelcomeSetup?: GuildWelcomeSetupCreateNestedOneWithoutGuildsInput
-    YoutubeNotifications?: GuildYoutubeNotificationsCreateNestedManyWithoutGuildsInput
-    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
-    MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
-    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
-    Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
-    TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
-  }
-
-  export type GuildsUncheckedCreateWithoutTagsInput = {
-    Id?: number
-    GuildId: string
-    GuildName: string
-    GuildOwner: string
-    DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
-    Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
-    AutoAutoDeletes?: GuildAutoDeletesUncheckedCreateNestedManyWithoutGuildsInput
-    AutoPublish?: GuildAutoPublishUncheckedCreateNestedOneWithoutGuildsInput
-    AutoReacts?: GuildAutoReactsUncheckedCreateNestedManyWithoutGuildsInput
-    AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
-    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
-    GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
-    GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
-    GuildDisBotAutoModeration?: GuildDisBotAutoModerationUncheckedCreateNestedOneWithoutGuildsInput
-    GuildFeatureToggle?: GuildFeatureTogglesUncheckedCreateNestedOneWithoutGuildsInput
-    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
-    GuildLeaveSetup?: GuildLeaveSetupUncheckedCreateNestedOneWithoutGuildsInput
-    GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
-    GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
-    GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
-    Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
-    SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
-    TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
-    GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
-    GuildWelcomeSetup?: GuildWelcomeSetupUncheckedCreateNestedOneWithoutGuildsInput
-    YoutubeNotifications?: GuildYoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
-    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
-    MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
-    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
-    Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
-    TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
-  }
-
-  export type GuildsCreateOrConnectWithoutTagsInput = {
-    where: GuildsWhereUniqueInput
-    create: XOR<GuildsCreateWithoutTagsInput, GuildsUncheckedCreateWithoutTagsInput>
-  }
-
-  export type GuildsUpsertWithoutTagsInput = {
-    update: XOR<GuildsUpdateWithoutTagsInput, GuildsUncheckedUpdateWithoutTagsInput>
-    create: XOR<GuildsCreateWithoutTagsInput, GuildsUncheckedCreateWithoutTagsInput>
-    where?: GuildsWhereInput
-  }
-
-  export type GuildsUpdateToOneWithWhereWithoutTagsInput = {
-    where?: GuildsWhereInput
-    data: XOR<GuildsUpdateWithoutTagsInput, GuildsUncheckedUpdateWithoutTagsInput>
-  }
-
-  export type GuildsUpdateWithoutTagsInput = {
-    GuildId?: StringFieldUpdateOperationsInput | string
-    GuildName?: StringFieldUpdateOperationsInput | string
-    GuildOwner?: StringFieldUpdateOperationsInput | string
-    DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
-    Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
-    AutoAutoDeletes?: GuildAutoDeletesUpdateManyWithoutGuildsNestedInput
-    AutoPublish?: GuildAutoPublishUpdateOneWithoutGuildsNestedInput
-    AutoReacts?: GuildAutoReactsUpdateManyWithoutGuildsNestedInput
-    AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
-    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
-    GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
-    GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
-    GuildDisBotAutoModeration?: GuildDisBotAutoModerationUpdateOneWithoutGuildsNestedInput
-    GuildFeatureToggle?: GuildFeatureTogglesUpdateOneWithoutGuildsNestedInput
-    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
-    GuildLeaveSetup?: GuildLeaveSetupUpdateOneWithoutGuildsNestedInput
-    GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
-    GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
-    GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
-    Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
-    SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
-    TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
-    GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
-    GuildWelcomeSetup?: GuildWelcomeSetupUpdateOneWithoutGuildsNestedInput
-    YoutubeNotifications?: GuildYoutubeNotificationsUpdateManyWithoutGuildsNestedInput
-    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
-    MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
-    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
-    Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
-    TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
-  }
-
-  export type GuildsUncheckedUpdateWithoutTagsInput = {
-    Id?: IntFieldUpdateOperationsInput | number
-    GuildId?: StringFieldUpdateOperationsInput | string
-    GuildName?: StringFieldUpdateOperationsInput | string
-    GuildOwner?: StringFieldUpdateOperationsInput | string
-    DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
-    Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
-    AutoAutoDeletes?: GuildAutoDeletesUncheckedUpdateManyWithoutGuildsNestedInput
-    AutoPublish?: GuildAutoPublishUncheckedUpdateOneWithoutGuildsNestedInput
-    AutoReacts?: GuildAutoReactsUncheckedUpdateManyWithoutGuildsNestedInput
-    AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
-    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
-    GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
-    GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
-    GuildDisBotAutoModeration?: GuildDisBotAutoModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    GuildFeatureToggle?: GuildFeatureTogglesUncheckedUpdateOneWithoutGuildsNestedInput
-    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
-    GuildLeaveSetup?: GuildLeaveSetupUncheckedUpdateOneWithoutGuildsNestedInput
-    GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
-    GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
-    GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
-    Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
-    SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
     GuildWelcomeSetup?: GuildWelcomeSetupUncheckedUpdateOneWithoutGuildsNestedInput
@@ -133274,7 +131203,6 @@ export namespace Prisma {
     LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -133310,7 +131238,6 @@ export namespace Prisma {
     LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -133416,7 +131343,6 @@ export namespace Prisma {
     LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -133452,7 +131378,6 @@ export namespace Prisma {
     LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
@@ -133799,7 +131724,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
   }
 
@@ -133835,7 +131759,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -134030,7 +131953,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
   }
 
@@ -134066,7 +131988,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -134869,7 +132790,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -134905,7 +132825,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -134956,7 +132875,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -134992,7 +132910,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
@@ -135027,7 +132944,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -135063,7 +132979,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -135114,7 +133029,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -135150,7 +133064,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
@@ -135185,7 +133098,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -135221,7 +133133,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -135272,7 +133183,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -135308,7 +133218,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
@@ -135368,7 +133277,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    Tags?: TagsCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
@@ -135404,7 +133312,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    Tags?: TagsUncheckedCreateNestedManyWithoutGuildsInput
     TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
@@ -135566,7 +133473,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
@@ -135602,7 +133508,6 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    Tags?: TagsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
@@ -137240,23 +135145,6 @@ export namespace Prisma {
     CreatedAt: Date | string
   }
 
-  export type TagsCreateManyGuildsInput = {
-    Id?: number
-    UUID: string
-    TagId: string
-    TriggerKeywords?: TagsCreateTriggerKeywordsInput | string[]
-    MessageTemplateId?: string | null
-    IsSlashCommand?: boolean
-    SlashCommandId?: string | null
-    IsShlashCommand?: boolean
-    ShlashCommandId?: string | null
-    IsTextInputCommand: boolean
-    IsEnabled: boolean
-    PermissionRoleId?: string | null
-    CommandDescription?: string | null
-    FilterTextFromMessages?: TagsCreateFilterTextFromMessagesInput | string[]
-  }
-
   export type TempVoicesCreateManyGuildsInput = {
     Id?: number
     UUID: string
@@ -137768,56 +135656,6 @@ export namespace Prisma {
     Type?: IntFieldUpdateOperationsInput | number
     Requirements?: PollsUpdateRequirementsInput | string[]
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type TagsUpdateWithoutGuildsInput = {
-    UUID?: StringFieldUpdateOperationsInput | string
-    TagId?: StringFieldUpdateOperationsInput | string
-    TriggerKeywords?: TagsUpdateTriggerKeywordsInput | string[]
-    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsSlashCommand?: BoolFieldUpdateOperationsInput | boolean
-    SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsShlashCommand?: BoolFieldUpdateOperationsInput | boolean
-    ShlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsTextInputCommand?: BoolFieldUpdateOperationsInput | boolean
-    IsEnabled?: BoolFieldUpdateOperationsInput | boolean
-    PermissionRoleId?: NullableStringFieldUpdateOperationsInput | string | null
-    CommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    FilterTextFromMessages?: TagsUpdateFilterTextFromMessagesInput | string[]
-  }
-
-  export type TagsUncheckedUpdateWithoutGuildsInput = {
-    Id?: IntFieldUpdateOperationsInput | number
-    UUID?: StringFieldUpdateOperationsInput | string
-    TagId?: StringFieldUpdateOperationsInput | string
-    TriggerKeywords?: TagsUpdateTriggerKeywordsInput | string[]
-    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsSlashCommand?: BoolFieldUpdateOperationsInput | boolean
-    SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsShlashCommand?: BoolFieldUpdateOperationsInput | boolean
-    ShlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsTextInputCommand?: BoolFieldUpdateOperationsInput | boolean
-    IsEnabled?: BoolFieldUpdateOperationsInput | boolean
-    PermissionRoleId?: NullableStringFieldUpdateOperationsInput | string | null
-    CommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    FilterTextFromMessages?: TagsUpdateFilterTextFromMessagesInput | string[]
-  }
-
-  export type TagsUncheckedUpdateManyWithoutGuildsInput = {
-    Id?: IntFieldUpdateOperationsInput | number
-    UUID?: StringFieldUpdateOperationsInput | string
-    TagId?: StringFieldUpdateOperationsInput | string
-    TriggerKeywords?: TagsUpdateTriggerKeywordsInput | string[]
-    MessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsSlashCommand?: BoolFieldUpdateOperationsInput | boolean
-    SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsShlashCommand?: BoolFieldUpdateOperationsInput | boolean
-    ShlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsTextInputCommand?: BoolFieldUpdateOperationsInput | boolean
-    IsEnabled?: BoolFieldUpdateOperationsInput | boolean
-    PermissionRoleId?: NullableStringFieldUpdateOperationsInput | string | null
-    CommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    FilterTextFromMessages?: TagsUpdateFilterTextFromMessagesInput | string[]
   }
 
   export type TempVoicesUpdateWithoutGuildsInput = {

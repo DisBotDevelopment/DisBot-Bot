@@ -683,24 +683,6 @@ exports.Prisma.GuildSpotifyNotificationsScalarFieldEnum = {
   GuildId: 'GuildId'
 };
 
-exports.Prisma.TagsScalarFieldEnum = {
-  Id: 'Id',
-  UUID: 'UUID',
-  TagId: 'TagId',
-  TriggerKeywords: 'TriggerKeywords',
-  MessageTemplateId: 'MessageTemplateId',
-  IsSlashCommand: 'IsSlashCommand',
-  SlashCommandId: 'SlashCommandId',
-  IsShlashCommand: 'IsShlashCommand',
-  ShlashCommandId: 'ShlashCommandId',
-  IsTextInputCommand: 'IsTextInputCommand',
-  IsEnabled: 'IsEnabled',
-  PermissionRoleId: 'PermissionRoleId',
-  CommandDescription: 'CommandDescription',
-  FilterTextFromMessages: 'FilterTextFromMessages',
-  GuildId: 'GuildId'
-};
-
 exports.Prisma.PollsScalarFieldEnum = {
   Id: 'Id',
   UUID: 'UUID',
@@ -1114,7 +1096,6 @@ exports.Prisma.ModelName = {
   VerificationGates: 'VerificationGates',
   VerificationGatesPermission: 'VerificationGatesPermission',
   GuildSpotifyNotifications: 'GuildSpotifyNotifications',
-  Tags: 'Tags',
   Polls: 'Polls',
   PollOptions: 'PollOptions',
   PollAnswers: 'PollAnswers',

@@ -41,7 +41,6 @@ model Guilds {
   MessageTemplates            MessageTemplates[]
   ModerationScout             ModerationScout?
   Polls                       Polls[]
-  Tags                        Tags[]
   TempVoices                  TempVoices[]
   TicketSetups                TicketSetups[]
 }
@@ -685,25 +684,6 @@ model GuildSpotifyNotifications {
   PingRoles         String[]
   GuildId           String
   Guilds            Guilds   @relation(fields: [GuildId], references: [GuildId])
-}
-
-model Tags {
-  Id                     Int      @id @default(autoincrement())
-  UUID                   String   @unique
-  TagId                  String   @unique
-  TriggerKeywords        String[]
-  MessageTemplateId      String?
-  IsSlashCommand         Boolean  @default(false)
-  SlashCommandId         String?
-  IsShlashCommand        Boolean  @default(false) // UNUSED
-  ShlashCommandId        String? // UNUSED
-  IsTextInputCommand     Boolean
-  IsEnabled              Boolean
-  PermissionRoleId       String?
-  CommandDescription     String?
-  FilterTextFromMessages String[]
-  GuildId                String
-  Guilds                 Guilds   @relation(fields: [GuildId], references: [GuildId])
 }
 
 model Polls {
