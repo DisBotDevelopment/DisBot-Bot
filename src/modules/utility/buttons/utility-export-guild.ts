@@ -54,7 +54,6 @@ export default {
                 GuildWelcomeSetup: true,
                 Polls: true,
                 MessageTemplates: true,
-                Tags: true,
                 ModerationScout: {
                     include: {
                         UserAppeals: true,

@@ -210,39 +210,6 @@ export class CommandHelper {
                     }
                 }
             }
-
-            const tagsData = await database.tags.findMany({
-                where: {
-                    GuildId: guild.id
-                }
-            })
-            
-            for (const tag of tagsData) {
-                const clientGuild = await client.guilds.fetch(guild.id);
-
-                let guildCommand = null;
-                try {
-                    guildCommand = await clientGuild.commands.fetch(tag.SlashCommandId);
-                } catch {
-                }
-                
-                if (!guildCommand) {
-                    guildCommand = await clientGuild.commands.create({
-                        name: tag.TagId,
-                        description: tag.CommandDescription ?? "",
-                    });
-
-                    await database.tags.update({
-                        where: {
-                            UUID: tag.UUID,
-                        },
-                        data: {
-                            IsSlashCommand: true,
-                            SlashCommandId: guildCommand.id,
-                        },
-                    });
-                }
-            }
         } catch (e) {
             Logger.error({
                 timestamp: new Date().toISOString(),
