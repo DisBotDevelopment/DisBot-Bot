@@ -31,6 +31,7 @@ import {createTranscript, ExportReturnType} from "discord-html-transcripts";
 import ticket from "../modules/ticket/commands/ticket.js";
 import {replacePlaceholders} from "../main/placeholder.js";
 import {Logger} from "../main/logger.js";
+import {MessageBuilder} from "./messageHelper.js";
 
 export async function ticketHelper(
     ticketSetupId: string,
@@ -435,18 +436,11 @@ export async function ticketHelper(
             }
         }
 
-        if (messageData.EmbedJSON) {
-            await channel.send({
-                content: messageData.Content ? replacePlaceholders(messageData.Content ?? "", ticketPlaceholderType) : null,
-                embeds: [
-                    new EmbedBuilder(JSON.parse(replacePlaceholders(messageData.EmbedJSON, ticketPlaceholderType)))
-                ]
-            })
-        } else {
-            await channel.send({
-                content: replacePlaceholders(messageData.Content ?? "", ticketPlaceholderType) ?? null,
-            })
-        }
+        const ticketMessage = await MessageBuilder(
+            messageData,
+            ticketPlaceholderType
+        )
+        await channel.send(ticketMessage.messageData)
 
         let autoHandler: string
 

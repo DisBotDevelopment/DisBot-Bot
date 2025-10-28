@@ -31,10 +31,46 @@ export default {
             flags: MessageFlags.Ephemeral,
         })
 
+        const imageData = await database.welcomeImageData.findFirst({
+            where: {
+                GuildWelcomeSetupId: interaction.guild.id
+            }
+        })
+
+
+        if (!imageData) {
+            await database.welcomeImageData.create(
+                {
+                    data: {
+                        Title: interaction.fields.getTextInputValue(
+                            "welcome-image-create-title"
+                        ),
+                        Subtitle: interaction.fields.getTextInputValue(
+                            "welcome-image-create-subtitle"
+                        ),
+                        Text: interaction.fields.getTextInputValue(
+                            "welcome-image-create-text"
+                        ),
+                        Color: interaction.fields.getTextInputValue(
+                            "welcome-image-create-color"
+                        ),
+                        Gradient: "",
+                        Theme: "",
+                        Background: "",
+                        GuildWelcomeSetup: {
+                            connect: {
+                                GuildId: interaction.guild.id
+                            }
+                        }
+                    }
+                }
+            );
+        }
+
         await database.welcomeImageData.update(
             {
                 where: {
-                    GuildWelcomeSetupId: interaction.guild?.id
+                    GuildWelcomeSetupId: data.GuildId
                 },
                 data: {
                     Title: interaction.fields.getTextInputValue(
@@ -51,10 +87,12 @@ export default {
                     ),
                     Gradient: "",
                     Theme: "",
-                    Background: ""
+                    Background: "",
                 }
             }
         );
+
+
         await database.guildWelcomeSetup.update(
             {
                 where: {

@@ -41,6 +41,44 @@ export default {
                 }
             }
         );
+
+        const imageData = await database.leaveImageData.findFirst({
+            where: {
+                GuildLeaveSetupId: interaction.guild.id
+            }
+        })
+
+
+        if (!imageData) {
+            await database.leaveImageData.create(
+                {
+                    data: {
+                        Title: interaction.fields.getTextInputValue(
+                            "welcome-image-create-title"
+                        ),
+                        Subtitle: interaction.fields.getTextInputValue(
+                            "welcome-image-create-subtitle"
+                        ),
+                        Text: interaction.fields.getTextInputValue(
+                            "welcome-image-create-text"
+                        ),
+                        Color: interaction.fields.getTextInputValue(
+                            "welcome-image-create-color"
+                        ),
+                        Gradient: "",
+                        Theme: "",
+                        Background: "",
+                        GuildLeaveSetup: {
+                            connect: {
+                                GuildId: interaction.guild.id
+                            }
+                        }
+                    }
+                }
+            );
+        }
+
+
         await database.leaveImageData.update(
             {
                 where: {

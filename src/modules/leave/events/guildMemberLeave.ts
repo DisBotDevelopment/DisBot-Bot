@@ -10,7 +10,9 @@ import {
 import {ExtendedClient} from "../../../types/client.js";
 import {drawCard, LinearGradient} from "discord-welcome-card";
 import {database} from "../../../main/database.js";
-import {drawCardCanvas} from "../../../helper/utilityHelper.js";
+import {drawCardCanvas, uploadToCDN} from "../../../helper/utilityHelper.js";
+import {replacePlaceholders} from "../../../main/placeholder.js";
+import {MessageBuilder} from "../../../helper/messageHelper.js";
 
 export default {
     name: Events.GuildMemberRemove,
@@ -35,7 +37,7 @@ export default {
         });
         if (!data?.ChannelId) return;
 
-        const messageTemplate = data.MessageTemplateId
+        const messageData = data.MessageTemplateId
             ? await database.messageTemplates.findFirst({
                 where: {Name: data.MessageTemplateId}
             })
@@ -45,62 +47,63 @@ export default {
         if (!channel) return;
 
         const replacements = {
-            "{member.tag}": `<@${member.id}>`,
-            "{member.name}": member.user.tag,
-            "{member.globalname}": member.user.globalName ?? "",
-            "{member.displayname}": member.displayName,
-            "{member.id}": member.id,
-            "{guild.name}": guild.name,
-            "{guild.id}": guild.id,
-            "{guild.membercount}": guild.memberCount.toString(),
-            "{guild.owner.tag}": `<@${guild.ownerId}>`,
-            "{guild.owner.id}": guild.ownerId,
-            "https://i.imgur.com/kjEQRRI.png": member.user.displayAvatarURL(),
-            "9250-08-04 00:00": new Date().toLocaleString(),
+            member: {
+                tag: `<@${member.id}>`,
+                name: member.user.globalName,
+                globalName: member.user.globalName,
+                displayName: member.user.displayName,
+                id: member.id,
+                avatar: member.user.displayAvatarURL(),
+            },
+            guild: {
+                name: guild.name,
+                id: guild.id,
+                memberCount: guild.memberCount,
+                owner: {
+                    tag: `<@${guild.ownerId}>`,
+                    id: guild.ownerId
+                }
+            },
+            current: {
+                date: new Date().toLocaleString()
+            },
         };
 
-        const replaceVars = (str?: string) =>
-            str
-                ? Object.entries(replacements).reduce(
-                    (acc, [key, val]) => acc.replaceAll(key, val),
-                    str
-                )
-                : undefined;
-
-        const content = replaceVars(messageTemplate?.Content);
-        const embedJson = messageTemplate?.EmbedJSON
-            ? JSON.parse(replaceVars(messageTemplate.EmbedJSON))
-            : null;
-
-        let imageBuffer = null;
-        if (data.Image) {
-            imageBuffer = await drawCardCanvas({
-                theme: (data.ImageData?.Theme as "dark" | "circuit" | "code") ?? "dark",
-                text: {
-                    title: replaceVars(data.ImageData?.Title) ?? "Goodbye!",
-                    subtitle:
-                        replaceVars(data.ImageData?.Subtitle) ??
-                        `Member Count: ${guild.memberCount}`,
-                    text: replaceVars(data.ImageData?.Text) ?? member.user.tag,
-                    color: data.ImageData?.Color ?? "#88f"
-                },
-                avatar: {
-                    image: member.displayAvatarURL({extension: "png"}),
-                    outlineWidth: 5,
-                    outlineColor: data.ImageData?.Gradient?.split(",")[0] ?? "#fff"
-                },
-                card: {
-                    background: data.ImageData?.Background ?? "https://cdn.xyzhub.link/u/czdZgx.png",
-                    blur: 1,
-                    border: true,
-                    rounded: true
-                }
-            });
-        }
-        await channel.send({
-            content: content ? content : "ㅤ",
-            embeds: embedJson ? [new EmbedBuilder(embedJson)] : [],
-            files: imageBuffer ? [new AttachmentBuilder(imageBuffer)] : []
+        const imageBuffer = await drawCardCanvas({
+            theme: (data.ImageData?.Theme as "dark" | "circuit" | "code") ?? "dark",
+            text: {
+                title: replacePlaceholders(data.ImageData?.Title, replacements) ?? "Welcome!",
+                subtitle:
+                    replacePlaceholders(data.ImageData?.Subtitle, replacements) ??
+                    `Member Count: ${guild.memberCount}`,
+                text: replacePlaceholders(data.ImageData?.Text, replacements) ?? member.user.tag,
+                color: data.ImageData?.Color ?? "#88f"
+            },
+            avatar: {
+                image: member.displayAvatarURL({extension: "png"}),
+                outlineWidth: 5,
+                outlineColor: data.ImageData?.Gradient?.split(",")[0] ?? "#fff"
+            },
+            card: {
+                background: data.ImageData?.Background ?? "https://cdn.xyzhub.link/u/czdZgx.png",
+                blur: 1,
+                border: true,
+                rounded: true
+            }
         });
+        const cdnUrl = await uploadToCDN(imageBuffer)
+
+        const withImagePlaceholder = {
+            ...replacements,
+            leave: {
+                image: cdnUrl,
+            },
+        }
+
+        const message = await MessageBuilder(
+            messageData,
+            withImagePlaceholder
+        )
+        await channel.send(message.messageData)
     }
 };

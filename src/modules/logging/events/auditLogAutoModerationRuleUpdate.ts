@@ -57,7 +57,6 @@ export default {
             ? newAutoModerationRule.toJSON()
             : newAutoModerationRule || {};
 
-        // Finde alle Änderungen
         const changes = [];
 
         for (const key of Object.keys({...oldRuleData, ...newRuleData})) {
@@ -78,8 +77,7 @@ export default {
         }
 
         const changesText = changes.length > 0 ? changes.join("\n\n") : "No changes.";
-
-        // Erstelle Embed-Text (als String) für loggingHelper
+        
         const message = [
             `### Auto Moderation Rule Updated`,
             `> **Rule Name:** \`${newAutoModerationRule.name}\``,
@@ -87,8 +85,7 @@ export default {
             `> **Executed By:** ${executor ? `${executor.tag} (\`${executor.id}\`)` : "Unknown"}`,
             `> **Changes:**\n${changesText}`
         ].join("\n");
-
-        // Sende an loggingHelper (der sendet Webhook + JSON als Datei)
+        
         await loggingHelper(client,
             message,
             webhook,

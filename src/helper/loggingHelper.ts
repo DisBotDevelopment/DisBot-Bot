@@ -74,7 +74,7 @@ export async function loggingHelper(
             ],
             flags: MessageFlags.IsComponentsV2
         })
-    
+
     try {
         const webhookData = await client.fetchWebhook(webhookMessage.webhook_id)
         await database.guildLogs.create({

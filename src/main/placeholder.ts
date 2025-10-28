@@ -1,20 +1,24 @@
 import {handleCloseAction} from "../helper/ticketHelper.js";
 
 export const URL_PLACEHOLDER = {
-    "{stream.url}": "https://twitch.tv/streamurl",
-    "{link}": "https://youtube.com/@yourname",
+    // Done
+    "{twitch.url}": "https://twitch.tv/streamurl",
+    "{youtube.link}": "https://youtube.com/@yourname",
     "{spotify.episode.url}": "https://open.spotify.com/episode/episodeid",
     "{spotify.show.url}": "https://open.spotify.com/show/showid"
 }
 
 export const IMAGE_PLACEHOLDER = {
+    // Done
+    "{twitch.vod}": "https://twitch.tv/vod.png",
+    "{youtube.thumbnail}": "https://youtube.com/thumbnail.png",
     "{member.avatar}": "https://i.imgur.com/kjEQRRI.png",
     "{spotify.episode.image}": "https://cdn.xyzhub.link/u/nM7pNI.png",
     "{spotify.author.image}": "https://cdn.xyzhub.link/u/HsqWSk.png",
-    "{inviter.avatar}": "https://i.imgur.com/kjEQRRI.png",
     "{polls.image}": "https://i.imgur.com/FHBicGA.png",
-    "{stream.vod}": "https://twitch.tv/vod.png",
-    "{thumbnail}": "https://youtube.com/thumbnail.png"
+    "{welcome.image}": "https://cdn.xyzhub.link/u/e3IChB.png",
+    // ----
+    "{inviter.avatar}": "https://i.imgur.com/kjEQRRI.png",
 };
 
 export const TIMESTAMP_PLACEHOLDER = {
@@ -38,12 +42,13 @@ export function replacePlaceholders(template: string, data: Record<string, any>)
             fullPlaceholder = fullPlaceholder.replaceAll(value, key);
         }
     }
+
     const newTemplate = fullPlaceholder
     return newTemplate.replace(/{([\w.]+)}/g, (match, path) => {
         const keys = path.split('.');
         let value: any = data;
         for (const key of keys) {
-            if (value && typeof value === 'object' && key in value) {
+            if (value && typeof value == 'object' && key in value) {
                 value = value[key];
             } else {
                 value = "N/A";

@@ -36,7 +36,12 @@ export default {
                                 .setLabel("Use Selectmenu for Component")
                                 .setEmoji("<:emoji:1327304700701315132>")
                                 .setStyle(ButtonStyle.Secondary)
-                                .setCustomId("ticket-add-component-use-select:" + uuid)
+                                .setCustomId("ticket-add-component-use-select:" + uuid),
+                            new ButtonBuilder()
+                                .setLabel("Components V2")
+                                .setEmoji("<:puzzle:1381000302601441440>")
+                                .setStyle(ButtonStyle.Secondary)
+                                .setCustomId("ticket-add-component-use-components:" + uuid)
                         )
                     )
 
