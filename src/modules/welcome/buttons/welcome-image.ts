@@ -1,33 +1,25 @@
 import {
     ActionRowBuilder,
+    ButtonInteraction,
     ButtonStyle,
-    ChatInputCommandInteraction,
     MessageFlags,
     ModalBuilder,
-    PermissionFlagsBits,
-    TextInputBuilder,
-    TextInputStyle
+    TextInputBuilder, TextInputStyle
 } from "discord.js";
-import {ExtendedClient} from "../../../../types/client.js";
-import {PermissionType} from "../../../../enums/permissionType.js";
+import {ExtendedClient} from "../../../types/client.js";
+import {database} from "../../../main/database.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
-    subCommand: "welcome.image",
-    options: {
-        once: false,
-        permission: PermissionType.LeaveWelcome,
-        cooldown: 3000,
-        botPermissions: [PermissionFlagsBits.SendMessages, PermissionFlagsBits.ViewChannel],
-        userPermissions: [PermissionFlagsBits.ManageMessages],
-        userHasOnePermission: true,
-        isGuildOwner: false,
-    },
+    id: "welcome-image",
+
     /**
      *
-     * @param {ChatInputCommandInteraction} interaction
+     * @param {ButtonInteraction} interaction
      * @param {ExtendedClient} client
      */
-    async execute(interaction: ChatInputCommandInteraction, client: ExtendedClient) {
+    async execute(interaction: ButtonInteraction, client: ExtendedClient) {
 
         const modal = new ModalBuilder();
         const channel = new TextInputBuilder();
@@ -36,7 +28,7 @@ export default {
         const text = new TextInputBuilder();
         const color = new TextInputBuilder();
 
-        modal.setTitle("Create a Message").setCustomId("welcome-image-create");
+        modal.setTitle("Welcome Image").setCustomId("welcome-image-create");
 
         title
             .setLabel("Title")
@@ -75,5 +67,6 @@ export default {
         );
 
         await interaction.showModal(modal);
-    },
+
+    }
 };

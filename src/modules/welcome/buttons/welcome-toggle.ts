@@ -1,41 +1,34 @@
-import {ChatInputCommandInteraction, MessageFlags, PermissionFlagsBits} from "discord.js";
-import {ExtendedClient} from "../../../../types/client.js";
-import {convertToEmojiToPng} from "../../../../helper/emojis.js";
-import {PermissionType} from "../../../../enums/permissionType.js";
-import {database} from "../../../../main/database.js";
+import {
+    ActionRowBuilder,
+    ButtonInteraction,
+    ButtonStyle,
+    MessageFlags,
+    ModalBuilder,
+    TextInputBuilder
+} from "discord.js";
+import {ExtendedClient} from "../../../types/client.js";
+import {database} from "../../../main/database.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
-    subCommand: "welcome.toggle",
-    options: {
-        once: false,
-        permission: PermissionType.LeaveWelcome,
-        cooldown: 3000,
-        botPermissions: [PermissionFlagsBits.SendMessages, PermissionFlagsBits.ViewChannel],
-        userPermissions: [PermissionFlagsBits.ManageMessages],
-        userHasOnePermission: true,
-        isGuildOwner: false,
-    },
+    id: "welcome-toggle",
+
     /**
      *
-     * @param {ChatInputCommandInteraction} interaction
+     * @param {ButtonInteraction} interaction
      * @param {ExtendedClient} client
      */
-    async execute(
-        interaction: ChatInputCommandInteraction,
-        client: ExtendedClient
-    ) {
-        await interaction.deferReply({
-            flags: MessageFlags.Ephemeral
-        });
-        const getState = interaction.options.getString("toggle");
+    async execute(interaction: ButtonInteraction, client: ExtendedClient) {
+        
         const data = await database.guildFeatureToggles.findFirst({
             where: {
                 GuildId: interaction.guild.id
             }
         });
 
-        switch (getState) {
-            case "on": {
+        switch (data.WecomeEnabled) {
+            case false: {
                 if (!data) {
                     await database.guildFeatureToggles.create({
                         data: {
@@ -52,14 +45,10 @@ export default {
                     }
                 );
                 if (!client.user) throw new Error("Client user not found");
-                interaction.editReply({
-                    content: `## ${await convertToEmojiToPng(
-                        "toggleon"
-                    )} Welcome is now enabled`
-                });
+                await sendDefaultMessage(`## ${await convertToEmojiToPng("toggleon")} Welcome is now enabled`, interaction, true)
             }
                 break;
-            case "off": {
+            case true: {
                 if (!data) {
                     await database.guildFeatureToggles.create({
                         data: {
@@ -76,14 +65,11 @@ export default {
                     }
                 );
                 if (!client.user) throw new Error("Client user not found");
-                interaction.editReply({
-                    content: `## ${await convertToEmojiToPng(
-                        "toggleoff"
-                    )} Welcome is now disabled`
-                });
+                await sendDefaultMessage(`## ${await convertToEmojiToPng("toggleoff")} Welcome is now disabled`, interaction, true)
             }
 
                 break;
         }
+
     }
 };

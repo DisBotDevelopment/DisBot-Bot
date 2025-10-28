@@ -1,4 +1,15 @@
-import {ChannelType, PermissionsBitField, SlashCommandBuilder} from "discord.js";
+import {
+    ActionRowBuilder,
+    ButtonBuilder, ButtonStyle,
+    ChannelType,
+    ChatInputCommandInteraction,
+    CommandInteraction, ContainerBuilder, MessageFlags,
+    PermissionsBitField,
+    SlashCommandBuilder, TextDisplayBuilder
+} from "discord.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
+import {DatabaseSync} from "node:sqlite";
+import {database} from "../../../main/database.js";
 
 export default {
     help: {
@@ -11,82 +22,64 @@ export default {
     },
     data: new SlashCommandBuilder()
         .setName("welcome")
-        .setDescription("Welcome Steup")
-        .setDescriptionLocalizations({de: "Willkommen System Setup"})
+        .setDescription("Welcome Module")
+        .setDescriptionLocalizations({de: "Willkommen Module"})
         .setDMPermission(false)
-        .setDefaultMemberPermissions(PermissionsBitField.Flags.ManageGuild)
+        .setDefaultMemberPermissions(PermissionsBitField.Flags.ManageGuild),
+    async execute(interaction: ChatInputCommandInteraction) {
 
-        .addSubcommand((subCommand) =>
-            subCommand
-                .setName("message")
-                .setDescription("Use a Message for the Welcome System")
-                .setDescriptionLocalizations({
-                    de: "Nutze eine Nachricht für das Willkommens System"
-                })
-        )
-        .addSubcommand((subCommand) =>
-            subCommand
-                .setName("channel")
-                .setDescription("Set your Welcome Channel")
-                .setDescriptionLocalizations({
-                    de: "Setze den Willkommen Kanal"
-                })
+        const toggle = await database.guildFeatureToggles.findFirst({
+            where: {
+                GuildId: interaction.guild.id
+            }
+        })
 
-                .addChannelOption((options) =>
-                    options
-                        .setName("channel")
-                        .setDescription("Set the Welcome Channel")
-                        .setDescriptionLocalizations({
-                            de: "Setze den Willkommens Channel"
-                        })
-                        .addChannelTypes(
-                            ChannelType.GuildText,
-                            ChannelType.GuildAnnouncement
+        await interaction.reply({
+            flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
+            components: [
+                new ContainerBuilder()
+                    .addTextDisplayComponents(
+                        new TextDisplayBuilder()
+                            .setContent(
+                                [
+                                    `## ${await convertToEmojiToPng("hand")} Welcome`,
+                                    ``,
+                                    `- **Toggled**: ${toggle.WecomeEnabled ? `${await convertToEmojiToPng("toggleon")} (On)` : `${await convertToEmojiToPng("toggleoff")} (Off)`}`,
+                                    ``,
+                                    `- Use a Components V2 Message or an Embed.`,
+                                    `- Generate a Custom Image with your Style for the Message`,
+                                    `- Toggle the Welcome Module everytime on or off.`,
+                                    ``
+                                ].join("\n")
+                            )
+                    )
+                    .addActionRowComponents(
+                        new ActionRowBuilder<ButtonBuilder>().addComponents(
+                            new ButtonBuilder()
+                                .setCustomId("welcome-channel")
+                                .setLabel("Set a Welcome Channel")
+                                .setEmoji("<:addchannel:1324458759589728387>")
+                                .setStyle(ButtonStyle.Secondary),
+                            new ButtonBuilder()
+                                .setCustomId("welcome-message")
+                                .setLabel("Set a Message Template")
+                                .setEmoji("<:message:1322252985702551767>")
+                                .setStyle(ButtonStyle.Secondary),
+                            new ButtonBuilder()
+                                .setCustomId("welcome-image")
+                                .setLabel("Create an Welcome Image")
+                                .setEmoji("<:imageadd:1260148502449754112>")
+                                .setStyle(ButtonStyle.Secondary),
+                            new ButtonBuilder()
+                                .setCustomId("welcome-toggle")
+                                .setLabel((toggle.WecomeEnabled ? "Disable" : "Enable") + " Module")
+                                .setEmoji(toggle.WecomeEnabled ? "<:toggleoff:1301864526848987196>" : "<:toggleon:1301864515838672908>")
+                                .setStyle(ButtonStyle.Secondary)
                         )
-                        .setRequired(true)
-                )
-        )
-        .addSubcommand((subCommand) =>
-            subCommand
-                .setName("image")
-                .setDescription("Create a Image to your welcome message")
-                .setDescriptionLocalizations({
-                    de: "Erstelle ein Image zu deiner Willkommens nachricht"
-                })
-        )
-        .addSubcommand((subCommand) =>
-            subCommand
-                .setName("remove")
-                .setDescription("Remove the Messages from the DB.")
-        )
+                    )
+            ]
+        })
 
-        .addSubcommand((subCommand) =>
-            subCommand
-                .setName("toggle")
-                .setDescription("Toggle Welcome System on/off")
-                .setDescriptionLocalizations({
-                    de: "Schalte Willkommen System aus/an"
-                })
-                .addStringOption((option) =>
-                    option
-                        .setName("toggle")
-                        .setDescription("Toggle Welcome System on/off")
-                        .setDescriptionLocalizations({
-                            de: "Schalte Willkommen System aus/an"
-                        })
-                        .setRequired(true)
-                        .addChoices(
-                            {
-                                name: "✅ Activate the System",
-                                value: "on",
-                                name_localizations: {de: "✅ Aktiviere das System"}
-                            },
-                            {
-                                name: "❌ Deactivate the System",
-                                value: "off",
-                                name_localizations: {de: "❌ Deaktiviere das System"}
-                            }
-                        )
-                )
-        )
+    }
+
 };

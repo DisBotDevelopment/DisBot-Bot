@@ -1,7 +1,7 @@
 import {
     ActionRowBuilder,
     ButtonBuilder,
-    ButtonStyle,
+    ButtonStyle, ContainerBuilder,
     EmbedBuilder, MessageFlags,
     ModalSubmitInteraction,
     TextInputStyle
@@ -54,16 +54,16 @@ export default {
                 {
                     data: {
                         Title: interaction.fields.getTextInputValue(
-                            "welcome-image-create-title"
+                            "leave-image-create-title"
                         ),
                         Subtitle: interaction.fields.getTextInputValue(
-                            "welcome-image-create-subtitle"
+                            "leave-image-create-subtitle"
                         ),
                         Text: interaction.fields.getTextInputValue(
-                            "welcome-image-create-text"
+                            "leave-image-create-text"
                         ),
                         Color: interaction.fields.getTextInputValue(
-                            "welcome-image-create-color"
+                            "leave-image-create-color"
                         ),
                         Gradient: "",
                         Theme: "",
@@ -105,14 +105,17 @@ export default {
         const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
             new ButtonBuilder()
                 .setCustomId("leave-image-create-button-setup")
-                .setLabel("Image Card Setup")
+                .setCustomId("leave-image-create-button-setup")
+                .setLabel("Create Image Card")
                 .setStyle(ButtonStyle.Secondary)
         );
 
         await interaction.reply({
-            components: [row],
-            content: `## ${await convertToEmojiToPng("image")} Please setup the background and other image related options.`,
-            flags: MessageFlags.Ephemeral
+            components: [
+                new ContainerBuilder()
+                    .addActionRowComponents(row)
+            ],
+            flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
         });
     }
 };

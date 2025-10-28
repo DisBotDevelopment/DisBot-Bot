@@ -1,4 +1,13 @@
-import {ChannelType, InteractionContextType, PermissionsBitField, SlashCommandBuilder} from "discord.js";
+import {
+    ActionRowBuilder, ButtonBuilder, ButtonStyle,
+    ChannelType, ChatInputCommandInteraction,
+    CommandInteraction, ContainerBuilder,
+    InteractionContextType, MessageFlags,
+    PermissionsBitField,
+    SlashCommandBuilder, TextDisplayBuilder
+} from "discord.js";
+import {database} from "../../../main/database.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
     help: {
@@ -11,86 +20,64 @@ export default {
     },
     data: new SlashCommandBuilder()
         .setName("leave")
-        .setDescription("Leave Steup")
-        .setDescriptionLocalizations({de: "Leave System Setup"})
+        .setDescription("Leave Module")
+        .setDescriptionLocalizations({de: "Leave Module"})
         .setContexts(InteractionContextType.Guild)
-        .setDefaultMemberPermissions(PermissionsBitField.Flags.ManageGuild)
+        .setDefaultMemberPermissions(PermissionsBitField.Flags.ManageGuild),
 
-        .addSubcommand((subCommand) =>
-            subCommand
-                .setName("message")
-                .setDescription("Use a Message for the Leave System")
-                .setDescriptionLocalizations({
-                    de: "Nutze eine Nachricht für das Leave System"
-                })
-        )
-        .addSubcommand((subCommand) =>
-            subCommand
-                .setName("channel")
-                .setDescription("Set your Leave Channel")
-                .setDescriptionLocalizations({
-                    de: "Setze den \"Verlassen\" Kanal"
-                })
+    async execute(interaction: ChatInputCommandInteraction) {
 
-                .addChannelOption((options) =>
-                    options
-                        .setName("channel")
-                        .setDescription("Set the Leave Channel")
-                        .setDescriptionLocalizations({
-                            de: "Setze den \"Verlassen\" Channel"
-                        })
-                        .addChannelTypes(
-                            ChannelType.GuildText,
-                            ChannelType.GuildAnnouncement
+        const toggle = await database.guildFeatureToggles.findFirst({
+            where: {
+                GuildId: interaction.guild.id
+            }
+        })
+
+        await interaction.reply({
+            flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
+            components: [
+                new ContainerBuilder()
+                    .addTextDisplayComponents(
+                        new TextDisplayBuilder()
+                            .setContent(
+                                [
+                                    `## ${await convertToEmojiToPng("eyeclosed")} Leave`,
+                                    ``,
+                                    `- **Toggled**: ${toggle.LeaveEnabled ? `${await convertToEmojiToPng("toggleon")} (On)` : `${await convertToEmojiToPng("toggleoff")} (Off)`}`,
+                                    ``,
+                                    `- Use a Components V2 Message or an Embed.`,
+                                    `- Generate a Custom Image with your Style for the Message`,
+                                    `- Toggle the Leave Module everytime on or off.`,
+                                    ``
+                                ].join("\n")
+                            )
+                    )
+                    .addActionRowComponents(
+                        new ActionRowBuilder<ButtonBuilder>().addComponents(
+                            new ButtonBuilder()
+                                .setCustomId("leave-channel")
+                                .setLabel("Set a leave Channel")
+                                .setEmoji("<:addchannel:1324458759589728387>")
+                                .setStyle(ButtonStyle.Secondary),
+                            new ButtonBuilder()
+                                .setCustomId("leave-message")
+                                .setLabel("Set a Message Template")
+                                .setEmoji("<:message:1322252985702551767>")
+                                .setStyle(ButtonStyle.Secondary),
+                            new ButtonBuilder()
+                                .setCustomId("leave-image")
+                                .setLabel("Create an Leave Image")
+                                .setEmoji("<:imageadd:1260148502449754112>")
+                                .setStyle(ButtonStyle.Secondary),
+                            new ButtonBuilder()
+                                .setCustomId("leave-toggle")
+                                .setLabel((toggle.LeaveEnabled ? "Disable" : "Enable") + " Module")
+                                .setEmoji(toggle.LeaveEnabled ? "<:toggleoff:1301864526848987196>" : "<:toggleon:1301864515838672908>")
+                                .setStyle(ButtonStyle.Secondary)
                         )
-                        .setRequired(true)
-                )
-        )
-        .addSubcommand((subCommand) =>
-            subCommand
-                .setName("image")
-                .setDescription("Create a Image to your welcome message")
-                .setDescriptionLocalizations({
-                    de: "Erstelle ein Image zu deiner Willkommens nachricht"
-                })
-        )
+                    )
+            ]
+        })
 
-        .addSubcommand((subCommand) =>
-            subCommand
-                .setName("remove")
-                .setDescription("Remove the Messages from the Database.")
-                .setDescriptionLocalizations({
-                    de: "Entferne die Nachrichten aus der Datenbank."
-                })
-        )
-
-        .addSubcommand((subCommand) =>
-            subCommand
-                .setName("toggle")
-                .setDescription("Toggle Leave System")
-                .setDescriptionLocalizations({
-                    de: "Schalte Leave System aus/an"
-                })
-                .addStringOption((option) =>
-                    option
-                        .setName("toggle")
-                        .setDescription("Toggle Leave System")
-                        .setDescriptionLocalizations({
-                            de: "Schalte Leave System aus/an"
-                        })
-                        .setRequired(true)
-                        .addChoices(
-                            {
-                                name: "✅ Activate the System",
-                                value: "on",
-                                name_localizations: {de: "✅ Aktiviere das System"}
-                            },
-                            {
-                                name: "❌ Deactivate the System",
-                                value: "off",
-                                name_localizations: {de: "❌ Deaktiviere das System"}
-                            }
-                        )
-                )
-        )
+    }
 };

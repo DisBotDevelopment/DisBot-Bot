@@ -1,7 +1,7 @@
 import {
     ActionRowBuilder,
     ButtonBuilder,
-    ButtonStyle,
+    ButtonStyle, ContainerBuilder,
     EmbedBuilder, MessageFlags,
     ModalSubmitInteraction,
     TextInputStyle
@@ -107,23 +107,17 @@ export default {
         const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
             new ButtonBuilder()
                 .setCustomId("welcome-image-create-button-setup")
-                .setLabel("Image Card Setup")
+                .setLabel("Create Image Card")
+                .setEmoji("<:imageadd:1260148502449754112>")
                 .setStyle(ButtonStyle.Secondary)
         );
 
         await interaction.reply({
-            embeds: [
-                new EmbedBuilder()
-                    .setDescription(
-                        [
-                            `## ${await convertToEmojiToPng("image")} Image text has been set up!`,
-                            `Now Edit the image and background. Use the Button below to setup the image.`
-                        ].join("\n")
-                    )
-                    .setColor("#2B2D31")
+            components: [
+                new ContainerBuilder()
+                    .addActionRowComponents(row)
             ],
-            components: [row],
-            flags: MessageFlags.Ephemeral
+            flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
         });
     }
 };
