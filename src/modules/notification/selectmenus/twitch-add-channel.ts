@@ -13,6 +13,7 @@ const {uuid} = pkg;
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "twitch-add-channel",
@@ -43,21 +44,7 @@ export default {
             if (!client.user) throw new Error("Client is not defined");
 
 
-            const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
-                new ButtonBuilder()
-                    .setCustomId(
-                        "twitch-add-message:" + interaction.customId.split(":")[1]
-                    )
-                    .setStyle(ButtonStyle.Secondary)
-                    .setLabel("Message Template")
-                    .setEmoji("<:addchannel:1324458759589728387>")
-            );
-
-            interaction.update({
-                content: `## ${await convertToEmojiToPng(
-                    "text"
-                )} Use a message template for the message that will be sent to the channel.`, components: [row]
-            });
+            await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} Updated the channel to <#${value}>`, interaction, true)
         }
     }
 };

@@ -1,7 +1,19 @@
 import {
+    ActionRowBuilder,
     AnySelectMenuInteraction,
-    ButtonInteraction, ChatInputCommandInteraction, Message, MessageFlags,
-    ModalSubmitInteraction
+    AttachmentBuilder,
+    ButtonBuilder,
+    ButtonInteraction,
+    ButtonStyle,
+    ChatInputCommandInteraction,
+    ComponentType,
+    ContainerBuilder,
+    FileBuilder,
+    Message,
+    MessageFlags,
+    ModalBuilder,
+    ModalSubmitInteraction,
+    TextDisplayBuilder
 } from "discord.js";
 import {createCanvas, loadImage} from "canvas";
 import FormData from "form-data";
@@ -10,12 +22,30 @@ import axios from "axios";
 import * as process from "node:process";
 import {ExtendedClient} from "../types/client.js";
 import {convertToEmojiToPng} from "./emojis.js";
-import fs from "fs";
-import path from "path";
 import {DrawCardOptions} from "../types/drawcardoptions.js";
 
 export function getInteractionData(interaction: ButtonInteraction | ModalSubmitInteraction | AnySelectMenuInteraction, split: number) {
     return interaction.customId.split(":")[split];
+}
+
+export async function sendDefaultMessage(message: string, interaction: ChatInputCommandInteraction | ButtonInteraction | ModalSubmitInteraction | AnySelectMenuInteraction, componentsV2: boolean) {
+    if (componentsV2) {
+        await interaction.reply({
+            components: [
+                new ContainerBuilder()
+                    .addTextDisplayComponents(
+                        new TextDisplayBuilder()
+                            .setContent(message)
+                    )
+            ],
+            flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2
+        })
+    } else {
+        await interaction.reply({
+            content: message,
+            flags: MessageFlags.Ephemeral,
+        })
+    }
 }
 
 export async function createPollImage(poll: { title: any; description: any; options: any; }) {
@@ -182,4 +212,26 @@ export async function drawCardCanvas(opts: DrawCardOptions): Promise<Buffer> {
     ctx.fillText(opts.text.text, 200, 200);
 
     return canvas.toBuffer("image/png");
+}
+
+export async function uploadToCDN(buffer: Buffer): Promise<string | null> {
+    const form = new FormData();
+    form.append("file", buffer, {
+        filename: "image.png",
+        contentType: "image/png",
+    });
+
+    const req = await axios.post(`${Config.Other.CDN.Url}/api/upload`, form, {
+        headers: {
+            'Authorization': Config.Other.CDN.APIToken,
+            ...form.getHeaders(),
+            "Content-Type": "multipart/form-data",
+            "x-zipline-deletes-at": "5d"
+        },
+    });
+    if (req.status != 200) {
+        return null;
+    }
+    const data = await req.data;
+    return data.files[0].url ?? null;
 }

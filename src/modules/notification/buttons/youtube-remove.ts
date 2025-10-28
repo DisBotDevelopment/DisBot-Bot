@@ -1,7 +1,15 @@
-import {ButtonInteraction, ButtonStyle, MessageFlags, TextInputStyle} from "discord.js";
+import {
+    ButtonInteraction,
+    ButtonStyle,
+    ContainerBuilder,
+    MessageFlags,
+    TextDisplayBuilder,
+    TextInputStyle
+} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "youtube-remove",
@@ -12,7 +20,7 @@ export default {
      * @param {ExtendedClient} client
      */
     async execute(interaction: ButtonInteraction, client: ExtendedClient) {
-        const youtubeData = await database.guildYoutubeNotifications.findFirst({
+        const data = await database.guildYoutubeNotifications.findFirst({
             where: {
                 GuildId: interaction.guild?.id,
                 UUID: interaction.customId.split(":")[1]
@@ -21,14 +29,11 @@ export default {
 
         if (!client.user) throw new Error("Client User is not defined");
 
-        if (!youtubeData)
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng(
-                    "error"
-                )} There are no Youtube Channels added!`,
-                flags: MessageFlags.Ephemeral
-            });
-
+        if (!data) {
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng(
+                "error"
+            )} The Channel has already been removed!`, interaction, true)
+        }
         await database.guildYoutubeNotifications.deleteMany({
             where: {
                 GuildId: interaction.guild?.id,
@@ -37,11 +42,14 @@ export default {
         });
 
         await interaction.update({
-            content: `## ${await convertToEmojiToPng(
-                "check"
-            )} The Channel ${youtubeData.YoutubeChannelId} has been Removed!`,
-            components: [],
-            embeds: []
+            components: [
+                new ContainerBuilder()
+                    .addTextDisplayComponents(
+                        new TextDisplayBuilder()
+                            .setContent(`## ${await convertToEmojiToPng("trash")} Successfully deleted Youtube Channel`)
+                    )
+            ],
+            flags: MessageFlags.IsComponentsV2
         });
     }
 };

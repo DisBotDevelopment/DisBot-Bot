@@ -9,7 +9,7 @@ import {
 import {ExtendedClient} from "../../../types/client.js";
 
 export default {
-    id: "twitch-add-channelname",
+    id: "youtube-add-channelid",
 
     /**
      *
@@ -21,22 +21,23 @@ export default {
         const channelname = new TextInputBuilder();
 
         modal
-            .setTitle("Twitch Add Channel Name")
-            .setCustomId("twitch-add-channelname-modal");
+            .setTitle("Youtube Channel")
+            .setCustomId("youtube-add-channelid-modal");
 
         channelname
-            .setPlaceholder("Enter the channel name")
-            .setCustomId("channelname")
+            .setPlaceholder("Enter the Channel ID")
+            .setCustomId("channelid")
             .setStyle(TextInputStyle.Short)
             .setRequired(true);
 
         modal.setLabelComponents(
             new LabelBuilder()
-                .setLabel("Twitch Channel Name")
-                .setDescription(`Channel name from https://twitch.tv/%name%`)
+                .setLabel("Youtube Channel Id")
+                .setDescription(`Youtube Channel Ids located at the Profile in the Description by the Share Channel and then Copy ID`)
                 .setTextInputComponent(channelname)
         );
 
         await interaction.showModal(modal);
-    },
+
+    }
 };

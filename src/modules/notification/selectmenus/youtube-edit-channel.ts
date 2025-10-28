@@ -35,13 +35,7 @@ export default {
             );
             if (!client.user) throw new Error("Client not found");
 
-            await interaction.update({
-                content: `## ${await convertToEmojiToPng(
-                    "check"
-                )} The Channel has been Updated!`,
-                components: [],
-                embeds: []
-            });
+            await interaction.deferUpdate()
         }
     }
 };

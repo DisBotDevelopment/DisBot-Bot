@@ -9,9 +9,10 @@ import {
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
-    id: "spotify-add-channelname-role",
+    id: "spotify-add-role",
 
     /**
      * @param {UserSelectMenuInteraction} interaction
@@ -24,13 +25,6 @@ export default {
         const uuid = interaction.customId.split(":")[1];
         for (const role of interaction.values) {
 
-
-            const data = await database.guildSpotifyNotifications.findFirst({
-                where: {
-                    UUID: uuid
-                }
-            });
-
             await database.guildSpotifyNotifications.update(
                 {
                     where: {UUID: uuid},
@@ -42,18 +36,7 @@ export default {
                 }
             );
 
-            if (!client.user) throw new Error("Client user not found");
-            interaction.update({
-                content: `## ${await convertToEmojiToPng("info")} Add a Channel to the Notification System`,
-                components: [
-                    new ActionRowBuilder<ChannelSelectMenuBuilder>().addComponents(
-                        new ChannelSelectMenuBuilder()
-                            .setCustomId("spotify-add-channelname-channel:" + data?.UUID)
-                            .setPlaceholder("Select a Channel")
-                    )
-                ],
-            })
-
+            await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} Updated the ping role to <@&${role}>`, interaction, true)
         }
     }
 };

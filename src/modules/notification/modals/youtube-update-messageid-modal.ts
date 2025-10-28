@@ -42,10 +42,6 @@ export default {
             }
         );
 
-        if (!client.user) throw new Error("Client user is undefined");
-        await interaction.reply({
-            content: `## ${await convertToEmojiToPng("check")} Your message Id has been updated to \`${messageId}\``,
-            flags: MessageFlags.Ephemeral,
-        });
+        await interaction.deferUpdate()
     },
 };

@@ -3,9 +3,9 @@ import {
     ActionRowBuilder,
     ButtonBuilder,
     ButtonStyle,
-    Client,
+    Client, ContainerBuilder,
     EmbedBuilder,
-    MessageFlags,
+    MessageFlags, TextDisplayBuilder,
     TextInputStyle,
     UserSelectMenuInteraction
 } from "discord.js";
@@ -28,14 +28,6 @@ export default {
 
             const data = await database.guildSpotifyNotifications.findFirst({where: {UUID: uuid}});
 
-            if (!data) {
-                if (!client.user) throw new Error("Client User is not defined");
-                await interaction.reply({
-                    content: `## ${await convertToEmojiToPng("error")} Spotify Show Not Found`,
-                    flags: MessageFlags.Ephemeral
-                });
-            }
-
             const conf = await database.disBot.findFirst({
                 where: {
                     GetConf: "config"
@@ -51,43 +43,41 @@ export default {
                 }
             );
 
-            if (!client.user) throw new Error("Client user not found");
-            const embed = new EmbedBuilder()
-                .setDescription(
-                    [
-                        `## ${await convertToEmojiToPng("spotify")} Spotify`,
-                        ``,
-                        `**Show Name**: ${req.data?.name} (\`${data.ShowId}\`)`,
-                        `**Channel**: <#${data.ChannelId}>`,
-                        `**Role**: <@&${data.PingRoles[0]}>`,
-                        `**Show URL**: [Spotify Link](https://open.spotify.com/show/${data.ShowId})`,
-                        `**UUID**: \`${data?.UUID}\``
-                    ].join("\n")
-                )
-                .setColor("#2B2D31");
-
             const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
                 new ButtonBuilder()
                     .setCustomId(`spotify-delete:${data.UUID}`)
-                    .setLabel("Delete Show")
                     .setEmoji("<:trash:1259432932234367069>")
+                    .setLabel("Delete Twitch Channel")
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId(`spotify-message:${data.UUID}`)
-                    .setLabel("Edit Message Template")
                     .setEmoji("<:message:1322252985702551767>")
+                    .setLabel("Change Message Template")
                     .setStyle(ButtonStyle.Secondary),
                 new ButtonBuilder()
                     .setCustomId(`spotify-channel:${data.UUID}`)
-                    .setLabel("Edit Channel")
-                    .setEmoji("<:edit:1259961121075626066>")
+                    .setEmoji("<:add:1260157236043583519>")
+                    .setLabel("Update Discord Channel")
                     .setStyle(ButtonStyle.Secondary),
             );
 
 
-            await interaction.update({
-                embeds: [embed],
-                components: [row]
+            await interaction.reply({
+                components: [
+                    new ContainerBuilder()
+                        .addTextDisplayComponents(
+                            new TextDisplayBuilder()
+                                .setContent(
+                                    [
+                                        `**Show Name**: ${req.data?.name} (\`${data.ShowId}\`)`,
+                                        `**Channel**: <#${data.ChannelId}>`,
+                                        `**UUID**: \`${data?.UUID}\``
+                                    ].join("\n")
+                                )
+                        )
+                        .addActionRowComponents(row)
+                ],
+                flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2
             });
 
         }

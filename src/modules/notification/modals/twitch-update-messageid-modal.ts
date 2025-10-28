@@ -2,6 +2,7 @@ import {ButtonStyle, MessageFlags, ModalSubmitInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "twitch-update-messageid-modal",
@@ -25,10 +26,7 @@ export default {
 
         if (!msgDB) {
             if (!client.user) throw new Error("Client user is undefined")
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} No Message ID Found`,
-                flags: MessageFlags.Ephemeral
-            })
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} No Message ID Found`, interaction, true)
         }
 
         await database.guildTwitchNotifications.update({
@@ -41,11 +39,6 @@ export default {
         })
 
         if (!client.user) throw new Error("Client user is undefined")
-        await interaction.reply({
-            content: `## ${await convertToEmojiToPng("check")} Your message Id has been updated to \`${messageId}\``,
-            flags: MessageFlags.Ephemeral
-        })
-
-
+        await interaction.deferUpdate()
     }
 };

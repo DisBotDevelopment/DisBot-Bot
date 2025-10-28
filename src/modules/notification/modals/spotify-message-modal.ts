@@ -2,6 +2,7 @@ import {MessageFlags, ModalSubmitInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "spotify-message-modal",
@@ -25,12 +26,9 @@ export default {
         });
 
         if (!message) {
-            await interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} Message Template not found with ID ${messageTemplate}`,
-                flags: MessageFlags.Ephemeral,
-            });
-            return;
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} Invalid Message ID! Try again.`, interaction, true)
         }
+
 
         await database.guildSpotifyNotifications.update(
             {
@@ -41,9 +39,6 @@ export default {
             }
         );
 
-        await interaction.reply({
-            content: `## ${await convertToEmojiToPng("check")} Message Template set to ${messageTemplate}`,
-            flags: MessageFlags.Ephemeral,
-        });
+        await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} Added the Message Template to the notification.`, interaction, true)
     },
 };

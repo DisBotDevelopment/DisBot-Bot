@@ -1,35 +1,43 @@
-import {ActionRowBuilder, ButtonInteraction, ModalBuilder, TextInputBuilder, TextInputStyle} from "discord.js";
+import {
+    ActionRowBuilder,
+    ButtonInteraction,
+    LabelBuilder,
+    ModalBuilder,
+    TextInputBuilder,
+    TextInputStyle
+} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 
 export default {
-  id: "twitch-add-message",
+    id: "twitch-add-message",
 
-  /**
-   *
-   * @param {ButtonInteraction} interaction
-   * @param {ExtendedClient} client
-   */
-  async execute(interaction: ButtonInteraction, client: ExtendedClient) {
-    const modal = new ModalBuilder();
-    const messageID = new TextInputBuilder();
+    /**
+     *
+     * @param {ButtonInteraction} interaction
+     * @param {ExtendedClient} client
+     */
+    async execute(interaction: ButtonInteraction, client: ExtendedClient) {
+        const modal = new ModalBuilder();
+        const messageID = new TextInputBuilder();
 
-    modal
-      .setTitle("Twitch System - Add Message ID")
-      .setCustomId(
-        "twitch-add-message-modal:" + interaction.customId.split(":")[1]
-      );
+        modal
+            .setTitle("Message Template")
+            .setCustomId(
+                "twitch-add-message-modal:" + interaction.customId.split(":")[1]
+            );
 
-    messageID
-      .setPlaceholder(
-        "Message UUID example: " + interaction.customId.split(":")[1]
-      )
-      .setCustomId("twitch-add-message-id")
-      .setStyle(TextInputStyle.Short)
-      .setLabel("Message Template ID")
-      .setRequired(true);
+        messageID
+            .setCustomId("twitch-add-message-id")
+            .setStyle(TextInputStyle.Short)
+            .setRequired(true);
 
-    modal.addComponents(new ActionRowBuilder<TextInputBuilder>().addComponents(messageID));
+        modal
+            .setLabelComponents(
+                new LabelBuilder()
+                    .setLabel("Message Template ID")
+                    .setTextInputComponent(messageID)
+            );
 
-    interaction.showModal(modal);
-  },
+        await interaction.showModal(modal);
+    },
 };

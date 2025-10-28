@@ -1,7 +1,7 @@
 import {
     ActionRowBuilder,
     ButtonInteraction,
-    ButtonStyle,
+    ButtonStyle, LabelBuilder,
     ModalBuilder,
     TextInputBuilder,
     TextInputStyle
@@ -9,7 +9,7 @@ import {
 import {ExtendedClient} from "../../../types/client.js";
 
 export default {
-  id: "spotify-add-channelname",
+    id: "spotify-add-channelname",
 
     /**
      *
@@ -17,25 +17,25 @@ export default {
      * @param {ExtendedClient} client
      */
     async execute(interaction: ButtonInteraction, client: ExtendedClient) {
-        if (!client.user) throw new Error("Client User is not defined");
+        const modal = new ModalBuilder();
+        const channelname = new TextInputBuilder();
 
-        const modal = new ModalBuilder()
-            .setCustomId("spotify-add-channelname-modal")
-            .setTitle("Add a Spotify Channel Name");
+        modal
+            .setTitle("Spotify Show")
+            .setCustomId("spotify-add-channelname-modal");
 
-        const channelNameInput = new TextInputBuilder()
+        channelname
+            .setPlaceholder("Enter the show id")
             .setCustomId("channelName")
-            .setLabel("Enter the Spotify Channel Name")
             .setStyle(TextInputStyle.Short)
-            .setPlaceholder("Spotify Channel Name")
-            .setRequired(true)
-            .setMaxLength(100);
+            .setRequired(true);
 
-        const channelNameRow = new ActionRowBuilder<TextInputBuilder>().addComponents(
-            channelNameInput
+        modal.setLabelComponents(
+            new LabelBuilder()
+                .setLabel("Spotify Show Id")
+                .setDescription(`Show ID: https://open.spotify.com/show/%showId%?si=47132502ffab43a4`)
+                .setTextInputComponent(channelname)
         );
-
-        modal.addComponents(channelNameRow);
 
         await interaction.showModal(modal);
     }

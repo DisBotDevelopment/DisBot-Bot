@@ -1,7 +1,15 @@
-import {ButtonInteraction, ButtonStyle, MessageFlags, TextInputStyle} from "discord.js";
+import {
+    ButtonInteraction,
+    ButtonStyle,
+    ContainerBuilder,
+    MessageFlags,
+    TextDisplayBuilder,
+    TextInputStyle
+} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "spotify-delete",
@@ -21,12 +29,10 @@ export default {
                 UUID: uuid
             }
         });
-
         if (!data) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} No Spotify Show Found`,
-                flags: MessageFlags.Ephemeral
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng(
+                "error"
+            )} The Channel has already been removed!`, interaction, true)
         }
 
         await database.guildSpotifyNotifications.delete({
@@ -35,10 +41,15 @@ export default {
             }
         });
 
-        interaction.update({
-            content: `## ${await convertToEmojiToPng("check")} Spotify Show Deleted`,
-            embeds: [],
-            components: [],
+        await interaction.update({
+            components: [
+                new ContainerBuilder()
+                    .addTextDisplayComponents(
+                        new TextDisplayBuilder()
+                            .setContent(`## ${await convertToEmojiToPng("trash")} Successfully deleted Spotify Show`)
+                    )
+            ],
+            flags: MessageFlags.IsComponentsV2
         });
     }
 };

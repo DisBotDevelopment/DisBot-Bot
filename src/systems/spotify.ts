@@ -3,6 +3,7 @@ import {EmbedBuilder} from "discord.js";
 import {ExtendedClient} from "../types/client.js";
 import {database} from "../main/database.js";
 import {Config} from "../main/config.js";
+import {MessageBuilder} from "../helper/messageHelper.js";
 
 export async function spotify(client: ExtendedClient) {
 
@@ -51,7 +52,6 @@ export async function spotify(client: ExtendedClient) {
         if (!toggle) continue;
         if (toggle.SpotifyEnabled == false) continue;
         if (toggle.SpotifyEnabled == undefined) continue;
-        if (toggle.SpotifyEnabled == null) continue;
 
         const apiShow = await axios.get(`https://api.spotify.com/v1/shows/${s.ShowId}`, {
             headers: {
@@ -70,31 +70,43 @@ export async function spotify(client: ExtendedClient) {
 
         if (s.Latests?.includes(episode.id)) continue;
 
-        const message = await database.messageTemplates.findFirst({
+        const messageData = await database.messageTemplates.findFirst({
             where: {
                 Name: s.MessageTemplateId,
             }
         });
 
-        if (!message) continue;
-
-        const content = message.Content?.replace("{title}", episode.name).replace("{description}", episode.description).replace("{spotify.episode.url}", episode.external_urls.spotify).replace("{spotify.episode.image}", episode.images[0].url).replace("{author}", apiShow.data.name).replace("{spotify.show.url}", apiShow.data.external_urls.spotify).replace("{spotify.author.image}", apiShow.data.images[0].url).replace("{publisher}", apiShow.data.publisher).replace("{episodeid}", episode.id).replace("{showid}", data.id).replace("{total_episodes}", apiShow.data.total_episodes).replace("{spotify.episode.description}", episode.description)
+        if (!messageData) continue;
 
         const channel = client.channels.cache.get(s.ChannelId as string);
         if (!channel) continue;
         if (!channel.isSendable()) continue;
-        if (message.EmbedJSON) {
-            channel.send({
-                content: content,
-                embeds: [new EmbedBuilder(JSON.parse(message.EmbedJSON.replace("{spotify.episode.url}", episode.external_urls.spotify).replace("{title}", episode.name).replace("{description}", episode.description).replace("https://open.spotify.com/episode/episodeid", episode.external_urls.spotify).replace("https://cdn.xyzhub.link/u/nM7pNI.png", episode.images[0].url).replace("{author}", apiShow.data.name).replace("https://open.spotify.com/show/showid", apiShow.data.external_urls.spotify).replace("{spotify.show.url}", apiShow.data.external_urls.spotify).replace("https://cdn.xyzhub.link/u/HsqWSk.png", apiShow.data.images[0].url).replace("{publisher}", apiShow.data.publisher).replace("{episodeid}", episode.id).replace("{showid}", data.id).replace("{total_episodes}", apiShow.data.total_episodes).replace("{spotify.episode.description}", episode.description)
-                ))],
-            })
-        } else {
-            channel.send({
-                content: content,
-            })
+
+        const placeholder = {
+            spotify: {
+                show: {
+                    url: apiShow.data.external_urls.spotify,
+                    id: data.id
+                },
+                episode: {
+                    url: episode.external_urls.spotify,
+                    image: episode.images[0].url,
+                    id: episode.id,
+                    total: apiShow.data.total_episodes
+                },
+                title: episode.name,
+                description: episode.description,
+                author: apiShow.data.name,
+                publisher: apiShow.data.publisher,
+            }
         }
 
+        const message = await MessageBuilder(
+            messageData,
+            placeholder
+        )
+
+        await channel.send(message.messageData)
         await database.guildSpotifyNotifications.update({
             where: {
                 UUID: s.UUID

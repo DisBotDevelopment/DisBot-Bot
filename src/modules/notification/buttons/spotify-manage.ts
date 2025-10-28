@@ -1,16 +1,19 @@
 import axios from "axios";
 import {
     ActionRowBuilder,
-    ButtonBuilder,
+    ButtonBuilder, ButtonInteraction,
     ButtonStyle,
     EmbedBuilder,
     MessageFlags,
-    StringSelectMenuBuilder,
+    StringSelectMenuBuilder, TextDisplayBuilder,
     UserSelectMenuInteraction
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
+import {PaginationData} from "../../../types/pagination.js";
+import {PaginationBuilder} from "../../../helper/paginationHelper.js";
 
 export default {
     id: "spotify-manage",
@@ -21,7 +24,7 @@ export default {
      */
 
     async execute(
-        interaction: UserSelectMenuInteraction,
+        interaction: ButtonInteraction,
         client: ExtendedClient
     ) {
         const [action, uuid, currentIndexStr] = interaction.customId.split(":");
@@ -30,7 +33,7 @@ export default {
         const pageSize = 5;
 
         try {
-            const allEmbeds = await database.guildSpotifyNotifications
+            const data = await database.guildSpotifyNotifications
                 .findMany({
                     where: {
                         GuildId: guildId
@@ -43,19 +46,40 @@ export default {
                 }
             })
 
-            if (!allEmbeds.length) {
-                if (!client.user) throw new Error("Client User is not defined");
-                return interaction.reply({
-                    content: `## ${await convertToEmojiToPng("error")} No Button Found`,
-                    flags: MessageFlags.Ephemeral
-                });
+            if (!data.length) {
+                return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} No Twitch Streamer Found`, interaction, true)
             }
 
-            const embedsList = allEmbeds.slice(currentIndex, currentIndex + pageSize);
-            const embedMessages = await Promise.all(
-                embedsList.map(async (embed) => {
+
+            const list = data.slice(currentIndex, currentIndex + pageSize);
+
+            const embedMessages = new TextDisplayBuilder()
+                .setContent((await Promise.all(list.map(async (l) => {
+
                     const req = await axios.get(
-                        `https://api.spotify.com/v1/shows/${embed.ShowId}`,
+                        `https://api.spotify.com/v1/shows/${l.ShowId}`,
+                        {
+                            headers: {
+                                Authorization: `Bearer ${conf?.SpotifyToken}`
+                            }
+                        }
+                    );
+                    return [
+                        `**Show**: ***${req.data.name}*** (${l.ShowId})`,
+                        `**Channel**: <#${l.ChannelId}>`,
+                        `**UUID**: ${l.UUID}`
+                    ].join("\n")
+
+                }))).join("\n\n"));
+
+
+            const selectMenu = new StringSelectMenuBuilder()
+                .setCustomId("spotify-manage-select")
+                .setPlaceholder("Select a Option to manage")
+                .addOptions(await Promise.all(list.map(async (l) => {
+
+                    const req = await axios.get(
+                        `https://api.spotify.com/v1/shows/${l.ShowId}`,
                         {
                             headers: {
                                 Authorization: `Bearer ${conf?.SpotifyToken}`
@@ -63,54 +87,26 @@ export default {
                         }
                     );
 
-                    return new EmbedBuilder()
-                        .setColor("#2B2D31")
-                        .setDescription(
-                            [
-                                `**Show**: ***${req.data.name}*** (\`${embed.ShowId}\`)`,
-                                `**Channel**: <#${embed.ChannelId}>`,
-                                `**Role**: <@&${embed.PingRoles[0]}>`,
-                                `**UUID**: \`\`\`${embed.UUID}\`\`\``
-                            ].join("\n")
-                        );
-                })
-            );
-
-
-            const selectMenu = new StringSelectMenuBuilder()
-                .setCustomId("spotify-manage-select")
-                .setPlaceholder("Select a Option to manage")
-                .addOptions(
-                    embedsList.map((embed) => ({
-                        label: `${embed.ShowId}`,
-                        description: `UUID: ${embed.UUID}`,
-                        value: embed.UUID,
+                    return ({
+                        label: `${req.data.name} (${l.ShowId})`,
+                        description: `UUID: ${l.UUID}`,
+                        value: l.UUID,
                         emoji: "<:spotify:1365769492734676994>"
-                    })) as any
-                );
+                    })
+                })));
 
-            const navigationRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
-                new ButtonBuilder()
-                    .setEmoji("<:arrowbackregular24:1301119279088799815>")
-                    .setStyle(ButtonStyle.Secondary)
-                    .setCustomId(`spotify-manage:${uuid}:${currentIndex - pageSize}`)
-                    .setDisabled(currentIndex === 0),
-                new ButtonBuilder()
-                    .setEmoji("<:next:1287457822526935090>")
-                    .setStyle(ButtonStyle.Secondary)
-                    .setCustomId(`spotify-manage:${uuid}:${currentIndex + pageSize}`)
-                    .setDisabled(currentIndex + pageSize >= allEmbeds.length)
-            );
-
-            const selectMenuRow =
-                new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(
-                    selectMenu
-                );
-
-            await interaction.update({
-                embeds: embedMessages as any,
-                components: [navigationRow, selectMenuRow]
-            });
+            const paginationData: PaginationData = {
+                interaction: interaction,
+                paginationData: data,
+                buttonCustomId: "twitch-manage:",
+                selectmenu: selectMenu,
+                content: embedMessages,
+                pageSize: pageSize,
+                client: client,
+                currentIndex: currentIndex,
+                latestUUID: uuid
+            };
+            await PaginationBuilder(paginationData);
         } catch (error) {
             console.error("Error:", error);
             interaction.reply({

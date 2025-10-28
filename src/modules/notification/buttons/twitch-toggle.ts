@@ -1,4 +1,11 @@
-import {ActionRowBuilder, ButtonBuilder, ButtonInteraction, ButtonStyle, TextInputStyle} from "discord.js";
+import {
+    ActionRowBuilder,
+    ButtonBuilder,
+    ButtonInteraction,
+    ButtonStyle, ContainerBuilder,
+    MessageFlags, TextDisplayBuilder,
+    TextInputStyle
+} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
@@ -13,7 +20,7 @@ export default {
     async execute(interaction: ButtonInteraction, client: ExtendedClient) {
         if (!client.user) throw new Error("Client User is not defined");
 
-        const twitchData = await database.guildFeatureToggles.findFirst({
+        let twitchData = await database.guildFeatureToggles.findFirst({
             where: {
                 GuildId: interaction.guild.id
             }
@@ -44,34 +51,21 @@ export default {
             );
         }
 
-        const enabled = twitchData?.TwitchEnabled == true ? true : false;
+        twitchData = await database.guildFeatureToggles.findFirst({
+            where: {
+                GuildId: interaction.guild.id
+            }
+        });
 
-        const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
-            new ButtonBuilder()
-                .setCustomId("twitch-toggle")
-                .setLabel("Enable Twitch Notifications")
-                .setEmoji(
-                    enabled == true
-                        ? "<:toggleoff:1301864526848987196>"
-                        : "<:toggleon:1301864515838672908>"
-                )
-                .setStyle(ButtonStyle.Secondary),
-            new ButtonBuilder()
-                .setCustomId("twitch-add-channelname")
-                .setLabel("Add a Twitch Channel")
-                .setEmoji("<:add:1260157236043583519>")
-                .setStyle(ButtonStyle.Secondary),
-            new ButtonBuilder()
-                .setCustomId("twitch-manage")
-                .setEmoji("<:setting:1260156922569687071>")
-                .setLabel("Manage Twitch Channels")
-                .setStyle(ButtonStyle.Secondary)
-        );
-
-        interaction.update({
-            content: `## ${await convertToEmojiToPng("check")} Twitch Notifications are now ${enabled == true ? "enabled" : "disabled"
-            }!`,
-            components: [row]
+        await interaction.reply({
+            flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
+            components: [
+                new ContainerBuilder()
+                    .addTextDisplayComponents(
+                        new TextDisplayBuilder()
+                            .setContent(`## ${await convertToEmojiToPng("check")} Twitch Notifications are now ${twitchData.TwitchEnabled ? "enabled" : "disabled"}!`)
+                    )
+            ]
         });
     }
 };

@@ -1,7 +1,7 @@
 import {
     ActionRowBuilder,
     ButtonInteraction,
-    ChannelType,
+    ChannelType, LabelBuilder,
     MessageFlags,
     ModalBuilder,
     TextInputBuilder,
@@ -10,7 +10,7 @@ import {
 import {ExtendedClient} from "../../../types/client.js";
 
 export default {
-  id: "twitch-update-messageid",
+    id: "twitch-update-messageid",
 
     /**
      * @param {ButtonInteraction} interaction
@@ -21,19 +21,20 @@ export default {
         const modal = new ModalBuilder()
         const messageId = new TextInputBuilder()
 
-        modal.setCustomId("twitch-update-messageid-modal:" + interaction.customId.split(":")[1])
-            .setTitle("Update Message ID")
-            .setComponents(
-                new ActionRowBuilder<TextInputBuilder>().addComponents(
-                    messageId
-                        .setCustomId("messageId")
-                        .setLabel("Message ID")
-                        .setPlaceholder("Enter the message ID")
-                        .setStyle(TextInputStyle.Short)
-                        .setRequired(true)
-                )
-            );
-        interaction.showModal(modal)
+        messageId
+            .setCustomId("messageId")
+            .setPlaceholder("Message Template ID")
+            .setStyle(TextInputStyle.Short)
+            .setRequired(true)
 
+        modal.setCustomId("twitch-update-messageid-modal:" + interaction.customId.split(":")[1])
+            .setTitle("Message Template")
+            .setLabelComponents(
+                new LabelBuilder()
+                    .setLabel("Message Template ID")
+                    .setTextInputComponent(messageId)
+            )
+
+        await interaction.showModal(modal)
     }
 };

@@ -10,9 +10,11 @@ import {
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
-    id: "spotify-add-channelname-channel",
+    id: "spotify-add-channel",
 
     /**
      * @param {UserSelectMenuInteraction} interaction
@@ -38,23 +40,7 @@ export default {
                 }
             );
 
-            const modal = new ModalBuilder()
-                .setCustomId("spotify-add-channelname-message-modal:" + uuid)
-                .setTitle("Add a Message Template")
-                .addComponents(
-                    new ActionRowBuilder<TextInputBuilder>()
-                        .addComponents(
-                            new TextInputBuilder()
-                                .setCustomId("messageTemplate")
-                                .setLabel("Message Template ID")
-                                .setStyle(TextInputStyle.Short)
-                                .setPlaceholder("Enter the Message Template ID")
-                                .setRequired(true)
-                        )
-                );
-
-            await interaction.showModal(modal);
-
+            await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} Updated the channel to <#${role}>`, interaction, true)
 
         }
     }

@@ -1,10 +1,14 @@
-import axios from "axios";
 import {
-    ActionRowBuilder, ButtonBuilder, ButtonStyle,
-    ChannelSelectMenuBuilder, ChannelType, ContainerBuilder,
+    ActionRowBuilder,
+    ButtonBuilder,
+    ButtonStyle,
+    ChannelSelectMenuBuilder,
+    ChannelType,
+    ContainerBuilder,
     MessageFlags,
     ModalSubmitInteraction,
-    RoleSelectMenuBuilder, TextDisplayBuilder
+    RoleSelectMenuBuilder,
+    TextDisplayBuilder
 } from "discord.js";
 import pkg from "short-uuid";
 
@@ -16,7 +20,7 @@ import {randomUUID} from "crypto";
 import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
-    id: "spotify-add-channelname-modal",
+    id: "youtube-add-channelid-modal",
 
     /**
      *
@@ -25,58 +29,44 @@ export default {
      */
 
     async execute(interaction: ModalSubmitInteraction, client: ExtendedClient) {
+        if (!client.user) throw new Error("Client user is not defined");
 
-        if (!client.user) throw new Error("Client user not found");
-        const channelName = interaction.fields.getTextInputValue("channelName");
+        const uuids = randomUUID();
 
-        const spotifyToken = await database.disBot.findFirst({
+        const getChannelName = interaction.fields.getTextInputValue(
+            "channelid"
+        );
+
+        const data = await database.guildYoutubeNotifications.findFirst({
             where: {
-                GetConf: "config"
-            }
-        })
-
-        const spotifyChannel = await axios.get(`https://api.spotify.com/v1/shows/${channelName}`,
-            {
-                headers: {
-                    Authorization: `Bearer ${spotifyToken?.SpotifyToken}`
-                }
-            }
-        )
-
-        const data = await database.guildSpotifyNotifications.findFirst({
-            where: {
-                ShowId: channelName
+                GuildId: interaction.guild?.id,
+                YoutubeChannelId: getChannelName
             }
         });
+
         if (data) {
             return await sendDefaultMessage(`## ${await convertToEmojiToPng("info")} You have already added this channel name.`, interaction, true)
         }
 
-        if (spotifyChannel.status != 200) {
-            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} No Channel found`, interaction, true)
-        }
-
-        const uuids = randomUUID();
-
-        await database.guildSpotifyNotifications.create({
+        await database.guildYoutubeNotifications.create({
             data: {
                 Guilds: {
                     connect: {
                         GuildId: interaction.guild?.id
                     }
                 },
+                YoutubeChannelId: getChannelName,
                 ChannelId: "",
-                Latests: [],
-                ShowId: channelName,
                 MessageTemplateId: "",
                 PingRoles: [],
                 UUID: uuids,
+                Latest: []
             }
-        })
+        });
 
         const role = new ActionRowBuilder<RoleSelectMenuBuilder>().addComponents(
             new RoleSelectMenuBuilder()
-                .setCustomId("spotify-add-role:" + uuids)
+                .setCustomId("youtube-add-role:" + uuids)
                 .setMaxValues(1)
                 .setMinValues(1)
                 .setPlaceholder("Select your Ping Role")
@@ -92,7 +82,7 @@ export default {
                         ChannelType.GuildAnnouncement
                     )
                     .setCustomId(
-                        "spotify-add-channel:" + uuids
+                        "youtube-add-channel:" + interaction.customId.split(":")[1]
                     )
                     .setMaxValues(1)
                     .setMinValues(1)
@@ -102,7 +92,7 @@ export default {
         const message = new ActionRowBuilder<ButtonBuilder>().addComponents(
             new ButtonBuilder()
                 .setCustomId(
-                    "spotify-message:" + uuids
+                    "youtube-add-message:" + interaction.customId.split(":")[1]
                 )
                 .setStyle(ButtonStyle.Secondary)
                 .setLabel("Message Template")

@@ -2,9 +2,9 @@ import {
     ActionRowBuilder,
     ButtonBuilder,
     ButtonStyle,
-    Client,
+    Client, ContainerBuilder,
     EmbedBuilder,
-    MessageFlags,
+    MessageFlags, TextDisplayBuilder,
     UserSelectMenuInteraction
 } from "discord.js";
 import Parser from "rss-parser";
@@ -27,55 +27,52 @@ export default {
         for (const uuid of interaction.values) {
             const guildId = interaction.guild?.id;
 
-            const nextEmbed = await database.guildYoutubeNotifications.findFirst({
+            const data = await database.guildYoutubeNotifications.findFirst({
                 where: {
                     GuildId: guildId,
                     UUID: uuid.split(":")[0]
                 }
             });
-            if (!nextEmbed) {
-                interaction.reply({
-                    content: "## No YouTube Channel Found",
-                    flags: MessageFlags.Ephemeral
-                });
-            }
+
 
             let videodata = await parser.parseURL(
-                `https://www.youtube.com/feeds/videos.xml?channel_id=${nextEmbed.YoutubeChannelId}`
+                `https://www.youtube.com/feeds/videos.xml?channel_id=${data.YoutubeChannelId}`
             );
             let {author} = videodata.items[0];
 
-            const embedMessage = new EmbedBuilder()
-                .setColor("#2B2D31")
-                .setDescription(
-                    [
-                        `**Channelname**: \`${author}\``,
-                        `**Channel**: <#${nextEmbed.ChannelId}>`,
-                        `**UUID**: \`\`\`${nextEmbed.UUID}\`\`\``
-                    ].join("\n")
-                );
-
             const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
                 new ButtonBuilder()
-                    .setEmoji("<:edit:1259961121075626066>")
-                    .setLabel("Edit Channel Name")
+                    .setEmoji("<:add:1260157236043583519>")
+                    .setLabel("Update Discord Channel")
                     .setStyle(ButtonStyle.Secondary)
-                    .setCustomId("youtube-update-channelname:" + nextEmbed.UUID),
+                    .setCustomId("youtube-update-channelname:" + data.UUID),
                 new ButtonBuilder()
                     .setEmoji("<:message:1322252985702551767>")
-                    .setLabel("Edit Message ID")
+                    .setLabel("Change Message Template")
                     .setStyle(ButtonStyle.Secondary)
-                    .setCustomId("youtube-update-messageid:" + nextEmbed.UUID),
+                    .setCustomId("youtube-update-messageid:" + data.UUID),
                 new ButtonBuilder()
                     .setEmoji("<:trash:1259432932234367069>")
-                    .setLabel("Delete " + author)
+                    .setLabel("Delete Twitch Channel")
                     .setStyle(ButtonStyle.Secondary)
-                    .setCustomId("youtube-remove:" + nextEmbed.UUID)
+                    .setCustomId("youtube-remove:" + data.UUID)
             );
             await interaction.reply({
-                embeds: [embedMessage],
-                components: [row],
-                flags: MessageFlags.Ephemeral
+                components: [
+                    new ContainerBuilder()
+                        .addTextDisplayComponents(
+                            new TextDisplayBuilder()
+                                .setContent(
+                                    [
+                                        `**Youtube Channel**: ${author} (${data.YoutubeChannelId})`,
+                                        `**Channel**: <#${data.ChannelId}>`,
+                                        `**UUID**: ${data.UUID}`
+                                    ].join("\n")
+                                )
+                        )
+                        .addActionRowComponents(row)
+                ],
+                flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2
             });
         }
     }

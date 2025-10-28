@@ -5,6 +5,7 @@ const {uuid} = pkg;
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 
 export default {
@@ -37,28 +38,7 @@ export default {
                 })
             if (!client.user) throw new Error("Client is not defined");
 
-            const row =
-                new ActionRowBuilder<ChannelSelectMenuBuilder>().addComponents(
-                    new ChannelSelectMenuBuilder()
-                        .addChannelTypes(
-                            ChannelType.GuildText,
-                            ChannelType.PublicThread,
-                            ChannelType.PrivateThread,
-                            ChannelType.GuildAnnouncement
-                        )
-                        .setCustomId(
-                            "youtube-add-channel:" + interaction.customId.split(":")[1]
-                        )
-                        .setMaxValues(1)
-                        .setMinValues(1)
-                        .setPlaceholder("Select your Channel/Thread")
-                );
-
-            interaction.update({
-                content: `## ${await convertToEmojiToPng(
-                    "text"
-                )} Please select a Channel/Thread to send the message.`, components: [row]
-            });
+            await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} Updated the ping role to ${role}`, interaction, true)
         }
     }
 }

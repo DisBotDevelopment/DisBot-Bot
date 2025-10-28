@@ -2,9 +2,9 @@ import {
     ActionRowBuilder,
     ButtonBuilder,
     ButtonStyle,
-    Client,
+    Client, ContainerBuilder,
     EmbedBuilder,
-    MessageFlags,
+    MessageFlags, TextDisplayBuilder,
     UserSelectMenuInteraction
 } from "discord.js";
 import {database} from "../../../main/database.js";
@@ -20,51 +20,47 @@ export default {
         for (const uuid of interaction.values) {
             const guildId = interaction.guild?.id;
 
-            const nextEmbed = await database.guildTwitchNotifications.findFirst(
+            const data = await database.guildTwitchNotifications.findFirst(
                 {
                     where: {
                         GuildId: guildId,
                         UUID: uuid.split(":")[0]
                     }
                 });
-            if (!nextEmbed) {
-                interaction.reply({
-                    content: "## No Twitch Streamer Found",
-                    flags: MessageFlags.Ephemeral
-                });
-            }
-
-            const embedMessage = new EmbedBuilder()
-                .setColor("#2B2D31")
-                .setDescription(
-                    [
-                        `**Channelname**: \`${nextEmbed.TwitchChannelName}\``,
-                        `**Channel**: <#${nextEmbed.ChannelId}>`,
-                        `**UUID**: \`\`\`${nextEmbed.UUID}\`\`\``
-                    ].join("\n")
-                );
 
             const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
                 new ButtonBuilder()
-                    .setEmoji("<:edit:1259961121075626066>")
-                    .setLabel("Edit Channel Name")
+                    .setEmoji("<:add:1260157236043583519>")
+                    .setLabel("Update Discord Channel")
                     .setStyle(ButtonStyle.Secondary)
-                    .setCustomId("twitch-update-channelname:" + nextEmbed.UUID),
+                    .setCustomId("twitch-update-channelname:" + data.UUID),
                 new ButtonBuilder()
                     .setEmoji("<:message:1322252985702551767>")
-                    .setLabel("Edit Message ID")
+                    .setLabel("Change Message Template")
                     .setStyle(ButtonStyle.Secondary)
-                    .setCustomId("youtube-update-messageid:" + nextEmbed.UUID),
+                    .setCustomId("twitch-update-messageid:" + data.UUID),
                 new ButtonBuilder()
                     .setEmoji("<:trash:1259432932234367069>")
-                    .setLabel("Delete " + nextEmbed.TwitchChannelName)
+                    .setLabel("Delete Twitch Channel")
                     .setStyle(ButtonStyle.Secondary)
-                    .setCustomId("twitch-remove:" + nextEmbed.UUID)
+                    .setCustomId("twitch-remove:" + data.UUID)
             );
             await interaction.reply({
-                embeds: [embedMessage],
-                components: [row],
-                flags: MessageFlags.Ephemeral
+                components: [
+                    new ContainerBuilder()
+                        .addTextDisplayComponents(
+                            new TextDisplayBuilder()
+                                .setContent(
+                                    [
+                                        `**Twitch Channel Name**: \`${data.TwitchChannelName}\``,
+                                        `**Channel**: ${data.ChannelId ? `<#${data.ChannelId}>` : "N/A"}>`,
+                                        `**UUID**: ${data.UUID}`
+                                    ].join("\n")
+                                )
+                        )
+                        .addActionRowComponents(row)
+                ],
+                flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2
             });
         }
     }

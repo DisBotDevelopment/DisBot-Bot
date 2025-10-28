@@ -1,7 +1,15 @@
-import {ButtonInteraction, ButtonStyle, MessageFlags, TextInputStyle} from "discord.js";
+import {
+    ButtonInteraction,
+    ButtonStyle,
+    ContainerBuilder,
+    MessageFlags, TextDisplayBuilder,
+    TextDisplayComponent,
+    TextInputStyle
+} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "twitch-remove",
@@ -19,12 +27,9 @@ export default {
             }
         });
         if (!data) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng(
-                    "error"
-                )} The Channel has already been removed!`,
-                flags: MessageFlags.Ephemeral
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng(
+                "error"
+            )} The Channel has already been removed!`, interaction, true)
         }
 
         await database.guildTwitchNotifications.deleteMany({
@@ -34,11 +39,14 @@ export default {
             }
         });
         await interaction.update({
-            content: `## ${await convertToEmojiToPng(
-                "check"
-            )} The Channels ${data.TwitchChannelName} has been Removed!`,
-            components: [],
-            embeds: []
+            components: [
+                new ContainerBuilder()
+                    .addTextDisplayComponents(
+                        new TextDisplayBuilder()
+                            .setContent(`## ${await convertToEmojiToPng("trash")} Successfully deleted Twitch Channel`)
+                    )
+            ],
+            flags: MessageFlags.IsComponentsV2
         });
     }
 };

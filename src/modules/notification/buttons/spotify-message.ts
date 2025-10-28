@@ -1,7 +1,7 @@
 import {
     ActionRowBuilder,
     ButtonInteraction,
-    ButtonStyle,
+    ButtonStyle, LabelBuilder,
     ModalBuilder,
     TextInputBuilder,
     TextInputStyle
@@ -9,7 +9,7 @@ import {
 import {ExtendedClient} from "../../../types/client.js";
 
 export default {
-  id: "spotify-message",
+    id: "spotify-message",
 
     /**
      *
@@ -18,19 +18,26 @@ export default {
      */
     async execute(interaction: ButtonInteraction, client: ExtendedClient) {
         const uuid = interaction.customId.split(":")[1];
-        const modal = new ModalBuilder()
-            .setCustomId("spotify-message-modal:" + uuid)
-            .setTitle("Edit the Message Template")
-            .addComponents(
-                new ActionRowBuilder<TextInputBuilder>()
-                    .addComponents(
-                        new TextInputBuilder()
-                            .setCustomId("messageTemplate")
-                            .setLabel("Message Template ID")
-                            .setStyle(TextInputStyle.Short)
-                            .setPlaceholder("Enter the Message Template ID")
-                            .setRequired(true)
-                    )
+
+        const modal = new ModalBuilder();
+        const messageID = new TextInputBuilder();
+
+        modal
+            .setTitle("Message Template")
+            .setCustomId(
+                "spotify-message-modal:" + interaction.customId.split(":")[1]
+            );
+
+        messageID
+            .setCustomId("messageTemplate")
+            .setStyle(TextInputStyle.Short)
+            .setRequired(true);
+
+        modal
+            .setLabelComponents(
+                new LabelBuilder()
+                    .setLabel("Message Template ID")
+                    .setTextInputComponent(messageID)
             );
 
         await interaction.showModal(modal);

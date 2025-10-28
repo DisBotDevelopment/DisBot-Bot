@@ -5,11 +5,15 @@ import {
     ButtonStyle,
     EmbedBuilder,
     MessageFlags,
-    StringSelectMenuBuilder,
+    StringSelectMenuBuilder, TextDisplayBuilder,
     TextInputStyle
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
+import {PaginationBuilder} from "../../../helper/paginationHelper.js";
+import {PaginationData} from "../../../types/pagination.js";
 
 export default {
     id: "twitch-manage",
@@ -25,74 +29,44 @@ export default {
         const guildId = interaction.guild?.id;
         const pageSize = 5;
 
-        try {
-            const allEmbeds = await database.guildTwitchNotifications
-                .findMany({
-                    where: {
-                        GuildId: guildId
-                    }
-                })
+        const data = await database.guildTwitchNotifications
+            .findMany({
+                where: {
+                    GuildId: guildId
+                }
+            })
 
-            if (!allEmbeds.length) {
-                return interaction.reply({
-                    content: "## No Twitch Streamer Found",
-                    flags: MessageFlags.Ephemeral
-                });
-            }
-
-            const embedsList = allEmbeds.slice(currentIndex, currentIndex + pageSize);
-            const embedMessages = embedsList.map((embed) => {
-                return new EmbedBuilder()
-                    .setColor("#2B2D31")
-                    .setDescription(
-                        [
-                            `**Channelname**: \`${embed.TwitchChannelName}\``,
-                            `**Channel**: <#${embed.ChannelId}>`,
-                            `**UUID**: \`\`\`${embed.UUID}\`\`\``
-                        ].join("\n")
-                    );
-            });
-
-            const selectMenu = new StringSelectMenuBuilder()
-                .setCustomId("twitch-manage-select")
-                .setPlaceholder("Select a Option to manage")
-                .addOptions(
-                    embedsList.map((embed) => ({
-                        label: embed.TwitchChannelName,
-                        description: `UUID: ${embed.UUID}`,
-                        value: embed.UUID
-                    })) as any
-                );
-
-            const navigationRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
-                new ButtonBuilder()
-                    .setEmoji("<:arrowbackregular24:1301119279088799815>")
-                    .setStyle(ButtonStyle.Secondary)
-                    .setCustomId(`twitch-manage:${uuid}:${currentIndex - pageSize}`)
-                    .setDisabled(currentIndex === 0),
-                new ButtonBuilder()
-                    .setEmoji("<:next:1287457822526935090>")
-                    .setStyle(ButtonStyle.Secondary)
-                    .setCustomId(`twitch-manage:${uuid}:${currentIndex + pageSize}`)
-                    .setDisabled(currentIndex + pageSize >= allEmbeds.length)
-            );
-
-            const selectMenuRow =
-                new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(
-                    selectMenu
-                );
-
-            await interaction.update({
-                embeds: embedMessages,
-                components: [navigationRow, selectMenuRow]
-            });
-        } catch (error) {
-            console.error("Error:", error);
-            interaction.reply({
-                content:
-                    "## An error occurred while fetching the menus. Please try again later",
-                flags: MessageFlags.Ephemeral
-            });
+        if (!data.length) {
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} No Twitch Streamer Found`, interaction, true)
         }
+
+        const list = data.slice(currentIndex, currentIndex + pageSize);
+
+        const embedMessages = new TextDisplayBuilder()
+            .setContent((await Promise.all(list.map(async (l) => `**Twitch Channel**: ${l.TwitchChannelName}\n**Channel Name:** ${l.ChannelId ? `<#${l.ChannelId}>` : "N/A"}\n**UUID:** ${l.UUID}`))).join("\n\n"));
+
+
+        const selectMenu = new StringSelectMenuBuilder()
+            .setCustomId("twitch-manage-select")
+            .setPlaceholder("Select a Option to manage")
+            .addOptions(await Promise.all(list.map(async (l) => ({
+                label: l.TwitchChannelName,
+                description: `UUID: ${l.UUID}`,
+                value: l.UUID,
+                emoji: "<:s_twitch02:1432486211611787385>",
+            }))));
+
+        const paginationData: PaginationData = {
+            interaction: interaction,
+            paginationData: data,
+            buttonCustomId: "twitch-manage:",
+            selectmenu: selectMenu,
+            content: embedMessages,
+            pageSize: pageSize,
+            client: client,
+            currentIndex: currentIndex,
+            latestUUID: uuid
+        };
+        await PaginationBuilder(paginationData);
     }
 };

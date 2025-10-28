@@ -1,8 +1,4 @@
 import {ChannelType, Client, UserSelectMenuInteraction} from "discord.js";
-import pkg from "short-uuid";
-
-const {uuid} = pkg;
-import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
 
@@ -18,7 +14,6 @@ export default {
         interaction: UserSelectMenuInteraction,
         client: ExtendedClient
     ) {
-        const uuids = uuid();
         for (const value of interaction.values) {
             const channel = interaction.guild?.channels.cache.get(value);
 
@@ -32,13 +27,7 @@ export default {
             );
             if (!client.user) throw new Error("Client User is not defined");
 
-            await interaction.update({
-                content: `## ${await convertToEmojiToPng(
-                    "check"
-                )} The Channel has been Updated!`,
-                components: [],
-                embeds: []
-            });
+            await interaction.deferUpdate()
         }
     }
 };

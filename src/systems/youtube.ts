@@ -1,8 +1,9 @@
 import colors from "colors";
-import {EmbedBuilder, NewsChannel, TextChannel, ThreadChannel} from "discord.js";
+import {ChannelType, EmbedBuilder, NewsChannel, TextChannel, ThreadChannel} from "discord.js";
 import Parser from "rss-parser";
 import {ExtendedClient} from "../types/client.js";
 import {database} from "../main/database.js";
+import {MessageBuilder} from "../helper/messageHelper.js";
 
 const parser = new Parser();
 colors.enable();
@@ -30,16 +31,16 @@ export async function checkYoutube(client: ExtendedClient) {
             let guild = guilds.cache.get(`${data.GuildId}`);
             if (!guild) continue;
 
-            const toggledata = await database.guildFeatureToggles.findFirst({
+            const toggleData = await database.guildFeatureToggles.findFirst({
                 where: {
                     GuildId: guild.id
                 }
             });
 
-            if (!toggledata) continue;
-            if (toggledata.YoutubeEnabled == false) continue;
-            const twitchChannel = channels.cache.get(`${data.ChannelId}`);
-            if (!twitchChannel) throw new Error("twitchChannel not found");
+            if (!toggleData) continue;
+            if (toggleData.YoutubeEnabled == false) continue;
+            const youtubeChannel = channels.cache.get(`${data.ChannelId}`);
+            if (!youtubeChannel) new Error("twitchChannel not found");
 
             let {link, author, title, id} = videodata.items[0];
 
@@ -71,115 +72,32 @@ export async function checkYoutube(client: ExtendedClient) {
             });
 
             const channel = guild.channels.cache.get(
-                (twitchChannel as TextChannel)?.id as string
+                (youtubeChannel as TextChannel)?.id as string
             );
 
             if (!messageData) continue;
-
-            if (twitchChannel?.isThread()) {
-
-                const embed = messageData.EmbedJSON?.replace("{author}", author)
-                    .replace("{title}", title as string)
-                    .replace("{link}", link as string)
-                    .replace("{thumbnail}", thumbnail)
-                    .replace("https://youtube.com/@yourname", link as string)
-                    .replace("https://youtube.com/thumbnail.png", thumbnail)
-                    .replace("{pingrole}", `<@&${pingrole}>`);
-
-                if (!messageData.EmbedJSON) {
-
-                    if (
-                        !(channel instanceof TextChannel ||
-                            channel instanceof NewsChannel ||
-                            channel instanceof ThreadChannel)
-                    ) {
-                        continue;
-                    }
-                    channel?.send({
-                        content: `${messageData.Content
-                            ? messageData.Content.replace("{author}", author)
-                                .replace("{title}", title as string)
-                                .replace("{link}", link as string)
-                                .replace("{thumbnail}", thumbnail)
-                                .replace("{pingrole}", `<@&${pingrole}>`)
-                            : ""
-                        }`
-                    });
-
-                    continue;
-                } else {
-                    if (
-                        !(channel instanceof TextChannel ||
-                            channel instanceof NewsChannel ||
-                            channel instanceof ThreadChannel)
-                    ) {
-                        continue;
-                    }
-                    channel?.send({
-                        embeds: [new EmbedBuilder(JSON.parse(embed as string))],
-                        content: `${messageData.Content
-                            ? messageData.Content.replace("{author}", author)
-                                .replace("{title}", title as string)
-                                .replace("{link}", link as string)
-                                .replace("{thumbnail}", thumbnail)
-                                .replace("{pingrole}", `<@&${pingrole}>`)
-                            : ""
-                        }`
-                    });
+            const placeholder = {
+                youtube: {
+                    author: author,
+                    title: title,
+                    link: link,
+                    thumbnail: thumbnail,
+                    pingRole: `<@&${pingrole}>`,
                 }
-            } else {
-                const embed = messageData?.EmbedJSON?.replace("{author}", author)
-                    .replace("{title}", title as string)
-                    .replace("{link}", link as string)
-                    .replace("{thumbnail}", thumbnail)
-                    .replace("https://youtube.com/@yourname", link as string)
-                    .replace("https://youtube.com/thumbnail.png", thumbnail)
-                    .replace("{pingrole}", `<@&${pingrole}>`);
-
-                if (!messageData.EmbedJSON) {
-                    if (
-                        !(channel instanceof TextChannel ||
-                            channel instanceof NewsChannel ||
-                            channel instanceof ThreadChannel)
-                    ) {
-                        continue;
-                    }
-                    channel.send({
-                        content: `${messageData.Content
-                            ? messageData.Content.replace("{author}", author)
-                                .replace("{title}", title as string)
-                                .replace("{link}", link as string)
-                                .replace("{thumbnail}", thumbnail)
-                                .replace("{pingrole}", `<@&${pingrole}>`)
-                            : ""
-                        }`
-                    });
-
-                    continue;
-                } else {
-                    if (
-                        !(channel instanceof TextChannel ||
-                            channel instanceof NewsChannel ||
-                            channel instanceof ThreadChannel)
-                    ) {
-                        continue;
-                    }
-                    channel.send({
-                        embeds: [new EmbedBuilder(JSON.parse(embed as string))],
-                        content: `${messageData.Content
-                            ? (messageData.Content as string).replace("{author}", author)
-                                .replace("{title}", title as string)
-                                .replace("{link}", link as string)
-                                .replace("{thumbnail}", thumbnail)
-                                .replace("{pingrole}", `<@&${pingrole}>`)
-                            : ""
-                        }`
-                    });
-                }
-
             }
+            const message = await MessageBuilder(
+                messageData,
+                placeholder
+            )
+
+            if (channel.type == ChannelType.PublicThread) {
+                await channel.send(message.messageData)
+            } else {
+                await (channel as TextChannel).send(message.messageData)
+            }
+
         } catch (e) {
-            continue;
+            return
         }
     }
 }

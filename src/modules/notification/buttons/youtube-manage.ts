@@ -5,12 +5,16 @@ import {
     ButtonStyle,
     EmbedBuilder,
     MessageFlags,
-    StringSelectMenuBuilder,
+    StringSelectMenuBuilder, TextDisplayBuilder,
     TextInputStyle
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import Parser from "rss-parser";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
+import {PaginationData} from "../../../types/pagination.js";
+import {PaginationBuilder} from "../../../helper/paginationHelper.js";
 
 export default {
     id: "youtube-manage",
@@ -27,73 +31,63 @@ export default {
         const pageSize = 5;
 
         try {
-            const allEmbeds = await database.guildYoutubeNotifications
+            const data = await database.guildYoutubeNotifications
                 .findMany({
                     where: {
                         GuildId: guildId
                     }
                 })
 
-            if (!allEmbeds.length) {
-                return interaction.reply({
-                    content: "## No YouTube Channel Found",
-                    flags: MessageFlags.Ephemeral
-                });
+            if (!data.length) {
+                return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} No Twitch Streamer Found`, interaction, true)
             }
 
-            let channelname = "";
-            const embedsList = allEmbeds.slice(currentIndex, currentIndex + pageSize);
-            const embedMessages = await Promise.all(
-                embedsList.map(async (embed) => {
+            const list = data.slice(currentIndex, currentIndex + pageSize);
+
+            const embedMessages = new TextDisplayBuilder()
+                .setContent((await Promise.all(list.map(async (l) => {
 
                     const parser = new Parser();
                     let videodata = await parser.parseURL(
-                        `https://www.youtube.com/feeds/videos.xml?channel_id=${embed.YoutubeChannelId}`
+                        `https://www.youtube.com/feeds/videos.xml?channel_id=${l.YoutubeChannelId}`
                     );
                     let {author} = videodata.items[0];
-                    channelname = author;
-                    return new EmbedBuilder()
-                        .setColor("#2B2D31")
-                        .setDescription(
-                            [
-                                `**Channelname**:   \`${author}\` (ID: \`${embed.YoutubeChannelId}\`)`,
-                                `**Channel**: <#${embed.ChannelId}>`,
-                                `**UUID**: \`\`\`${embed.UUID}\`\`\``
-                            ].join("\n")
-                        );
-                })
-            );
+
+                    return `**Youtube Channel**: ${author} (${l.YoutubeChannelId})\n**Channel Name:** ${l.ChannelId ? `<#${l.ChannelId}>` : "N/A"}\n**UUID:** ${l.UUID}`
+                }))).join("\n\n"))
+
+
             const selectMenu = new StringSelectMenuBuilder()
                 .setCustomId("youtube-manage-select")
                 .setPlaceholder("Select a Option to manage")
-                .addOptions(
-                    embedsList.map((embed) => ({
-                        label: `${channelname} (ID: ${embed.YoutubeChannelId})`,
-                        description: `UUID: ${embed.UUID}`,
-                        value: embed.UUID
-                    })) as any
-                );
+                .addOptions(await Promise.all(list.map(async (l) => {
 
-            const navigationRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
-                new ButtonBuilder()
-                    .setEmoji("<:arrowbackregular24:1301119279088799815>")
-                    .setStyle(ButtonStyle.Secondary)
-                    .setCustomId(`youtube-manage:${uuid}:${currentIndex - pageSize}`)
-                    .setDisabled(currentIndex === 0),
-                new ButtonBuilder()
-                    .setEmoji("<:next:1287457822526935090>")
-                    .setStyle(ButtonStyle.Secondary)
-                    .setCustomId(`youtube-manage:${uuid}:${currentIndex + pageSize}`)
-                    .setDisabled(currentIndex + pageSize >= allEmbeds.length)
-            );
+                    const parser = new Parser();
+                    let videodata = await parser.parseURL(
+                        `https://www.youtube.com/feeds/videos.xml?channel_id=${l.YoutubeChannelId}`
+                    );
+                    let {author} = videodata.items[0];
 
-            const selectMenuRow = new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(selectMenu);
+                    return {
+                        label: `${author} (${l.YoutubeChannelId})`,
+                        description: `UUID: ${l.UUID}`,
+                        value: l.UUID,
+                        emoji: "<:youtube:1432486146868510720>",
+                    }
+                })));
 
-            await interaction.reply({
-                embeds: embedMessages,
-                components: [navigationRow, selectMenuRow],
-                flags: MessageFlags.Ephemeral
-            });
+            const paginationData: PaginationData = {
+                interaction: interaction,
+                paginationData: data,
+                buttonCustomId: "youtube-manage:",
+                selectmenu: selectMenu,
+                content: embedMessages,
+                pageSize: pageSize,
+                client: client,
+                currentIndex: currentIndex,
+                latestUUID: uuid
+            };
+            await PaginationBuilder(paginationData);
         } catch (error) {
             console.error("Error:", error);
             await interaction.reply({

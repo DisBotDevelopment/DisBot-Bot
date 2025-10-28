@@ -2,6 +2,7 @@ import {ButtonStyle, Client, MessageFlags, ModalSubmitInteraction} from "discord
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "twitch-add-message-modal",
@@ -26,11 +27,7 @@ export default {
         });
 
         if (!isMessage) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng(
-                    "error"
-                )} Invalid Message ID! Try again.`, flags: MessageFlags.Ephemeral
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} Invalid Message ID! Try again.`, interaction, true)
         }
 
         await database.guildTwitchNotifications.update(
@@ -44,11 +41,6 @@ export default {
             }
         );
 
-        await interaction.reply({
-            content: `## ${await convertToEmojiToPng(
-                "check"
-            )} Successfully updated the message for the Twitch command.\n-# Please enable the Notification`,
-            components: [], flags: MessageFlags.Ephemeral
-        });
+        await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} Added the Message Template to the notification.`, interaction, true)
     }
 };

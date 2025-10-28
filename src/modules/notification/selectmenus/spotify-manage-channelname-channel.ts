@@ -27,13 +27,7 @@ export default {
                 }
             );
             if (!client.user) throw new Error("Client user not found");
-            await interaction.update(
-                {
-                    content: `## ${await convertToEmojiToPng("check")} Update Notification Channel`,
-                    embeds: [],
-                    components: [],
-                }
-            )
+            await interaction.deferUpdate()
         }
     }
 };
