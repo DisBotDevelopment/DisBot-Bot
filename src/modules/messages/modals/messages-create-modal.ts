@@ -54,6 +54,7 @@ export default {
                     }
                 },
                 Name: name,
+                IsComponentsV2Message: false,
                 Content: "ㅤ",
                 EmbedJSON:
                     null,
@@ -62,24 +63,14 @@ export default {
 
         const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
             new ButtonBuilder()
-                .setCustomId("messages-embed-create:" + name)
-                .setLabel("Create Embed")
+                .setCustomId("messages-embed-create-embeds:" + name)
+                .setLabel("Embeds")
                 .setEmoji("<:box:1259853376368148601>")
                 .setStyle(ButtonStyle.Secondary),
             new ButtonBuilder()
-                .setCustomId("messages-message-create:" + name)
-                .setLabel("Create Message Content")
-                .setEmoji("<:message:1322252985702551767>")
-                .setStyle(ButtonStyle.Secondary),
-            new ButtonBuilder()
-                .setCustomId("messages-message-save:" + name)
-                .setLabel("Save Message Template")
-                .setEmoji("<:save:1260157401496031244>")
-                .setStyle(ButtonStyle.Secondary),
-            new ButtonBuilder()
-                .setCustomId("messages-message-extra-embeds:" + name)
-                .setLabel("Add Extra Embeds")
-                .setEmoji("<:add:1260157236043583519>")
+                .setCustomId("messages-message-components:" + name)
+                .setLabel("Components")
+                .setEmoji("<:puzzle:1381000302601441440>")
                 .setStyle(ButtonStyle.Secondary)
         );
 
@@ -87,8 +78,8 @@ export default {
             components: [
                 new ContainerBuilder().addTextDisplayComponents(
                     new TextDisplayBuilder().setContent(`## ${await convertToEmojiToPng(
-                        "success"
-                    )} Message template \`\`${name}\`\` created successfully!`)
+                        "message"
+                    )} Created you Message Template.\n-# Choose from the two types Embeds or Components.`)
                 ).addActionRowComponents(row),
             ],
             flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,

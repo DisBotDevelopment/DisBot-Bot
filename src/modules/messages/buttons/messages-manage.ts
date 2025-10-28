@@ -37,7 +37,7 @@ export default {
         if (!data || data.length === 0) {
             return interaction.reply({
                 content: "No message templates found.",
-                ephemeral: true
+                flags: MessageFlags.Ephemeral
             });
         }
 
@@ -54,7 +54,7 @@ export default {
                 await Promise.all(list.map(async (l) => ({
                     label: l.Name || "N/A",
                     emoji: "<:message:1322252985702551767>",
-                    description: `Message Template`,
+                    description: `${l.IsComponentsV2Message ? "Component" : "Message"} Template`,
                     value: l.Name
                 })) as any)
             );

@@ -27,11 +27,24 @@ export default {
         });
 
         const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
+            new ButtonBuilder()
+                .setEmoji("<:preview:1288230393757171825>")
+                .setLabel("Message Preview")
+                .setStyle(ButtonStyle.Secondary)
+                .setCustomId("messages-preview:" + data?.Name)
+        )
+
+        let row2
+        if (data.IsComponentsV2Message) {
+            row2 = new ActionRowBuilder<ButtonBuilder>().addComponents(
                 new ButtonBuilder()
-                    .setEmoji("<:preview:1288230393757171825>")
-                    .setLabel("Message Preview")
+                    .setEmoji("<:edit:1259961121075626066>")
+                    .setLabel("Edit Components")
                     .setStyle(ButtonStyle.Secondary)
-                    .setCustomId("messages-preview:" + data?.Name),
+                    .setCustomId("messages-message-components:" + data?.Name)
+            )
+        } else {
+            row2 = new ActionRowBuilder<ButtonBuilder>().addComponents(
                 new ButtonBuilder()
                     .setEmoji("<:edit:1259961121075626066>")
                     .setLabel("Edit Message")
@@ -53,12 +66,13 @@ export default {
                     .setStyle(ButtonStyle.Secondary)
                     .setCustomId("messages-edit-embed-remove:" + data?.Name)
             )
-        ;
+        }
 
         await interaction.reply({
             components: [
                 new ContainerBuilder()
                     .addActionRowComponents(row)
+                    .addActionRowComponents(row2)
             ],
             flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
         });
