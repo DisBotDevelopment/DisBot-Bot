@@ -244,21 +244,6 @@ export type GuildLogs = $Result.DefaultSelection<Prisma.$GuildLogsPayload>
  */
 export type MessageTemplates = $Result.DefaultSelection<Prisma.$MessageTemplatesPayload>
 /**
- * Model GuildReactionRoles
- * 
- */
-export type GuildReactionRoles = $Result.DefaultSelection<Prisma.$GuildReactionRolesPayload>
-/**
- * Model ReactionRoleSelectmenu
- * 
- */
-export type ReactionRoleSelectmenu = $Result.DefaultSelection<Prisma.$ReactionRoleSelectmenuPayload>
-/**
- * Model ReactionRoleButton
- * 
- */
-export type ReactionRoleButton = $Result.DefaultSelection<Prisma.$ReactionRoleButtonPayload>
-/**
  * Model GuildSecurity
  * 
  */
@@ -981,36 +966,6 @@ export class PrismaClient<
     * ```
     */
   get messageTemplates(): Prisma.MessageTemplatesDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.guildReactionRoles`: Exposes CRUD operations for the **GuildReactionRoles** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more GuildReactionRoles
-    * const guildReactionRoles = await prisma.guildReactionRoles.findMany()
-    * ```
-    */
-  get guildReactionRoles(): Prisma.GuildReactionRolesDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.reactionRoleSelectmenu`: Exposes CRUD operations for the **ReactionRoleSelectmenu** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more ReactionRoleSelectmenus
-    * const reactionRoleSelectmenus = await prisma.reactionRoleSelectmenu.findMany()
-    * ```
-    */
-  get reactionRoleSelectmenu(): Prisma.ReactionRoleSelectmenuDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.reactionRoleButton`: Exposes CRUD operations for the **ReactionRoleButton** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more ReactionRoleButtons
-    * const reactionRoleButtons = await prisma.reactionRoleButton.findMany()
-    * ```
-    */
-  get reactionRoleButton(): Prisma.ReactionRoleButtonDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.guildSecurity`: Exposes CRUD operations for the **GuildSecurity** model.
@@ -1787,9 +1742,6 @@ export namespace Prisma {
     GuildLogging: 'GuildLogging',
     GuildLogs: 'GuildLogs',
     MessageTemplates: 'MessageTemplates',
-    GuildReactionRoles: 'GuildReactionRoles',
-    ReactionRoleSelectmenu: 'ReactionRoleSelectmenu',
-    ReactionRoleButton: 'ReactionRoleButton',
     GuildSecurity: 'GuildSecurity',
     VerificationGates: 'VerificationGates',
     VerificationGatesPermission: 'VerificationGatesPermission',
@@ -1837,7 +1789,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "guilds" | "guildCommandManger" | "buildInCommands" | "guildComponentManager" | "guildInteractionPermissions" | "guildAutoDeletes" | "guildAutoPublish" | "guildAutoReacts" | "guildAutoRoles" | "moderationScout" | "moderationScoutCases" | "moderationScoutForms" | "moderationScoutFormsData" | "moderationScoutUserAppeals" | "moderationScoutReportModalData" | "moderationScoutReports" | "guildModeration" | "guildUserModerationSettingBan" | "guildUserModerationSettingUnban" | "guildUserModerationSettinKick" | "guildUserModerationSettingWarn" | "guildUserModerationSettingUnwarn" | "guildUserModerationSettingMute" | "guildUserModerationSettingUnmute" | "guildUserModeration" | "guildDisBotAutoModeration" | "guildDisBotAutoModerationMessages" | "guildDisBotAutoModerationMentions" | "guildDisBotAutoModerationAttachments" | "guildDisBotAutoModerationEmojis" | "guildDisBotAutoModerationBlockedWords" | "guildDisBotAutoModerationBlockLinks" | "guildDisBotAutoModerationBlockInvites" | "guildChannelLinks" | "syncedChannelLinkMessages" | "discordGuildAddon" | "giveaways" | "tempVoices" | "tempVoiceChannels" | "guildLeaveSetup" | "leaveImageData" | "guildWelcomeSetup" | "welcomeImageData" | "guildLogging" | "guildLogs" | "messageTemplates" | "guildReactionRoles" | "reactionRoleSelectmenu" | "reactionRoleButton" | "guildSecurity" | "verificationGates" | "verificationGatesPermission" | "guildSpotifyNotifications" | "polls" | "pollOptions" | "pollAnswers" | "ticketSetups" | "ticketModalData" | "ticketPermissions" | "tickets" | "ticketFeedback" | "guildFeatureToggles" | "guildTwitchNotifications" | "guildYoutubeNotifications" | "levelSettings" | "xPDrops" | "xPStreaks" | "levelRoles" | "levels" | "users" | "apis" | "guildBackups" | "vanitys" | "vanityEmbed" | "vanityEmbedAuthor" | "vanityAnalytic" | "vanityAnalyticsLatest30Day" | "disBot"
+      modelProps: "guilds" | "guildCommandManger" | "buildInCommands" | "guildComponentManager" | "guildInteractionPermissions" | "guildAutoDeletes" | "guildAutoPublish" | "guildAutoReacts" | "guildAutoRoles" | "moderationScout" | "moderationScoutCases" | "moderationScoutForms" | "moderationScoutFormsData" | "moderationScoutUserAppeals" | "moderationScoutReportModalData" | "moderationScoutReports" | "guildModeration" | "guildUserModerationSettingBan" | "guildUserModerationSettingUnban" | "guildUserModerationSettinKick" | "guildUserModerationSettingWarn" | "guildUserModerationSettingUnwarn" | "guildUserModerationSettingMute" | "guildUserModerationSettingUnmute" | "guildUserModeration" | "guildDisBotAutoModeration" | "guildDisBotAutoModerationMessages" | "guildDisBotAutoModerationMentions" | "guildDisBotAutoModerationAttachments" | "guildDisBotAutoModerationEmojis" | "guildDisBotAutoModerationBlockedWords" | "guildDisBotAutoModerationBlockLinks" | "guildDisBotAutoModerationBlockInvites" | "guildChannelLinks" | "syncedChannelLinkMessages" | "discordGuildAddon" | "giveaways" | "tempVoices" | "tempVoiceChannels" | "guildLeaveSetup" | "leaveImageData" | "guildWelcomeSetup" | "welcomeImageData" | "guildLogging" | "guildLogs" | "messageTemplates" | "guildSecurity" | "verificationGates" | "verificationGatesPermission" | "guildSpotifyNotifications" | "polls" | "pollOptions" | "pollAnswers" | "ticketSetups" | "ticketModalData" | "ticketPermissions" | "tickets" | "ticketFeedback" | "guildFeatureToggles" | "guildTwitchNotifications" | "guildYoutubeNotifications" | "levelSettings" | "xPDrops" | "xPStreaks" | "levelRoles" | "levels" | "users" | "apis" | "guildBackups" | "vanitys" | "vanityEmbed" | "vanityEmbedAuthor" | "vanityAnalytic" | "vanityAnalyticsLatest30Day" | "disBot"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -5245,228 +5197,6 @@ export namespace Prisma {
           }
         }
       }
-      GuildReactionRoles: {
-        payload: Prisma.$GuildReactionRolesPayload<ExtArgs>
-        fields: Prisma.GuildReactionRolesFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.GuildReactionRolesFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GuildReactionRolesPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.GuildReactionRolesFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GuildReactionRolesPayload>
-          }
-          findFirst: {
-            args: Prisma.GuildReactionRolesFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GuildReactionRolesPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.GuildReactionRolesFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GuildReactionRolesPayload>
-          }
-          findMany: {
-            args: Prisma.GuildReactionRolesFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GuildReactionRolesPayload>[]
-          }
-          create: {
-            args: Prisma.GuildReactionRolesCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GuildReactionRolesPayload>
-          }
-          createMany: {
-            args: Prisma.GuildReactionRolesCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.GuildReactionRolesCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GuildReactionRolesPayload>[]
-          }
-          delete: {
-            args: Prisma.GuildReactionRolesDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GuildReactionRolesPayload>
-          }
-          update: {
-            args: Prisma.GuildReactionRolesUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GuildReactionRolesPayload>
-          }
-          deleteMany: {
-            args: Prisma.GuildReactionRolesDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.GuildReactionRolesUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.GuildReactionRolesUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GuildReactionRolesPayload>[]
-          }
-          upsert: {
-            args: Prisma.GuildReactionRolesUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GuildReactionRolesPayload>
-          }
-          aggregate: {
-            args: Prisma.GuildReactionRolesAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateGuildReactionRoles>
-          }
-          groupBy: {
-            args: Prisma.GuildReactionRolesGroupByArgs<ExtArgs>
-            result: $Utils.Optional<GuildReactionRolesGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.GuildReactionRolesCountArgs<ExtArgs>
-            result: $Utils.Optional<GuildReactionRolesCountAggregateOutputType> | number
-          }
-        }
-      }
-      ReactionRoleSelectmenu: {
-        payload: Prisma.$ReactionRoleSelectmenuPayload<ExtArgs>
-        fields: Prisma.ReactionRoleSelectmenuFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.ReactionRoleSelectmenuFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ReactionRoleSelectmenuPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.ReactionRoleSelectmenuFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ReactionRoleSelectmenuPayload>
-          }
-          findFirst: {
-            args: Prisma.ReactionRoleSelectmenuFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ReactionRoleSelectmenuPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.ReactionRoleSelectmenuFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ReactionRoleSelectmenuPayload>
-          }
-          findMany: {
-            args: Prisma.ReactionRoleSelectmenuFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ReactionRoleSelectmenuPayload>[]
-          }
-          create: {
-            args: Prisma.ReactionRoleSelectmenuCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ReactionRoleSelectmenuPayload>
-          }
-          createMany: {
-            args: Prisma.ReactionRoleSelectmenuCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.ReactionRoleSelectmenuCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ReactionRoleSelectmenuPayload>[]
-          }
-          delete: {
-            args: Prisma.ReactionRoleSelectmenuDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ReactionRoleSelectmenuPayload>
-          }
-          update: {
-            args: Prisma.ReactionRoleSelectmenuUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ReactionRoleSelectmenuPayload>
-          }
-          deleteMany: {
-            args: Prisma.ReactionRoleSelectmenuDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.ReactionRoleSelectmenuUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.ReactionRoleSelectmenuUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ReactionRoleSelectmenuPayload>[]
-          }
-          upsert: {
-            args: Prisma.ReactionRoleSelectmenuUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ReactionRoleSelectmenuPayload>
-          }
-          aggregate: {
-            args: Prisma.ReactionRoleSelectmenuAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateReactionRoleSelectmenu>
-          }
-          groupBy: {
-            args: Prisma.ReactionRoleSelectmenuGroupByArgs<ExtArgs>
-            result: $Utils.Optional<ReactionRoleSelectmenuGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.ReactionRoleSelectmenuCountArgs<ExtArgs>
-            result: $Utils.Optional<ReactionRoleSelectmenuCountAggregateOutputType> | number
-          }
-        }
-      }
-      ReactionRoleButton: {
-        payload: Prisma.$ReactionRoleButtonPayload<ExtArgs>
-        fields: Prisma.ReactionRoleButtonFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.ReactionRoleButtonFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ReactionRoleButtonPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.ReactionRoleButtonFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ReactionRoleButtonPayload>
-          }
-          findFirst: {
-            args: Prisma.ReactionRoleButtonFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ReactionRoleButtonPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.ReactionRoleButtonFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ReactionRoleButtonPayload>
-          }
-          findMany: {
-            args: Prisma.ReactionRoleButtonFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ReactionRoleButtonPayload>[]
-          }
-          create: {
-            args: Prisma.ReactionRoleButtonCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ReactionRoleButtonPayload>
-          }
-          createMany: {
-            args: Prisma.ReactionRoleButtonCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.ReactionRoleButtonCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ReactionRoleButtonPayload>[]
-          }
-          delete: {
-            args: Prisma.ReactionRoleButtonDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ReactionRoleButtonPayload>
-          }
-          update: {
-            args: Prisma.ReactionRoleButtonUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ReactionRoleButtonPayload>
-          }
-          deleteMany: {
-            args: Prisma.ReactionRoleButtonDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.ReactionRoleButtonUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.ReactionRoleButtonUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ReactionRoleButtonPayload>[]
-          }
-          upsert: {
-            args: Prisma.ReactionRoleButtonUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ReactionRoleButtonPayload>
-          }
-          aggregate: {
-            args: Prisma.ReactionRoleButtonAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateReactionRoleButton>
-          }
-          groupBy: {
-            args: Prisma.ReactionRoleButtonGroupByArgs<ExtArgs>
-            result: $Utils.Optional<ReactionRoleButtonGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.ReactionRoleButtonCountArgs<ExtArgs>
-            result: $Utils.Optional<ReactionRoleButtonCountAggregateOutputType> | number
-          }
-        }
-      }
       GuildSecurity: {
         payload: Prisma.$GuildSecurityPayload<ExtArgs>
         fields: Prisma.GuildSecurityFieldRefs
@@ -7751,9 +7481,6 @@ export namespace Prisma {
     guildLogging?: GuildLoggingOmit
     guildLogs?: GuildLogsOmit
     messageTemplates?: MessageTemplatesOmit
-    guildReactionRoles?: GuildReactionRolesOmit
-    reactionRoleSelectmenu?: ReactionRoleSelectmenuOmit
-    reactionRoleButton?: ReactionRoleButtonOmit
     guildSecurity?: GuildSecurityOmit
     verificationGates?: VerificationGatesOmit
     verificationGatesPermission?: VerificationGatesPermissionOmit
@@ -7870,7 +7597,6 @@ export namespace Prisma {
     GuildChannelLinks: number
     GuildInteractionPermissions: number
     GuildLogs: number
-    ReactionRole: number
     SpotifyNotifications: number
     TwitchNotifications: number
     GuildUserModeration: number
@@ -7889,7 +7615,6 @@ export namespace Prisma {
     GuildChannelLinks?: boolean | GuildsCountOutputTypeCountGuildChannelLinksArgs
     GuildInteractionPermissions?: boolean | GuildsCountOutputTypeCountGuildInteractionPermissionsArgs
     GuildLogs?: boolean | GuildsCountOutputTypeCountGuildLogsArgs
-    ReactionRole?: boolean | GuildsCountOutputTypeCountReactionRoleArgs
     SpotifyNotifications?: boolean | GuildsCountOutputTypeCountSpotifyNotificationsArgs
     TwitchNotifications?: boolean | GuildsCountOutputTypeCountTwitchNotificationsArgs
     GuildUserModeration?: boolean | GuildsCountOutputTypeCountGuildUserModerationArgs
@@ -7958,13 +7683,6 @@ export namespace Prisma {
    */
   export type GuildsCountOutputTypeCountGuildLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: GuildLogsWhereInput
-  }
-
-  /**
-   * GuildsCountOutputType without action
-   */
-  export type GuildsCountOutputTypeCountReactionRoleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: GuildReactionRolesWhereInput
   }
 
   /**
@@ -8763,7 +8481,6 @@ export namespace Prisma {
     GuildLogging?: boolean | Guilds$GuildLoggingArgs<ExtArgs>
     GuildLogs?: boolean | Guilds$GuildLogsArgs<ExtArgs>
     GuildModeration?: boolean | Guilds$GuildModerationArgs<ExtArgs>
-    ReactionRole?: boolean | Guilds$ReactionRoleArgs<ExtArgs>
     Security?: boolean | Guilds$SecurityArgs<ExtArgs>
     SpotifyNotifications?: boolean | Guilds$SpotifyNotificationsArgs<ExtArgs>
     TwitchNotifications?: boolean | Guilds$TwitchNotificationsArgs<ExtArgs>
@@ -8818,7 +8535,6 @@ export namespace Prisma {
     GuildLogging?: boolean | Guilds$GuildLoggingArgs<ExtArgs>
     GuildLogs?: boolean | Guilds$GuildLogsArgs<ExtArgs>
     GuildModeration?: boolean | Guilds$GuildModerationArgs<ExtArgs>
-    ReactionRole?: boolean | Guilds$ReactionRoleArgs<ExtArgs>
     Security?: boolean | Guilds$SecurityArgs<ExtArgs>
     SpotifyNotifications?: boolean | Guilds$SpotifyNotificationsArgs<ExtArgs>
     TwitchNotifications?: boolean | Guilds$TwitchNotificationsArgs<ExtArgs>
@@ -8855,7 +8571,6 @@ export namespace Prisma {
       GuildLogging: Prisma.$GuildLoggingPayload<ExtArgs> | null
       GuildLogs: Prisma.$GuildLogsPayload<ExtArgs>[]
       GuildModeration: Prisma.$GuildModerationPayload<ExtArgs> | null
-      ReactionRole: Prisma.$GuildReactionRolesPayload<ExtArgs>[]
       Security: Prisma.$GuildSecurityPayload<ExtArgs> | null
       SpotifyNotifications: Prisma.$GuildSpotifyNotificationsPayload<ExtArgs>[]
       TwitchNotifications: Prisma.$GuildTwitchNotificationsPayload<ExtArgs>[]
@@ -9284,7 +8999,6 @@ export namespace Prisma {
     GuildLogging<T extends Guilds$GuildLoggingArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$GuildLoggingArgs<ExtArgs>>): Prisma__GuildLoggingClient<$Result.GetResult<Prisma.$GuildLoggingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     GuildLogs<T extends Guilds$GuildLogsArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$GuildLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuildLogsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     GuildModeration<T extends Guilds$GuildModerationArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$GuildModerationArgs<ExtArgs>>): Prisma__GuildModerationClient<$Result.GetResult<Prisma.$GuildModerationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    ReactionRole<T extends Guilds$ReactionRoleArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$ReactionRoleArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuildReactionRolesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Security<T extends Guilds$SecurityArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$SecurityArgs<ExtArgs>>): Prisma__GuildSecurityClient<$Result.GetResult<Prisma.$GuildSecurityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     SpotifyNotifications<T extends Guilds$SpotifyNotificationsArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$SpotifyNotificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuildSpotifyNotificationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     TwitchNotifications<T extends Guilds$TwitchNotificationsArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$TwitchNotificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuildTwitchNotificationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -10054,30 +9768,6 @@ export namespace Prisma {
      */
     include?: GuildModerationInclude<ExtArgs> | null
     where?: GuildModerationWhereInput
-  }
-
-  /**
-   * Guilds.ReactionRole
-   */
-  export type Guilds$ReactionRoleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GuildReactionRoles
-     */
-    select?: GuildReactionRolesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GuildReactionRoles
-     */
-    omit?: GuildReactionRolesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GuildReactionRolesInclude<ExtArgs> | null
-    where?: GuildReactionRolesWhereInput
-    orderBy?: GuildReactionRolesOrderByWithRelationInput | GuildReactionRolesOrderByWithRelationInput[]
-    cursor?: GuildReactionRolesWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: GuildReactionRolesScalarFieldEnum | GuildReactionRolesScalarFieldEnum[]
   }
 
   /**
@@ -61614,3376 +61304,6 @@ export namespace Prisma {
 
 
   /**
-   * Model GuildReactionRoles
-   */
-
-  export type AggregateGuildReactionRoles = {
-    _count: GuildReactionRolesCountAggregateOutputType | null
-    _avg: GuildReactionRolesAvgAggregateOutputType | null
-    _sum: GuildReactionRolesSumAggregateOutputType | null
-    _min: GuildReactionRolesMinAggregateOutputType | null
-    _max: GuildReactionRolesMaxAggregateOutputType | null
-  }
-
-  export type GuildReactionRolesAvgAggregateOutputType = {
-    Id: number | null
-  }
-
-  export type GuildReactionRolesSumAggregateOutputType = {
-    Id: number | null
-  }
-
-  export type GuildReactionRolesMinAggregateOutputType = {
-    Id: number | null
-    UUID: string | null
-    MessageId: string | null
-    ChannelId: string | null
-    AddMessage: string | null
-    RemoveMessage: string | null
-    Emoji: string | null
-    GuildId: string | null
-  }
-
-  export type GuildReactionRolesMaxAggregateOutputType = {
-    Id: number | null
-    UUID: string | null
-    MessageId: string | null
-    ChannelId: string | null
-    AddMessage: string | null
-    RemoveMessage: string | null
-    Emoji: string | null
-    GuildId: string | null
-  }
-
-  export type GuildReactionRolesCountAggregateOutputType = {
-    Id: number
-    UUID: number
-    Roles: number
-    MessageId: number
-    ChannelId: number
-    AddMessage: number
-    RemoveMessage: number
-    Emoji: number
-    GuildId: number
-    _all: number
-  }
-
-
-  export type GuildReactionRolesAvgAggregateInputType = {
-    Id?: true
-  }
-
-  export type GuildReactionRolesSumAggregateInputType = {
-    Id?: true
-  }
-
-  export type GuildReactionRolesMinAggregateInputType = {
-    Id?: true
-    UUID?: true
-    MessageId?: true
-    ChannelId?: true
-    AddMessage?: true
-    RemoveMessage?: true
-    Emoji?: true
-    GuildId?: true
-  }
-
-  export type GuildReactionRolesMaxAggregateInputType = {
-    Id?: true
-    UUID?: true
-    MessageId?: true
-    ChannelId?: true
-    AddMessage?: true
-    RemoveMessage?: true
-    Emoji?: true
-    GuildId?: true
-  }
-
-  export type GuildReactionRolesCountAggregateInputType = {
-    Id?: true
-    UUID?: true
-    Roles?: true
-    MessageId?: true
-    ChannelId?: true
-    AddMessage?: true
-    RemoveMessage?: true
-    Emoji?: true
-    GuildId?: true
-    _all?: true
-  }
-
-  export type GuildReactionRolesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which GuildReactionRoles to aggregate.
-     */
-    where?: GuildReactionRolesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of GuildReactionRoles to fetch.
-     */
-    orderBy?: GuildReactionRolesOrderByWithRelationInput | GuildReactionRolesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: GuildReactionRolesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` GuildReactionRoles from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` GuildReactionRoles.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned GuildReactionRoles
-    **/
-    _count?: true | GuildReactionRolesCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: GuildReactionRolesAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: GuildReactionRolesSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: GuildReactionRolesMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: GuildReactionRolesMaxAggregateInputType
-  }
-
-  export type GetGuildReactionRolesAggregateType<T extends GuildReactionRolesAggregateArgs> = {
-        [P in keyof T & keyof AggregateGuildReactionRoles]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateGuildReactionRoles[P]>
-      : GetScalarType<T[P], AggregateGuildReactionRoles[P]>
-  }
-
-
-
-
-  export type GuildReactionRolesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: GuildReactionRolesWhereInput
-    orderBy?: GuildReactionRolesOrderByWithAggregationInput | GuildReactionRolesOrderByWithAggregationInput[]
-    by: GuildReactionRolesScalarFieldEnum[] | GuildReactionRolesScalarFieldEnum
-    having?: GuildReactionRolesScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: GuildReactionRolesCountAggregateInputType | true
-    _avg?: GuildReactionRolesAvgAggregateInputType
-    _sum?: GuildReactionRolesSumAggregateInputType
-    _min?: GuildReactionRolesMinAggregateInputType
-    _max?: GuildReactionRolesMaxAggregateInputType
-  }
-
-  export type GuildReactionRolesGroupByOutputType = {
-    Id: number
-    UUID: string
-    Roles: string[]
-    MessageId: string | null
-    ChannelId: string | null
-    AddMessage: string | null
-    RemoveMessage: string | null
-    Emoji: string | null
-    GuildId: string
-    _count: GuildReactionRolesCountAggregateOutputType | null
-    _avg: GuildReactionRolesAvgAggregateOutputType | null
-    _sum: GuildReactionRolesSumAggregateOutputType | null
-    _min: GuildReactionRolesMinAggregateOutputType | null
-    _max: GuildReactionRolesMaxAggregateOutputType | null
-  }
-
-  type GetGuildReactionRolesGroupByPayload<T extends GuildReactionRolesGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<GuildReactionRolesGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof GuildReactionRolesGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], GuildReactionRolesGroupByOutputType[P]>
-            : GetScalarType<T[P], GuildReactionRolesGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type GuildReactionRolesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    Id?: boolean
-    UUID?: boolean
-    Roles?: boolean
-    MessageId?: boolean
-    ChannelId?: boolean
-    AddMessage?: boolean
-    RemoveMessage?: boolean
-    Emoji?: boolean
-    GuildId?: boolean
-    Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
-    Button?: boolean | GuildReactionRoles$ButtonArgs<ExtArgs>
-    SelectMenu?: boolean | GuildReactionRoles$SelectMenuArgs<ExtArgs>
-  }, ExtArgs["result"]["guildReactionRoles"]>
-
-  export type GuildReactionRolesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    Id?: boolean
-    UUID?: boolean
-    Roles?: boolean
-    MessageId?: boolean
-    ChannelId?: boolean
-    AddMessage?: boolean
-    RemoveMessage?: boolean
-    Emoji?: boolean
-    GuildId?: boolean
-    Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["guildReactionRoles"]>
-
-  export type GuildReactionRolesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    Id?: boolean
-    UUID?: boolean
-    Roles?: boolean
-    MessageId?: boolean
-    ChannelId?: boolean
-    AddMessage?: boolean
-    RemoveMessage?: boolean
-    Emoji?: boolean
-    GuildId?: boolean
-    Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["guildReactionRoles"]>
-
-  export type GuildReactionRolesSelectScalar = {
-    Id?: boolean
-    UUID?: boolean
-    Roles?: boolean
-    MessageId?: boolean
-    ChannelId?: boolean
-    AddMessage?: boolean
-    RemoveMessage?: boolean
-    Emoji?: boolean
-    GuildId?: boolean
-  }
-
-  export type GuildReactionRolesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Id" | "UUID" | "Roles" | "MessageId" | "ChannelId" | "AddMessage" | "RemoveMessage" | "Emoji" | "GuildId", ExtArgs["result"]["guildReactionRoles"]>
-  export type GuildReactionRolesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
-    Button?: boolean | GuildReactionRoles$ButtonArgs<ExtArgs>
-    SelectMenu?: boolean | GuildReactionRoles$SelectMenuArgs<ExtArgs>
-  }
-  export type GuildReactionRolesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
-  }
-  export type GuildReactionRolesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
-  }
-
-  export type $GuildReactionRolesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "GuildReactionRoles"
-    objects: {
-      Guilds: Prisma.$GuildsPayload<ExtArgs>
-      Button: Prisma.$ReactionRoleButtonPayload<ExtArgs> | null
-      SelectMenu: Prisma.$ReactionRoleSelectmenuPayload<ExtArgs> | null
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      Id: number
-      UUID: string
-      Roles: string[]
-      MessageId: string | null
-      ChannelId: string | null
-      AddMessage: string | null
-      RemoveMessage: string | null
-      Emoji: string | null
-      GuildId: string
-    }, ExtArgs["result"]["guildReactionRoles"]>
-    composites: {}
-  }
-
-  type GuildReactionRolesGetPayload<S extends boolean | null | undefined | GuildReactionRolesDefaultArgs> = $Result.GetResult<Prisma.$GuildReactionRolesPayload, S>
-
-  type GuildReactionRolesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<GuildReactionRolesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: GuildReactionRolesCountAggregateInputType | true
-    }
-
-  export interface GuildReactionRolesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GuildReactionRoles'], meta: { name: 'GuildReactionRoles' } }
-    /**
-     * Find zero or one GuildReactionRoles that matches the filter.
-     * @param {GuildReactionRolesFindUniqueArgs} args - Arguments to find a GuildReactionRoles
-     * @example
-     * // Get one GuildReactionRoles
-     * const guildReactionRoles = await prisma.guildReactionRoles.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends GuildReactionRolesFindUniqueArgs>(args: SelectSubset<T, GuildReactionRolesFindUniqueArgs<ExtArgs>>): Prisma__GuildReactionRolesClient<$Result.GetResult<Prisma.$GuildReactionRolesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one GuildReactionRoles that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {GuildReactionRolesFindUniqueOrThrowArgs} args - Arguments to find a GuildReactionRoles
-     * @example
-     * // Get one GuildReactionRoles
-     * const guildReactionRoles = await prisma.guildReactionRoles.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends GuildReactionRolesFindUniqueOrThrowArgs>(args: SelectSubset<T, GuildReactionRolesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__GuildReactionRolesClient<$Result.GetResult<Prisma.$GuildReactionRolesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first GuildReactionRoles that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GuildReactionRolesFindFirstArgs} args - Arguments to find a GuildReactionRoles
-     * @example
-     * // Get one GuildReactionRoles
-     * const guildReactionRoles = await prisma.guildReactionRoles.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends GuildReactionRolesFindFirstArgs>(args?: SelectSubset<T, GuildReactionRolesFindFirstArgs<ExtArgs>>): Prisma__GuildReactionRolesClient<$Result.GetResult<Prisma.$GuildReactionRolesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first GuildReactionRoles that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GuildReactionRolesFindFirstOrThrowArgs} args - Arguments to find a GuildReactionRoles
-     * @example
-     * // Get one GuildReactionRoles
-     * const guildReactionRoles = await prisma.guildReactionRoles.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends GuildReactionRolesFindFirstOrThrowArgs>(args?: SelectSubset<T, GuildReactionRolesFindFirstOrThrowArgs<ExtArgs>>): Prisma__GuildReactionRolesClient<$Result.GetResult<Prisma.$GuildReactionRolesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more GuildReactionRoles that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GuildReactionRolesFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all GuildReactionRoles
-     * const guildReactionRoles = await prisma.guildReactionRoles.findMany()
-     * 
-     * // Get first 10 GuildReactionRoles
-     * const guildReactionRoles = await prisma.guildReactionRoles.findMany({ take: 10 })
-     * 
-     * // Only select the `Id`
-     * const guildReactionRolesWithIdOnly = await prisma.guildReactionRoles.findMany({ select: { Id: true } })
-     * 
-     */
-    findMany<T extends GuildReactionRolesFindManyArgs>(args?: SelectSubset<T, GuildReactionRolesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuildReactionRolesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a GuildReactionRoles.
-     * @param {GuildReactionRolesCreateArgs} args - Arguments to create a GuildReactionRoles.
-     * @example
-     * // Create one GuildReactionRoles
-     * const GuildReactionRoles = await prisma.guildReactionRoles.create({
-     *   data: {
-     *     // ... data to create a GuildReactionRoles
-     *   }
-     * })
-     * 
-     */
-    create<T extends GuildReactionRolesCreateArgs>(args: SelectSubset<T, GuildReactionRolesCreateArgs<ExtArgs>>): Prisma__GuildReactionRolesClient<$Result.GetResult<Prisma.$GuildReactionRolesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many GuildReactionRoles.
-     * @param {GuildReactionRolesCreateManyArgs} args - Arguments to create many GuildReactionRoles.
-     * @example
-     * // Create many GuildReactionRoles
-     * const guildReactionRoles = await prisma.guildReactionRoles.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends GuildReactionRolesCreateManyArgs>(args?: SelectSubset<T, GuildReactionRolesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many GuildReactionRoles and returns the data saved in the database.
-     * @param {GuildReactionRolesCreateManyAndReturnArgs} args - Arguments to create many GuildReactionRoles.
-     * @example
-     * // Create many GuildReactionRoles
-     * const guildReactionRoles = await prisma.guildReactionRoles.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many GuildReactionRoles and only return the `Id`
-     * const guildReactionRolesWithIdOnly = await prisma.guildReactionRoles.createManyAndReturn({
-     *   select: { Id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends GuildReactionRolesCreateManyAndReturnArgs>(args?: SelectSubset<T, GuildReactionRolesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuildReactionRolesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a GuildReactionRoles.
-     * @param {GuildReactionRolesDeleteArgs} args - Arguments to delete one GuildReactionRoles.
-     * @example
-     * // Delete one GuildReactionRoles
-     * const GuildReactionRoles = await prisma.guildReactionRoles.delete({
-     *   where: {
-     *     // ... filter to delete one GuildReactionRoles
-     *   }
-     * })
-     * 
-     */
-    delete<T extends GuildReactionRolesDeleteArgs>(args: SelectSubset<T, GuildReactionRolesDeleteArgs<ExtArgs>>): Prisma__GuildReactionRolesClient<$Result.GetResult<Prisma.$GuildReactionRolesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one GuildReactionRoles.
-     * @param {GuildReactionRolesUpdateArgs} args - Arguments to update one GuildReactionRoles.
-     * @example
-     * // Update one GuildReactionRoles
-     * const guildReactionRoles = await prisma.guildReactionRoles.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends GuildReactionRolesUpdateArgs>(args: SelectSubset<T, GuildReactionRolesUpdateArgs<ExtArgs>>): Prisma__GuildReactionRolesClient<$Result.GetResult<Prisma.$GuildReactionRolesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more GuildReactionRoles.
-     * @param {GuildReactionRolesDeleteManyArgs} args - Arguments to filter GuildReactionRoles to delete.
-     * @example
-     * // Delete a few GuildReactionRoles
-     * const { count } = await prisma.guildReactionRoles.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends GuildReactionRolesDeleteManyArgs>(args?: SelectSubset<T, GuildReactionRolesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more GuildReactionRoles.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GuildReactionRolesUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many GuildReactionRoles
-     * const guildReactionRoles = await prisma.guildReactionRoles.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends GuildReactionRolesUpdateManyArgs>(args: SelectSubset<T, GuildReactionRolesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more GuildReactionRoles and returns the data updated in the database.
-     * @param {GuildReactionRolesUpdateManyAndReturnArgs} args - Arguments to update many GuildReactionRoles.
-     * @example
-     * // Update many GuildReactionRoles
-     * const guildReactionRoles = await prisma.guildReactionRoles.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more GuildReactionRoles and only return the `Id`
-     * const guildReactionRolesWithIdOnly = await prisma.guildReactionRoles.updateManyAndReturn({
-     *   select: { Id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends GuildReactionRolesUpdateManyAndReturnArgs>(args: SelectSubset<T, GuildReactionRolesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GuildReactionRolesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one GuildReactionRoles.
-     * @param {GuildReactionRolesUpsertArgs} args - Arguments to update or create a GuildReactionRoles.
-     * @example
-     * // Update or create a GuildReactionRoles
-     * const guildReactionRoles = await prisma.guildReactionRoles.upsert({
-     *   create: {
-     *     // ... data to create a GuildReactionRoles
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the GuildReactionRoles we want to update
-     *   }
-     * })
-     */
-    upsert<T extends GuildReactionRolesUpsertArgs>(args: SelectSubset<T, GuildReactionRolesUpsertArgs<ExtArgs>>): Prisma__GuildReactionRolesClient<$Result.GetResult<Prisma.$GuildReactionRolesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of GuildReactionRoles.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GuildReactionRolesCountArgs} args - Arguments to filter GuildReactionRoles to count.
-     * @example
-     * // Count the number of GuildReactionRoles
-     * const count = await prisma.guildReactionRoles.count({
-     *   where: {
-     *     // ... the filter for the GuildReactionRoles we want to count
-     *   }
-     * })
-    **/
-    count<T extends GuildReactionRolesCountArgs>(
-      args?: Subset<T, GuildReactionRolesCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], GuildReactionRolesCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a GuildReactionRoles.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GuildReactionRolesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends GuildReactionRolesAggregateArgs>(args: Subset<T, GuildReactionRolesAggregateArgs>): Prisma.PrismaPromise<GetGuildReactionRolesAggregateType<T>>
-
-    /**
-     * Group by GuildReactionRoles.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GuildReactionRolesGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends GuildReactionRolesGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: GuildReactionRolesGroupByArgs['orderBy'] }
-        : { orderBy?: GuildReactionRolesGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, GuildReactionRolesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGuildReactionRolesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the GuildReactionRoles model
-   */
-  readonly fields: GuildReactionRolesFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for GuildReactionRoles.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__GuildReactionRolesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    Guilds<T extends GuildsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GuildsDefaultArgs<ExtArgs>>): Prisma__GuildsClient<$Result.GetResult<Prisma.$GuildsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    Button<T extends GuildReactionRoles$ButtonArgs<ExtArgs> = {}>(args?: Subset<T, GuildReactionRoles$ButtonArgs<ExtArgs>>): Prisma__ReactionRoleButtonClient<$Result.GetResult<Prisma.$ReactionRoleButtonPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    SelectMenu<T extends GuildReactionRoles$SelectMenuArgs<ExtArgs> = {}>(args?: Subset<T, GuildReactionRoles$SelectMenuArgs<ExtArgs>>): Prisma__ReactionRoleSelectmenuClient<$Result.GetResult<Prisma.$ReactionRoleSelectmenuPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the GuildReactionRoles model
-   */
-  interface GuildReactionRolesFieldRefs {
-    readonly Id: FieldRef<"GuildReactionRoles", 'Int'>
-    readonly UUID: FieldRef<"GuildReactionRoles", 'String'>
-    readonly Roles: FieldRef<"GuildReactionRoles", 'String[]'>
-    readonly MessageId: FieldRef<"GuildReactionRoles", 'String'>
-    readonly ChannelId: FieldRef<"GuildReactionRoles", 'String'>
-    readonly AddMessage: FieldRef<"GuildReactionRoles", 'String'>
-    readonly RemoveMessage: FieldRef<"GuildReactionRoles", 'String'>
-    readonly Emoji: FieldRef<"GuildReactionRoles", 'String'>
-    readonly GuildId: FieldRef<"GuildReactionRoles", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * GuildReactionRoles findUnique
-   */
-  export type GuildReactionRolesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GuildReactionRoles
-     */
-    select?: GuildReactionRolesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GuildReactionRoles
-     */
-    omit?: GuildReactionRolesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GuildReactionRolesInclude<ExtArgs> | null
-    /**
-     * Filter, which GuildReactionRoles to fetch.
-     */
-    where: GuildReactionRolesWhereUniqueInput
-  }
-
-  /**
-   * GuildReactionRoles findUniqueOrThrow
-   */
-  export type GuildReactionRolesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GuildReactionRoles
-     */
-    select?: GuildReactionRolesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GuildReactionRoles
-     */
-    omit?: GuildReactionRolesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GuildReactionRolesInclude<ExtArgs> | null
-    /**
-     * Filter, which GuildReactionRoles to fetch.
-     */
-    where: GuildReactionRolesWhereUniqueInput
-  }
-
-  /**
-   * GuildReactionRoles findFirst
-   */
-  export type GuildReactionRolesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GuildReactionRoles
-     */
-    select?: GuildReactionRolesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GuildReactionRoles
-     */
-    omit?: GuildReactionRolesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GuildReactionRolesInclude<ExtArgs> | null
-    /**
-     * Filter, which GuildReactionRoles to fetch.
-     */
-    where?: GuildReactionRolesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of GuildReactionRoles to fetch.
-     */
-    orderBy?: GuildReactionRolesOrderByWithRelationInput | GuildReactionRolesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for GuildReactionRoles.
-     */
-    cursor?: GuildReactionRolesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` GuildReactionRoles from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` GuildReactionRoles.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of GuildReactionRoles.
-     */
-    distinct?: GuildReactionRolesScalarFieldEnum | GuildReactionRolesScalarFieldEnum[]
-  }
-
-  /**
-   * GuildReactionRoles findFirstOrThrow
-   */
-  export type GuildReactionRolesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GuildReactionRoles
-     */
-    select?: GuildReactionRolesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GuildReactionRoles
-     */
-    omit?: GuildReactionRolesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GuildReactionRolesInclude<ExtArgs> | null
-    /**
-     * Filter, which GuildReactionRoles to fetch.
-     */
-    where?: GuildReactionRolesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of GuildReactionRoles to fetch.
-     */
-    orderBy?: GuildReactionRolesOrderByWithRelationInput | GuildReactionRolesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for GuildReactionRoles.
-     */
-    cursor?: GuildReactionRolesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` GuildReactionRoles from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` GuildReactionRoles.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of GuildReactionRoles.
-     */
-    distinct?: GuildReactionRolesScalarFieldEnum | GuildReactionRolesScalarFieldEnum[]
-  }
-
-  /**
-   * GuildReactionRoles findMany
-   */
-  export type GuildReactionRolesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GuildReactionRoles
-     */
-    select?: GuildReactionRolesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GuildReactionRoles
-     */
-    omit?: GuildReactionRolesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GuildReactionRolesInclude<ExtArgs> | null
-    /**
-     * Filter, which GuildReactionRoles to fetch.
-     */
-    where?: GuildReactionRolesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of GuildReactionRoles to fetch.
-     */
-    orderBy?: GuildReactionRolesOrderByWithRelationInput | GuildReactionRolesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing GuildReactionRoles.
-     */
-    cursor?: GuildReactionRolesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` GuildReactionRoles from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` GuildReactionRoles.
-     */
-    skip?: number
-    distinct?: GuildReactionRolesScalarFieldEnum | GuildReactionRolesScalarFieldEnum[]
-  }
-
-  /**
-   * GuildReactionRoles create
-   */
-  export type GuildReactionRolesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GuildReactionRoles
-     */
-    select?: GuildReactionRolesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GuildReactionRoles
-     */
-    omit?: GuildReactionRolesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GuildReactionRolesInclude<ExtArgs> | null
-    /**
-     * The data needed to create a GuildReactionRoles.
-     */
-    data: XOR<GuildReactionRolesCreateInput, GuildReactionRolesUncheckedCreateInput>
-  }
-
-  /**
-   * GuildReactionRoles createMany
-   */
-  export type GuildReactionRolesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many GuildReactionRoles.
-     */
-    data: GuildReactionRolesCreateManyInput | GuildReactionRolesCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * GuildReactionRoles createManyAndReturn
-   */
-  export type GuildReactionRolesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GuildReactionRoles
-     */
-    select?: GuildReactionRolesSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the GuildReactionRoles
-     */
-    omit?: GuildReactionRolesOmit<ExtArgs> | null
-    /**
-     * The data used to create many GuildReactionRoles.
-     */
-    data: GuildReactionRolesCreateManyInput | GuildReactionRolesCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GuildReactionRolesIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * GuildReactionRoles update
-   */
-  export type GuildReactionRolesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GuildReactionRoles
-     */
-    select?: GuildReactionRolesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GuildReactionRoles
-     */
-    omit?: GuildReactionRolesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GuildReactionRolesInclude<ExtArgs> | null
-    /**
-     * The data needed to update a GuildReactionRoles.
-     */
-    data: XOR<GuildReactionRolesUpdateInput, GuildReactionRolesUncheckedUpdateInput>
-    /**
-     * Choose, which GuildReactionRoles to update.
-     */
-    where: GuildReactionRolesWhereUniqueInput
-  }
-
-  /**
-   * GuildReactionRoles updateMany
-   */
-  export type GuildReactionRolesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update GuildReactionRoles.
-     */
-    data: XOR<GuildReactionRolesUpdateManyMutationInput, GuildReactionRolesUncheckedUpdateManyInput>
-    /**
-     * Filter which GuildReactionRoles to update
-     */
-    where?: GuildReactionRolesWhereInput
-    /**
-     * Limit how many GuildReactionRoles to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * GuildReactionRoles updateManyAndReturn
-   */
-  export type GuildReactionRolesUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GuildReactionRoles
-     */
-    select?: GuildReactionRolesSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the GuildReactionRoles
-     */
-    omit?: GuildReactionRolesOmit<ExtArgs> | null
-    /**
-     * The data used to update GuildReactionRoles.
-     */
-    data: XOR<GuildReactionRolesUpdateManyMutationInput, GuildReactionRolesUncheckedUpdateManyInput>
-    /**
-     * Filter which GuildReactionRoles to update
-     */
-    where?: GuildReactionRolesWhereInput
-    /**
-     * Limit how many GuildReactionRoles to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GuildReactionRolesIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * GuildReactionRoles upsert
-   */
-  export type GuildReactionRolesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GuildReactionRoles
-     */
-    select?: GuildReactionRolesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GuildReactionRoles
-     */
-    omit?: GuildReactionRolesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GuildReactionRolesInclude<ExtArgs> | null
-    /**
-     * The filter to search for the GuildReactionRoles to update in case it exists.
-     */
-    where: GuildReactionRolesWhereUniqueInput
-    /**
-     * In case the GuildReactionRoles found by the `where` argument doesn't exist, create a new GuildReactionRoles with this data.
-     */
-    create: XOR<GuildReactionRolesCreateInput, GuildReactionRolesUncheckedCreateInput>
-    /**
-     * In case the GuildReactionRoles was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<GuildReactionRolesUpdateInput, GuildReactionRolesUncheckedUpdateInput>
-  }
-
-  /**
-   * GuildReactionRoles delete
-   */
-  export type GuildReactionRolesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GuildReactionRoles
-     */
-    select?: GuildReactionRolesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GuildReactionRoles
-     */
-    omit?: GuildReactionRolesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GuildReactionRolesInclude<ExtArgs> | null
-    /**
-     * Filter which GuildReactionRoles to delete.
-     */
-    where: GuildReactionRolesWhereUniqueInput
-  }
-
-  /**
-   * GuildReactionRoles deleteMany
-   */
-  export type GuildReactionRolesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which GuildReactionRoles to delete
-     */
-    where?: GuildReactionRolesWhereInput
-    /**
-     * Limit how many GuildReactionRoles to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * GuildReactionRoles.Button
-   */
-  export type GuildReactionRoles$ButtonArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ReactionRoleButton
-     */
-    select?: ReactionRoleButtonSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ReactionRoleButton
-     */
-    omit?: ReactionRoleButtonOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReactionRoleButtonInclude<ExtArgs> | null
-    where?: ReactionRoleButtonWhereInput
-  }
-
-  /**
-   * GuildReactionRoles.SelectMenu
-   */
-  export type GuildReactionRoles$SelectMenuArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ReactionRoleSelectmenu
-     */
-    select?: ReactionRoleSelectmenuSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ReactionRoleSelectmenu
-     */
-    omit?: ReactionRoleSelectmenuOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReactionRoleSelectmenuInclude<ExtArgs> | null
-    where?: ReactionRoleSelectmenuWhereInput
-  }
-
-  /**
-   * GuildReactionRoles without action
-   */
-  export type GuildReactionRolesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GuildReactionRoles
-     */
-    select?: GuildReactionRolesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GuildReactionRoles
-     */
-    omit?: GuildReactionRolesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GuildReactionRolesInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model ReactionRoleSelectmenu
-   */
-
-  export type AggregateReactionRoleSelectmenu = {
-    _count: ReactionRoleSelectmenuCountAggregateOutputType | null
-    _avg: ReactionRoleSelectmenuAvgAggregateOutputType | null
-    _sum: ReactionRoleSelectmenuSumAggregateOutputType | null
-    _min: ReactionRoleSelectmenuMinAggregateOutputType | null
-    _max: ReactionRoleSelectmenuMaxAggregateOutputType | null
-  }
-
-  export type ReactionRoleSelectmenuAvgAggregateOutputType = {
-    Id: number | null
-  }
-
-  export type ReactionRoleSelectmenuSumAggregateOutputType = {
-    Id: number | null
-  }
-
-  export type ReactionRoleSelectmenuMinAggregateOutputType = {
-    Id: number | null
-    Emoji: string | null
-    Label: string | null
-    Description: string | null
-    GuildReactionRoleId: string | null
-  }
-
-  export type ReactionRoleSelectmenuMaxAggregateOutputType = {
-    Id: number | null
-    Emoji: string | null
-    Label: string | null
-    Description: string | null
-    GuildReactionRoleId: string | null
-  }
-
-  export type ReactionRoleSelectmenuCountAggregateOutputType = {
-    Id: number
-    Emoji: number
-    Label: number
-    Description: number
-    GuildReactionRoleId: number
-    _all: number
-  }
-
-
-  export type ReactionRoleSelectmenuAvgAggregateInputType = {
-    Id?: true
-  }
-
-  export type ReactionRoleSelectmenuSumAggregateInputType = {
-    Id?: true
-  }
-
-  export type ReactionRoleSelectmenuMinAggregateInputType = {
-    Id?: true
-    Emoji?: true
-    Label?: true
-    Description?: true
-    GuildReactionRoleId?: true
-  }
-
-  export type ReactionRoleSelectmenuMaxAggregateInputType = {
-    Id?: true
-    Emoji?: true
-    Label?: true
-    Description?: true
-    GuildReactionRoleId?: true
-  }
-
-  export type ReactionRoleSelectmenuCountAggregateInputType = {
-    Id?: true
-    Emoji?: true
-    Label?: true
-    Description?: true
-    GuildReactionRoleId?: true
-    _all?: true
-  }
-
-  export type ReactionRoleSelectmenuAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ReactionRoleSelectmenu to aggregate.
-     */
-    where?: ReactionRoleSelectmenuWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ReactionRoleSelectmenus to fetch.
-     */
-    orderBy?: ReactionRoleSelectmenuOrderByWithRelationInput | ReactionRoleSelectmenuOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: ReactionRoleSelectmenuWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ReactionRoleSelectmenus from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ReactionRoleSelectmenus.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned ReactionRoleSelectmenus
-    **/
-    _count?: true | ReactionRoleSelectmenuCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: ReactionRoleSelectmenuAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: ReactionRoleSelectmenuSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: ReactionRoleSelectmenuMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: ReactionRoleSelectmenuMaxAggregateInputType
-  }
-
-  export type GetReactionRoleSelectmenuAggregateType<T extends ReactionRoleSelectmenuAggregateArgs> = {
-        [P in keyof T & keyof AggregateReactionRoleSelectmenu]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateReactionRoleSelectmenu[P]>
-      : GetScalarType<T[P], AggregateReactionRoleSelectmenu[P]>
-  }
-
-
-
-
-  export type ReactionRoleSelectmenuGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ReactionRoleSelectmenuWhereInput
-    orderBy?: ReactionRoleSelectmenuOrderByWithAggregationInput | ReactionRoleSelectmenuOrderByWithAggregationInput[]
-    by: ReactionRoleSelectmenuScalarFieldEnum[] | ReactionRoleSelectmenuScalarFieldEnum
-    having?: ReactionRoleSelectmenuScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: ReactionRoleSelectmenuCountAggregateInputType | true
-    _avg?: ReactionRoleSelectmenuAvgAggregateInputType
-    _sum?: ReactionRoleSelectmenuSumAggregateInputType
-    _min?: ReactionRoleSelectmenuMinAggregateInputType
-    _max?: ReactionRoleSelectmenuMaxAggregateInputType
-  }
-
-  export type ReactionRoleSelectmenuGroupByOutputType = {
-    Id: number
-    Emoji: string | null
-    Label: string | null
-    Description: string | null
-    GuildReactionRoleId: string
-    _count: ReactionRoleSelectmenuCountAggregateOutputType | null
-    _avg: ReactionRoleSelectmenuAvgAggregateOutputType | null
-    _sum: ReactionRoleSelectmenuSumAggregateOutputType | null
-    _min: ReactionRoleSelectmenuMinAggregateOutputType | null
-    _max: ReactionRoleSelectmenuMaxAggregateOutputType | null
-  }
-
-  type GetReactionRoleSelectmenuGroupByPayload<T extends ReactionRoleSelectmenuGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<ReactionRoleSelectmenuGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof ReactionRoleSelectmenuGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], ReactionRoleSelectmenuGroupByOutputType[P]>
-            : GetScalarType<T[P], ReactionRoleSelectmenuGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type ReactionRoleSelectmenuSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    Id?: boolean
-    Emoji?: boolean
-    Label?: boolean
-    Description?: boolean
-    GuildReactionRoleId?: boolean
-    GuildReactionRoles?: boolean | GuildReactionRolesDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["reactionRoleSelectmenu"]>
-
-  export type ReactionRoleSelectmenuSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    Id?: boolean
-    Emoji?: boolean
-    Label?: boolean
-    Description?: boolean
-    GuildReactionRoleId?: boolean
-    GuildReactionRoles?: boolean | GuildReactionRolesDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["reactionRoleSelectmenu"]>
-
-  export type ReactionRoleSelectmenuSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    Id?: boolean
-    Emoji?: boolean
-    Label?: boolean
-    Description?: boolean
-    GuildReactionRoleId?: boolean
-    GuildReactionRoles?: boolean | GuildReactionRolesDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["reactionRoleSelectmenu"]>
-
-  export type ReactionRoleSelectmenuSelectScalar = {
-    Id?: boolean
-    Emoji?: boolean
-    Label?: boolean
-    Description?: boolean
-    GuildReactionRoleId?: boolean
-  }
-
-  export type ReactionRoleSelectmenuOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Id" | "Emoji" | "Label" | "Description" | "GuildReactionRoleId", ExtArgs["result"]["reactionRoleSelectmenu"]>
-  export type ReactionRoleSelectmenuInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    GuildReactionRoles?: boolean | GuildReactionRolesDefaultArgs<ExtArgs>
-  }
-  export type ReactionRoleSelectmenuIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    GuildReactionRoles?: boolean | GuildReactionRolesDefaultArgs<ExtArgs>
-  }
-  export type ReactionRoleSelectmenuIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    GuildReactionRoles?: boolean | GuildReactionRolesDefaultArgs<ExtArgs>
-  }
-
-  export type $ReactionRoleSelectmenuPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "ReactionRoleSelectmenu"
-    objects: {
-      GuildReactionRoles: Prisma.$GuildReactionRolesPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      Id: number
-      Emoji: string | null
-      Label: string | null
-      Description: string | null
-      GuildReactionRoleId: string
-    }, ExtArgs["result"]["reactionRoleSelectmenu"]>
-    composites: {}
-  }
-
-  type ReactionRoleSelectmenuGetPayload<S extends boolean | null | undefined | ReactionRoleSelectmenuDefaultArgs> = $Result.GetResult<Prisma.$ReactionRoleSelectmenuPayload, S>
-
-  type ReactionRoleSelectmenuCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<ReactionRoleSelectmenuFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: ReactionRoleSelectmenuCountAggregateInputType | true
-    }
-
-  export interface ReactionRoleSelectmenuDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ReactionRoleSelectmenu'], meta: { name: 'ReactionRoleSelectmenu' } }
-    /**
-     * Find zero or one ReactionRoleSelectmenu that matches the filter.
-     * @param {ReactionRoleSelectmenuFindUniqueArgs} args - Arguments to find a ReactionRoleSelectmenu
-     * @example
-     * // Get one ReactionRoleSelectmenu
-     * const reactionRoleSelectmenu = await prisma.reactionRoleSelectmenu.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends ReactionRoleSelectmenuFindUniqueArgs>(args: SelectSubset<T, ReactionRoleSelectmenuFindUniqueArgs<ExtArgs>>): Prisma__ReactionRoleSelectmenuClient<$Result.GetResult<Prisma.$ReactionRoleSelectmenuPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one ReactionRoleSelectmenu that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {ReactionRoleSelectmenuFindUniqueOrThrowArgs} args - Arguments to find a ReactionRoleSelectmenu
-     * @example
-     * // Get one ReactionRoleSelectmenu
-     * const reactionRoleSelectmenu = await prisma.reactionRoleSelectmenu.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends ReactionRoleSelectmenuFindUniqueOrThrowArgs>(args: SelectSubset<T, ReactionRoleSelectmenuFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ReactionRoleSelectmenuClient<$Result.GetResult<Prisma.$ReactionRoleSelectmenuPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first ReactionRoleSelectmenu that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ReactionRoleSelectmenuFindFirstArgs} args - Arguments to find a ReactionRoleSelectmenu
-     * @example
-     * // Get one ReactionRoleSelectmenu
-     * const reactionRoleSelectmenu = await prisma.reactionRoleSelectmenu.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends ReactionRoleSelectmenuFindFirstArgs>(args?: SelectSubset<T, ReactionRoleSelectmenuFindFirstArgs<ExtArgs>>): Prisma__ReactionRoleSelectmenuClient<$Result.GetResult<Prisma.$ReactionRoleSelectmenuPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first ReactionRoleSelectmenu that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ReactionRoleSelectmenuFindFirstOrThrowArgs} args - Arguments to find a ReactionRoleSelectmenu
-     * @example
-     * // Get one ReactionRoleSelectmenu
-     * const reactionRoleSelectmenu = await prisma.reactionRoleSelectmenu.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends ReactionRoleSelectmenuFindFirstOrThrowArgs>(args?: SelectSubset<T, ReactionRoleSelectmenuFindFirstOrThrowArgs<ExtArgs>>): Prisma__ReactionRoleSelectmenuClient<$Result.GetResult<Prisma.$ReactionRoleSelectmenuPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more ReactionRoleSelectmenus that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ReactionRoleSelectmenuFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all ReactionRoleSelectmenus
-     * const reactionRoleSelectmenus = await prisma.reactionRoleSelectmenu.findMany()
-     * 
-     * // Get first 10 ReactionRoleSelectmenus
-     * const reactionRoleSelectmenus = await prisma.reactionRoleSelectmenu.findMany({ take: 10 })
-     * 
-     * // Only select the `Id`
-     * const reactionRoleSelectmenuWithIdOnly = await prisma.reactionRoleSelectmenu.findMany({ select: { Id: true } })
-     * 
-     */
-    findMany<T extends ReactionRoleSelectmenuFindManyArgs>(args?: SelectSubset<T, ReactionRoleSelectmenuFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReactionRoleSelectmenuPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a ReactionRoleSelectmenu.
-     * @param {ReactionRoleSelectmenuCreateArgs} args - Arguments to create a ReactionRoleSelectmenu.
-     * @example
-     * // Create one ReactionRoleSelectmenu
-     * const ReactionRoleSelectmenu = await prisma.reactionRoleSelectmenu.create({
-     *   data: {
-     *     // ... data to create a ReactionRoleSelectmenu
-     *   }
-     * })
-     * 
-     */
-    create<T extends ReactionRoleSelectmenuCreateArgs>(args: SelectSubset<T, ReactionRoleSelectmenuCreateArgs<ExtArgs>>): Prisma__ReactionRoleSelectmenuClient<$Result.GetResult<Prisma.$ReactionRoleSelectmenuPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many ReactionRoleSelectmenus.
-     * @param {ReactionRoleSelectmenuCreateManyArgs} args - Arguments to create many ReactionRoleSelectmenus.
-     * @example
-     * // Create many ReactionRoleSelectmenus
-     * const reactionRoleSelectmenu = await prisma.reactionRoleSelectmenu.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends ReactionRoleSelectmenuCreateManyArgs>(args?: SelectSubset<T, ReactionRoleSelectmenuCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many ReactionRoleSelectmenus and returns the data saved in the database.
-     * @param {ReactionRoleSelectmenuCreateManyAndReturnArgs} args - Arguments to create many ReactionRoleSelectmenus.
-     * @example
-     * // Create many ReactionRoleSelectmenus
-     * const reactionRoleSelectmenu = await prisma.reactionRoleSelectmenu.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many ReactionRoleSelectmenus and only return the `Id`
-     * const reactionRoleSelectmenuWithIdOnly = await prisma.reactionRoleSelectmenu.createManyAndReturn({
-     *   select: { Id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends ReactionRoleSelectmenuCreateManyAndReturnArgs>(args?: SelectSubset<T, ReactionRoleSelectmenuCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReactionRoleSelectmenuPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a ReactionRoleSelectmenu.
-     * @param {ReactionRoleSelectmenuDeleteArgs} args - Arguments to delete one ReactionRoleSelectmenu.
-     * @example
-     * // Delete one ReactionRoleSelectmenu
-     * const ReactionRoleSelectmenu = await prisma.reactionRoleSelectmenu.delete({
-     *   where: {
-     *     // ... filter to delete one ReactionRoleSelectmenu
-     *   }
-     * })
-     * 
-     */
-    delete<T extends ReactionRoleSelectmenuDeleteArgs>(args: SelectSubset<T, ReactionRoleSelectmenuDeleteArgs<ExtArgs>>): Prisma__ReactionRoleSelectmenuClient<$Result.GetResult<Prisma.$ReactionRoleSelectmenuPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one ReactionRoleSelectmenu.
-     * @param {ReactionRoleSelectmenuUpdateArgs} args - Arguments to update one ReactionRoleSelectmenu.
-     * @example
-     * // Update one ReactionRoleSelectmenu
-     * const reactionRoleSelectmenu = await prisma.reactionRoleSelectmenu.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends ReactionRoleSelectmenuUpdateArgs>(args: SelectSubset<T, ReactionRoleSelectmenuUpdateArgs<ExtArgs>>): Prisma__ReactionRoleSelectmenuClient<$Result.GetResult<Prisma.$ReactionRoleSelectmenuPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more ReactionRoleSelectmenus.
-     * @param {ReactionRoleSelectmenuDeleteManyArgs} args - Arguments to filter ReactionRoleSelectmenus to delete.
-     * @example
-     * // Delete a few ReactionRoleSelectmenus
-     * const { count } = await prisma.reactionRoleSelectmenu.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends ReactionRoleSelectmenuDeleteManyArgs>(args?: SelectSubset<T, ReactionRoleSelectmenuDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more ReactionRoleSelectmenus.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ReactionRoleSelectmenuUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many ReactionRoleSelectmenus
-     * const reactionRoleSelectmenu = await prisma.reactionRoleSelectmenu.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends ReactionRoleSelectmenuUpdateManyArgs>(args: SelectSubset<T, ReactionRoleSelectmenuUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more ReactionRoleSelectmenus and returns the data updated in the database.
-     * @param {ReactionRoleSelectmenuUpdateManyAndReturnArgs} args - Arguments to update many ReactionRoleSelectmenus.
-     * @example
-     * // Update many ReactionRoleSelectmenus
-     * const reactionRoleSelectmenu = await prisma.reactionRoleSelectmenu.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more ReactionRoleSelectmenus and only return the `Id`
-     * const reactionRoleSelectmenuWithIdOnly = await prisma.reactionRoleSelectmenu.updateManyAndReturn({
-     *   select: { Id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends ReactionRoleSelectmenuUpdateManyAndReturnArgs>(args: SelectSubset<T, ReactionRoleSelectmenuUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReactionRoleSelectmenuPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one ReactionRoleSelectmenu.
-     * @param {ReactionRoleSelectmenuUpsertArgs} args - Arguments to update or create a ReactionRoleSelectmenu.
-     * @example
-     * // Update or create a ReactionRoleSelectmenu
-     * const reactionRoleSelectmenu = await prisma.reactionRoleSelectmenu.upsert({
-     *   create: {
-     *     // ... data to create a ReactionRoleSelectmenu
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the ReactionRoleSelectmenu we want to update
-     *   }
-     * })
-     */
-    upsert<T extends ReactionRoleSelectmenuUpsertArgs>(args: SelectSubset<T, ReactionRoleSelectmenuUpsertArgs<ExtArgs>>): Prisma__ReactionRoleSelectmenuClient<$Result.GetResult<Prisma.$ReactionRoleSelectmenuPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of ReactionRoleSelectmenus.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ReactionRoleSelectmenuCountArgs} args - Arguments to filter ReactionRoleSelectmenus to count.
-     * @example
-     * // Count the number of ReactionRoleSelectmenus
-     * const count = await prisma.reactionRoleSelectmenu.count({
-     *   where: {
-     *     // ... the filter for the ReactionRoleSelectmenus we want to count
-     *   }
-     * })
-    **/
-    count<T extends ReactionRoleSelectmenuCountArgs>(
-      args?: Subset<T, ReactionRoleSelectmenuCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], ReactionRoleSelectmenuCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a ReactionRoleSelectmenu.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ReactionRoleSelectmenuAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends ReactionRoleSelectmenuAggregateArgs>(args: Subset<T, ReactionRoleSelectmenuAggregateArgs>): Prisma.PrismaPromise<GetReactionRoleSelectmenuAggregateType<T>>
-
-    /**
-     * Group by ReactionRoleSelectmenu.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ReactionRoleSelectmenuGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends ReactionRoleSelectmenuGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ReactionRoleSelectmenuGroupByArgs['orderBy'] }
-        : { orderBy?: ReactionRoleSelectmenuGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, ReactionRoleSelectmenuGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetReactionRoleSelectmenuGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the ReactionRoleSelectmenu model
-   */
-  readonly fields: ReactionRoleSelectmenuFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for ReactionRoleSelectmenu.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__ReactionRoleSelectmenuClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    GuildReactionRoles<T extends GuildReactionRolesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GuildReactionRolesDefaultArgs<ExtArgs>>): Prisma__GuildReactionRolesClient<$Result.GetResult<Prisma.$GuildReactionRolesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the ReactionRoleSelectmenu model
-   */
-  interface ReactionRoleSelectmenuFieldRefs {
-    readonly Id: FieldRef<"ReactionRoleSelectmenu", 'Int'>
-    readonly Emoji: FieldRef<"ReactionRoleSelectmenu", 'String'>
-    readonly Label: FieldRef<"ReactionRoleSelectmenu", 'String'>
-    readonly Description: FieldRef<"ReactionRoleSelectmenu", 'String'>
-    readonly GuildReactionRoleId: FieldRef<"ReactionRoleSelectmenu", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * ReactionRoleSelectmenu findUnique
-   */
-  export type ReactionRoleSelectmenuFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ReactionRoleSelectmenu
-     */
-    select?: ReactionRoleSelectmenuSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ReactionRoleSelectmenu
-     */
-    omit?: ReactionRoleSelectmenuOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReactionRoleSelectmenuInclude<ExtArgs> | null
-    /**
-     * Filter, which ReactionRoleSelectmenu to fetch.
-     */
-    where: ReactionRoleSelectmenuWhereUniqueInput
-  }
-
-  /**
-   * ReactionRoleSelectmenu findUniqueOrThrow
-   */
-  export type ReactionRoleSelectmenuFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ReactionRoleSelectmenu
-     */
-    select?: ReactionRoleSelectmenuSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ReactionRoleSelectmenu
-     */
-    omit?: ReactionRoleSelectmenuOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReactionRoleSelectmenuInclude<ExtArgs> | null
-    /**
-     * Filter, which ReactionRoleSelectmenu to fetch.
-     */
-    where: ReactionRoleSelectmenuWhereUniqueInput
-  }
-
-  /**
-   * ReactionRoleSelectmenu findFirst
-   */
-  export type ReactionRoleSelectmenuFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ReactionRoleSelectmenu
-     */
-    select?: ReactionRoleSelectmenuSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ReactionRoleSelectmenu
-     */
-    omit?: ReactionRoleSelectmenuOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReactionRoleSelectmenuInclude<ExtArgs> | null
-    /**
-     * Filter, which ReactionRoleSelectmenu to fetch.
-     */
-    where?: ReactionRoleSelectmenuWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ReactionRoleSelectmenus to fetch.
-     */
-    orderBy?: ReactionRoleSelectmenuOrderByWithRelationInput | ReactionRoleSelectmenuOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ReactionRoleSelectmenus.
-     */
-    cursor?: ReactionRoleSelectmenuWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ReactionRoleSelectmenus from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ReactionRoleSelectmenus.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ReactionRoleSelectmenus.
-     */
-    distinct?: ReactionRoleSelectmenuScalarFieldEnum | ReactionRoleSelectmenuScalarFieldEnum[]
-  }
-
-  /**
-   * ReactionRoleSelectmenu findFirstOrThrow
-   */
-  export type ReactionRoleSelectmenuFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ReactionRoleSelectmenu
-     */
-    select?: ReactionRoleSelectmenuSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ReactionRoleSelectmenu
-     */
-    omit?: ReactionRoleSelectmenuOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReactionRoleSelectmenuInclude<ExtArgs> | null
-    /**
-     * Filter, which ReactionRoleSelectmenu to fetch.
-     */
-    where?: ReactionRoleSelectmenuWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ReactionRoleSelectmenus to fetch.
-     */
-    orderBy?: ReactionRoleSelectmenuOrderByWithRelationInput | ReactionRoleSelectmenuOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ReactionRoleSelectmenus.
-     */
-    cursor?: ReactionRoleSelectmenuWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ReactionRoleSelectmenus from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ReactionRoleSelectmenus.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ReactionRoleSelectmenus.
-     */
-    distinct?: ReactionRoleSelectmenuScalarFieldEnum | ReactionRoleSelectmenuScalarFieldEnum[]
-  }
-
-  /**
-   * ReactionRoleSelectmenu findMany
-   */
-  export type ReactionRoleSelectmenuFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ReactionRoleSelectmenu
-     */
-    select?: ReactionRoleSelectmenuSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ReactionRoleSelectmenu
-     */
-    omit?: ReactionRoleSelectmenuOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReactionRoleSelectmenuInclude<ExtArgs> | null
-    /**
-     * Filter, which ReactionRoleSelectmenus to fetch.
-     */
-    where?: ReactionRoleSelectmenuWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ReactionRoleSelectmenus to fetch.
-     */
-    orderBy?: ReactionRoleSelectmenuOrderByWithRelationInput | ReactionRoleSelectmenuOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing ReactionRoleSelectmenus.
-     */
-    cursor?: ReactionRoleSelectmenuWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ReactionRoleSelectmenus from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ReactionRoleSelectmenus.
-     */
-    skip?: number
-    distinct?: ReactionRoleSelectmenuScalarFieldEnum | ReactionRoleSelectmenuScalarFieldEnum[]
-  }
-
-  /**
-   * ReactionRoleSelectmenu create
-   */
-  export type ReactionRoleSelectmenuCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ReactionRoleSelectmenu
-     */
-    select?: ReactionRoleSelectmenuSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ReactionRoleSelectmenu
-     */
-    omit?: ReactionRoleSelectmenuOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReactionRoleSelectmenuInclude<ExtArgs> | null
-    /**
-     * The data needed to create a ReactionRoleSelectmenu.
-     */
-    data: XOR<ReactionRoleSelectmenuCreateInput, ReactionRoleSelectmenuUncheckedCreateInput>
-  }
-
-  /**
-   * ReactionRoleSelectmenu createMany
-   */
-  export type ReactionRoleSelectmenuCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many ReactionRoleSelectmenus.
-     */
-    data: ReactionRoleSelectmenuCreateManyInput | ReactionRoleSelectmenuCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * ReactionRoleSelectmenu createManyAndReturn
-   */
-  export type ReactionRoleSelectmenuCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ReactionRoleSelectmenu
-     */
-    select?: ReactionRoleSelectmenuSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the ReactionRoleSelectmenu
-     */
-    omit?: ReactionRoleSelectmenuOmit<ExtArgs> | null
-    /**
-     * The data used to create many ReactionRoleSelectmenus.
-     */
-    data: ReactionRoleSelectmenuCreateManyInput | ReactionRoleSelectmenuCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReactionRoleSelectmenuIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * ReactionRoleSelectmenu update
-   */
-  export type ReactionRoleSelectmenuUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ReactionRoleSelectmenu
-     */
-    select?: ReactionRoleSelectmenuSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ReactionRoleSelectmenu
-     */
-    omit?: ReactionRoleSelectmenuOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReactionRoleSelectmenuInclude<ExtArgs> | null
-    /**
-     * The data needed to update a ReactionRoleSelectmenu.
-     */
-    data: XOR<ReactionRoleSelectmenuUpdateInput, ReactionRoleSelectmenuUncheckedUpdateInput>
-    /**
-     * Choose, which ReactionRoleSelectmenu to update.
-     */
-    where: ReactionRoleSelectmenuWhereUniqueInput
-  }
-
-  /**
-   * ReactionRoleSelectmenu updateMany
-   */
-  export type ReactionRoleSelectmenuUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update ReactionRoleSelectmenus.
-     */
-    data: XOR<ReactionRoleSelectmenuUpdateManyMutationInput, ReactionRoleSelectmenuUncheckedUpdateManyInput>
-    /**
-     * Filter which ReactionRoleSelectmenus to update
-     */
-    where?: ReactionRoleSelectmenuWhereInput
-    /**
-     * Limit how many ReactionRoleSelectmenus to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * ReactionRoleSelectmenu updateManyAndReturn
-   */
-  export type ReactionRoleSelectmenuUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ReactionRoleSelectmenu
-     */
-    select?: ReactionRoleSelectmenuSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the ReactionRoleSelectmenu
-     */
-    omit?: ReactionRoleSelectmenuOmit<ExtArgs> | null
-    /**
-     * The data used to update ReactionRoleSelectmenus.
-     */
-    data: XOR<ReactionRoleSelectmenuUpdateManyMutationInput, ReactionRoleSelectmenuUncheckedUpdateManyInput>
-    /**
-     * Filter which ReactionRoleSelectmenus to update
-     */
-    where?: ReactionRoleSelectmenuWhereInput
-    /**
-     * Limit how many ReactionRoleSelectmenus to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReactionRoleSelectmenuIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * ReactionRoleSelectmenu upsert
-   */
-  export type ReactionRoleSelectmenuUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ReactionRoleSelectmenu
-     */
-    select?: ReactionRoleSelectmenuSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ReactionRoleSelectmenu
-     */
-    omit?: ReactionRoleSelectmenuOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReactionRoleSelectmenuInclude<ExtArgs> | null
-    /**
-     * The filter to search for the ReactionRoleSelectmenu to update in case it exists.
-     */
-    where: ReactionRoleSelectmenuWhereUniqueInput
-    /**
-     * In case the ReactionRoleSelectmenu found by the `where` argument doesn't exist, create a new ReactionRoleSelectmenu with this data.
-     */
-    create: XOR<ReactionRoleSelectmenuCreateInput, ReactionRoleSelectmenuUncheckedCreateInput>
-    /**
-     * In case the ReactionRoleSelectmenu was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<ReactionRoleSelectmenuUpdateInput, ReactionRoleSelectmenuUncheckedUpdateInput>
-  }
-
-  /**
-   * ReactionRoleSelectmenu delete
-   */
-  export type ReactionRoleSelectmenuDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ReactionRoleSelectmenu
-     */
-    select?: ReactionRoleSelectmenuSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ReactionRoleSelectmenu
-     */
-    omit?: ReactionRoleSelectmenuOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReactionRoleSelectmenuInclude<ExtArgs> | null
-    /**
-     * Filter which ReactionRoleSelectmenu to delete.
-     */
-    where: ReactionRoleSelectmenuWhereUniqueInput
-  }
-
-  /**
-   * ReactionRoleSelectmenu deleteMany
-   */
-  export type ReactionRoleSelectmenuDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ReactionRoleSelectmenus to delete
-     */
-    where?: ReactionRoleSelectmenuWhereInput
-    /**
-     * Limit how many ReactionRoleSelectmenus to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * ReactionRoleSelectmenu without action
-   */
-  export type ReactionRoleSelectmenuDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ReactionRoleSelectmenu
-     */
-    select?: ReactionRoleSelectmenuSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ReactionRoleSelectmenu
-     */
-    omit?: ReactionRoleSelectmenuOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReactionRoleSelectmenuInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model ReactionRoleButton
-   */
-
-  export type AggregateReactionRoleButton = {
-    _count: ReactionRoleButtonCountAggregateOutputType | null
-    _avg: ReactionRoleButtonAvgAggregateOutputType | null
-    _sum: ReactionRoleButtonSumAggregateOutputType | null
-    _min: ReactionRoleButtonMinAggregateOutputType | null
-    _max: ReactionRoleButtonMaxAggregateOutputType | null
-  }
-
-  export type ReactionRoleButtonAvgAggregateOutputType = {
-    Id: number | null
-  }
-
-  export type ReactionRoleButtonSumAggregateOutputType = {
-    Id: number | null
-  }
-
-  export type ReactionRoleButtonMinAggregateOutputType = {
-    Id: number | null
-    Emoji: string | null
-    Type: string | null
-    Label: string | null
-    GuildReactionRoleId: string | null
-  }
-
-  export type ReactionRoleButtonMaxAggregateOutputType = {
-    Id: number | null
-    Emoji: string | null
-    Type: string | null
-    Label: string | null
-    GuildReactionRoleId: string | null
-  }
-
-  export type ReactionRoleButtonCountAggregateOutputType = {
-    Id: number
-    Emoji: number
-    Type: number
-    Label: number
-    GuildReactionRoleId: number
-    _all: number
-  }
-
-
-  export type ReactionRoleButtonAvgAggregateInputType = {
-    Id?: true
-  }
-
-  export type ReactionRoleButtonSumAggregateInputType = {
-    Id?: true
-  }
-
-  export type ReactionRoleButtonMinAggregateInputType = {
-    Id?: true
-    Emoji?: true
-    Type?: true
-    Label?: true
-    GuildReactionRoleId?: true
-  }
-
-  export type ReactionRoleButtonMaxAggregateInputType = {
-    Id?: true
-    Emoji?: true
-    Type?: true
-    Label?: true
-    GuildReactionRoleId?: true
-  }
-
-  export type ReactionRoleButtonCountAggregateInputType = {
-    Id?: true
-    Emoji?: true
-    Type?: true
-    Label?: true
-    GuildReactionRoleId?: true
-    _all?: true
-  }
-
-  export type ReactionRoleButtonAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ReactionRoleButton to aggregate.
-     */
-    where?: ReactionRoleButtonWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ReactionRoleButtons to fetch.
-     */
-    orderBy?: ReactionRoleButtonOrderByWithRelationInput | ReactionRoleButtonOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: ReactionRoleButtonWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ReactionRoleButtons from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ReactionRoleButtons.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned ReactionRoleButtons
-    **/
-    _count?: true | ReactionRoleButtonCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: ReactionRoleButtonAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: ReactionRoleButtonSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: ReactionRoleButtonMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: ReactionRoleButtonMaxAggregateInputType
-  }
-
-  export type GetReactionRoleButtonAggregateType<T extends ReactionRoleButtonAggregateArgs> = {
-        [P in keyof T & keyof AggregateReactionRoleButton]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateReactionRoleButton[P]>
-      : GetScalarType<T[P], AggregateReactionRoleButton[P]>
-  }
-
-
-
-
-  export type ReactionRoleButtonGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ReactionRoleButtonWhereInput
-    orderBy?: ReactionRoleButtonOrderByWithAggregationInput | ReactionRoleButtonOrderByWithAggregationInput[]
-    by: ReactionRoleButtonScalarFieldEnum[] | ReactionRoleButtonScalarFieldEnum
-    having?: ReactionRoleButtonScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: ReactionRoleButtonCountAggregateInputType | true
-    _avg?: ReactionRoleButtonAvgAggregateInputType
-    _sum?: ReactionRoleButtonSumAggregateInputType
-    _min?: ReactionRoleButtonMinAggregateInputType
-    _max?: ReactionRoleButtonMaxAggregateInputType
-  }
-
-  export type ReactionRoleButtonGroupByOutputType = {
-    Id: number
-    Emoji: string | null
-    Type: string | null
-    Label: string | null
-    GuildReactionRoleId: string
-    _count: ReactionRoleButtonCountAggregateOutputType | null
-    _avg: ReactionRoleButtonAvgAggregateOutputType | null
-    _sum: ReactionRoleButtonSumAggregateOutputType | null
-    _min: ReactionRoleButtonMinAggregateOutputType | null
-    _max: ReactionRoleButtonMaxAggregateOutputType | null
-  }
-
-  type GetReactionRoleButtonGroupByPayload<T extends ReactionRoleButtonGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<ReactionRoleButtonGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof ReactionRoleButtonGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], ReactionRoleButtonGroupByOutputType[P]>
-            : GetScalarType<T[P], ReactionRoleButtonGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type ReactionRoleButtonSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    Id?: boolean
-    Emoji?: boolean
-    Type?: boolean
-    Label?: boolean
-    GuildReactionRoleId?: boolean
-    GuildReactionRoles?: boolean | GuildReactionRolesDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["reactionRoleButton"]>
-
-  export type ReactionRoleButtonSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    Id?: boolean
-    Emoji?: boolean
-    Type?: boolean
-    Label?: boolean
-    GuildReactionRoleId?: boolean
-    GuildReactionRoles?: boolean | GuildReactionRolesDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["reactionRoleButton"]>
-
-  export type ReactionRoleButtonSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    Id?: boolean
-    Emoji?: boolean
-    Type?: boolean
-    Label?: boolean
-    GuildReactionRoleId?: boolean
-    GuildReactionRoles?: boolean | GuildReactionRolesDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["reactionRoleButton"]>
-
-  export type ReactionRoleButtonSelectScalar = {
-    Id?: boolean
-    Emoji?: boolean
-    Type?: boolean
-    Label?: boolean
-    GuildReactionRoleId?: boolean
-  }
-
-  export type ReactionRoleButtonOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Id" | "Emoji" | "Type" | "Label" | "GuildReactionRoleId", ExtArgs["result"]["reactionRoleButton"]>
-  export type ReactionRoleButtonInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    GuildReactionRoles?: boolean | GuildReactionRolesDefaultArgs<ExtArgs>
-  }
-  export type ReactionRoleButtonIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    GuildReactionRoles?: boolean | GuildReactionRolesDefaultArgs<ExtArgs>
-  }
-  export type ReactionRoleButtonIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    GuildReactionRoles?: boolean | GuildReactionRolesDefaultArgs<ExtArgs>
-  }
-
-  export type $ReactionRoleButtonPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "ReactionRoleButton"
-    objects: {
-      GuildReactionRoles: Prisma.$GuildReactionRolesPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      Id: number
-      Emoji: string | null
-      Type: string | null
-      Label: string | null
-      GuildReactionRoleId: string
-    }, ExtArgs["result"]["reactionRoleButton"]>
-    composites: {}
-  }
-
-  type ReactionRoleButtonGetPayload<S extends boolean | null | undefined | ReactionRoleButtonDefaultArgs> = $Result.GetResult<Prisma.$ReactionRoleButtonPayload, S>
-
-  type ReactionRoleButtonCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<ReactionRoleButtonFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: ReactionRoleButtonCountAggregateInputType | true
-    }
-
-  export interface ReactionRoleButtonDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ReactionRoleButton'], meta: { name: 'ReactionRoleButton' } }
-    /**
-     * Find zero or one ReactionRoleButton that matches the filter.
-     * @param {ReactionRoleButtonFindUniqueArgs} args - Arguments to find a ReactionRoleButton
-     * @example
-     * // Get one ReactionRoleButton
-     * const reactionRoleButton = await prisma.reactionRoleButton.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends ReactionRoleButtonFindUniqueArgs>(args: SelectSubset<T, ReactionRoleButtonFindUniqueArgs<ExtArgs>>): Prisma__ReactionRoleButtonClient<$Result.GetResult<Prisma.$ReactionRoleButtonPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one ReactionRoleButton that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {ReactionRoleButtonFindUniqueOrThrowArgs} args - Arguments to find a ReactionRoleButton
-     * @example
-     * // Get one ReactionRoleButton
-     * const reactionRoleButton = await prisma.reactionRoleButton.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends ReactionRoleButtonFindUniqueOrThrowArgs>(args: SelectSubset<T, ReactionRoleButtonFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ReactionRoleButtonClient<$Result.GetResult<Prisma.$ReactionRoleButtonPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first ReactionRoleButton that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ReactionRoleButtonFindFirstArgs} args - Arguments to find a ReactionRoleButton
-     * @example
-     * // Get one ReactionRoleButton
-     * const reactionRoleButton = await prisma.reactionRoleButton.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends ReactionRoleButtonFindFirstArgs>(args?: SelectSubset<T, ReactionRoleButtonFindFirstArgs<ExtArgs>>): Prisma__ReactionRoleButtonClient<$Result.GetResult<Prisma.$ReactionRoleButtonPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first ReactionRoleButton that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ReactionRoleButtonFindFirstOrThrowArgs} args - Arguments to find a ReactionRoleButton
-     * @example
-     * // Get one ReactionRoleButton
-     * const reactionRoleButton = await prisma.reactionRoleButton.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends ReactionRoleButtonFindFirstOrThrowArgs>(args?: SelectSubset<T, ReactionRoleButtonFindFirstOrThrowArgs<ExtArgs>>): Prisma__ReactionRoleButtonClient<$Result.GetResult<Prisma.$ReactionRoleButtonPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more ReactionRoleButtons that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ReactionRoleButtonFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all ReactionRoleButtons
-     * const reactionRoleButtons = await prisma.reactionRoleButton.findMany()
-     * 
-     * // Get first 10 ReactionRoleButtons
-     * const reactionRoleButtons = await prisma.reactionRoleButton.findMany({ take: 10 })
-     * 
-     * // Only select the `Id`
-     * const reactionRoleButtonWithIdOnly = await prisma.reactionRoleButton.findMany({ select: { Id: true } })
-     * 
-     */
-    findMany<T extends ReactionRoleButtonFindManyArgs>(args?: SelectSubset<T, ReactionRoleButtonFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReactionRoleButtonPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a ReactionRoleButton.
-     * @param {ReactionRoleButtonCreateArgs} args - Arguments to create a ReactionRoleButton.
-     * @example
-     * // Create one ReactionRoleButton
-     * const ReactionRoleButton = await prisma.reactionRoleButton.create({
-     *   data: {
-     *     // ... data to create a ReactionRoleButton
-     *   }
-     * })
-     * 
-     */
-    create<T extends ReactionRoleButtonCreateArgs>(args: SelectSubset<T, ReactionRoleButtonCreateArgs<ExtArgs>>): Prisma__ReactionRoleButtonClient<$Result.GetResult<Prisma.$ReactionRoleButtonPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many ReactionRoleButtons.
-     * @param {ReactionRoleButtonCreateManyArgs} args - Arguments to create many ReactionRoleButtons.
-     * @example
-     * // Create many ReactionRoleButtons
-     * const reactionRoleButton = await prisma.reactionRoleButton.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends ReactionRoleButtonCreateManyArgs>(args?: SelectSubset<T, ReactionRoleButtonCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many ReactionRoleButtons and returns the data saved in the database.
-     * @param {ReactionRoleButtonCreateManyAndReturnArgs} args - Arguments to create many ReactionRoleButtons.
-     * @example
-     * // Create many ReactionRoleButtons
-     * const reactionRoleButton = await prisma.reactionRoleButton.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many ReactionRoleButtons and only return the `Id`
-     * const reactionRoleButtonWithIdOnly = await prisma.reactionRoleButton.createManyAndReturn({
-     *   select: { Id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends ReactionRoleButtonCreateManyAndReturnArgs>(args?: SelectSubset<T, ReactionRoleButtonCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReactionRoleButtonPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a ReactionRoleButton.
-     * @param {ReactionRoleButtonDeleteArgs} args - Arguments to delete one ReactionRoleButton.
-     * @example
-     * // Delete one ReactionRoleButton
-     * const ReactionRoleButton = await prisma.reactionRoleButton.delete({
-     *   where: {
-     *     // ... filter to delete one ReactionRoleButton
-     *   }
-     * })
-     * 
-     */
-    delete<T extends ReactionRoleButtonDeleteArgs>(args: SelectSubset<T, ReactionRoleButtonDeleteArgs<ExtArgs>>): Prisma__ReactionRoleButtonClient<$Result.GetResult<Prisma.$ReactionRoleButtonPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one ReactionRoleButton.
-     * @param {ReactionRoleButtonUpdateArgs} args - Arguments to update one ReactionRoleButton.
-     * @example
-     * // Update one ReactionRoleButton
-     * const reactionRoleButton = await prisma.reactionRoleButton.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends ReactionRoleButtonUpdateArgs>(args: SelectSubset<T, ReactionRoleButtonUpdateArgs<ExtArgs>>): Prisma__ReactionRoleButtonClient<$Result.GetResult<Prisma.$ReactionRoleButtonPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more ReactionRoleButtons.
-     * @param {ReactionRoleButtonDeleteManyArgs} args - Arguments to filter ReactionRoleButtons to delete.
-     * @example
-     * // Delete a few ReactionRoleButtons
-     * const { count } = await prisma.reactionRoleButton.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends ReactionRoleButtonDeleteManyArgs>(args?: SelectSubset<T, ReactionRoleButtonDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more ReactionRoleButtons.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ReactionRoleButtonUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many ReactionRoleButtons
-     * const reactionRoleButton = await prisma.reactionRoleButton.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends ReactionRoleButtonUpdateManyArgs>(args: SelectSubset<T, ReactionRoleButtonUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more ReactionRoleButtons and returns the data updated in the database.
-     * @param {ReactionRoleButtonUpdateManyAndReturnArgs} args - Arguments to update many ReactionRoleButtons.
-     * @example
-     * // Update many ReactionRoleButtons
-     * const reactionRoleButton = await prisma.reactionRoleButton.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more ReactionRoleButtons and only return the `Id`
-     * const reactionRoleButtonWithIdOnly = await prisma.reactionRoleButton.updateManyAndReturn({
-     *   select: { Id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends ReactionRoleButtonUpdateManyAndReturnArgs>(args: SelectSubset<T, ReactionRoleButtonUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReactionRoleButtonPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one ReactionRoleButton.
-     * @param {ReactionRoleButtonUpsertArgs} args - Arguments to update or create a ReactionRoleButton.
-     * @example
-     * // Update or create a ReactionRoleButton
-     * const reactionRoleButton = await prisma.reactionRoleButton.upsert({
-     *   create: {
-     *     // ... data to create a ReactionRoleButton
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the ReactionRoleButton we want to update
-     *   }
-     * })
-     */
-    upsert<T extends ReactionRoleButtonUpsertArgs>(args: SelectSubset<T, ReactionRoleButtonUpsertArgs<ExtArgs>>): Prisma__ReactionRoleButtonClient<$Result.GetResult<Prisma.$ReactionRoleButtonPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of ReactionRoleButtons.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ReactionRoleButtonCountArgs} args - Arguments to filter ReactionRoleButtons to count.
-     * @example
-     * // Count the number of ReactionRoleButtons
-     * const count = await prisma.reactionRoleButton.count({
-     *   where: {
-     *     // ... the filter for the ReactionRoleButtons we want to count
-     *   }
-     * })
-    **/
-    count<T extends ReactionRoleButtonCountArgs>(
-      args?: Subset<T, ReactionRoleButtonCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], ReactionRoleButtonCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a ReactionRoleButton.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ReactionRoleButtonAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends ReactionRoleButtonAggregateArgs>(args: Subset<T, ReactionRoleButtonAggregateArgs>): Prisma.PrismaPromise<GetReactionRoleButtonAggregateType<T>>
-
-    /**
-     * Group by ReactionRoleButton.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ReactionRoleButtonGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends ReactionRoleButtonGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ReactionRoleButtonGroupByArgs['orderBy'] }
-        : { orderBy?: ReactionRoleButtonGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, ReactionRoleButtonGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetReactionRoleButtonGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the ReactionRoleButton model
-   */
-  readonly fields: ReactionRoleButtonFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for ReactionRoleButton.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__ReactionRoleButtonClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    GuildReactionRoles<T extends GuildReactionRolesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GuildReactionRolesDefaultArgs<ExtArgs>>): Prisma__GuildReactionRolesClient<$Result.GetResult<Prisma.$GuildReactionRolesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the ReactionRoleButton model
-   */
-  interface ReactionRoleButtonFieldRefs {
-    readonly Id: FieldRef<"ReactionRoleButton", 'Int'>
-    readonly Emoji: FieldRef<"ReactionRoleButton", 'String'>
-    readonly Type: FieldRef<"ReactionRoleButton", 'String'>
-    readonly Label: FieldRef<"ReactionRoleButton", 'String'>
-    readonly GuildReactionRoleId: FieldRef<"ReactionRoleButton", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * ReactionRoleButton findUnique
-   */
-  export type ReactionRoleButtonFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ReactionRoleButton
-     */
-    select?: ReactionRoleButtonSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ReactionRoleButton
-     */
-    omit?: ReactionRoleButtonOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReactionRoleButtonInclude<ExtArgs> | null
-    /**
-     * Filter, which ReactionRoleButton to fetch.
-     */
-    where: ReactionRoleButtonWhereUniqueInput
-  }
-
-  /**
-   * ReactionRoleButton findUniqueOrThrow
-   */
-  export type ReactionRoleButtonFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ReactionRoleButton
-     */
-    select?: ReactionRoleButtonSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ReactionRoleButton
-     */
-    omit?: ReactionRoleButtonOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReactionRoleButtonInclude<ExtArgs> | null
-    /**
-     * Filter, which ReactionRoleButton to fetch.
-     */
-    where: ReactionRoleButtonWhereUniqueInput
-  }
-
-  /**
-   * ReactionRoleButton findFirst
-   */
-  export type ReactionRoleButtonFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ReactionRoleButton
-     */
-    select?: ReactionRoleButtonSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ReactionRoleButton
-     */
-    omit?: ReactionRoleButtonOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReactionRoleButtonInclude<ExtArgs> | null
-    /**
-     * Filter, which ReactionRoleButton to fetch.
-     */
-    where?: ReactionRoleButtonWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ReactionRoleButtons to fetch.
-     */
-    orderBy?: ReactionRoleButtonOrderByWithRelationInput | ReactionRoleButtonOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ReactionRoleButtons.
-     */
-    cursor?: ReactionRoleButtonWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ReactionRoleButtons from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ReactionRoleButtons.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ReactionRoleButtons.
-     */
-    distinct?: ReactionRoleButtonScalarFieldEnum | ReactionRoleButtonScalarFieldEnum[]
-  }
-
-  /**
-   * ReactionRoleButton findFirstOrThrow
-   */
-  export type ReactionRoleButtonFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ReactionRoleButton
-     */
-    select?: ReactionRoleButtonSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ReactionRoleButton
-     */
-    omit?: ReactionRoleButtonOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReactionRoleButtonInclude<ExtArgs> | null
-    /**
-     * Filter, which ReactionRoleButton to fetch.
-     */
-    where?: ReactionRoleButtonWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ReactionRoleButtons to fetch.
-     */
-    orderBy?: ReactionRoleButtonOrderByWithRelationInput | ReactionRoleButtonOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ReactionRoleButtons.
-     */
-    cursor?: ReactionRoleButtonWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ReactionRoleButtons from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ReactionRoleButtons.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ReactionRoleButtons.
-     */
-    distinct?: ReactionRoleButtonScalarFieldEnum | ReactionRoleButtonScalarFieldEnum[]
-  }
-
-  /**
-   * ReactionRoleButton findMany
-   */
-  export type ReactionRoleButtonFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ReactionRoleButton
-     */
-    select?: ReactionRoleButtonSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ReactionRoleButton
-     */
-    omit?: ReactionRoleButtonOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReactionRoleButtonInclude<ExtArgs> | null
-    /**
-     * Filter, which ReactionRoleButtons to fetch.
-     */
-    where?: ReactionRoleButtonWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ReactionRoleButtons to fetch.
-     */
-    orderBy?: ReactionRoleButtonOrderByWithRelationInput | ReactionRoleButtonOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing ReactionRoleButtons.
-     */
-    cursor?: ReactionRoleButtonWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ReactionRoleButtons from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ReactionRoleButtons.
-     */
-    skip?: number
-    distinct?: ReactionRoleButtonScalarFieldEnum | ReactionRoleButtonScalarFieldEnum[]
-  }
-
-  /**
-   * ReactionRoleButton create
-   */
-  export type ReactionRoleButtonCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ReactionRoleButton
-     */
-    select?: ReactionRoleButtonSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ReactionRoleButton
-     */
-    omit?: ReactionRoleButtonOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReactionRoleButtonInclude<ExtArgs> | null
-    /**
-     * The data needed to create a ReactionRoleButton.
-     */
-    data: XOR<ReactionRoleButtonCreateInput, ReactionRoleButtonUncheckedCreateInput>
-  }
-
-  /**
-   * ReactionRoleButton createMany
-   */
-  export type ReactionRoleButtonCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many ReactionRoleButtons.
-     */
-    data: ReactionRoleButtonCreateManyInput | ReactionRoleButtonCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * ReactionRoleButton createManyAndReturn
-   */
-  export type ReactionRoleButtonCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ReactionRoleButton
-     */
-    select?: ReactionRoleButtonSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the ReactionRoleButton
-     */
-    omit?: ReactionRoleButtonOmit<ExtArgs> | null
-    /**
-     * The data used to create many ReactionRoleButtons.
-     */
-    data: ReactionRoleButtonCreateManyInput | ReactionRoleButtonCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReactionRoleButtonIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * ReactionRoleButton update
-   */
-  export type ReactionRoleButtonUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ReactionRoleButton
-     */
-    select?: ReactionRoleButtonSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ReactionRoleButton
-     */
-    omit?: ReactionRoleButtonOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReactionRoleButtonInclude<ExtArgs> | null
-    /**
-     * The data needed to update a ReactionRoleButton.
-     */
-    data: XOR<ReactionRoleButtonUpdateInput, ReactionRoleButtonUncheckedUpdateInput>
-    /**
-     * Choose, which ReactionRoleButton to update.
-     */
-    where: ReactionRoleButtonWhereUniqueInput
-  }
-
-  /**
-   * ReactionRoleButton updateMany
-   */
-  export type ReactionRoleButtonUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update ReactionRoleButtons.
-     */
-    data: XOR<ReactionRoleButtonUpdateManyMutationInput, ReactionRoleButtonUncheckedUpdateManyInput>
-    /**
-     * Filter which ReactionRoleButtons to update
-     */
-    where?: ReactionRoleButtonWhereInput
-    /**
-     * Limit how many ReactionRoleButtons to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * ReactionRoleButton updateManyAndReturn
-   */
-  export type ReactionRoleButtonUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ReactionRoleButton
-     */
-    select?: ReactionRoleButtonSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the ReactionRoleButton
-     */
-    omit?: ReactionRoleButtonOmit<ExtArgs> | null
-    /**
-     * The data used to update ReactionRoleButtons.
-     */
-    data: XOR<ReactionRoleButtonUpdateManyMutationInput, ReactionRoleButtonUncheckedUpdateManyInput>
-    /**
-     * Filter which ReactionRoleButtons to update
-     */
-    where?: ReactionRoleButtonWhereInput
-    /**
-     * Limit how many ReactionRoleButtons to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReactionRoleButtonIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * ReactionRoleButton upsert
-   */
-  export type ReactionRoleButtonUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ReactionRoleButton
-     */
-    select?: ReactionRoleButtonSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ReactionRoleButton
-     */
-    omit?: ReactionRoleButtonOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReactionRoleButtonInclude<ExtArgs> | null
-    /**
-     * The filter to search for the ReactionRoleButton to update in case it exists.
-     */
-    where: ReactionRoleButtonWhereUniqueInput
-    /**
-     * In case the ReactionRoleButton found by the `where` argument doesn't exist, create a new ReactionRoleButton with this data.
-     */
-    create: XOR<ReactionRoleButtonCreateInput, ReactionRoleButtonUncheckedCreateInput>
-    /**
-     * In case the ReactionRoleButton was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<ReactionRoleButtonUpdateInput, ReactionRoleButtonUncheckedUpdateInput>
-  }
-
-  /**
-   * ReactionRoleButton delete
-   */
-  export type ReactionRoleButtonDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ReactionRoleButton
-     */
-    select?: ReactionRoleButtonSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ReactionRoleButton
-     */
-    omit?: ReactionRoleButtonOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReactionRoleButtonInclude<ExtArgs> | null
-    /**
-     * Filter which ReactionRoleButton to delete.
-     */
-    where: ReactionRoleButtonWhereUniqueInput
-  }
-
-  /**
-   * ReactionRoleButton deleteMany
-   */
-  export type ReactionRoleButtonDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ReactionRoleButtons to delete
-     */
-    where?: ReactionRoleButtonWhereInput
-    /**
-     * Limit how many ReactionRoleButtons to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * ReactionRoleButton without action
-   */
-  export type ReactionRoleButtonDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ReactionRoleButton
-     */
-    select?: ReactionRoleButtonSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ReactionRoleButton
-     */
-    omit?: ReactionRoleButtonOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReactionRoleButtonInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model GuildSecurity
    */
 
@@ -99605,43 +95925,6 @@ export namespace Prisma {
   export type MessageTemplatesScalarFieldEnum = (typeof MessageTemplatesScalarFieldEnum)[keyof typeof MessageTemplatesScalarFieldEnum]
 
 
-  export const GuildReactionRolesScalarFieldEnum: {
-    Id: 'Id',
-    UUID: 'UUID',
-    Roles: 'Roles',
-    MessageId: 'MessageId',
-    ChannelId: 'ChannelId',
-    AddMessage: 'AddMessage',
-    RemoveMessage: 'RemoveMessage',
-    Emoji: 'Emoji',
-    GuildId: 'GuildId'
-  };
-
-  export type GuildReactionRolesScalarFieldEnum = (typeof GuildReactionRolesScalarFieldEnum)[keyof typeof GuildReactionRolesScalarFieldEnum]
-
-
-  export const ReactionRoleSelectmenuScalarFieldEnum: {
-    Id: 'Id',
-    Emoji: 'Emoji',
-    Label: 'Label',
-    Description: 'Description',
-    GuildReactionRoleId: 'GuildReactionRoleId'
-  };
-
-  export type ReactionRoleSelectmenuScalarFieldEnum = (typeof ReactionRoleSelectmenuScalarFieldEnum)[keyof typeof ReactionRoleSelectmenuScalarFieldEnum]
-
-
-  export const ReactionRoleButtonScalarFieldEnum: {
-    Id: 'Id',
-    Emoji: 'Emoji',
-    Type: 'Type',
-    Label: 'Label',
-    GuildReactionRoleId: 'GuildReactionRoleId'
-  };
-
-  export type ReactionRoleButtonScalarFieldEnum = (typeof ReactionRoleButtonScalarFieldEnum)[keyof typeof ReactionRoleButtonScalarFieldEnum]
-
-
   export const GuildSecurityScalarFieldEnum: {
     Id: 'Id',
     InviteLoggingActive: 'InviteLoggingActive',
@@ -100274,7 +96557,6 @@ export namespace Prisma {
     GuildLogging?: XOR<GuildLoggingNullableScalarRelationFilter, GuildLoggingWhereInput> | null
     GuildLogs?: GuildLogsListRelationFilter
     GuildModeration?: XOR<GuildModerationNullableScalarRelationFilter, GuildModerationWhereInput> | null
-    ReactionRole?: GuildReactionRolesListRelationFilter
     Security?: XOR<GuildSecurityNullableScalarRelationFilter, GuildSecurityWhereInput> | null
     SpotifyNotifications?: GuildSpotifyNotificationsListRelationFilter
     TwitchNotifications?: GuildTwitchNotificationsListRelationFilter
@@ -100310,7 +96592,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingOrderByWithRelationInput
     GuildLogs?: GuildLogsOrderByRelationAggregateInput
     GuildModeration?: GuildModerationOrderByWithRelationInput
-    ReactionRole?: GuildReactionRolesOrderByRelationAggregateInput
     Security?: GuildSecurityOrderByWithRelationInput
     SpotifyNotifications?: GuildSpotifyNotificationsOrderByRelationAggregateInput
     TwitchNotifications?: GuildTwitchNotificationsOrderByRelationAggregateInput
@@ -100349,7 +96630,6 @@ export namespace Prisma {
     GuildLogging?: XOR<GuildLoggingNullableScalarRelationFilter, GuildLoggingWhereInput> | null
     GuildLogs?: GuildLogsListRelationFilter
     GuildModeration?: XOR<GuildModerationNullableScalarRelationFilter, GuildModerationWhereInput> | null
-    ReactionRole?: GuildReactionRolesListRelationFilter
     Security?: XOR<GuildSecurityNullableScalarRelationFilter, GuildSecurityWhereInput> | null
     SpotifyNotifications?: GuildSpotifyNotificationsListRelationFilter
     TwitchNotifications?: GuildTwitchNotificationsListRelationFilter
@@ -103683,203 +99963,6 @@ export namespace Prisma {
     GuildId?: StringWithAggregatesFilter<"MessageTemplates"> | string
   }
 
-  export type GuildReactionRolesWhereInput = {
-    AND?: GuildReactionRolesWhereInput | GuildReactionRolesWhereInput[]
-    OR?: GuildReactionRolesWhereInput[]
-    NOT?: GuildReactionRolesWhereInput | GuildReactionRolesWhereInput[]
-    Id?: IntFilter<"GuildReactionRoles"> | number
-    UUID?: StringFilter<"GuildReactionRoles"> | string
-    Roles?: StringNullableListFilter<"GuildReactionRoles">
-    MessageId?: StringNullableFilter<"GuildReactionRoles"> | string | null
-    ChannelId?: StringNullableFilter<"GuildReactionRoles"> | string | null
-    AddMessage?: StringNullableFilter<"GuildReactionRoles"> | string | null
-    RemoveMessage?: StringNullableFilter<"GuildReactionRoles"> | string | null
-    Emoji?: StringNullableFilter<"GuildReactionRoles"> | string | null
-    GuildId?: StringFilter<"GuildReactionRoles"> | string
-    Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
-    Button?: XOR<ReactionRoleButtonNullableScalarRelationFilter, ReactionRoleButtonWhereInput> | null
-    SelectMenu?: XOR<ReactionRoleSelectmenuNullableScalarRelationFilter, ReactionRoleSelectmenuWhereInput> | null
-  }
-
-  export type GuildReactionRolesOrderByWithRelationInput = {
-    Id?: SortOrder
-    UUID?: SortOrder
-    Roles?: SortOrder
-    MessageId?: SortOrderInput | SortOrder
-    ChannelId?: SortOrderInput | SortOrder
-    AddMessage?: SortOrderInput | SortOrder
-    RemoveMessage?: SortOrderInput | SortOrder
-    Emoji?: SortOrderInput | SortOrder
-    GuildId?: SortOrder
-    Guilds?: GuildsOrderByWithRelationInput
-    Button?: ReactionRoleButtonOrderByWithRelationInput
-    SelectMenu?: ReactionRoleSelectmenuOrderByWithRelationInput
-  }
-
-  export type GuildReactionRolesWhereUniqueInput = Prisma.AtLeast<{
-    Id?: number
-    UUID?: string
-    AND?: GuildReactionRolesWhereInput | GuildReactionRolesWhereInput[]
-    OR?: GuildReactionRolesWhereInput[]
-    NOT?: GuildReactionRolesWhereInput | GuildReactionRolesWhereInput[]
-    Roles?: StringNullableListFilter<"GuildReactionRoles">
-    MessageId?: StringNullableFilter<"GuildReactionRoles"> | string | null
-    ChannelId?: StringNullableFilter<"GuildReactionRoles"> | string | null
-    AddMessage?: StringNullableFilter<"GuildReactionRoles"> | string | null
-    RemoveMessage?: StringNullableFilter<"GuildReactionRoles"> | string | null
-    Emoji?: StringNullableFilter<"GuildReactionRoles"> | string | null
-    GuildId?: StringFilter<"GuildReactionRoles"> | string
-    Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
-    Button?: XOR<ReactionRoleButtonNullableScalarRelationFilter, ReactionRoleButtonWhereInput> | null
-    SelectMenu?: XOR<ReactionRoleSelectmenuNullableScalarRelationFilter, ReactionRoleSelectmenuWhereInput> | null
-  }, "Id" | "UUID">
-
-  export type GuildReactionRolesOrderByWithAggregationInput = {
-    Id?: SortOrder
-    UUID?: SortOrder
-    Roles?: SortOrder
-    MessageId?: SortOrderInput | SortOrder
-    ChannelId?: SortOrderInput | SortOrder
-    AddMessage?: SortOrderInput | SortOrder
-    RemoveMessage?: SortOrderInput | SortOrder
-    Emoji?: SortOrderInput | SortOrder
-    GuildId?: SortOrder
-    _count?: GuildReactionRolesCountOrderByAggregateInput
-    _avg?: GuildReactionRolesAvgOrderByAggregateInput
-    _max?: GuildReactionRolesMaxOrderByAggregateInput
-    _min?: GuildReactionRolesMinOrderByAggregateInput
-    _sum?: GuildReactionRolesSumOrderByAggregateInput
-  }
-
-  export type GuildReactionRolesScalarWhereWithAggregatesInput = {
-    AND?: GuildReactionRolesScalarWhereWithAggregatesInput | GuildReactionRolesScalarWhereWithAggregatesInput[]
-    OR?: GuildReactionRolesScalarWhereWithAggregatesInput[]
-    NOT?: GuildReactionRolesScalarWhereWithAggregatesInput | GuildReactionRolesScalarWhereWithAggregatesInput[]
-    Id?: IntWithAggregatesFilter<"GuildReactionRoles"> | number
-    UUID?: StringWithAggregatesFilter<"GuildReactionRoles"> | string
-    Roles?: StringNullableListFilter<"GuildReactionRoles">
-    MessageId?: StringNullableWithAggregatesFilter<"GuildReactionRoles"> | string | null
-    ChannelId?: StringNullableWithAggregatesFilter<"GuildReactionRoles"> | string | null
-    AddMessage?: StringNullableWithAggregatesFilter<"GuildReactionRoles"> | string | null
-    RemoveMessage?: StringNullableWithAggregatesFilter<"GuildReactionRoles"> | string | null
-    Emoji?: StringNullableWithAggregatesFilter<"GuildReactionRoles"> | string | null
-    GuildId?: StringWithAggregatesFilter<"GuildReactionRoles"> | string
-  }
-
-  export type ReactionRoleSelectmenuWhereInput = {
-    AND?: ReactionRoleSelectmenuWhereInput | ReactionRoleSelectmenuWhereInput[]
-    OR?: ReactionRoleSelectmenuWhereInput[]
-    NOT?: ReactionRoleSelectmenuWhereInput | ReactionRoleSelectmenuWhereInput[]
-    Id?: IntFilter<"ReactionRoleSelectmenu"> | number
-    Emoji?: StringNullableFilter<"ReactionRoleSelectmenu"> | string | null
-    Label?: StringNullableFilter<"ReactionRoleSelectmenu"> | string | null
-    Description?: StringNullableFilter<"ReactionRoleSelectmenu"> | string | null
-    GuildReactionRoleId?: StringFilter<"ReactionRoleSelectmenu"> | string
-    GuildReactionRoles?: XOR<GuildReactionRolesScalarRelationFilter, GuildReactionRolesWhereInput>
-  }
-
-  export type ReactionRoleSelectmenuOrderByWithRelationInput = {
-    Id?: SortOrder
-    Emoji?: SortOrderInput | SortOrder
-    Label?: SortOrderInput | SortOrder
-    Description?: SortOrderInput | SortOrder
-    GuildReactionRoleId?: SortOrder
-    GuildReactionRoles?: GuildReactionRolesOrderByWithRelationInput
-  }
-
-  export type ReactionRoleSelectmenuWhereUniqueInput = Prisma.AtLeast<{
-    Id?: number
-    GuildReactionRoleId?: string
-    AND?: ReactionRoleSelectmenuWhereInput | ReactionRoleSelectmenuWhereInput[]
-    OR?: ReactionRoleSelectmenuWhereInput[]
-    NOT?: ReactionRoleSelectmenuWhereInput | ReactionRoleSelectmenuWhereInput[]
-    Emoji?: StringNullableFilter<"ReactionRoleSelectmenu"> | string | null
-    Label?: StringNullableFilter<"ReactionRoleSelectmenu"> | string | null
-    Description?: StringNullableFilter<"ReactionRoleSelectmenu"> | string | null
-    GuildReactionRoles?: XOR<GuildReactionRolesScalarRelationFilter, GuildReactionRolesWhereInput>
-  }, "Id" | "GuildReactionRoleId">
-
-  export type ReactionRoleSelectmenuOrderByWithAggregationInput = {
-    Id?: SortOrder
-    Emoji?: SortOrderInput | SortOrder
-    Label?: SortOrderInput | SortOrder
-    Description?: SortOrderInput | SortOrder
-    GuildReactionRoleId?: SortOrder
-    _count?: ReactionRoleSelectmenuCountOrderByAggregateInput
-    _avg?: ReactionRoleSelectmenuAvgOrderByAggregateInput
-    _max?: ReactionRoleSelectmenuMaxOrderByAggregateInput
-    _min?: ReactionRoleSelectmenuMinOrderByAggregateInput
-    _sum?: ReactionRoleSelectmenuSumOrderByAggregateInput
-  }
-
-  export type ReactionRoleSelectmenuScalarWhereWithAggregatesInput = {
-    AND?: ReactionRoleSelectmenuScalarWhereWithAggregatesInput | ReactionRoleSelectmenuScalarWhereWithAggregatesInput[]
-    OR?: ReactionRoleSelectmenuScalarWhereWithAggregatesInput[]
-    NOT?: ReactionRoleSelectmenuScalarWhereWithAggregatesInput | ReactionRoleSelectmenuScalarWhereWithAggregatesInput[]
-    Id?: IntWithAggregatesFilter<"ReactionRoleSelectmenu"> | number
-    Emoji?: StringNullableWithAggregatesFilter<"ReactionRoleSelectmenu"> | string | null
-    Label?: StringNullableWithAggregatesFilter<"ReactionRoleSelectmenu"> | string | null
-    Description?: StringNullableWithAggregatesFilter<"ReactionRoleSelectmenu"> | string | null
-    GuildReactionRoleId?: StringWithAggregatesFilter<"ReactionRoleSelectmenu"> | string
-  }
-
-  export type ReactionRoleButtonWhereInput = {
-    AND?: ReactionRoleButtonWhereInput | ReactionRoleButtonWhereInput[]
-    OR?: ReactionRoleButtonWhereInput[]
-    NOT?: ReactionRoleButtonWhereInput | ReactionRoleButtonWhereInput[]
-    Id?: IntFilter<"ReactionRoleButton"> | number
-    Emoji?: StringNullableFilter<"ReactionRoleButton"> | string | null
-    Type?: StringNullableFilter<"ReactionRoleButton"> | string | null
-    Label?: StringNullableFilter<"ReactionRoleButton"> | string | null
-    GuildReactionRoleId?: StringFilter<"ReactionRoleButton"> | string
-    GuildReactionRoles?: XOR<GuildReactionRolesScalarRelationFilter, GuildReactionRolesWhereInput>
-  }
-
-  export type ReactionRoleButtonOrderByWithRelationInput = {
-    Id?: SortOrder
-    Emoji?: SortOrderInput | SortOrder
-    Type?: SortOrderInput | SortOrder
-    Label?: SortOrderInput | SortOrder
-    GuildReactionRoleId?: SortOrder
-    GuildReactionRoles?: GuildReactionRolesOrderByWithRelationInput
-  }
-
-  export type ReactionRoleButtonWhereUniqueInput = Prisma.AtLeast<{
-    Id?: number
-    GuildReactionRoleId?: string
-    AND?: ReactionRoleButtonWhereInput | ReactionRoleButtonWhereInput[]
-    OR?: ReactionRoleButtonWhereInput[]
-    NOT?: ReactionRoleButtonWhereInput | ReactionRoleButtonWhereInput[]
-    Emoji?: StringNullableFilter<"ReactionRoleButton"> | string | null
-    Type?: StringNullableFilter<"ReactionRoleButton"> | string | null
-    Label?: StringNullableFilter<"ReactionRoleButton"> | string | null
-    GuildReactionRoles?: XOR<GuildReactionRolesScalarRelationFilter, GuildReactionRolesWhereInput>
-  }, "Id" | "GuildReactionRoleId">
-
-  export type ReactionRoleButtonOrderByWithAggregationInput = {
-    Id?: SortOrder
-    Emoji?: SortOrderInput | SortOrder
-    Type?: SortOrderInput | SortOrder
-    Label?: SortOrderInput | SortOrder
-    GuildReactionRoleId?: SortOrder
-    _count?: ReactionRoleButtonCountOrderByAggregateInput
-    _avg?: ReactionRoleButtonAvgOrderByAggregateInput
-    _max?: ReactionRoleButtonMaxOrderByAggregateInput
-    _min?: ReactionRoleButtonMinOrderByAggregateInput
-    _sum?: ReactionRoleButtonSumOrderByAggregateInput
-  }
-
-  export type ReactionRoleButtonScalarWhereWithAggregatesInput = {
-    AND?: ReactionRoleButtonScalarWhereWithAggregatesInput | ReactionRoleButtonScalarWhereWithAggregatesInput[]
-    OR?: ReactionRoleButtonScalarWhereWithAggregatesInput[]
-    NOT?: ReactionRoleButtonScalarWhereWithAggregatesInput | ReactionRoleButtonScalarWhereWithAggregatesInput[]
-    Id?: IntWithAggregatesFilter<"ReactionRoleButton"> | number
-    Emoji?: StringNullableWithAggregatesFilter<"ReactionRoleButton"> | string | null
-    Type?: StringNullableWithAggregatesFilter<"ReactionRoleButton"> | string | null
-    Label?: StringNullableWithAggregatesFilter<"ReactionRoleButton"> | string | null
-    GuildReactionRoleId?: StringWithAggregatesFilter<"ReactionRoleButton"> | string
-  }
-
   export type GuildSecurityWhereInput = {
     AND?: GuildSecurityWhereInput | GuildSecurityWhereInput[]
     OR?: GuildSecurityWhereInput[]
@@ -106291,7 +102374,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
@@ -106327,7 +102409,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -106362,7 +102443,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
@@ -106398,7 +102478,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -109784,198 +105863,6 @@ export namespace Prisma {
     GuildId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type GuildReactionRolesCreateInput = {
-    UUID: string
-    Roles?: GuildReactionRolesCreateRolesInput | string[]
-    MessageId?: string | null
-    ChannelId?: string | null
-    AddMessage?: string | null
-    RemoveMessage?: string | null
-    Emoji?: string | null
-    Guilds: GuildsCreateNestedOneWithoutReactionRoleInput
-    Button?: ReactionRoleButtonCreateNestedOneWithoutGuildReactionRolesInput
-    SelectMenu?: ReactionRoleSelectmenuCreateNestedOneWithoutGuildReactionRolesInput
-  }
-
-  export type GuildReactionRolesUncheckedCreateInput = {
-    Id?: number
-    UUID: string
-    Roles?: GuildReactionRolesCreateRolesInput | string[]
-    MessageId?: string | null
-    ChannelId?: string | null
-    AddMessage?: string | null
-    RemoveMessage?: string | null
-    Emoji?: string | null
-    GuildId: string
-    Button?: ReactionRoleButtonUncheckedCreateNestedOneWithoutGuildReactionRolesInput
-    SelectMenu?: ReactionRoleSelectmenuUncheckedCreateNestedOneWithoutGuildReactionRolesInput
-  }
-
-  export type GuildReactionRolesUpdateInput = {
-    UUID?: StringFieldUpdateOperationsInput | string
-    Roles?: GuildReactionRolesUpdateRolesInput | string[]
-    MessageId?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    AddMessage?: NullableStringFieldUpdateOperationsInput | string | null
-    RemoveMessage?: NullableStringFieldUpdateOperationsInput | string | null
-    Emoji?: NullableStringFieldUpdateOperationsInput | string | null
-    Guilds?: GuildsUpdateOneRequiredWithoutReactionRoleNestedInput
-    Button?: ReactionRoleButtonUpdateOneWithoutGuildReactionRolesNestedInput
-    SelectMenu?: ReactionRoleSelectmenuUpdateOneWithoutGuildReactionRolesNestedInput
-  }
-
-  export type GuildReactionRolesUncheckedUpdateInput = {
-    Id?: IntFieldUpdateOperationsInput | number
-    UUID?: StringFieldUpdateOperationsInput | string
-    Roles?: GuildReactionRolesUpdateRolesInput | string[]
-    MessageId?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    AddMessage?: NullableStringFieldUpdateOperationsInput | string | null
-    RemoveMessage?: NullableStringFieldUpdateOperationsInput | string | null
-    Emoji?: NullableStringFieldUpdateOperationsInput | string | null
-    GuildId?: StringFieldUpdateOperationsInput | string
-    Button?: ReactionRoleButtonUncheckedUpdateOneWithoutGuildReactionRolesNestedInput
-    SelectMenu?: ReactionRoleSelectmenuUncheckedUpdateOneWithoutGuildReactionRolesNestedInput
-  }
-
-  export type GuildReactionRolesCreateManyInput = {
-    Id?: number
-    UUID: string
-    Roles?: GuildReactionRolesCreateRolesInput | string[]
-    MessageId?: string | null
-    ChannelId?: string | null
-    AddMessage?: string | null
-    RemoveMessage?: string | null
-    Emoji?: string | null
-    GuildId: string
-  }
-
-  export type GuildReactionRolesUpdateManyMutationInput = {
-    UUID?: StringFieldUpdateOperationsInput | string
-    Roles?: GuildReactionRolesUpdateRolesInput | string[]
-    MessageId?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    AddMessage?: NullableStringFieldUpdateOperationsInput | string | null
-    RemoveMessage?: NullableStringFieldUpdateOperationsInput | string | null
-    Emoji?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type GuildReactionRolesUncheckedUpdateManyInput = {
-    Id?: IntFieldUpdateOperationsInput | number
-    UUID?: StringFieldUpdateOperationsInput | string
-    Roles?: GuildReactionRolesUpdateRolesInput | string[]
-    MessageId?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    AddMessage?: NullableStringFieldUpdateOperationsInput | string | null
-    RemoveMessage?: NullableStringFieldUpdateOperationsInput | string | null
-    Emoji?: NullableStringFieldUpdateOperationsInput | string | null
-    GuildId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type ReactionRoleSelectmenuCreateInput = {
-    Emoji?: string | null
-    Label?: string | null
-    Description?: string | null
-    GuildReactionRoles: GuildReactionRolesCreateNestedOneWithoutSelectMenuInput
-  }
-
-  export type ReactionRoleSelectmenuUncheckedCreateInput = {
-    Id?: number
-    Emoji?: string | null
-    Label?: string | null
-    Description?: string | null
-    GuildReactionRoleId: string
-  }
-
-  export type ReactionRoleSelectmenuUpdateInput = {
-    Emoji?: NullableStringFieldUpdateOperationsInput | string | null
-    Label?: NullableStringFieldUpdateOperationsInput | string | null
-    Description?: NullableStringFieldUpdateOperationsInput | string | null
-    GuildReactionRoles?: GuildReactionRolesUpdateOneRequiredWithoutSelectMenuNestedInput
-  }
-
-  export type ReactionRoleSelectmenuUncheckedUpdateInput = {
-    Id?: IntFieldUpdateOperationsInput | number
-    Emoji?: NullableStringFieldUpdateOperationsInput | string | null
-    Label?: NullableStringFieldUpdateOperationsInput | string | null
-    Description?: NullableStringFieldUpdateOperationsInput | string | null
-    GuildReactionRoleId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type ReactionRoleSelectmenuCreateManyInput = {
-    Id?: number
-    Emoji?: string | null
-    Label?: string | null
-    Description?: string | null
-    GuildReactionRoleId: string
-  }
-
-  export type ReactionRoleSelectmenuUpdateManyMutationInput = {
-    Emoji?: NullableStringFieldUpdateOperationsInput | string | null
-    Label?: NullableStringFieldUpdateOperationsInput | string | null
-    Description?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type ReactionRoleSelectmenuUncheckedUpdateManyInput = {
-    Id?: IntFieldUpdateOperationsInput | number
-    Emoji?: NullableStringFieldUpdateOperationsInput | string | null
-    Label?: NullableStringFieldUpdateOperationsInput | string | null
-    Description?: NullableStringFieldUpdateOperationsInput | string | null
-    GuildReactionRoleId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type ReactionRoleButtonCreateInput = {
-    Emoji?: string | null
-    Type?: string | null
-    Label?: string | null
-    GuildReactionRoles: GuildReactionRolesCreateNestedOneWithoutButtonInput
-  }
-
-  export type ReactionRoleButtonUncheckedCreateInput = {
-    Id?: number
-    Emoji?: string | null
-    Type?: string | null
-    Label?: string | null
-    GuildReactionRoleId: string
-  }
-
-  export type ReactionRoleButtonUpdateInput = {
-    Emoji?: NullableStringFieldUpdateOperationsInput | string | null
-    Type?: NullableStringFieldUpdateOperationsInput | string | null
-    Label?: NullableStringFieldUpdateOperationsInput | string | null
-    GuildReactionRoles?: GuildReactionRolesUpdateOneRequiredWithoutButtonNestedInput
-  }
-
-  export type ReactionRoleButtonUncheckedUpdateInput = {
-    Id?: IntFieldUpdateOperationsInput | number
-    Emoji?: NullableStringFieldUpdateOperationsInput | string | null
-    Type?: NullableStringFieldUpdateOperationsInput | string | null
-    Label?: NullableStringFieldUpdateOperationsInput | string | null
-    GuildReactionRoleId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type ReactionRoleButtonCreateManyInput = {
-    Id?: number
-    Emoji?: string | null
-    Type?: string | null
-    Label?: string | null
-    GuildReactionRoleId: string
-  }
-
-  export type ReactionRoleButtonUpdateManyMutationInput = {
-    Emoji?: NullableStringFieldUpdateOperationsInput | string | null
-    Type?: NullableStringFieldUpdateOperationsInput | string | null
-    Label?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type ReactionRoleButtonUncheckedUpdateManyInput = {
-    Id?: IntFieldUpdateOperationsInput | number
-    Emoji?: NullableStringFieldUpdateOperationsInput | string | null
-    Type?: NullableStringFieldUpdateOperationsInput | string | null
-    Label?: NullableStringFieldUpdateOperationsInput | string | null
-    GuildReactionRoleId?: StringFieldUpdateOperationsInput | string
-  }
-
   export type GuildSecurityCreateInput = {
     InviteLoggingActive?: string | null
     MaxAccountAge?: number | null
@@ -112626,12 +108513,6 @@ export namespace Prisma {
     isNot?: GuildModerationWhereInput | null
   }
 
-  export type GuildReactionRolesListRelationFilter = {
-    every?: GuildReactionRolesWhereInput
-    some?: GuildReactionRolesWhereInput
-    none?: GuildReactionRolesWhereInput
-  }
-
   export type GuildSecurityNullableScalarRelationFilter = {
     is?: GuildSecurityWhereInput | null
     isNot?: GuildSecurityWhereInput | null
@@ -112725,10 +108606,6 @@ export namespace Prisma {
   }
 
   export type GuildLogsOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type GuildReactionRolesOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -115015,127 +110892,6 @@ export namespace Prisma {
     Id?: SortOrder
   }
 
-  export type ReactionRoleButtonNullableScalarRelationFilter = {
-    is?: ReactionRoleButtonWhereInput | null
-    isNot?: ReactionRoleButtonWhereInput | null
-  }
-
-  export type ReactionRoleSelectmenuNullableScalarRelationFilter = {
-    is?: ReactionRoleSelectmenuWhereInput | null
-    isNot?: ReactionRoleSelectmenuWhereInput | null
-  }
-
-  export type GuildReactionRolesCountOrderByAggregateInput = {
-    Id?: SortOrder
-    UUID?: SortOrder
-    Roles?: SortOrder
-    MessageId?: SortOrder
-    ChannelId?: SortOrder
-    AddMessage?: SortOrder
-    RemoveMessage?: SortOrder
-    Emoji?: SortOrder
-    GuildId?: SortOrder
-  }
-
-  export type GuildReactionRolesAvgOrderByAggregateInput = {
-    Id?: SortOrder
-  }
-
-  export type GuildReactionRolesMaxOrderByAggregateInput = {
-    Id?: SortOrder
-    UUID?: SortOrder
-    MessageId?: SortOrder
-    ChannelId?: SortOrder
-    AddMessage?: SortOrder
-    RemoveMessage?: SortOrder
-    Emoji?: SortOrder
-    GuildId?: SortOrder
-  }
-
-  export type GuildReactionRolesMinOrderByAggregateInput = {
-    Id?: SortOrder
-    UUID?: SortOrder
-    MessageId?: SortOrder
-    ChannelId?: SortOrder
-    AddMessage?: SortOrder
-    RemoveMessage?: SortOrder
-    Emoji?: SortOrder
-    GuildId?: SortOrder
-  }
-
-  export type GuildReactionRolesSumOrderByAggregateInput = {
-    Id?: SortOrder
-  }
-
-  export type GuildReactionRolesScalarRelationFilter = {
-    is?: GuildReactionRolesWhereInput
-    isNot?: GuildReactionRolesWhereInput
-  }
-
-  export type ReactionRoleSelectmenuCountOrderByAggregateInput = {
-    Id?: SortOrder
-    Emoji?: SortOrder
-    Label?: SortOrder
-    Description?: SortOrder
-    GuildReactionRoleId?: SortOrder
-  }
-
-  export type ReactionRoleSelectmenuAvgOrderByAggregateInput = {
-    Id?: SortOrder
-  }
-
-  export type ReactionRoleSelectmenuMaxOrderByAggregateInput = {
-    Id?: SortOrder
-    Emoji?: SortOrder
-    Label?: SortOrder
-    Description?: SortOrder
-    GuildReactionRoleId?: SortOrder
-  }
-
-  export type ReactionRoleSelectmenuMinOrderByAggregateInput = {
-    Id?: SortOrder
-    Emoji?: SortOrder
-    Label?: SortOrder
-    Description?: SortOrder
-    GuildReactionRoleId?: SortOrder
-  }
-
-  export type ReactionRoleSelectmenuSumOrderByAggregateInput = {
-    Id?: SortOrder
-  }
-
-  export type ReactionRoleButtonCountOrderByAggregateInput = {
-    Id?: SortOrder
-    Emoji?: SortOrder
-    Type?: SortOrder
-    Label?: SortOrder
-    GuildReactionRoleId?: SortOrder
-  }
-
-  export type ReactionRoleButtonAvgOrderByAggregateInput = {
-    Id?: SortOrder
-  }
-
-  export type ReactionRoleButtonMaxOrderByAggregateInput = {
-    Id?: SortOrder
-    Emoji?: SortOrder
-    Type?: SortOrder
-    Label?: SortOrder
-    GuildReactionRoleId?: SortOrder
-  }
-
-  export type ReactionRoleButtonMinOrderByAggregateInput = {
-    Id?: SortOrder
-    Emoji?: SortOrder
-    Type?: SortOrder
-    Label?: SortOrder
-    GuildReactionRoleId?: SortOrder
-  }
-
-  export type ReactionRoleButtonSumOrderByAggregateInput = {
-    Id?: SortOrder
-  }
-
   export type VerificationGatesListRelationFilter = {
     every?: VerificationGatesWhereInput
     some?: VerificationGatesWhereInput
@@ -116836,13 +112592,6 @@ export namespace Prisma {
     connect?: GuildModerationWhereUniqueInput
   }
 
-  export type GuildReactionRolesCreateNestedManyWithoutGuildsInput = {
-    create?: XOR<GuildReactionRolesCreateWithoutGuildsInput, GuildReactionRolesUncheckedCreateWithoutGuildsInput> | GuildReactionRolesCreateWithoutGuildsInput[] | GuildReactionRolesUncheckedCreateWithoutGuildsInput[]
-    connectOrCreate?: GuildReactionRolesCreateOrConnectWithoutGuildsInput | GuildReactionRolesCreateOrConnectWithoutGuildsInput[]
-    createMany?: GuildReactionRolesCreateManyGuildsInputEnvelope
-    connect?: GuildReactionRolesWhereUniqueInput | GuildReactionRolesWhereUniqueInput[]
-  }
-
   export type GuildSecurityCreateNestedOneWithoutGuildsInput = {
     create?: XOR<GuildSecurityCreateWithoutGuildsInput, GuildSecurityUncheckedCreateWithoutGuildsInput>
     connectOrCreate?: GuildSecurityCreateOrConnectWithoutGuildsInput
@@ -117024,13 +112773,6 @@ export namespace Prisma {
     create?: XOR<GuildModerationCreateWithoutGuildsInput, GuildModerationUncheckedCreateWithoutGuildsInput>
     connectOrCreate?: GuildModerationCreateOrConnectWithoutGuildsInput
     connect?: GuildModerationWhereUniqueInput
-  }
-
-  export type GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput = {
-    create?: XOR<GuildReactionRolesCreateWithoutGuildsInput, GuildReactionRolesUncheckedCreateWithoutGuildsInput> | GuildReactionRolesCreateWithoutGuildsInput[] | GuildReactionRolesUncheckedCreateWithoutGuildsInput[]
-    connectOrCreate?: GuildReactionRolesCreateOrConnectWithoutGuildsInput | GuildReactionRolesCreateOrConnectWithoutGuildsInput[]
-    createMany?: GuildReactionRolesCreateManyGuildsInputEnvelope
-    connect?: GuildReactionRolesWhereUniqueInput | GuildReactionRolesWhereUniqueInput[]
   }
 
   export type GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput = {
@@ -117303,20 +113045,6 @@ export namespace Prisma {
     delete?: GuildModerationWhereInput | boolean
     connect?: GuildModerationWhereUniqueInput
     update?: XOR<XOR<GuildModerationUpdateToOneWithWhereWithoutGuildsInput, GuildModerationUpdateWithoutGuildsInput>, GuildModerationUncheckedUpdateWithoutGuildsInput>
-  }
-
-  export type GuildReactionRolesUpdateManyWithoutGuildsNestedInput = {
-    create?: XOR<GuildReactionRolesCreateWithoutGuildsInput, GuildReactionRolesUncheckedCreateWithoutGuildsInput> | GuildReactionRolesCreateWithoutGuildsInput[] | GuildReactionRolesUncheckedCreateWithoutGuildsInput[]
-    connectOrCreate?: GuildReactionRolesCreateOrConnectWithoutGuildsInput | GuildReactionRolesCreateOrConnectWithoutGuildsInput[]
-    upsert?: GuildReactionRolesUpsertWithWhereUniqueWithoutGuildsInput | GuildReactionRolesUpsertWithWhereUniqueWithoutGuildsInput[]
-    createMany?: GuildReactionRolesCreateManyGuildsInputEnvelope
-    set?: GuildReactionRolesWhereUniqueInput | GuildReactionRolesWhereUniqueInput[]
-    disconnect?: GuildReactionRolesWhereUniqueInput | GuildReactionRolesWhereUniqueInput[]
-    delete?: GuildReactionRolesWhereUniqueInput | GuildReactionRolesWhereUniqueInput[]
-    connect?: GuildReactionRolesWhereUniqueInput | GuildReactionRolesWhereUniqueInput[]
-    update?: GuildReactionRolesUpdateWithWhereUniqueWithoutGuildsInput | GuildReactionRolesUpdateWithWhereUniqueWithoutGuildsInput[]
-    updateMany?: GuildReactionRolesUpdateManyWithWhereWithoutGuildsInput | GuildReactionRolesUpdateManyWithWhereWithoutGuildsInput[]
-    deleteMany?: GuildReactionRolesScalarWhereInput | GuildReactionRolesScalarWhereInput[]
   }
 
   export type GuildSecurityUpdateOneWithoutGuildsNestedInput = {
@@ -117665,20 +113393,6 @@ export namespace Prisma {
     delete?: GuildModerationWhereInput | boolean
     connect?: GuildModerationWhereUniqueInput
     update?: XOR<XOR<GuildModerationUpdateToOneWithWhereWithoutGuildsInput, GuildModerationUpdateWithoutGuildsInput>, GuildModerationUncheckedUpdateWithoutGuildsInput>
-  }
-
-  export type GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput = {
-    create?: XOR<GuildReactionRolesCreateWithoutGuildsInput, GuildReactionRolesUncheckedCreateWithoutGuildsInput> | GuildReactionRolesCreateWithoutGuildsInput[] | GuildReactionRolesUncheckedCreateWithoutGuildsInput[]
-    connectOrCreate?: GuildReactionRolesCreateOrConnectWithoutGuildsInput | GuildReactionRolesCreateOrConnectWithoutGuildsInput[]
-    upsert?: GuildReactionRolesUpsertWithWhereUniqueWithoutGuildsInput | GuildReactionRolesUpsertWithWhereUniqueWithoutGuildsInput[]
-    createMany?: GuildReactionRolesCreateManyGuildsInputEnvelope
-    set?: GuildReactionRolesWhereUniqueInput | GuildReactionRolesWhereUniqueInput[]
-    disconnect?: GuildReactionRolesWhereUniqueInput | GuildReactionRolesWhereUniqueInput[]
-    delete?: GuildReactionRolesWhereUniqueInput | GuildReactionRolesWhereUniqueInput[]
-    connect?: GuildReactionRolesWhereUniqueInput | GuildReactionRolesWhereUniqueInput[]
-    update?: GuildReactionRolesUpdateWithWhereUniqueWithoutGuildsInput | GuildReactionRolesUpdateWithWhereUniqueWithoutGuildsInput[]
-    updateMany?: GuildReactionRolesUpdateManyWithWhereWithoutGuildsInput | GuildReactionRolesUpdateManyWithWhereWithoutGuildsInput[]
-    deleteMany?: GuildReactionRolesScalarWhereInput | GuildReactionRolesScalarWhereInput[]
   }
 
   export type GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput = {
@@ -120097,121 +115811,6 @@ export namespace Prisma {
     update?: XOR<XOR<GuildsUpdateToOneWithWhereWithoutMessageTemplatesInput, GuildsUpdateWithoutMessageTemplatesInput>, GuildsUncheckedUpdateWithoutMessageTemplatesInput>
   }
 
-  export type GuildReactionRolesCreateRolesInput = {
-    set: string[]
-  }
-
-  export type GuildsCreateNestedOneWithoutReactionRoleInput = {
-    create?: XOR<GuildsCreateWithoutReactionRoleInput, GuildsUncheckedCreateWithoutReactionRoleInput>
-    connectOrCreate?: GuildsCreateOrConnectWithoutReactionRoleInput
-    connect?: GuildsWhereUniqueInput
-  }
-
-  export type ReactionRoleButtonCreateNestedOneWithoutGuildReactionRolesInput = {
-    create?: XOR<ReactionRoleButtonCreateWithoutGuildReactionRolesInput, ReactionRoleButtonUncheckedCreateWithoutGuildReactionRolesInput>
-    connectOrCreate?: ReactionRoleButtonCreateOrConnectWithoutGuildReactionRolesInput
-    connect?: ReactionRoleButtonWhereUniqueInput
-  }
-
-  export type ReactionRoleSelectmenuCreateNestedOneWithoutGuildReactionRolesInput = {
-    create?: XOR<ReactionRoleSelectmenuCreateWithoutGuildReactionRolesInput, ReactionRoleSelectmenuUncheckedCreateWithoutGuildReactionRolesInput>
-    connectOrCreate?: ReactionRoleSelectmenuCreateOrConnectWithoutGuildReactionRolesInput
-    connect?: ReactionRoleSelectmenuWhereUniqueInput
-  }
-
-  export type ReactionRoleButtonUncheckedCreateNestedOneWithoutGuildReactionRolesInput = {
-    create?: XOR<ReactionRoleButtonCreateWithoutGuildReactionRolesInput, ReactionRoleButtonUncheckedCreateWithoutGuildReactionRolesInput>
-    connectOrCreate?: ReactionRoleButtonCreateOrConnectWithoutGuildReactionRolesInput
-    connect?: ReactionRoleButtonWhereUniqueInput
-  }
-
-  export type ReactionRoleSelectmenuUncheckedCreateNestedOneWithoutGuildReactionRolesInput = {
-    create?: XOR<ReactionRoleSelectmenuCreateWithoutGuildReactionRolesInput, ReactionRoleSelectmenuUncheckedCreateWithoutGuildReactionRolesInput>
-    connectOrCreate?: ReactionRoleSelectmenuCreateOrConnectWithoutGuildReactionRolesInput
-    connect?: ReactionRoleSelectmenuWhereUniqueInput
-  }
-
-  export type GuildReactionRolesUpdateRolesInput = {
-    set?: string[]
-    push?: string | string[]
-  }
-
-  export type GuildsUpdateOneRequiredWithoutReactionRoleNestedInput = {
-    create?: XOR<GuildsCreateWithoutReactionRoleInput, GuildsUncheckedCreateWithoutReactionRoleInput>
-    connectOrCreate?: GuildsCreateOrConnectWithoutReactionRoleInput
-    upsert?: GuildsUpsertWithoutReactionRoleInput
-    connect?: GuildsWhereUniqueInput
-    update?: XOR<XOR<GuildsUpdateToOneWithWhereWithoutReactionRoleInput, GuildsUpdateWithoutReactionRoleInput>, GuildsUncheckedUpdateWithoutReactionRoleInput>
-  }
-
-  export type ReactionRoleButtonUpdateOneWithoutGuildReactionRolesNestedInput = {
-    create?: XOR<ReactionRoleButtonCreateWithoutGuildReactionRolesInput, ReactionRoleButtonUncheckedCreateWithoutGuildReactionRolesInput>
-    connectOrCreate?: ReactionRoleButtonCreateOrConnectWithoutGuildReactionRolesInput
-    upsert?: ReactionRoleButtonUpsertWithoutGuildReactionRolesInput
-    disconnect?: ReactionRoleButtonWhereInput | boolean
-    delete?: ReactionRoleButtonWhereInput | boolean
-    connect?: ReactionRoleButtonWhereUniqueInput
-    update?: XOR<XOR<ReactionRoleButtonUpdateToOneWithWhereWithoutGuildReactionRolesInput, ReactionRoleButtonUpdateWithoutGuildReactionRolesInput>, ReactionRoleButtonUncheckedUpdateWithoutGuildReactionRolesInput>
-  }
-
-  export type ReactionRoleSelectmenuUpdateOneWithoutGuildReactionRolesNestedInput = {
-    create?: XOR<ReactionRoleSelectmenuCreateWithoutGuildReactionRolesInput, ReactionRoleSelectmenuUncheckedCreateWithoutGuildReactionRolesInput>
-    connectOrCreate?: ReactionRoleSelectmenuCreateOrConnectWithoutGuildReactionRolesInput
-    upsert?: ReactionRoleSelectmenuUpsertWithoutGuildReactionRolesInput
-    disconnect?: ReactionRoleSelectmenuWhereInput | boolean
-    delete?: ReactionRoleSelectmenuWhereInput | boolean
-    connect?: ReactionRoleSelectmenuWhereUniqueInput
-    update?: XOR<XOR<ReactionRoleSelectmenuUpdateToOneWithWhereWithoutGuildReactionRolesInput, ReactionRoleSelectmenuUpdateWithoutGuildReactionRolesInput>, ReactionRoleSelectmenuUncheckedUpdateWithoutGuildReactionRolesInput>
-  }
-
-  export type ReactionRoleButtonUncheckedUpdateOneWithoutGuildReactionRolesNestedInput = {
-    create?: XOR<ReactionRoleButtonCreateWithoutGuildReactionRolesInput, ReactionRoleButtonUncheckedCreateWithoutGuildReactionRolesInput>
-    connectOrCreate?: ReactionRoleButtonCreateOrConnectWithoutGuildReactionRolesInput
-    upsert?: ReactionRoleButtonUpsertWithoutGuildReactionRolesInput
-    disconnect?: ReactionRoleButtonWhereInput | boolean
-    delete?: ReactionRoleButtonWhereInput | boolean
-    connect?: ReactionRoleButtonWhereUniqueInput
-    update?: XOR<XOR<ReactionRoleButtonUpdateToOneWithWhereWithoutGuildReactionRolesInput, ReactionRoleButtonUpdateWithoutGuildReactionRolesInput>, ReactionRoleButtonUncheckedUpdateWithoutGuildReactionRolesInput>
-  }
-
-  export type ReactionRoleSelectmenuUncheckedUpdateOneWithoutGuildReactionRolesNestedInput = {
-    create?: XOR<ReactionRoleSelectmenuCreateWithoutGuildReactionRolesInput, ReactionRoleSelectmenuUncheckedCreateWithoutGuildReactionRolesInput>
-    connectOrCreate?: ReactionRoleSelectmenuCreateOrConnectWithoutGuildReactionRolesInput
-    upsert?: ReactionRoleSelectmenuUpsertWithoutGuildReactionRolesInput
-    disconnect?: ReactionRoleSelectmenuWhereInput | boolean
-    delete?: ReactionRoleSelectmenuWhereInput | boolean
-    connect?: ReactionRoleSelectmenuWhereUniqueInput
-    update?: XOR<XOR<ReactionRoleSelectmenuUpdateToOneWithWhereWithoutGuildReactionRolesInput, ReactionRoleSelectmenuUpdateWithoutGuildReactionRolesInput>, ReactionRoleSelectmenuUncheckedUpdateWithoutGuildReactionRolesInput>
-  }
-
-  export type GuildReactionRolesCreateNestedOneWithoutSelectMenuInput = {
-    create?: XOR<GuildReactionRolesCreateWithoutSelectMenuInput, GuildReactionRolesUncheckedCreateWithoutSelectMenuInput>
-    connectOrCreate?: GuildReactionRolesCreateOrConnectWithoutSelectMenuInput
-    connect?: GuildReactionRolesWhereUniqueInput
-  }
-
-  export type GuildReactionRolesUpdateOneRequiredWithoutSelectMenuNestedInput = {
-    create?: XOR<GuildReactionRolesCreateWithoutSelectMenuInput, GuildReactionRolesUncheckedCreateWithoutSelectMenuInput>
-    connectOrCreate?: GuildReactionRolesCreateOrConnectWithoutSelectMenuInput
-    upsert?: GuildReactionRolesUpsertWithoutSelectMenuInput
-    connect?: GuildReactionRolesWhereUniqueInput
-    update?: XOR<XOR<GuildReactionRolesUpdateToOneWithWhereWithoutSelectMenuInput, GuildReactionRolesUpdateWithoutSelectMenuInput>, GuildReactionRolesUncheckedUpdateWithoutSelectMenuInput>
-  }
-
-  export type GuildReactionRolesCreateNestedOneWithoutButtonInput = {
-    create?: XOR<GuildReactionRolesCreateWithoutButtonInput, GuildReactionRolesUncheckedCreateWithoutButtonInput>
-    connectOrCreate?: GuildReactionRolesCreateOrConnectWithoutButtonInput
-    connect?: GuildReactionRolesWhereUniqueInput
-  }
-
-  export type GuildReactionRolesUpdateOneRequiredWithoutButtonNestedInput = {
-    create?: XOR<GuildReactionRolesCreateWithoutButtonInput, GuildReactionRolesUncheckedCreateWithoutButtonInput>
-    connectOrCreate?: GuildReactionRolesCreateOrConnectWithoutButtonInput
-    upsert?: GuildReactionRolesUpsertWithoutButtonInput
-    connect?: GuildReactionRolesWhereUniqueInput
-    update?: XOR<XOR<GuildReactionRolesUpdateToOneWithWhereWithoutButtonInput, GuildReactionRolesUpdateWithoutButtonInput>, GuildReactionRolesUncheckedUpdateWithoutButtonInput>
-  }
-
   export type GuildsCreateNestedOneWithoutSecurityInput = {
     create?: XOR<GuildsCreateWithoutSecurityInput, GuildsUncheckedCreateWithoutSecurityInput>
     connectOrCreate?: GuildsCreateOrConnectWithoutSecurityInput
@@ -122431,41 +118030,6 @@ export namespace Prisma {
     create: XOR<GuildModerationCreateWithoutGuildsInput, GuildModerationUncheckedCreateWithoutGuildsInput>
   }
 
-  export type GuildReactionRolesCreateWithoutGuildsInput = {
-    UUID: string
-    Roles?: GuildReactionRolesCreateRolesInput | string[]
-    MessageId?: string | null
-    ChannelId?: string | null
-    AddMessage?: string | null
-    RemoveMessage?: string | null
-    Emoji?: string | null
-    Button?: ReactionRoleButtonCreateNestedOneWithoutGuildReactionRolesInput
-    SelectMenu?: ReactionRoleSelectmenuCreateNestedOneWithoutGuildReactionRolesInput
-  }
-
-  export type GuildReactionRolesUncheckedCreateWithoutGuildsInput = {
-    Id?: number
-    UUID: string
-    Roles?: GuildReactionRolesCreateRolesInput | string[]
-    MessageId?: string | null
-    ChannelId?: string | null
-    AddMessage?: string | null
-    RemoveMessage?: string | null
-    Emoji?: string | null
-    Button?: ReactionRoleButtonUncheckedCreateNestedOneWithoutGuildReactionRolesInput
-    SelectMenu?: ReactionRoleSelectmenuUncheckedCreateNestedOneWithoutGuildReactionRolesInput
-  }
-
-  export type GuildReactionRolesCreateOrConnectWithoutGuildsInput = {
-    where: GuildReactionRolesWhereUniqueInput
-    create: XOR<GuildReactionRolesCreateWithoutGuildsInput, GuildReactionRolesUncheckedCreateWithoutGuildsInput>
-  }
-
-  export type GuildReactionRolesCreateManyGuildsInputEnvelope = {
-    data: GuildReactionRolesCreateManyGuildsInput | GuildReactionRolesCreateManyGuildsInput[]
-    skipDuplicates?: boolean
-  }
-
   export type GuildSecurityCreateWithoutGuildsInput = {
     InviteLoggingActive?: string | null
     MaxAccountAge?: number | null
@@ -123422,37 +118986,6 @@ export namespace Prisma {
     GuildUserModerationSettingWarn?: GuildUserModerationSettingWarnUncheckedUpdateOneWithoutGuildUserModerationSettingNestedInput
   }
 
-  export type GuildReactionRolesUpsertWithWhereUniqueWithoutGuildsInput = {
-    where: GuildReactionRolesWhereUniqueInput
-    update: XOR<GuildReactionRolesUpdateWithoutGuildsInput, GuildReactionRolesUncheckedUpdateWithoutGuildsInput>
-    create: XOR<GuildReactionRolesCreateWithoutGuildsInput, GuildReactionRolesUncheckedCreateWithoutGuildsInput>
-  }
-
-  export type GuildReactionRolesUpdateWithWhereUniqueWithoutGuildsInput = {
-    where: GuildReactionRolesWhereUniqueInput
-    data: XOR<GuildReactionRolesUpdateWithoutGuildsInput, GuildReactionRolesUncheckedUpdateWithoutGuildsInput>
-  }
-
-  export type GuildReactionRolesUpdateManyWithWhereWithoutGuildsInput = {
-    where: GuildReactionRolesScalarWhereInput
-    data: XOR<GuildReactionRolesUpdateManyMutationInput, GuildReactionRolesUncheckedUpdateManyWithoutGuildsInput>
-  }
-
-  export type GuildReactionRolesScalarWhereInput = {
-    AND?: GuildReactionRolesScalarWhereInput | GuildReactionRolesScalarWhereInput[]
-    OR?: GuildReactionRolesScalarWhereInput[]
-    NOT?: GuildReactionRolesScalarWhereInput | GuildReactionRolesScalarWhereInput[]
-    Id?: IntFilter<"GuildReactionRoles"> | number
-    UUID?: StringFilter<"GuildReactionRoles"> | string
-    Roles?: StringNullableListFilter<"GuildReactionRoles">
-    MessageId?: StringNullableFilter<"GuildReactionRoles"> | string | null
-    ChannelId?: StringNullableFilter<"GuildReactionRoles"> | string | null
-    AddMessage?: StringNullableFilter<"GuildReactionRoles"> | string | null
-    RemoveMessage?: StringNullableFilter<"GuildReactionRoles"> | string | null
-    Emoji?: StringNullableFilter<"GuildReactionRoles"> | string | null
-    GuildId?: StringFilter<"GuildReactionRoles"> | string
-  }
-
   export type GuildSecurityUpsertWithoutGuildsInput = {
     update: XOR<GuildSecurityUpdateWithoutGuildsInput, GuildSecurityUncheckedUpdateWithoutGuildsInput>
     create: XOR<GuildSecurityCreateWithoutGuildsInput, GuildSecurityUncheckedCreateWithoutGuildsInput>
@@ -123939,7 +119472,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
@@ -123974,7 +119506,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -124054,7 +119585,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
@@ -124089,7 +119619,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -124173,7 +119702,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
@@ -124208,7 +119736,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -124258,7 +119785,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
@@ -124293,7 +119819,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -124327,7 +119852,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
@@ -124362,7 +119886,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -124412,7 +119935,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
@@ -124447,7 +119969,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -124481,7 +120002,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
@@ -124516,7 +120036,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -124566,7 +120085,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
@@ -124601,7 +120119,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -124635,7 +120152,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
@@ -124670,7 +120186,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -124720,7 +120235,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
@@ -124755,7 +120269,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -124789,7 +120302,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
@@ -124824,7 +120336,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -124874,7 +120385,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
@@ -124909,7 +120419,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -124943,7 +120452,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
@@ -124978,7 +120486,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -125028,7 +120535,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
@@ -125063,7 +120569,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -125098,7 +120603,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
@@ -125133,7 +120637,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -125311,7 +120814,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
@@ -125346,7 +120848,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -126330,7 +121831,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
@@ -126365,7 +121865,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -126563,7 +122062,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
@@ -126598,7 +122096,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -127229,7 +122726,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
@@ -127264,7 +122760,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -127340,7 +122835,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
@@ -127375,7 +122869,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -127440,7 +122933,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
@@ -127475,7 +122967,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -127732,7 +123223,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
@@ -127767,7 +123257,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -128419,7 +123908,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
@@ -128454,7 +123942,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -128531,7 +124018,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
@@ -128566,7 +124052,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -128687,7 +124172,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
@@ -128722,7 +124206,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -128772,7 +124255,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
@@ -128807,7 +124289,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -128841,7 +124322,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
@@ -128876,7 +124356,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -128926,7 +124405,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
@@ -128961,7 +124439,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -129019,7 +124496,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
@@ -129054,7 +124530,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -129131,7 +124606,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
@@ -129166,7 +124640,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -129257,7 +124730,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
@@ -129292,7 +124764,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -129368,7 +124839,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
@@ -129403,7 +124873,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -129516,7 +124985,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
@@ -129551,7 +125019,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -129627,7 +125094,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
@@ -129662,7 +125128,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -129773,7 +125238,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
@@ -129808,7 +125272,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -129858,7 +125321,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
@@ -129893,7 +125355,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -129927,7 +125388,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
@@ -129962,7 +125422,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -130012,7 +125471,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
@@ -130047,7 +125505,6 @@ export namespace Prisma {
     GuildLeaveSetup?: GuildLeaveSetupUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -130082,7 +125539,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
@@ -130117,7 +125573,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -130167,7 +125622,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
@@ -130202,7 +125656,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -130214,376 +125667,6 @@ export namespace Prisma {
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
     TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
-  }
-
-  export type GuildsCreateWithoutReactionRoleInput = {
-    GuildId: string
-    GuildName: string
-    GuildOwner: string
-    DiscordAddons?: DiscordGuildAddonCreateNestedOneWithoutGuildsInput
-    Giveaways?: GiveawaysCreateNestedManyWithoutGuildsInput
-    AutoAutoDeletes?: GuildAutoDeletesCreateNestedManyWithoutGuildsInput
-    AutoPublish?: GuildAutoPublishCreateNestedOneWithoutGuildsInput
-    AutoReacts?: GuildAutoReactsCreateNestedManyWithoutGuildsInput
-    AutoRoles?: GuildAutoRolesCreateNestedManyWithoutGuildsInput
-    GuildChannelLinks?: GuildChannelLinksCreateNestedManyWithoutGuildsInput
-    GuildCommandManger?: GuildCommandMangerCreateNestedOneWithoutGuildsInput
-    GuildComponentManager?: GuildComponentManagerCreateNestedOneWithoutGuildsInput
-    GuildDisBotAutoModeration?: GuildDisBotAutoModerationCreateNestedOneWithoutGuildsInput
-    GuildFeatureToggle?: GuildFeatureTogglesCreateNestedOneWithoutGuildsInput
-    GuildInteractionPermissions?: GuildInteractionPermissionsCreateNestedManyWithoutGuildsInput
-    GuildLeaveSetup?: GuildLeaveSetupCreateNestedOneWithoutGuildsInput
-    GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
-    GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
-    GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
-    SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
-    TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
-    GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
-    GuildWelcomeSetup?: GuildWelcomeSetupCreateNestedOneWithoutGuildsInput
-    YoutubeNotifications?: GuildYoutubeNotificationsCreateNestedManyWithoutGuildsInput
-    LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
-    MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
-    ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
-    Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoicesCreateNestedManyWithoutGuildsInput
-    TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
-  }
-
-  export type GuildsUncheckedCreateWithoutReactionRoleInput = {
-    Id?: number
-    GuildId: string
-    GuildName: string
-    GuildOwner: string
-    DiscordAddons?: DiscordGuildAddonUncheckedCreateNestedOneWithoutGuildsInput
-    Giveaways?: GiveawaysUncheckedCreateNestedManyWithoutGuildsInput
-    AutoAutoDeletes?: GuildAutoDeletesUncheckedCreateNestedManyWithoutGuildsInput
-    AutoPublish?: GuildAutoPublishUncheckedCreateNestedOneWithoutGuildsInput
-    AutoReacts?: GuildAutoReactsUncheckedCreateNestedManyWithoutGuildsInput
-    AutoRoles?: GuildAutoRolesUncheckedCreateNestedManyWithoutGuildsInput
-    GuildChannelLinks?: GuildChannelLinksUncheckedCreateNestedManyWithoutGuildsInput
-    GuildCommandManger?: GuildCommandMangerUncheckedCreateNestedOneWithoutGuildsInput
-    GuildComponentManager?: GuildComponentManagerUncheckedCreateNestedOneWithoutGuildsInput
-    GuildDisBotAutoModeration?: GuildDisBotAutoModerationUncheckedCreateNestedOneWithoutGuildsInput
-    GuildFeatureToggle?: GuildFeatureTogglesUncheckedCreateNestedOneWithoutGuildsInput
-    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedCreateNestedManyWithoutGuildsInput
-    GuildLeaveSetup?: GuildLeaveSetupUncheckedCreateNestedOneWithoutGuildsInput
-    GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
-    GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
-    GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
-    SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
-    TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
-    GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
-    GuildWelcomeSetup?: GuildWelcomeSetupUncheckedCreateNestedOneWithoutGuildsInput
-    YoutubeNotifications?: GuildYoutubeNotificationsUncheckedCreateNestedManyWithoutGuildsInput
-    LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
-    MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
-    ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
-    Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoicesUncheckedCreateNestedManyWithoutGuildsInput
-    TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
-  }
-
-  export type GuildsCreateOrConnectWithoutReactionRoleInput = {
-    where: GuildsWhereUniqueInput
-    create: XOR<GuildsCreateWithoutReactionRoleInput, GuildsUncheckedCreateWithoutReactionRoleInput>
-  }
-
-  export type ReactionRoleButtonCreateWithoutGuildReactionRolesInput = {
-    Emoji?: string | null
-    Type?: string | null
-    Label?: string | null
-  }
-
-  export type ReactionRoleButtonUncheckedCreateWithoutGuildReactionRolesInput = {
-    Id?: number
-    Emoji?: string | null
-    Type?: string | null
-    Label?: string | null
-  }
-
-  export type ReactionRoleButtonCreateOrConnectWithoutGuildReactionRolesInput = {
-    where: ReactionRoleButtonWhereUniqueInput
-    create: XOR<ReactionRoleButtonCreateWithoutGuildReactionRolesInput, ReactionRoleButtonUncheckedCreateWithoutGuildReactionRolesInput>
-  }
-
-  export type ReactionRoleSelectmenuCreateWithoutGuildReactionRolesInput = {
-    Emoji?: string | null
-    Label?: string | null
-    Description?: string | null
-  }
-
-  export type ReactionRoleSelectmenuUncheckedCreateWithoutGuildReactionRolesInput = {
-    Id?: number
-    Emoji?: string | null
-    Label?: string | null
-    Description?: string | null
-  }
-
-  export type ReactionRoleSelectmenuCreateOrConnectWithoutGuildReactionRolesInput = {
-    where: ReactionRoleSelectmenuWhereUniqueInput
-    create: XOR<ReactionRoleSelectmenuCreateWithoutGuildReactionRolesInput, ReactionRoleSelectmenuUncheckedCreateWithoutGuildReactionRolesInput>
-  }
-
-  export type GuildsUpsertWithoutReactionRoleInput = {
-    update: XOR<GuildsUpdateWithoutReactionRoleInput, GuildsUncheckedUpdateWithoutReactionRoleInput>
-    create: XOR<GuildsCreateWithoutReactionRoleInput, GuildsUncheckedCreateWithoutReactionRoleInput>
-    where?: GuildsWhereInput
-  }
-
-  export type GuildsUpdateToOneWithWhereWithoutReactionRoleInput = {
-    where?: GuildsWhereInput
-    data: XOR<GuildsUpdateWithoutReactionRoleInput, GuildsUncheckedUpdateWithoutReactionRoleInput>
-  }
-
-  export type GuildsUpdateWithoutReactionRoleInput = {
-    GuildId?: StringFieldUpdateOperationsInput | string
-    GuildName?: StringFieldUpdateOperationsInput | string
-    GuildOwner?: StringFieldUpdateOperationsInput | string
-    DiscordAddons?: DiscordGuildAddonUpdateOneWithoutGuildsNestedInput
-    Giveaways?: GiveawaysUpdateManyWithoutGuildsNestedInput
-    AutoAutoDeletes?: GuildAutoDeletesUpdateManyWithoutGuildsNestedInput
-    AutoPublish?: GuildAutoPublishUpdateOneWithoutGuildsNestedInput
-    AutoReacts?: GuildAutoReactsUpdateManyWithoutGuildsNestedInput
-    AutoRoles?: GuildAutoRolesUpdateManyWithoutGuildsNestedInput
-    GuildChannelLinks?: GuildChannelLinksUpdateManyWithoutGuildsNestedInput
-    GuildCommandManger?: GuildCommandMangerUpdateOneWithoutGuildsNestedInput
-    GuildComponentManager?: GuildComponentManagerUpdateOneWithoutGuildsNestedInput
-    GuildDisBotAutoModeration?: GuildDisBotAutoModerationUpdateOneWithoutGuildsNestedInput
-    GuildFeatureToggle?: GuildFeatureTogglesUpdateOneWithoutGuildsNestedInput
-    GuildInteractionPermissions?: GuildInteractionPermissionsUpdateManyWithoutGuildsNestedInput
-    GuildLeaveSetup?: GuildLeaveSetupUpdateOneWithoutGuildsNestedInput
-    GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
-    GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
-    GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
-    SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
-    TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
-    GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
-    GuildWelcomeSetup?: GuildWelcomeSetupUpdateOneWithoutGuildsNestedInput
-    YoutubeNotifications?: GuildYoutubeNotificationsUpdateManyWithoutGuildsNestedInput
-    LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
-    MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
-    ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
-    Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoicesUpdateManyWithoutGuildsNestedInput
-    TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
-  }
-
-  export type GuildsUncheckedUpdateWithoutReactionRoleInput = {
-    Id?: IntFieldUpdateOperationsInput | number
-    GuildId?: StringFieldUpdateOperationsInput | string
-    GuildName?: StringFieldUpdateOperationsInput | string
-    GuildOwner?: StringFieldUpdateOperationsInput | string
-    DiscordAddons?: DiscordGuildAddonUncheckedUpdateOneWithoutGuildsNestedInput
-    Giveaways?: GiveawaysUncheckedUpdateManyWithoutGuildsNestedInput
-    AutoAutoDeletes?: GuildAutoDeletesUncheckedUpdateManyWithoutGuildsNestedInput
-    AutoPublish?: GuildAutoPublishUncheckedUpdateOneWithoutGuildsNestedInput
-    AutoReacts?: GuildAutoReactsUncheckedUpdateManyWithoutGuildsNestedInput
-    AutoRoles?: GuildAutoRolesUncheckedUpdateManyWithoutGuildsNestedInput
-    GuildChannelLinks?: GuildChannelLinksUncheckedUpdateManyWithoutGuildsNestedInput
-    GuildCommandManger?: GuildCommandMangerUncheckedUpdateOneWithoutGuildsNestedInput
-    GuildComponentManager?: GuildComponentManagerUncheckedUpdateOneWithoutGuildsNestedInput
-    GuildDisBotAutoModeration?: GuildDisBotAutoModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    GuildFeatureToggle?: GuildFeatureTogglesUncheckedUpdateOneWithoutGuildsNestedInput
-    GuildInteractionPermissions?: GuildInteractionPermissionsUncheckedUpdateManyWithoutGuildsNestedInput
-    GuildLeaveSetup?: GuildLeaveSetupUncheckedUpdateOneWithoutGuildsNestedInput
-    GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
-    GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
-    GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
-    SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
-    TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
-    GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
-    GuildWelcomeSetup?: GuildWelcomeSetupUncheckedUpdateOneWithoutGuildsNestedInput
-    YoutubeNotifications?: GuildYoutubeNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
-    LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
-    MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
-    ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
-    Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoicesUncheckedUpdateManyWithoutGuildsNestedInput
-    TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
-  }
-
-  export type ReactionRoleButtonUpsertWithoutGuildReactionRolesInput = {
-    update: XOR<ReactionRoleButtonUpdateWithoutGuildReactionRolesInput, ReactionRoleButtonUncheckedUpdateWithoutGuildReactionRolesInput>
-    create: XOR<ReactionRoleButtonCreateWithoutGuildReactionRolesInput, ReactionRoleButtonUncheckedCreateWithoutGuildReactionRolesInput>
-    where?: ReactionRoleButtonWhereInput
-  }
-
-  export type ReactionRoleButtonUpdateToOneWithWhereWithoutGuildReactionRolesInput = {
-    where?: ReactionRoleButtonWhereInput
-    data: XOR<ReactionRoleButtonUpdateWithoutGuildReactionRolesInput, ReactionRoleButtonUncheckedUpdateWithoutGuildReactionRolesInput>
-  }
-
-  export type ReactionRoleButtonUpdateWithoutGuildReactionRolesInput = {
-    Emoji?: NullableStringFieldUpdateOperationsInput | string | null
-    Type?: NullableStringFieldUpdateOperationsInput | string | null
-    Label?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type ReactionRoleButtonUncheckedUpdateWithoutGuildReactionRolesInput = {
-    Id?: IntFieldUpdateOperationsInput | number
-    Emoji?: NullableStringFieldUpdateOperationsInput | string | null
-    Type?: NullableStringFieldUpdateOperationsInput | string | null
-    Label?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type ReactionRoleSelectmenuUpsertWithoutGuildReactionRolesInput = {
-    update: XOR<ReactionRoleSelectmenuUpdateWithoutGuildReactionRolesInput, ReactionRoleSelectmenuUncheckedUpdateWithoutGuildReactionRolesInput>
-    create: XOR<ReactionRoleSelectmenuCreateWithoutGuildReactionRolesInput, ReactionRoleSelectmenuUncheckedCreateWithoutGuildReactionRolesInput>
-    where?: ReactionRoleSelectmenuWhereInput
-  }
-
-  export type ReactionRoleSelectmenuUpdateToOneWithWhereWithoutGuildReactionRolesInput = {
-    where?: ReactionRoleSelectmenuWhereInput
-    data: XOR<ReactionRoleSelectmenuUpdateWithoutGuildReactionRolesInput, ReactionRoleSelectmenuUncheckedUpdateWithoutGuildReactionRolesInput>
-  }
-
-  export type ReactionRoleSelectmenuUpdateWithoutGuildReactionRolesInput = {
-    Emoji?: NullableStringFieldUpdateOperationsInput | string | null
-    Label?: NullableStringFieldUpdateOperationsInput | string | null
-    Description?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type ReactionRoleSelectmenuUncheckedUpdateWithoutGuildReactionRolesInput = {
-    Id?: IntFieldUpdateOperationsInput | number
-    Emoji?: NullableStringFieldUpdateOperationsInput | string | null
-    Label?: NullableStringFieldUpdateOperationsInput | string | null
-    Description?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type GuildReactionRolesCreateWithoutSelectMenuInput = {
-    UUID: string
-    Roles?: GuildReactionRolesCreateRolesInput | string[]
-    MessageId?: string | null
-    ChannelId?: string | null
-    AddMessage?: string | null
-    RemoveMessage?: string | null
-    Emoji?: string | null
-    Guilds: GuildsCreateNestedOneWithoutReactionRoleInput
-    Button?: ReactionRoleButtonCreateNestedOneWithoutGuildReactionRolesInput
-  }
-
-  export type GuildReactionRolesUncheckedCreateWithoutSelectMenuInput = {
-    Id?: number
-    UUID: string
-    Roles?: GuildReactionRolesCreateRolesInput | string[]
-    MessageId?: string | null
-    ChannelId?: string | null
-    AddMessage?: string | null
-    RemoveMessage?: string | null
-    Emoji?: string | null
-    GuildId: string
-    Button?: ReactionRoleButtonUncheckedCreateNestedOneWithoutGuildReactionRolesInput
-  }
-
-  export type GuildReactionRolesCreateOrConnectWithoutSelectMenuInput = {
-    where: GuildReactionRolesWhereUniqueInput
-    create: XOR<GuildReactionRolesCreateWithoutSelectMenuInput, GuildReactionRolesUncheckedCreateWithoutSelectMenuInput>
-  }
-
-  export type GuildReactionRolesUpsertWithoutSelectMenuInput = {
-    update: XOR<GuildReactionRolesUpdateWithoutSelectMenuInput, GuildReactionRolesUncheckedUpdateWithoutSelectMenuInput>
-    create: XOR<GuildReactionRolesCreateWithoutSelectMenuInput, GuildReactionRolesUncheckedCreateWithoutSelectMenuInput>
-    where?: GuildReactionRolesWhereInput
-  }
-
-  export type GuildReactionRolesUpdateToOneWithWhereWithoutSelectMenuInput = {
-    where?: GuildReactionRolesWhereInput
-    data: XOR<GuildReactionRolesUpdateWithoutSelectMenuInput, GuildReactionRolesUncheckedUpdateWithoutSelectMenuInput>
-  }
-
-  export type GuildReactionRolesUpdateWithoutSelectMenuInput = {
-    UUID?: StringFieldUpdateOperationsInput | string
-    Roles?: GuildReactionRolesUpdateRolesInput | string[]
-    MessageId?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    AddMessage?: NullableStringFieldUpdateOperationsInput | string | null
-    RemoveMessage?: NullableStringFieldUpdateOperationsInput | string | null
-    Emoji?: NullableStringFieldUpdateOperationsInput | string | null
-    Guilds?: GuildsUpdateOneRequiredWithoutReactionRoleNestedInput
-    Button?: ReactionRoleButtonUpdateOneWithoutGuildReactionRolesNestedInput
-  }
-
-  export type GuildReactionRolesUncheckedUpdateWithoutSelectMenuInput = {
-    Id?: IntFieldUpdateOperationsInput | number
-    UUID?: StringFieldUpdateOperationsInput | string
-    Roles?: GuildReactionRolesUpdateRolesInput | string[]
-    MessageId?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    AddMessage?: NullableStringFieldUpdateOperationsInput | string | null
-    RemoveMessage?: NullableStringFieldUpdateOperationsInput | string | null
-    Emoji?: NullableStringFieldUpdateOperationsInput | string | null
-    GuildId?: StringFieldUpdateOperationsInput | string
-    Button?: ReactionRoleButtonUncheckedUpdateOneWithoutGuildReactionRolesNestedInput
-  }
-
-  export type GuildReactionRolesCreateWithoutButtonInput = {
-    UUID: string
-    Roles?: GuildReactionRolesCreateRolesInput | string[]
-    MessageId?: string | null
-    ChannelId?: string | null
-    AddMessage?: string | null
-    RemoveMessage?: string | null
-    Emoji?: string | null
-    Guilds: GuildsCreateNestedOneWithoutReactionRoleInput
-    SelectMenu?: ReactionRoleSelectmenuCreateNestedOneWithoutGuildReactionRolesInput
-  }
-
-  export type GuildReactionRolesUncheckedCreateWithoutButtonInput = {
-    Id?: number
-    UUID: string
-    Roles?: GuildReactionRolesCreateRolesInput | string[]
-    MessageId?: string | null
-    ChannelId?: string | null
-    AddMessage?: string | null
-    RemoveMessage?: string | null
-    Emoji?: string | null
-    GuildId: string
-    SelectMenu?: ReactionRoleSelectmenuUncheckedCreateNestedOneWithoutGuildReactionRolesInput
-  }
-
-  export type GuildReactionRolesCreateOrConnectWithoutButtonInput = {
-    where: GuildReactionRolesWhereUniqueInput
-    create: XOR<GuildReactionRolesCreateWithoutButtonInput, GuildReactionRolesUncheckedCreateWithoutButtonInput>
-  }
-
-  export type GuildReactionRolesUpsertWithoutButtonInput = {
-    update: XOR<GuildReactionRolesUpdateWithoutButtonInput, GuildReactionRolesUncheckedUpdateWithoutButtonInput>
-    create: XOR<GuildReactionRolesCreateWithoutButtonInput, GuildReactionRolesUncheckedCreateWithoutButtonInput>
-    where?: GuildReactionRolesWhereInput
-  }
-
-  export type GuildReactionRolesUpdateToOneWithWhereWithoutButtonInput = {
-    where?: GuildReactionRolesWhereInput
-    data: XOR<GuildReactionRolesUpdateWithoutButtonInput, GuildReactionRolesUncheckedUpdateWithoutButtonInput>
-  }
-
-  export type GuildReactionRolesUpdateWithoutButtonInput = {
-    UUID?: StringFieldUpdateOperationsInput | string
-    Roles?: GuildReactionRolesUpdateRolesInput | string[]
-    MessageId?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    AddMessage?: NullableStringFieldUpdateOperationsInput | string | null
-    RemoveMessage?: NullableStringFieldUpdateOperationsInput | string | null
-    Emoji?: NullableStringFieldUpdateOperationsInput | string | null
-    Guilds?: GuildsUpdateOneRequiredWithoutReactionRoleNestedInput
-    SelectMenu?: ReactionRoleSelectmenuUpdateOneWithoutGuildReactionRolesNestedInput
-  }
-
-  export type GuildReactionRolesUncheckedUpdateWithoutButtonInput = {
-    Id?: IntFieldUpdateOperationsInput | number
-    UUID?: StringFieldUpdateOperationsInput | string
-    Roles?: GuildReactionRolesUpdateRolesInput | string[]
-    MessageId?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    AddMessage?: NullableStringFieldUpdateOperationsInput | string | null
-    RemoveMessage?: NullableStringFieldUpdateOperationsInput | string | null
-    Emoji?: NullableStringFieldUpdateOperationsInput | string | null
-    GuildId?: StringFieldUpdateOperationsInput | string
-    SelectMenu?: ReactionRoleSelectmenuUncheckedUpdateOneWithoutGuildReactionRolesNestedInput
   }
 
   export type GuildsCreateWithoutSecurityInput = {
@@ -130606,7 +125689,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
@@ -130641,7 +125723,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
@@ -130728,7 +125809,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
@@ -130763,7 +125843,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
@@ -130989,7 +126068,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
@@ -131024,7 +126102,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
@@ -131074,7 +126151,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
@@ -131109,7 +126185,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
@@ -131193,7 +126268,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
@@ -131228,7 +126302,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -131333,7 +126406,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
@@ -131368,7 +126440,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -131713,7 +126784,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
@@ -131748,7 +126818,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -131942,7 +127011,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
@@ -131977,7 +127045,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -132779,7 +127846,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
@@ -132814,7 +127880,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -132864,7 +127929,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
@@ -132899,7 +127963,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -132934,7 +127997,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationCreateNestedManyWithoutGuildsInput
@@ -132969,7 +128031,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     GuildUserModeration?: GuildUserModerationUncheckedCreateNestedManyWithoutGuildsInput
@@ -133019,7 +128080,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUpdateManyWithoutGuildsNestedInput
@@ -133054,7 +128114,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildUserModeration?: GuildUserModerationUncheckedUpdateManyWithoutGuildsNestedInput
@@ -133088,7 +128147,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
@@ -133123,7 +128181,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -133173,7 +128230,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
@@ -133208,7 +128264,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -133267,7 +128322,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsCreateNestedManyWithoutGuildsInput
@@ -133302,7 +128356,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedCreateNestedOneWithoutGuildsInput
     GuildLogs?: GuildLogsUncheckedCreateNestedManyWithoutGuildsInput
     GuildModeration?: GuildModerationUncheckedCreateNestedOneWithoutGuildsInput
-    ReactionRole?: GuildReactionRolesUncheckedCreateNestedManyWithoutGuildsInput
     Security?: GuildSecurityUncheckedCreateNestedOneWithoutGuildsInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedCreateNestedManyWithoutGuildsInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedCreateNestedManyWithoutGuildsInput
@@ -133463,7 +128516,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUpdateManyWithoutGuildsNestedInput
@@ -133498,7 +128550,6 @@ export namespace Prisma {
     GuildLogging?: GuildLoggingUncheckedUpdateOneWithoutGuildsNestedInput
     GuildLogs?: GuildLogsUncheckedUpdateManyWithoutGuildsNestedInput
     GuildModeration?: GuildModerationUncheckedUpdateOneWithoutGuildsNestedInput
-    ReactionRole?: GuildReactionRolesUncheckedUpdateManyWithoutGuildsNestedInput
     Security?: GuildSecurityUncheckedUpdateOneWithoutGuildsNestedInput
     SpotifyNotifications?: GuildSpotifyNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
     TwitchNotifications?: GuildTwitchNotificationsUncheckedUpdateManyWithoutGuildsNestedInput
@@ -135066,17 +130117,6 @@ export namespace Prisma {
     LogJSON: string
   }
 
-  export type GuildReactionRolesCreateManyGuildsInput = {
-    Id?: number
-    UUID: string
-    Roles?: GuildReactionRolesCreateRolesInput | string[]
-    MessageId?: string | null
-    ChannelId?: string | null
-    AddMessage?: string | null
-    RemoveMessage?: string | null
-    Emoji?: string | null
-  }
-
   export type GuildSpotifyNotificationsCreateManyGuildsInput = {
     Id?: number
     UUID: string
@@ -135418,42 +130458,6 @@ export namespace Prisma {
     Notes?: GuildLogsUpdateNotesInput | string[]
     LogMessage?: StringFieldUpdateOperationsInput | string
     LogJSON?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type GuildReactionRolesUpdateWithoutGuildsInput = {
-    UUID?: StringFieldUpdateOperationsInput | string
-    Roles?: GuildReactionRolesUpdateRolesInput | string[]
-    MessageId?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    AddMessage?: NullableStringFieldUpdateOperationsInput | string | null
-    RemoveMessage?: NullableStringFieldUpdateOperationsInput | string | null
-    Emoji?: NullableStringFieldUpdateOperationsInput | string | null
-    Button?: ReactionRoleButtonUpdateOneWithoutGuildReactionRolesNestedInput
-    SelectMenu?: ReactionRoleSelectmenuUpdateOneWithoutGuildReactionRolesNestedInput
-  }
-
-  export type GuildReactionRolesUncheckedUpdateWithoutGuildsInput = {
-    Id?: IntFieldUpdateOperationsInput | number
-    UUID?: StringFieldUpdateOperationsInput | string
-    Roles?: GuildReactionRolesUpdateRolesInput | string[]
-    MessageId?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    AddMessage?: NullableStringFieldUpdateOperationsInput | string | null
-    RemoveMessage?: NullableStringFieldUpdateOperationsInput | string | null
-    Emoji?: NullableStringFieldUpdateOperationsInput | string | null
-    Button?: ReactionRoleButtonUncheckedUpdateOneWithoutGuildReactionRolesNestedInput
-    SelectMenu?: ReactionRoleSelectmenuUncheckedUpdateOneWithoutGuildReactionRolesNestedInput
-  }
-
-  export type GuildReactionRolesUncheckedUpdateManyWithoutGuildsInput = {
-    Id?: IntFieldUpdateOperationsInput | number
-    UUID?: StringFieldUpdateOperationsInput | string
-    Roles?: GuildReactionRolesUpdateRolesInput | string[]
-    MessageId?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    AddMessage?: NullableStringFieldUpdateOperationsInput | string | null
-    RemoveMessage?: NullableStringFieldUpdateOperationsInput | string | null
-    Emoji?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type GuildSpotifyNotificationsUpdateWithoutGuildsInput = {

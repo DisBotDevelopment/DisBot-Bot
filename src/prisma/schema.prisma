@@ -30,7 +30,6 @@ model Guilds {
   GuildLogging                GuildLogging?
   GuildLogs                   GuildLogs[]
   GuildModeration             GuildModeration?
-  ReactionRole                GuildReactionRoles[]
   Security                    GuildSecurity?
   SpotifyNotifications        GuildSpotifyNotifications[]
   TwitchNotifications         GuildTwitchNotifications[]
@@ -606,39 +605,6 @@ model MessageTemplates {
   Name                  String   @unique
   GuildId               String
   Guilds                Guilds   @relation(fields: [GuildId], references: [GuildId])
-}
-
-model GuildReactionRoles {
-  Id            Int                     @id @default(autoincrement())
-  UUID          String                  @unique
-  Roles         String[]
-  MessageId     String?
-  ChannelId     String?
-  AddMessage    String?
-  RemoveMessage String?
-  Emoji         String?
-  GuildId       String
-  Guilds        Guilds                  @relation(fields: [GuildId], references: [GuildId])
-  Button        ReactionRoleButton?
-  SelectMenu    ReactionRoleSelectmenu?
-}
-
-model ReactionRoleSelectmenu {
-  Id                  Int                @id @default(autoincrement())
-  Emoji               String?
-  Label               String?
-  Description         String?
-  GuildReactionRoleId String             @unique
-  GuildReactionRoles  GuildReactionRoles @relation(fields: [GuildReactionRoleId], references: [UUID])
-}
-
-model ReactionRoleButton {
-  Id                  Int                @id @default(autoincrement())
-  Emoji               String?
-  Type                String?
-  Label               String?
-  GuildReactionRoleId String             @unique
-  GuildReactionRoles  GuildReactionRoles @relation(fields: [GuildReactionRoleId], references: [UUID])
 }
 
 model GuildSecurity {

@@ -616,34 +616,6 @@ exports.Prisma.MessageTemplatesScalarFieldEnum = {
   GuildId: 'GuildId'
 };
 
-exports.Prisma.GuildReactionRolesScalarFieldEnum = {
-  Id: 'Id',
-  UUID: 'UUID',
-  Roles: 'Roles',
-  MessageId: 'MessageId',
-  ChannelId: 'ChannelId',
-  AddMessage: 'AddMessage',
-  RemoveMessage: 'RemoveMessage',
-  Emoji: 'Emoji',
-  GuildId: 'GuildId'
-};
-
-exports.Prisma.ReactionRoleSelectmenuScalarFieldEnum = {
-  Id: 'Id',
-  Emoji: 'Emoji',
-  Label: 'Label',
-  Description: 'Description',
-  GuildReactionRoleId: 'GuildReactionRoleId'
-};
-
-exports.Prisma.ReactionRoleButtonScalarFieldEnum = {
-  Id: 'Id',
-  Emoji: 'Emoji',
-  Type: 'Type',
-  Label: 'Label',
-  GuildReactionRoleId: 'GuildReactionRoleId'
-};
-
 exports.Prisma.GuildSecurityScalarFieldEnum = {
   Id: 'Id',
   InviteLoggingActive: 'InviteLoggingActive',
@@ -1089,9 +1061,6 @@ exports.Prisma.ModelName = {
   GuildLogging: 'GuildLogging',
   GuildLogs: 'GuildLogs',
   MessageTemplates: 'MessageTemplates',
-  GuildReactionRoles: 'GuildReactionRoles',
-  ReactionRoleSelectmenu: 'ReactionRoleSelectmenu',
-  ReactionRoleButton: 'ReactionRoleButton',
   GuildSecurity: 'GuildSecurity',
   VerificationGates: 'VerificationGates',
   VerificationGatesPermission: 'VerificationGatesPermission',
