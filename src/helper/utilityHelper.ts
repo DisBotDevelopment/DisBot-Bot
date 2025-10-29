@@ -8,7 +8,7 @@ import {
     ChatInputCommandInteraction,
     ComponentType,
     ContainerBuilder,
-    FileBuilder,
+    FileBuilder, InteractionType,
     Message,
     MessageFlags,
     ModalBuilder,
@@ -28,23 +28,90 @@ export function getInteractionData(interaction: ButtonInteraction | ModalSubmitI
     return interaction.customId.split(":")[split];
 }
 
-export async function sendDefaultMessage(message: string, interaction: ChatInputCommandInteraction | ButtonInteraction | ModalSubmitInteraction | AnySelectMenuInteraction, componentsV2: boolean) {
-    if (componentsV2) {
-        await interaction.reply({
-            components: [
-                new ContainerBuilder()
-                    .addTextDisplayComponents(
-                        new TextDisplayBuilder()
-                            .setContent(message)
-                    )
-            ],
-            flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2
-        })
+export async function sendDefaultMessage(message: string, interaction: ChatInputCommandInteraction | ButtonInteraction | ModalSubmitInteraction | AnySelectMenuInteraction, componentsV2: boolean, type?: "update" | "reply" | "deferReply") {
+    if (type == "deferReply") {
+
+        if (!interaction.deferred) {
+            await interaction.deferReply({
+                flags: MessageFlags.Ephemeral,
+            })
+        }
+
+        if (componentsV2) {
+            await interaction.editReply({
+                components: [
+                    new ContainerBuilder()
+                        .addTextDisplayComponents(
+                            new TextDisplayBuilder()
+                                .setContent(message)
+                        )
+                ],
+                flags: MessageFlags.IsComponentsV2
+            })
+        } else {
+            await interaction.editReply({
+                content: message,
+            })
+        }
+    } else if (type == "update") {
+        if (interaction.type == InteractionType.ModalSubmit) {
+            return
+        }
+        interaction = interaction as ButtonInteraction | AnySelectMenuInteraction
+
+        if (componentsV2) {
+            await interaction.update({
+                components: [
+                    new ContainerBuilder()
+                        .addTextDisplayComponents(
+                            new TextDisplayBuilder()
+                                .setContent(message)
+                        )
+                ],
+                flags: MessageFlags.IsComponentsV2
+            })
+        } else {
+
+            await interaction.update({
+                content: message,
+            })
+        }
+    } else if (type == "reply") {
+        if (componentsV2) {
+            await interaction.reply({
+                components: [
+                    new ContainerBuilder()
+                        .addTextDisplayComponents(
+                            new TextDisplayBuilder()
+                                .setContent(message)
+                        )
+                ],
+                flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2
+            })
+        } else {
+            await interaction.reply({
+                content: message,
+                flags: MessageFlags.Ephemeral,
+            })
+        }
     } else {
-        await interaction.reply({
-            content: message,
-            flags: MessageFlags.Ephemeral,
-        })
+        if (componentsV2) {
+            await interaction.reply({
+                components: [
+                    new ContainerBuilder()
+                        .addTextDisplayComponents(
+                            new TextDisplayBuilder()
+                                .setContent(message)
+                        )
+                ],
+                flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2
+            })
+        } else {
+            await interaction.reply({
+                content: message,
+                flags: MessageFlags.Ephemeral,
+            })
+        }
     }
 }
 

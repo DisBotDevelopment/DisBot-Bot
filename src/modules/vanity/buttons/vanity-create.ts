@@ -20,8 +20,25 @@ export default {
         const modal = new ModalBuilder()
         const vanityInput = new TextInputBuilder()
         modal.setCustomId("vanity-create-modal").setTitle("Create Vanity URL")
-        vanityInput.setCustomId("vanity").setLabel("Vanity URL").setStyle(1).setRequired(true).setMaxLength(20);
-        modal.addComponents(new ActionRowBuilder<TextInputBuilder>().addComponents(vanityInput))
+
+
+        vanityInput
+            .setCustomId("vanity")
+            .setLabel("Vanity URL")
+            .setStyle(1)
+            .setPlaceholder("Enter a valid slug for the Vanity.")
+            .setRequired(true)
+            .setMaxLength(20);
+
+
+        modal
+            .addComponents(
+                new ActionRowBuilder<TextInputBuilder>().addComponents(
+                    vanityInput
+                )
+            )
+
+
         await interaction.showModal(modal)
     }
 };

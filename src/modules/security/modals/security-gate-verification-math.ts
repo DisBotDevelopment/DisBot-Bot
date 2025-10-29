@@ -4,6 +4,7 @@ import {verifyAction} from "../../../systems/verifictionAction.js";
 import {ExtendedClient} from "../../../types/client.js"
 import {GuildMember, MessageFlags, ModalSubmitInteraction,} from "discord.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "security-gate-verification-math",
@@ -27,24 +28,15 @@ export default {
         const answer = interaction.fields.getTextInputValue("security-gate-verification-math-input");
 
         if (result !== answer) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} Incorrect answer. Please try again.`,
-                flags: MessageFlags.Ephemeral
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} Incorrect answer. Please try again.`, interaction, true, "reply")
         }
 
         const verify = await verifyAction(interaction.member as GuildMember, data?.Action as VerificationAction, uuid);
 
         if (verify == false) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("check")} You unverified yourself! and removed all permissions and roles.`,
-                flags: MessageFlags.Ephemeral
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} You unverified yourself! and removed all permissions and roles.`, interaction, true, "reply")
         }
 
-        interaction.reply({
-            content: `## ${await convertToEmojiToPng("check")} You have successfully completed the math verification!`,
-            flags: MessageFlags.Ephemeral
-        });
+        return await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} You have successfully completed the math verification!`, interaction, true, "reply")
     }
 };

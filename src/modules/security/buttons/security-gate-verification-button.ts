@@ -13,6 +13,7 @@ import {
 } from "discord.js";
 import {VerificationActionType} from "../../../enums/verification.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "security-gate-verification-button",
@@ -33,18 +34,10 @@ export default {
             }
         });
 
+        if (!data) return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} Verification Gate not found`, interaction, true, "reply")
 
-        if (!data) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} Verification Gate not found`,
-                flags: MessageFlags.Ephemeral,
-            });
-        }
-
-        if (data.ActionType == VerificationActionType.Reaction) return interaction.reply({
-            content: `## ${await convertToEmojiToPng("error")} This gate is already set to reaction you can't change it to button`,
-            flags: MessageFlags.Ephemeral,
-        });
+        if (data.ActionType == VerificationActionType.Reaction)
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} This gate is already set to reaction you can't change it to button`, interaction, true, "reply")
 
         const modal = new ModalBuilder()
             .setCustomId("security-gate-verification-button-modal:" + interaction.customId.split(":")[1])

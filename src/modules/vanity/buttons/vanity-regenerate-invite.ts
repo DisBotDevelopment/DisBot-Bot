@@ -2,6 +2,7 @@ import {ButtonInteraction, ButtonStyle, MessageFlags} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "vanity-regenerate-invite",
@@ -21,11 +22,7 @@ export default {
 
 
         if (!data) {
-            await interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} This vanity URL is not found.`,
-                flags: MessageFlags.Ephemeral
-            });
-            return;
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} This vanity URL is not found.`, interaction, true, "reply")
         }
 
         const newInvite = await interaction.guild?.invites.create(
@@ -37,11 +34,7 @@ export default {
         )
 
         if (!newInvite) {
-            await interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} Failed to regenerate invite.`,
-                flags: MessageFlags.Ephemeral
-            });
-            return;
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} Failed to regenerate invite.`, interaction, true, "reply")
         }
 
         await database.vanitys.update({
@@ -53,11 +46,6 @@ export default {
             }
         })
 
-        await interaction.reply({
-            content: `## ${await convertToEmojiToPng("check")} Successfully regenerated the invite for this vanity URL.`,
-            flags: MessageFlags.Ephemeral
-        })
-
-
+        await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} Successfully regenerated the invite for this vanity URL.`, interaction, true, "reply")
     }
 };

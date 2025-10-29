@@ -3,6 +3,7 @@ import {MessageFlags, StringSelectMenuInteraction} from "discord.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "vanity-toggle-invite-logging-select",
@@ -24,25 +25,11 @@ export default {
             if (!client.user) throw new Error("User not found");
 
             if (!data) {
-                await interaction.reply({
-                    content: `## ${await convertToEmojiToPng("error")}  No vanity data found for this UUID.`,
-                    flags: MessageFlags.Ephemeral
-                })
+                return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} This vanity URL is not found.`, interaction, true, "reply")
             }
 
-            const channel = interaction.guild?.channels.cache.get(value);
-            if (!channel) {
-                await interaction.reply({
-                    content: `## ${await convertToEmojiToPng("error")}  Channel not found.`,
-                    flags: MessageFlags.Ephemeral
-                });
-                return;
-            }
-
-            if (!data?.Analytics?.TrackMessageId) return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")}  No tracking message ID found. Please set up the message Id for the channel first.`,
-                flags: MessageFlags.Ephemeral
-            });
+            if (!data?.Analytics?.TrackMessageId)
+                return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")}  No tracking message ID found. Please set up the message Id for the channel first.`, interaction, true, "reply")
 
             await database.vanityAnalytic.update(
                 {
@@ -50,14 +37,11 @@ export default {
                         VanityId: interaction.customId
                     },
                     data: {
-                        TrackInviteWithLog: channel.id,
+                        TrackInviteWithLog: value,
                     }
                 })
 
-            await interaction.reply({
-                content: `## ${await convertToEmojiToPng("check")}  Invite logging channel set to <#${channel.id}>.`,
-                flags: MessageFlags.Ephemeral
-            })
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("check")}  Invite logging channel set to <#${value}>.`, interaction, true, "reply")
         }
     }
 }

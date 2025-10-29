@@ -75,7 +75,6 @@ export default {
                         }
                     }
                 },
-                ReactionRole: true,
                 Security: {
                     include: {
                         VerificationGates: true
@@ -95,7 +94,7 @@ export default {
                     }
                 },
                 TwitchNotifications: true,
-                YoutubeNotifications: true
+                YoutubeNotifications: true,
             },
             where: {
                 GuildId: interaction.guild.id

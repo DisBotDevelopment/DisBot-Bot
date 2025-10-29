@@ -72,10 +72,10 @@ export default {
 
     .addSubcommand((subCommand) =>
       subCommand
-        .setName("list")
-        .setDescription("List all giveaways")
+        .setName("overview")
+        .setDescription("Get a overview of your giveaway")
         .setDescriptionLocalizations({
-          de: "Liste alle Giveaways auf"
+          de: "Bekomme einen überblick über deine Giveaways"
         })
     )
     .addSubcommand((subCommand) =>

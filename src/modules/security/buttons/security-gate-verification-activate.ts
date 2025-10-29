@@ -11,6 +11,7 @@ import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 import {uuid} from "short-uuid";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "security-gate-verification-activate",
@@ -30,10 +31,7 @@ export default {
         });
 
 
-        if (!data) return interaction.reply({
-            content: `## ${await convertToEmojiToPng("error")} Verification Gate not found`,
-            flags: MessageFlags.Ephemeral
-        });
+        if (!data) return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} Verification Gate not found`, interaction, true, "reply")
 
         await database.verificationGates.update(
             {
@@ -46,10 +44,6 @@ export default {
             }
         );
 
-        return interaction.reply({
-            content: `## ${await convertToEmojiToPng("check")} Verification Gate activated successfully`,
-            flags: MessageFlags.Ephemeral
-        });
-
+        return await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} Verification Gate activated successfully`, interaction, true, "reply")
     }
 };

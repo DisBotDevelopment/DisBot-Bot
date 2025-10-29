@@ -2,6 +2,7 @@ import {ButtonStyle, MessageFlags, ModalSubmitInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "vanity-update-author-modal",
@@ -29,10 +30,7 @@ export default {
         const newImage = interaction.fields.getTextInputValue("vanity-update-author-url-input");
 
         if (!data) {
-            await interaction.editReply({
-                content: `## ${await convertToEmojiToPng("error")} This vanity URL is not found.`,
-            });
-            return;
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} This vanity URL is not found.`, interaction, true, "deferReply")
         }
 
         await database.vanityEmbedAuthor.update({
@@ -47,9 +45,6 @@ export default {
             }
         )
 
-        await interaction.editReply({
-            content: `## ${await convertToEmojiToPng("check")} The author of the vanity URL has been updated to \`${newSlug}\`.`,
-        })
-
+        return await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} The author of the vanity URL has been updated to \`${newSlug}\`.`, interaction, true, "deferReply")
     }
 };

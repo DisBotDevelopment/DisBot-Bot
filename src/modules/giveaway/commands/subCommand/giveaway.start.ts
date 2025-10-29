@@ -15,6 +15,7 @@ import {ExtendedClient} from "../../../../types/client.js";
 import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 import {database} from "../../../../main/database.js";
+import {sendDefaultMessage} from "../../../../helper/utilityHelper.js";
 
 export default {
     subCommand: "giveaway.start",
@@ -51,23 +52,14 @@ export default {
 
         if (!client.user) return;
         if (!data) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} A giveaway with this message URL does not exist.`,
-                flags: MessageFlags.Ephemeral,
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} A giveaway with this message URL does not exist.`, interaction, true, "reply")
         }
         if (data.Paused == false) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} This giveaway is already started.`,
-                flags: MessageFlags.Ephemeral,
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} This giveaway is already started.`, interaction, true, "reply")
         }
 
         if (data.Ended == true) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} This giveaway has ended.`,
-                flags: MessageFlags.Ephemeral,
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} This giveaway has ended.`, interaction, true, "reply")
         }
 
         await database.giveaways.update(
@@ -83,16 +75,10 @@ export default {
             },
         );
 
-        interaction.reply({
-            content: `## ${await convertToEmojiToPng("giveaway")} The giveaway has been started.`,
-            flags: MessageFlags.Ephemeral,
-        });
+        sendDefaultMessage(`## ${await convertToEmojiToPng("giveaway")} The giveaway has been started.`, interaction, true, "reply")
 
         const channelObj = client.guilds.cache.get(interaction.guild?.id as string)?.channels.cache.get(channelId);
-        if (!channelObj?.isSendable()) return interaction.reply({
-            content: `## ${await convertToEmojiToPng("error")} I cannot send messages in this channel.`,
-            flags: MessageFlags.Ephemeral,
-        });
+        if (!channelObj?.isSendable()) return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} I cannot send messages in this channel.`, interaction, true, "reply")
 
 
         const message = await channelObj.messages.fetch(messageId);

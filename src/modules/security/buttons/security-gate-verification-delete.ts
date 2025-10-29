@@ -10,6 +10,7 @@ import {
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "security-gate-verification-delete",
@@ -29,10 +30,7 @@ export default {
         });
 
 
-        if (!data) return interaction.reply({
-            content: `## ${await convertToEmojiToPng("error")} Verification Gate not found`,
-            flags: MessageFlags.Ephemeral
-        });
+        if (!data) return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} Verification Gate not found`, interaction, true, "reply")
 
         await database.verificationGates.delete
         ({
@@ -40,11 +38,7 @@ export default {
                 UUID: data.UUID
             }
         });
-
-        return interaction.reply({
-            content: `## ${await convertToEmojiToPng("check")} Verification Gate deleted successfully`,
-            flags: MessageFlags.Ephemeral
-        });
-
+        
+        return await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} Verification Gate deleted successfully`, interaction, true, "reply")
     }
 };

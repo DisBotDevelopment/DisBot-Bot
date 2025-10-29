@@ -1,7 +1,16 @@
-import {ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, Events, GuildMember} from "discord.js";
+import {
+    ActionRowBuilder,
+    ButtonBuilder,
+    ButtonStyle, ContainerBuilder,
+    EmbedBuilder,
+    Events,
+    GuildMember,
+    MessageFlags, TextChannel, TextDisplayBuilder, WebhookClient
+} from "discord.js";
 import {inviteTracker} from "../../../systems/inviteTracker/inviteTracker.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
+import {loggingHelper} from "../../../helper/loggingHelper.js";
 
 export default {
     name: Events.GuildMemberAdd,
@@ -30,44 +39,41 @@ export default {
 
         if (!invites) return;
 
-        const embed = new EmbedBuilder()
-            .setTitle("Invite Tracked")
-            .setDescription(
-                [
-                    `> **Invite Uses:** ${invites.usedInvite?.uses}`,
-                    `> **Inviter:** <@${invites.usedInvite?.inviter?.id}>`,
-                    `> **Invite Code:** \`${invites.usedInvite?.code}\``,
-                    `> **Invite Link:** [Click Here](https://discord.gg/${invites.usedInvite?.code})`,
-                    `> **Invite Type:** ${invites.type}`,
-                    ``,
-                    `> **Member ID:** \`${member.id}\``,
-                    `> **Member Tag:** \`${member.user.tag}\``,
-                    `> **Member Created At:** <t:${Math.floor(member.user.createdTimestamp / 1000)}:R>`,
-                    `> **Member Joined At:** <t:${Math.floor(member.joinedTimestamp as number / 1000)}:R>`,
-                ].join("\n")
-            ).setTimestamp().setFooter(
-                {
-                    text: `@${invites.usedInvite?.inviter?.username}`,
-                    iconURL: `${invites.usedInvite?.inviter?.displayAvatarURL()}`
-                }
-            )
 
-        channel.send({
-            embeds: [embed]
-            , components: [
-                new ActionRowBuilder<ButtonBuilder>().addComponents(
-                    new ButtonBuilder()
-                        .setEmoji("<:user:1259432940383768647>")
-                        .setLabel("Open Member Profile")
-                        .setStyle(ButtonStyle.Link)
-                        .setURL(`https://discord.com/users/${member.id}`),
-                    new ButtonBuilder()
-                        .setEmoji("<:reopen:1289668008503148649>")
-                        .setLabel("Open Member Safety")
-                        .setStyle(ButtonStyle.Link)
-                        .setURL(`https://discord.com/channels/${member.guild.id}/member-safety`)
-                )
-            ]
+        const webhook = await (channel as TextChannel).createWebhook({
+            name: "Invite Logging",
+            avatar: member.displayAvatarURL()
+        })
+
+        const webhookClient = new WebhookClient({
+            url: webhook.url
         });
-    },
-};
+
+        await loggingHelper(
+            client,
+            [
+                `> **Invite Uses:** ${invites.usedInvite?.uses}`,
+                `> **Inviter:** <@${invites.usedInvite?.inviter?.id}>`,
+                `> **Invite Code:** \`${invites.usedInvite?.code}\``,
+                `> **Invite Link:** [Click Here](https://discord.gg/${invites.usedInvite?.code})`,
+                `> **Invite Type:** ${invites.type}`,
+                ``,
+                `> **Member ID:** \`${member.id}\``,
+                `> **Member Tag:** \`${member.user.tag}\``,
+                `> **Member Created At:** <t:${Math.floor(member.user.createdTimestamp / 1000)}:R>`,
+                `> **Member Joined At:** <t:${Math.floor(member.joinedTimestamp as number / 1000)}:R>`,
+            ].join("\n"),
+            webhookClient,
+            JSON.stringify(
+                {
+                    member: member,
+                }
+            ),
+            "invite_logging"
+        )
+
+        webhook.delete("Invite has been logged.")
+
+    }
+}
+

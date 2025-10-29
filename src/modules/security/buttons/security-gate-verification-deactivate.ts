@@ -10,6 +10,7 @@ import {
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "security-gate-verification-deactivate",
@@ -28,10 +29,7 @@ export default {
             }
         });
 
-        if (!data) return interaction.reply({
-            content: `## ${await convertToEmojiToPng("error")} Verification Gate not found`,
-            flags: MessageFlags.Ephemeral
-        });
+        if (!data) return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} Verification Gate not found`, interaction, true, "reply")
 
         await database.verificationGates.update(
             {
@@ -44,10 +42,6 @@ export default {
             }
         );
 
-        return interaction.reply({
-            content: `## ${await convertToEmojiToPng("check")} Verification Gate deactivated successfully`,
-            flags: MessageFlags.Ephemeral
-        });
-
+        return await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} Verification Gate deactivated successfully`, interaction, true, "reply")
     }
 };

@@ -1,15 +1,17 @@
 import {
     ActionRowBuilder,
-    ButtonBuilder,
+    ButtonBuilder, ButtonInteraction,
     ButtonStyle,
     EmbedBuilder,
     MessageFlags,
-    StringSelectMenuBuilder,
+    StringSelectMenuBuilder, TextDisplayBuilder,
     UserSelectMenuInteraction
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
+import {PaginationData} from "../../../types/pagination.js";
+import {PaginationBuilder} from "../../../helper/paginationHelper.js";
 
 export default {
     id: "giveaway-list",
@@ -20,7 +22,7 @@ export default {
      */
 
     async execute(
-        interaction: UserSelectMenuInteraction,
+        interaction: ButtonInteraction,
         client: ExtendedClient
     ) {
         const [action, uuid, currentIndexStr] = interaction.customId.split(":");
@@ -28,78 +30,58 @@ export default {
         const guildId = interaction.guild?.id;
         const pageSize = 5;
 
-        try {
-            const allEmbeds = await database.giveaways
-                .findMany({
-                    where: {
-                        GuildId: guildId
-                    }
-                })
 
-            if (!allEmbeds.length) {
-                if (!client.user) throw new Error("Client User is not defined");
-                return interaction.reply({
-                    content: `## ${await convertToEmojiToPng("error")} No Button Found`,
-                    flags: MessageFlags.Ephemeral
-                });
-            }
+        const data = await database.giveaways
+            .findMany({
+                where: {
+                    GuildId: guildId
+                }
+            })
 
-            const embedsList = allEmbeds.slice(currentIndex, currentIndex + pageSize);
-            const embedMessages = embedsList.map((embed) => {
-                return new EmbedBuilder()
-                    .setColor("#2B2D31")
-                    .setDescription(
-                        [
-                            `**Prize**: \`${embed.Prize}\``,
-                            `**Message**: https://discord.com/channels/${interaction.guild?.id}/${embed.ChannelId}/${embed.MessageId}`,
-                            `**UUID**: \`\`\`${embed.UUID}\`\`\``
-                        ].join("\n")
-                    );
-            });
-
-
-            const selectMenu = new StringSelectMenuBuilder()
-                .setCustomId("ticket-button-update-select")
-                .setPlaceholder("Select a Option to manage")
-                .addOptions(
-                    embedsList.map((embed) => ({
-                        label: embed.Prize + " - " + embed.CreatedAt.toLocaleString(),
-                        description: `UUID: ${embed.UUID}`,
-                        value: embed.UUID,
-                        emoji: "<:giveaway:1366020996934668419>"
-                    })) as any
-                );
-
-            const navigationRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
-                new ButtonBuilder()
-                    .setEmoji("<:arrowbackregular24:1301119279088799815>")
-                    .setStyle(ButtonStyle.Secondary)
-                    .setCustomId(`giveaway-list:${uuid}:${currentIndex - pageSize}`)
-                    .setDisabled(currentIndex === 0),
-                new ButtonBuilder()
-                    .setEmoji("<:next:1287457822526935090>")
-                    .setStyle(ButtonStyle.Secondary)
-                    .setCustomId(`giveaway-list:${uuid}:${currentIndex + pageSize}`)
-                    .setDisabled(currentIndex + pageSize >= allEmbeds.length)
-            );
-
-            const selectMenuRow =
-                new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(
-                    selectMenu
-                );
-
-            await interaction.update({
-                embeds: embedMessages,
-                content: "",
-                components: [navigationRow, selectMenuRow]
-            });
-        } catch (error) {
-            console.error("Error:", error);
-            interaction.reply({
-                content:
-                    "## An error occurred while fetching the buttons. Please try again later",
+        if (!data.length) {
+            if (!client.user) throw new Error("Client User is not defined");
+            return interaction.reply({
+                content: `## ${await convertToEmojiToPng("error")} No Button Found`,
                 flags: MessageFlags.Ephemeral
             });
         }
+
+        const list = data.slice(currentIndex, currentIndex + 5);
+        const embedMessages = new TextDisplayBuilder()
+            .setContent(
+                (await Promise.all(list.map(async (l) => [
+                    `**Prize**: \`${l.Prize}\``,
+                    `**Message**: https://discord.com/channels/${interaction.guild?.id}/${l.ChannelId}/${l.MessageId}`,
+                    `**UUID**: \`\`\`${l.UUID}\`\`\``
+                ].join("\n")))).join("\n\n")
+            );
+
+        const selectMenu = new StringSelectMenuBuilder()
+            .setCustomId("commands-manager-select")
+            .setPlaceholder("Select a Option to manage")
+            .addOptions(
+                await Promise.all(list.map(async (l) => ({
+                    label: l.Prize + " - " + l.CreatedAt.toLocaleString(),
+                    description: `UUID: ${l.UUID}`,
+                    value: l.UUID,
+                    emoji: "<:giveaway:1366020996934668419>"
+                })) as any)
+            );
+
+        const paginationData: PaginationData = {
+            interaction: interaction,
+            paginationData: data,
+            buttonCustomId: "commands-manager",
+            selectmenu: selectMenu,
+            content: embedMessages,
+            pageSize: pageSize,
+            client: client,
+            currentIndex: currentIndex,
+            latestUUID: uuid
+        }
+
+        await PaginationBuilder(
+            paginationData
+        )
     }
-};
+}

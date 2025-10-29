@@ -4,9 +4,9 @@ import {
     ActionRowBuilder,
     ButtonBuilder,
     ButtonInteraction,
-    ButtonStyle,
+    ButtonStyle, ContainerBuilder,
     EmbedBuilder,
-    MessageFlags,
+    MessageFlags, TextDisplayBuilder,
     TextInputStyle
 } from "discord.js";
 
@@ -20,33 +20,38 @@ export default {
 
     async execute(interaction: ButtonInteraction, client: ExtendedClient) {
         if (!client.user) throw new Error("User is not logged in.");
-        interaction.reply({
-            flags: MessageFlags.Ephemeral,
-            embeds: [
-                new EmbedBuilder()
-                    .setDescription([
-                        `## ${await convertToEmojiToPng("shield")} Security Gate Verification`,
-                        ``,
-                        `Welcome to the Security Gate Verification Management!`,
-                        `Here you can manage the verification gates for your server.`,
-                        `You can create, edit, or delete verification gates.`,
-                        `To create a new verification gate, click the button below.`,
-                        ``,
-                    ].join("\n"))
-            ],
+        await interaction.reply({
+            flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
             components: [
-                new ActionRowBuilder<ButtonBuilder>().addComponents(
-                    new ButtonBuilder()
-                        .setCustomId("security-gate-verification-create")
-                        .setLabel("Create Verification Gate")
-                        .setEmoji("<:add:1260157236043583519>")
-                        .setStyle(ButtonStyle.Secondary),
-                    new ButtonBuilder()
-                        .setCustomId("security-gate-verification-manage")
-                        .setLabel("Manage Verification Gates")
-                        .setEmoji("<:setting:1260156922569687071>")
-                        .setStyle(ButtonStyle.Secondary)
-                )
+
+                new ContainerBuilder()
+                    .addTextDisplayComponents(
+                        new TextDisplayBuilder()
+                            .setContent(
+                                [
+                                    `## ${await convertToEmojiToPng("shield")} Security Gate Verification`,
+                                    ``,
+                                    `Welcome to the Security Gate Verification Management!`,
+                                    `Here you can manage the verification gates for your server.`,
+                                    `You can create, edit, or delete verification gates.`,
+                                    `To create a new verification gate, click the button below.`,
+                                    ``,
+                                ].join("\n")
+                            )
+                    )
+                    .addActionRowComponents(
+                        new ActionRowBuilder<ButtonBuilder>().addComponents(
+                            new ButtonBuilder()
+                                .setCustomId("security-gate-verification-create")
+                                .setLabel("Create Verification Gate")
+                                .setEmoji("<:add:1260157236043583519>")
+                                .setStyle(ButtonStyle.Secondary),
+                            new ButtonBuilder()
+                                .setCustomId("security-gate-verification-manage")
+                                .setLabel("Manage Verification Gates")
+                                .setEmoji("<:setting:1260156922569687071>")
+                                .setStyle(ButtonStyle.Secondary)
+                        ))
             ]
         })
     }

@@ -13,6 +13,7 @@ import ms from "ms";
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "giveaway-leave",
@@ -32,19 +33,12 @@ export default {
         });
 
         if (!giveaway) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("giveaway")} Giveaway not found!`,
-                flags: MessageFlags.Ephemeral,
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("giveaway")} Giveaway not found!`, interaction, true, "reply")
         }
 
         if (giveaway.Ended) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("giveaway")} This giveaway has already ended!`,
-                flags: MessageFlags.Ephemeral,
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("giveaway")} This giveaway has already ended!`, interaction, true, "reply")
         }
-
 
         const message = await interaction.channel?.messages.fetch(giveaway?.MessageId as string)
 
@@ -91,9 +85,6 @@ export default {
             flags: MessageFlags.IsComponentsV2,
         })
 
-        await interaction.update({
-            content: `## ${await convertToEmojiToPng("giveaway")} You have left the giveaway!`,
-            components: []
-        });
+        return await sendDefaultMessage(`## ${await convertToEmojiToPng("giveaway")} You have left the giveaway!`, interaction, true, "reply")
     }
 };

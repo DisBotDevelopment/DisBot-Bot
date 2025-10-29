@@ -12,6 +12,7 @@ import {
 } from "discord.js";
 import {VerificationAction} from "../../../enums/verification.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "security-gate-verification-action-role",
@@ -32,10 +33,7 @@ export default {
             }
         });
         if (data?.Action == VerificationAction.AddPermissionToChannel) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} You have already selected a channel for this verification action.`,
-                flags: MessageFlags.Ephemeral,
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} You have already selected a channel for this verification action.`, interaction, true, "reply")
         }
 
         await database.verificationGates.update(
@@ -58,8 +56,8 @@ export default {
                             .setPlaceholder("Select a role to assign")
                             .setMinValues(1)
                             .setMaxValues(1)
-                    )]
-            ,
+                    )
+            ],
             flags: MessageFlags.Ephemeral,
         })
     }

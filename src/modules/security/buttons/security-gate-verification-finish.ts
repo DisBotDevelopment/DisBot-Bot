@@ -10,6 +10,7 @@ import {
     TextInputStyle
 } from "discord.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "security-gate-verification-finish",
@@ -29,36 +30,19 @@ export default {
             }
         });
 
-        if (!data) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} Verification Gate not found`,
-                flags: MessageFlags.Ephemeral,
-            });
-        }
+        if (!data) return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} Verification Gate not found`, interaction, true, "reply")
 
         if (!data.MessageId) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} Verification Gate message not found`,
-                flags: MessageFlags.Ephemeral,
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} Verification Gate message not found`, interaction, true, "reply")
         }
         if (!data.ChannelId) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} Verification Gate channel not found`,
-                flags: MessageFlags.Ephemeral,
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} Verification Gate channel not found`, interaction, true, "reply")
         }
         if (!data.Action) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} Verification Gate action not found`,
-                flags: MessageFlags.Ephemeral,
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} Verification Gate action not found`, interaction, true, "reply")
         }
         if (!data.ActionType) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} Verification Gate action type not found`,
-                flags: MessageFlags.Ephemeral,
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} Verification Gate action type not found`, interaction, true, "reply")
         }
 
         await database.verificationGates.update(
@@ -72,10 +56,6 @@ export default {
             }
         );
 
-        return interaction.update({
-            content: `## ${await convertToEmojiToPng("check")} Verification Gate finished`,
-            components: [],
-            embeds: []
-        })
+        return await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} Verification Gate finished`, interaction, true, "reply")
     }
 };

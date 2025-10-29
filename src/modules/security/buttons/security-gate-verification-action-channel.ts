@@ -6,10 +6,11 @@ import {
     ButtonBuilder,
     ButtonInteraction,
     ButtonStyle,
-    ChannelSelectMenuBuilder,
+    ChannelSelectMenuBuilder, ComponentBuilder, ContainerBuilder,
     MessageFlags
 } from "discord.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "security-gate-verification-action-channel",
@@ -30,10 +31,7 @@ export default {
         });
 
         if (data?.Action == VerificationAction.AddRole) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} You have already selected a role for this verification action.`,
-                flags: MessageFlags.Ephemeral,
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} You have already selected a role for this verification action.`, interaction, true, "reply")
         }
 
         await database.verificationGates.update(
@@ -48,16 +46,18 @@ export default {
         );
 
 
-        interaction.reply({
+        await interaction.reply({
             components: [
-                new ActionRowBuilder<ChannelSelectMenuBuilder>()
-                    .addComponents(
-                        new ChannelSelectMenuBuilder()
-                            .setCustomId(`security-gate-verification-action-channel-selcet:${uuid}`)
-                            .setPlaceholder("Select a channel for the verification action")
-                    )
+                new ContainerBuilder()
+                    .addActionRowComponents(
+                        new ActionRowBuilder<ChannelSelectMenuBuilder>()
+                            .addComponents(
+                                new ChannelSelectMenuBuilder()
+                                    .setCustomId(`security-gate-verification-action-channel-selcet:${uuid}`)
+                                    .setPlaceholder("Select a channel for the verification action")
+                            ))
             ],
-            flags: MessageFlags.Ephemeral,
+            flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
         })
     }
 }

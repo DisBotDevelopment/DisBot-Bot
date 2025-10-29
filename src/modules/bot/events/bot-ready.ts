@@ -68,7 +68,7 @@ export default {
                 checkTwitch(client);
                 spotify(client);
                 Scheduler.schedulePolls(client);
-            }, 30000);
+            }, 300000);
 
             // API && Version 
             await api(client);

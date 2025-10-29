@@ -14,6 +14,7 @@ import {PermissionType} from "../../../enums/permissionType.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "security-gate-verification-action-role-select",
@@ -38,11 +39,9 @@ export default {
                 }
             });
 
+
             if (!data) {
-                return await interaction.reply({
-                    content: `## ${await convertToEmojiToPng("error")} Verification Gate not found`,
-                    flags: MessageFlags.Ephemeral
-                });
+                return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} Verification Gate not found`, interaction, true, "reply")
             }
 
             if (!data.Roles.includes(value)) {
@@ -61,9 +60,7 @@ export default {
                 }
             );
 
-            await interaction.update({
-                content: `## ${await convertToEmojiToPng("check")} Role has been ${data.Roles.includes(value) ? "added" : "removed"} to the security gate verification action.`,
-            })
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} Role has been ${data.Roles.includes(value) ? "added" : "removed"} to the security gate verification action.`, interaction, true, "update")
         }
     }
 }

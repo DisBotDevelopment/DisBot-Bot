@@ -2,6 +2,7 @@ import {ButtonStyle, MessageFlags, ModalSubmitInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "vanity-update-image-modal",
@@ -28,24 +29,7 @@ export default {
         const newImage = interaction.fields.getTextInputValue("vanity-update-image-image-input");
 
         if (!data) {
-            await interaction.editReply({
-                content: `## ${await convertToEmojiToPng("error")} This vanity URL is not found.`,
-            });
-            return;
-        }
-
-        if (!newSlug.startsWith("http") || !newSlug.endsWith(".png") && !newSlug.endsWith(".jpg") && !newSlug.endsWith(".jpeg")) {
-            await interaction.editReply({
-                content: `## ${await convertToEmojiToPng("error")} The thumbnail URL must start with "http" and end with ".png", ".jpg" or ".jpeg".`,
-            });
-            return;
-        }
-
-        if (!newImage.startsWith("http") || !newImage.endsWith(".png") && !newImage.endsWith(".jpg") && !newImage.endsWith(".jpeg")) {
-            await interaction.editReply({
-                content: `## ${await convertToEmojiToPng("error")} The image URL must start with "http" and end with ".png", ".jpg" or ".jpeg".`,
-            });
-            return;
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} This vanity URL is not found.`, interaction, true, "deferReply")
         }
 
 
@@ -59,9 +43,6 @@ export default {
             }
         })
 
-        await interaction.editReply({
-            content: `## ${await convertToEmojiToPng("check")} The image and thumbnail of the vanity URL have been updated.`,
-        })
-
+        return await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} The image and thumbnail of the vanity URL have been updated.`, interaction, true, "deferReply")
     }
 };

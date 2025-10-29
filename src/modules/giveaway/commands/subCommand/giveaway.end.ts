@@ -10,6 +10,7 @@ import {ExtendedClient} from "../../../../types/client.js";
 import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 import {database} from "../../../../main/database.js";
+import {sendDefaultMessage} from "../../../../helper/utilityHelper.js";
 
 export default {
     subCommand: "giveaway.end",
@@ -46,17 +47,11 @@ export default {
 
         if (!client.user) return;
         if (!data) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} A giveaway with this message URL does not exist.`,
-                flags: MessageFlags.Ephemeral,
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} A giveaway with this message URL does not exist.`, interaction, true, "reply")
         }
 
         if (data.Ended == true) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} The giveaway has already ended.`,
-                flags: MessageFlags.Ephemeral,
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} The giveaway has already ended.`, interaction, true, "reply")
         }
 
         await database.giveaways.update(
@@ -72,11 +67,6 @@ export default {
             },
         );
 
-        await interaction.reply({
-            content: `## ${await convertToEmojiToPng("giveaway")} The giveaway will end in 10 seconds.`,
-            flags: MessageFlags.Ephemeral,
-        });
-
-
+        return await sendDefaultMessage(`## ${await convertToEmojiToPng("giveaway")} The giveaway will end in 10 seconds.`, interaction, true, "reply")
     }
 };

@@ -10,6 +10,7 @@ import {ExtendedClient} from "../../../../types/client.js";
 import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 import {database} from "../../../../main/database.js";
+import {sendDefaultMessage} from "../../../../helper/utilityHelper.js";
 
 export default {
     subCommand: "giveaway.delete",
@@ -46,17 +47,11 @@ export default {
 
         if (!client.user) return;
         if (!data) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} A giveaway with this message URL does not exist.`,
-                flags: MessageFlags.Ephemeral,
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} A giveaway with this message URL does not exist.`, interaction, true, "reply")
         }
 
         if (data.Ended == false) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} The giveaway has not ended yet.`,
-                flags: MessageFlags.Ephemeral,
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} The giveaway has not ended yet.`, interaction, true, "reply")
         }
 
         await database.giveaways.delete(
@@ -69,11 +64,6 @@ export default {
             },
         );
 
-        await interaction.reply({
-            content: `## ${await convertToEmojiToPng("giveaway")} The giveaway has been deleted.`,
-            flags: MessageFlags.Ephemeral,
-        });
-
-
+        return await sendDefaultMessage(`## ${await convertToEmojiToPng("giveaway")} The giveaway has been deleted.`, interaction, true, "reply")
     }
 };

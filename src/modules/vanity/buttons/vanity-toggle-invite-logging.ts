@@ -3,12 +3,13 @@ import {
     ButtonBuilder,
     ButtonInteraction,
     ButtonStyle,
-    ChannelSelectMenuBuilder, ChannelType,
+    ChannelSelectMenuBuilder, ChannelType, ContainerBuilder,
     MessageFlags
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "vanity-toggle-invite-logging",
@@ -31,11 +32,7 @@ export default {
 
 
         if (!data) {
-            await interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} This vanity URL is not found.`,
-                flags: MessageFlags.Ephemeral
-            });
-            return;
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} This vanity URL is not found.`, interaction, true, "reply");
         }
 
         if (data.Analytics?.TrackInviteWithLog) {
@@ -47,10 +44,7 @@ export default {
                     }
                 }
             );
-            await interaction.reply({
-                content: `## ${await convertToEmojiToPng("check")} Invite logging has been disabled for this vanity URL.`,
-                flags: MessageFlags.Ephemeral
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} Invite logging has been disabled for this vanity URL.`, interaction, true, "reply");
         }
 
         const row = new ActionRowBuilder<ChannelSelectMenuBuilder>()
@@ -71,8 +65,12 @@ export default {
             );
 
         await interaction.reply({
-            components: [row, row2],
-            flags: MessageFlags.Ephemeral,
+            components: [
+                new ContainerBuilder()
+                    .addActionRowComponents(row)
+                    .addActionRowComponents(row2)
+            ],
+            flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
         })
 
 

@@ -2,6 +2,7 @@ import {ButtonStyle, MessageFlags, ModalSubmitInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "vanity-toggle-invite-logging-message-modal",
@@ -26,10 +27,7 @@ export default {
         const newSlug = interaction.fields.getTextInputValue("vanity-toggle-invite-logging-message-input");
 
         if (!data) {
-            await interaction.editReply({
-                content: `## ${await convertToEmojiToPng("error")} This vanity URL is not found.`,
-            });
-            return;
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} This vanity URL is not found.`, interaction, true, "deferReply")
         }
 
         const messageData = await database.messageTemplates.findFirst({
@@ -38,9 +36,9 @@ export default {
             }
         })
 
-        if (!messageData) return interaction.editReply({
-            content: `## ${await convertToEmojiToPng("error")} No message template found for this vanity URL.`,
-        })
+        if (!messageData)
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} No message template found for this vanity URL.`, interaction, true, "deferReply")
+
 
         await database.vanityAnalytic.update(
             {
@@ -50,9 +48,6 @@ export default {
                     TrackMessageId: messageData.Name,
                 }
             })
-
-        await interaction.editReply({
-            content: `## ${await convertToEmojiToPng("check")} The invite logging message template has been updated successfully.`,
-        })
+        return await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} The invite logging message template has been updated successfully.`, interaction, true, "deferReply")
     }
 };

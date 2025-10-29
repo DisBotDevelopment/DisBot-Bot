@@ -10,6 +10,7 @@ import {ExtendedClient} from "../../../../types/client.js";
 import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 import {database} from "../../../../main/database.js";
+import {sendDefaultMessage} from "../../../../helper/utilityHelper.js";
 
 export default {
     subCommand: "giveaway.reroll",
@@ -45,17 +46,11 @@ export default {
 
         if (!client.user) return;
         if (!data) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} A giveaway with this message URL does not exist.`,
-                flags: MessageFlags.Ephemeral,
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} A giveaway with this message URL does not exist.`, interaction, true, "reply")
         }
 
         if (data.Ended == false) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} The giveaway has not ended yet.`,
-                flags: MessageFlags.Ephemeral,
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} The giveaway has not ended yet.`, interaction, true, "reply")
         }
 
         const doneWinners: string[] = [];
@@ -73,10 +68,7 @@ export default {
         const giveawyChannel = client.channels.cache.get(data.ChannelId as string)
         const message = await (giveawyChannel as any).messages.fetch(data.EndedMessage as string)
         if (!message) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} A giveaway with this message URL does not exist.`,
-                flags: MessageFlags.Ephemeral,
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} A giveaway with this message URL does not exist.`, interaction, true, "reply")
         }
 
         const timeStamp = Math.floor(Number(data.EndedAt?.getTime()) / 1000)
@@ -109,11 +101,7 @@ export default {
                     EndedMessage: (await endedMsg).id,
                 }
             })
-
-        await interaction.reply({
-            content: `## ${await convertToEmojiToPng("giveaway")} Reroll done!`,
-            flags: MessageFlags.Ephemeral,
-        });
-
+        
+        return await sendDefaultMessage(`## ${await convertToEmojiToPng("giveaway")} Reroll done!`, interaction, true, "reply")
     }
 };

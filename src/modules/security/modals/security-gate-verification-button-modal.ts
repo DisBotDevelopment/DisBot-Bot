@@ -2,7 +2,7 @@ import {
     ActionRowBuilder,
     ButtonBuilder,
     ButtonStyle,
-    ComponentType,
+    ComponentType, ContainerBuilder,
     GuildChannel,
     MessageFlags,
     ModalSubmitInteraction,
@@ -13,6 +13,7 @@ import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {VerificationActionType} from "../../../enums/verification.js";
 import {database} from "../../../main/database.js";
 import {Config} from "../../../main/config.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "security-gate-verification-button-modal",
@@ -33,10 +34,7 @@ export default {
         });
 
         if (!data?.Action && !data?.ChannelId && !data?.MessageId && !data?.ActionType) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} No security gate verification action found for this button.`,
-                flags: MessageFlags.Ephemeral
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} No security gate verification action found for this button.`, interaction, true, "reply")
         }
 
 
@@ -46,17 +44,11 @@ export default {
 
         if (!client.user) throw new Error("Client user is not defined.");
         if (!label) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} You must provide a label for the button.`,
-                flags: MessageFlags.Ephemeral
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} You must provide a label for the button.`, interaction, true, "reply")
         }
 
         if (!style || !["PRIMARY", "SECONDARY", "SUCCESS", "DANGER", "LINK"].includes(style.toUpperCase())) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} You must provide a valid style for the button. Valid styles are: PRIMARY, SECONDARY, SUCCESS, DANGER, LINK.`,
-                flags: MessageFlags.Ephemeral
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} You must provide a valid style for the button. Valid styles are: PRIMARY, SECONDARY, SUCCESS, DANGER, LINK.`, interaction, true, "reply")
         }
 
         let styleNumber: ButtonStyle = ButtonStyle.Secondary;
@@ -79,10 +71,7 @@ export default {
             const message = channel.isTextBased() ? await channel.messages.fetch(data?.MessageId as string) : null;
 
             if (!message) {
-                return interaction.reply({
-                    content: `## ${await convertToEmojiToPng("error")} The message for the security gate verification button was not found.`,
-                    flags: MessageFlags.Ephemeral
-                });
+                return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} The message for the security gate verification button was not found.`, interaction, true, "reply")
             }
 
             // TODO: Uncomment this if you want to check for ActionRow
@@ -95,37 +84,32 @@ export default {
 
             await message?.edit({
                 components: [
-                    new ActionRowBuilder<ButtonBuilder>().addComponents(
-                        (() => {
-                            const button = new ButtonBuilder()
-                                .setLabel(label)
-                                .setStyle(styleNumber ?? ButtonStyle.Secondary);
-                            if (emoji) {
-                                button.setEmoji(emoji);
-                            }
-                            if (data.ActionType == VerificationActionType.Authorize) {
-                                button.setURL(Config.Modules.Verification.VerifyAuthUrl + "&state=" + data.UUID);
-                            } else {
-                                button.setCustomId(`security-gate-verification-verify:${data?.UUID}`)
-                            }
-                            return button;
-                        })()
-                    )
+                    new ContainerBuilder()
+                        .addActionRowComponents(
+                            new ActionRowBuilder<ButtonBuilder>().addComponents(
+                                (() => {
+                                    const button = new ButtonBuilder()
+                                        .setLabel(label)
+                                        .setStyle(styleNumber ?? ButtonStyle.Secondary);
+                                    if (emoji) {
+                                        button.setEmoji(emoji);
+                                    }
+                                    if (data.ActionType == VerificationActionType.Authorize) {
+                                        button.setURL(Config.Modules.Verification.VerifyAuthUrl + "&state=" + data.UUID);
+                                    } else {
+                                        button.setCustomId(`security-gate-verification-verify:${data?.UUID}`)
+                                    }
+                                    return button;
+                                })()
+                            )
+                        )
                 ]
             });
 
-
-            await interaction.reply({
-                content: `## ${await convertToEmojiToPng("check")} Security gate verification button has been set successfully!`,
-                flags: MessageFlags.Ephemeral
-            });
-
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} Security gate verification button has been set successfully!`, interaction, true, "reply")
         } catch (error) {
             console.error("Error setting security gate verification button:", error);
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} An error occurred while setting the security gate verification button.`,
-                flags: MessageFlags.Ephemeral
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} An error occurred while setting the security gate verification button.`, interaction, true, "reply")
         }
     }
 }

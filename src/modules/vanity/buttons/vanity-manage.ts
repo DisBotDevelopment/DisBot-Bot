@@ -5,11 +5,14 @@ import {
     ButtonStyle,
     EmbedBuilder,
     MessageFlags,
-    StringSelectMenuBuilder
+    StringSelectMenuBuilder, TextDisplayBuilder
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
+import {PaginationBuilder} from "../../../helper/paginationHelper.js";
+import {PaginationData} from "../../../types/pagination.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "vanity-manage",
@@ -25,7 +28,7 @@ export default {
         const pageSize = 5;
 
         try {
-            const allEmbeds = await database.vanitys
+            const data = await database.vanitys
                 .findMany({
                     where: {
                         UserId: interaction.user.id
@@ -34,67 +37,46 @@ export default {
 
             if (!client.user) throw new Error("Client is not ready");
 
-            if (!allEmbeds.length) {
-                return interaction.reply({
-                    content: `## ${await convertToEmojiToPng("error")} You don't have any vanity URL's`,
-                    flags: MessageFlags.Ephemeral
-                });
+            if (!data.length) {
+                return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} You don't have any vanity URL's`, interaction, true)
             }
 
-            const embedsList = allEmbeds.slice(currentIndex, currentIndex + pageSize);
-            const embedMessages = await Promise.all(
-                embedsList.map(async (embed) => {
-                    return new EmbedBuilder()
-                        .setColor("#2B2D31")
-                        .setDescription(
-                            [
-                                `**Vanity**: \`${embed.Slug}\``,
-                                `**Host**: \`${embed.Host}\``,
-                                `**Guild**: ${await client.guilds.fetch(embed?.GuildId as string).then(g => g.name)} (\`${embed?.GuildId}\`)`,
-                                `**Invite**: [Invite](${embed.Invite})`,
-                                `**Vanity-Link**: [Vanity Link](https://dchat.link/${embed.Slug})`,
-                                `**UUID**: \`\`\`${embed.UUID}\`\`\``
-                            ].join("\n")
-                        );
-                })
-            );
+            const list = data.slice(currentIndex, currentIndex + 5)
+            const embedMessages = new TextDisplayBuilder()
+                .setContent(
+                    (await Promise.all(list.map(async (l) => `**Vanity**: ${l.Host}/${l.Slug}\n**UUID**: ${l.UUID}`))
+                    ).join("\n\n"))
 
             const selectMenu = new StringSelectMenuBuilder()
                 .setCustomId("vanity-manage-select")
                 .setPlaceholder("Select a Option to manage")
                 .addOptions(
-                    embedsList.map((embed) => ({
-                        label: `${embed.Slug} - ${embed.Host}`,
-                        description: `UUID: ${embed.UUID}`,
-                        value: embed.UUID,
-                        emoji: "<:link:1321941111090057248>"
-                    })) as any
+                    await Promise.all(
+                        data.map((l) => ({
+                            label: `${l.Host}/${l.Slug}`,
+                            description: `UUID: ${l.UUID}`,
+                            value: l.UUID,
+                            emoji: "<:link:1321941111090057248>"
+                        })) as any
+                    )
                 );
 
-            const navigationRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
-                new ButtonBuilder()
-                    .setEmoji("<:arrowbackregular24:1301119279088799815>")
-                    .setStyle(ButtonStyle.Secondary)
-                    .setCustomId(`vanity-manage:${uuid}:${currentIndex - pageSize}`)
-                    .setDisabled(currentIndex === 0),
-                new ButtonBuilder()
-                    .setEmoji("<:next:1287457822526935090>")
-                    .setStyle(ButtonStyle.Secondary)
-                    .setCustomId(`vanity-manage:${uuid}:${currentIndex + pageSize}`)
-                    .setDisabled(currentIndex + pageSize >= allEmbeds.length)
-            );
 
-            const selectMenuRow =
-                new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(
-                    selectMenu
-                );
+            const paginationData: PaginationData = {
+                interaction: interaction,
+                paginationData: data,
+                buttonCustomId: "backup-restore",
+                selectmenu: selectMenu,
+                content: embedMessages,
+                pageSize: pageSize,
+                client: client,
+                currentIndex: currentIndex,
+                latestUUID: uuid
+            }
 
-            await interaction.update({
-                withResponse: true,
-                content: " ",
-                embeds: embedMessages,
-                components: [navigationRow, selectMenuRow]
-            });
+            await PaginationBuilder(
+                paginationData
+            )
         } catch (error) {
             console.error("Error:", error);
             interaction.reply({

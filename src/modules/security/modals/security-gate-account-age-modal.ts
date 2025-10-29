@@ -2,6 +2,7 @@ import {ButtonStyle, ComponentType, MessageFlags, ModalSubmitInteraction} from "
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "security-gate-account-age-modal",
@@ -19,10 +20,7 @@ export default {
         if (!client.user) throw new Error("User is not logged in.");
 
         if (input === "" || isNaN(parseInt(input)) || parseInt(input) < 1 || parseInt(input) > 365) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} Please enter a valid number between 1 and 365 for the account age.`,
-                flags: MessageFlags.Ephemeral
-            })
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} Please enter a valid number between 1 and 365 for the account age.`, interaction, true, "reply")
         }
 
         await database.guildSecurity.update
@@ -35,10 +33,6 @@ export default {
         });
 
 
-        return interaction.reply({
-            content: `## ${await convertToEmojiToPng("check")} Successfully set the minimum account age to **${input} days**.`,
-            flags: MessageFlags.Ephemeral
-        });
-
+        return await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} Successfully set the minimum account age to **${input} days**.`, interaction, true, "reply")
     }
 };

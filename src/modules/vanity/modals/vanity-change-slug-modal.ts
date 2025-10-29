@@ -2,6 +2,7 @@ import {ButtonStyle, MessageFlags, ModalSubmitInteraction} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "vanity-change-slug-modal",
@@ -26,24 +27,15 @@ export default {
         const newSlug = interaction.fields.getTextInputValue("vanity-change-slug-input");
 
         if (!data) {
-            await interaction.editReply({
-                content: `## ${await convertToEmojiToPng("error")} This vanity URL is not found.`,
-            });
-            return;
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} This vanity URL is not found.`, interaction, true, "deferReply");
         }
 
         if (data.Slug == newSlug) {
-            await interaction.editReply({
-                content: `## ${await convertToEmojiToPng("error")} The new slug is the same as the old one.`
-            });
-            return;
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} The new slug is the same as the old one.`, interaction, true, "deferReply");
         }
 
         if (newSlug.length < 2) {
-            await interaction.editReply({
-                content: `## ${await convertToEmojiToPng("error")} The slug must be between 3 and 32 characters long.`
-            });
-            return;
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} The slug must be between 3 and 32 characters long.`, interaction, true, "deferReply");
         }
 
         const isSlug = await database.vanitys.findFirst({
@@ -53,10 +45,7 @@ export default {
         })
 
         if (isSlug) {
-            await interaction.editReply({
-                content: `## ${await convertToEmojiToPng("error")} The slug \`${newSlug}\` is already in use. Please choose a different one.`
-            });
-            return;
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} The slug \`${newSlug}\` is already in use. Please choose a different one.`, interaction, true, "deferReply");
         }
 
         await database.vanitys.update({
@@ -68,10 +57,6 @@ export default {
             }
         })
 
-        await interaction.editReply({
-            content: `## ${await convertToEmojiToPng("check")} The slug has been changed to \`${newSlug}\`.`
-        });
-
-
+        return await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} The slug has been changed to \`${newSlug}\`.`, interaction, true, "deferReply");
     }
 };

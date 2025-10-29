@@ -11,6 +11,7 @@ import {
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "security-gate-verification-reaction-modal",
@@ -31,10 +32,7 @@ export default {
         });
 
         if (!data?.Action && !data?.ChannelId && !data?.MessageId && !data?.ActionType) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} No security gate verification action found for this button.`,
-                flags: MessageFlags.Ephemeral
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} No security gate verification action found for this button.`, interaction, true, "reply")
         }
 
         const emojiInput = interaction.fields.getTextInputValue("security-gate-verification-emoji-input");
@@ -44,25 +42,15 @@ export default {
             const message = channel.isTextBased() ? await channel.messages.fetch(data?.MessageId as string) : null;
 
             if (!message) {
-                return interaction.reply({
-                    content: `## ${await convertToEmojiToPng("error")} The message for the security gate verification button was not found.`,
-                    flags: MessageFlags.Ephemeral
-                });
+                return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} The message for the security gate verification button was not found.`, interaction, true, "reply")
             }
 
             await message?.react(emojiInput)
 
-            await interaction.reply({
-                content: `## ${await convertToEmojiToPng("check")} Security gate verification reaction has been set successfully!`,
-                flags: MessageFlags.Ephemeral
-            });
-
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} Security gate verification reaction has been set successfully!`, interaction, true, "reply")
         } catch (error) {
             console.error("Error setting security gate verification button:", error);
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} An error occurred while setting the security gate verification reaction.`,
-                flags: MessageFlags.Ephemeral
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} An error occurred while setting the security gate verification reaction.`, interaction, true, "reply")
         }
     }
 }

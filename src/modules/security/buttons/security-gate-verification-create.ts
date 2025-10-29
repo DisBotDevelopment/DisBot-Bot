@@ -1,7 +1,7 @@
 import {
     ActionRowBuilder,
     ButtonInteraction,
-    ButtonStyle,
+    ButtonStyle, LabelBuilder,
     MessageFlags,
     ModalBuilder,
     TextInputBuilder,
@@ -23,14 +23,23 @@ export default {
         const messageURL = new TextInputBuilder()
         modal.setTitle("Security Gate Verification Creation")
             .setCustomId("security-gate-verification-create-modal");
-        messageURL.setCustomId("security-gate-verification-create-message-url")
-            .setLabel("Message URL")
+
+
+        messageURL
+            .setCustomId("security-gate-verification-create-message-url")
             .setPlaceholder("https://discord.com/channels/123456789012345678/123456789012345678/123456789012345678")
             .setStyle(TextInputStyle.Short)
-            .setRequired(true);
-        const actionRow = new ActionRowBuilder<TextInputBuilder>()
-            .addComponents(messageURL);
-        modal.addComponents(actionRow);
+            .setRequired(false);
+
+
+        modal
+            .setLabelComponents(
+                new LabelBuilder()
+                    .setLabel("Message URL")
+                    .setDescription("Embed Message or leave it blank if you want to use Components V2 Messages")
+                    .setTextInputComponent(messageURL)
+            )
+
         await interaction.showModal(modal);
     }
 };

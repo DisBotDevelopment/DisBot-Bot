@@ -2,11 +2,11 @@ import {
     ActionRowBuilder,
     ButtonBuilder,
     ButtonStyle,
-    ChatInputCommandInteraction,
+    ChatInputCommandInteraction, ContainerBuilder,
     EmbedBuilder,
     MessageFlags,
     PermissionFlagsBits,
-    SlashCommandBuilder
+    SlashCommandBuilder, TextDisplayBuilder
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
@@ -65,18 +65,6 @@ export default {
             }
         })
 
-        const embed = new EmbedBuilder()
-            .setDescription([
-                `## ${await convertToEmojiToPng("shield")} Security Gate Management`,
-                ``,
-                `Welcome to the Security Gate Management!`,
-                `Current Features from the Security Gate are:`,
-                `- **Invite Tracking**: Track invites and their usage`,
-                `- **Security Gate**: Enable or disable the security gate feature`,
-                `- **Verification**: Verify users before they can interact with the server`,
-                ``,
-            ].join("\n"))
-
         const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
             new ButtonBuilder()
                 .setCustomId("security-gate-invite-tracking")
@@ -96,8 +84,26 @@ export default {
         )
 
         await interaction.editReply({
-            embeds: [embed],
-            components: [row]
+            flags: MessageFlags.IsComponentsV2 | MessageFlags.Ephemeral,
+            components: [
+                new ContainerBuilder()
+                    .addTextDisplayComponents(
+                        new TextDisplayBuilder()
+                            .setContent(
+                                [
+                                    `## ${await convertToEmojiToPng("shield")} Security Gate Management`,
+                                    ``,
+                                    `Welcome to the Security Gate Management!`,
+                                    `Current Features from the Security Gate are:`,
+                                    `- **Invite Tracking**: Track invites and their usage`,
+                                    `- **Security Gate**: Enable or disable the security gate feature`,
+                                    `- **Verification**: Verify users before they can interact with the server`,
+                                    ``,
+                                ].join("\n")
+                            )
+                    )
+                    .addActionRowComponents(row)
+            ]
         })
     }
 };

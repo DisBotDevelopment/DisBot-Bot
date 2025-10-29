@@ -3,6 +3,7 @@ import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 import {randomUUID} from "crypto";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "vanity-create-modal",
@@ -13,14 +14,7 @@ export default {
      * @param {ExtendedClient} client
      */
     async execute(interaction: ModalSubmitInteraction, client: ExtendedClient) {
-        await interaction.deferReply({
-            flags: MessageFlags.Ephemeral
-        });
-
         const query = interaction.fields.getTextInputValue("vanity");
-
-        if (!client.user) throw new Error("Client is not ready");
-
         const data = await database.vanitys.findFirst({
             where: {
                 Slug: query
@@ -28,9 +22,7 @@ export default {
         });
 
         if (data) {
-            return interaction.editReply({
-                content: `## ${await convertToEmojiToPng("link")} This vanity URL is already taken.`
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("link")} This vanity URL is already taken.`, interaction, true)
         }
 
         await interaction.guild?.invites
@@ -108,9 +100,7 @@ export default {
                     }
                 });
 
-                return interaction.editReply({
-                    content: `## ${await convertToEmojiToPng("link")}Your Vanity URL has been created. - [dchat.link/${query}](https://dchat.link/${query})`
-                });
+                return await sendDefaultMessage(`## ${await convertToEmojiToPng("link")} Your Vanity URL has been created. - [dchat.link/${query}](https://dchat.link/${query})\n-# More Settings behind the Manage Button.`, interaction, true)
             });
     }
 };

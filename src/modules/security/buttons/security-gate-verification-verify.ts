@@ -5,11 +5,11 @@ import {
     AttachmentBuilder,
     ButtonBuilder,
     ButtonInteraction,
-    ButtonStyle,
+    ButtonStyle, ContainerBuilder,
     EmbedBuilder,
-    GuildMember,
+    GuildMember, MediaGalleryBuilder, MediaGalleryItemBuilder,
     MessageFlags,
-    ModalBuilder,
+    ModalBuilder, TextDisplayBuilder,
     TextInputBuilder,
     TextInputStyle
 } from "discord.js";
@@ -17,6 +17,7 @@ import {VerificationAction, VerificationActionType} from "../../../enums/verific
 import {generateCaptcha, verifyAction} from "../../../systems/verifictionAction.js";
 import {randomUUID} from "crypto";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage, uploadToCDN} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "security-gate-verification-verify",
@@ -37,18 +38,10 @@ export default {
         });
 
         if (data?.Active === false) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} This security gate is not active.`,
-                flags: MessageFlags.Ephemeral
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} This security gate is not active.`, interaction, true, "reply")
         }
 
-        if (!data) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} This security gate does not exist.`,
-                flags: MessageFlags.Ephemeral
-            });
-        }
+        if (!data) return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} Verification Gate not found`, interaction, true, "reply")
 
         const type = data.ActionType;
         switch (type) {
@@ -76,33 +69,21 @@ export default {
             }
                 break;
             case VerificationActionType.Reaction: {
-                return interaction.reply({
-                    content: `## ${await convertToEmojiToPng("error")} This security gate type is not supported.`,
-                    flags: MessageFlags.Ephemeral
-                });
+                return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} This security gate type is not supported.`, interaction, true, "reply")
             }
                 break;
             case VerificationActionType.Button: {
                 const verify = await verifyAction(interaction.member as GuildMember, data.Action as VerificationAction, uuid);
 
                 if (verify == false) {
-                    return interaction.reply({
-                        content: `## ${await convertToEmojiToPng("check")} You unverified yourself! and removed all permissions and roles.`,
-                        flags: MessageFlags.Ephemeral
-                    });
+                    return await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} You unverified yourself! and removed all permissions and roles.`, interaction, true, "reply")
                 }
 
-                interaction.reply({
-                    content: `## ${await convertToEmojiToPng("check")} You have successfully verified yourself!`,
-                    flags: MessageFlags.Ephemeral
-                });
+                return await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} You have successfully verified yourself!`, interaction, true, "reply")
             }
                 break;
             case VerificationActionType.Authorize: {
-                interaction.reply({
-                    content: `## ${await convertToEmojiToPng("check")} OoO... This security gate is not supported yet. The Button setup is not a Link!`,
-                    flags: MessageFlags.Ephemeral
-                });
+                return await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} OoO... This security gate is not supported yet. The Button setup is not a Link!`, interaction, true, "reply")
             }
                 break;
             case VerificationActionType.Code: {
@@ -128,28 +109,37 @@ export default {
 
                 const {code, imageBuffer} = generateCaptcha();
 
-                const attachment = new AttachmentBuilder(imageBuffer, {name: "captcha.png"});
+                const attachment = await uploadToCDN(imageBuffer)
+
                 await interaction.reply({
-                    content: `## ${await convertToEmojiToPng("bot")} Please solve the captcha to verify yourself.`,
                     files: [attachment],
-                    flags: MessageFlags.Ephemeral,
+                    flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
                     components: [
-                        new ActionRowBuilder<ButtonBuilder>().addComponents(
-                            new ButtonBuilder()
-                                .setCustomId(`security-gate-verification-captcha:${uuid}:${code}`)
-                                .setEmoji("<:shieldcheck:1380558415968862218>")
-                                .setStyle(ButtonStyle.Secondary)
-                        )
+                        new ContainerBuilder()
+                            .addTextDisplayComponents(
+                                new TextDisplayBuilder()
+                                    .setContent(`## ${await convertToEmojiToPng("bot")} Please solve the captcha to verify yourself.`,)
+                            )
+                            .addActionRowComponents(new ActionRowBuilder<ButtonBuilder>().addComponents(
+                                new ButtonBuilder()
+                                    .setCustomId(`security-gate-verification-captcha:${uuid}:${code}`)
+                                    .setEmoji("<:shieldcheck:1380558415968862218>")
+                                    .setStyle(ButtonStyle.Secondary)
+                            ))
+                            .addMediaGalleryComponents(
+                                new MediaGalleryBuilder()
+                                    .addItems(
+                                        new MediaGalleryItemBuilder()
+                                            .setURL(attachment)
+                                    )
+                            )
                     ]
                 });
 
             }
                 break;
             default: {
-                return interaction.reply({
-                    content: `## ${await convertToEmojiToPng("error")} This security gate type is not supported.`,
-                    flags: MessageFlags.Ephemeral
-                });
+                return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} This security gate type is not supported.`, interaction, true, "reply")
             }
         }
     }

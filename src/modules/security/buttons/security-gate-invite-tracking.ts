@@ -2,6 +2,7 @@ import {ButtonInteraction, MessageFlags, TextInputStyle} from "discord.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "security-gate-invite-tracking",
@@ -31,12 +32,7 @@ export default {
                 }
             });
 
-            await interaction.reply(
-                {
-                    content: `## ${await convertToEmojiToPng("locate")} Invite Tracking has been disabled!`,
-                    flags: MessageFlags.Ephemeral
-                }
-            )
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("locate")} Invite Tracking has been disabled!`, interaction, true, "reply")
 
         } else {
             await database.guildSecurity.update
@@ -49,15 +45,7 @@ export default {
                 }
             });
 
-            await interaction.reply(
-                {
-                    content: `## ${await convertToEmojiToPng("locate")} Invite Tracking has been enabled in ${interaction.guild?.safetyAlertsChannel ?? interaction.channel}`,
-                    flags: MessageFlags.Ephemeral
-                }
-            )
-
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("locate")} Invite Tracking has been enabled in ${interaction.guild?.safetyAlertsChannel ?? interaction.channel}`, interaction, true, "reply")
         }
-
-
     }
 };

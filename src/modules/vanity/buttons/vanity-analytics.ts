@@ -2,6 +2,7 @@ import {ButtonInteraction, ButtonStyle, EmbedBuilder, MessageFlags} from "discor
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "vanity-analytics",
@@ -26,33 +27,30 @@ export default {
             }
         });
 
-
-        const embed = new EmbedBuilder()
-            .setDescription(
-                [
-                    `## ${await convertToEmojiToPng("analytics")} Vanity URL Analytics`,
-                    ``,
-                    `### Global Statistics`,
-                    ``,
-                    `${await convertToEmojiToPng("clicks")} **Total Clicks**: \`${data?.Analytics?.Click}\``,
-                    `${await convertToEmojiToPng("clicks")} **Total Unique Clicks**: \`${data?.Analytics?.UniqueClick}\``,
-                    `${await convertToEmojiToPng("group")} **Joined Server**: \`${data?.Analytics?.JoinedWithCode}\``,
-                    `${await convertToEmojiToPng("created")} **Created At**: <t:${Math.floor(data?.CreatedAt.getTime() as number / 1000)}:R>`,
-                    `### 30 Days Statistics`,
-                    ``,
-                    `${await convertToEmojiToPng("clicks")} **Total Clicks**: \`${data?.Analytics?.Latest30Days?.Click}\``,
-                    `${await convertToEmojiToPng("clicks")} **Total Unique Clicks**: \`${data?.Analytics?.Latest30Days?.UniqueClick}\``,
-                    `${await convertToEmojiToPng("group")} **Joined Server**: \`${data?.Analytics?.Latest30Days?.JoinedWithCode}\``,
-                    `${await convertToEmojiToPng("calendar")} **Date**: <t:${Math.floor(data?.Analytics?.Latest30Days?.Date?.getTime() as number / 1000)}:R>`,
-                    `${await convertToEmojiToPng("calendarupdate")} **Last Updated**: <t:${Math.floor(data?.Analytics?.Update?.getTime() as number / 1000)}:R>`,
-                ].join("\n")
-            )
-
-
-        await interaction.reply({
-            embeds: [embed],
-            flags: MessageFlags.Ephemeral,
+        await interaction.deferReply({
+            flags: MessageFlags.Ephemeral
         })
+
+
+        await sendDefaultMessage(
+            [
+                `## ${await convertToEmojiToPng("analytics")} Vanity URL Analytics`,
+                ``,
+                `### Global Statistics`,
+                ``,
+                `${await convertToEmojiToPng("clicks")} **Total Clicks**: \`${data?.Analytics?.Click}\``,
+                `${await convertToEmojiToPng("clicks")} **Total Unique Clicks**: \`${data?.Analytics?.UniqueClick}\``,
+                `${await convertToEmojiToPng("group")} **Joined Server**: \`${data?.Analytics?.JoinedWithCode}\``,
+                `${await convertToEmojiToPng("created")} **Created At**: <t:${Math.floor(data?.CreatedAt.getTime() as number / 1000)}:R>`,
+                `### 30 Days Statistics`,
+                ``,
+                `${await convertToEmojiToPng("clicks")} **Total Clicks**: \`${data?.Analytics?.Latest30Days?.Click}\``,
+                `${await convertToEmojiToPng("clicks")} **Total Unique Clicks**: \`${data?.Analytics?.Latest30Days?.UniqueClick}\``,
+                `${await convertToEmojiToPng("group")} **Joined Server**: \`${data?.Analytics?.Latest30Days?.JoinedWithCode}\``,
+                `${await convertToEmojiToPng("calendar")} **Date**: <t:${Math.floor(data?.Analytics?.Latest30Days?.Date?.getTime() as number / 1000)}:R>`,
+                `${await convertToEmojiToPng("calendarupdate")} **Last Updated**: <t:${Math.floor(data?.Analytics?.Update?.getTime() as number / 1000)}:R>`,
+            ].join("\n"), interaction, true, "deferReply"
+        )
 
     }
 };

@@ -1,7 +1,15 @@
-import {ActionRowBuilder, ButtonBuilder, ButtonInteraction, ButtonStyle, MessageFlags} from "discord.js";
+import {
+    ActionRowBuilder,
+    ButtonBuilder,
+    ButtonInteraction,
+    ButtonStyle,
+    ContainerBuilder,
+    MessageFlags, TextDisplayBuilder
+} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "vanity-update-embed",
@@ -65,14 +73,20 @@ export default {
         if (!client.user) throw new Error("Client is not ready");
 
         if (!data) {
-            await interaction.editReply({
-                content: `## ${await convertToEmojiToPng("error")} This vanity URL is not found.`,
-            });
-            return;
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} This vanity URL is not found.`, interaction, true, "deferReply")
         }
 
         await interaction.editReply({
-            components: [row, row2]
+            flags: MessageFlags.IsComponentsV2,
+            components: [
+                new ContainerBuilder()
+                    .addActionRowComponents(row)
+                    .addTextDisplayComponents(
+                        new TextDisplayBuilder()
+                            .setContent("You can look with the Show Embed Button what is required for thr Discovery. (https://disbot.app/discovery)")
+                    )
+                    .addActionRowComponents(row2)
+            ]
         })
     }
 };

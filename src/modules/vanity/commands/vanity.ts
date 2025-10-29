@@ -2,15 +2,15 @@ import {
     ActionRowBuilder,
     ButtonBuilder,
     ButtonStyle,
-    ChatInputCommandInteraction,
+    ChatInputCommandInteraction, ContainerBuilder,
     EmbedBuilder,
     MessageFlags,
     PermissionFlagsBits,
-    SlashCommandBuilder
+    SlashCommandBuilder, TextDisplayBuilder
 } from "discord.js";
-import { ExtendedClient } from "../../../types/client.js";
-import { convertToEmojiToPng } from "../../../helper/emojis.js";
-import { PermissionType } from "../../../enums/permissionType.js";
+import {ExtendedClient} from "../../../types/client.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
+import {PermissionType} from "../../../enums/permissionType.js";
 
 export default {
     help: {
@@ -51,29 +51,36 @@ export default {
         const embed = new EmbedBuilder()
             .setDescription("ss")
 
-        interaction.reply({
-            embeds: [
-                embed
-                    .setColor("#2B2D31")
-                    .setDescription(
-                        `## ${await convertToEmojiToPng("link")} Manage your vanity URL's`
-                    )
-            ],
+        await interaction.reply({
             components: [
-                new ActionRowBuilder<ButtonBuilder>().addComponents(
-                    new ButtonBuilder()
-                        .setLabel("Create Vanity URL")
-                        .setCustomId(`vanity-create`)
-                        .setStyle(ButtonStyle.Secondary)
-                        .setEmoji("<:add:1260157236043583519>"),
-                    new ButtonBuilder()
-                        .setLabel("Manage Vanity URL's")
-                        .setCustomId(`vanity-manage`)
-                        .setStyle(ButtonStyle.Secondary)
-                        .setEmoji("<:setting:1260156922569687071>"),
-                )
+                new ContainerBuilder()
+                    .addTextDisplayComponents(
+                        new TextDisplayBuilder()
+                            .setContent(
+                                [
+                                    `## ${await convertToEmojiToPng("link")} Vanity`,
+                                    ``,
+                                    `- Create your own Vanity Url to invite Members`,
+                                    `- View Analytics and show your invitations with Invite Logging.`,
+                                    `- Manage your Vanity and add them to the  Discovery.`,
+                                ].join("\n")
+                            )
+                    )
+                    .addActionRowComponents(
+                        new ActionRowBuilder<ButtonBuilder>().addComponents(
+                            new ButtonBuilder()
+                                .setLabel("Create Vanity URL")
+                                .setCustomId(`vanity-create`)
+                                .setStyle(ButtonStyle.Secondary)
+                                .setEmoji("<:add:1260157236043583519>"),
+                            new ButtonBuilder()
+                                .setLabel("Manage Vanity URL's")
+                                .setCustomId(`vanity-manage`)
+                                .setStyle(ButtonStyle.Secondary)
+                                .setEmoji("<:setting:1260156922569687071>"),
+                        ))
             ],
-            flags: MessageFlags.Ephemeral
+            flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2
         })
 
     }

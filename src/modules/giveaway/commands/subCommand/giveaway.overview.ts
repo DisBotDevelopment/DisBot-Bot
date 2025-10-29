@@ -3,9 +3,9 @@ import {
     ButtonBuilder,
     ButtonStyle,
     ChannelType,
-    ChatInputCommandInteraction,
+    ChatInputCommandInteraction, ContainerBuilder,
     MessageFlags,
-    PermissionFlagsBits,
+    PermissionFlagsBits, TextDisplayBuilder,
     TextInputStyle
 } from "discord.js";
 import {ExtendedClient} from "../../../../types/client.js";
@@ -13,7 +13,7 @@ import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 
 export default {
-    subCommand: "giveaway.list",
+    subCommand: "giveaway.overview",
     options: {
         once: false,
         permission: PermissionType.Giveaway,
@@ -43,9 +43,24 @@ export default {
 
         if (!client.user) return;
         await interaction.reply({
-            content: `## ${await convertToEmojiToPng("check")} Click on the button below to see the list of giveaways.`,
             flags: MessageFlags.Ephemeral,
-            components: [row]
+            components: [
+                new ContainerBuilder()
+                    .addTextDisplayComponents(
+                        new TextDisplayBuilder()
+                            .setContent(
+                                [
+                                    `## ${await convertToEmojiToPng("giveaway")} `,
+                                    ``,
+                                    `- Create your onw Giveaways with the Commands your see.`,
+                                    `- Manage the giveaways with the commands from /giveaway.`,
+                                    `- If you lose the overview use the list button below.`,
+                                    `- More Features will follow!`,
+                                    ``
+                                ].join("\n"))
+                    )
+                    .addActionRowComponents(row)
+            ]
         });
 
 

@@ -4,7 +4,7 @@ import {
     ChannelType, ContainerBuilder,
     EmbedBuilder,
     MessageFlags,
-    ModalSubmitInteraction
+    ModalSubmitInteraction, TextDisplayBuilder
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
@@ -63,17 +63,26 @@ export default {
 
 
         await interaction.reply({
-            content: `## ${await convertToEmojiToPng("giveaway")} Giveaway created! Please confirm the giveaway and send it to the channel.`,
-            flags: MessageFlags.Ephemeral,
+            flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
             components: [
-                new ActionRowBuilder<ChannelSelectMenuBuilder>()
-                    .addComponents(
-                        new ChannelSelectMenuBuilder()
-                            .setCustomId("giveaway-channel:" + uuids)
-                            .setPlaceholder("Select a channel")
-                            .setChannelTypes([ChannelType.GuildText, ChannelType.PublicThread, ChannelType.GuildAnnouncement, ChannelType.AnnouncementThread, ChannelType.GuildForum])
-                            .setMinValues(1)
-                            .setMaxValues(1)
+
+                new ContainerBuilder()
+                    .addTextDisplayComponents(
+                        new TextDisplayBuilder()
+                            .setContent(
+                                `## ${await convertToEmojiToPng("giveaway")} Giveaway created! Please confirm the giveaway and send it to the channel.`,
+                            )
+                    )
+                    .addActionRowComponents(
+                        new ActionRowBuilder<ChannelSelectMenuBuilder>()
+                            .addComponents(
+                                new ChannelSelectMenuBuilder()
+                                    .setCustomId("giveaway-channel:" + uuids)
+                                    .setPlaceholder("Select a channel")
+                                    .setChannelTypes([ChannelType.GuildText, ChannelType.PublicThread, ChannelType.GuildAnnouncement, ChannelType.AnnouncementThread, ChannelType.GuildForum])
+                                    .setMinValues(1)
+                                    .setMaxValues(1)
+                            )
                     )
             ]
         });

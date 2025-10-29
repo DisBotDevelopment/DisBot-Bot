@@ -3,16 +3,17 @@ import {
     AnySelectMenuInteraction,
     ButtonBuilder,
     ButtonStyle,
-    ColorResolvable,
+    ColorResolvable, ContainerBuilder,
     EmbedBuilder,
     MessageFlags,
-    PermissionFlagsBits
+    PermissionFlagsBits, TextDisplayBuilder
 } from "discord.js";
 import {DisBotInteractionType} from "../../../enums/disBotInteractionType.js";
 import {PermissionType} from "../../../enums/permissionType.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "security-gate-verification-manage-select",
@@ -48,29 +49,9 @@ export default {
             });
 
             if (!data) {
-                return interaction.reply({
-                    content: `## ${await convertToEmojiToPng("error")} No Verification Gate Found`,
-                    flags: MessageFlags.Ephemeral
-                });
+                return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} No Verification Gate Found`, interaction, true, "reply")
             }
 
-            const embed = {
-                color: "#2B2D31",
-                description: [
-                    `## ${await convertToEmojiToPng("verify")} Verification Gate Details`,
-                    ``,
-                    `**UUID:** ${data.UUID}`,
-                    `**Channel ID:** ${data.ChannelId}`,
-                    `**Message ID:** ${data.MessageId}`,
-                    `**Action:** ${data.Action}`,
-                    `**Action Type:** ${data.ActionType}`,
-                    `**Permissions:** ${data.ChannelPermissions.map(p => p.Permission).join(", ") || "None"}`,
-                    `**Roles:** ${data.Roles.length ? data.Roles.join(", ") : "None"}`,
-                    `**Verified Users Count:** ${data.VerifiedUsers.length}`,
-                    `**Created At:** ${new Date(data.CreatedAt).toLocaleDateString()}`,
-                    `**Active:** ${data.Active ? "Yes" : "No"}`
-                ].join("\n")
-            };
             const actionRow = new ActionRowBuilder<ButtonBuilder>()
                 .addComponents(
                     new ButtonBuilder()
@@ -99,12 +80,30 @@ export default {
             }
 
             await interaction.reply({
-                embeds: [new EmbedBuilder()
-                    .setColor(embed.color as ColorResolvable)
-                    .setDescription(embed.description)
+                components: [
+                    new ContainerBuilder()
+                        .addTextDisplayComponents(
+                            new TextDisplayBuilder()
+                                .setContent(
+                                    [
+                                        `## ${await convertToEmojiToPng("verify")} Verification Gate Details`,
+                                        ``,
+                                        `**UUID:** ${data.UUID}`,
+                                        `**Channel ID:** ${data.ChannelId}`,
+                                        `**Message ID:** ${data.MessageId}`,
+                                        `**Action:** ${data.Action}`,
+                                        `**Action Type:** ${data.ActionType}`,
+                                        `**Permissions:** ${data.ChannelPermissions.map(p => p.Permission).join(", ") || "None"}`,
+                                        `**Roles:** ${data.Roles.length ? data.Roles.join(", ") : "None"}`,
+                                        `**Verified Users Count:** ${data.VerifiedUsers.length}`,
+                                        `**Created At:** ${new Date(data.CreatedAt).toLocaleDateString()}`,
+                                        `**Active:** ${data.Active ? "Yes" : "No"}`
+                                    ].join("\n")
+                                )
+                        )
+                        .addActionRowComponents(actionRow)
                 ],
-                components: [actionRow],
-                flags: MessageFlags.Ephemeral
+                flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2
             });
 
         }

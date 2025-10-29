@@ -14,6 +14,7 @@ import {PermissionType} from "../../../enums/permissionType.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "security-gate-verification-action-channel-selcet",
@@ -53,10 +54,7 @@ export default {
                     }
                 });
             if (!data) {
-                return interaction.reply({
-                    content: `## ${await convertToEmojiToPng("error")} No security gate verification action found for this select menu.`,
-                    flags: MessageFlags.Ephemeral
-                });
+                return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} No security gate verification action found for this select menu.`, interaction, true, "reply")
             }
 
             if (data.ChannelPermissions.map((c) => c.ChannelId).includes(value)) {
@@ -66,17 +64,11 @@ export default {
                         VerificationGateId: value
                     },
                 });
-                return interaction.reply({
-                    content: `## ${await convertToEmojiToPng("check")} Removed channel ${interaction.guild?.channels.cache.get(value)?.name} from the security gate verification action.`,
-                    flags: MessageFlags.Ephemeral
-                });
+                return await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} Removed channel ${interaction.guild?.channels.cache.get(value)?.name} from the security gate verification action.`, interaction, true, "reply")
             }
 
             if (!interaction.guild?.channels.cache.get(value)) {
-                return interaction.reply({
-                    content: `## ${await convertToEmojiToPng("error")} Channel not found.`,
-                    flags: MessageFlags.Ephemeral
-                });
+                return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} Channel not found.`, interaction, true, "reply")
             }
 
             await database.verificationGatesPermission.create({

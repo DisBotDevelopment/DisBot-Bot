@@ -2,6 +2,7 @@ import {ButtonInteraction, ButtonStyle, MessageFlags} from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "vanity-delete",
@@ -21,10 +22,7 @@ export default {
         if (!client.user) throw new Error("Client is not ready");
 
         if (!data) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("info")} This vanity URL is not found.`,
-                flags: MessageFlags.Ephemeral
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("info")} This vanity URL is not found.`, interaction, true, "reply")
         }
 
         await database.vanityEmbedAuthor.deleteMany({
@@ -53,10 +51,6 @@ export default {
             }
         });
 
-        return interaction.update({
-            content: `## ${await convertToEmojiToPng("check")} Vanity URL has been deleted.`,
-            components: [],
-            embeds: []
-        });
+        return await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} Vanity URL has been deleted successfully.`, interaction, true, "update")
     }
 };

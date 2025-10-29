@@ -2,14 +2,15 @@ import "dotenv/config";
 import {
     ActionRowBuilder,
     ButtonBuilder,
-    ButtonStyle,
+    ButtonStyle, ContainerBuilder,
     EmbedBuilder,
     MessageFlags,
-    StringSelectMenuInteraction
+    StringSelectMenuInteraction, TextDisplayBuilder, TextDisplayComponent
 } from "discord.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "vanity-manage-select",
@@ -29,28 +30,9 @@ export default {
                 {flags: MessageFlags.Ephemeral}
             )
 
-            if (!client.user) throw new Error("Client is not ready");
-
             if (!data) {
-                await interaction.editReply({
-                    content: `## ${await convertToEmojiToPng("error")} This vanity URL is not found.`,
-                });
+                return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} This vanity URL is not found.`, interaction, true, "deferReply")
             }
-
-            const embed = new EmbedBuilder()
-                .setColor("#2B2D31")
-                .setDescription(
-                    [
-                        `## ${await convertToEmojiToPng("link")} Manage your vanity URL's`,
-                        ``,
-                        `${await convertToEmojiToPng("link")} **Vanity**: \`${data?.Slug}\``,
-                        `${await convertToEmojiToPng("status")} **Host**: \`${data?.Host}\``,
-                        `${await convertToEmojiToPng("group")} **Guild**: ${await client.guilds.fetch(data?.GuildId as string).then(g => g.name)} (\`${data?.GuildId}\`)`,
-                        `${await convertToEmojiToPng("link")} **Invite**: [Invite](${data?.Invite})`,
-                        `${await convertToEmojiToPng("link")} **Vanity-Link**: [Vanity Link](https://dchat.link/${data?.Slug})`,
-                        `${await convertToEmojiToPng("uuid")} **UUID**: \`\`\`${data?.UUID}\`\`\``
-                    ].join("\n")
-                );
 
             const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
                 new ButtonBuilder()
@@ -67,7 +49,7 @@ export default {
                     .setLabel("Edit Vanity URL")
                     .setCustomId(`vanity-edit:${data?.UUID}`)
                     .setStyle(ButtonStyle.Secondary)
-                    .setEmoji("<:edit:1259961121075626066>"),
+                    .setEmoji("<:link:1321941111090057248>"),
                 new ButtonBuilder()
                     .setLabel("Open Vanity URL")
                     .setStyle(ButtonStyle.Link)
@@ -76,8 +58,26 @@ export default {
             );
 
             await interaction.editReply({
-                embeds: [embed],
-                components: [row],
+                flags: MessageFlags.IsComponentsV2,
+                components: [
+                    new ContainerBuilder()
+                        .addTextDisplayComponents(
+                            new TextDisplayBuilder()
+                                .setContent(
+                                    [
+                                        `## ${await convertToEmojiToPng("link")} Manage your vanity URL's`,
+                                        ``,
+                                        `${await convertToEmojiToPng("link")} **Vanity**: \`${data?.Slug}\``,
+                                        `${await convertToEmojiToPng("status")} **Host**: \`${data?.Host}\``,
+                                        `${await convertToEmojiToPng("group")} **Guild**: ${await client.guilds.fetch(data?.GuildId as string).then(g => g.name)} (\`${data?.GuildId}\`)`,
+                                        `${await convertToEmojiToPng("link")} **Invite**: [Invite](${data?.Invite})`,
+                                        `${await convertToEmojiToPng("link")} **Vanity-Link**: [Vanity Link](https://dchat.link/${data?.Slug})`,
+                                        `${await convertToEmojiToPng("uuid")} **UUID**: ${data?.UUID}`
+                                    ].join("\n")
+                                )
+                        )
+                        .addActionRowComponents(row)
+                ],
             });
         }
     }

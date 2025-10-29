@@ -12,6 +12,7 @@ import ms from "ms";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "giveaway-channel",
@@ -35,17 +36,12 @@ export default {
                 }
             });
 
-            if (!data) await interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} No data found!`,
-                flags: MessageFlags.Ephemeral
-            });
-
+            if (!data)
+                return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} No data found!`, interaction, true, "reply")
 
             const channel = interaction.guild?.channels.cache.get(value) as GuildTextBasedChannel
-            if (!channel?.isSendable()) return await interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} I cannot send messages in this channel!`,
-                flags: MessageFlags.Ephemeral
-            })
+            if (!channel?.isSendable())
+                return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} I cannot send messages in this channel!`, interaction, true, "reply")
 
 
             const duration = ms(data.Time as ms.StringValue)
@@ -81,11 +77,7 @@ export default {
                 }
             });
 
-            await interaction.update({
-                content: `## ${await convertToEmojiToPng("giveaway")} Giveaway successfully created in ${message.url}`,
-                embeds: [],
-                components: [],
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("giveaway")} Giveaway successfully created in ${message.url}`, interaction, true, "update")
         }
     }
 };

@@ -38,7 +38,7 @@ export default {
             .setRequired(true)
             .setMaxLength(256)
             .setMinLength(1)
-            .setPlaceholder("Enter the new slug for your vanity URL (e.g., '/new-slug')");
+            .setPlaceholder("Enter the new slug for your vanity URL (only the Slug)");
 
 
         modal.addComponents(

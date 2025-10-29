@@ -14,6 +14,7 @@ import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 import {database} from "../../../../main/database.js";
 import moment from "moment/moment.js";
+import {sendDefaultMessage} from "../../../../helper/utilityHelper.js";
 
 export default {
     subCommand: "giveaway.pause",
@@ -49,22 +50,13 @@ export default {
         });
 
         if (data?.Paused == true) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} This giveaway is already paused.`,
-                flags: MessageFlags.Ephemeral,
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} This giveaway is already paused.`, interaction, true, "reply")
         }
         if (data?.Ended == true) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} This giveaway has already ended.`,
-                flags: MessageFlags.Ephemeral,
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} This giveaway has already ended.`, interaction, true, "reply")
         }
         if (!data) {
-            return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} A giveaway with this message URL does not exist.`,
-                flags: MessageFlags.Ephemeral,
-            });
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} A giveaway with this message URL does not exist.`, interaction, true, "reply")
         }
 
         const duration = ms(data.Time as ms.StringValue);
@@ -87,10 +79,8 @@ export default {
         );
 
         const channelObj = client.guilds.cache.get(interaction.guild?.id as string)?.channels.cache.get(channelId);
-        if (!channelObj?.isSendable()) return interaction.reply({
-            content: `## ${await convertToEmojiToPng("error")} I cannot send messages in this channel.`,
-            flags: MessageFlags.Ephemeral,
-        });
+        if (!channelObj?.isSendable())
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} I cannot send messages in this channel.`, interaction, true, "reply")
 
 
         const message = await channelObj.messages.fetch(messageId);
@@ -101,7 +91,7 @@ export default {
 
         const timeStamp = Math.floor(endTimeForTimestamp.getTime() / 1000)
 
-        message.edit({
+        await message.edit({
             components: [
                 new ContainerBuilder().addTextDisplayComponents(
                     new TextDisplayBuilder()
@@ -116,10 +106,6 @@ export default {
             ], flags: MessageFlags.IsComponentsV2,
         })
 
-        await interaction.reply({
-            content: `## ${await convertToEmojiToPng("giveaway")} The giveaway has been paused.`,
-            flags: MessageFlags.Ephemeral,
-        });
-
+        return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} This giveaway has already ended.`, interaction, true, "reply")
     }
 };
