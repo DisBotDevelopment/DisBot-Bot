@@ -55,22 +55,8 @@ the differences between the versions.
 
 ## 📄 License
 
-This project is licensed under the **PolyForm Noncommercial License 1.0.0**.  
-See the [LICENSE](LICENSE.md) file for details.  
-For commercial use, see:  
-🔗 [Approved Organizations](https://xyzhub.link/pages/allowed-organisation-to-use-disbot-commercial)
-
----
-
-## ⚖️ Legal Notice
-
-- DisBot is an independent open-source project and is not affiliated with Discord Inc.
-- All trademarks and logos are property of their respective owners.
-- By using or contributing to this project, you agree to the license and contribution terms.
-- DisBot may **only be hosted privately** on your own Discord server (not publicly inviteable).
-- **Commercial use** is only permitted for authorized organizations.
-
-> Learn more: [DisBot Rights](./RIGHTS.md)
+This project is licensed under the **Creative Commons Zero v1.0 Universal**.  
+See the [LICENSE](LICENSE.md) file for details.
 
 ---
 
