@@ -958,33 +958,8 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
         }
     }
     if (!actions.includes("not_thread_close")) {
-        await (channel as ThreadChannel).setArchived(true, "Moderator Action from Ticket with Id " + ticketId)
-    }
-    if (data.TranscriptChannelId) {
-        actionCounter += 1
-
-        if (!isAuto)
-            await interaction.editReply({
-                content: `## ${await convertToEmojiToPng("check")} Exported Ticket-Transcript to Channel.`,
-            })
-
-        const tChannel = await guild.channels.fetch(data.TranscriptChannelId) as TextChannel | PrivateThreadChannel
-        if (tChannel) {
-            const transcript = await ticketTranscriptBuilder(
-                ticketId,
-                client,
-                guild,
-                channel,
-                null,
-                interaction ?? null
-            )
-
-            const message = await tChannel.send(transcript as MessageCreateOptions)
-
-            if (!isAuto)
-                await interaction.editReply({
-                    content: `## ${await convertToEmojiToPng("check")} Exported Ticket-Transcript ${message.url}`,
-                })
+        if (data.ChannelType == ChannelType.PrivateThread) {
+            await (channel as ThreadChannel).setArchived(true, "Moderator Action from Ticket with Id " + ticketId)
         }
     }
     if (data.OldTicketCategoryId) {
@@ -1009,6 +984,33 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
                     )
             ]
         })
+    }
+    if (data.TranscriptChannelId) {
+        actionCounter += 1
+
+        if (!isAuto)
+            await interaction.editReply({
+                content: `## ${await convertToEmojiToPng("check")} Exported Ticket-Transcript to Channel.`,
+            })
+
+        const tChannel = await guild.channels.fetch(data.TranscriptChannelId) as TextChannel | PrivateThreadChannel
+        if (tChannel) {
+            const transcript = await ticketTranscriptBuilder(
+                ticketId,
+                client,
+                guild,
+                channel,
+                null,
+                null
+            )
+
+            const message = await tChannel.send(transcript as any)
+
+            if (!isAuto)
+                await interaction.editReply({
+                    content: `## ${await convertToEmojiToPng("check")} Exported Ticket-Transcript ${message.url}`,
+                })
+        }
     }
 
     if (!isAuto)
