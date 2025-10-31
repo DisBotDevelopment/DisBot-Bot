@@ -265,14 +265,15 @@ export async function ticketHelper(
 
         // TicketLimit
         if (data.TicketLimit) {
-            const ticketsPerUser = await database.tickets.findMany({
+            const openTicketsPerUser = await database.tickets.findMany({
                 where: {
+                    TicketId: ticketSetupId,
                     IsClosed: false,
                     TicketOwnerId: user.id
                 }
             })
 
-            if (ticketsPerUser.length >= data.TicketLimit) {
+            if (openTicketsPerUser.length >= data.TicketLimit) {
                 if (ticketType == "event") {
                     (messageEvent.channel as TextChannel).send({
                         content: `-# ${await convertToEmojiToPng("ticket")} You have reached the ticket limit! You can only open ${data.TicketLimit} more tickets.`
@@ -302,6 +303,9 @@ export async function ticketHelper(
         if (!messageData) {
             const ticketTemplateMessage = await fetch("https://cdn.xyzhub.link/raw/VqvWD9.json?download=true")
             const ticketTemplateMessageData = await ticketTemplateMessage.json()
+
+            console.log(ticketTemplateMessageData)
+
             messageData = {
                 Id: Number(Math.random() * 134324),
                 GuildId: guild.id,
@@ -401,11 +405,9 @@ export async function ticketHelper(
             if (IsThread) {
                 for (const perms of data.TicketPermissions) {
                     if (perms.DiscordRoleId) {
-                        await channel.guild.members.fetch();
-                        const role = await channel.guild.roles.fetch(perms.DiscordRoleId);
-                        for (const memberId of role.members.values()) {
-                            await (channel as ThreadChannel).members.add(memberId)
-                        }
+                        // "MEMBER PING" - I will not fetch the Role and add the member because of Discord Rate Limits and so on...
+                        const discordRolePingMessage = await channel.send(`<@&${perms.DiscordRoleId}>`)
+                        await discordRolePingMessage.delete()
                     } else if (perms.DiscordUserId) {
                         await (channel as ThreadChannel).members.add(perms.DiscordUserId)
                     }
@@ -416,11 +418,11 @@ export async function ticketHelper(
             for (const perms of data.TicketPermissions) {
                 if (perms.HasShadowPing) {
                     // Thread
-                    // Threads cannot have shadow pings because I add the member from the role in lines 328-335, and this pings the member!
+                    // Threads cannot have shadow pings because I add the member from the role, and this pings the member!
 
                     // Channel
                     if (IsChannel && perms.DiscordRoleId) {
-                        channel.send({
+                        await channel.send({
                             content: `<@&${perms.DiscordRoleId}>`
                         }).then(async (m) => {
                             await m.delete()
@@ -549,7 +551,7 @@ export async function ticketHelper(
             return;
         }
     } catch (e) {
-        Logger.error(e)
+        Logger.error(`Ticket Error: ${e}`)
         if (ticketType == "event") {
             (messageEvent.channel as TextChannel).send({
                 allowedMentions: {

@@ -136,7 +136,7 @@ export async function MessageBuilder(data: {
         }
     } else {
         messageData = {
-            content: replacePlaceholders(data.Content, placeholderType) ?? " ",
+            content: replacePlaceholders(data.Content ?? "", placeholderType) ?? " ",
             embeds: []
         }
 

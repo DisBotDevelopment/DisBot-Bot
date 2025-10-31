@@ -44,7 +44,7 @@ export default {
         })
 
         if (data.length <= 0) return interaction.reply({
-            content: "No ticket-setups found.",
+            content: "No tickets found.",
             flags: MessageFlags.Ephemeral
         });
 
