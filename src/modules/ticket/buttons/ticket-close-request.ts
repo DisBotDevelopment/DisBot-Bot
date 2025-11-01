@@ -58,12 +58,11 @@ export default {
                         new ActionRowBuilder<ButtonBuilder>().addComponents(
                             new ButtonBuilder()
                                 .setEmoji("<:x_:1322169218682322955>")
-                                .setDisabled(!(await hasTicketPermission("confirm-user-close", interaction.member as GuildMember, data.TicketId, client) || await hasTicketPermission("all", interaction.member as GuildMember, data.TicketId, client)))
                                 .setCustomId("ticket-close:" + uuid)
                                 .setStyle(ButtonStyle.Secondary),
                             new ButtonBuilder()
                                 .setEmoji("<:arrowbackregular24:1301119279088799815>")
-                                .setCustomId("ticket-close-request-cancel")
+                                .setCustomId("ticket-close-request-cancel:" + uuid)
                                 .setStyle(ButtonStyle.Secondary)
                         )
                     )

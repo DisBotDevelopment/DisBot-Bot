@@ -1,9 +1,10 @@
 import {
-    ButtonInteraction, PrivateThreadChannel, TextChannel,
+    ButtonInteraction, GuildMember, PrivateThreadChannel, TextChannel,
 } from "discord.js";
 import {ExtendedClient} from "../../../types/client.js";
 import {database} from "../../../main/database.js";
-import {handleCloseAction, ticketErrorMessage} from "../../../helper/ticketHelper.js";
+import {handleCloseAction, hasTicketPermission, ticketErrorMessage} from "../../../helper/ticketHelper.js";
+import ticket from "../commands/ticket.js";
 
 export default {
     id: "ticket-close",
@@ -22,6 +23,11 @@ export default {
                 TicketId: uuid
             }
         })
+
+        const permission = !(await hasTicketPermission("confirm-user-close", interaction.member as GuildMember, data.TicketId, client) || await hasTicketPermission("all", interaction.member as GuildMember, data.TicketId, client))
+        if (permission) {
+            return ticketErrorMessage("No Permissions", interaction, client)
+        }
 
         if (!data) {
             return ticketErrorMessage("No Ticket found", interaction, client)

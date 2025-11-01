@@ -8,7 +8,7 @@ import {handleCloseAction, hasTicketPermission, ticketErrorMessage} from "../../
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {
-    id: "ticket-infos",
+    id: "ticket-close-request-cancel",
 
     /**
      *

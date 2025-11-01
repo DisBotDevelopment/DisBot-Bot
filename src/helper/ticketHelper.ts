@@ -575,8 +575,14 @@ export async function ticketHelper(
 
 export async function ticketErrorMessage(message: string, interaction: ChatInputCommandInteraction | ButtonInteraction | ModalSubmitInteraction | AnySelectMenuInteraction, client: ExtendedClient) {
     return await interaction.reply({
-        flags: MessageFlags.Ephemeral,
-        content: `## ${await convertToEmojiToPng("error")} Your ticket action failed with: ${message}`,
+        flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
+        components: [
+            new ContainerBuilder()
+                .addTextDisplayComponents(
+                    new TextDisplayBuilder()
+                        .setContent(`## ${await convertToEmojiToPng("error")} Your ticket action failed with: ${message}`)
+                )
+        ]
     })
 }
 
@@ -957,11 +963,6 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
 
         }
     }
-    if (!actions.includes("not_thread_close")) {
-        if (data.ChannelType == ChannelType.PrivateThread) {
-            await (channel as ThreadChannel).setArchived(true, "Moderator Action from Ticket with Id " + ticketId)
-        }
-    }
     if (data.OldTicketCategoryId) {
         actionCounter += 1
 
@@ -1010,6 +1011,11 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
                 await interaction.editReply({
                     content: `## ${await convertToEmojiToPng("check")} Exported Ticket-Transcript ${message.url}`,
                 })
+        }
+    }
+    if (!actions.includes("not_thread_close")) {
+        if (data.ChannelType == ChannelType.PrivateThread) {
+            await (channel as ThreadChannel).setArchived(true, "Moderator Action from Ticket with Id " + ticketId)
         }
     }
 
@@ -1650,10 +1656,10 @@ export async function hasTicketPermission(permission: string, user: GuildMember,
 
     for (const perms of data.TicketSetup.TicketPermissions) {
         if (guildMember.roles.cache.has(perms.DiscordRoleId)) {
-            return !perms.TicketPermissions.includes(permission);
+            return perms.TicketPermissions.includes(permission);
         }
         if (perms.DiscordUserId == guildMember.id) {
-            return !perms.TicketPermissions.includes(permission);
+            return perms.TicketPermissions.includes(permission);
         }
     }
     return false

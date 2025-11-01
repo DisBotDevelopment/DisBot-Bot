@@ -52,8 +52,10 @@ export default {
             })
         }
 
-        if (!data?.TicketId) {
-            await ticketActionsHelper(client, data.TicketId, interaction)
-        }
+        await interaction.deferReply({
+            flags: MessageFlags.Ephemeral,
+        })
+        await ticketActionsHelper(client, data.TicketId, interaction)
+
     }
 };
