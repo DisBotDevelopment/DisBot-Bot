@@ -52,17 +52,7 @@ export default {
             })
 
             if (!message) {
-                message = {
-                    GuildId: interaction.guild.id,
-                    Name: "no-template",
-                    IsComponentsV2Message: false,
-                    ComponentJSON: null,
-                    OtherEmbeds: [],
-                    // TODO: Add JSON
-                    EmbedJSON: JSON.stringify({}),
-                    Content: null,
-                    Id: 1
-                }
+                return
             }
             const list = data.Levels.slice(currentIndex, currentIndex + 5);
 
