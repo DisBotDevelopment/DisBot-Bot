@@ -368,9 +368,9 @@ exports.Prisma.GuildUserModerationScalarFieldEnum = {
   DmMessage: 'DmMessage',
   Type: 'Type',
   Notes: 'Notes',
+  LinkedCaseId: 'LinkedCaseId',
   CreatedAt: 'CreatedAt',
-  GuildId: 'GuildId',
-  LinkedCaseId: 'LinkedCaseId'
+  GuildId: 'GuildId'
 };
 
 exports.Prisma.GuildDisBotAutoModerationScalarFieldEnum = {
@@ -753,7 +753,6 @@ exports.Prisma.TicketSetupsScalarFieldEnum = {
   TicketStatusMessageId: 'TicketStatusMessageId',
   TicketStatusChannelId: 'TicketStatusChannelId',
   AutoCloseAction: 'AutoCloseAction',
-  TicketSettings: 'TicketSettings',
   OldTicketCategoryId: 'OldTicketCategoryId',
   RequiredRoles: 'RequiredRoles',
   SlashCommandId: 'SlashCommandId',
@@ -761,7 +760,8 @@ exports.Prisma.TicketSetupsScalarFieldEnum = {
   SlashCommandDescription: 'SlashCommandDescription',
   TextCommandName: 'TextCommandName',
   SendTranscriptToUser: 'SendTranscriptToUser',
-  GuildId: 'GuildId'
+  GuildId: 'GuildId',
+  TicketSettings: 'TicketSettings'
 };
 
 exports.Prisma.TicketModalDataScalarFieldEnum = {
@@ -875,7 +875,6 @@ exports.Prisma.GuildYoutubeNotificationsScalarFieldEnum = {
 exports.Prisma.LevelSettingsScalarFieldEnum = {
   Id: 'Id',
   LevelUpChannelId: 'LevelUpChannelId',
-  LevelUpMessageType: 'LevelUpMessageType',
   LeaderboardMessageTemplateId: 'LeaderboardMessageTemplateId',
   LeaderboardDisplayAmount: 'LeaderboardDisplayAmount',
   RequiredXPForFirstLevel: 'RequiredXPForFirstLevel',
@@ -893,22 +892,23 @@ exports.Prisma.LevelSettingsScalarFieldEnum = {
   MessageXPCooldown: 'MessageXPCooldown',
   MessageXPType: 'MessageXPType',
   RequiredXPFormular: 'RequiredXPFormular',
+  LevelUpMessageType: 'LevelUpMessageType',
   LevelUserInfoMessageTemplate: 'LevelUserInfoMessageTemplate',
-  XPDropsMessageTemplate: 'XPDropsMessageTemplate',
   XPStreaksMessageType: 'XPStreaksMessageType',
+  XPStreaksMessageChannelId: 'XPStreaksMessageChannelId',
   XPStreaksIncreaseType: 'XPStreaksIncreaseType',
-  XPStreaksMessageChannelId: 'XPStreaksMessageChannelId'
+  XPDropsMessageTemplate: 'XPDropsMessageTemplate'
 };
 
 exports.Prisma.XPDropsScalarFieldEnum = {
   Id: 'Id',
-  UUID: 'UUID',
   GuildId: 'GuildId',
   XPRange: 'XPRange',
   TimeToRespawn: 'TimeToRespawn',
   ChannelIds: 'ChannelIds',
   ClaimAmount: 'ClaimAmount',
   ExpireTime: 'ExpireTime',
+  UUID: 'UUID',
   LastSpawned: 'LastSpawned',
   MessageIdsToDelete: 'MessageIdsToDelete'
 };
@@ -937,14 +937,14 @@ exports.Prisma.LevelRolesScalarFieldEnum = {
 exports.Prisma.LevelsScalarFieldEnum = {
   Id: 'Id',
   XP: 'XP',
-  RequiredXp: 'RequiredXp',
   Level: 'Level',
   UserId: 'UserId',
   GuildId: 'GuildId',
+  UUID: 'UUID',
   ClaimedXPDrops: 'ClaimedXPDrops',
   CurrentStreakDay: 'CurrentStreakDay',
-  LastXPStreakUpdate: 'LastXPStreakUpdate',
-  UUID: 'UUID'
+  RequiredXp: 'RequiredXp',
+  LastXPStreakUpdate: 'LastXPStreakUpdate'
 };
 
 exports.Prisma.UsersScalarFieldEnum = {

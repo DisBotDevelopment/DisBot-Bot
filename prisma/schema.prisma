@@ -40,7 +40,7 @@ model Guilds {
   MessageTemplates            MessageTemplates[]
   ModerationScout             ModerationScout?
   Polls                       Polls[]
-  TempVoices                  TempVoice[]
+  TempVoices                  TempVoice?
   TicketSetups                TicketSetups[]
 }
 
@@ -325,10 +325,10 @@ model GuildUserModeration {
   DmMessage            String?
   Type                 String?
   Notes                String[]
+  LinkedCaseId         String?
   CreatedAt            DateTime?
   GuildId              String
   Guilds               Guilds                @relation(fields: [GuildId], references: [GuildId])
-  LinkedCaseId         String?
   ModerationScoutCases ModerationScoutCases? @relation(fields: [LinkedCaseId], references: [UUID])
 }
 
@@ -492,13 +492,13 @@ model Giveaways {
 
 model TempVoice {
   Id                          Int               @id @default(autoincrement())
-  TempVoiceConfigs            TempVoiceConfig[]
-  TempVoicePresets            TempVoicePreset[]
   UserInviteMessageTemplateId String?
   ModeratorUserIds            String[]
   TempVoiceLogChannelId       String?
   GuildId                     String            @unique
-  Guilds                      Guilds            @relation(fields: [GuildId], references: [GuildId])
+  Guilds                      Guilds            @relation(fields: [GuildId], references: [GuildId], onDelete: NoAction, onUpdate: NoAction, map: "TempVoice_Guilds_fkey")
+  TempVoiceConfigs            TempVoiceConfig[]
+  TempVoicePresets            TempVoicePreset[]
 }
 
 model TempVoiceConfig {
@@ -509,29 +509,29 @@ model TempVoiceConfig {
   ManageMessageTemplateId String?
   IsManageEnalbed         Boolean             @default(true)
   TempVoicePresetId       String              @unique
-  TempVoicePreset         TempVoicePreset     @relation(fields: [TempVoicePresetId], references: [UUID])
-  TempVoiceChannels       TempVoiceChannels[]
   TempVoiceId             String
-  TempVoice               TempVoice           @relation(fields: [TempVoiceId], references: [GuildId])
+  TempVoiceChannels       TempVoiceChannels[]
+  TempVoicePreset         TempVoicePreset     @relation(fields: [TempVoicePresetId], references: [UUID], onDelete: NoAction, onUpdate: NoAction, map: "TempVoiceConfig_Preset_fkey")
+  TempVoice               TempVoice           @relation(fields: [TempVoiceId], references: [GuildId], onDelete: NoAction, onUpdate: NoAction, map: "TempVoiceConfig_TempVoice_fkey")
 }
 
 model TempVoicePreset {
-  Id                             Int                                    @id @default(autoincrement())
-  UUID                           String                                 @unique
+  Id                             Int                                   @id @default(autoincrement())
+  UUID                           String                                @unique
   ChannelName                    String?
   ChannelLimit                   Int?
   ChannelRegion                  String?
   ChannelBitRate                 String?
-  UserInviteType                 String?                                @default("ping")
-  SendLogsInTempChannel          Boolean                                @default(true)
+  UserInviteType                 String?                               @default("ping")
+  SendLogsInTempChannel          Boolean?                              @default(true)
   BlacklistRoleId                String?
   ManageComponents               String[]
   OwnerAllowedDiscordPermissions String[]
   OwnerDeniedDiscordPermissions  String[]
-  RolePermissions                TempVoicePresetDiscordRolePermission[]
-  TempVoiceConfigs               TempVoiceConfig[]
   TempVoiceId                    String
-  TempVoice                      TempVoice                              @relation(fields: [TempVoiceId], references: [GuildId])
+  TempVoiceConfigs               TempVoiceConfig?
+  TempVoice                      TempVoice                             @relation(fields: [TempVoiceId], references: [GuildId], onDelete: NoAction, onUpdate: NoAction, map: "TempVoicePreset_TempVoice_fkey")
+  RolePermissions                TempVoicePresetDiscordRolePermission?
 }
 
 model TempVoicePresetDiscordRolePermission {
@@ -540,17 +540,17 @@ model TempVoicePresetDiscordRolePermission {
   AllowedDiscordPermissions String[]
   DeniedDiscordPermissions  String[]
   TempVoicePresetId         String          @unique
-  TempVoicePreset           TempVoicePreset @relation(fields: [TempVoicePresetId], references: [UUID])
+  TempVoicePreset           TempVoicePreset @relation(fields: [TempVoicePresetId], references: [UUID], onDelete: NoAction, onUpdate: NoAction, map: "Permission_Preset_fkey")
 }
 
 model TempVoiceChannels {
-  Id                      Int                      @id @default(autoincrement())
+  Id                      Int                     @id @default(autoincrement())
   GuildId                 String
-  ChannelId               String                   @unique
-  OwnerId                 String                   @unique
-  TempVoiceChannelMembers TempVoiceChannelMember[]
+  ChannelId               String                  @unique
+  OwnerId                 String                  @unique
   TempVoiceConfigId       String
-  TempVoiceConfig         TempVoiceConfig          @relation(fields: [TempVoiceConfigId], references: [UUID])
+  TempVoiceChannelMembers TempVoiceChannelMember?
+  TempVoiceConfig         TempVoiceConfig         @relation(fields: [TempVoiceConfigId], references: [UUID], onDelete: NoAction, onUpdate: NoAction, map: "Channel_Config_fkey")
 }
 
 model TempVoiceChannelMember {
@@ -558,7 +558,7 @@ model TempVoiceChannelMember {
   UserId            String
   ChannelId         String            @unique
   Permissions       String[]          @default(["kick", "name", "limit", "look", "unlook"])
-  TempVoiceChannels TempVoiceChannels @relation(fields: [ChannelId], references: [ChannelId])
+  TempVoiceChannels TempVoiceChannels @relation(fields: [ChannelId], references: [ChannelId], onDelete: NoAction, onUpdate: NoAction, map: "Member_Channel_fkey")
 }
 
 model GuildLeaveSetup {
@@ -767,7 +767,6 @@ model TicketSetups {
   TicketStatusMessageId            String?
   TicketStatusChannelId            String?
   AutoCloseAction                  String[]
-  TicketSettings                   String[]
   OldTicketCategoryId              String?
   RequiredRoles                    String[]
   SlashCommandId                   String?
@@ -776,6 +775,7 @@ model TicketSetups {
   TextCommandName                  String?
   SendTranscriptToUser             Boolean?
   GuildId                          String
+  TicketSettings                   String[]
   ModalOptions                     TicketModalData[]
   TicketPermissions                TicketPermissions[]
   Guilds                           Guilds              @relation(fields: [GuildId], references: [GuildId])
@@ -901,7 +901,6 @@ model GuildYoutubeNotifications {
 model LevelSettings {
   Id                           Int          @id @default(autoincrement())
   LevelUpChannelId             String?
-  LevelUpMessageType           String?
   LeaderboardMessageTemplateId String?
   LeaderboardDisplayAmount     Int?
   RequiredXPForFirstLevel      Int?
@@ -919,11 +918,12 @@ model LevelSettings {
   MessageXPCooldown            String?
   MessageXPType                String[]
   RequiredXPFormular           String?
+  LevelUpMessageType           String?
   LevelUserInfoMessageTemplate String?
-  XPDropsMessageTemplate       String?
   XPStreaksMessageType         String?
-  XPStreaksIncreaseType        String[]
   XPStreaksMessageChannelId    String?
+  XPStreaksIncreaseType        String[]
+  XPDropsMessageTemplate       String?
   LevelRoles                   LevelRoles[]
   Guilds                       Guilds       @relation(fields: [GuildId], references: [GuildId])
   Levels                       Levels[]
@@ -933,13 +933,13 @@ model LevelSettings {
 
 model XPDrops {
   Id                 Int           @id @default(autoincrement())
-  UUID               String        @unique
   GuildId            String
   XPRange            String?
   TimeToRespawn      String?
   ChannelIds         String[]
   ClaimAmount        Int?
   ExpireTime         String?
+  UUID               String        @unique
   LastSpawned        String?
   MessageIdsToDelete String[]
   LevelSettings      LevelSettings @relation(fields: [GuildId], references: [GuildId])
@@ -971,14 +971,14 @@ model LevelRoles {
 model Levels {
   Id                 Int           @id @default(autoincrement())
   XP                 String?
-  RequiredXp         String?
   Level              Int?
   UserId             String
   GuildId            String
+  UUID               String        @unique
   ClaimedXPDrops     String[]
   CurrentStreakDay   Int?
+  RequiredXp         String?
   LastXPStreakUpdate String?
-  UUID               String        @unique
   LevelSettings      LevelSettings @relation(fields: [GuildId], references: [GuildId])
   Users              Users         @relation(fields: [UserId], references: [UserId])
 }

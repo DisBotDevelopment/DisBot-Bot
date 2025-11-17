@@ -504,16 +504,6 @@ export class PrismaClient<
    */
   $queryRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<T>;
 
-  /**
-   * Executes a typed SQL query and returns a typed result
-   * @example
-   * ```
-   * import { myQuery } from '@prisma/client/sql'
-   * 
-   * const result = await prisma.$queryRawTyped(myQuery())
-   * ```
-   */
-  $queryRawTyped<T>(typedSql: runtime.TypedSql<unknown[], T>): Prisma.PrismaPromise<T[]>
 
   /**
    * Allows the running of a sequence of read/write operations that are guaranteed to either succeed or fail as a whole.
@@ -7734,10 +7724,6 @@ export namespace Prisma {
           args: [query: string, ...values: any[]],
           result: any
         }
-        $queryRawTyped: {
-          args: runtime.UnknownTypedSql,
-          result: Prisma.JsonObject
-        }
       }
     }
   }
@@ -7981,7 +7967,6 @@ export namespace Prisma {
     YoutubeNotifications: number
     MessageTemplates: number
     Polls: number
-    TempVoices: number
     TicketSetups: number
   }
 
@@ -7999,7 +7984,6 @@ export namespace Prisma {
     YoutubeNotifications?: boolean | GuildsCountOutputTypeCountYoutubeNotificationsArgs
     MessageTemplates?: boolean | GuildsCountOutputTypeCountMessageTemplatesArgs
     Polls?: boolean | GuildsCountOutputTypeCountPollsArgs
-    TempVoices?: boolean | GuildsCountOutputTypeCountTempVoicesArgs
     TicketSetups?: boolean | GuildsCountOutputTypeCountTicketSetupsArgs
   }
 
@@ -8103,13 +8087,6 @@ export namespace Prisma {
    */
   export type GuildsCountOutputTypeCountPollsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PollsWhereInput
-  }
-
-  /**
-   * GuildsCountOutputType without action
-   */
-  export type GuildsCountOutputTypeCountTempVoicesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TempVoiceWhereInput
   }
 
   /**
@@ -8397,77 +8374,6 @@ export namespace Prisma {
    */
   export type TempVoiceConfigCountOutputTypeCountTempVoiceChannelsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TempVoiceChannelsWhereInput
-  }
-
-
-  /**
-   * Count Type TempVoicePresetCountOutputType
-   */
-
-  export type TempVoicePresetCountOutputType = {
-    RolePermissions: number
-    TempVoiceConfigs: number
-  }
-
-  export type TempVoicePresetCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    RolePermissions?: boolean | TempVoicePresetCountOutputTypeCountRolePermissionsArgs
-    TempVoiceConfigs?: boolean | TempVoicePresetCountOutputTypeCountTempVoiceConfigsArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * TempVoicePresetCountOutputType without action
-   */
-  export type TempVoicePresetCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TempVoicePresetCountOutputType
-     */
-    select?: TempVoicePresetCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * TempVoicePresetCountOutputType without action
-   */
-  export type TempVoicePresetCountOutputTypeCountRolePermissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TempVoicePresetDiscordRolePermissionWhereInput
-  }
-
-  /**
-   * TempVoicePresetCountOutputType without action
-   */
-  export type TempVoicePresetCountOutputTypeCountTempVoiceConfigsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TempVoiceConfigWhereInput
-  }
-
-
-  /**
-   * Count Type TempVoiceChannelsCountOutputType
-   */
-
-  export type TempVoiceChannelsCountOutputType = {
-    TempVoiceChannelMembers: number
-  }
-
-  export type TempVoiceChannelsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    TempVoiceChannelMembers?: boolean | TempVoiceChannelsCountOutputTypeCountTempVoiceChannelMembersArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * TempVoiceChannelsCountOutputType without action
-   */
-  export type TempVoiceChannelsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TempVoiceChannelsCountOutputType
-     */
-    select?: TempVoiceChannelsCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * TempVoiceChannelsCountOutputType without action
-   */
-  export type TempVoiceChannelsCountOutputTypeCountTempVoiceChannelMembersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TempVoiceChannelMemberWhereInput
   }
 
 
@@ -9070,7 +8976,7 @@ export namespace Prisma {
       MessageTemplates: Prisma.$MessageTemplatesPayload<ExtArgs>[]
       ModerationScout: Prisma.$ModerationScoutPayload<ExtArgs> | null
       Polls: Prisma.$PollsPayload<ExtArgs>[]
-      TempVoices: Prisma.$TempVoicePayload<ExtArgs>[]
+      TempVoices: Prisma.$TempVoicePayload<ExtArgs> | null
       TicketSetups: Prisma.$TicketSetupsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -9498,7 +9404,7 @@ export namespace Prisma {
     MessageTemplates<T extends Guilds$MessageTemplatesArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$MessageTemplatesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessageTemplatesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ModerationScout<T extends Guilds$ModerationScoutArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$ModerationScoutArgs<ExtArgs>>): Prisma__ModerationScoutClient<$Result.GetResult<Prisma.$ModerationScoutPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     Polls<T extends Guilds$PollsArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$PollsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PollsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    TempVoices<T extends Guilds$TempVoicesArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$TempVoicesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TempVoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    TempVoices<T extends Guilds$TempVoicesArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$TempVoicesArgs<ExtArgs>>): Prisma__TempVoiceClient<$Result.GetResult<Prisma.$TempVoicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     TicketSetups<T extends Guilds$TicketSetupsArgs<ExtArgs> = {}>(args?: Subset<T, Guilds$TicketSetupsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TicketSetupsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -10496,11 +10402,6 @@ export namespace Prisma {
      */
     include?: TempVoiceInclude<ExtArgs> | null
     where?: TempVoiceWhereInput
-    orderBy?: TempVoiceOrderByWithRelationInput | TempVoiceOrderByWithRelationInput[]
-    cursor?: TempVoiceWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: TempVoiceScalarFieldEnum | TempVoiceScalarFieldEnum[]
   }
 
   /**
@@ -36606,9 +36507,9 @@ export namespace Prisma {
     ModeratorId: string | null
     DmMessage: string | null
     Type: string | null
+    LinkedCaseId: string | null
     CreatedAt: Date | null
     GuildId: string | null
-    LinkedCaseId: string | null
   }
 
   export type GuildUserModerationMaxAggregateOutputType = {
@@ -36619,9 +36520,9 @@ export namespace Prisma {
     ModeratorId: string | null
     DmMessage: string | null
     Type: string | null
+    LinkedCaseId: string | null
     CreatedAt: Date | null
     GuildId: string | null
-    LinkedCaseId: string | null
   }
 
   export type GuildUserModerationCountAggregateOutputType = {
@@ -36634,9 +36535,9 @@ export namespace Prisma {
     DmMessage: number
     Type: number
     Notes: number
+    LinkedCaseId: number
     CreatedAt: number
     GuildId: number
-    LinkedCaseId: number
     _all: number
   }
 
@@ -36657,9 +36558,9 @@ export namespace Prisma {
     ModeratorId?: true
     DmMessage?: true
     Type?: true
+    LinkedCaseId?: true
     CreatedAt?: true
     GuildId?: true
-    LinkedCaseId?: true
   }
 
   export type GuildUserModerationMaxAggregateInputType = {
@@ -36670,9 +36571,9 @@ export namespace Prisma {
     ModeratorId?: true
     DmMessage?: true
     Type?: true
+    LinkedCaseId?: true
     CreatedAt?: true
     GuildId?: true
-    LinkedCaseId?: true
   }
 
   export type GuildUserModerationCountAggregateInputType = {
@@ -36685,9 +36586,9 @@ export namespace Prisma {
     DmMessage?: true
     Type?: true
     Notes?: true
+    LinkedCaseId?: true
     CreatedAt?: true
     GuildId?: true
-    LinkedCaseId?: true
     _all?: true
   }
 
@@ -36787,9 +36688,9 @@ export namespace Prisma {
     DmMessage: string | null
     Type: string | null
     Notes: string[]
+    LinkedCaseId: string | null
     CreatedAt: Date | null
     GuildId: string
-    LinkedCaseId: string | null
     _count: GuildUserModerationCountAggregateOutputType | null
     _avg: GuildUserModerationAvgAggregateOutputType | null
     _sum: GuildUserModerationSumAggregateOutputType | null
@@ -36821,9 +36722,9 @@ export namespace Prisma {
     DmMessage?: boolean
     Type?: boolean
     Notes?: boolean
+    LinkedCaseId?: boolean
     CreatedAt?: boolean
     GuildId?: boolean
-    LinkedCaseId?: boolean
     Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
     ModerationScoutCases?: boolean | GuildUserModeration$ModerationScoutCasesArgs<ExtArgs>
   }, ExtArgs["result"]["guildUserModeration"]>
@@ -36838,9 +36739,9 @@ export namespace Prisma {
     DmMessage?: boolean
     Type?: boolean
     Notes?: boolean
+    LinkedCaseId?: boolean
     CreatedAt?: boolean
     GuildId?: boolean
-    LinkedCaseId?: boolean
     Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
     ModerationScoutCases?: boolean | GuildUserModeration$ModerationScoutCasesArgs<ExtArgs>
   }, ExtArgs["result"]["guildUserModeration"]>
@@ -36855,9 +36756,9 @@ export namespace Prisma {
     DmMessage?: boolean
     Type?: boolean
     Notes?: boolean
+    LinkedCaseId?: boolean
     CreatedAt?: boolean
     GuildId?: boolean
-    LinkedCaseId?: boolean
     Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
     ModerationScoutCases?: boolean | GuildUserModeration$ModerationScoutCasesArgs<ExtArgs>
   }, ExtArgs["result"]["guildUserModeration"]>
@@ -36872,12 +36773,12 @@ export namespace Prisma {
     DmMessage?: boolean
     Type?: boolean
     Notes?: boolean
+    LinkedCaseId?: boolean
     CreatedAt?: boolean
     GuildId?: boolean
-    LinkedCaseId?: boolean
   }
 
-  export type GuildUserModerationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Id" | "UUID" | "Duration" | "UserIds" | "Reason" | "ModeratorId" | "DmMessage" | "Type" | "Notes" | "CreatedAt" | "GuildId" | "LinkedCaseId", ExtArgs["result"]["guildUserModeration"]>
+  export type GuildUserModerationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Id" | "UUID" | "Duration" | "UserIds" | "Reason" | "ModeratorId" | "DmMessage" | "Type" | "Notes" | "LinkedCaseId" | "CreatedAt" | "GuildId", ExtArgs["result"]["guildUserModeration"]>
   export type GuildUserModerationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
     ModerationScoutCases?: boolean | GuildUserModeration$ModerationScoutCasesArgs<ExtArgs>
@@ -36907,9 +36808,9 @@ export namespace Prisma {
       DmMessage: string | null
       Type: string | null
       Notes: string[]
+      LinkedCaseId: string | null
       CreatedAt: Date | null
       GuildId: string
-      LinkedCaseId: string | null
     }, ExtArgs["result"]["guildUserModeration"]>
     composites: {}
   }
@@ -37344,9 +37245,9 @@ export namespace Prisma {
     readonly DmMessage: FieldRef<"GuildUserModeration", 'String'>
     readonly Type: FieldRef<"GuildUserModeration", 'String'>
     readonly Notes: FieldRef<"GuildUserModeration", 'String[]'>
+    readonly LinkedCaseId: FieldRef<"GuildUserModeration", 'String'>
     readonly CreatedAt: FieldRef<"GuildUserModeration", 'DateTime'>
     readonly GuildId: FieldRef<"GuildUserModeration", 'String'>
-    readonly LinkedCaseId: FieldRef<"GuildUserModeration", 'String'>
   }
     
 
@@ -51676,9 +51577,9 @@ export namespace Prisma {
     ModeratorUserIds?: boolean
     TempVoiceLogChannelId?: boolean
     GuildId?: boolean
+    Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
     TempVoiceConfigs?: boolean | TempVoice$TempVoiceConfigsArgs<ExtArgs>
     TempVoicePresets?: boolean | TempVoice$TempVoicePresetsArgs<ExtArgs>
-    Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
     _count?: boolean | TempVoiceCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["tempVoice"]>
 
@@ -51710,9 +51611,9 @@ export namespace Prisma {
 
   export type TempVoiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Id" | "UserInviteMessageTemplateId" | "ModeratorUserIds" | "TempVoiceLogChannelId" | "GuildId", ExtArgs["result"]["tempVoice"]>
   export type TempVoiceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
     TempVoiceConfigs?: boolean | TempVoice$TempVoiceConfigsArgs<ExtArgs>
     TempVoicePresets?: boolean | TempVoice$TempVoicePresetsArgs<ExtArgs>
-    Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
     _count?: boolean | TempVoiceCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type TempVoiceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -51725,9 +51626,9 @@ export namespace Prisma {
   export type $TempVoicePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "TempVoice"
     objects: {
+      Guilds: Prisma.$GuildsPayload<ExtArgs>
       TempVoiceConfigs: Prisma.$TempVoiceConfigPayload<ExtArgs>[]
       TempVoicePresets: Prisma.$TempVoicePresetPayload<ExtArgs>[]
-      Guilds: Prisma.$GuildsPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       Id: number
@@ -52129,9 +52030,9 @@ export namespace Prisma {
    */
   export interface Prisma__TempVoiceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    Guilds<T extends GuildsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GuildsDefaultArgs<ExtArgs>>): Prisma__GuildsClient<$Result.GetResult<Prisma.$GuildsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     TempVoiceConfigs<T extends TempVoice$TempVoiceConfigsArgs<ExtArgs> = {}>(args?: Subset<T, TempVoice$TempVoiceConfigsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TempVoiceConfigPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     TempVoicePresets<T extends TempVoice$TempVoicePresetsArgs<ExtArgs> = {}>(args?: Subset<T, TempVoice$TempVoicePresetsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TempVoicePresetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Guilds<T extends GuildsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GuildsDefaultArgs<ExtArgs>>): Prisma__GuildsClient<$Result.GetResult<Prisma.$GuildsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -52850,8 +52751,8 @@ export namespace Prisma {
     IsManageEnalbed?: boolean
     TempVoicePresetId?: boolean
     TempVoiceId?: boolean
-    TempVoicePreset?: boolean | TempVoicePresetDefaultArgs<ExtArgs>
     TempVoiceChannels?: boolean | TempVoiceConfig$TempVoiceChannelsArgs<ExtArgs>
+    TempVoicePreset?: boolean | TempVoicePresetDefaultArgs<ExtArgs>
     TempVoice?: boolean | TempVoiceDefaultArgs<ExtArgs>
     _count?: boolean | TempVoiceConfigCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["tempVoiceConfig"]>
@@ -52895,8 +52796,8 @@ export namespace Prisma {
 
   export type TempVoiceConfigOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Id" | "UUID" | "CreatorChannel" | "ChannelCategory" | "ManageMessageTemplateId" | "IsManageEnalbed" | "TempVoicePresetId" | "TempVoiceId", ExtArgs["result"]["tempVoiceConfig"]>
   export type TempVoiceConfigInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    TempVoicePreset?: boolean | TempVoicePresetDefaultArgs<ExtArgs>
     TempVoiceChannels?: boolean | TempVoiceConfig$TempVoiceChannelsArgs<ExtArgs>
+    TempVoicePreset?: boolean | TempVoicePresetDefaultArgs<ExtArgs>
     TempVoice?: boolean | TempVoiceDefaultArgs<ExtArgs>
     _count?: boolean | TempVoiceConfigCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -52912,8 +52813,8 @@ export namespace Prisma {
   export type $TempVoiceConfigPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "TempVoiceConfig"
     objects: {
-      TempVoicePreset: Prisma.$TempVoicePresetPayload<ExtArgs>
       TempVoiceChannels: Prisma.$TempVoiceChannelsPayload<ExtArgs>[]
+      TempVoicePreset: Prisma.$TempVoicePresetPayload<ExtArgs>
       TempVoice: Prisma.$TempVoicePayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -53319,8 +53220,8 @@ export namespace Prisma {
    */
   export interface Prisma__TempVoiceConfigClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    TempVoicePreset<T extends TempVoicePresetDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TempVoicePresetDefaultArgs<ExtArgs>>): Prisma__TempVoicePresetClient<$Result.GetResult<Prisma.$TempVoicePresetPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     TempVoiceChannels<T extends TempVoiceConfig$TempVoiceChannelsArgs<ExtArgs> = {}>(args?: Subset<T, TempVoiceConfig$TempVoiceChannelsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TempVoiceChannelsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    TempVoicePreset<T extends TempVoicePresetDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TempVoicePresetDefaultArgs<ExtArgs>>): Prisma__TempVoicePresetClient<$Result.GetResult<Prisma.$TempVoicePresetPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     TempVoice<T extends TempVoiceDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TempVoiceDefaultArgs<ExtArgs>>): Prisma__TempVoiceClient<$Result.GetResult<Prisma.$TempVoicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -54010,7 +53911,7 @@ export namespace Prisma {
     ChannelRegion: string | null
     ChannelBitRate: string | null
     UserInviteType: string | null
-    SendLogsInTempChannel: boolean
+    SendLogsInTempChannel: boolean | null
     BlacklistRoleId: string | null
     ManageComponents: string[]
     OwnerAllowedDiscordPermissions: string[]
@@ -54051,10 +53952,9 @@ export namespace Prisma {
     OwnerAllowedDiscordPermissions?: boolean
     OwnerDeniedDiscordPermissions?: boolean
     TempVoiceId?: boolean
-    RolePermissions?: boolean | TempVoicePreset$RolePermissionsArgs<ExtArgs>
     TempVoiceConfigs?: boolean | TempVoicePreset$TempVoiceConfigsArgs<ExtArgs>
     TempVoice?: boolean | TempVoiceDefaultArgs<ExtArgs>
-    _count?: boolean | TempVoicePresetCountOutputTypeDefaultArgs<ExtArgs>
+    RolePermissions?: boolean | TempVoicePreset$RolePermissionsArgs<ExtArgs>
   }, ExtArgs["result"]["tempVoicePreset"]>
 
   export type TempVoicePresetSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -54109,10 +54009,9 @@ export namespace Prisma {
 
   export type TempVoicePresetOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Id" | "UUID" | "ChannelName" | "ChannelLimit" | "ChannelRegion" | "ChannelBitRate" | "UserInviteType" | "SendLogsInTempChannel" | "BlacklistRoleId" | "ManageComponents" | "OwnerAllowedDiscordPermissions" | "OwnerDeniedDiscordPermissions" | "TempVoiceId", ExtArgs["result"]["tempVoicePreset"]>
   export type TempVoicePresetInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    RolePermissions?: boolean | TempVoicePreset$RolePermissionsArgs<ExtArgs>
     TempVoiceConfigs?: boolean | TempVoicePreset$TempVoiceConfigsArgs<ExtArgs>
     TempVoice?: boolean | TempVoiceDefaultArgs<ExtArgs>
-    _count?: boolean | TempVoicePresetCountOutputTypeDefaultArgs<ExtArgs>
+    RolePermissions?: boolean | TempVoicePreset$RolePermissionsArgs<ExtArgs>
   }
   export type TempVoicePresetIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     TempVoice?: boolean | TempVoiceDefaultArgs<ExtArgs>
@@ -54124,9 +54023,9 @@ export namespace Prisma {
   export type $TempVoicePresetPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "TempVoicePreset"
     objects: {
-      RolePermissions: Prisma.$TempVoicePresetDiscordRolePermissionPayload<ExtArgs>[]
-      TempVoiceConfigs: Prisma.$TempVoiceConfigPayload<ExtArgs>[]
+      TempVoiceConfigs: Prisma.$TempVoiceConfigPayload<ExtArgs> | null
       TempVoice: Prisma.$TempVoicePayload<ExtArgs>
+      RolePermissions: Prisma.$TempVoicePresetDiscordRolePermissionPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       Id: number
@@ -54136,7 +54035,7 @@ export namespace Prisma {
       ChannelRegion: string | null
       ChannelBitRate: string | null
       UserInviteType: string | null
-      SendLogsInTempChannel: boolean
+      SendLogsInTempChannel: boolean | null
       BlacklistRoleId: string | null
       ManageComponents: string[]
       OwnerAllowedDiscordPermissions: string[]
@@ -54536,9 +54435,9 @@ export namespace Prisma {
    */
   export interface Prisma__TempVoicePresetClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    RolePermissions<T extends TempVoicePreset$RolePermissionsArgs<ExtArgs> = {}>(args?: Subset<T, TempVoicePreset$RolePermissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TempVoicePresetDiscordRolePermissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    TempVoiceConfigs<T extends TempVoicePreset$TempVoiceConfigsArgs<ExtArgs> = {}>(args?: Subset<T, TempVoicePreset$TempVoiceConfigsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TempVoiceConfigPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    TempVoiceConfigs<T extends TempVoicePreset$TempVoiceConfigsArgs<ExtArgs> = {}>(args?: Subset<T, TempVoicePreset$TempVoiceConfigsArgs<ExtArgs>>): Prisma__TempVoiceConfigClient<$Result.GetResult<Prisma.$TempVoiceConfigPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     TempVoice<T extends TempVoiceDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TempVoiceDefaultArgs<ExtArgs>>): Prisma__TempVoiceClient<$Result.GetResult<Prisma.$TempVoicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    RolePermissions<T extends TempVoicePreset$RolePermissionsArgs<ExtArgs> = {}>(args?: Subset<T, TempVoicePreset$RolePermissionsArgs<ExtArgs>>): Prisma__TempVoicePresetDiscordRolePermissionClient<$Result.GetResult<Prisma.$TempVoicePresetDiscordRolePermissionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -54977,30 +54876,6 @@ export namespace Prisma {
   }
 
   /**
-   * TempVoicePreset.RolePermissions
-   */
-  export type TempVoicePreset$RolePermissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TempVoicePresetDiscordRolePermission
-     */
-    select?: TempVoicePresetDiscordRolePermissionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TempVoicePresetDiscordRolePermission
-     */
-    omit?: TempVoicePresetDiscordRolePermissionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TempVoicePresetDiscordRolePermissionInclude<ExtArgs> | null
-    where?: TempVoicePresetDiscordRolePermissionWhereInput
-    orderBy?: TempVoicePresetDiscordRolePermissionOrderByWithRelationInput | TempVoicePresetDiscordRolePermissionOrderByWithRelationInput[]
-    cursor?: TempVoicePresetDiscordRolePermissionWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: TempVoicePresetDiscordRolePermissionScalarFieldEnum | TempVoicePresetDiscordRolePermissionScalarFieldEnum[]
-  }
-
-  /**
    * TempVoicePreset.TempVoiceConfigs
    */
   export type TempVoicePreset$TempVoiceConfigsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -55017,11 +54892,25 @@ export namespace Prisma {
      */
     include?: TempVoiceConfigInclude<ExtArgs> | null
     where?: TempVoiceConfigWhereInput
-    orderBy?: TempVoiceConfigOrderByWithRelationInput | TempVoiceConfigOrderByWithRelationInput[]
-    cursor?: TempVoiceConfigWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: TempVoiceConfigScalarFieldEnum | TempVoiceConfigScalarFieldEnum[]
+  }
+
+  /**
+   * TempVoicePreset.RolePermissions
+   */
+  export type TempVoicePreset$RolePermissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TempVoicePresetDiscordRolePermission
+     */
+    select?: TempVoicePresetDiscordRolePermissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TempVoicePresetDiscordRolePermission
+     */
+    omit?: TempVoicePresetDiscordRolePermissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TempVoicePresetDiscordRolePermissionInclude<ExtArgs> | null
+    where?: TempVoicePresetDiscordRolePermissionWhereInput
   }
 
   /**
@@ -56327,7 +56216,6 @@ export namespace Prisma {
     TempVoiceConfigId?: boolean
     TempVoiceChannelMembers?: boolean | TempVoiceChannels$TempVoiceChannelMembersArgs<ExtArgs>
     TempVoiceConfig?: boolean | TempVoiceConfigDefaultArgs<ExtArgs>
-    _count?: boolean | TempVoiceChannelsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["tempVoiceChannels"]>
 
   export type TempVoiceChannelsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -56360,7 +56248,6 @@ export namespace Prisma {
   export type TempVoiceChannelsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     TempVoiceChannelMembers?: boolean | TempVoiceChannels$TempVoiceChannelMembersArgs<ExtArgs>
     TempVoiceConfig?: boolean | TempVoiceConfigDefaultArgs<ExtArgs>
-    _count?: boolean | TempVoiceChannelsCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type TempVoiceChannelsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     TempVoiceConfig?: boolean | TempVoiceConfigDefaultArgs<ExtArgs>
@@ -56372,7 +56259,7 @@ export namespace Prisma {
   export type $TempVoiceChannelsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "TempVoiceChannels"
     objects: {
-      TempVoiceChannelMembers: Prisma.$TempVoiceChannelMemberPayload<ExtArgs>[]
+      TempVoiceChannelMembers: Prisma.$TempVoiceChannelMemberPayload<ExtArgs> | null
       TempVoiceConfig: Prisma.$TempVoiceConfigPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -56775,7 +56662,7 @@ export namespace Prisma {
    */
   export interface Prisma__TempVoiceChannelsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    TempVoiceChannelMembers<T extends TempVoiceChannels$TempVoiceChannelMembersArgs<ExtArgs> = {}>(args?: Subset<T, TempVoiceChannels$TempVoiceChannelMembersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TempVoiceChannelMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    TempVoiceChannelMembers<T extends TempVoiceChannels$TempVoiceChannelMembersArgs<ExtArgs> = {}>(args?: Subset<T, TempVoiceChannels$TempVoiceChannelMembersArgs<ExtArgs>>): Prisma__TempVoiceChannelMemberClient<$Result.GetResult<Prisma.$TempVoiceChannelMemberPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     TempVoiceConfig<T extends TempVoiceConfigDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TempVoiceConfigDefaultArgs<ExtArgs>>): Prisma__TempVoiceConfigClient<$Result.GetResult<Prisma.$TempVoiceConfigPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -57223,11 +57110,6 @@ export namespace Prisma {
      */
     include?: TempVoiceChannelMemberInclude<ExtArgs> | null
     where?: TempVoiceChannelMemberWhereInput
-    orderBy?: TempVoiceChannelMemberOrderByWithRelationInput | TempVoiceChannelMemberOrderByWithRelationInput[]
-    cursor?: TempVoiceChannelMemberWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: TempVoiceChannelMemberScalarFieldEnum | TempVoiceChannelMemberScalarFieldEnum[]
   }
 
   /**
@@ -74500,7 +74382,6 @@ export namespace Prisma {
     TicketStatusMessageId: number
     TicketStatusChannelId: number
     AutoCloseAction: number
-    TicketSettings: number
     OldTicketCategoryId: number
     RequiredRoles: number
     SlashCommandId: number
@@ -74509,6 +74390,7 @@ export namespace Prisma {
     TextCommandName: number
     SendTranscriptToUser: number
     GuildId: number
+    TicketSettings: number
     _all: number
   }
 
@@ -74626,7 +74508,6 @@ export namespace Prisma {
     TicketStatusMessageId?: true
     TicketStatusChannelId?: true
     AutoCloseAction?: true
-    TicketSettings?: true
     OldTicketCategoryId?: true
     RequiredRoles?: true
     SlashCommandId?: true
@@ -74635,6 +74516,7 @@ export namespace Prisma {
     TextCommandName?: true
     SendTranscriptToUser?: true
     GuildId?: true
+    TicketSettings?: true
     _all?: true
   }
 
@@ -74751,7 +74633,6 @@ export namespace Prisma {
     TicketStatusMessageId: string | null
     TicketStatusChannelId: string | null
     AutoCloseAction: string[]
-    TicketSettings: string[]
     OldTicketCategoryId: string | null
     RequiredRoles: string[]
     SlashCommandId: string | null
@@ -74760,6 +74641,7 @@ export namespace Prisma {
     TextCommandName: string | null
     SendTranscriptToUser: boolean | null
     GuildId: string
+    TicketSettings: string[]
     _count: TicketSetupsCountAggregateOutputType | null
     _avg: TicketSetupsAvgAggregateOutputType | null
     _sum: TicketSetupsSumAggregateOutputType | null
@@ -74808,7 +74690,6 @@ export namespace Prisma {
     TicketStatusMessageId?: boolean
     TicketStatusChannelId?: boolean
     AutoCloseAction?: boolean
-    TicketSettings?: boolean
     OldTicketCategoryId?: boolean
     RequiredRoles?: boolean
     SlashCommandId?: boolean
@@ -74817,6 +74698,7 @@ export namespace Prisma {
     TextCommandName?: boolean
     SendTranscriptToUser?: boolean
     GuildId?: boolean
+    TicketSettings?: boolean
     ModalOptions?: boolean | TicketSetups$ModalOptionsArgs<ExtArgs>
     TicketPermissions?: boolean | TicketSetups$TicketPermissionsArgs<ExtArgs>
     Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
@@ -74851,7 +74733,6 @@ export namespace Prisma {
     TicketStatusMessageId?: boolean
     TicketStatusChannelId?: boolean
     AutoCloseAction?: boolean
-    TicketSettings?: boolean
     OldTicketCategoryId?: boolean
     RequiredRoles?: boolean
     SlashCommandId?: boolean
@@ -74860,6 +74741,7 @@ export namespace Prisma {
     TextCommandName?: boolean
     SendTranscriptToUser?: boolean
     GuildId?: boolean
+    TicketSettings?: boolean
     Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ticketSetups"]>
 
@@ -74890,7 +74772,6 @@ export namespace Prisma {
     TicketStatusMessageId?: boolean
     TicketStatusChannelId?: boolean
     AutoCloseAction?: boolean
-    TicketSettings?: boolean
     OldTicketCategoryId?: boolean
     RequiredRoles?: boolean
     SlashCommandId?: boolean
@@ -74899,6 +74780,7 @@ export namespace Prisma {
     TextCommandName?: boolean
     SendTranscriptToUser?: boolean
     GuildId?: boolean
+    TicketSettings?: boolean
     Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ticketSetups"]>
 
@@ -74929,7 +74811,6 @@ export namespace Prisma {
     TicketStatusMessageId?: boolean
     TicketStatusChannelId?: boolean
     AutoCloseAction?: boolean
-    TicketSettings?: boolean
     OldTicketCategoryId?: boolean
     RequiredRoles?: boolean
     SlashCommandId?: boolean
@@ -74938,9 +74819,10 @@ export namespace Prisma {
     TextCommandName?: boolean
     SendTranscriptToUser?: boolean
     GuildId?: boolean
+    TicketSettings?: boolean
   }
 
-  export type TicketSetupsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Id" | "CategoryId" | "ChannelType" | "CustomId" | "TicketChannelName" | "EnableTicketsOnlyFromTime" | "MessageTemplateId" | "TicketBlacklistRoles" | "TranscriptChannelId" | "HasModal" | "ModalTitle" | "OnlyClaimMode" | "TicketLimit" | "UserDMWhenCloseMessageTemplateId" | "WithTicketFeedback" | "TicketFeedbackChannelId" | "TicketCreationCooldownPerUser" | "AutoCloseAfterInactivity" | "AutoCloseAfterTime" | "AutoAssignHandler" | "AutoReplyMessageTemplateId" | "TicketRateLimit" | "TicketStatusMessageTemplateId" | "TicketStatusMessageId" | "TicketStatusChannelId" | "AutoCloseAction" | "TicketSettings" | "OldTicketCategoryId" | "RequiredRoles" | "SlashCommandId" | "SlashCommandName" | "SlashCommandDescription" | "TextCommandName" | "SendTranscriptToUser" | "GuildId", ExtArgs["result"]["ticketSetups"]>
+  export type TicketSetupsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Id" | "CategoryId" | "ChannelType" | "CustomId" | "TicketChannelName" | "EnableTicketsOnlyFromTime" | "MessageTemplateId" | "TicketBlacklistRoles" | "TranscriptChannelId" | "HasModal" | "ModalTitle" | "OnlyClaimMode" | "TicketLimit" | "UserDMWhenCloseMessageTemplateId" | "WithTicketFeedback" | "TicketFeedbackChannelId" | "TicketCreationCooldownPerUser" | "AutoCloseAfterInactivity" | "AutoCloseAfterTime" | "AutoAssignHandler" | "AutoReplyMessageTemplateId" | "TicketRateLimit" | "TicketStatusMessageTemplateId" | "TicketStatusMessageId" | "TicketStatusChannelId" | "AutoCloseAction" | "OldTicketCategoryId" | "RequiredRoles" | "SlashCommandId" | "SlashCommandName" | "SlashCommandDescription" | "TextCommandName" | "SendTranscriptToUser" | "GuildId" | "TicketSettings", ExtArgs["result"]["ticketSetups"]>
   export type TicketSetupsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ModalOptions?: boolean | TicketSetups$ModalOptionsArgs<ExtArgs>
     TicketPermissions?: boolean | TicketSetups$TicketPermissionsArgs<ExtArgs>
@@ -74990,7 +74872,6 @@ export namespace Prisma {
       TicketStatusMessageId: string | null
       TicketStatusChannelId: string | null
       AutoCloseAction: string[]
-      TicketSettings: string[]
       OldTicketCategoryId: string | null
       RequiredRoles: string[]
       SlashCommandId: string | null
@@ -74999,6 +74880,7 @@ export namespace Prisma {
       TextCommandName: string | null
       SendTranscriptToUser: boolean | null
       GuildId: string
+      TicketSettings: string[]
     }, ExtArgs["result"]["ticketSetups"]>
     composites: {}
   }
@@ -75452,7 +75334,6 @@ export namespace Prisma {
     readonly TicketStatusMessageId: FieldRef<"TicketSetups", 'String'>
     readonly TicketStatusChannelId: FieldRef<"TicketSetups", 'String'>
     readonly AutoCloseAction: FieldRef<"TicketSetups", 'String[]'>
-    readonly TicketSettings: FieldRef<"TicketSetups", 'String[]'>
     readonly OldTicketCategoryId: FieldRef<"TicketSetups", 'String'>
     readonly RequiredRoles: FieldRef<"TicketSetups", 'String[]'>
     readonly SlashCommandId: FieldRef<"TicketSetups", 'String'>
@@ -75461,6 +75342,7 @@ export namespace Prisma {
     readonly TextCommandName: FieldRef<"TicketSetups", 'String'>
     readonly SendTranscriptToUser: FieldRef<"TicketSetups", 'Boolean'>
     readonly GuildId: FieldRef<"TicketSetups", 'String'>
+    readonly TicketSettings: FieldRef<"TicketSetups", 'String[]'>
   }
     
 
@@ -84317,7 +84199,6 @@ export namespace Prisma {
   export type LevelSettingsMinAggregateOutputType = {
     Id: number | null
     LevelUpChannelId: string | null
-    LevelUpMessageType: string | null
     LeaderboardMessageTemplateId: string | null
     LeaderboardDisplayAmount: number | null
     RequiredXPForFirstLevel: number | null
@@ -84331,16 +84212,16 @@ export namespace Prisma {
     IsVoiceXPEnabled: boolean | null
     MessageXPCooldown: string | null
     RequiredXPFormular: string | null
+    LevelUpMessageType: string | null
     LevelUserInfoMessageTemplate: string | null
-    XPDropsMessageTemplate: string | null
     XPStreaksMessageType: string | null
     XPStreaksMessageChannelId: string | null
+    XPDropsMessageTemplate: string | null
   }
 
   export type LevelSettingsMaxAggregateOutputType = {
     Id: number | null
     LevelUpChannelId: string | null
-    LevelUpMessageType: string | null
     LeaderboardMessageTemplateId: string | null
     LeaderboardDisplayAmount: number | null
     RequiredXPForFirstLevel: number | null
@@ -84354,16 +84235,16 @@ export namespace Prisma {
     IsVoiceXPEnabled: boolean | null
     MessageXPCooldown: string | null
     RequiredXPFormular: string | null
+    LevelUpMessageType: string | null
     LevelUserInfoMessageTemplate: string | null
-    XPDropsMessageTemplate: string | null
     XPStreaksMessageType: string | null
     XPStreaksMessageChannelId: string | null
+    XPDropsMessageTemplate: string | null
   }
 
   export type LevelSettingsCountAggregateOutputType = {
     Id: number
     LevelUpChannelId: number
-    LevelUpMessageType: number
     LeaderboardMessageTemplateId: number
     LeaderboardDisplayAmount: number
     RequiredXPForFirstLevel: number
@@ -84381,11 +84262,12 @@ export namespace Prisma {
     MessageXPCooldown: number
     MessageXPType: number
     RequiredXPFormular: number
+    LevelUpMessageType: number
     LevelUserInfoMessageTemplate: number
-    XPDropsMessageTemplate: number
     XPStreaksMessageType: number
-    XPStreaksIncreaseType: number
     XPStreaksMessageChannelId: number
+    XPStreaksIncreaseType: number
+    XPDropsMessageTemplate: number
     _all: number
   }
 
@@ -84405,7 +84287,6 @@ export namespace Prisma {
   export type LevelSettingsMinAggregateInputType = {
     Id?: true
     LevelUpChannelId?: true
-    LevelUpMessageType?: true
     LeaderboardMessageTemplateId?: true
     LeaderboardDisplayAmount?: true
     RequiredXPForFirstLevel?: true
@@ -84419,16 +84300,16 @@ export namespace Prisma {
     IsVoiceXPEnabled?: true
     MessageXPCooldown?: true
     RequiredXPFormular?: true
+    LevelUpMessageType?: true
     LevelUserInfoMessageTemplate?: true
-    XPDropsMessageTemplate?: true
     XPStreaksMessageType?: true
     XPStreaksMessageChannelId?: true
+    XPDropsMessageTemplate?: true
   }
 
   export type LevelSettingsMaxAggregateInputType = {
     Id?: true
     LevelUpChannelId?: true
-    LevelUpMessageType?: true
     LeaderboardMessageTemplateId?: true
     LeaderboardDisplayAmount?: true
     RequiredXPForFirstLevel?: true
@@ -84442,16 +84323,16 @@ export namespace Prisma {
     IsVoiceXPEnabled?: true
     MessageXPCooldown?: true
     RequiredXPFormular?: true
+    LevelUpMessageType?: true
     LevelUserInfoMessageTemplate?: true
-    XPDropsMessageTemplate?: true
     XPStreaksMessageType?: true
     XPStreaksMessageChannelId?: true
+    XPDropsMessageTemplate?: true
   }
 
   export type LevelSettingsCountAggregateInputType = {
     Id?: true
     LevelUpChannelId?: true
-    LevelUpMessageType?: true
     LeaderboardMessageTemplateId?: true
     LeaderboardDisplayAmount?: true
     RequiredXPForFirstLevel?: true
@@ -84469,11 +84350,12 @@ export namespace Prisma {
     MessageXPCooldown?: true
     MessageXPType?: true
     RequiredXPFormular?: true
+    LevelUpMessageType?: true
     LevelUserInfoMessageTemplate?: true
-    XPDropsMessageTemplate?: true
     XPStreaksMessageType?: true
-    XPStreaksIncreaseType?: true
     XPStreaksMessageChannelId?: true
+    XPStreaksIncreaseType?: true
+    XPDropsMessageTemplate?: true
     _all?: true
   }
 
@@ -84566,7 +84448,6 @@ export namespace Prisma {
   export type LevelSettingsGroupByOutputType = {
     Id: number
     LevelUpChannelId: string | null
-    LevelUpMessageType: string | null
     LeaderboardMessageTemplateId: string | null
     LeaderboardDisplayAmount: number | null
     RequiredXPForFirstLevel: number | null
@@ -84584,11 +84465,12 @@ export namespace Prisma {
     MessageXPCooldown: string | null
     MessageXPType: string[]
     RequiredXPFormular: string | null
+    LevelUpMessageType: string | null
     LevelUserInfoMessageTemplate: string | null
-    XPDropsMessageTemplate: string | null
     XPStreaksMessageType: string | null
-    XPStreaksIncreaseType: string[]
     XPStreaksMessageChannelId: string | null
+    XPStreaksIncreaseType: string[]
+    XPDropsMessageTemplate: string | null
     _count: LevelSettingsCountAggregateOutputType | null
     _avg: LevelSettingsAvgAggregateOutputType | null
     _sum: LevelSettingsSumAggregateOutputType | null
@@ -84613,7 +84495,6 @@ export namespace Prisma {
   export type LevelSettingsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     Id?: boolean
     LevelUpChannelId?: boolean
-    LevelUpMessageType?: boolean
     LeaderboardMessageTemplateId?: boolean
     LeaderboardDisplayAmount?: boolean
     RequiredXPForFirstLevel?: boolean
@@ -84631,11 +84512,12 @@ export namespace Prisma {
     MessageXPCooldown?: boolean
     MessageXPType?: boolean
     RequiredXPFormular?: boolean
+    LevelUpMessageType?: boolean
     LevelUserInfoMessageTemplate?: boolean
-    XPDropsMessageTemplate?: boolean
     XPStreaksMessageType?: boolean
-    XPStreaksIncreaseType?: boolean
     XPStreaksMessageChannelId?: boolean
+    XPStreaksIncreaseType?: boolean
+    XPDropsMessageTemplate?: boolean
     LevelRoles?: boolean | LevelSettings$LevelRolesArgs<ExtArgs>
     Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
     Levels?: boolean | LevelSettings$LevelsArgs<ExtArgs>
@@ -84647,7 +84529,6 @@ export namespace Prisma {
   export type LevelSettingsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     Id?: boolean
     LevelUpChannelId?: boolean
-    LevelUpMessageType?: boolean
     LeaderboardMessageTemplateId?: boolean
     LeaderboardDisplayAmount?: boolean
     RequiredXPForFirstLevel?: boolean
@@ -84665,18 +84546,18 @@ export namespace Prisma {
     MessageXPCooldown?: boolean
     MessageXPType?: boolean
     RequiredXPFormular?: boolean
+    LevelUpMessageType?: boolean
     LevelUserInfoMessageTemplate?: boolean
-    XPDropsMessageTemplate?: boolean
     XPStreaksMessageType?: boolean
-    XPStreaksIncreaseType?: boolean
     XPStreaksMessageChannelId?: boolean
+    XPStreaksIncreaseType?: boolean
+    XPDropsMessageTemplate?: boolean
     Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["levelSettings"]>
 
   export type LevelSettingsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     Id?: boolean
     LevelUpChannelId?: boolean
-    LevelUpMessageType?: boolean
     LeaderboardMessageTemplateId?: boolean
     LeaderboardDisplayAmount?: boolean
     RequiredXPForFirstLevel?: boolean
@@ -84694,18 +84575,18 @@ export namespace Prisma {
     MessageXPCooldown?: boolean
     MessageXPType?: boolean
     RequiredXPFormular?: boolean
+    LevelUpMessageType?: boolean
     LevelUserInfoMessageTemplate?: boolean
-    XPDropsMessageTemplate?: boolean
     XPStreaksMessageType?: boolean
-    XPStreaksIncreaseType?: boolean
     XPStreaksMessageChannelId?: boolean
+    XPStreaksIncreaseType?: boolean
+    XPDropsMessageTemplate?: boolean
     Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["levelSettings"]>
 
   export type LevelSettingsSelectScalar = {
     Id?: boolean
     LevelUpChannelId?: boolean
-    LevelUpMessageType?: boolean
     LeaderboardMessageTemplateId?: boolean
     LeaderboardDisplayAmount?: boolean
     RequiredXPForFirstLevel?: boolean
@@ -84723,14 +84604,15 @@ export namespace Prisma {
     MessageXPCooldown?: boolean
     MessageXPType?: boolean
     RequiredXPFormular?: boolean
+    LevelUpMessageType?: boolean
     LevelUserInfoMessageTemplate?: boolean
-    XPDropsMessageTemplate?: boolean
     XPStreaksMessageType?: boolean
-    XPStreaksIncreaseType?: boolean
     XPStreaksMessageChannelId?: boolean
+    XPStreaksIncreaseType?: boolean
+    XPDropsMessageTemplate?: boolean
   }
 
-  export type LevelSettingsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Id" | "LevelUpChannelId" | "LevelUpMessageType" | "LeaderboardMessageTemplateId" | "LeaderboardDisplayAmount" | "RequiredXPForFirstLevel" | "MessageXPRange" | "VoiceXPRange" | "VoiceXPCooldown" | "ExcludedChannelIds" | "ExcludeUserIds" | "ExcludeRoleIds" | "GuildId" | "LevelUpMessageTemplateId" | "IsLevelModuleEnabled" | "IsMessageXPEnabled" | "IsVoiceXPEnabled" | "MessageXPCooldown" | "MessageXPType" | "RequiredXPFormular" | "LevelUserInfoMessageTemplate" | "XPDropsMessageTemplate" | "XPStreaksMessageType" | "XPStreaksIncreaseType" | "XPStreaksMessageChannelId", ExtArgs["result"]["levelSettings"]>
+  export type LevelSettingsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Id" | "LevelUpChannelId" | "LeaderboardMessageTemplateId" | "LeaderboardDisplayAmount" | "RequiredXPForFirstLevel" | "MessageXPRange" | "VoiceXPRange" | "VoiceXPCooldown" | "ExcludedChannelIds" | "ExcludeUserIds" | "ExcludeRoleIds" | "GuildId" | "LevelUpMessageTemplateId" | "IsLevelModuleEnabled" | "IsMessageXPEnabled" | "IsVoiceXPEnabled" | "MessageXPCooldown" | "MessageXPType" | "RequiredXPFormular" | "LevelUpMessageType" | "LevelUserInfoMessageTemplate" | "XPStreaksMessageType" | "XPStreaksMessageChannelId" | "XPStreaksIncreaseType" | "XPDropsMessageTemplate", ExtArgs["result"]["levelSettings"]>
   export type LevelSettingsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     LevelRoles?: boolean | LevelSettings$LevelRolesArgs<ExtArgs>
     Guilds?: boolean | GuildsDefaultArgs<ExtArgs>
@@ -84758,7 +84640,6 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       Id: number
       LevelUpChannelId: string | null
-      LevelUpMessageType: string | null
       LeaderboardMessageTemplateId: string | null
       LeaderboardDisplayAmount: number | null
       RequiredXPForFirstLevel: number | null
@@ -84776,11 +84657,12 @@ export namespace Prisma {
       MessageXPCooldown: string | null
       MessageXPType: string[]
       RequiredXPFormular: string | null
+      LevelUpMessageType: string | null
       LevelUserInfoMessageTemplate: string | null
-      XPDropsMessageTemplate: string | null
       XPStreaksMessageType: string | null
-      XPStreaksIncreaseType: string[]
       XPStreaksMessageChannelId: string | null
+      XPStreaksIncreaseType: string[]
+      XPDropsMessageTemplate: string | null
     }, ExtArgs["result"]["levelSettings"]>
     composites: {}
   }
@@ -85211,7 +85093,6 @@ export namespace Prisma {
   interface LevelSettingsFieldRefs {
     readonly Id: FieldRef<"LevelSettings", 'Int'>
     readonly LevelUpChannelId: FieldRef<"LevelSettings", 'String'>
-    readonly LevelUpMessageType: FieldRef<"LevelSettings", 'String'>
     readonly LeaderboardMessageTemplateId: FieldRef<"LevelSettings", 'String'>
     readonly LeaderboardDisplayAmount: FieldRef<"LevelSettings", 'Int'>
     readonly RequiredXPForFirstLevel: FieldRef<"LevelSettings", 'Int'>
@@ -85229,11 +85110,12 @@ export namespace Prisma {
     readonly MessageXPCooldown: FieldRef<"LevelSettings", 'String'>
     readonly MessageXPType: FieldRef<"LevelSettings", 'String[]'>
     readonly RequiredXPFormular: FieldRef<"LevelSettings", 'String'>
+    readonly LevelUpMessageType: FieldRef<"LevelSettings", 'String'>
     readonly LevelUserInfoMessageTemplate: FieldRef<"LevelSettings", 'String'>
-    readonly XPDropsMessageTemplate: FieldRef<"LevelSettings", 'String'>
     readonly XPStreaksMessageType: FieldRef<"LevelSettings", 'String'>
-    readonly XPStreaksIncreaseType: FieldRef<"LevelSettings", 'String[]'>
     readonly XPStreaksMessageChannelId: FieldRef<"LevelSettings", 'String'>
+    readonly XPStreaksIncreaseType: FieldRef<"LevelSettings", 'String[]'>
+    readonly XPDropsMessageTemplate: FieldRef<"LevelSettings", 'String'>
   }
     
 
@@ -85768,35 +85650,35 @@ export namespace Prisma {
 
   export type XPDropsMinAggregateOutputType = {
     Id: number | null
-    UUID: string | null
     GuildId: string | null
     XPRange: string | null
     TimeToRespawn: string | null
     ClaimAmount: number | null
     ExpireTime: string | null
+    UUID: string | null
     LastSpawned: string | null
   }
 
   export type XPDropsMaxAggregateOutputType = {
     Id: number | null
-    UUID: string | null
     GuildId: string | null
     XPRange: string | null
     TimeToRespawn: string | null
     ClaimAmount: number | null
     ExpireTime: string | null
+    UUID: string | null
     LastSpawned: string | null
   }
 
   export type XPDropsCountAggregateOutputType = {
     Id: number
-    UUID: number
     GuildId: number
     XPRange: number
     TimeToRespawn: number
     ChannelIds: number
     ClaimAmount: number
     ExpireTime: number
+    UUID: number
     LastSpawned: number
     MessageIdsToDelete: number
     _all: number
@@ -85815,35 +85697,35 @@ export namespace Prisma {
 
   export type XPDropsMinAggregateInputType = {
     Id?: true
-    UUID?: true
     GuildId?: true
     XPRange?: true
     TimeToRespawn?: true
     ClaimAmount?: true
     ExpireTime?: true
+    UUID?: true
     LastSpawned?: true
   }
 
   export type XPDropsMaxAggregateInputType = {
     Id?: true
-    UUID?: true
     GuildId?: true
     XPRange?: true
     TimeToRespawn?: true
     ClaimAmount?: true
     ExpireTime?: true
+    UUID?: true
     LastSpawned?: true
   }
 
   export type XPDropsCountAggregateInputType = {
     Id?: true
-    UUID?: true
     GuildId?: true
     XPRange?: true
     TimeToRespawn?: true
     ChannelIds?: true
     ClaimAmount?: true
     ExpireTime?: true
+    UUID?: true
     LastSpawned?: true
     MessageIdsToDelete?: true
     _all?: true
@@ -85937,13 +85819,13 @@ export namespace Prisma {
 
   export type XPDropsGroupByOutputType = {
     Id: number
-    UUID: string
     GuildId: string
     XPRange: string | null
     TimeToRespawn: string | null
     ChannelIds: string[]
     ClaimAmount: number | null
     ExpireTime: string | null
+    UUID: string
     LastSpawned: string | null
     MessageIdsToDelete: string[]
     _count: XPDropsCountAggregateOutputType | null
@@ -85969,13 +85851,13 @@ export namespace Prisma {
 
   export type XPDropsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     Id?: boolean
-    UUID?: boolean
     GuildId?: boolean
     XPRange?: boolean
     TimeToRespawn?: boolean
     ChannelIds?: boolean
     ClaimAmount?: boolean
     ExpireTime?: boolean
+    UUID?: boolean
     LastSpawned?: boolean
     MessageIdsToDelete?: boolean
     LevelSettings?: boolean | LevelSettingsDefaultArgs<ExtArgs>
@@ -85983,13 +85865,13 @@ export namespace Prisma {
 
   export type XPDropsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     Id?: boolean
-    UUID?: boolean
     GuildId?: boolean
     XPRange?: boolean
     TimeToRespawn?: boolean
     ChannelIds?: boolean
     ClaimAmount?: boolean
     ExpireTime?: boolean
+    UUID?: boolean
     LastSpawned?: boolean
     MessageIdsToDelete?: boolean
     LevelSettings?: boolean | LevelSettingsDefaultArgs<ExtArgs>
@@ -85997,13 +85879,13 @@ export namespace Prisma {
 
   export type XPDropsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     Id?: boolean
-    UUID?: boolean
     GuildId?: boolean
     XPRange?: boolean
     TimeToRespawn?: boolean
     ChannelIds?: boolean
     ClaimAmount?: boolean
     ExpireTime?: boolean
+    UUID?: boolean
     LastSpawned?: boolean
     MessageIdsToDelete?: boolean
     LevelSettings?: boolean | LevelSettingsDefaultArgs<ExtArgs>
@@ -86011,18 +85893,18 @@ export namespace Prisma {
 
   export type XPDropsSelectScalar = {
     Id?: boolean
-    UUID?: boolean
     GuildId?: boolean
     XPRange?: boolean
     TimeToRespawn?: boolean
     ChannelIds?: boolean
     ClaimAmount?: boolean
     ExpireTime?: boolean
+    UUID?: boolean
     LastSpawned?: boolean
     MessageIdsToDelete?: boolean
   }
 
-  export type XPDropsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Id" | "UUID" | "GuildId" | "XPRange" | "TimeToRespawn" | "ChannelIds" | "ClaimAmount" | "ExpireTime" | "LastSpawned" | "MessageIdsToDelete", ExtArgs["result"]["xPDrops"]>
+  export type XPDropsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Id" | "GuildId" | "XPRange" | "TimeToRespawn" | "ChannelIds" | "ClaimAmount" | "ExpireTime" | "UUID" | "LastSpawned" | "MessageIdsToDelete", ExtArgs["result"]["xPDrops"]>
   export type XPDropsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     LevelSettings?: boolean | LevelSettingsDefaultArgs<ExtArgs>
   }
@@ -86040,13 +85922,13 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       Id: number
-      UUID: string
       GuildId: string
       XPRange: string | null
       TimeToRespawn: string | null
       ChannelIds: string[]
       ClaimAmount: number | null
       ExpireTime: string | null
+      UUID: string
       LastSpawned: string | null
       MessageIdsToDelete: string[]
     }, ExtArgs["result"]["xPDrops"]>
@@ -86474,13 +86356,13 @@ export namespace Prisma {
    */
   interface XPDropsFieldRefs {
     readonly Id: FieldRef<"XPDrops", 'Int'>
-    readonly UUID: FieldRef<"XPDrops", 'String'>
     readonly GuildId: FieldRef<"XPDrops", 'String'>
     readonly XPRange: FieldRef<"XPDrops", 'String'>
     readonly TimeToRespawn: FieldRef<"XPDrops", 'String'>
     readonly ChannelIds: FieldRef<"XPDrops", 'String[]'>
     readonly ClaimAmount: FieldRef<"XPDrops", 'Int'>
     readonly ExpireTime: FieldRef<"XPDrops", 'String'>
+    readonly UUID: FieldRef<"XPDrops", 'String'>
     readonly LastSpawned: FieldRef<"XPDrops", 'String'>
     readonly MessageIdsToDelete: FieldRef<"XPDrops", 'String[]'>
   }
@@ -89189,38 +89071,38 @@ export namespace Prisma {
   export type LevelsMinAggregateOutputType = {
     Id: number | null
     XP: string | null
-    RequiredXp: string | null
     Level: number | null
     UserId: string | null
     GuildId: string | null
-    CurrentStreakDay: number | null
-    LastXPStreakUpdate: string | null
     UUID: string | null
+    CurrentStreakDay: number | null
+    RequiredXp: string | null
+    LastXPStreakUpdate: string | null
   }
 
   export type LevelsMaxAggregateOutputType = {
     Id: number | null
     XP: string | null
-    RequiredXp: string | null
     Level: number | null
     UserId: string | null
     GuildId: string | null
-    CurrentStreakDay: number | null
-    LastXPStreakUpdate: string | null
     UUID: string | null
+    CurrentStreakDay: number | null
+    RequiredXp: string | null
+    LastXPStreakUpdate: string | null
   }
 
   export type LevelsCountAggregateOutputType = {
     Id: number
     XP: number
-    RequiredXp: number
     Level: number
     UserId: number
     GuildId: number
+    UUID: number
     ClaimedXPDrops: number
     CurrentStreakDay: number
+    RequiredXp: number
     LastXPStreakUpdate: number
-    UUID: number
     _all: number
   }
 
@@ -89240,38 +89122,38 @@ export namespace Prisma {
   export type LevelsMinAggregateInputType = {
     Id?: true
     XP?: true
-    RequiredXp?: true
     Level?: true
     UserId?: true
     GuildId?: true
-    CurrentStreakDay?: true
-    LastXPStreakUpdate?: true
     UUID?: true
+    CurrentStreakDay?: true
+    RequiredXp?: true
+    LastXPStreakUpdate?: true
   }
 
   export type LevelsMaxAggregateInputType = {
     Id?: true
     XP?: true
-    RequiredXp?: true
     Level?: true
     UserId?: true
     GuildId?: true
-    CurrentStreakDay?: true
-    LastXPStreakUpdate?: true
     UUID?: true
+    CurrentStreakDay?: true
+    RequiredXp?: true
+    LastXPStreakUpdate?: true
   }
 
   export type LevelsCountAggregateInputType = {
     Id?: true
     XP?: true
-    RequiredXp?: true
     Level?: true
     UserId?: true
     GuildId?: true
+    UUID?: true
     ClaimedXPDrops?: true
     CurrentStreakDay?: true
+    RequiredXp?: true
     LastXPStreakUpdate?: true
-    UUID?: true
     _all?: true
   }
 
@@ -89364,14 +89246,14 @@ export namespace Prisma {
   export type LevelsGroupByOutputType = {
     Id: number
     XP: string | null
-    RequiredXp: string | null
     Level: number | null
     UserId: string
     GuildId: string
+    UUID: string
     ClaimedXPDrops: string[]
     CurrentStreakDay: number | null
+    RequiredXp: string | null
     LastXPStreakUpdate: string | null
-    UUID: string
     _count: LevelsCountAggregateOutputType | null
     _avg: LevelsAvgAggregateOutputType | null
     _sum: LevelsSumAggregateOutputType | null
@@ -89396,14 +89278,14 @@ export namespace Prisma {
   export type LevelsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     Id?: boolean
     XP?: boolean
-    RequiredXp?: boolean
     Level?: boolean
     UserId?: boolean
     GuildId?: boolean
+    UUID?: boolean
     ClaimedXPDrops?: boolean
     CurrentStreakDay?: boolean
+    RequiredXp?: boolean
     LastXPStreakUpdate?: boolean
-    UUID?: boolean
     LevelSettings?: boolean | LevelSettingsDefaultArgs<ExtArgs>
     Users?: boolean | UsersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["levels"]>
@@ -89411,14 +89293,14 @@ export namespace Prisma {
   export type LevelsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     Id?: boolean
     XP?: boolean
-    RequiredXp?: boolean
     Level?: boolean
     UserId?: boolean
     GuildId?: boolean
+    UUID?: boolean
     ClaimedXPDrops?: boolean
     CurrentStreakDay?: boolean
+    RequiredXp?: boolean
     LastXPStreakUpdate?: boolean
-    UUID?: boolean
     LevelSettings?: boolean | LevelSettingsDefaultArgs<ExtArgs>
     Users?: boolean | UsersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["levels"]>
@@ -89426,14 +89308,14 @@ export namespace Prisma {
   export type LevelsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     Id?: boolean
     XP?: boolean
-    RequiredXp?: boolean
     Level?: boolean
     UserId?: boolean
     GuildId?: boolean
+    UUID?: boolean
     ClaimedXPDrops?: boolean
     CurrentStreakDay?: boolean
+    RequiredXp?: boolean
     LastXPStreakUpdate?: boolean
-    UUID?: boolean
     LevelSettings?: boolean | LevelSettingsDefaultArgs<ExtArgs>
     Users?: boolean | UsersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["levels"]>
@@ -89441,17 +89323,17 @@ export namespace Prisma {
   export type LevelsSelectScalar = {
     Id?: boolean
     XP?: boolean
-    RequiredXp?: boolean
     Level?: boolean
     UserId?: boolean
     GuildId?: boolean
+    UUID?: boolean
     ClaimedXPDrops?: boolean
     CurrentStreakDay?: boolean
+    RequiredXp?: boolean
     LastXPStreakUpdate?: boolean
-    UUID?: boolean
   }
 
-  export type LevelsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Id" | "XP" | "RequiredXp" | "Level" | "UserId" | "GuildId" | "ClaimedXPDrops" | "CurrentStreakDay" | "LastXPStreakUpdate" | "UUID", ExtArgs["result"]["levels"]>
+  export type LevelsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Id" | "XP" | "Level" | "UserId" | "GuildId" | "UUID" | "ClaimedXPDrops" | "CurrentStreakDay" | "RequiredXp" | "LastXPStreakUpdate", ExtArgs["result"]["levels"]>
   export type LevelsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     LevelSettings?: boolean | LevelSettingsDefaultArgs<ExtArgs>
     Users?: boolean | UsersDefaultArgs<ExtArgs>
@@ -89474,14 +89356,14 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       Id: number
       XP: string | null
-      RequiredXp: string | null
       Level: number | null
       UserId: string
       GuildId: string
+      UUID: string
       ClaimedXPDrops: string[]
       CurrentStreakDay: number | null
+      RequiredXp: string | null
       LastXPStreakUpdate: string | null
-      UUID: string
     }, ExtArgs["result"]["levels"]>
     composites: {}
   }
@@ -89909,14 +89791,14 @@ export namespace Prisma {
   interface LevelsFieldRefs {
     readonly Id: FieldRef<"Levels", 'Int'>
     readonly XP: FieldRef<"Levels", 'String'>
-    readonly RequiredXp: FieldRef<"Levels", 'String'>
     readonly Level: FieldRef<"Levels", 'Int'>
     readonly UserId: FieldRef<"Levels", 'String'>
     readonly GuildId: FieldRef<"Levels", 'String'>
+    readonly UUID: FieldRef<"Levels", 'String'>
     readonly ClaimedXPDrops: FieldRef<"Levels", 'String[]'>
     readonly CurrentStreakDay: FieldRef<"Levels", 'Int'>
+    readonly RequiredXp: FieldRef<"Levels", 'String'>
     readonly LastXPStreakUpdate: FieldRef<"Levels", 'String'>
-    readonly UUID: FieldRef<"Levels", 'String'>
   }
     
 
@@ -100867,9 +100749,9 @@ export namespace Prisma {
     DmMessage: 'DmMessage',
     Type: 'Type',
     Notes: 'Notes',
+    LinkedCaseId: 'LinkedCaseId',
     CreatedAt: 'CreatedAt',
-    GuildId: 'GuildId',
-    LinkedCaseId: 'LinkedCaseId'
+    GuildId: 'GuildId'
   };
 
   export type GuildUserModerationScalarFieldEnum = (typeof GuildUserModerationScalarFieldEnum)[keyof typeof GuildUserModerationScalarFieldEnum]
@@ -101351,7 +101233,6 @@ export namespace Prisma {
     TicketStatusMessageId: 'TicketStatusMessageId',
     TicketStatusChannelId: 'TicketStatusChannelId',
     AutoCloseAction: 'AutoCloseAction',
-    TicketSettings: 'TicketSettings',
     OldTicketCategoryId: 'OldTicketCategoryId',
     RequiredRoles: 'RequiredRoles',
     SlashCommandId: 'SlashCommandId',
@@ -101359,7 +101240,8 @@ export namespace Prisma {
     SlashCommandDescription: 'SlashCommandDescription',
     TextCommandName: 'TextCommandName',
     SendTranscriptToUser: 'SendTranscriptToUser',
-    GuildId: 'GuildId'
+    GuildId: 'GuildId',
+    TicketSettings: 'TicketSettings'
   };
 
   export type TicketSetupsScalarFieldEnum = (typeof TicketSetupsScalarFieldEnum)[keyof typeof TicketSetupsScalarFieldEnum]
@@ -101497,7 +101379,6 @@ export namespace Prisma {
   export const LevelSettingsScalarFieldEnum: {
     Id: 'Id',
     LevelUpChannelId: 'LevelUpChannelId',
-    LevelUpMessageType: 'LevelUpMessageType',
     LeaderboardMessageTemplateId: 'LeaderboardMessageTemplateId',
     LeaderboardDisplayAmount: 'LeaderboardDisplayAmount',
     RequiredXPForFirstLevel: 'RequiredXPForFirstLevel',
@@ -101515,11 +101396,12 @@ export namespace Prisma {
     MessageXPCooldown: 'MessageXPCooldown',
     MessageXPType: 'MessageXPType',
     RequiredXPFormular: 'RequiredXPFormular',
+    LevelUpMessageType: 'LevelUpMessageType',
     LevelUserInfoMessageTemplate: 'LevelUserInfoMessageTemplate',
-    XPDropsMessageTemplate: 'XPDropsMessageTemplate',
     XPStreaksMessageType: 'XPStreaksMessageType',
+    XPStreaksMessageChannelId: 'XPStreaksMessageChannelId',
     XPStreaksIncreaseType: 'XPStreaksIncreaseType',
-    XPStreaksMessageChannelId: 'XPStreaksMessageChannelId'
+    XPDropsMessageTemplate: 'XPDropsMessageTemplate'
   };
 
   export type LevelSettingsScalarFieldEnum = (typeof LevelSettingsScalarFieldEnum)[keyof typeof LevelSettingsScalarFieldEnum]
@@ -101527,13 +101409,13 @@ export namespace Prisma {
 
   export const XPDropsScalarFieldEnum: {
     Id: 'Id',
-    UUID: 'UUID',
     GuildId: 'GuildId',
     XPRange: 'XPRange',
     TimeToRespawn: 'TimeToRespawn',
     ChannelIds: 'ChannelIds',
     ClaimAmount: 'ClaimAmount',
     ExpireTime: 'ExpireTime',
+    UUID: 'UUID',
     LastSpawned: 'LastSpawned',
     MessageIdsToDelete: 'MessageIdsToDelete'
   };
@@ -101571,14 +101453,14 @@ export namespace Prisma {
   export const LevelsScalarFieldEnum: {
     Id: 'Id',
     XP: 'XP',
-    RequiredXp: 'RequiredXp',
     Level: 'Level',
     UserId: 'UserId',
     GuildId: 'GuildId',
+    UUID: 'UUID',
     ClaimedXPDrops: 'ClaimedXPDrops',
     CurrentStreakDay: 'CurrentStreakDay',
-    LastXPStreakUpdate: 'LastXPStreakUpdate',
-    UUID: 'UUID'
+    RequiredXp: 'RequiredXp',
+    LastXPStreakUpdate: 'LastXPStreakUpdate'
   };
 
   export type LevelsScalarFieldEnum = (typeof LevelsScalarFieldEnum)[keyof typeof LevelsScalarFieldEnum]
@@ -101889,7 +101771,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesListRelationFilter
     ModerationScout?: XOR<ModerationScoutNullableScalarRelationFilter, ModerationScoutWhereInput> | null
     Polls?: PollsListRelationFilter
-    TempVoices?: TempVoiceListRelationFilter
+    TempVoices?: XOR<TempVoiceNullableScalarRelationFilter, TempVoiceWhereInput> | null
     TicketSetups?: TicketSetupsListRelationFilter
   }
 
@@ -101924,7 +101806,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesOrderByRelationAggregateInput
     ModerationScout?: ModerationScoutOrderByWithRelationInput
     Polls?: PollsOrderByRelationAggregateInput
-    TempVoices?: TempVoiceOrderByRelationAggregateInput
+    TempVoices?: TempVoiceOrderByWithRelationInput
     TicketSetups?: TicketSetupsOrderByRelationAggregateInput
   }
 
@@ -101962,7 +101844,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesListRelationFilter
     ModerationScout?: XOR<ModerationScoutNullableScalarRelationFilter, ModerationScoutWhereInput> | null
     Polls?: PollsListRelationFilter
-    TempVoices?: TempVoiceListRelationFilter
+    TempVoices?: XOR<TempVoiceNullableScalarRelationFilter, TempVoiceWhereInput> | null
     TicketSetups?: TicketSetupsListRelationFilter
   }, "Id" | "GuildId">
 
@@ -103598,9 +103480,9 @@ export namespace Prisma {
     DmMessage?: StringNullableFilter<"GuildUserModeration"> | string | null
     Type?: StringNullableFilter<"GuildUserModeration"> | string | null
     Notes?: StringNullableListFilter<"GuildUserModeration">
+    LinkedCaseId?: StringNullableFilter<"GuildUserModeration"> | string | null
     CreatedAt?: DateTimeNullableFilter<"GuildUserModeration"> | Date | string | null
     GuildId?: StringFilter<"GuildUserModeration"> | string
-    LinkedCaseId?: StringNullableFilter<"GuildUserModeration"> | string | null
     Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
     ModerationScoutCases?: XOR<ModerationScoutCasesNullableScalarRelationFilter, ModerationScoutCasesWhereInput> | null
   }
@@ -103615,9 +103497,9 @@ export namespace Prisma {
     DmMessage?: SortOrderInput | SortOrder
     Type?: SortOrderInput | SortOrder
     Notes?: SortOrder
+    LinkedCaseId?: SortOrderInput | SortOrder
     CreatedAt?: SortOrderInput | SortOrder
     GuildId?: SortOrder
-    LinkedCaseId?: SortOrderInput | SortOrder
     Guilds?: GuildsOrderByWithRelationInput
     ModerationScoutCases?: ModerationScoutCasesOrderByWithRelationInput
   }
@@ -103635,9 +103517,9 @@ export namespace Prisma {
     DmMessage?: StringNullableFilter<"GuildUserModeration"> | string | null
     Type?: StringNullableFilter<"GuildUserModeration"> | string | null
     Notes?: StringNullableListFilter<"GuildUserModeration">
+    LinkedCaseId?: StringNullableFilter<"GuildUserModeration"> | string | null
     CreatedAt?: DateTimeNullableFilter<"GuildUserModeration"> | Date | string | null
     GuildId?: StringFilter<"GuildUserModeration"> | string
-    LinkedCaseId?: StringNullableFilter<"GuildUserModeration"> | string | null
     Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
     ModerationScoutCases?: XOR<ModerationScoutCasesNullableScalarRelationFilter, ModerationScoutCasesWhereInput> | null
   }, "Id" | "UUID">
@@ -103652,9 +103534,9 @@ export namespace Prisma {
     DmMessage?: SortOrderInput | SortOrder
     Type?: SortOrderInput | SortOrder
     Notes?: SortOrder
+    LinkedCaseId?: SortOrderInput | SortOrder
     CreatedAt?: SortOrderInput | SortOrder
     GuildId?: SortOrder
-    LinkedCaseId?: SortOrderInput | SortOrder
     _count?: GuildUserModerationCountOrderByAggregateInput
     _avg?: GuildUserModerationAvgOrderByAggregateInput
     _max?: GuildUserModerationMaxOrderByAggregateInput
@@ -103675,9 +103557,9 @@ export namespace Prisma {
     DmMessage?: StringNullableWithAggregatesFilter<"GuildUserModeration"> | string | null
     Type?: StringNullableWithAggregatesFilter<"GuildUserModeration"> | string | null
     Notes?: StringNullableListFilter<"GuildUserModeration">
+    LinkedCaseId?: StringNullableWithAggregatesFilter<"GuildUserModeration"> | string | null
     CreatedAt?: DateTimeNullableWithAggregatesFilter<"GuildUserModeration"> | Date | string | null
     GuildId?: StringWithAggregatesFilter<"GuildUserModeration"> | string
-    LinkedCaseId?: StringNullableWithAggregatesFilter<"GuildUserModeration"> | string | null
   }
 
   export type GuildDisBotAutoModerationWhereInput = {
@@ -104607,9 +104489,9 @@ export namespace Prisma {
     ModeratorUserIds?: StringNullableListFilter<"TempVoice">
     TempVoiceLogChannelId?: StringNullableFilter<"TempVoice"> | string | null
     GuildId?: StringFilter<"TempVoice"> | string
+    Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
     TempVoiceConfigs?: TempVoiceConfigListRelationFilter
     TempVoicePresets?: TempVoicePresetListRelationFilter
-    Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
   }
 
   export type TempVoiceOrderByWithRelationInput = {
@@ -104618,9 +104500,9 @@ export namespace Prisma {
     ModeratorUserIds?: SortOrder
     TempVoiceLogChannelId?: SortOrderInput | SortOrder
     GuildId?: SortOrder
+    Guilds?: GuildsOrderByWithRelationInput
     TempVoiceConfigs?: TempVoiceConfigOrderByRelationAggregateInput
     TempVoicePresets?: TempVoicePresetOrderByRelationAggregateInput
-    Guilds?: GuildsOrderByWithRelationInput
   }
 
   export type TempVoiceWhereUniqueInput = Prisma.AtLeast<{
@@ -104632,9 +104514,9 @@ export namespace Prisma {
     UserInviteMessageTemplateId?: StringNullableFilter<"TempVoice"> | string | null
     ModeratorUserIds?: StringNullableListFilter<"TempVoice">
     TempVoiceLogChannelId?: StringNullableFilter<"TempVoice"> | string | null
+    Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
     TempVoiceConfigs?: TempVoiceConfigListRelationFilter
     TempVoicePresets?: TempVoicePresetListRelationFilter
-    Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
   }, "Id" | "GuildId">
 
   export type TempVoiceOrderByWithAggregationInput = {
@@ -104673,8 +104555,8 @@ export namespace Prisma {
     IsManageEnalbed?: BoolFilter<"TempVoiceConfig"> | boolean
     TempVoicePresetId?: StringFilter<"TempVoiceConfig"> | string
     TempVoiceId?: StringFilter<"TempVoiceConfig"> | string
-    TempVoicePreset?: XOR<TempVoicePresetScalarRelationFilter, TempVoicePresetWhereInput>
     TempVoiceChannels?: TempVoiceChannelsListRelationFilter
+    TempVoicePreset?: XOR<TempVoicePresetScalarRelationFilter, TempVoicePresetWhereInput>
     TempVoice?: XOR<TempVoiceScalarRelationFilter, TempVoiceWhereInput>
   }
 
@@ -104687,8 +104569,8 @@ export namespace Prisma {
     IsManageEnalbed?: SortOrder
     TempVoicePresetId?: SortOrder
     TempVoiceId?: SortOrder
-    TempVoicePreset?: TempVoicePresetOrderByWithRelationInput
     TempVoiceChannels?: TempVoiceChannelsOrderByRelationAggregateInput
+    TempVoicePreset?: TempVoicePresetOrderByWithRelationInput
     TempVoice?: TempVoiceOrderByWithRelationInput
   }
 
@@ -104704,8 +104586,8 @@ export namespace Prisma {
     ManageMessageTemplateId?: StringNullableFilter<"TempVoiceConfig"> | string | null
     IsManageEnalbed?: BoolFilter<"TempVoiceConfig"> | boolean
     TempVoiceId?: StringFilter<"TempVoiceConfig"> | string
-    TempVoicePreset?: XOR<TempVoicePresetScalarRelationFilter, TempVoicePresetWhereInput>
     TempVoiceChannels?: TempVoiceChannelsListRelationFilter
+    TempVoicePreset?: XOR<TempVoicePresetScalarRelationFilter, TempVoicePresetWhereInput>
     TempVoice?: XOR<TempVoiceScalarRelationFilter, TempVoiceWhereInput>
   }, "Id" | "UUID" | "TempVoicePresetId">
 
@@ -104750,15 +104632,15 @@ export namespace Prisma {
     ChannelRegion?: StringNullableFilter<"TempVoicePreset"> | string | null
     ChannelBitRate?: StringNullableFilter<"TempVoicePreset"> | string | null
     UserInviteType?: StringNullableFilter<"TempVoicePreset"> | string | null
-    SendLogsInTempChannel?: BoolFilter<"TempVoicePreset"> | boolean
+    SendLogsInTempChannel?: BoolNullableFilter<"TempVoicePreset"> | boolean | null
     BlacklistRoleId?: StringNullableFilter<"TempVoicePreset"> | string | null
     ManageComponents?: StringNullableListFilter<"TempVoicePreset">
     OwnerAllowedDiscordPermissions?: StringNullableListFilter<"TempVoicePreset">
     OwnerDeniedDiscordPermissions?: StringNullableListFilter<"TempVoicePreset">
     TempVoiceId?: StringFilter<"TempVoicePreset"> | string
-    RolePermissions?: TempVoicePresetDiscordRolePermissionListRelationFilter
-    TempVoiceConfigs?: TempVoiceConfigListRelationFilter
+    TempVoiceConfigs?: XOR<TempVoiceConfigNullableScalarRelationFilter, TempVoiceConfigWhereInput> | null
     TempVoice?: XOR<TempVoiceScalarRelationFilter, TempVoiceWhereInput>
+    RolePermissions?: XOR<TempVoicePresetDiscordRolePermissionNullableScalarRelationFilter, TempVoicePresetDiscordRolePermissionWhereInput> | null
   }
 
   export type TempVoicePresetOrderByWithRelationInput = {
@@ -104769,15 +104651,15 @@ export namespace Prisma {
     ChannelRegion?: SortOrderInput | SortOrder
     ChannelBitRate?: SortOrderInput | SortOrder
     UserInviteType?: SortOrderInput | SortOrder
-    SendLogsInTempChannel?: SortOrder
+    SendLogsInTempChannel?: SortOrderInput | SortOrder
     BlacklistRoleId?: SortOrderInput | SortOrder
     ManageComponents?: SortOrder
     OwnerAllowedDiscordPermissions?: SortOrder
     OwnerDeniedDiscordPermissions?: SortOrder
     TempVoiceId?: SortOrder
-    RolePermissions?: TempVoicePresetDiscordRolePermissionOrderByRelationAggregateInput
-    TempVoiceConfigs?: TempVoiceConfigOrderByRelationAggregateInput
+    TempVoiceConfigs?: TempVoiceConfigOrderByWithRelationInput
     TempVoice?: TempVoiceOrderByWithRelationInput
+    RolePermissions?: TempVoicePresetDiscordRolePermissionOrderByWithRelationInput
   }
 
   export type TempVoicePresetWhereUniqueInput = Prisma.AtLeast<{
@@ -104791,15 +104673,15 @@ export namespace Prisma {
     ChannelRegion?: StringNullableFilter<"TempVoicePreset"> | string | null
     ChannelBitRate?: StringNullableFilter<"TempVoicePreset"> | string | null
     UserInviteType?: StringNullableFilter<"TempVoicePreset"> | string | null
-    SendLogsInTempChannel?: BoolFilter<"TempVoicePreset"> | boolean
+    SendLogsInTempChannel?: BoolNullableFilter<"TempVoicePreset"> | boolean | null
     BlacklistRoleId?: StringNullableFilter<"TempVoicePreset"> | string | null
     ManageComponents?: StringNullableListFilter<"TempVoicePreset">
     OwnerAllowedDiscordPermissions?: StringNullableListFilter<"TempVoicePreset">
     OwnerDeniedDiscordPermissions?: StringNullableListFilter<"TempVoicePreset">
     TempVoiceId?: StringFilter<"TempVoicePreset"> | string
-    RolePermissions?: TempVoicePresetDiscordRolePermissionListRelationFilter
-    TempVoiceConfigs?: TempVoiceConfigListRelationFilter
+    TempVoiceConfigs?: XOR<TempVoiceConfigNullableScalarRelationFilter, TempVoiceConfigWhereInput> | null
     TempVoice?: XOR<TempVoiceScalarRelationFilter, TempVoiceWhereInput>
+    RolePermissions?: XOR<TempVoicePresetDiscordRolePermissionNullableScalarRelationFilter, TempVoicePresetDiscordRolePermissionWhereInput> | null
   }, "Id" | "UUID">
 
   export type TempVoicePresetOrderByWithAggregationInput = {
@@ -104810,7 +104692,7 @@ export namespace Prisma {
     ChannelRegion?: SortOrderInput | SortOrder
     ChannelBitRate?: SortOrderInput | SortOrder
     UserInviteType?: SortOrderInput | SortOrder
-    SendLogsInTempChannel?: SortOrder
+    SendLogsInTempChannel?: SortOrderInput | SortOrder
     BlacklistRoleId?: SortOrderInput | SortOrder
     ManageComponents?: SortOrder
     OwnerAllowedDiscordPermissions?: SortOrder
@@ -104834,7 +104716,7 @@ export namespace Prisma {
     ChannelRegion?: StringNullableWithAggregatesFilter<"TempVoicePreset"> | string | null
     ChannelBitRate?: StringNullableWithAggregatesFilter<"TempVoicePreset"> | string | null
     UserInviteType?: StringNullableWithAggregatesFilter<"TempVoicePreset"> | string | null
-    SendLogsInTempChannel?: BoolWithAggregatesFilter<"TempVoicePreset"> | boolean
+    SendLogsInTempChannel?: BoolNullableWithAggregatesFilter<"TempVoicePreset"> | boolean | null
     BlacklistRoleId?: StringNullableWithAggregatesFilter<"TempVoicePreset"> | string | null
     ManageComponents?: StringNullableListFilter<"TempVoicePreset">
     OwnerAllowedDiscordPermissions?: StringNullableListFilter<"TempVoicePreset">
@@ -104908,7 +104790,7 @@ export namespace Prisma {
     ChannelId?: StringFilter<"TempVoiceChannels"> | string
     OwnerId?: StringFilter<"TempVoiceChannels"> | string
     TempVoiceConfigId?: StringFilter<"TempVoiceChannels"> | string
-    TempVoiceChannelMembers?: TempVoiceChannelMemberListRelationFilter
+    TempVoiceChannelMembers?: XOR<TempVoiceChannelMemberNullableScalarRelationFilter, TempVoiceChannelMemberWhereInput> | null
     TempVoiceConfig?: XOR<TempVoiceConfigScalarRelationFilter, TempVoiceConfigWhereInput>
   }
 
@@ -104918,7 +104800,7 @@ export namespace Prisma {
     ChannelId?: SortOrder
     OwnerId?: SortOrder
     TempVoiceConfigId?: SortOrder
-    TempVoiceChannelMembers?: TempVoiceChannelMemberOrderByRelationAggregateInput
+    TempVoiceChannelMembers?: TempVoiceChannelMemberOrderByWithRelationInput
     TempVoiceConfig?: TempVoiceConfigOrderByWithRelationInput
   }
 
@@ -104931,7 +104813,7 @@ export namespace Prisma {
     NOT?: TempVoiceChannelsWhereInput | TempVoiceChannelsWhereInput[]
     GuildId?: StringFilter<"TempVoiceChannels"> | string
     TempVoiceConfigId?: StringFilter<"TempVoiceChannels"> | string
-    TempVoiceChannelMembers?: TempVoiceChannelMemberListRelationFilter
+    TempVoiceChannelMembers?: XOR<TempVoiceChannelMemberNullableScalarRelationFilter, TempVoiceChannelMemberWhereInput> | null
     TempVoiceConfig?: XOR<TempVoiceConfigScalarRelationFilter, TempVoiceConfigWhereInput>
   }, "Id" | "ChannelId" | "OwnerId">
 
@@ -106088,7 +105970,6 @@ export namespace Prisma {
     TicketStatusMessageId?: StringNullableFilter<"TicketSetups"> | string | null
     TicketStatusChannelId?: StringNullableFilter<"TicketSetups"> | string | null
     AutoCloseAction?: StringNullableListFilter<"TicketSetups">
-    TicketSettings?: StringNullableListFilter<"TicketSetups">
     OldTicketCategoryId?: StringNullableFilter<"TicketSetups"> | string | null
     RequiredRoles?: StringNullableListFilter<"TicketSetups">
     SlashCommandId?: StringNullableFilter<"TicketSetups"> | string | null
@@ -106097,6 +105978,7 @@ export namespace Prisma {
     TextCommandName?: StringNullableFilter<"TicketSetups"> | string | null
     SendTranscriptToUser?: BoolNullableFilter<"TicketSetups"> | boolean | null
     GuildId?: StringFilter<"TicketSetups"> | string
+    TicketSettings?: StringNullableListFilter<"TicketSetups">
     ModalOptions?: TicketModalDataListRelationFilter
     TicketPermissions?: TicketPermissionsListRelationFilter
     Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
@@ -106130,7 +106012,6 @@ export namespace Prisma {
     TicketStatusMessageId?: SortOrderInput | SortOrder
     TicketStatusChannelId?: SortOrderInput | SortOrder
     AutoCloseAction?: SortOrder
-    TicketSettings?: SortOrder
     OldTicketCategoryId?: SortOrderInput | SortOrder
     RequiredRoles?: SortOrder
     SlashCommandId?: SortOrderInput | SortOrder
@@ -106139,6 +106020,7 @@ export namespace Prisma {
     TextCommandName?: SortOrderInput | SortOrder
     SendTranscriptToUser?: SortOrderInput | SortOrder
     GuildId?: SortOrder
+    TicketSettings?: SortOrder
     ModalOptions?: TicketModalDataOrderByRelationAggregateInput
     TicketPermissions?: TicketPermissionsOrderByRelationAggregateInput
     Guilds?: GuildsOrderByWithRelationInput
@@ -106175,7 +106057,6 @@ export namespace Prisma {
     TicketStatusMessageId?: StringNullableFilter<"TicketSetups"> | string | null
     TicketStatusChannelId?: StringNullableFilter<"TicketSetups"> | string | null
     AutoCloseAction?: StringNullableListFilter<"TicketSetups">
-    TicketSettings?: StringNullableListFilter<"TicketSetups">
     OldTicketCategoryId?: StringNullableFilter<"TicketSetups"> | string | null
     RequiredRoles?: StringNullableListFilter<"TicketSetups">
     SlashCommandId?: StringNullableFilter<"TicketSetups"> | string | null
@@ -106184,6 +106065,7 @@ export namespace Prisma {
     TextCommandName?: StringNullableFilter<"TicketSetups"> | string | null
     SendTranscriptToUser?: BoolNullableFilter<"TicketSetups"> | boolean | null
     GuildId?: StringFilter<"TicketSetups"> | string
+    TicketSettings?: StringNullableListFilter<"TicketSetups">
     ModalOptions?: TicketModalDataListRelationFilter
     TicketPermissions?: TicketPermissionsListRelationFilter
     Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
@@ -106217,7 +106099,6 @@ export namespace Prisma {
     TicketStatusMessageId?: SortOrderInput | SortOrder
     TicketStatusChannelId?: SortOrderInput | SortOrder
     AutoCloseAction?: SortOrder
-    TicketSettings?: SortOrder
     OldTicketCategoryId?: SortOrderInput | SortOrder
     RequiredRoles?: SortOrder
     SlashCommandId?: SortOrderInput | SortOrder
@@ -106226,6 +106107,7 @@ export namespace Prisma {
     TextCommandName?: SortOrderInput | SortOrder
     SendTranscriptToUser?: SortOrderInput | SortOrder
     GuildId?: SortOrder
+    TicketSettings?: SortOrder
     _count?: TicketSetupsCountOrderByAggregateInput
     _avg?: TicketSetupsAvgOrderByAggregateInput
     _max?: TicketSetupsMaxOrderByAggregateInput
@@ -106263,7 +106145,6 @@ export namespace Prisma {
     TicketStatusMessageId?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
     TicketStatusChannelId?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
     AutoCloseAction?: StringNullableListFilter<"TicketSetups">
-    TicketSettings?: StringNullableListFilter<"TicketSetups">
     OldTicketCategoryId?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
     RequiredRoles?: StringNullableListFilter<"TicketSetups">
     SlashCommandId?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
@@ -106272,6 +106153,7 @@ export namespace Prisma {
     TextCommandName?: StringNullableWithAggregatesFilter<"TicketSetups"> | string | null
     SendTranscriptToUser?: BoolNullableWithAggregatesFilter<"TicketSetups"> | boolean | null
     GuildId?: StringWithAggregatesFilter<"TicketSetups"> | string
+    TicketSettings?: StringNullableListFilter<"TicketSetups">
   }
 
   export type TicketModalDataWhereInput = {
@@ -106942,7 +106824,6 @@ export namespace Prisma {
     NOT?: LevelSettingsWhereInput | LevelSettingsWhereInput[]
     Id?: IntFilter<"LevelSettings"> | number
     LevelUpChannelId?: StringNullableFilter<"LevelSettings"> | string | null
-    LevelUpMessageType?: StringNullableFilter<"LevelSettings"> | string | null
     LeaderboardMessageTemplateId?: StringNullableFilter<"LevelSettings"> | string | null
     LeaderboardDisplayAmount?: IntNullableFilter<"LevelSettings"> | number | null
     RequiredXPForFirstLevel?: IntNullableFilter<"LevelSettings"> | number | null
@@ -106960,11 +106841,12 @@ export namespace Prisma {
     MessageXPCooldown?: StringNullableFilter<"LevelSettings"> | string | null
     MessageXPType?: StringNullableListFilter<"LevelSettings">
     RequiredXPFormular?: StringNullableFilter<"LevelSettings"> | string | null
+    LevelUpMessageType?: StringNullableFilter<"LevelSettings"> | string | null
     LevelUserInfoMessageTemplate?: StringNullableFilter<"LevelSettings"> | string | null
-    XPDropsMessageTemplate?: StringNullableFilter<"LevelSettings"> | string | null
     XPStreaksMessageType?: StringNullableFilter<"LevelSettings"> | string | null
-    XPStreaksIncreaseType?: StringNullableListFilter<"LevelSettings">
     XPStreaksMessageChannelId?: StringNullableFilter<"LevelSettings"> | string | null
+    XPStreaksIncreaseType?: StringNullableListFilter<"LevelSettings">
+    XPDropsMessageTemplate?: StringNullableFilter<"LevelSettings"> | string | null
     LevelRoles?: LevelRolesListRelationFilter
     Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
     Levels?: LevelsListRelationFilter
@@ -106975,7 +106857,6 @@ export namespace Prisma {
   export type LevelSettingsOrderByWithRelationInput = {
     Id?: SortOrder
     LevelUpChannelId?: SortOrderInput | SortOrder
-    LevelUpMessageType?: SortOrderInput | SortOrder
     LeaderboardMessageTemplateId?: SortOrderInput | SortOrder
     LeaderboardDisplayAmount?: SortOrderInput | SortOrder
     RequiredXPForFirstLevel?: SortOrderInput | SortOrder
@@ -106993,11 +106874,12 @@ export namespace Prisma {
     MessageXPCooldown?: SortOrderInput | SortOrder
     MessageXPType?: SortOrder
     RequiredXPFormular?: SortOrderInput | SortOrder
+    LevelUpMessageType?: SortOrderInput | SortOrder
     LevelUserInfoMessageTemplate?: SortOrderInput | SortOrder
-    XPDropsMessageTemplate?: SortOrderInput | SortOrder
     XPStreaksMessageType?: SortOrderInput | SortOrder
-    XPStreaksIncreaseType?: SortOrder
     XPStreaksMessageChannelId?: SortOrderInput | SortOrder
+    XPStreaksIncreaseType?: SortOrder
+    XPDropsMessageTemplate?: SortOrderInput | SortOrder
     LevelRoles?: LevelRolesOrderByRelationAggregateInput
     Guilds?: GuildsOrderByWithRelationInput
     Levels?: LevelsOrderByRelationAggregateInput
@@ -107012,7 +106894,6 @@ export namespace Prisma {
     OR?: LevelSettingsWhereInput[]
     NOT?: LevelSettingsWhereInput | LevelSettingsWhereInput[]
     LevelUpChannelId?: StringNullableFilter<"LevelSettings"> | string | null
-    LevelUpMessageType?: StringNullableFilter<"LevelSettings"> | string | null
     LeaderboardMessageTemplateId?: StringNullableFilter<"LevelSettings"> | string | null
     LeaderboardDisplayAmount?: IntNullableFilter<"LevelSettings"> | number | null
     RequiredXPForFirstLevel?: IntNullableFilter<"LevelSettings"> | number | null
@@ -107029,11 +106910,12 @@ export namespace Prisma {
     MessageXPCooldown?: StringNullableFilter<"LevelSettings"> | string | null
     MessageXPType?: StringNullableListFilter<"LevelSettings">
     RequiredXPFormular?: StringNullableFilter<"LevelSettings"> | string | null
+    LevelUpMessageType?: StringNullableFilter<"LevelSettings"> | string | null
     LevelUserInfoMessageTemplate?: StringNullableFilter<"LevelSettings"> | string | null
-    XPDropsMessageTemplate?: StringNullableFilter<"LevelSettings"> | string | null
     XPStreaksMessageType?: StringNullableFilter<"LevelSettings"> | string | null
-    XPStreaksIncreaseType?: StringNullableListFilter<"LevelSettings">
     XPStreaksMessageChannelId?: StringNullableFilter<"LevelSettings"> | string | null
+    XPStreaksIncreaseType?: StringNullableListFilter<"LevelSettings">
+    XPDropsMessageTemplate?: StringNullableFilter<"LevelSettings"> | string | null
     LevelRoles?: LevelRolesListRelationFilter
     Guilds?: XOR<GuildsScalarRelationFilter, GuildsWhereInput>
     Levels?: LevelsListRelationFilter
@@ -107044,7 +106926,6 @@ export namespace Prisma {
   export type LevelSettingsOrderByWithAggregationInput = {
     Id?: SortOrder
     LevelUpChannelId?: SortOrderInput | SortOrder
-    LevelUpMessageType?: SortOrderInput | SortOrder
     LeaderboardMessageTemplateId?: SortOrderInput | SortOrder
     LeaderboardDisplayAmount?: SortOrderInput | SortOrder
     RequiredXPForFirstLevel?: SortOrderInput | SortOrder
@@ -107062,11 +106943,12 @@ export namespace Prisma {
     MessageXPCooldown?: SortOrderInput | SortOrder
     MessageXPType?: SortOrder
     RequiredXPFormular?: SortOrderInput | SortOrder
+    LevelUpMessageType?: SortOrderInput | SortOrder
     LevelUserInfoMessageTemplate?: SortOrderInput | SortOrder
-    XPDropsMessageTemplate?: SortOrderInput | SortOrder
     XPStreaksMessageType?: SortOrderInput | SortOrder
-    XPStreaksIncreaseType?: SortOrder
     XPStreaksMessageChannelId?: SortOrderInput | SortOrder
+    XPStreaksIncreaseType?: SortOrder
+    XPDropsMessageTemplate?: SortOrderInput | SortOrder
     _count?: LevelSettingsCountOrderByAggregateInput
     _avg?: LevelSettingsAvgOrderByAggregateInput
     _max?: LevelSettingsMaxOrderByAggregateInput
@@ -107080,7 +106962,6 @@ export namespace Prisma {
     NOT?: LevelSettingsScalarWhereWithAggregatesInput | LevelSettingsScalarWhereWithAggregatesInput[]
     Id?: IntWithAggregatesFilter<"LevelSettings"> | number
     LevelUpChannelId?: StringNullableWithAggregatesFilter<"LevelSettings"> | string | null
-    LevelUpMessageType?: StringNullableWithAggregatesFilter<"LevelSettings"> | string | null
     LeaderboardMessageTemplateId?: StringNullableWithAggregatesFilter<"LevelSettings"> | string | null
     LeaderboardDisplayAmount?: IntNullableWithAggregatesFilter<"LevelSettings"> | number | null
     RequiredXPForFirstLevel?: IntNullableWithAggregatesFilter<"LevelSettings"> | number | null
@@ -107098,11 +106979,12 @@ export namespace Prisma {
     MessageXPCooldown?: StringNullableWithAggregatesFilter<"LevelSettings"> | string | null
     MessageXPType?: StringNullableListFilter<"LevelSettings">
     RequiredXPFormular?: StringNullableWithAggregatesFilter<"LevelSettings"> | string | null
+    LevelUpMessageType?: StringNullableWithAggregatesFilter<"LevelSettings"> | string | null
     LevelUserInfoMessageTemplate?: StringNullableWithAggregatesFilter<"LevelSettings"> | string | null
-    XPDropsMessageTemplate?: StringNullableWithAggregatesFilter<"LevelSettings"> | string | null
     XPStreaksMessageType?: StringNullableWithAggregatesFilter<"LevelSettings"> | string | null
-    XPStreaksIncreaseType?: StringNullableListFilter<"LevelSettings">
     XPStreaksMessageChannelId?: StringNullableWithAggregatesFilter<"LevelSettings"> | string | null
+    XPStreaksIncreaseType?: StringNullableListFilter<"LevelSettings">
+    XPDropsMessageTemplate?: StringNullableWithAggregatesFilter<"LevelSettings"> | string | null
   }
 
   export type XPDropsWhereInput = {
@@ -107110,13 +106992,13 @@ export namespace Prisma {
     OR?: XPDropsWhereInput[]
     NOT?: XPDropsWhereInput | XPDropsWhereInput[]
     Id?: IntFilter<"XPDrops"> | number
-    UUID?: StringFilter<"XPDrops"> | string
     GuildId?: StringFilter<"XPDrops"> | string
     XPRange?: StringNullableFilter<"XPDrops"> | string | null
     TimeToRespawn?: StringNullableFilter<"XPDrops"> | string | null
     ChannelIds?: StringNullableListFilter<"XPDrops">
     ClaimAmount?: IntNullableFilter<"XPDrops"> | number | null
     ExpireTime?: StringNullableFilter<"XPDrops"> | string | null
+    UUID?: StringFilter<"XPDrops"> | string
     LastSpawned?: StringNullableFilter<"XPDrops"> | string | null
     MessageIdsToDelete?: StringNullableListFilter<"XPDrops">
     LevelSettings?: XOR<LevelSettingsScalarRelationFilter, LevelSettingsWhereInput>
@@ -107124,13 +107006,13 @@ export namespace Prisma {
 
   export type XPDropsOrderByWithRelationInput = {
     Id?: SortOrder
-    UUID?: SortOrder
     GuildId?: SortOrder
     XPRange?: SortOrderInput | SortOrder
     TimeToRespawn?: SortOrderInput | SortOrder
     ChannelIds?: SortOrder
     ClaimAmount?: SortOrderInput | SortOrder
     ExpireTime?: SortOrderInput | SortOrder
+    UUID?: SortOrder
     LastSpawned?: SortOrderInput | SortOrder
     MessageIdsToDelete?: SortOrder
     LevelSettings?: LevelSettingsOrderByWithRelationInput
@@ -107155,13 +107037,13 @@ export namespace Prisma {
 
   export type XPDropsOrderByWithAggregationInput = {
     Id?: SortOrder
-    UUID?: SortOrder
     GuildId?: SortOrder
     XPRange?: SortOrderInput | SortOrder
     TimeToRespawn?: SortOrderInput | SortOrder
     ChannelIds?: SortOrder
     ClaimAmount?: SortOrderInput | SortOrder
     ExpireTime?: SortOrderInput | SortOrder
+    UUID?: SortOrder
     LastSpawned?: SortOrderInput | SortOrder
     MessageIdsToDelete?: SortOrder
     _count?: XPDropsCountOrderByAggregateInput
@@ -107176,13 +107058,13 @@ export namespace Prisma {
     OR?: XPDropsScalarWhereWithAggregatesInput[]
     NOT?: XPDropsScalarWhereWithAggregatesInput | XPDropsScalarWhereWithAggregatesInput[]
     Id?: IntWithAggregatesFilter<"XPDrops"> | number
-    UUID?: StringWithAggregatesFilter<"XPDrops"> | string
     GuildId?: StringWithAggregatesFilter<"XPDrops"> | string
     XPRange?: StringNullableWithAggregatesFilter<"XPDrops"> | string | null
     TimeToRespawn?: StringNullableWithAggregatesFilter<"XPDrops"> | string | null
     ChannelIds?: StringNullableListFilter<"XPDrops">
     ClaimAmount?: IntNullableWithAggregatesFilter<"XPDrops"> | number | null
     ExpireTime?: StringNullableWithAggregatesFilter<"XPDrops"> | string | null
+    UUID?: StringWithAggregatesFilter<"XPDrops"> | string
     LastSpawned?: StringNullableWithAggregatesFilter<"XPDrops"> | string | null
     MessageIdsToDelete?: StringNullableListFilter<"XPDrops">
   }
@@ -107332,14 +107214,14 @@ export namespace Prisma {
     NOT?: LevelsWhereInput | LevelsWhereInput[]
     Id?: IntFilter<"Levels"> | number
     XP?: StringNullableFilter<"Levels"> | string | null
-    RequiredXp?: StringNullableFilter<"Levels"> | string | null
     Level?: IntNullableFilter<"Levels"> | number | null
     UserId?: StringFilter<"Levels"> | string
     GuildId?: StringFilter<"Levels"> | string
+    UUID?: StringFilter<"Levels"> | string
     ClaimedXPDrops?: StringNullableListFilter<"Levels">
     CurrentStreakDay?: IntNullableFilter<"Levels"> | number | null
+    RequiredXp?: StringNullableFilter<"Levels"> | string | null
     LastXPStreakUpdate?: StringNullableFilter<"Levels"> | string | null
-    UUID?: StringFilter<"Levels"> | string
     LevelSettings?: XOR<LevelSettingsScalarRelationFilter, LevelSettingsWhereInput>
     Users?: XOR<UsersScalarRelationFilter, UsersWhereInput>
   }
@@ -107347,14 +107229,14 @@ export namespace Prisma {
   export type LevelsOrderByWithRelationInput = {
     Id?: SortOrder
     XP?: SortOrderInput | SortOrder
-    RequiredXp?: SortOrderInput | SortOrder
     Level?: SortOrderInput | SortOrder
     UserId?: SortOrder
     GuildId?: SortOrder
+    UUID?: SortOrder
     ClaimedXPDrops?: SortOrder
     CurrentStreakDay?: SortOrderInput | SortOrder
+    RequiredXp?: SortOrderInput | SortOrder
     LastXPStreakUpdate?: SortOrderInput | SortOrder
-    UUID?: SortOrder
     LevelSettings?: LevelSettingsOrderByWithRelationInput
     Users?: UsersOrderByWithRelationInput
   }
@@ -107366,12 +107248,12 @@ export namespace Prisma {
     OR?: LevelsWhereInput[]
     NOT?: LevelsWhereInput | LevelsWhereInput[]
     XP?: StringNullableFilter<"Levels"> | string | null
-    RequiredXp?: StringNullableFilter<"Levels"> | string | null
     Level?: IntNullableFilter<"Levels"> | number | null
     UserId?: StringFilter<"Levels"> | string
     GuildId?: StringFilter<"Levels"> | string
     ClaimedXPDrops?: StringNullableListFilter<"Levels">
     CurrentStreakDay?: IntNullableFilter<"Levels"> | number | null
+    RequiredXp?: StringNullableFilter<"Levels"> | string | null
     LastXPStreakUpdate?: StringNullableFilter<"Levels"> | string | null
     LevelSettings?: XOR<LevelSettingsScalarRelationFilter, LevelSettingsWhereInput>
     Users?: XOR<UsersScalarRelationFilter, UsersWhereInput>
@@ -107380,14 +107262,14 @@ export namespace Prisma {
   export type LevelsOrderByWithAggregationInput = {
     Id?: SortOrder
     XP?: SortOrderInput | SortOrder
-    RequiredXp?: SortOrderInput | SortOrder
     Level?: SortOrderInput | SortOrder
     UserId?: SortOrder
     GuildId?: SortOrder
+    UUID?: SortOrder
     ClaimedXPDrops?: SortOrder
     CurrentStreakDay?: SortOrderInput | SortOrder
+    RequiredXp?: SortOrderInput | SortOrder
     LastXPStreakUpdate?: SortOrderInput | SortOrder
-    UUID?: SortOrder
     _count?: LevelsCountOrderByAggregateInput
     _avg?: LevelsAvgOrderByAggregateInput
     _max?: LevelsMaxOrderByAggregateInput
@@ -107401,14 +107283,14 @@ export namespace Prisma {
     NOT?: LevelsScalarWhereWithAggregatesInput | LevelsScalarWhereWithAggregatesInput[]
     Id?: IntWithAggregatesFilter<"Levels"> | number
     XP?: StringNullableWithAggregatesFilter<"Levels"> | string | null
-    RequiredXp?: StringNullableWithAggregatesFilter<"Levels"> | string | null
     Level?: IntNullableWithAggregatesFilter<"Levels"> | number | null
     UserId?: StringWithAggregatesFilter<"Levels"> | string
     GuildId?: StringWithAggregatesFilter<"Levels"> | string
+    UUID?: StringWithAggregatesFilter<"Levels"> | string
     ClaimedXPDrops?: StringNullableListFilter<"Levels">
     CurrentStreakDay?: IntNullableWithAggregatesFilter<"Levels"> | number | null
+    RequiredXp?: StringNullableWithAggregatesFilter<"Levels"> | string | null
     LastXPStreakUpdate?: StringNullableWithAggregatesFilter<"Levels"> | string | null
-    UUID?: StringWithAggregatesFilter<"Levels"> | string
   }
 
   export type UsersWhereInput = {
@@ -108062,7 +107944,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -108097,7 +107979,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -108131,7 +108013,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -108166,7 +108048,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -109803,9 +109685,9 @@ export namespace Prisma {
     DmMessage?: string | null
     Type?: string | null
     Notes?: GuildUserModerationCreateNotesInput | string[]
+    LinkedCaseId?: string | null
     CreatedAt?: Date | string | null
     GuildId: string
-    LinkedCaseId?: string | null
   }
 
   export type GuildUserModerationUpdateInput = {
@@ -109832,9 +109714,9 @@ export namespace Prisma {
     DmMessage?: NullableStringFieldUpdateOperationsInput | string | null
     Type?: NullableStringFieldUpdateOperationsInput | string | null
     Notes?: GuildUserModerationUpdateNotesInput | string[]
+    LinkedCaseId?: NullableStringFieldUpdateOperationsInput | string | null
     CreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     GuildId?: StringFieldUpdateOperationsInput | string
-    LinkedCaseId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type GuildUserModerationCreateManyInput = {
@@ -109847,9 +109729,9 @@ export namespace Prisma {
     DmMessage?: string | null
     Type?: string | null
     Notes?: GuildUserModerationCreateNotesInput | string[]
+    LinkedCaseId?: string | null
     CreatedAt?: Date | string | null
     GuildId: string
-    LinkedCaseId?: string | null
   }
 
   export type GuildUserModerationUpdateManyMutationInput = {
@@ -109874,9 +109756,9 @@ export namespace Prisma {
     DmMessage?: NullableStringFieldUpdateOperationsInput | string | null
     Type?: NullableStringFieldUpdateOperationsInput | string | null
     Notes?: GuildUserModerationUpdateNotesInput | string[]
+    LinkedCaseId?: NullableStringFieldUpdateOperationsInput | string | null
     CreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     GuildId?: StringFieldUpdateOperationsInput | string
-    LinkedCaseId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type GuildDisBotAutoModerationCreateInput = {
@@ -110834,9 +110716,9 @@ export namespace Prisma {
     UserInviteMessageTemplateId?: string | null
     ModeratorUserIds?: TempVoiceCreateModeratorUserIdsInput | string[]
     TempVoiceLogChannelId?: string | null
+    Guilds: GuildsCreateNestedOneWithoutTempVoicesInput
     TempVoiceConfigs?: TempVoiceConfigCreateNestedManyWithoutTempVoiceInput
     TempVoicePresets?: TempVoicePresetCreateNestedManyWithoutTempVoiceInput
-    Guilds: GuildsCreateNestedOneWithoutTempVoicesInput
   }
 
   export type TempVoiceUncheckedCreateInput = {
@@ -110853,9 +110735,9 @@ export namespace Prisma {
     UserInviteMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     ModeratorUserIds?: TempVoiceUpdateModeratorUserIdsInput | string[]
     TempVoiceLogChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    Guilds?: GuildsUpdateOneRequiredWithoutTempVoicesNestedInput
     TempVoiceConfigs?: TempVoiceConfigUpdateManyWithoutTempVoiceNestedInput
     TempVoicePresets?: TempVoicePresetUpdateManyWithoutTempVoiceNestedInput
-    Guilds?: GuildsUpdateOneRequiredWithoutTempVoicesNestedInput
   }
 
   export type TempVoiceUncheckedUpdateInput = {
@@ -110896,8 +110778,8 @@ export namespace Prisma {
     ChannelCategory?: string | null
     ManageMessageTemplateId?: string | null
     IsManageEnalbed?: boolean
-    TempVoicePreset: TempVoicePresetCreateNestedOneWithoutTempVoiceConfigsInput
     TempVoiceChannels?: TempVoiceChannelsCreateNestedManyWithoutTempVoiceConfigInput
+    TempVoicePreset: TempVoicePresetCreateNestedOneWithoutTempVoiceConfigsInput
     TempVoice: TempVoiceCreateNestedOneWithoutTempVoiceConfigsInput
   }
 
@@ -110919,8 +110801,8 @@ export namespace Prisma {
     ChannelCategory?: NullableStringFieldUpdateOperationsInput | string | null
     ManageMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     IsManageEnalbed?: BoolFieldUpdateOperationsInput | boolean
-    TempVoicePreset?: TempVoicePresetUpdateOneRequiredWithoutTempVoiceConfigsNestedInput
     TempVoiceChannels?: TempVoiceChannelsUpdateManyWithoutTempVoiceConfigNestedInput
+    TempVoicePreset?: TempVoicePresetUpdateOneRequiredWithoutTempVoiceConfigsNestedInput
     TempVoice?: TempVoiceUpdateOneRequiredWithoutTempVoiceConfigsNestedInput
   }
 
@@ -110973,14 +110855,14 @@ export namespace Prisma {
     ChannelRegion?: string | null
     ChannelBitRate?: string | null
     UserInviteType?: string | null
-    SendLogsInTempChannel?: boolean
+    SendLogsInTempChannel?: boolean | null
     BlacklistRoleId?: string | null
     ManageComponents?: TempVoicePresetCreateManageComponentsInput | string[]
     OwnerAllowedDiscordPermissions?: TempVoicePresetCreateOwnerAllowedDiscordPermissionsInput | string[]
     OwnerDeniedDiscordPermissions?: TempVoicePresetCreateOwnerDeniedDiscordPermissionsInput | string[]
-    RolePermissions?: TempVoicePresetDiscordRolePermissionCreateNestedManyWithoutTempVoicePresetInput
-    TempVoiceConfigs?: TempVoiceConfigCreateNestedManyWithoutTempVoicePresetInput
+    TempVoiceConfigs?: TempVoiceConfigCreateNestedOneWithoutTempVoicePresetInput
     TempVoice: TempVoiceCreateNestedOneWithoutTempVoicePresetsInput
+    RolePermissions?: TempVoicePresetDiscordRolePermissionCreateNestedOneWithoutTempVoicePresetInput
   }
 
   export type TempVoicePresetUncheckedCreateInput = {
@@ -110991,14 +110873,14 @@ export namespace Prisma {
     ChannelRegion?: string | null
     ChannelBitRate?: string | null
     UserInviteType?: string | null
-    SendLogsInTempChannel?: boolean
+    SendLogsInTempChannel?: boolean | null
     BlacklistRoleId?: string | null
     ManageComponents?: TempVoicePresetCreateManageComponentsInput | string[]
     OwnerAllowedDiscordPermissions?: TempVoicePresetCreateOwnerAllowedDiscordPermissionsInput | string[]
     OwnerDeniedDiscordPermissions?: TempVoicePresetCreateOwnerDeniedDiscordPermissionsInput | string[]
     TempVoiceId: string
-    RolePermissions?: TempVoicePresetDiscordRolePermissionUncheckedCreateNestedManyWithoutTempVoicePresetInput
-    TempVoiceConfigs?: TempVoiceConfigUncheckedCreateNestedManyWithoutTempVoicePresetInput
+    TempVoiceConfigs?: TempVoiceConfigUncheckedCreateNestedOneWithoutTempVoicePresetInput
+    RolePermissions?: TempVoicePresetDiscordRolePermissionUncheckedCreateNestedOneWithoutTempVoicePresetInput
   }
 
   export type TempVoicePresetUpdateInput = {
@@ -111008,14 +110890,14 @@ export namespace Prisma {
     ChannelRegion?: NullableStringFieldUpdateOperationsInput | string | null
     ChannelBitRate?: NullableStringFieldUpdateOperationsInput | string | null
     UserInviteType?: NullableStringFieldUpdateOperationsInput | string | null
-    SendLogsInTempChannel?: BoolFieldUpdateOperationsInput | boolean
+    SendLogsInTempChannel?: NullableBoolFieldUpdateOperationsInput | boolean | null
     BlacklistRoleId?: NullableStringFieldUpdateOperationsInput | string | null
     ManageComponents?: TempVoicePresetUpdateManageComponentsInput | string[]
     OwnerAllowedDiscordPermissions?: TempVoicePresetUpdateOwnerAllowedDiscordPermissionsInput | string[]
     OwnerDeniedDiscordPermissions?: TempVoicePresetUpdateOwnerDeniedDiscordPermissionsInput | string[]
-    RolePermissions?: TempVoicePresetDiscordRolePermissionUpdateManyWithoutTempVoicePresetNestedInput
-    TempVoiceConfigs?: TempVoiceConfigUpdateManyWithoutTempVoicePresetNestedInput
+    TempVoiceConfigs?: TempVoiceConfigUpdateOneWithoutTempVoicePresetNestedInput
     TempVoice?: TempVoiceUpdateOneRequiredWithoutTempVoicePresetsNestedInput
+    RolePermissions?: TempVoicePresetDiscordRolePermissionUpdateOneWithoutTempVoicePresetNestedInput
   }
 
   export type TempVoicePresetUncheckedUpdateInput = {
@@ -111026,14 +110908,14 @@ export namespace Prisma {
     ChannelRegion?: NullableStringFieldUpdateOperationsInput | string | null
     ChannelBitRate?: NullableStringFieldUpdateOperationsInput | string | null
     UserInviteType?: NullableStringFieldUpdateOperationsInput | string | null
-    SendLogsInTempChannel?: BoolFieldUpdateOperationsInput | boolean
+    SendLogsInTempChannel?: NullableBoolFieldUpdateOperationsInput | boolean | null
     BlacklistRoleId?: NullableStringFieldUpdateOperationsInput | string | null
     ManageComponents?: TempVoicePresetUpdateManageComponentsInput | string[]
     OwnerAllowedDiscordPermissions?: TempVoicePresetUpdateOwnerAllowedDiscordPermissionsInput | string[]
     OwnerDeniedDiscordPermissions?: TempVoicePresetUpdateOwnerDeniedDiscordPermissionsInput | string[]
     TempVoiceId?: StringFieldUpdateOperationsInput | string
-    RolePermissions?: TempVoicePresetDiscordRolePermissionUncheckedUpdateManyWithoutTempVoicePresetNestedInput
-    TempVoiceConfigs?: TempVoiceConfigUncheckedUpdateManyWithoutTempVoicePresetNestedInput
+    TempVoiceConfigs?: TempVoiceConfigUncheckedUpdateOneWithoutTempVoicePresetNestedInput
+    RolePermissions?: TempVoicePresetDiscordRolePermissionUncheckedUpdateOneWithoutTempVoicePresetNestedInput
   }
 
   export type TempVoicePresetCreateManyInput = {
@@ -111044,7 +110926,7 @@ export namespace Prisma {
     ChannelRegion?: string | null
     ChannelBitRate?: string | null
     UserInviteType?: string | null
-    SendLogsInTempChannel?: boolean
+    SendLogsInTempChannel?: boolean | null
     BlacklistRoleId?: string | null
     ManageComponents?: TempVoicePresetCreateManageComponentsInput | string[]
     OwnerAllowedDiscordPermissions?: TempVoicePresetCreateOwnerAllowedDiscordPermissionsInput | string[]
@@ -111059,7 +110941,7 @@ export namespace Prisma {
     ChannelRegion?: NullableStringFieldUpdateOperationsInput | string | null
     ChannelBitRate?: NullableStringFieldUpdateOperationsInput | string | null
     UserInviteType?: NullableStringFieldUpdateOperationsInput | string | null
-    SendLogsInTempChannel?: BoolFieldUpdateOperationsInput | boolean
+    SendLogsInTempChannel?: NullableBoolFieldUpdateOperationsInput | boolean | null
     BlacklistRoleId?: NullableStringFieldUpdateOperationsInput | string | null
     ManageComponents?: TempVoicePresetUpdateManageComponentsInput | string[]
     OwnerAllowedDiscordPermissions?: TempVoicePresetUpdateOwnerAllowedDiscordPermissionsInput | string[]
@@ -111074,7 +110956,7 @@ export namespace Prisma {
     ChannelRegion?: NullableStringFieldUpdateOperationsInput | string | null
     ChannelBitRate?: NullableStringFieldUpdateOperationsInput | string | null
     UserInviteType?: NullableStringFieldUpdateOperationsInput | string | null
-    SendLogsInTempChannel?: BoolFieldUpdateOperationsInput | boolean
+    SendLogsInTempChannel?: NullableBoolFieldUpdateOperationsInput | boolean | null
     BlacklistRoleId?: NullableStringFieldUpdateOperationsInput | string | null
     ManageComponents?: TempVoicePresetUpdateManageComponentsInput | string[]
     OwnerAllowedDiscordPermissions?: TempVoicePresetUpdateOwnerAllowedDiscordPermissionsInput | string[]
@@ -111138,7 +111020,7 @@ export namespace Prisma {
     GuildId: string
     ChannelId: string
     OwnerId: string
-    TempVoiceChannelMembers?: TempVoiceChannelMemberCreateNestedManyWithoutTempVoiceChannelsInput
+    TempVoiceChannelMembers?: TempVoiceChannelMemberCreateNestedOneWithoutTempVoiceChannelsInput
     TempVoiceConfig: TempVoiceConfigCreateNestedOneWithoutTempVoiceChannelsInput
   }
 
@@ -111148,14 +111030,14 @@ export namespace Prisma {
     ChannelId: string
     OwnerId: string
     TempVoiceConfigId: string
-    TempVoiceChannelMembers?: TempVoiceChannelMemberUncheckedCreateNestedManyWithoutTempVoiceChannelsInput
+    TempVoiceChannelMembers?: TempVoiceChannelMemberUncheckedCreateNestedOneWithoutTempVoiceChannelsInput
   }
 
   export type TempVoiceChannelsUpdateInput = {
     GuildId?: StringFieldUpdateOperationsInput | string
     ChannelId?: StringFieldUpdateOperationsInput | string
     OwnerId?: StringFieldUpdateOperationsInput | string
-    TempVoiceChannelMembers?: TempVoiceChannelMemberUpdateManyWithoutTempVoiceChannelsNestedInput
+    TempVoiceChannelMembers?: TempVoiceChannelMemberUpdateOneWithoutTempVoiceChannelsNestedInput
     TempVoiceConfig?: TempVoiceConfigUpdateOneRequiredWithoutTempVoiceChannelsNestedInput
   }
 
@@ -111165,7 +111047,7 @@ export namespace Prisma {
     ChannelId?: StringFieldUpdateOperationsInput | string
     OwnerId?: StringFieldUpdateOperationsInput | string
     TempVoiceConfigId?: StringFieldUpdateOperationsInput | string
-    TempVoiceChannelMembers?: TempVoiceChannelMemberUncheckedUpdateManyWithoutTempVoiceChannelsNestedInput
+    TempVoiceChannelMembers?: TempVoiceChannelMemberUncheckedUpdateOneWithoutTempVoiceChannelsNestedInput
   }
 
   export type TempVoiceChannelsCreateManyInput = {
@@ -112331,7 +112213,6 @@ export namespace Prisma {
     TicketStatusMessageId?: string | null
     TicketStatusChannelId?: string | null
     AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
-    TicketSettings?: TicketSetupsCreateTicketSettingsInput | string[]
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
     SlashCommandId?: string | null
@@ -112339,6 +112220,7 @@ export namespace Prisma {
     SlashCommandDescription?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
+    TicketSettings?: TicketSetupsCreateTicketSettingsInput | string[]
     ModalOptions?: TicketModalDataCreateNestedManyWithoutTicketSetupInput
     TicketPermissions?: TicketPermissionsCreateNestedManyWithoutTicketSetupInput
     Guilds: GuildsCreateNestedOneWithoutTicketSetupsInput
@@ -112372,7 +112254,6 @@ export namespace Prisma {
     TicketStatusMessageId?: string | null
     TicketStatusChannelId?: string | null
     AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
-    TicketSettings?: TicketSetupsCreateTicketSettingsInput | string[]
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
     SlashCommandId?: string | null
@@ -112381,6 +112262,7 @@ export namespace Prisma {
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
     GuildId: string
+    TicketSettings?: TicketSetupsCreateTicketSettingsInput | string[]
     ModalOptions?: TicketModalDataUncheckedCreateNestedManyWithoutTicketSetupInput
     TicketPermissions?: TicketPermissionsUncheckedCreateNestedManyWithoutTicketSetupInput
     Tickets?: TicketsUncheckedCreateNestedManyWithoutTicketSetupInput
@@ -112412,7 +112294,6 @@ export namespace Prisma {
     TicketStatusMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     TicketStatusChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
-    TicketSettings?: TicketSetupsUpdateTicketSettingsInput | string[]
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -112420,6 +112301,7 @@ export namespace Prisma {
     SlashCommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    TicketSettings?: TicketSetupsUpdateTicketSettingsInput | string[]
     ModalOptions?: TicketModalDataUpdateManyWithoutTicketSetupNestedInput
     TicketPermissions?: TicketPermissionsUpdateManyWithoutTicketSetupNestedInput
     Guilds?: GuildsUpdateOneRequiredWithoutTicketSetupsNestedInput
@@ -112453,7 +112335,6 @@ export namespace Prisma {
     TicketStatusMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     TicketStatusChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
-    TicketSettings?: TicketSetupsUpdateTicketSettingsInput | string[]
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -112462,6 +112343,7 @@ export namespace Prisma {
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
     GuildId?: StringFieldUpdateOperationsInput | string
+    TicketSettings?: TicketSetupsUpdateTicketSettingsInput | string[]
     ModalOptions?: TicketModalDataUncheckedUpdateManyWithoutTicketSetupNestedInput
     TicketPermissions?: TicketPermissionsUncheckedUpdateManyWithoutTicketSetupNestedInput
     Tickets?: TicketsUncheckedUpdateManyWithoutTicketSetupNestedInput
@@ -112494,7 +112376,6 @@ export namespace Prisma {
     TicketStatusMessageId?: string | null
     TicketStatusChannelId?: string | null
     AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
-    TicketSettings?: TicketSetupsCreateTicketSettingsInput | string[]
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
     SlashCommandId?: string | null
@@ -112503,6 +112384,7 @@ export namespace Prisma {
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
     GuildId: string
+    TicketSettings?: TicketSetupsCreateTicketSettingsInput | string[]
   }
 
   export type TicketSetupsUpdateManyMutationInput = {
@@ -112531,7 +112413,6 @@ export namespace Prisma {
     TicketStatusMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     TicketStatusChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
-    TicketSettings?: TicketSetupsUpdateTicketSettingsInput | string[]
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -112539,6 +112420,7 @@ export namespace Prisma {
     SlashCommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    TicketSettings?: TicketSetupsUpdateTicketSettingsInput | string[]
   }
 
   export type TicketSetupsUncheckedUpdateManyInput = {
@@ -112568,7 +112450,6 @@ export namespace Prisma {
     TicketStatusMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     TicketStatusChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
-    TicketSettings?: TicketSetupsUpdateTicketSettingsInput | string[]
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -112577,6 +112458,7 @@ export namespace Prisma {
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
     GuildId?: StringFieldUpdateOperationsInput | string
+    TicketSettings?: TicketSetupsUpdateTicketSettingsInput | string[]
   }
 
   export type TicketModalDataCreateInput = {
@@ -113313,7 +113195,6 @@ export namespace Prisma {
 
   export type LevelSettingsCreateInput = {
     LevelUpChannelId?: string | null
-    LevelUpMessageType?: string | null
     LeaderboardMessageTemplateId?: string | null
     LeaderboardDisplayAmount?: number | null
     RequiredXPForFirstLevel?: number | null
@@ -113330,11 +113211,12 @@ export namespace Prisma {
     MessageXPCooldown?: string | null
     MessageXPType?: LevelSettingsCreateMessageXPTypeInput | string[]
     RequiredXPFormular?: string | null
+    LevelUpMessageType?: string | null
     LevelUserInfoMessageTemplate?: string | null
-    XPDropsMessageTemplate?: string | null
     XPStreaksMessageType?: string | null
-    XPStreaksIncreaseType?: LevelSettingsCreateXPStreaksIncreaseTypeInput | string[]
     XPStreaksMessageChannelId?: string | null
+    XPStreaksIncreaseType?: LevelSettingsCreateXPStreaksIncreaseTypeInput | string[]
+    XPDropsMessageTemplate?: string | null
     LevelRoles?: LevelRolesCreateNestedManyWithoutLevelSettingsInput
     Guilds: GuildsCreateNestedOneWithoutLevelSettingsInput
     Levels?: LevelsCreateNestedManyWithoutLevelSettingsInput
@@ -113345,7 +113227,6 @@ export namespace Prisma {
   export type LevelSettingsUncheckedCreateInput = {
     Id?: number
     LevelUpChannelId?: string | null
-    LevelUpMessageType?: string | null
     LeaderboardMessageTemplateId?: string | null
     LeaderboardDisplayAmount?: number | null
     RequiredXPForFirstLevel?: number | null
@@ -113363,11 +113244,12 @@ export namespace Prisma {
     MessageXPCooldown?: string | null
     MessageXPType?: LevelSettingsCreateMessageXPTypeInput | string[]
     RequiredXPFormular?: string | null
+    LevelUpMessageType?: string | null
     LevelUserInfoMessageTemplate?: string | null
-    XPDropsMessageTemplate?: string | null
     XPStreaksMessageType?: string | null
-    XPStreaksIncreaseType?: LevelSettingsCreateXPStreaksIncreaseTypeInput | string[]
     XPStreaksMessageChannelId?: string | null
+    XPStreaksIncreaseType?: LevelSettingsCreateXPStreaksIncreaseTypeInput | string[]
+    XPDropsMessageTemplate?: string | null
     LevelRoles?: LevelRolesUncheckedCreateNestedManyWithoutLevelSettingsInput
     Levels?: LevelsUncheckedCreateNestedManyWithoutLevelSettingsInput
     XPDrops?: XPDropsUncheckedCreateNestedManyWithoutLevelSettingsInput
@@ -113376,7 +113258,6 @@ export namespace Prisma {
 
   export type LevelSettingsUpdateInput = {
     LevelUpChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardDisplayAmount?: NullableIntFieldUpdateOperationsInput | number | null
     RequiredXPForFirstLevel?: NullableIntFieldUpdateOperationsInput | number | null
@@ -113393,11 +113274,12 @@ export namespace Prisma {
     MessageXPCooldown?: NullableStringFieldUpdateOperationsInput | string | null
     MessageXPType?: LevelSettingsUpdateMessageXPTypeInput | string[]
     RequiredXPFormular?: NullableStringFieldUpdateOperationsInput | string | null
+    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LevelUserInfoMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
-    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
     XPStreaksMessageType?: NullableStringFieldUpdateOperationsInput | string | null
-    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
     XPStreaksMessageChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
+    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
     LevelRoles?: LevelRolesUpdateManyWithoutLevelSettingsNestedInput
     Guilds?: GuildsUpdateOneRequiredWithoutLevelSettingsNestedInput
     Levels?: LevelsUpdateManyWithoutLevelSettingsNestedInput
@@ -113408,7 +113290,6 @@ export namespace Prisma {
   export type LevelSettingsUncheckedUpdateInput = {
     Id?: IntFieldUpdateOperationsInput | number
     LevelUpChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardDisplayAmount?: NullableIntFieldUpdateOperationsInput | number | null
     RequiredXPForFirstLevel?: NullableIntFieldUpdateOperationsInput | number | null
@@ -113426,11 +113307,12 @@ export namespace Prisma {
     MessageXPCooldown?: NullableStringFieldUpdateOperationsInput | string | null
     MessageXPType?: LevelSettingsUpdateMessageXPTypeInput | string[]
     RequiredXPFormular?: NullableStringFieldUpdateOperationsInput | string | null
+    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LevelUserInfoMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
-    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
     XPStreaksMessageType?: NullableStringFieldUpdateOperationsInput | string | null
-    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
     XPStreaksMessageChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
+    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
     LevelRoles?: LevelRolesUncheckedUpdateManyWithoutLevelSettingsNestedInput
     Levels?: LevelsUncheckedUpdateManyWithoutLevelSettingsNestedInput
     XPDrops?: XPDropsUncheckedUpdateManyWithoutLevelSettingsNestedInput
@@ -113440,7 +113322,6 @@ export namespace Prisma {
   export type LevelSettingsCreateManyInput = {
     Id?: number
     LevelUpChannelId?: string | null
-    LevelUpMessageType?: string | null
     LeaderboardMessageTemplateId?: string | null
     LeaderboardDisplayAmount?: number | null
     RequiredXPForFirstLevel?: number | null
@@ -113458,16 +113339,16 @@ export namespace Prisma {
     MessageXPCooldown?: string | null
     MessageXPType?: LevelSettingsCreateMessageXPTypeInput | string[]
     RequiredXPFormular?: string | null
+    LevelUpMessageType?: string | null
     LevelUserInfoMessageTemplate?: string | null
-    XPDropsMessageTemplate?: string | null
     XPStreaksMessageType?: string | null
-    XPStreaksIncreaseType?: LevelSettingsCreateXPStreaksIncreaseTypeInput | string[]
     XPStreaksMessageChannelId?: string | null
+    XPStreaksIncreaseType?: LevelSettingsCreateXPStreaksIncreaseTypeInput | string[]
+    XPDropsMessageTemplate?: string | null
   }
 
   export type LevelSettingsUpdateManyMutationInput = {
     LevelUpChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardDisplayAmount?: NullableIntFieldUpdateOperationsInput | number | null
     RequiredXPForFirstLevel?: NullableIntFieldUpdateOperationsInput | number | null
@@ -113484,17 +113365,17 @@ export namespace Prisma {
     MessageXPCooldown?: NullableStringFieldUpdateOperationsInput | string | null
     MessageXPType?: LevelSettingsUpdateMessageXPTypeInput | string[]
     RequiredXPFormular?: NullableStringFieldUpdateOperationsInput | string | null
+    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LevelUserInfoMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
-    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
     XPStreaksMessageType?: NullableStringFieldUpdateOperationsInput | string | null
-    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
     XPStreaksMessageChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
+    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type LevelSettingsUncheckedUpdateManyInput = {
     Id?: IntFieldUpdateOperationsInput | number
     LevelUpChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardDisplayAmount?: NullableIntFieldUpdateOperationsInput | number | null
     RequiredXPForFirstLevel?: NullableIntFieldUpdateOperationsInput | number | null
@@ -113512,20 +113393,21 @@ export namespace Prisma {
     MessageXPCooldown?: NullableStringFieldUpdateOperationsInput | string | null
     MessageXPType?: LevelSettingsUpdateMessageXPTypeInput | string[]
     RequiredXPFormular?: NullableStringFieldUpdateOperationsInput | string | null
+    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LevelUserInfoMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
-    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
     XPStreaksMessageType?: NullableStringFieldUpdateOperationsInput | string | null
-    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
     XPStreaksMessageChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
+    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type XPDropsCreateInput = {
-    UUID: string
     XPRange?: string | null
     TimeToRespawn?: string | null
     ChannelIds?: XPDropsCreateChannelIdsInput | string[]
     ClaimAmount?: number | null
     ExpireTime?: string | null
+    UUID: string
     LastSpawned?: string | null
     MessageIdsToDelete?: XPDropsCreateMessageIdsToDeleteInput | string[]
     LevelSettings: LevelSettingsCreateNestedOneWithoutXPDropsInput
@@ -113533,24 +113415,24 @@ export namespace Prisma {
 
   export type XPDropsUncheckedCreateInput = {
     Id?: number
-    UUID: string
     GuildId: string
     XPRange?: string | null
     TimeToRespawn?: string | null
     ChannelIds?: XPDropsCreateChannelIdsInput | string[]
     ClaimAmount?: number | null
     ExpireTime?: string | null
+    UUID: string
     LastSpawned?: string | null
     MessageIdsToDelete?: XPDropsCreateMessageIdsToDeleteInput | string[]
   }
 
   export type XPDropsUpdateInput = {
-    UUID?: StringFieldUpdateOperationsInput | string
     XPRange?: NullableStringFieldUpdateOperationsInput | string | null
     TimeToRespawn?: NullableStringFieldUpdateOperationsInput | string | null
     ChannelIds?: XPDropsUpdateChannelIdsInput | string[]
     ClaimAmount?: NullableIntFieldUpdateOperationsInput | number | null
     ExpireTime?: NullableStringFieldUpdateOperationsInput | string | null
+    UUID?: StringFieldUpdateOperationsInput | string
     LastSpawned?: NullableStringFieldUpdateOperationsInput | string | null
     MessageIdsToDelete?: XPDropsUpdateMessageIdsToDeleteInput | string[]
     LevelSettings?: LevelSettingsUpdateOneRequiredWithoutXPDropsNestedInput
@@ -113558,50 +113440,50 @@ export namespace Prisma {
 
   export type XPDropsUncheckedUpdateInput = {
     Id?: IntFieldUpdateOperationsInput | number
-    UUID?: StringFieldUpdateOperationsInput | string
     GuildId?: StringFieldUpdateOperationsInput | string
     XPRange?: NullableStringFieldUpdateOperationsInput | string | null
     TimeToRespawn?: NullableStringFieldUpdateOperationsInput | string | null
     ChannelIds?: XPDropsUpdateChannelIdsInput | string[]
     ClaimAmount?: NullableIntFieldUpdateOperationsInput | number | null
     ExpireTime?: NullableStringFieldUpdateOperationsInput | string | null
+    UUID?: StringFieldUpdateOperationsInput | string
     LastSpawned?: NullableStringFieldUpdateOperationsInput | string | null
     MessageIdsToDelete?: XPDropsUpdateMessageIdsToDeleteInput | string[]
   }
 
   export type XPDropsCreateManyInput = {
     Id?: number
-    UUID: string
     GuildId: string
     XPRange?: string | null
     TimeToRespawn?: string | null
     ChannelIds?: XPDropsCreateChannelIdsInput | string[]
     ClaimAmount?: number | null
     ExpireTime?: string | null
+    UUID: string
     LastSpawned?: string | null
     MessageIdsToDelete?: XPDropsCreateMessageIdsToDeleteInput | string[]
   }
 
   export type XPDropsUpdateManyMutationInput = {
-    UUID?: StringFieldUpdateOperationsInput | string
     XPRange?: NullableStringFieldUpdateOperationsInput | string | null
     TimeToRespawn?: NullableStringFieldUpdateOperationsInput | string | null
     ChannelIds?: XPDropsUpdateChannelIdsInput | string[]
     ClaimAmount?: NullableIntFieldUpdateOperationsInput | number | null
     ExpireTime?: NullableStringFieldUpdateOperationsInput | string | null
+    UUID?: StringFieldUpdateOperationsInput | string
     LastSpawned?: NullableStringFieldUpdateOperationsInput | string | null
     MessageIdsToDelete?: XPDropsUpdateMessageIdsToDeleteInput | string[]
   }
 
   export type XPDropsUncheckedUpdateManyInput = {
     Id?: IntFieldUpdateOperationsInput | number
-    UUID?: StringFieldUpdateOperationsInput | string
     GuildId?: StringFieldUpdateOperationsInput | string
     XPRange?: NullableStringFieldUpdateOperationsInput | string | null
     TimeToRespawn?: NullableStringFieldUpdateOperationsInput | string | null
     ChannelIds?: XPDropsUpdateChannelIdsInput | string[]
     ClaimAmount?: NullableIntFieldUpdateOperationsInput | number | null
     ExpireTime?: NullableStringFieldUpdateOperationsInput | string | null
+    UUID?: StringFieldUpdateOperationsInput | string
     LastSpawned?: NullableStringFieldUpdateOperationsInput | string | null
     MessageIdsToDelete?: XPDropsUpdateMessageIdsToDeleteInput | string[]
   }
@@ -113747,12 +113629,12 @@ export namespace Prisma {
 
   export type LevelsCreateInput = {
     XP?: string | null
-    RequiredXp?: string | null
     Level?: number | null
+    UUID: string
     ClaimedXPDrops?: LevelsCreateClaimedXPDropsInput | string[]
     CurrentStreakDay?: number | null
+    RequiredXp?: string | null
     LastXPStreakUpdate?: string | null
-    UUID: string
     LevelSettings: LevelSettingsCreateNestedOneWithoutLevelsInput
     Users: UsersCreateNestedOneWithoutLevelsInput
   }
@@ -113760,24 +113642,24 @@ export namespace Prisma {
   export type LevelsUncheckedCreateInput = {
     Id?: number
     XP?: string | null
-    RequiredXp?: string | null
     Level?: number | null
     UserId: string
     GuildId: string
+    UUID: string
     ClaimedXPDrops?: LevelsCreateClaimedXPDropsInput | string[]
     CurrentStreakDay?: number | null
+    RequiredXp?: string | null
     LastXPStreakUpdate?: string | null
-    UUID: string
   }
 
   export type LevelsUpdateInput = {
     XP?: NullableStringFieldUpdateOperationsInput | string | null
-    RequiredXp?: NullableStringFieldUpdateOperationsInput | string | null
     Level?: NullableIntFieldUpdateOperationsInput | number | null
+    UUID?: StringFieldUpdateOperationsInput | string
     ClaimedXPDrops?: LevelsUpdateClaimedXPDropsInput | string[]
     CurrentStreakDay?: NullableIntFieldUpdateOperationsInput | number | null
+    RequiredXp?: NullableStringFieldUpdateOperationsInput | string | null
     LastXPStreakUpdate?: NullableStringFieldUpdateOperationsInput | string | null
-    UUID?: StringFieldUpdateOperationsInput | string
     LevelSettings?: LevelSettingsUpdateOneRequiredWithoutLevelsNestedInput
     Users?: UsersUpdateOneRequiredWithoutLevelsNestedInput
   }
@@ -113785,50 +113667,50 @@ export namespace Prisma {
   export type LevelsUncheckedUpdateInput = {
     Id?: IntFieldUpdateOperationsInput | number
     XP?: NullableStringFieldUpdateOperationsInput | string | null
-    RequiredXp?: NullableStringFieldUpdateOperationsInput | string | null
     Level?: NullableIntFieldUpdateOperationsInput | number | null
     UserId?: StringFieldUpdateOperationsInput | string
     GuildId?: StringFieldUpdateOperationsInput | string
+    UUID?: StringFieldUpdateOperationsInput | string
     ClaimedXPDrops?: LevelsUpdateClaimedXPDropsInput | string[]
     CurrentStreakDay?: NullableIntFieldUpdateOperationsInput | number | null
+    RequiredXp?: NullableStringFieldUpdateOperationsInput | string | null
     LastXPStreakUpdate?: NullableStringFieldUpdateOperationsInput | string | null
-    UUID?: StringFieldUpdateOperationsInput | string
   }
 
   export type LevelsCreateManyInput = {
     Id?: number
     XP?: string | null
-    RequiredXp?: string | null
     Level?: number | null
     UserId: string
     GuildId: string
+    UUID: string
     ClaimedXPDrops?: LevelsCreateClaimedXPDropsInput | string[]
     CurrentStreakDay?: number | null
+    RequiredXp?: string | null
     LastXPStreakUpdate?: string | null
-    UUID: string
   }
 
   export type LevelsUpdateManyMutationInput = {
     XP?: NullableStringFieldUpdateOperationsInput | string | null
-    RequiredXp?: NullableStringFieldUpdateOperationsInput | string | null
     Level?: NullableIntFieldUpdateOperationsInput | number | null
+    UUID?: StringFieldUpdateOperationsInput | string
     ClaimedXPDrops?: LevelsUpdateClaimedXPDropsInput | string[]
     CurrentStreakDay?: NullableIntFieldUpdateOperationsInput | number | null
+    RequiredXp?: NullableStringFieldUpdateOperationsInput | string | null
     LastXPStreakUpdate?: NullableStringFieldUpdateOperationsInput | string | null
-    UUID?: StringFieldUpdateOperationsInput | string
   }
 
   export type LevelsUncheckedUpdateManyInput = {
     Id?: IntFieldUpdateOperationsInput | number
     XP?: NullableStringFieldUpdateOperationsInput | string | null
-    RequiredXp?: NullableStringFieldUpdateOperationsInput | string | null
     Level?: NullableIntFieldUpdateOperationsInput | number | null
     UserId?: StringFieldUpdateOperationsInput | string
     GuildId?: StringFieldUpdateOperationsInput | string
+    UUID?: StringFieldUpdateOperationsInput | string
     ClaimedXPDrops?: LevelsUpdateClaimedXPDropsInput | string[]
     CurrentStreakDay?: NullableIntFieldUpdateOperationsInput | number | null
+    RequiredXp?: NullableStringFieldUpdateOperationsInput | string | null
     LastXPStreakUpdate?: NullableStringFieldUpdateOperationsInput | string | null
-    UUID?: StringFieldUpdateOperationsInput | string
   }
 
   export type UsersCreateInput = {
@@ -114628,10 +114510,9 @@ export namespace Prisma {
     none?: PollsWhereInput
   }
 
-  export type TempVoiceListRelationFilter = {
-    every?: TempVoiceWhereInput
-    some?: TempVoiceWhereInput
-    none?: TempVoiceWhereInput
+  export type TempVoiceNullableScalarRelationFilter = {
+    is?: TempVoiceWhereInput | null
+    isNot?: TempVoiceWhereInput | null
   }
 
   export type TicketSetupsListRelationFilter = {
@@ -114689,10 +114570,6 @@ export namespace Prisma {
   }
 
   export type PollsOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type TempVoiceOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -115961,9 +115838,9 @@ export namespace Prisma {
     DmMessage?: SortOrder
     Type?: SortOrder
     Notes?: SortOrder
+    LinkedCaseId?: SortOrder
     CreatedAt?: SortOrder
     GuildId?: SortOrder
-    LinkedCaseId?: SortOrder
   }
 
   export type GuildUserModerationAvgOrderByAggregateInput = {
@@ -115978,9 +115855,9 @@ export namespace Prisma {
     ModeratorId?: SortOrder
     DmMessage?: SortOrder
     Type?: SortOrder
+    LinkedCaseId?: SortOrder
     CreatedAt?: SortOrder
     GuildId?: SortOrder
-    LinkedCaseId?: SortOrder
   }
 
   export type GuildUserModerationMinOrderByAggregateInput = {
@@ -115991,9 +115868,9 @@ export namespace Prisma {
     ModeratorId?: SortOrder
     DmMessage?: SortOrder
     Type?: SortOrder
+    LinkedCaseId?: SortOrder
     CreatedAt?: SortOrder
     GuildId?: SortOrder
-    LinkedCaseId?: SortOrder
   }
 
   export type GuildUserModerationSumOrderByAggregateInput = {
@@ -116576,15 +116453,15 @@ export namespace Prisma {
     Id?: SortOrder
   }
 
-  export type TempVoicePresetScalarRelationFilter = {
-    is?: TempVoicePresetWhereInput
-    isNot?: TempVoicePresetWhereInput
-  }
-
   export type TempVoiceChannelsListRelationFilter = {
     every?: TempVoiceChannelsWhereInput
     some?: TempVoiceChannelsWhereInput
     none?: TempVoiceChannelsWhereInput
+  }
+
+  export type TempVoicePresetScalarRelationFilter = {
+    is?: TempVoicePresetWhereInput
+    isNot?: TempVoicePresetWhereInput
   }
 
   export type TempVoiceScalarRelationFilter = {
@@ -116637,14 +116514,14 @@ export namespace Prisma {
     Id?: SortOrder
   }
 
-  export type TempVoicePresetDiscordRolePermissionListRelationFilter = {
-    every?: TempVoicePresetDiscordRolePermissionWhereInput
-    some?: TempVoicePresetDiscordRolePermissionWhereInput
-    none?: TempVoicePresetDiscordRolePermissionWhereInput
+  export type TempVoiceConfigNullableScalarRelationFilter = {
+    is?: TempVoiceConfigWhereInput | null
+    isNot?: TempVoiceConfigWhereInput | null
   }
 
-  export type TempVoicePresetDiscordRolePermissionOrderByRelationAggregateInput = {
-    _count?: SortOrder
+  export type TempVoicePresetDiscordRolePermissionNullableScalarRelationFilter = {
+    is?: TempVoicePresetDiscordRolePermissionWhereInput | null
+    isNot?: TempVoicePresetDiscordRolePermissionWhereInput | null
   }
 
   export type TempVoicePresetCountOrderByAggregateInput = {
@@ -116727,19 +116604,14 @@ export namespace Prisma {
     Id?: SortOrder
   }
 
-  export type TempVoiceChannelMemberListRelationFilter = {
-    every?: TempVoiceChannelMemberWhereInput
-    some?: TempVoiceChannelMemberWhereInput
-    none?: TempVoiceChannelMemberWhereInput
+  export type TempVoiceChannelMemberNullableScalarRelationFilter = {
+    is?: TempVoiceChannelMemberWhereInput | null
+    isNot?: TempVoiceChannelMemberWhereInput | null
   }
 
   export type TempVoiceConfigScalarRelationFilter = {
     is?: TempVoiceConfigWhereInput
     isNot?: TempVoiceConfigWhereInput
-  }
-
-  export type TempVoiceChannelMemberOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type TempVoiceChannelsCountOrderByAggregateInput = {
@@ -117514,7 +117386,6 @@ export namespace Prisma {
     TicketStatusMessageId?: SortOrder
     TicketStatusChannelId?: SortOrder
     AutoCloseAction?: SortOrder
-    TicketSettings?: SortOrder
     OldTicketCategoryId?: SortOrder
     RequiredRoles?: SortOrder
     SlashCommandId?: SortOrder
@@ -117523,6 +117394,7 @@ export namespace Prisma {
     TextCommandName?: SortOrder
     SendTranscriptToUser?: SortOrder
     GuildId?: SortOrder
+    TicketSettings?: SortOrder
   }
 
   export type TicketSetupsAvgOrderByAggregateInput = {
@@ -118076,7 +117948,6 @@ export namespace Prisma {
   export type LevelSettingsCountOrderByAggregateInput = {
     Id?: SortOrder
     LevelUpChannelId?: SortOrder
-    LevelUpMessageType?: SortOrder
     LeaderboardMessageTemplateId?: SortOrder
     LeaderboardDisplayAmount?: SortOrder
     RequiredXPForFirstLevel?: SortOrder
@@ -118094,11 +117965,12 @@ export namespace Prisma {
     MessageXPCooldown?: SortOrder
     MessageXPType?: SortOrder
     RequiredXPFormular?: SortOrder
+    LevelUpMessageType?: SortOrder
     LevelUserInfoMessageTemplate?: SortOrder
-    XPDropsMessageTemplate?: SortOrder
     XPStreaksMessageType?: SortOrder
-    XPStreaksIncreaseType?: SortOrder
     XPStreaksMessageChannelId?: SortOrder
+    XPStreaksIncreaseType?: SortOrder
+    XPDropsMessageTemplate?: SortOrder
   }
 
   export type LevelSettingsAvgOrderByAggregateInput = {
@@ -118110,7 +117982,6 @@ export namespace Prisma {
   export type LevelSettingsMaxOrderByAggregateInput = {
     Id?: SortOrder
     LevelUpChannelId?: SortOrder
-    LevelUpMessageType?: SortOrder
     LeaderboardMessageTemplateId?: SortOrder
     LeaderboardDisplayAmount?: SortOrder
     RequiredXPForFirstLevel?: SortOrder
@@ -118124,16 +117995,16 @@ export namespace Prisma {
     IsVoiceXPEnabled?: SortOrder
     MessageXPCooldown?: SortOrder
     RequiredXPFormular?: SortOrder
+    LevelUpMessageType?: SortOrder
     LevelUserInfoMessageTemplate?: SortOrder
-    XPDropsMessageTemplate?: SortOrder
     XPStreaksMessageType?: SortOrder
     XPStreaksMessageChannelId?: SortOrder
+    XPDropsMessageTemplate?: SortOrder
   }
 
   export type LevelSettingsMinOrderByAggregateInput = {
     Id?: SortOrder
     LevelUpChannelId?: SortOrder
-    LevelUpMessageType?: SortOrder
     LeaderboardMessageTemplateId?: SortOrder
     LeaderboardDisplayAmount?: SortOrder
     RequiredXPForFirstLevel?: SortOrder
@@ -118147,10 +118018,11 @@ export namespace Prisma {
     IsVoiceXPEnabled?: SortOrder
     MessageXPCooldown?: SortOrder
     RequiredXPFormular?: SortOrder
+    LevelUpMessageType?: SortOrder
     LevelUserInfoMessageTemplate?: SortOrder
-    XPDropsMessageTemplate?: SortOrder
     XPStreaksMessageType?: SortOrder
     XPStreaksMessageChannelId?: SortOrder
+    XPDropsMessageTemplate?: SortOrder
   }
 
   export type LevelSettingsSumOrderByAggregateInput = {
@@ -118166,13 +118038,13 @@ export namespace Prisma {
 
   export type XPDropsCountOrderByAggregateInput = {
     Id?: SortOrder
-    UUID?: SortOrder
     GuildId?: SortOrder
     XPRange?: SortOrder
     TimeToRespawn?: SortOrder
     ChannelIds?: SortOrder
     ClaimAmount?: SortOrder
     ExpireTime?: SortOrder
+    UUID?: SortOrder
     LastSpawned?: SortOrder
     MessageIdsToDelete?: SortOrder
   }
@@ -118184,23 +118056,23 @@ export namespace Prisma {
 
   export type XPDropsMaxOrderByAggregateInput = {
     Id?: SortOrder
-    UUID?: SortOrder
     GuildId?: SortOrder
     XPRange?: SortOrder
     TimeToRespawn?: SortOrder
     ClaimAmount?: SortOrder
     ExpireTime?: SortOrder
+    UUID?: SortOrder
     LastSpawned?: SortOrder
   }
 
   export type XPDropsMinOrderByAggregateInput = {
     Id?: SortOrder
-    UUID?: SortOrder
     GuildId?: SortOrder
     XPRange?: SortOrder
     TimeToRespawn?: SortOrder
     ClaimAmount?: SortOrder
     ExpireTime?: SortOrder
+    UUID?: SortOrder
     LastSpawned?: SortOrder
   }
 
@@ -118304,14 +118176,14 @@ export namespace Prisma {
   export type LevelsCountOrderByAggregateInput = {
     Id?: SortOrder
     XP?: SortOrder
-    RequiredXp?: SortOrder
     Level?: SortOrder
     UserId?: SortOrder
     GuildId?: SortOrder
+    UUID?: SortOrder
     ClaimedXPDrops?: SortOrder
     CurrentStreakDay?: SortOrder
+    RequiredXp?: SortOrder
     LastXPStreakUpdate?: SortOrder
-    UUID?: SortOrder
   }
 
   export type LevelsAvgOrderByAggregateInput = {
@@ -118323,25 +118195,25 @@ export namespace Prisma {
   export type LevelsMaxOrderByAggregateInput = {
     Id?: SortOrder
     XP?: SortOrder
-    RequiredXp?: SortOrder
     Level?: SortOrder
     UserId?: SortOrder
     GuildId?: SortOrder
-    CurrentStreakDay?: SortOrder
-    LastXPStreakUpdate?: SortOrder
     UUID?: SortOrder
+    CurrentStreakDay?: SortOrder
+    RequiredXp?: SortOrder
+    LastXPStreakUpdate?: SortOrder
   }
 
   export type LevelsMinOrderByAggregateInput = {
     Id?: SortOrder
     XP?: SortOrder
-    RequiredXp?: SortOrder
     Level?: SortOrder
     UserId?: SortOrder
     GuildId?: SortOrder
-    CurrentStreakDay?: SortOrder
-    LastXPStreakUpdate?: SortOrder
     UUID?: SortOrder
+    CurrentStreakDay?: SortOrder
+    RequiredXp?: SortOrder
+    LastXPStreakUpdate?: SortOrder
   }
 
   export type LevelsSumOrderByAggregateInput = {
@@ -118931,11 +118803,10 @@ export namespace Prisma {
     connect?: PollsWhereUniqueInput | PollsWhereUniqueInput[]
   }
 
-  export type TempVoiceCreateNestedManyWithoutGuildsInput = {
-    create?: XOR<TempVoiceCreateWithoutGuildsInput, TempVoiceUncheckedCreateWithoutGuildsInput> | TempVoiceCreateWithoutGuildsInput[] | TempVoiceUncheckedCreateWithoutGuildsInput[]
-    connectOrCreate?: TempVoiceCreateOrConnectWithoutGuildsInput | TempVoiceCreateOrConnectWithoutGuildsInput[]
-    createMany?: TempVoiceCreateManyGuildsInputEnvelope
-    connect?: TempVoiceWhereUniqueInput | TempVoiceWhereUniqueInput[]
+  export type TempVoiceCreateNestedOneWithoutGuildsInput = {
+    create?: XOR<TempVoiceCreateWithoutGuildsInput, TempVoiceUncheckedCreateWithoutGuildsInput>
+    connectOrCreate?: TempVoiceCreateOrConnectWithoutGuildsInput
+    connect?: TempVoiceWhereUniqueInput
   }
 
   export type TicketSetupsCreateNestedManyWithoutGuildsInput = {
@@ -119114,11 +118985,10 @@ export namespace Prisma {
     connect?: PollsWhereUniqueInput | PollsWhereUniqueInput[]
   }
 
-  export type TempVoiceUncheckedCreateNestedManyWithoutGuildsInput = {
-    create?: XOR<TempVoiceCreateWithoutGuildsInput, TempVoiceUncheckedCreateWithoutGuildsInput> | TempVoiceCreateWithoutGuildsInput[] | TempVoiceUncheckedCreateWithoutGuildsInput[]
-    connectOrCreate?: TempVoiceCreateOrConnectWithoutGuildsInput | TempVoiceCreateOrConnectWithoutGuildsInput[]
-    createMany?: TempVoiceCreateManyGuildsInputEnvelope
-    connect?: TempVoiceWhereUniqueInput | TempVoiceWhereUniqueInput[]
+  export type TempVoiceUncheckedCreateNestedOneWithoutGuildsInput = {
+    create?: XOR<TempVoiceCreateWithoutGuildsInput, TempVoiceUncheckedCreateWithoutGuildsInput>
+    connectOrCreate?: TempVoiceCreateOrConnectWithoutGuildsInput
+    connect?: TempVoiceWhereUniqueInput
   }
 
   export type TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput = {
@@ -119444,18 +119314,14 @@ export namespace Prisma {
     deleteMany?: PollsScalarWhereInput | PollsScalarWhereInput[]
   }
 
-  export type TempVoiceUpdateManyWithoutGuildsNestedInput = {
-    create?: XOR<TempVoiceCreateWithoutGuildsInput, TempVoiceUncheckedCreateWithoutGuildsInput> | TempVoiceCreateWithoutGuildsInput[] | TempVoiceUncheckedCreateWithoutGuildsInput[]
-    connectOrCreate?: TempVoiceCreateOrConnectWithoutGuildsInput | TempVoiceCreateOrConnectWithoutGuildsInput[]
-    upsert?: TempVoiceUpsertWithWhereUniqueWithoutGuildsInput | TempVoiceUpsertWithWhereUniqueWithoutGuildsInput[]
-    createMany?: TempVoiceCreateManyGuildsInputEnvelope
-    set?: TempVoiceWhereUniqueInput | TempVoiceWhereUniqueInput[]
-    disconnect?: TempVoiceWhereUniqueInput | TempVoiceWhereUniqueInput[]
-    delete?: TempVoiceWhereUniqueInput | TempVoiceWhereUniqueInput[]
-    connect?: TempVoiceWhereUniqueInput | TempVoiceWhereUniqueInput[]
-    update?: TempVoiceUpdateWithWhereUniqueWithoutGuildsInput | TempVoiceUpdateWithWhereUniqueWithoutGuildsInput[]
-    updateMany?: TempVoiceUpdateManyWithWhereWithoutGuildsInput | TempVoiceUpdateManyWithWhereWithoutGuildsInput[]
-    deleteMany?: TempVoiceScalarWhereInput | TempVoiceScalarWhereInput[]
+  export type TempVoiceUpdateOneWithoutGuildsNestedInput = {
+    create?: XOR<TempVoiceCreateWithoutGuildsInput, TempVoiceUncheckedCreateWithoutGuildsInput>
+    connectOrCreate?: TempVoiceCreateOrConnectWithoutGuildsInput
+    upsert?: TempVoiceUpsertWithoutGuildsInput
+    disconnect?: TempVoiceWhereInput | boolean
+    delete?: TempVoiceWhereInput | boolean
+    connect?: TempVoiceWhereUniqueInput
+    update?: XOR<XOR<TempVoiceUpdateToOneWithWhereWithoutGuildsInput, TempVoiceUpdateWithoutGuildsInput>, TempVoiceUncheckedUpdateWithoutGuildsInput>
   }
 
   export type TicketSetupsUpdateManyWithoutGuildsNestedInput = {
@@ -119792,18 +119658,14 @@ export namespace Prisma {
     deleteMany?: PollsScalarWhereInput | PollsScalarWhereInput[]
   }
 
-  export type TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput = {
-    create?: XOR<TempVoiceCreateWithoutGuildsInput, TempVoiceUncheckedCreateWithoutGuildsInput> | TempVoiceCreateWithoutGuildsInput[] | TempVoiceUncheckedCreateWithoutGuildsInput[]
-    connectOrCreate?: TempVoiceCreateOrConnectWithoutGuildsInput | TempVoiceCreateOrConnectWithoutGuildsInput[]
-    upsert?: TempVoiceUpsertWithWhereUniqueWithoutGuildsInput | TempVoiceUpsertWithWhereUniqueWithoutGuildsInput[]
-    createMany?: TempVoiceCreateManyGuildsInputEnvelope
-    set?: TempVoiceWhereUniqueInput | TempVoiceWhereUniqueInput[]
-    disconnect?: TempVoiceWhereUniqueInput | TempVoiceWhereUniqueInput[]
-    delete?: TempVoiceWhereUniqueInput | TempVoiceWhereUniqueInput[]
-    connect?: TempVoiceWhereUniqueInput | TempVoiceWhereUniqueInput[]
-    update?: TempVoiceUpdateWithWhereUniqueWithoutGuildsInput | TempVoiceUpdateWithWhereUniqueWithoutGuildsInput[]
-    updateMany?: TempVoiceUpdateManyWithWhereWithoutGuildsInput | TempVoiceUpdateManyWithWhereWithoutGuildsInput[]
-    deleteMany?: TempVoiceScalarWhereInput | TempVoiceScalarWhereInput[]
+  export type TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput = {
+    create?: XOR<TempVoiceCreateWithoutGuildsInput, TempVoiceUncheckedCreateWithoutGuildsInput>
+    connectOrCreate?: TempVoiceCreateOrConnectWithoutGuildsInput
+    upsert?: TempVoiceUpsertWithoutGuildsInput
+    disconnect?: TempVoiceWhereInput | boolean
+    delete?: TempVoiceWhereInput | boolean
+    connect?: TempVoiceWhereUniqueInput
+    update?: XOR<XOR<TempVoiceUpdateToOneWithWhereWithoutGuildsInput, TempVoiceUpdateWithoutGuildsInput>, TempVoiceUncheckedUpdateWithoutGuildsInput>
   }
 
   export type TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput = {
@@ -121840,6 +121702,12 @@ export namespace Prisma {
     set: string[]
   }
 
+  export type GuildsCreateNestedOneWithoutTempVoicesInput = {
+    create?: XOR<GuildsCreateWithoutTempVoicesInput, GuildsUncheckedCreateWithoutTempVoicesInput>
+    connectOrCreate?: GuildsCreateOrConnectWithoutTempVoicesInput
+    connect?: GuildsWhereUniqueInput
+  }
+
   export type TempVoiceConfigCreateNestedManyWithoutTempVoiceInput = {
     create?: XOR<TempVoiceConfigCreateWithoutTempVoiceInput, TempVoiceConfigUncheckedCreateWithoutTempVoiceInput> | TempVoiceConfigCreateWithoutTempVoiceInput[] | TempVoiceConfigUncheckedCreateWithoutTempVoiceInput[]
     connectOrCreate?: TempVoiceConfigCreateOrConnectWithoutTempVoiceInput | TempVoiceConfigCreateOrConnectWithoutTempVoiceInput[]
@@ -121852,12 +121720,6 @@ export namespace Prisma {
     connectOrCreate?: TempVoicePresetCreateOrConnectWithoutTempVoiceInput | TempVoicePresetCreateOrConnectWithoutTempVoiceInput[]
     createMany?: TempVoicePresetCreateManyTempVoiceInputEnvelope
     connect?: TempVoicePresetWhereUniqueInput | TempVoicePresetWhereUniqueInput[]
-  }
-
-  export type GuildsCreateNestedOneWithoutTempVoicesInput = {
-    create?: XOR<GuildsCreateWithoutTempVoicesInput, GuildsUncheckedCreateWithoutTempVoicesInput>
-    connectOrCreate?: GuildsCreateOrConnectWithoutTempVoicesInput
-    connect?: GuildsWhereUniqueInput
   }
 
   export type TempVoiceConfigUncheckedCreateNestedManyWithoutTempVoiceInput = {
@@ -121877,6 +121739,14 @@ export namespace Prisma {
   export type TempVoiceUpdateModeratorUserIdsInput = {
     set?: string[]
     push?: string | string[]
+  }
+
+  export type GuildsUpdateOneRequiredWithoutTempVoicesNestedInput = {
+    create?: XOR<GuildsCreateWithoutTempVoicesInput, GuildsUncheckedCreateWithoutTempVoicesInput>
+    connectOrCreate?: GuildsCreateOrConnectWithoutTempVoicesInput
+    upsert?: GuildsUpsertWithoutTempVoicesInput
+    connect?: GuildsWhereUniqueInput
+    update?: XOR<XOR<GuildsUpdateToOneWithWhereWithoutTempVoicesInput, GuildsUpdateWithoutTempVoicesInput>, GuildsUncheckedUpdateWithoutTempVoicesInput>
   }
 
   export type TempVoiceConfigUpdateManyWithoutTempVoiceNestedInput = {
@@ -121907,14 +121777,6 @@ export namespace Prisma {
     deleteMany?: TempVoicePresetScalarWhereInput | TempVoicePresetScalarWhereInput[]
   }
 
-  export type GuildsUpdateOneRequiredWithoutTempVoicesNestedInput = {
-    create?: XOR<GuildsCreateWithoutTempVoicesInput, GuildsUncheckedCreateWithoutTempVoicesInput>
-    connectOrCreate?: GuildsCreateOrConnectWithoutTempVoicesInput
-    upsert?: GuildsUpsertWithoutTempVoicesInput
-    connect?: GuildsWhereUniqueInput
-    update?: XOR<XOR<GuildsUpdateToOneWithWhereWithoutTempVoicesInput, GuildsUpdateWithoutTempVoicesInput>, GuildsUncheckedUpdateWithoutTempVoicesInput>
-  }
-
   export type TempVoiceConfigUncheckedUpdateManyWithoutTempVoiceNestedInput = {
     create?: XOR<TempVoiceConfigCreateWithoutTempVoiceInput, TempVoiceConfigUncheckedCreateWithoutTempVoiceInput> | TempVoiceConfigCreateWithoutTempVoiceInput[] | TempVoiceConfigUncheckedCreateWithoutTempVoiceInput[]
     connectOrCreate?: TempVoiceConfigCreateOrConnectWithoutTempVoiceInput | TempVoiceConfigCreateOrConnectWithoutTempVoiceInput[]
@@ -121943,17 +121805,17 @@ export namespace Prisma {
     deleteMany?: TempVoicePresetScalarWhereInput | TempVoicePresetScalarWhereInput[]
   }
 
-  export type TempVoicePresetCreateNestedOneWithoutTempVoiceConfigsInput = {
-    create?: XOR<TempVoicePresetCreateWithoutTempVoiceConfigsInput, TempVoicePresetUncheckedCreateWithoutTempVoiceConfigsInput>
-    connectOrCreate?: TempVoicePresetCreateOrConnectWithoutTempVoiceConfigsInput
-    connect?: TempVoicePresetWhereUniqueInput
-  }
-
   export type TempVoiceChannelsCreateNestedManyWithoutTempVoiceConfigInput = {
     create?: XOR<TempVoiceChannelsCreateWithoutTempVoiceConfigInput, TempVoiceChannelsUncheckedCreateWithoutTempVoiceConfigInput> | TempVoiceChannelsCreateWithoutTempVoiceConfigInput[] | TempVoiceChannelsUncheckedCreateWithoutTempVoiceConfigInput[]
     connectOrCreate?: TempVoiceChannelsCreateOrConnectWithoutTempVoiceConfigInput | TempVoiceChannelsCreateOrConnectWithoutTempVoiceConfigInput[]
     createMany?: TempVoiceChannelsCreateManyTempVoiceConfigInputEnvelope
     connect?: TempVoiceChannelsWhereUniqueInput | TempVoiceChannelsWhereUniqueInput[]
+  }
+
+  export type TempVoicePresetCreateNestedOneWithoutTempVoiceConfigsInput = {
+    create?: XOR<TempVoicePresetCreateWithoutTempVoiceConfigsInput, TempVoicePresetUncheckedCreateWithoutTempVoiceConfigsInput>
+    connectOrCreate?: TempVoicePresetCreateOrConnectWithoutTempVoiceConfigsInput
+    connect?: TempVoicePresetWhereUniqueInput
   }
 
   export type TempVoiceCreateNestedOneWithoutTempVoiceConfigsInput = {
@@ -121969,14 +121831,6 @@ export namespace Prisma {
     connect?: TempVoiceChannelsWhereUniqueInput | TempVoiceChannelsWhereUniqueInput[]
   }
 
-  export type TempVoicePresetUpdateOneRequiredWithoutTempVoiceConfigsNestedInput = {
-    create?: XOR<TempVoicePresetCreateWithoutTempVoiceConfigsInput, TempVoicePresetUncheckedCreateWithoutTempVoiceConfigsInput>
-    connectOrCreate?: TempVoicePresetCreateOrConnectWithoutTempVoiceConfigsInput
-    upsert?: TempVoicePresetUpsertWithoutTempVoiceConfigsInput
-    connect?: TempVoicePresetWhereUniqueInput
-    update?: XOR<XOR<TempVoicePresetUpdateToOneWithWhereWithoutTempVoiceConfigsInput, TempVoicePresetUpdateWithoutTempVoiceConfigsInput>, TempVoicePresetUncheckedUpdateWithoutTempVoiceConfigsInput>
-  }
-
   export type TempVoiceChannelsUpdateManyWithoutTempVoiceConfigNestedInput = {
     create?: XOR<TempVoiceChannelsCreateWithoutTempVoiceConfigInput, TempVoiceChannelsUncheckedCreateWithoutTempVoiceConfigInput> | TempVoiceChannelsCreateWithoutTempVoiceConfigInput[] | TempVoiceChannelsUncheckedCreateWithoutTempVoiceConfigInput[]
     connectOrCreate?: TempVoiceChannelsCreateOrConnectWithoutTempVoiceConfigInput | TempVoiceChannelsCreateOrConnectWithoutTempVoiceConfigInput[]
@@ -121989,6 +121843,14 @@ export namespace Prisma {
     update?: TempVoiceChannelsUpdateWithWhereUniqueWithoutTempVoiceConfigInput | TempVoiceChannelsUpdateWithWhereUniqueWithoutTempVoiceConfigInput[]
     updateMany?: TempVoiceChannelsUpdateManyWithWhereWithoutTempVoiceConfigInput | TempVoiceChannelsUpdateManyWithWhereWithoutTempVoiceConfigInput[]
     deleteMany?: TempVoiceChannelsScalarWhereInput | TempVoiceChannelsScalarWhereInput[]
+  }
+
+  export type TempVoicePresetUpdateOneRequiredWithoutTempVoiceConfigsNestedInput = {
+    create?: XOR<TempVoicePresetCreateWithoutTempVoiceConfigsInput, TempVoicePresetUncheckedCreateWithoutTempVoiceConfigsInput>
+    connectOrCreate?: TempVoicePresetCreateOrConnectWithoutTempVoiceConfigsInput
+    upsert?: TempVoicePresetUpsertWithoutTempVoiceConfigsInput
+    connect?: TempVoicePresetWhereUniqueInput
+    update?: XOR<XOR<TempVoicePresetUpdateToOneWithWhereWithoutTempVoiceConfigsInput, TempVoicePresetUpdateWithoutTempVoiceConfigsInput>, TempVoicePresetUncheckedUpdateWithoutTempVoiceConfigsInput>
   }
 
   export type TempVoiceUpdateOneRequiredWithoutTempVoiceConfigsNestedInput = {
@@ -122025,18 +121887,10 @@ export namespace Prisma {
     set: string[]
   }
 
-  export type TempVoicePresetDiscordRolePermissionCreateNestedManyWithoutTempVoicePresetInput = {
-    create?: XOR<TempVoicePresetDiscordRolePermissionCreateWithoutTempVoicePresetInput, TempVoicePresetDiscordRolePermissionUncheckedCreateWithoutTempVoicePresetInput> | TempVoicePresetDiscordRolePermissionCreateWithoutTempVoicePresetInput[] | TempVoicePresetDiscordRolePermissionUncheckedCreateWithoutTempVoicePresetInput[]
-    connectOrCreate?: TempVoicePresetDiscordRolePermissionCreateOrConnectWithoutTempVoicePresetInput | TempVoicePresetDiscordRolePermissionCreateOrConnectWithoutTempVoicePresetInput[]
-    createMany?: TempVoicePresetDiscordRolePermissionCreateManyTempVoicePresetInputEnvelope
-    connect?: TempVoicePresetDiscordRolePermissionWhereUniqueInput | TempVoicePresetDiscordRolePermissionWhereUniqueInput[]
-  }
-
-  export type TempVoiceConfigCreateNestedManyWithoutTempVoicePresetInput = {
-    create?: XOR<TempVoiceConfigCreateWithoutTempVoicePresetInput, TempVoiceConfigUncheckedCreateWithoutTempVoicePresetInput> | TempVoiceConfigCreateWithoutTempVoicePresetInput[] | TempVoiceConfigUncheckedCreateWithoutTempVoicePresetInput[]
-    connectOrCreate?: TempVoiceConfigCreateOrConnectWithoutTempVoicePresetInput | TempVoiceConfigCreateOrConnectWithoutTempVoicePresetInput[]
-    createMany?: TempVoiceConfigCreateManyTempVoicePresetInputEnvelope
-    connect?: TempVoiceConfigWhereUniqueInput | TempVoiceConfigWhereUniqueInput[]
+  export type TempVoiceConfigCreateNestedOneWithoutTempVoicePresetInput = {
+    create?: XOR<TempVoiceConfigCreateWithoutTempVoicePresetInput, TempVoiceConfigUncheckedCreateWithoutTempVoicePresetInput>
+    connectOrCreate?: TempVoiceConfigCreateOrConnectWithoutTempVoicePresetInput
+    connect?: TempVoiceConfigWhereUniqueInput
   }
 
   export type TempVoiceCreateNestedOneWithoutTempVoicePresetsInput = {
@@ -122045,18 +121899,22 @@ export namespace Prisma {
     connect?: TempVoiceWhereUniqueInput
   }
 
-  export type TempVoicePresetDiscordRolePermissionUncheckedCreateNestedManyWithoutTempVoicePresetInput = {
-    create?: XOR<TempVoicePresetDiscordRolePermissionCreateWithoutTempVoicePresetInput, TempVoicePresetDiscordRolePermissionUncheckedCreateWithoutTempVoicePresetInput> | TempVoicePresetDiscordRolePermissionCreateWithoutTempVoicePresetInput[] | TempVoicePresetDiscordRolePermissionUncheckedCreateWithoutTempVoicePresetInput[]
-    connectOrCreate?: TempVoicePresetDiscordRolePermissionCreateOrConnectWithoutTempVoicePresetInput | TempVoicePresetDiscordRolePermissionCreateOrConnectWithoutTempVoicePresetInput[]
-    createMany?: TempVoicePresetDiscordRolePermissionCreateManyTempVoicePresetInputEnvelope
-    connect?: TempVoicePresetDiscordRolePermissionWhereUniqueInput | TempVoicePresetDiscordRolePermissionWhereUniqueInput[]
+  export type TempVoicePresetDiscordRolePermissionCreateNestedOneWithoutTempVoicePresetInput = {
+    create?: XOR<TempVoicePresetDiscordRolePermissionCreateWithoutTempVoicePresetInput, TempVoicePresetDiscordRolePermissionUncheckedCreateWithoutTempVoicePresetInput>
+    connectOrCreate?: TempVoicePresetDiscordRolePermissionCreateOrConnectWithoutTempVoicePresetInput
+    connect?: TempVoicePresetDiscordRolePermissionWhereUniqueInput
   }
 
-  export type TempVoiceConfigUncheckedCreateNestedManyWithoutTempVoicePresetInput = {
-    create?: XOR<TempVoiceConfigCreateWithoutTempVoicePresetInput, TempVoiceConfigUncheckedCreateWithoutTempVoicePresetInput> | TempVoiceConfigCreateWithoutTempVoicePresetInput[] | TempVoiceConfigUncheckedCreateWithoutTempVoicePresetInput[]
-    connectOrCreate?: TempVoiceConfigCreateOrConnectWithoutTempVoicePresetInput | TempVoiceConfigCreateOrConnectWithoutTempVoicePresetInput[]
-    createMany?: TempVoiceConfigCreateManyTempVoicePresetInputEnvelope
-    connect?: TempVoiceConfigWhereUniqueInput | TempVoiceConfigWhereUniqueInput[]
+  export type TempVoiceConfigUncheckedCreateNestedOneWithoutTempVoicePresetInput = {
+    create?: XOR<TempVoiceConfigCreateWithoutTempVoicePresetInput, TempVoiceConfigUncheckedCreateWithoutTempVoicePresetInput>
+    connectOrCreate?: TempVoiceConfigCreateOrConnectWithoutTempVoicePresetInput
+    connect?: TempVoiceConfigWhereUniqueInput
+  }
+
+  export type TempVoicePresetDiscordRolePermissionUncheckedCreateNestedOneWithoutTempVoicePresetInput = {
+    create?: XOR<TempVoicePresetDiscordRolePermissionCreateWithoutTempVoicePresetInput, TempVoicePresetDiscordRolePermissionUncheckedCreateWithoutTempVoicePresetInput>
+    connectOrCreate?: TempVoicePresetDiscordRolePermissionCreateOrConnectWithoutTempVoicePresetInput
+    connect?: TempVoicePresetDiscordRolePermissionWhereUniqueInput
   }
 
   export type TempVoicePresetUpdateManageComponentsInput = {
@@ -122074,32 +121932,14 @@ export namespace Prisma {
     push?: string | string[]
   }
 
-  export type TempVoicePresetDiscordRolePermissionUpdateManyWithoutTempVoicePresetNestedInput = {
-    create?: XOR<TempVoicePresetDiscordRolePermissionCreateWithoutTempVoicePresetInput, TempVoicePresetDiscordRolePermissionUncheckedCreateWithoutTempVoicePresetInput> | TempVoicePresetDiscordRolePermissionCreateWithoutTempVoicePresetInput[] | TempVoicePresetDiscordRolePermissionUncheckedCreateWithoutTempVoicePresetInput[]
-    connectOrCreate?: TempVoicePresetDiscordRolePermissionCreateOrConnectWithoutTempVoicePresetInput | TempVoicePresetDiscordRolePermissionCreateOrConnectWithoutTempVoicePresetInput[]
-    upsert?: TempVoicePresetDiscordRolePermissionUpsertWithWhereUniqueWithoutTempVoicePresetInput | TempVoicePresetDiscordRolePermissionUpsertWithWhereUniqueWithoutTempVoicePresetInput[]
-    createMany?: TempVoicePresetDiscordRolePermissionCreateManyTempVoicePresetInputEnvelope
-    set?: TempVoicePresetDiscordRolePermissionWhereUniqueInput | TempVoicePresetDiscordRolePermissionWhereUniqueInput[]
-    disconnect?: TempVoicePresetDiscordRolePermissionWhereUniqueInput | TempVoicePresetDiscordRolePermissionWhereUniqueInput[]
-    delete?: TempVoicePresetDiscordRolePermissionWhereUniqueInput | TempVoicePresetDiscordRolePermissionWhereUniqueInput[]
-    connect?: TempVoicePresetDiscordRolePermissionWhereUniqueInput | TempVoicePresetDiscordRolePermissionWhereUniqueInput[]
-    update?: TempVoicePresetDiscordRolePermissionUpdateWithWhereUniqueWithoutTempVoicePresetInput | TempVoicePresetDiscordRolePermissionUpdateWithWhereUniqueWithoutTempVoicePresetInput[]
-    updateMany?: TempVoicePresetDiscordRolePermissionUpdateManyWithWhereWithoutTempVoicePresetInput | TempVoicePresetDiscordRolePermissionUpdateManyWithWhereWithoutTempVoicePresetInput[]
-    deleteMany?: TempVoicePresetDiscordRolePermissionScalarWhereInput | TempVoicePresetDiscordRolePermissionScalarWhereInput[]
-  }
-
-  export type TempVoiceConfigUpdateManyWithoutTempVoicePresetNestedInput = {
-    create?: XOR<TempVoiceConfigCreateWithoutTempVoicePresetInput, TempVoiceConfigUncheckedCreateWithoutTempVoicePresetInput> | TempVoiceConfigCreateWithoutTempVoicePresetInput[] | TempVoiceConfigUncheckedCreateWithoutTempVoicePresetInput[]
-    connectOrCreate?: TempVoiceConfigCreateOrConnectWithoutTempVoicePresetInput | TempVoiceConfigCreateOrConnectWithoutTempVoicePresetInput[]
-    upsert?: TempVoiceConfigUpsertWithWhereUniqueWithoutTempVoicePresetInput | TempVoiceConfigUpsertWithWhereUniqueWithoutTempVoicePresetInput[]
-    createMany?: TempVoiceConfigCreateManyTempVoicePresetInputEnvelope
-    set?: TempVoiceConfigWhereUniqueInput | TempVoiceConfigWhereUniqueInput[]
-    disconnect?: TempVoiceConfigWhereUniqueInput | TempVoiceConfigWhereUniqueInput[]
-    delete?: TempVoiceConfigWhereUniqueInput | TempVoiceConfigWhereUniqueInput[]
-    connect?: TempVoiceConfigWhereUniqueInput | TempVoiceConfigWhereUniqueInput[]
-    update?: TempVoiceConfigUpdateWithWhereUniqueWithoutTempVoicePresetInput | TempVoiceConfigUpdateWithWhereUniqueWithoutTempVoicePresetInput[]
-    updateMany?: TempVoiceConfigUpdateManyWithWhereWithoutTempVoicePresetInput | TempVoiceConfigUpdateManyWithWhereWithoutTempVoicePresetInput[]
-    deleteMany?: TempVoiceConfigScalarWhereInput | TempVoiceConfigScalarWhereInput[]
+  export type TempVoiceConfigUpdateOneWithoutTempVoicePresetNestedInput = {
+    create?: XOR<TempVoiceConfigCreateWithoutTempVoicePresetInput, TempVoiceConfigUncheckedCreateWithoutTempVoicePresetInput>
+    connectOrCreate?: TempVoiceConfigCreateOrConnectWithoutTempVoicePresetInput
+    upsert?: TempVoiceConfigUpsertWithoutTempVoicePresetInput
+    disconnect?: TempVoiceConfigWhereInput | boolean
+    delete?: TempVoiceConfigWhereInput | boolean
+    connect?: TempVoiceConfigWhereUniqueInput
+    update?: XOR<XOR<TempVoiceConfigUpdateToOneWithWhereWithoutTempVoicePresetInput, TempVoiceConfigUpdateWithoutTempVoicePresetInput>, TempVoiceConfigUncheckedUpdateWithoutTempVoicePresetInput>
   }
 
   export type TempVoiceUpdateOneRequiredWithoutTempVoicePresetsNestedInput = {
@@ -122110,32 +121950,34 @@ export namespace Prisma {
     update?: XOR<XOR<TempVoiceUpdateToOneWithWhereWithoutTempVoicePresetsInput, TempVoiceUpdateWithoutTempVoicePresetsInput>, TempVoiceUncheckedUpdateWithoutTempVoicePresetsInput>
   }
 
-  export type TempVoicePresetDiscordRolePermissionUncheckedUpdateManyWithoutTempVoicePresetNestedInput = {
-    create?: XOR<TempVoicePresetDiscordRolePermissionCreateWithoutTempVoicePresetInput, TempVoicePresetDiscordRolePermissionUncheckedCreateWithoutTempVoicePresetInput> | TempVoicePresetDiscordRolePermissionCreateWithoutTempVoicePresetInput[] | TempVoicePresetDiscordRolePermissionUncheckedCreateWithoutTempVoicePresetInput[]
-    connectOrCreate?: TempVoicePresetDiscordRolePermissionCreateOrConnectWithoutTempVoicePresetInput | TempVoicePresetDiscordRolePermissionCreateOrConnectWithoutTempVoicePresetInput[]
-    upsert?: TempVoicePresetDiscordRolePermissionUpsertWithWhereUniqueWithoutTempVoicePresetInput | TempVoicePresetDiscordRolePermissionUpsertWithWhereUniqueWithoutTempVoicePresetInput[]
-    createMany?: TempVoicePresetDiscordRolePermissionCreateManyTempVoicePresetInputEnvelope
-    set?: TempVoicePresetDiscordRolePermissionWhereUniqueInput | TempVoicePresetDiscordRolePermissionWhereUniqueInput[]
-    disconnect?: TempVoicePresetDiscordRolePermissionWhereUniqueInput | TempVoicePresetDiscordRolePermissionWhereUniqueInput[]
-    delete?: TempVoicePresetDiscordRolePermissionWhereUniqueInput | TempVoicePresetDiscordRolePermissionWhereUniqueInput[]
-    connect?: TempVoicePresetDiscordRolePermissionWhereUniqueInput | TempVoicePresetDiscordRolePermissionWhereUniqueInput[]
-    update?: TempVoicePresetDiscordRolePermissionUpdateWithWhereUniqueWithoutTempVoicePresetInput | TempVoicePresetDiscordRolePermissionUpdateWithWhereUniqueWithoutTempVoicePresetInput[]
-    updateMany?: TempVoicePresetDiscordRolePermissionUpdateManyWithWhereWithoutTempVoicePresetInput | TempVoicePresetDiscordRolePermissionUpdateManyWithWhereWithoutTempVoicePresetInput[]
-    deleteMany?: TempVoicePresetDiscordRolePermissionScalarWhereInput | TempVoicePresetDiscordRolePermissionScalarWhereInput[]
+  export type TempVoicePresetDiscordRolePermissionUpdateOneWithoutTempVoicePresetNestedInput = {
+    create?: XOR<TempVoicePresetDiscordRolePermissionCreateWithoutTempVoicePresetInput, TempVoicePresetDiscordRolePermissionUncheckedCreateWithoutTempVoicePresetInput>
+    connectOrCreate?: TempVoicePresetDiscordRolePermissionCreateOrConnectWithoutTempVoicePresetInput
+    upsert?: TempVoicePresetDiscordRolePermissionUpsertWithoutTempVoicePresetInput
+    disconnect?: TempVoicePresetDiscordRolePermissionWhereInput | boolean
+    delete?: TempVoicePresetDiscordRolePermissionWhereInput | boolean
+    connect?: TempVoicePresetDiscordRolePermissionWhereUniqueInput
+    update?: XOR<XOR<TempVoicePresetDiscordRolePermissionUpdateToOneWithWhereWithoutTempVoicePresetInput, TempVoicePresetDiscordRolePermissionUpdateWithoutTempVoicePresetInput>, TempVoicePresetDiscordRolePermissionUncheckedUpdateWithoutTempVoicePresetInput>
   }
 
-  export type TempVoiceConfigUncheckedUpdateManyWithoutTempVoicePresetNestedInput = {
-    create?: XOR<TempVoiceConfigCreateWithoutTempVoicePresetInput, TempVoiceConfigUncheckedCreateWithoutTempVoicePresetInput> | TempVoiceConfigCreateWithoutTempVoicePresetInput[] | TempVoiceConfigUncheckedCreateWithoutTempVoicePresetInput[]
-    connectOrCreate?: TempVoiceConfigCreateOrConnectWithoutTempVoicePresetInput | TempVoiceConfigCreateOrConnectWithoutTempVoicePresetInput[]
-    upsert?: TempVoiceConfigUpsertWithWhereUniqueWithoutTempVoicePresetInput | TempVoiceConfigUpsertWithWhereUniqueWithoutTempVoicePresetInput[]
-    createMany?: TempVoiceConfigCreateManyTempVoicePresetInputEnvelope
-    set?: TempVoiceConfigWhereUniqueInput | TempVoiceConfigWhereUniqueInput[]
-    disconnect?: TempVoiceConfigWhereUniqueInput | TempVoiceConfigWhereUniqueInput[]
-    delete?: TempVoiceConfigWhereUniqueInput | TempVoiceConfigWhereUniqueInput[]
-    connect?: TempVoiceConfigWhereUniqueInput | TempVoiceConfigWhereUniqueInput[]
-    update?: TempVoiceConfigUpdateWithWhereUniqueWithoutTempVoicePresetInput | TempVoiceConfigUpdateWithWhereUniqueWithoutTempVoicePresetInput[]
-    updateMany?: TempVoiceConfigUpdateManyWithWhereWithoutTempVoicePresetInput | TempVoiceConfigUpdateManyWithWhereWithoutTempVoicePresetInput[]
-    deleteMany?: TempVoiceConfigScalarWhereInput | TempVoiceConfigScalarWhereInput[]
+  export type TempVoiceConfigUncheckedUpdateOneWithoutTempVoicePresetNestedInput = {
+    create?: XOR<TempVoiceConfigCreateWithoutTempVoicePresetInput, TempVoiceConfigUncheckedCreateWithoutTempVoicePresetInput>
+    connectOrCreate?: TempVoiceConfigCreateOrConnectWithoutTempVoicePresetInput
+    upsert?: TempVoiceConfigUpsertWithoutTempVoicePresetInput
+    disconnect?: TempVoiceConfigWhereInput | boolean
+    delete?: TempVoiceConfigWhereInput | boolean
+    connect?: TempVoiceConfigWhereUniqueInput
+    update?: XOR<XOR<TempVoiceConfigUpdateToOneWithWhereWithoutTempVoicePresetInput, TempVoiceConfigUpdateWithoutTempVoicePresetInput>, TempVoiceConfigUncheckedUpdateWithoutTempVoicePresetInput>
+  }
+
+  export type TempVoicePresetDiscordRolePermissionUncheckedUpdateOneWithoutTempVoicePresetNestedInput = {
+    create?: XOR<TempVoicePresetDiscordRolePermissionCreateWithoutTempVoicePresetInput, TempVoicePresetDiscordRolePermissionUncheckedCreateWithoutTempVoicePresetInput>
+    connectOrCreate?: TempVoicePresetDiscordRolePermissionCreateOrConnectWithoutTempVoicePresetInput
+    upsert?: TempVoicePresetDiscordRolePermissionUpsertWithoutTempVoicePresetInput
+    disconnect?: TempVoicePresetDiscordRolePermissionWhereInput | boolean
+    delete?: TempVoicePresetDiscordRolePermissionWhereInput | boolean
+    connect?: TempVoicePresetDiscordRolePermissionWhereUniqueInput
+    update?: XOR<XOR<TempVoicePresetDiscordRolePermissionUpdateToOneWithWhereWithoutTempVoicePresetInput, TempVoicePresetDiscordRolePermissionUpdateWithoutTempVoicePresetInput>, TempVoicePresetDiscordRolePermissionUncheckedUpdateWithoutTempVoicePresetInput>
   }
 
   export type TempVoicePresetDiscordRolePermissionCreateAllowedDiscordPermissionsInput = {
@@ -122170,11 +122012,10 @@ export namespace Prisma {
     update?: XOR<XOR<TempVoicePresetUpdateToOneWithWhereWithoutRolePermissionsInput, TempVoicePresetUpdateWithoutRolePermissionsInput>, TempVoicePresetUncheckedUpdateWithoutRolePermissionsInput>
   }
 
-  export type TempVoiceChannelMemberCreateNestedManyWithoutTempVoiceChannelsInput = {
-    create?: XOR<TempVoiceChannelMemberCreateWithoutTempVoiceChannelsInput, TempVoiceChannelMemberUncheckedCreateWithoutTempVoiceChannelsInput> | TempVoiceChannelMemberCreateWithoutTempVoiceChannelsInput[] | TempVoiceChannelMemberUncheckedCreateWithoutTempVoiceChannelsInput[]
-    connectOrCreate?: TempVoiceChannelMemberCreateOrConnectWithoutTempVoiceChannelsInput | TempVoiceChannelMemberCreateOrConnectWithoutTempVoiceChannelsInput[]
-    createMany?: TempVoiceChannelMemberCreateManyTempVoiceChannelsInputEnvelope
-    connect?: TempVoiceChannelMemberWhereUniqueInput | TempVoiceChannelMemberWhereUniqueInput[]
+  export type TempVoiceChannelMemberCreateNestedOneWithoutTempVoiceChannelsInput = {
+    create?: XOR<TempVoiceChannelMemberCreateWithoutTempVoiceChannelsInput, TempVoiceChannelMemberUncheckedCreateWithoutTempVoiceChannelsInput>
+    connectOrCreate?: TempVoiceChannelMemberCreateOrConnectWithoutTempVoiceChannelsInput
+    connect?: TempVoiceChannelMemberWhereUniqueInput
   }
 
   export type TempVoiceConfigCreateNestedOneWithoutTempVoiceChannelsInput = {
@@ -122183,25 +122024,20 @@ export namespace Prisma {
     connect?: TempVoiceConfigWhereUniqueInput
   }
 
-  export type TempVoiceChannelMemberUncheckedCreateNestedManyWithoutTempVoiceChannelsInput = {
-    create?: XOR<TempVoiceChannelMemberCreateWithoutTempVoiceChannelsInput, TempVoiceChannelMemberUncheckedCreateWithoutTempVoiceChannelsInput> | TempVoiceChannelMemberCreateWithoutTempVoiceChannelsInput[] | TempVoiceChannelMemberUncheckedCreateWithoutTempVoiceChannelsInput[]
-    connectOrCreate?: TempVoiceChannelMemberCreateOrConnectWithoutTempVoiceChannelsInput | TempVoiceChannelMemberCreateOrConnectWithoutTempVoiceChannelsInput[]
-    createMany?: TempVoiceChannelMemberCreateManyTempVoiceChannelsInputEnvelope
-    connect?: TempVoiceChannelMemberWhereUniqueInput | TempVoiceChannelMemberWhereUniqueInput[]
+  export type TempVoiceChannelMemberUncheckedCreateNestedOneWithoutTempVoiceChannelsInput = {
+    create?: XOR<TempVoiceChannelMemberCreateWithoutTempVoiceChannelsInput, TempVoiceChannelMemberUncheckedCreateWithoutTempVoiceChannelsInput>
+    connectOrCreate?: TempVoiceChannelMemberCreateOrConnectWithoutTempVoiceChannelsInput
+    connect?: TempVoiceChannelMemberWhereUniqueInput
   }
 
-  export type TempVoiceChannelMemberUpdateManyWithoutTempVoiceChannelsNestedInput = {
-    create?: XOR<TempVoiceChannelMemberCreateWithoutTempVoiceChannelsInput, TempVoiceChannelMemberUncheckedCreateWithoutTempVoiceChannelsInput> | TempVoiceChannelMemberCreateWithoutTempVoiceChannelsInput[] | TempVoiceChannelMemberUncheckedCreateWithoutTempVoiceChannelsInput[]
-    connectOrCreate?: TempVoiceChannelMemberCreateOrConnectWithoutTempVoiceChannelsInput | TempVoiceChannelMemberCreateOrConnectWithoutTempVoiceChannelsInput[]
-    upsert?: TempVoiceChannelMemberUpsertWithWhereUniqueWithoutTempVoiceChannelsInput | TempVoiceChannelMemberUpsertWithWhereUniqueWithoutTempVoiceChannelsInput[]
-    createMany?: TempVoiceChannelMemberCreateManyTempVoiceChannelsInputEnvelope
-    set?: TempVoiceChannelMemberWhereUniqueInput | TempVoiceChannelMemberWhereUniqueInput[]
-    disconnect?: TempVoiceChannelMemberWhereUniqueInput | TempVoiceChannelMemberWhereUniqueInput[]
-    delete?: TempVoiceChannelMemberWhereUniqueInput | TempVoiceChannelMemberWhereUniqueInput[]
-    connect?: TempVoiceChannelMemberWhereUniqueInput | TempVoiceChannelMemberWhereUniqueInput[]
-    update?: TempVoiceChannelMemberUpdateWithWhereUniqueWithoutTempVoiceChannelsInput | TempVoiceChannelMemberUpdateWithWhereUniqueWithoutTempVoiceChannelsInput[]
-    updateMany?: TempVoiceChannelMemberUpdateManyWithWhereWithoutTempVoiceChannelsInput | TempVoiceChannelMemberUpdateManyWithWhereWithoutTempVoiceChannelsInput[]
-    deleteMany?: TempVoiceChannelMemberScalarWhereInput | TempVoiceChannelMemberScalarWhereInput[]
+  export type TempVoiceChannelMemberUpdateOneWithoutTempVoiceChannelsNestedInput = {
+    create?: XOR<TempVoiceChannelMemberCreateWithoutTempVoiceChannelsInput, TempVoiceChannelMemberUncheckedCreateWithoutTempVoiceChannelsInput>
+    connectOrCreate?: TempVoiceChannelMemberCreateOrConnectWithoutTempVoiceChannelsInput
+    upsert?: TempVoiceChannelMemberUpsertWithoutTempVoiceChannelsInput
+    disconnect?: TempVoiceChannelMemberWhereInput | boolean
+    delete?: TempVoiceChannelMemberWhereInput | boolean
+    connect?: TempVoiceChannelMemberWhereUniqueInput
+    update?: XOR<XOR<TempVoiceChannelMemberUpdateToOneWithWhereWithoutTempVoiceChannelsInput, TempVoiceChannelMemberUpdateWithoutTempVoiceChannelsInput>, TempVoiceChannelMemberUncheckedUpdateWithoutTempVoiceChannelsInput>
   }
 
   export type TempVoiceConfigUpdateOneRequiredWithoutTempVoiceChannelsNestedInput = {
@@ -122212,18 +122048,14 @@ export namespace Prisma {
     update?: XOR<XOR<TempVoiceConfigUpdateToOneWithWhereWithoutTempVoiceChannelsInput, TempVoiceConfigUpdateWithoutTempVoiceChannelsInput>, TempVoiceConfigUncheckedUpdateWithoutTempVoiceChannelsInput>
   }
 
-  export type TempVoiceChannelMemberUncheckedUpdateManyWithoutTempVoiceChannelsNestedInput = {
-    create?: XOR<TempVoiceChannelMemberCreateWithoutTempVoiceChannelsInput, TempVoiceChannelMemberUncheckedCreateWithoutTempVoiceChannelsInput> | TempVoiceChannelMemberCreateWithoutTempVoiceChannelsInput[] | TempVoiceChannelMemberUncheckedCreateWithoutTempVoiceChannelsInput[]
-    connectOrCreate?: TempVoiceChannelMemberCreateOrConnectWithoutTempVoiceChannelsInput | TempVoiceChannelMemberCreateOrConnectWithoutTempVoiceChannelsInput[]
-    upsert?: TempVoiceChannelMemberUpsertWithWhereUniqueWithoutTempVoiceChannelsInput | TempVoiceChannelMemberUpsertWithWhereUniqueWithoutTempVoiceChannelsInput[]
-    createMany?: TempVoiceChannelMemberCreateManyTempVoiceChannelsInputEnvelope
-    set?: TempVoiceChannelMemberWhereUniqueInput | TempVoiceChannelMemberWhereUniqueInput[]
-    disconnect?: TempVoiceChannelMemberWhereUniqueInput | TempVoiceChannelMemberWhereUniqueInput[]
-    delete?: TempVoiceChannelMemberWhereUniqueInput | TempVoiceChannelMemberWhereUniqueInput[]
-    connect?: TempVoiceChannelMemberWhereUniqueInput | TempVoiceChannelMemberWhereUniqueInput[]
-    update?: TempVoiceChannelMemberUpdateWithWhereUniqueWithoutTempVoiceChannelsInput | TempVoiceChannelMemberUpdateWithWhereUniqueWithoutTempVoiceChannelsInput[]
-    updateMany?: TempVoiceChannelMemberUpdateManyWithWhereWithoutTempVoiceChannelsInput | TempVoiceChannelMemberUpdateManyWithWhereWithoutTempVoiceChannelsInput[]
-    deleteMany?: TempVoiceChannelMemberScalarWhereInput | TempVoiceChannelMemberScalarWhereInput[]
+  export type TempVoiceChannelMemberUncheckedUpdateOneWithoutTempVoiceChannelsNestedInput = {
+    create?: XOR<TempVoiceChannelMemberCreateWithoutTempVoiceChannelsInput, TempVoiceChannelMemberUncheckedCreateWithoutTempVoiceChannelsInput>
+    connectOrCreate?: TempVoiceChannelMemberCreateOrConnectWithoutTempVoiceChannelsInput
+    upsert?: TempVoiceChannelMemberUpsertWithoutTempVoiceChannelsInput
+    disconnect?: TempVoiceChannelMemberWhereInput | boolean
+    delete?: TempVoiceChannelMemberWhereInput | boolean
+    connect?: TempVoiceChannelMemberWhereUniqueInput
+    update?: XOR<XOR<TempVoiceChannelMemberUpdateToOneWithWhereWithoutTempVoiceChannelsInput, TempVoiceChannelMemberUpdateWithoutTempVoiceChannelsInput>, TempVoiceChannelMemberUncheckedUpdateWithoutTempVoiceChannelsInput>
   }
 
   export type TempVoiceChannelMemberCreatePermissionsInput = {
@@ -122831,11 +122663,11 @@ export namespace Prisma {
     set: string[]
   }
 
-  export type TicketSetupsCreateTicketSettingsInput = {
+  export type TicketSetupsCreateRequiredRolesInput = {
     set: string[]
   }
 
-  export type TicketSetupsCreateRequiredRolesInput = {
+  export type TicketSetupsCreateTicketSettingsInput = {
     set: string[]
   }
 
@@ -122897,12 +122729,12 @@ export namespace Prisma {
     push?: string | string[]
   }
 
-  export type TicketSetupsUpdateTicketSettingsInput = {
+  export type TicketSetupsUpdateRequiredRolesInput = {
     set?: string[]
     push?: string | string[]
   }
 
-  export type TicketSetupsUpdateRequiredRolesInput = {
+  export type TicketSetupsUpdateTicketSettingsInput = {
     set?: string[]
     push?: string | string[]
   }
@@ -124801,8 +124633,8 @@ export namespace Prisma {
     DmMessage?: string | null
     Type?: string | null
     Notes?: GuildUserModerationCreateNotesInput | string[]
-    CreatedAt?: Date | string | null
     LinkedCaseId?: string | null
+    CreatedAt?: Date | string | null
   }
 
   export type GuildUserModerationCreateOrConnectWithoutGuildsInput = {
@@ -124866,7 +124698,6 @@ export namespace Prisma {
 
   export type LevelSettingsCreateWithoutGuildsInput = {
     LevelUpChannelId?: string | null
-    LevelUpMessageType?: string | null
     LeaderboardMessageTemplateId?: string | null
     LeaderboardDisplayAmount?: number | null
     RequiredXPForFirstLevel?: number | null
@@ -124883,11 +124714,12 @@ export namespace Prisma {
     MessageXPCooldown?: string | null
     MessageXPType?: LevelSettingsCreateMessageXPTypeInput | string[]
     RequiredXPFormular?: string | null
+    LevelUpMessageType?: string | null
     LevelUserInfoMessageTemplate?: string | null
-    XPDropsMessageTemplate?: string | null
     XPStreaksMessageType?: string | null
-    XPStreaksIncreaseType?: LevelSettingsCreateXPStreaksIncreaseTypeInput | string[]
     XPStreaksMessageChannelId?: string | null
+    XPStreaksIncreaseType?: LevelSettingsCreateXPStreaksIncreaseTypeInput | string[]
+    XPDropsMessageTemplate?: string | null
     LevelRoles?: LevelRolesCreateNestedManyWithoutLevelSettingsInput
     Levels?: LevelsCreateNestedManyWithoutLevelSettingsInput
     XPDrops?: XPDropsCreateNestedManyWithoutLevelSettingsInput
@@ -124897,7 +124729,6 @@ export namespace Prisma {
   export type LevelSettingsUncheckedCreateWithoutGuildsInput = {
     Id?: number
     LevelUpChannelId?: string | null
-    LevelUpMessageType?: string | null
     LeaderboardMessageTemplateId?: string | null
     LeaderboardDisplayAmount?: number | null
     RequiredXPForFirstLevel?: number | null
@@ -124914,11 +124745,12 @@ export namespace Prisma {
     MessageXPCooldown?: string | null
     MessageXPType?: LevelSettingsCreateMessageXPTypeInput | string[]
     RequiredXPFormular?: string | null
+    LevelUpMessageType?: string | null
     LevelUserInfoMessageTemplate?: string | null
-    XPDropsMessageTemplate?: string | null
     XPStreaksMessageType?: string | null
-    XPStreaksIncreaseType?: LevelSettingsCreateXPStreaksIncreaseTypeInput | string[]
     XPStreaksMessageChannelId?: string | null
+    XPStreaksIncreaseType?: LevelSettingsCreateXPStreaksIncreaseTypeInput | string[]
+    XPDropsMessageTemplate?: string | null
     LevelRoles?: LevelRolesUncheckedCreateNestedManyWithoutLevelSettingsInput
     Levels?: LevelsUncheckedCreateNestedManyWithoutLevelSettingsInput
     XPDrops?: XPDropsUncheckedCreateNestedManyWithoutLevelSettingsInput
@@ -125072,11 +124904,6 @@ export namespace Prisma {
     create: XOR<TempVoiceCreateWithoutGuildsInput, TempVoiceUncheckedCreateWithoutGuildsInput>
   }
 
-  export type TempVoiceCreateManyGuildsInputEnvelope = {
-    data: TempVoiceCreateManyGuildsInput | TempVoiceCreateManyGuildsInput[]
-    skipDuplicates?: boolean
-  }
-
   export type TicketSetupsCreateWithoutGuildsInput = {
     CategoryId?: string | null
     ChannelType?: number | null
@@ -125103,7 +124930,6 @@ export namespace Prisma {
     TicketStatusMessageId?: string | null
     TicketStatusChannelId?: string | null
     AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
-    TicketSettings?: TicketSetupsCreateTicketSettingsInput | string[]
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
     SlashCommandId?: string | null
@@ -125111,6 +124937,7 @@ export namespace Prisma {
     SlashCommandDescription?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
+    TicketSettings?: TicketSetupsCreateTicketSettingsInput | string[]
     ModalOptions?: TicketModalDataCreateNestedManyWithoutTicketSetupInput
     TicketPermissions?: TicketPermissionsCreateNestedManyWithoutTicketSetupInput
     Tickets?: TicketsCreateNestedManyWithoutTicketSetupInput
@@ -125143,7 +124970,6 @@ export namespace Prisma {
     TicketStatusMessageId?: string | null
     TicketStatusChannelId?: string | null
     AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
-    TicketSettings?: TicketSetupsCreateTicketSettingsInput | string[]
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
     SlashCommandId?: string | null
@@ -125151,6 +124977,7 @@ export namespace Prisma {
     SlashCommandDescription?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
+    TicketSettings?: TicketSetupsCreateTicketSettingsInput | string[]
     ModalOptions?: TicketModalDataUncheckedCreateNestedManyWithoutTicketSetupInput
     TicketPermissions?: TicketPermissionsUncheckedCreateNestedManyWithoutTicketSetupInput
     Tickets?: TicketsUncheckedCreateNestedManyWithoutTicketSetupInput
@@ -125783,9 +125610,9 @@ export namespace Prisma {
     DmMessage?: StringNullableFilter<"GuildUserModeration"> | string | null
     Type?: StringNullableFilter<"GuildUserModeration"> | string | null
     Notes?: StringNullableListFilter<"GuildUserModeration">
+    LinkedCaseId?: StringNullableFilter<"GuildUserModeration"> | string | null
     CreatedAt?: DateTimeNullableFilter<"GuildUserModeration"> | Date | string | null
     GuildId?: StringFilter<"GuildUserModeration"> | string
-    LinkedCaseId?: StringNullableFilter<"GuildUserModeration"> | string | null
   }
 
   export type GuildWelcomeSetupUpsertWithoutGuildsInput = {
@@ -125857,7 +125684,6 @@ export namespace Prisma {
 
   export type LevelSettingsUpdateWithoutGuildsInput = {
     LevelUpChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardDisplayAmount?: NullableIntFieldUpdateOperationsInput | number | null
     RequiredXPForFirstLevel?: NullableIntFieldUpdateOperationsInput | number | null
@@ -125874,11 +125700,12 @@ export namespace Prisma {
     MessageXPCooldown?: NullableStringFieldUpdateOperationsInput | string | null
     MessageXPType?: LevelSettingsUpdateMessageXPTypeInput | string[]
     RequiredXPFormular?: NullableStringFieldUpdateOperationsInput | string | null
+    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LevelUserInfoMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
-    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
     XPStreaksMessageType?: NullableStringFieldUpdateOperationsInput | string | null
-    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
     XPStreaksMessageChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
+    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
     LevelRoles?: LevelRolesUpdateManyWithoutLevelSettingsNestedInput
     Levels?: LevelsUpdateManyWithoutLevelSettingsNestedInput
     XPDrops?: XPDropsUpdateManyWithoutLevelSettingsNestedInput
@@ -125888,7 +125715,6 @@ export namespace Prisma {
   export type LevelSettingsUncheckedUpdateWithoutGuildsInput = {
     Id?: IntFieldUpdateOperationsInput | number
     LevelUpChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardDisplayAmount?: NullableIntFieldUpdateOperationsInput | number | null
     RequiredXPForFirstLevel?: NullableIntFieldUpdateOperationsInput | number | null
@@ -125905,11 +125731,12 @@ export namespace Prisma {
     MessageXPCooldown?: NullableStringFieldUpdateOperationsInput | string | null
     MessageXPType?: LevelSettingsUpdateMessageXPTypeInput | string[]
     RequiredXPFormular?: NullableStringFieldUpdateOperationsInput | string | null
+    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LevelUserInfoMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
-    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
     XPStreaksMessageType?: NullableStringFieldUpdateOperationsInput | string | null
-    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
     XPStreaksMessageChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
+    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
     LevelRoles?: LevelRolesUncheckedUpdateManyWithoutLevelSettingsNestedInput
     Levels?: LevelsUncheckedUpdateManyWithoutLevelSettingsNestedInput
     XPDrops?: XPDropsUncheckedUpdateManyWithoutLevelSettingsNestedInput
@@ -126036,31 +125863,32 @@ export namespace Prisma {
     GuildId?: StringFilter<"Polls"> | string
   }
 
-  export type TempVoiceUpsertWithWhereUniqueWithoutGuildsInput = {
-    where: TempVoiceWhereUniqueInput
+  export type TempVoiceUpsertWithoutGuildsInput = {
     update: XOR<TempVoiceUpdateWithoutGuildsInput, TempVoiceUncheckedUpdateWithoutGuildsInput>
     create: XOR<TempVoiceCreateWithoutGuildsInput, TempVoiceUncheckedCreateWithoutGuildsInput>
+    where?: TempVoiceWhereInput
   }
 
-  export type TempVoiceUpdateWithWhereUniqueWithoutGuildsInput = {
-    where: TempVoiceWhereUniqueInput
+  export type TempVoiceUpdateToOneWithWhereWithoutGuildsInput = {
+    where?: TempVoiceWhereInput
     data: XOR<TempVoiceUpdateWithoutGuildsInput, TempVoiceUncheckedUpdateWithoutGuildsInput>
   }
 
-  export type TempVoiceUpdateManyWithWhereWithoutGuildsInput = {
-    where: TempVoiceScalarWhereInput
-    data: XOR<TempVoiceUpdateManyMutationInput, TempVoiceUncheckedUpdateManyWithoutGuildsInput>
+  export type TempVoiceUpdateWithoutGuildsInput = {
+    UserInviteMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    ModeratorUserIds?: TempVoiceUpdateModeratorUserIdsInput | string[]
+    TempVoiceLogChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    TempVoiceConfigs?: TempVoiceConfigUpdateManyWithoutTempVoiceNestedInput
+    TempVoicePresets?: TempVoicePresetUpdateManyWithoutTempVoiceNestedInput
   }
 
-  export type TempVoiceScalarWhereInput = {
-    AND?: TempVoiceScalarWhereInput | TempVoiceScalarWhereInput[]
-    OR?: TempVoiceScalarWhereInput[]
-    NOT?: TempVoiceScalarWhereInput | TempVoiceScalarWhereInput[]
-    Id?: IntFilter<"TempVoice"> | number
-    UserInviteMessageTemplateId?: StringNullableFilter<"TempVoice"> | string | null
-    ModeratorUserIds?: StringNullableListFilter<"TempVoice">
-    TempVoiceLogChannelId?: StringNullableFilter<"TempVoice"> | string | null
-    GuildId?: StringFilter<"TempVoice"> | string
+  export type TempVoiceUncheckedUpdateWithoutGuildsInput = {
+    Id?: IntFieldUpdateOperationsInput | number
+    UserInviteMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    ModeratorUserIds?: TempVoiceUpdateModeratorUserIdsInput | string[]
+    TempVoiceLogChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    TempVoiceConfigs?: TempVoiceConfigUncheckedUpdateManyWithoutTempVoiceNestedInput
+    TempVoicePresets?: TempVoicePresetUncheckedUpdateManyWithoutTempVoiceNestedInput
   }
 
   export type TicketSetupsUpsertWithWhereUniqueWithoutGuildsInput = {
@@ -126109,7 +125937,6 @@ export namespace Prisma {
     TicketStatusMessageId?: StringNullableFilter<"TicketSetups"> | string | null
     TicketStatusChannelId?: StringNullableFilter<"TicketSetups"> | string | null
     AutoCloseAction?: StringNullableListFilter<"TicketSetups">
-    TicketSettings?: StringNullableListFilter<"TicketSetups">
     OldTicketCategoryId?: StringNullableFilter<"TicketSetups"> | string | null
     RequiredRoles?: StringNullableListFilter<"TicketSetups">
     SlashCommandId?: StringNullableFilter<"TicketSetups"> | string | null
@@ -126118,6 +125945,7 @@ export namespace Prisma {
     TextCommandName?: StringNullableFilter<"TicketSetups"> | string | null
     SendTranscriptToUser?: BoolNullableFilter<"TicketSetups"> | boolean | null
     GuildId?: StringFilter<"TicketSetups"> | string
+    TicketSettings?: StringNullableListFilter<"TicketSetups">
   }
 
   export type BuildInCommandsCreateWithoutGuildCommandMangersInput = {
@@ -126178,7 +126006,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -126212,7 +126040,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -126291,7 +126119,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -126325,7 +126153,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -126408,7 +126236,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -126442,7 +126270,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -126491,7 +126319,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -126525,7 +126353,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -126558,7 +126386,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -126592,7 +126420,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -126641,7 +126469,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -126675,7 +126503,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -126708,7 +126536,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -126742,7 +126570,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -126791,7 +126619,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -126825,7 +126653,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -126858,7 +126686,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -126892,7 +126720,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -126941,7 +126769,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -126975,7 +126803,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -127008,7 +126836,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -127042,7 +126870,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -127091,7 +126919,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -127125,7 +126953,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -127158,7 +126986,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -127192,7 +127020,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -127241,7 +127069,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -127275,7 +127103,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -127308,7 +127136,7 @@ export namespace Prisma {
     LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -127342,7 +127170,7 @@ export namespace Prisma {
     LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -127519,7 +127347,7 @@ export namespace Prisma {
     LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -127553,7 +127381,7 @@ export namespace Prisma {
     LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -128537,7 +128365,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -128571,7 +128399,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -128768,7 +128596,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -128802,7 +128630,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -129431,7 +129259,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -129465,7 +129293,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -129540,7 +129368,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -129574,7 +129402,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -129639,7 +129467,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -129673,7 +129501,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -129929,7 +129757,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -129963,7 +129791,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -130614,7 +130442,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -130648,7 +130476,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -130724,7 +130552,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -130758,7 +130586,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -130878,7 +130706,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -130912,7 +130740,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -130961,7 +130789,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -130995,7 +130823,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -131028,7 +130856,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -131062,7 +130890,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -131111,7 +130939,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -131145,82 +130973,8 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
-  }
-
-  export type TempVoiceConfigCreateWithoutTempVoiceInput = {
-    UUID: string
-    CreatorChannel?: string | null
-    ChannelCategory?: string | null
-    ManageMessageTemplateId?: string | null
-    IsManageEnalbed?: boolean
-    TempVoicePreset: TempVoicePresetCreateNestedOneWithoutTempVoiceConfigsInput
-    TempVoiceChannels?: TempVoiceChannelsCreateNestedManyWithoutTempVoiceConfigInput
-  }
-
-  export type TempVoiceConfigUncheckedCreateWithoutTempVoiceInput = {
-    Id?: number
-    UUID: string
-    CreatorChannel?: string | null
-    ChannelCategory?: string | null
-    ManageMessageTemplateId?: string | null
-    IsManageEnalbed?: boolean
-    TempVoicePresetId: string
-    TempVoiceChannels?: TempVoiceChannelsUncheckedCreateNestedManyWithoutTempVoiceConfigInput
-  }
-
-  export type TempVoiceConfigCreateOrConnectWithoutTempVoiceInput = {
-    where: TempVoiceConfigWhereUniqueInput
-    create: XOR<TempVoiceConfigCreateWithoutTempVoiceInput, TempVoiceConfigUncheckedCreateWithoutTempVoiceInput>
-  }
-
-  export type TempVoiceConfigCreateManyTempVoiceInputEnvelope = {
-    data: TempVoiceConfigCreateManyTempVoiceInput | TempVoiceConfigCreateManyTempVoiceInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type TempVoicePresetCreateWithoutTempVoiceInput = {
-    UUID: string
-    ChannelName?: string | null
-    ChannelLimit?: number | null
-    ChannelRegion?: string | null
-    ChannelBitRate?: string | null
-    UserInviteType?: string | null
-    SendLogsInTempChannel?: boolean
-    BlacklistRoleId?: string | null
-    ManageComponents?: TempVoicePresetCreateManageComponentsInput | string[]
-    OwnerAllowedDiscordPermissions?: TempVoicePresetCreateOwnerAllowedDiscordPermissionsInput | string[]
-    OwnerDeniedDiscordPermissions?: TempVoicePresetCreateOwnerDeniedDiscordPermissionsInput | string[]
-    RolePermissions?: TempVoicePresetDiscordRolePermissionCreateNestedManyWithoutTempVoicePresetInput
-    TempVoiceConfigs?: TempVoiceConfigCreateNestedManyWithoutTempVoicePresetInput
-  }
-
-  export type TempVoicePresetUncheckedCreateWithoutTempVoiceInput = {
-    Id?: number
-    UUID: string
-    ChannelName?: string | null
-    ChannelLimit?: number | null
-    ChannelRegion?: string | null
-    ChannelBitRate?: string | null
-    UserInviteType?: string | null
-    SendLogsInTempChannel?: boolean
-    BlacklistRoleId?: string | null
-    ManageComponents?: TempVoicePresetCreateManageComponentsInput | string[]
-    OwnerAllowedDiscordPermissions?: TempVoicePresetCreateOwnerAllowedDiscordPermissionsInput | string[]
-    OwnerDeniedDiscordPermissions?: TempVoicePresetCreateOwnerDeniedDiscordPermissionsInput | string[]
-    RolePermissions?: TempVoicePresetDiscordRolePermissionUncheckedCreateNestedManyWithoutTempVoicePresetInput
-    TempVoiceConfigs?: TempVoiceConfigUncheckedCreateNestedManyWithoutTempVoicePresetInput
-  }
-
-  export type TempVoicePresetCreateOrConnectWithoutTempVoiceInput = {
-    where: TempVoicePresetWhereUniqueInput
-    create: XOR<TempVoicePresetCreateWithoutTempVoiceInput, TempVoicePresetUncheckedCreateWithoutTempVoiceInput>
-  }
-
-  export type TempVoicePresetCreateManyTempVoiceInputEnvelope = {
-    data: TempVoicePresetCreateManyTempVoiceInput | TempVoicePresetCreateManyTempVoiceInput[]
-    skipDuplicates?: boolean
   }
 
   export type GuildsCreateWithoutTempVoicesInput = {
@@ -131295,69 +131049,78 @@ export namespace Prisma {
     create: XOR<GuildsCreateWithoutTempVoicesInput, GuildsUncheckedCreateWithoutTempVoicesInput>
   }
 
-  export type TempVoiceConfigUpsertWithWhereUniqueWithoutTempVoiceInput = {
+  export type TempVoiceConfigCreateWithoutTempVoiceInput = {
+    UUID: string
+    CreatorChannel?: string | null
+    ChannelCategory?: string | null
+    ManageMessageTemplateId?: string | null
+    IsManageEnalbed?: boolean
+    TempVoiceChannels?: TempVoiceChannelsCreateNestedManyWithoutTempVoiceConfigInput
+    TempVoicePreset: TempVoicePresetCreateNestedOneWithoutTempVoiceConfigsInput
+  }
+
+  export type TempVoiceConfigUncheckedCreateWithoutTempVoiceInput = {
+    Id?: number
+    UUID: string
+    CreatorChannel?: string | null
+    ChannelCategory?: string | null
+    ManageMessageTemplateId?: string | null
+    IsManageEnalbed?: boolean
+    TempVoicePresetId: string
+    TempVoiceChannels?: TempVoiceChannelsUncheckedCreateNestedManyWithoutTempVoiceConfigInput
+  }
+
+  export type TempVoiceConfigCreateOrConnectWithoutTempVoiceInput = {
     where: TempVoiceConfigWhereUniqueInput
-    update: XOR<TempVoiceConfigUpdateWithoutTempVoiceInput, TempVoiceConfigUncheckedUpdateWithoutTempVoiceInput>
     create: XOR<TempVoiceConfigCreateWithoutTempVoiceInput, TempVoiceConfigUncheckedCreateWithoutTempVoiceInput>
   }
 
-  export type TempVoiceConfigUpdateWithWhereUniqueWithoutTempVoiceInput = {
-    where: TempVoiceConfigWhereUniqueInput
-    data: XOR<TempVoiceConfigUpdateWithoutTempVoiceInput, TempVoiceConfigUncheckedUpdateWithoutTempVoiceInput>
+  export type TempVoiceConfigCreateManyTempVoiceInputEnvelope = {
+    data: TempVoiceConfigCreateManyTempVoiceInput | TempVoiceConfigCreateManyTempVoiceInput[]
+    skipDuplicates?: boolean
   }
 
-  export type TempVoiceConfigUpdateManyWithWhereWithoutTempVoiceInput = {
-    where: TempVoiceConfigScalarWhereInput
-    data: XOR<TempVoiceConfigUpdateManyMutationInput, TempVoiceConfigUncheckedUpdateManyWithoutTempVoiceInput>
+  export type TempVoicePresetCreateWithoutTempVoiceInput = {
+    UUID: string
+    ChannelName?: string | null
+    ChannelLimit?: number | null
+    ChannelRegion?: string | null
+    ChannelBitRate?: string | null
+    UserInviteType?: string | null
+    SendLogsInTempChannel?: boolean | null
+    BlacklistRoleId?: string | null
+    ManageComponents?: TempVoicePresetCreateManageComponentsInput | string[]
+    OwnerAllowedDiscordPermissions?: TempVoicePresetCreateOwnerAllowedDiscordPermissionsInput | string[]
+    OwnerDeniedDiscordPermissions?: TempVoicePresetCreateOwnerDeniedDiscordPermissionsInput | string[]
+    TempVoiceConfigs?: TempVoiceConfigCreateNestedOneWithoutTempVoicePresetInput
+    RolePermissions?: TempVoicePresetDiscordRolePermissionCreateNestedOneWithoutTempVoicePresetInput
   }
 
-  export type TempVoiceConfigScalarWhereInput = {
-    AND?: TempVoiceConfigScalarWhereInput | TempVoiceConfigScalarWhereInput[]
-    OR?: TempVoiceConfigScalarWhereInput[]
-    NOT?: TempVoiceConfigScalarWhereInput | TempVoiceConfigScalarWhereInput[]
-    Id?: IntFilter<"TempVoiceConfig"> | number
-    UUID?: StringFilter<"TempVoiceConfig"> | string
-    CreatorChannel?: StringNullableFilter<"TempVoiceConfig"> | string | null
-    ChannelCategory?: StringNullableFilter<"TempVoiceConfig"> | string | null
-    ManageMessageTemplateId?: StringNullableFilter<"TempVoiceConfig"> | string | null
-    IsManageEnalbed?: BoolFilter<"TempVoiceConfig"> | boolean
-    TempVoicePresetId?: StringFilter<"TempVoiceConfig"> | string
-    TempVoiceId?: StringFilter<"TempVoiceConfig"> | string
+  export type TempVoicePresetUncheckedCreateWithoutTempVoiceInput = {
+    Id?: number
+    UUID: string
+    ChannelName?: string | null
+    ChannelLimit?: number | null
+    ChannelRegion?: string | null
+    ChannelBitRate?: string | null
+    UserInviteType?: string | null
+    SendLogsInTempChannel?: boolean | null
+    BlacklistRoleId?: string | null
+    ManageComponents?: TempVoicePresetCreateManageComponentsInput | string[]
+    OwnerAllowedDiscordPermissions?: TempVoicePresetCreateOwnerAllowedDiscordPermissionsInput | string[]
+    OwnerDeniedDiscordPermissions?: TempVoicePresetCreateOwnerDeniedDiscordPermissionsInput | string[]
+    TempVoiceConfigs?: TempVoiceConfigUncheckedCreateNestedOneWithoutTempVoicePresetInput
+    RolePermissions?: TempVoicePresetDiscordRolePermissionUncheckedCreateNestedOneWithoutTempVoicePresetInput
   }
 
-  export type TempVoicePresetUpsertWithWhereUniqueWithoutTempVoiceInput = {
+  export type TempVoicePresetCreateOrConnectWithoutTempVoiceInput = {
     where: TempVoicePresetWhereUniqueInput
-    update: XOR<TempVoicePresetUpdateWithoutTempVoiceInput, TempVoicePresetUncheckedUpdateWithoutTempVoiceInput>
     create: XOR<TempVoicePresetCreateWithoutTempVoiceInput, TempVoicePresetUncheckedCreateWithoutTempVoiceInput>
   }
 
-  export type TempVoicePresetUpdateWithWhereUniqueWithoutTempVoiceInput = {
-    where: TempVoicePresetWhereUniqueInput
-    data: XOR<TempVoicePresetUpdateWithoutTempVoiceInput, TempVoicePresetUncheckedUpdateWithoutTempVoiceInput>
-  }
-
-  export type TempVoicePresetUpdateManyWithWhereWithoutTempVoiceInput = {
-    where: TempVoicePresetScalarWhereInput
-    data: XOR<TempVoicePresetUpdateManyMutationInput, TempVoicePresetUncheckedUpdateManyWithoutTempVoiceInput>
-  }
-
-  export type TempVoicePresetScalarWhereInput = {
-    AND?: TempVoicePresetScalarWhereInput | TempVoicePresetScalarWhereInput[]
-    OR?: TempVoicePresetScalarWhereInput[]
-    NOT?: TempVoicePresetScalarWhereInput | TempVoicePresetScalarWhereInput[]
-    Id?: IntFilter<"TempVoicePreset"> | number
-    UUID?: StringFilter<"TempVoicePreset"> | string
-    ChannelName?: StringNullableFilter<"TempVoicePreset"> | string | null
-    ChannelLimit?: IntNullableFilter<"TempVoicePreset"> | number | null
-    ChannelRegion?: StringNullableFilter<"TempVoicePreset"> | string | null
-    ChannelBitRate?: StringNullableFilter<"TempVoicePreset"> | string | null
-    UserInviteType?: StringNullableFilter<"TempVoicePreset"> | string | null
-    SendLogsInTempChannel?: BoolFilter<"TempVoicePreset"> | boolean
-    BlacklistRoleId?: StringNullableFilter<"TempVoicePreset"> | string | null
-    ManageComponents?: StringNullableListFilter<"TempVoicePreset">
-    OwnerAllowedDiscordPermissions?: StringNullableListFilter<"TempVoicePreset">
-    OwnerDeniedDiscordPermissions?: StringNullableListFilter<"TempVoicePreset">
-    TempVoiceId?: StringFilter<"TempVoicePreset"> | string
+  export type TempVoicePresetCreateManyTempVoiceInputEnvelope = {
+    data: TempVoicePresetCreateManyTempVoiceInput | TempVoicePresetCreateManyTempVoiceInput[]
+    skipDuplicates?: boolean
   }
 
   export type GuildsUpsertWithoutTempVoicesInput = {
@@ -131438,49 +131201,76 @@ export namespace Prisma {
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
-  export type TempVoicePresetCreateWithoutTempVoiceConfigsInput = {
-    UUID: string
-    ChannelName?: string | null
-    ChannelLimit?: number | null
-    ChannelRegion?: string | null
-    ChannelBitRate?: string | null
-    UserInviteType?: string | null
-    SendLogsInTempChannel?: boolean
-    BlacklistRoleId?: string | null
-    ManageComponents?: TempVoicePresetCreateManageComponentsInput | string[]
-    OwnerAllowedDiscordPermissions?: TempVoicePresetCreateOwnerAllowedDiscordPermissionsInput | string[]
-    OwnerDeniedDiscordPermissions?: TempVoicePresetCreateOwnerDeniedDiscordPermissionsInput | string[]
-    RolePermissions?: TempVoicePresetDiscordRolePermissionCreateNestedManyWithoutTempVoicePresetInput
-    TempVoice: TempVoiceCreateNestedOneWithoutTempVoicePresetsInput
+  export type TempVoiceConfigUpsertWithWhereUniqueWithoutTempVoiceInput = {
+    where: TempVoiceConfigWhereUniqueInput
+    update: XOR<TempVoiceConfigUpdateWithoutTempVoiceInput, TempVoiceConfigUncheckedUpdateWithoutTempVoiceInput>
+    create: XOR<TempVoiceConfigCreateWithoutTempVoiceInput, TempVoiceConfigUncheckedCreateWithoutTempVoiceInput>
   }
 
-  export type TempVoicePresetUncheckedCreateWithoutTempVoiceConfigsInput = {
-    Id?: number
-    UUID: string
-    ChannelName?: string | null
-    ChannelLimit?: number | null
-    ChannelRegion?: string | null
-    ChannelBitRate?: string | null
-    UserInviteType?: string | null
-    SendLogsInTempChannel?: boolean
-    BlacklistRoleId?: string | null
-    ManageComponents?: TempVoicePresetCreateManageComponentsInput | string[]
-    OwnerAllowedDiscordPermissions?: TempVoicePresetCreateOwnerAllowedDiscordPermissionsInput | string[]
-    OwnerDeniedDiscordPermissions?: TempVoicePresetCreateOwnerDeniedDiscordPermissionsInput | string[]
-    TempVoiceId: string
-    RolePermissions?: TempVoicePresetDiscordRolePermissionUncheckedCreateNestedManyWithoutTempVoicePresetInput
+  export type TempVoiceConfigUpdateWithWhereUniqueWithoutTempVoiceInput = {
+    where: TempVoiceConfigWhereUniqueInput
+    data: XOR<TempVoiceConfigUpdateWithoutTempVoiceInput, TempVoiceConfigUncheckedUpdateWithoutTempVoiceInput>
   }
 
-  export type TempVoicePresetCreateOrConnectWithoutTempVoiceConfigsInput = {
+  export type TempVoiceConfigUpdateManyWithWhereWithoutTempVoiceInput = {
+    where: TempVoiceConfigScalarWhereInput
+    data: XOR<TempVoiceConfigUpdateManyMutationInput, TempVoiceConfigUncheckedUpdateManyWithoutTempVoiceInput>
+  }
+
+  export type TempVoiceConfigScalarWhereInput = {
+    AND?: TempVoiceConfigScalarWhereInput | TempVoiceConfigScalarWhereInput[]
+    OR?: TempVoiceConfigScalarWhereInput[]
+    NOT?: TempVoiceConfigScalarWhereInput | TempVoiceConfigScalarWhereInput[]
+    Id?: IntFilter<"TempVoiceConfig"> | number
+    UUID?: StringFilter<"TempVoiceConfig"> | string
+    CreatorChannel?: StringNullableFilter<"TempVoiceConfig"> | string | null
+    ChannelCategory?: StringNullableFilter<"TempVoiceConfig"> | string | null
+    ManageMessageTemplateId?: StringNullableFilter<"TempVoiceConfig"> | string | null
+    IsManageEnalbed?: BoolFilter<"TempVoiceConfig"> | boolean
+    TempVoicePresetId?: StringFilter<"TempVoiceConfig"> | string
+    TempVoiceId?: StringFilter<"TempVoiceConfig"> | string
+  }
+
+  export type TempVoicePresetUpsertWithWhereUniqueWithoutTempVoiceInput = {
     where: TempVoicePresetWhereUniqueInput
-    create: XOR<TempVoicePresetCreateWithoutTempVoiceConfigsInput, TempVoicePresetUncheckedCreateWithoutTempVoiceConfigsInput>
+    update: XOR<TempVoicePresetUpdateWithoutTempVoiceInput, TempVoicePresetUncheckedUpdateWithoutTempVoiceInput>
+    create: XOR<TempVoicePresetCreateWithoutTempVoiceInput, TempVoicePresetUncheckedCreateWithoutTempVoiceInput>
+  }
+
+  export type TempVoicePresetUpdateWithWhereUniqueWithoutTempVoiceInput = {
+    where: TempVoicePresetWhereUniqueInput
+    data: XOR<TempVoicePresetUpdateWithoutTempVoiceInput, TempVoicePresetUncheckedUpdateWithoutTempVoiceInput>
+  }
+
+  export type TempVoicePresetUpdateManyWithWhereWithoutTempVoiceInput = {
+    where: TempVoicePresetScalarWhereInput
+    data: XOR<TempVoicePresetUpdateManyMutationInput, TempVoicePresetUncheckedUpdateManyWithoutTempVoiceInput>
+  }
+
+  export type TempVoicePresetScalarWhereInput = {
+    AND?: TempVoicePresetScalarWhereInput | TempVoicePresetScalarWhereInput[]
+    OR?: TempVoicePresetScalarWhereInput[]
+    NOT?: TempVoicePresetScalarWhereInput | TempVoicePresetScalarWhereInput[]
+    Id?: IntFilter<"TempVoicePreset"> | number
+    UUID?: StringFilter<"TempVoicePreset"> | string
+    ChannelName?: StringNullableFilter<"TempVoicePreset"> | string | null
+    ChannelLimit?: IntNullableFilter<"TempVoicePreset"> | number | null
+    ChannelRegion?: StringNullableFilter<"TempVoicePreset"> | string | null
+    ChannelBitRate?: StringNullableFilter<"TempVoicePreset"> | string | null
+    UserInviteType?: StringNullableFilter<"TempVoicePreset"> | string | null
+    SendLogsInTempChannel?: BoolNullableFilter<"TempVoicePreset"> | boolean | null
+    BlacklistRoleId?: StringNullableFilter<"TempVoicePreset"> | string | null
+    ManageComponents?: StringNullableListFilter<"TempVoicePreset">
+    OwnerAllowedDiscordPermissions?: StringNullableListFilter<"TempVoicePreset">
+    OwnerDeniedDiscordPermissions?: StringNullableListFilter<"TempVoicePreset">
+    TempVoiceId?: StringFilter<"TempVoicePreset"> | string
   }
 
   export type TempVoiceChannelsCreateWithoutTempVoiceConfigInput = {
     GuildId: string
     ChannelId: string
     OwnerId: string
-    TempVoiceChannelMembers?: TempVoiceChannelMemberCreateNestedManyWithoutTempVoiceChannelsInput
+    TempVoiceChannelMembers?: TempVoiceChannelMemberCreateNestedOneWithoutTempVoiceChannelsInput
   }
 
   export type TempVoiceChannelsUncheckedCreateWithoutTempVoiceConfigInput = {
@@ -131488,7 +131278,7 @@ export namespace Prisma {
     GuildId: string
     ChannelId: string
     OwnerId: string
-    TempVoiceChannelMembers?: TempVoiceChannelMemberUncheckedCreateNestedManyWithoutTempVoiceChannelsInput
+    TempVoiceChannelMembers?: TempVoiceChannelMemberUncheckedCreateNestedOneWithoutTempVoiceChannelsInput
   }
 
   export type TempVoiceChannelsCreateOrConnectWithoutTempVoiceConfigInput = {
@@ -131501,12 +131291,50 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type TempVoicePresetCreateWithoutTempVoiceConfigsInput = {
+    UUID: string
+    ChannelName?: string | null
+    ChannelLimit?: number | null
+    ChannelRegion?: string | null
+    ChannelBitRate?: string | null
+    UserInviteType?: string | null
+    SendLogsInTempChannel?: boolean | null
+    BlacklistRoleId?: string | null
+    ManageComponents?: TempVoicePresetCreateManageComponentsInput | string[]
+    OwnerAllowedDiscordPermissions?: TempVoicePresetCreateOwnerAllowedDiscordPermissionsInput | string[]
+    OwnerDeniedDiscordPermissions?: TempVoicePresetCreateOwnerDeniedDiscordPermissionsInput | string[]
+    TempVoice: TempVoiceCreateNestedOneWithoutTempVoicePresetsInput
+    RolePermissions?: TempVoicePresetDiscordRolePermissionCreateNestedOneWithoutTempVoicePresetInput
+  }
+
+  export type TempVoicePresetUncheckedCreateWithoutTempVoiceConfigsInput = {
+    Id?: number
+    UUID: string
+    ChannelName?: string | null
+    ChannelLimit?: number | null
+    ChannelRegion?: string | null
+    ChannelBitRate?: string | null
+    UserInviteType?: string | null
+    SendLogsInTempChannel?: boolean | null
+    BlacklistRoleId?: string | null
+    ManageComponents?: TempVoicePresetCreateManageComponentsInput | string[]
+    OwnerAllowedDiscordPermissions?: TempVoicePresetCreateOwnerAllowedDiscordPermissionsInput | string[]
+    OwnerDeniedDiscordPermissions?: TempVoicePresetCreateOwnerDeniedDiscordPermissionsInput | string[]
+    TempVoiceId: string
+    RolePermissions?: TempVoicePresetDiscordRolePermissionUncheckedCreateNestedOneWithoutTempVoicePresetInput
+  }
+
+  export type TempVoicePresetCreateOrConnectWithoutTempVoiceConfigsInput = {
+    where: TempVoicePresetWhereUniqueInput
+    create: XOR<TempVoicePresetCreateWithoutTempVoiceConfigsInput, TempVoicePresetUncheckedCreateWithoutTempVoiceConfigsInput>
+  }
+
   export type TempVoiceCreateWithoutTempVoiceConfigsInput = {
     UserInviteMessageTemplateId?: string | null
     ModeratorUserIds?: TempVoiceCreateModeratorUserIdsInput | string[]
     TempVoiceLogChannelId?: string | null
-    TempVoicePresets?: TempVoicePresetCreateNestedManyWithoutTempVoiceInput
     Guilds: GuildsCreateNestedOneWithoutTempVoicesInput
+    TempVoicePresets?: TempVoicePresetCreateNestedManyWithoutTempVoiceInput
   }
 
   export type TempVoiceUncheckedCreateWithoutTempVoiceConfigsInput = {
@@ -131521,50 +131349,6 @@ export namespace Prisma {
   export type TempVoiceCreateOrConnectWithoutTempVoiceConfigsInput = {
     where: TempVoiceWhereUniqueInput
     create: XOR<TempVoiceCreateWithoutTempVoiceConfigsInput, TempVoiceUncheckedCreateWithoutTempVoiceConfigsInput>
-  }
-
-  export type TempVoicePresetUpsertWithoutTempVoiceConfigsInput = {
-    update: XOR<TempVoicePresetUpdateWithoutTempVoiceConfigsInput, TempVoicePresetUncheckedUpdateWithoutTempVoiceConfigsInput>
-    create: XOR<TempVoicePresetCreateWithoutTempVoiceConfigsInput, TempVoicePresetUncheckedCreateWithoutTempVoiceConfigsInput>
-    where?: TempVoicePresetWhereInput
-  }
-
-  export type TempVoicePresetUpdateToOneWithWhereWithoutTempVoiceConfigsInput = {
-    where?: TempVoicePresetWhereInput
-    data: XOR<TempVoicePresetUpdateWithoutTempVoiceConfigsInput, TempVoicePresetUncheckedUpdateWithoutTempVoiceConfigsInput>
-  }
-
-  export type TempVoicePresetUpdateWithoutTempVoiceConfigsInput = {
-    UUID?: StringFieldUpdateOperationsInput | string
-    ChannelName?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelLimit?: NullableIntFieldUpdateOperationsInput | number | null
-    ChannelRegion?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelBitRate?: NullableStringFieldUpdateOperationsInput | string | null
-    UserInviteType?: NullableStringFieldUpdateOperationsInput | string | null
-    SendLogsInTempChannel?: BoolFieldUpdateOperationsInput | boolean
-    BlacklistRoleId?: NullableStringFieldUpdateOperationsInput | string | null
-    ManageComponents?: TempVoicePresetUpdateManageComponentsInput | string[]
-    OwnerAllowedDiscordPermissions?: TempVoicePresetUpdateOwnerAllowedDiscordPermissionsInput | string[]
-    OwnerDeniedDiscordPermissions?: TempVoicePresetUpdateOwnerDeniedDiscordPermissionsInput | string[]
-    RolePermissions?: TempVoicePresetDiscordRolePermissionUpdateManyWithoutTempVoicePresetNestedInput
-    TempVoice?: TempVoiceUpdateOneRequiredWithoutTempVoicePresetsNestedInput
-  }
-
-  export type TempVoicePresetUncheckedUpdateWithoutTempVoiceConfigsInput = {
-    Id?: IntFieldUpdateOperationsInput | number
-    UUID?: StringFieldUpdateOperationsInput | string
-    ChannelName?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelLimit?: NullableIntFieldUpdateOperationsInput | number | null
-    ChannelRegion?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelBitRate?: NullableStringFieldUpdateOperationsInput | string | null
-    UserInviteType?: NullableStringFieldUpdateOperationsInput | string | null
-    SendLogsInTempChannel?: BoolFieldUpdateOperationsInput | boolean
-    BlacklistRoleId?: NullableStringFieldUpdateOperationsInput | string | null
-    ManageComponents?: TempVoicePresetUpdateManageComponentsInput | string[]
-    OwnerAllowedDiscordPermissions?: TempVoicePresetUpdateOwnerAllowedDiscordPermissionsInput | string[]
-    OwnerDeniedDiscordPermissions?: TempVoicePresetUpdateOwnerDeniedDiscordPermissionsInput | string[]
-    TempVoiceId?: StringFieldUpdateOperationsInput | string
-    RolePermissions?: TempVoicePresetDiscordRolePermissionUncheckedUpdateManyWithoutTempVoicePresetNestedInput
   }
 
   export type TempVoiceChannelsUpsertWithWhereUniqueWithoutTempVoiceConfigInput = {
@@ -131594,6 +131378,50 @@ export namespace Prisma {
     TempVoiceConfigId?: StringFilter<"TempVoiceChannels"> | string
   }
 
+  export type TempVoicePresetUpsertWithoutTempVoiceConfigsInput = {
+    update: XOR<TempVoicePresetUpdateWithoutTempVoiceConfigsInput, TempVoicePresetUncheckedUpdateWithoutTempVoiceConfigsInput>
+    create: XOR<TempVoicePresetCreateWithoutTempVoiceConfigsInput, TempVoicePresetUncheckedCreateWithoutTempVoiceConfigsInput>
+    where?: TempVoicePresetWhereInput
+  }
+
+  export type TempVoicePresetUpdateToOneWithWhereWithoutTempVoiceConfigsInput = {
+    where?: TempVoicePresetWhereInput
+    data: XOR<TempVoicePresetUpdateWithoutTempVoiceConfigsInput, TempVoicePresetUncheckedUpdateWithoutTempVoiceConfigsInput>
+  }
+
+  export type TempVoicePresetUpdateWithoutTempVoiceConfigsInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    ChannelName?: NullableStringFieldUpdateOperationsInput | string | null
+    ChannelLimit?: NullableIntFieldUpdateOperationsInput | number | null
+    ChannelRegion?: NullableStringFieldUpdateOperationsInput | string | null
+    ChannelBitRate?: NullableStringFieldUpdateOperationsInput | string | null
+    UserInviteType?: NullableStringFieldUpdateOperationsInput | string | null
+    SendLogsInTempChannel?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    BlacklistRoleId?: NullableStringFieldUpdateOperationsInput | string | null
+    ManageComponents?: TempVoicePresetUpdateManageComponentsInput | string[]
+    OwnerAllowedDiscordPermissions?: TempVoicePresetUpdateOwnerAllowedDiscordPermissionsInput | string[]
+    OwnerDeniedDiscordPermissions?: TempVoicePresetUpdateOwnerDeniedDiscordPermissionsInput | string[]
+    TempVoice?: TempVoiceUpdateOneRequiredWithoutTempVoicePresetsNestedInput
+    RolePermissions?: TempVoicePresetDiscordRolePermissionUpdateOneWithoutTempVoicePresetNestedInput
+  }
+
+  export type TempVoicePresetUncheckedUpdateWithoutTempVoiceConfigsInput = {
+    Id?: IntFieldUpdateOperationsInput | number
+    UUID?: StringFieldUpdateOperationsInput | string
+    ChannelName?: NullableStringFieldUpdateOperationsInput | string | null
+    ChannelLimit?: NullableIntFieldUpdateOperationsInput | number | null
+    ChannelRegion?: NullableStringFieldUpdateOperationsInput | string | null
+    ChannelBitRate?: NullableStringFieldUpdateOperationsInput | string | null
+    UserInviteType?: NullableStringFieldUpdateOperationsInput | string | null
+    SendLogsInTempChannel?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    BlacklistRoleId?: NullableStringFieldUpdateOperationsInput | string | null
+    ManageComponents?: TempVoicePresetUpdateManageComponentsInput | string[]
+    OwnerAllowedDiscordPermissions?: TempVoicePresetUpdateOwnerAllowedDiscordPermissionsInput | string[]
+    OwnerDeniedDiscordPermissions?: TempVoicePresetUpdateOwnerDeniedDiscordPermissionsInput | string[]
+    TempVoiceId?: StringFieldUpdateOperationsInput | string
+    RolePermissions?: TempVoicePresetDiscordRolePermissionUncheckedUpdateOneWithoutTempVoicePresetNestedInput
+  }
+
   export type TempVoiceUpsertWithoutTempVoiceConfigsInput = {
     update: XOR<TempVoiceUpdateWithoutTempVoiceConfigsInput, TempVoiceUncheckedUpdateWithoutTempVoiceConfigsInput>
     create: XOR<TempVoiceCreateWithoutTempVoiceConfigsInput, TempVoiceUncheckedCreateWithoutTempVoiceConfigsInput>
@@ -131609,8 +131437,8 @@ export namespace Prisma {
     UserInviteMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     ModeratorUserIds?: TempVoiceUpdateModeratorUserIdsInput | string[]
     TempVoiceLogChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    TempVoicePresets?: TempVoicePresetUpdateManyWithoutTempVoiceNestedInput
     Guilds?: GuildsUpdateOneRequiredWithoutTempVoicesNestedInput
+    TempVoicePresets?: TempVoicePresetUpdateManyWithoutTempVoiceNestedInput
   }
 
   export type TempVoiceUncheckedUpdateWithoutTempVoiceConfigsInput = {
@@ -131620,29 +131448,6 @@ export namespace Prisma {
     TempVoiceLogChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     GuildId?: StringFieldUpdateOperationsInput | string
     TempVoicePresets?: TempVoicePresetUncheckedUpdateManyWithoutTempVoiceNestedInput
-  }
-
-  export type TempVoicePresetDiscordRolePermissionCreateWithoutTempVoicePresetInput = {
-    RoleId: string
-    AllowedDiscordPermissions?: TempVoicePresetDiscordRolePermissionCreateAllowedDiscordPermissionsInput | string[]
-    DeniedDiscordPermissions?: TempVoicePresetDiscordRolePermissionCreateDeniedDiscordPermissionsInput | string[]
-  }
-
-  export type TempVoicePresetDiscordRolePermissionUncheckedCreateWithoutTempVoicePresetInput = {
-    Id?: number
-    RoleId: string
-    AllowedDiscordPermissions?: TempVoicePresetDiscordRolePermissionCreateAllowedDiscordPermissionsInput | string[]
-    DeniedDiscordPermissions?: TempVoicePresetDiscordRolePermissionCreateDeniedDiscordPermissionsInput | string[]
-  }
-
-  export type TempVoicePresetDiscordRolePermissionCreateOrConnectWithoutTempVoicePresetInput = {
-    where: TempVoicePresetDiscordRolePermissionWhereUniqueInput
-    create: XOR<TempVoicePresetDiscordRolePermissionCreateWithoutTempVoicePresetInput, TempVoicePresetDiscordRolePermissionUncheckedCreateWithoutTempVoicePresetInput>
-  }
-
-  export type TempVoicePresetDiscordRolePermissionCreateManyTempVoicePresetInputEnvelope = {
-    data: TempVoicePresetDiscordRolePermissionCreateManyTempVoicePresetInput | TempVoicePresetDiscordRolePermissionCreateManyTempVoicePresetInput[]
-    skipDuplicates?: boolean
   }
 
   export type TempVoiceConfigCreateWithoutTempVoicePresetInput = {
@@ -131671,17 +131476,12 @@ export namespace Prisma {
     create: XOR<TempVoiceConfigCreateWithoutTempVoicePresetInput, TempVoiceConfigUncheckedCreateWithoutTempVoicePresetInput>
   }
 
-  export type TempVoiceConfigCreateManyTempVoicePresetInputEnvelope = {
-    data: TempVoiceConfigCreateManyTempVoicePresetInput | TempVoiceConfigCreateManyTempVoicePresetInput[]
-    skipDuplicates?: boolean
-  }
-
   export type TempVoiceCreateWithoutTempVoicePresetsInput = {
     UserInviteMessageTemplateId?: string | null
     ModeratorUserIds?: TempVoiceCreateModeratorUserIdsInput | string[]
     TempVoiceLogChannelId?: string | null
-    TempVoiceConfigs?: TempVoiceConfigCreateNestedManyWithoutTempVoiceInput
     Guilds: GuildsCreateNestedOneWithoutTempVoicesInput
+    TempVoiceConfigs?: TempVoiceConfigCreateNestedManyWithoutTempVoiceInput
   }
 
   export type TempVoiceUncheckedCreateWithoutTempVoicePresetsInput = {
@@ -131698,47 +131498,54 @@ export namespace Prisma {
     create: XOR<TempVoiceCreateWithoutTempVoicePresetsInput, TempVoiceUncheckedCreateWithoutTempVoicePresetsInput>
   }
 
-  export type TempVoicePresetDiscordRolePermissionUpsertWithWhereUniqueWithoutTempVoicePresetInput = {
+  export type TempVoicePresetDiscordRolePermissionCreateWithoutTempVoicePresetInput = {
+    RoleId: string
+    AllowedDiscordPermissions?: TempVoicePresetDiscordRolePermissionCreateAllowedDiscordPermissionsInput | string[]
+    DeniedDiscordPermissions?: TempVoicePresetDiscordRolePermissionCreateDeniedDiscordPermissionsInput | string[]
+  }
+
+  export type TempVoicePresetDiscordRolePermissionUncheckedCreateWithoutTempVoicePresetInput = {
+    Id?: number
+    RoleId: string
+    AllowedDiscordPermissions?: TempVoicePresetDiscordRolePermissionCreateAllowedDiscordPermissionsInput | string[]
+    DeniedDiscordPermissions?: TempVoicePresetDiscordRolePermissionCreateDeniedDiscordPermissionsInput | string[]
+  }
+
+  export type TempVoicePresetDiscordRolePermissionCreateOrConnectWithoutTempVoicePresetInput = {
     where: TempVoicePresetDiscordRolePermissionWhereUniqueInput
-    update: XOR<TempVoicePresetDiscordRolePermissionUpdateWithoutTempVoicePresetInput, TempVoicePresetDiscordRolePermissionUncheckedUpdateWithoutTempVoicePresetInput>
     create: XOR<TempVoicePresetDiscordRolePermissionCreateWithoutTempVoicePresetInput, TempVoicePresetDiscordRolePermissionUncheckedCreateWithoutTempVoicePresetInput>
   }
 
-  export type TempVoicePresetDiscordRolePermissionUpdateWithWhereUniqueWithoutTempVoicePresetInput = {
-    where: TempVoicePresetDiscordRolePermissionWhereUniqueInput
-    data: XOR<TempVoicePresetDiscordRolePermissionUpdateWithoutTempVoicePresetInput, TempVoicePresetDiscordRolePermissionUncheckedUpdateWithoutTempVoicePresetInput>
-  }
-
-  export type TempVoicePresetDiscordRolePermissionUpdateManyWithWhereWithoutTempVoicePresetInput = {
-    where: TempVoicePresetDiscordRolePermissionScalarWhereInput
-    data: XOR<TempVoicePresetDiscordRolePermissionUpdateManyMutationInput, TempVoicePresetDiscordRolePermissionUncheckedUpdateManyWithoutTempVoicePresetInput>
-  }
-
-  export type TempVoicePresetDiscordRolePermissionScalarWhereInput = {
-    AND?: TempVoicePresetDiscordRolePermissionScalarWhereInput | TempVoicePresetDiscordRolePermissionScalarWhereInput[]
-    OR?: TempVoicePresetDiscordRolePermissionScalarWhereInput[]
-    NOT?: TempVoicePresetDiscordRolePermissionScalarWhereInput | TempVoicePresetDiscordRolePermissionScalarWhereInput[]
-    Id?: IntFilter<"TempVoicePresetDiscordRolePermission"> | number
-    RoleId?: StringFilter<"TempVoicePresetDiscordRolePermission"> | string
-    AllowedDiscordPermissions?: StringNullableListFilter<"TempVoicePresetDiscordRolePermission">
-    DeniedDiscordPermissions?: StringNullableListFilter<"TempVoicePresetDiscordRolePermission">
-    TempVoicePresetId?: StringFilter<"TempVoicePresetDiscordRolePermission"> | string
-  }
-
-  export type TempVoiceConfigUpsertWithWhereUniqueWithoutTempVoicePresetInput = {
-    where: TempVoiceConfigWhereUniqueInput
+  export type TempVoiceConfigUpsertWithoutTempVoicePresetInput = {
     update: XOR<TempVoiceConfigUpdateWithoutTempVoicePresetInput, TempVoiceConfigUncheckedUpdateWithoutTempVoicePresetInput>
     create: XOR<TempVoiceConfigCreateWithoutTempVoicePresetInput, TempVoiceConfigUncheckedCreateWithoutTempVoicePresetInput>
+    where?: TempVoiceConfigWhereInput
   }
 
-  export type TempVoiceConfigUpdateWithWhereUniqueWithoutTempVoicePresetInput = {
-    where: TempVoiceConfigWhereUniqueInput
+  export type TempVoiceConfigUpdateToOneWithWhereWithoutTempVoicePresetInput = {
+    where?: TempVoiceConfigWhereInput
     data: XOR<TempVoiceConfigUpdateWithoutTempVoicePresetInput, TempVoiceConfigUncheckedUpdateWithoutTempVoicePresetInput>
   }
 
-  export type TempVoiceConfigUpdateManyWithWhereWithoutTempVoicePresetInput = {
-    where: TempVoiceConfigScalarWhereInput
-    data: XOR<TempVoiceConfigUpdateManyMutationInput, TempVoiceConfigUncheckedUpdateManyWithoutTempVoicePresetInput>
+  export type TempVoiceConfigUpdateWithoutTempVoicePresetInput = {
+    UUID?: StringFieldUpdateOperationsInput | string
+    CreatorChannel?: NullableStringFieldUpdateOperationsInput | string | null
+    ChannelCategory?: NullableStringFieldUpdateOperationsInput | string | null
+    ManageMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    IsManageEnalbed?: BoolFieldUpdateOperationsInput | boolean
+    TempVoiceChannels?: TempVoiceChannelsUpdateManyWithoutTempVoiceConfigNestedInput
+    TempVoice?: TempVoiceUpdateOneRequiredWithoutTempVoiceConfigsNestedInput
+  }
+
+  export type TempVoiceConfigUncheckedUpdateWithoutTempVoicePresetInput = {
+    Id?: IntFieldUpdateOperationsInput | number
+    UUID?: StringFieldUpdateOperationsInput | string
+    CreatorChannel?: NullableStringFieldUpdateOperationsInput | string | null
+    ChannelCategory?: NullableStringFieldUpdateOperationsInput | string | null
+    ManageMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
+    IsManageEnalbed?: BoolFieldUpdateOperationsInput | boolean
+    TempVoiceId?: StringFieldUpdateOperationsInput | string
+    TempVoiceChannels?: TempVoiceChannelsUncheckedUpdateManyWithoutTempVoiceConfigNestedInput
   }
 
   export type TempVoiceUpsertWithoutTempVoicePresetsInput = {
@@ -131756,8 +131563,8 @@ export namespace Prisma {
     UserInviteMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     ModeratorUserIds?: TempVoiceUpdateModeratorUserIdsInput | string[]
     TempVoiceLogChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    TempVoiceConfigs?: TempVoiceConfigUpdateManyWithoutTempVoiceNestedInput
     Guilds?: GuildsUpdateOneRequiredWithoutTempVoicesNestedInput
+    TempVoiceConfigs?: TempVoiceConfigUpdateManyWithoutTempVoiceNestedInput
   }
 
   export type TempVoiceUncheckedUpdateWithoutTempVoicePresetsInput = {
@@ -131769,6 +131576,30 @@ export namespace Prisma {
     TempVoiceConfigs?: TempVoiceConfigUncheckedUpdateManyWithoutTempVoiceNestedInput
   }
 
+  export type TempVoicePresetDiscordRolePermissionUpsertWithoutTempVoicePresetInput = {
+    update: XOR<TempVoicePresetDiscordRolePermissionUpdateWithoutTempVoicePresetInput, TempVoicePresetDiscordRolePermissionUncheckedUpdateWithoutTempVoicePresetInput>
+    create: XOR<TempVoicePresetDiscordRolePermissionCreateWithoutTempVoicePresetInput, TempVoicePresetDiscordRolePermissionUncheckedCreateWithoutTempVoicePresetInput>
+    where?: TempVoicePresetDiscordRolePermissionWhereInput
+  }
+
+  export type TempVoicePresetDiscordRolePermissionUpdateToOneWithWhereWithoutTempVoicePresetInput = {
+    where?: TempVoicePresetDiscordRolePermissionWhereInput
+    data: XOR<TempVoicePresetDiscordRolePermissionUpdateWithoutTempVoicePresetInput, TempVoicePresetDiscordRolePermissionUncheckedUpdateWithoutTempVoicePresetInput>
+  }
+
+  export type TempVoicePresetDiscordRolePermissionUpdateWithoutTempVoicePresetInput = {
+    RoleId?: StringFieldUpdateOperationsInput | string
+    AllowedDiscordPermissions?: TempVoicePresetDiscordRolePermissionUpdateAllowedDiscordPermissionsInput | string[]
+    DeniedDiscordPermissions?: TempVoicePresetDiscordRolePermissionUpdateDeniedDiscordPermissionsInput | string[]
+  }
+
+  export type TempVoicePresetDiscordRolePermissionUncheckedUpdateWithoutTempVoicePresetInput = {
+    Id?: IntFieldUpdateOperationsInput | number
+    RoleId?: StringFieldUpdateOperationsInput | string
+    AllowedDiscordPermissions?: TempVoicePresetDiscordRolePermissionUpdateAllowedDiscordPermissionsInput | string[]
+    DeniedDiscordPermissions?: TempVoicePresetDiscordRolePermissionUpdateDeniedDiscordPermissionsInput | string[]
+  }
+
   export type TempVoicePresetCreateWithoutRolePermissionsInput = {
     UUID: string
     ChannelName?: string | null
@@ -131776,12 +131607,12 @@ export namespace Prisma {
     ChannelRegion?: string | null
     ChannelBitRate?: string | null
     UserInviteType?: string | null
-    SendLogsInTempChannel?: boolean
+    SendLogsInTempChannel?: boolean | null
     BlacklistRoleId?: string | null
     ManageComponents?: TempVoicePresetCreateManageComponentsInput | string[]
     OwnerAllowedDiscordPermissions?: TempVoicePresetCreateOwnerAllowedDiscordPermissionsInput | string[]
     OwnerDeniedDiscordPermissions?: TempVoicePresetCreateOwnerDeniedDiscordPermissionsInput | string[]
-    TempVoiceConfigs?: TempVoiceConfigCreateNestedManyWithoutTempVoicePresetInput
+    TempVoiceConfigs?: TempVoiceConfigCreateNestedOneWithoutTempVoicePresetInput
     TempVoice: TempVoiceCreateNestedOneWithoutTempVoicePresetsInput
   }
 
@@ -131793,13 +131624,13 @@ export namespace Prisma {
     ChannelRegion?: string | null
     ChannelBitRate?: string | null
     UserInviteType?: string | null
-    SendLogsInTempChannel?: boolean
+    SendLogsInTempChannel?: boolean | null
     BlacklistRoleId?: string | null
     ManageComponents?: TempVoicePresetCreateManageComponentsInput | string[]
     OwnerAllowedDiscordPermissions?: TempVoicePresetCreateOwnerAllowedDiscordPermissionsInput | string[]
     OwnerDeniedDiscordPermissions?: TempVoicePresetCreateOwnerDeniedDiscordPermissionsInput | string[]
     TempVoiceId: string
-    TempVoiceConfigs?: TempVoiceConfigUncheckedCreateNestedManyWithoutTempVoicePresetInput
+    TempVoiceConfigs?: TempVoiceConfigUncheckedCreateNestedOneWithoutTempVoicePresetInput
   }
 
   export type TempVoicePresetCreateOrConnectWithoutRolePermissionsInput = {
@@ -131825,12 +131656,12 @@ export namespace Prisma {
     ChannelRegion?: NullableStringFieldUpdateOperationsInput | string | null
     ChannelBitRate?: NullableStringFieldUpdateOperationsInput | string | null
     UserInviteType?: NullableStringFieldUpdateOperationsInput | string | null
-    SendLogsInTempChannel?: BoolFieldUpdateOperationsInput | boolean
+    SendLogsInTempChannel?: NullableBoolFieldUpdateOperationsInput | boolean | null
     BlacklistRoleId?: NullableStringFieldUpdateOperationsInput | string | null
     ManageComponents?: TempVoicePresetUpdateManageComponentsInput | string[]
     OwnerAllowedDiscordPermissions?: TempVoicePresetUpdateOwnerAllowedDiscordPermissionsInput | string[]
     OwnerDeniedDiscordPermissions?: TempVoicePresetUpdateOwnerDeniedDiscordPermissionsInput | string[]
-    TempVoiceConfigs?: TempVoiceConfigUpdateManyWithoutTempVoicePresetNestedInput
+    TempVoiceConfigs?: TempVoiceConfigUpdateOneWithoutTempVoicePresetNestedInput
     TempVoice?: TempVoiceUpdateOneRequiredWithoutTempVoicePresetsNestedInput
   }
 
@@ -131842,13 +131673,13 @@ export namespace Prisma {
     ChannelRegion?: NullableStringFieldUpdateOperationsInput | string | null
     ChannelBitRate?: NullableStringFieldUpdateOperationsInput | string | null
     UserInviteType?: NullableStringFieldUpdateOperationsInput | string | null
-    SendLogsInTempChannel?: BoolFieldUpdateOperationsInput | boolean
+    SendLogsInTempChannel?: NullableBoolFieldUpdateOperationsInput | boolean | null
     BlacklistRoleId?: NullableStringFieldUpdateOperationsInput | string | null
     ManageComponents?: TempVoicePresetUpdateManageComponentsInput | string[]
     OwnerAllowedDiscordPermissions?: TempVoicePresetUpdateOwnerAllowedDiscordPermissionsInput | string[]
     OwnerDeniedDiscordPermissions?: TempVoicePresetUpdateOwnerDeniedDiscordPermissionsInput | string[]
     TempVoiceId?: StringFieldUpdateOperationsInput | string
-    TempVoiceConfigs?: TempVoiceConfigUncheckedUpdateManyWithoutTempVoicePresetNestedInput
+    TempVoiceConfigs?: TempVoiceConfigUncheckedUpdateOneWithoutTempVoicePresetNestedInput
   }
 
   export type TempVoiceChannelMemberCreateWithoutTempVoiceChannelsInput = {
@@ -131865,11 +131696,6 @@ export namespace Prisma {
   export type TempVoiceChannelMemberCreateOrConnectWithoutTempVoiceChannelsInput = {
     where: TempVoiceChannelMemberWhereUniqueInput
     create: XOR<TempVoiceChannelMemberCreateWithoutTempVoiceChannelsInput, TempVoiceChannelMemberUncheckedCreateWithoutTempVoiceChannelsInput>
-  }
-
-  export type TempVoiceChannelMemberCreateManyTempVoiceChannelsInputEnvelope = {
-    data: TempVoiceChannelMemberCreateManyTempVoiceChannelsInput | TempVoiceChannelMemberCreateManyTempVoiceChannelsInput[]
-    skipDuplicates?: boolean
   }
 
   export type TempVoiceConfigCreateWithoutTempVoiceChannelsInput = {
@@ -131898,30 +131724,26 @@ export namespace Prisma {
     create: XOR<TempVoiceConfigCreateWithoutTempVoiceChannelsInput, TempVoiceConfigUncheckedCreateWithoutTempVoiceChannelsInput>
   }
 
-  export type TempVoiceChannelMemberUpsertWithWhereUniqueWithoutTempVoiceChannelsInput = {
-    where: TempVoiceChannelMemberWhereUniqueInput
+  export type TempVoiceChannelMemberUpsertWithoutTempVoiceChannelsInput = {
     update: XOR<TempVoiceChannelMemberUpdateWithoutTempVoiceChannelsInput, TempVoiceChannelMemberUncheckedUpdateWithoutTempVoiceChannelsInput>
     create: XOR<TempVoiceChannelMemberCreateWithoutTempVoiceChannelsInput, TempVoiceChannelMemberUncheckedCreateWithoutTempVoiceChannelsInput>
+    where?: TempVoiceChannelMemberWhereInput
   }
 
-  export type TempVoiceChannelMemberUpdateWithWhereUniqueWithoutTempVoiceChannelsInput = {
-    where: TempVoiceChannelMemberWhereUniqueInput
+  export type TempVoiceChannelMemberUpdateToOneWithWhereWithoutTempVoiceChannelsInput = {
+    where?: TempVoiceChannelMemberWhereInput
     data: XOR<TempVoiceChannelMemberUpdateWithoutTempVoiceChannelsInput, TempVoiceChannelMemberUncheckedUpdateWithoutTempVoiceChannelsInput>
   }
 
-  export type TempVoiceChannelMemberUpdateManyWithWhereWithoutTempVoiceChannelsInput = {
-    where: TempVoiceChannelMemberScalarWhereInput
-    data: XOR<TempVoiceChannelMemberUpdateManyMutationInput, TempVoiceChannelMemberUncheckedUpdateManyWithoutTempVoiceChannelsInput>
+  export type TempVoiceChannelMemberUpdateWithoutTempVoiceChannelsInput = {
+    UserId?: StringFieldUpdateOperationsInput | string
+    Permissions?: TempVoiceChannelMemberUpdatePermissionsInput | string[]
   }
 
-  export type TempVoiceChannelMemberScalarWhereInput = {
-    AND?: TempVoiceChannelMemberScalarWhereInput | TempVoiceChannelMemberScalarWhereInput[]
-    OR?: TempVoiceChannelMemberScalarWhereInput[]
-    NOT?: TempVoiceChannelMemberScalarWhereInput | TempVoiceChannelMemberScalarWhereInput[]
-    Id?: IntFilter<"TempVoiceChannelMember"> | number
-    UserId?: StringFilter<"TempVoiceChannelMember"> | string
-    ChannelId?: StringFilter<"TempVoiceChannelMember"> | string
-    Permissions?: StringNullableListFilter<"TempVoiceChannelMember">
+  export type TempVoiceChannelMemberUncheckedUpdateWithoutTempVoiceChannelsInput = {
+    Id?: IntFieldUpdateOperationsInput | number
+    UserId?: StringFieldUpdateOperationsInput | string
+    Permissions?: TempVoiceChannelMemberUpdatePermissionsInput | string[]
   }
 
   export type TempVoiceConfigUpsertWithoutTempVoiceChannelsInput = {
@@ -132031,7 +131853,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -132065,7 +131887,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -132140,7 +131962,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -132174,7 +131996,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -132285,7 +132107,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -132319,7 +132141,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -132394,7 +132216,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -132428,7 +132250,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -132539,7 +132361,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -132573,7 +132395,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -132622,7 +132444,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -132656,7 +132478,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -132689,7 +132511,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -132723,7 +132545,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -132772,7 +132594,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -132806,7 +132628,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -132839,7 +132661,7 @@ export namespace Prisma {
     LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -132873,7 +132695,7 @@ export namespace Prisma {
     LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -132922,7 +132744,7 @@ export namespace Prisma {
     LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -132956,7 +132778,7 @@ export namespace Prisma {
     LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -132989,7 +132811,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -133023,7 +132845,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -133109,7 +132931,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -133143,7 +132965,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -133368,7 +133190,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -133402,7 +133224,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -133451,7 +133273,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -133485,7 +133307,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -133568,7 +133390,7 @@ export namespace Prisma {
     LevelSettings?: LevelSettingsCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -133602,7 +133424,7 @@ export namespace Prisma {
     LevelSettings?: LevelSettingsUncheckedCreateNestedOneWithoutGuildsInput
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -133706,7 +133528,7 @@ export namespace Prisma {
     LevelSettings?: LevelSettingsUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -133740,7 +133562,7 @@ export namespace Prisma {
     LevelSettings?: LevelSettingsUncheckedUpdateOneWithoutGuildsNestedInput
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -134085,7 +133907,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsUncheckedCreateWithoutTicketSetupsInput = {
@@ -134119,7 +133941,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
   }
 
   export type GuildsCreateOrConnectWithoutTicketSetupsInput = {
@@ -134312,7 +134134,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
   }
 
   export type GuildsUncheckedUpdateWithoutTicketSetupsInput = {
@@ -134346,7 +134168,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
   }
 
   export type TicketsUpsertWithWhereUniqueWithoutTicketSetupInput = {
@@ -134430,7 +134252,6 @@ export namespace Prisma {
     TicketStatusMessageId?: string | null
     TicketStatusChannelId?: string | null
     AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
-    TicketSettings?: TicketSetupsCreateTicketSettingsInput | string[]
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
     SlashCommandId?: string | null
@@ -134438,6 +134259,7 @@ export namespace Prisma {
     SlashCommandDescription?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
+    TicketSettings?: TicketSetupsCreateTicketSettingsInput | string[]
     TicketPermissions?: TicketPermissionsCreateNestedManyWithoutTicketSetupInput
     Guilds: GuildsCreateNestedOneWithoutTicketSetupsInput
     Tickets?: TicketsCreateNestedManyWithoutTicketSetupInput
@@ -134470,7 +134292,6 @@ export namespace Prisma {
     TicketStatusMessageId?: string | null
     TicketStatusChannelId?: string | null
     AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
-    TicketSettings?: TicketSetupsCreateTicketSettingsInput | string[]
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
     SlashCommandId?: string | null
@@ -134479,6 +134300,7 @@ export namespace Prisma {
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
     GuildId: string
+    TicketSettings?: TicketSetupsCreateTicketSettingsInput | string[]
     TicketPermissions?: TicketPermissionsUncheckedCreateNestedManyWithoutTicketSetupInput
     Tickets?: TicketsUncheckedCreateNestedManyWithoutTicketSetupInput
   }
@@ -134525,7 +134347,6 @@ export namespace Prisma {
     TicketStatusMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     TicketStatusChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
-    TicketSettings?: TicketSetupsUpdateTicketSettingsInput | string[]
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -134533,6 +134354,7 @@ export namespace Prisma {
     SlashCommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    TicketSettings?: TicketSetupsUpdateTicketSettingsInput | string[]
     TicketPermissions?: TicketPermissionsUpdateManyWithoutTicketSetupNestedInput
     Guilds?: GuildsUpdateOneRequiredWithoutTicketSetupsNestedInput
     Tickets?: TicketsUpdateManyWithoutTicketSetupNestedInput
@@ -134565,7 +134387,6 @@ export namespace Prisma {
     TicketStatusMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     TicketStatusChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
-    TicketSettings?: TicketSetupsUpdateTicketSettingsInput | string[]
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -134574,6 +134395,7 @@ export namespace Prisma {
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
     GuildId?: StringFieldUpdateOperationsInput | string
+    TicketSettings?: TicketSetupsUpdateTicketSettingsInput | string[]
     TicketPermissions?: TicketPermissionsUncheckedUpdateManyWithoutTicketSetupNestedInput
     Tickets?: TicketsUncheckedUpdateManyWithoutTicketSetupNestedInput
   }
@@ -134604,7 +134426,6 @@ export namespace Prisma {
     TicketStatusMessageId?: string | null
     TicketStatusChannelId?: string | null
     AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
-    TicketSettings?: TicketSetupsCreateTicketSettingsInput | string[]
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
     SlashCommandId?: string | null
@@ -134612,6 +134433,7 @@ export namespace Prisma {
     SlashCommandDescription?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
+    TicketSettings?: TicketSetupsCreateTicketSettingsInput | string[]
     ModalOptions?: TicketModalDataCreateNestedManyWithoutTicketSetupInput
     Guilds: GuildsCreateNestedOneWithoutTicketSetupsInput
     Tickets?: TicketsCreateNestedManyWithoutTicketSetupInput
@@ -134644,7 +134466,6 @@ export namespace Prisma {
     TicketStatusMessageId?: string | null
     TicketStatusChannelId?: string | null
     AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
-    TicketSettings?: TicketSetupsCreateTicketSettingsInput | string[]
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
     SlashCommandId?: string | null
@@ -134653,6 +134474,7 @@ export namespace Prisma {
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
     GuildId: string
+    TicketSettings?: TicketSetupsCreateTicketSettingsInput | string[]
     ModalOptions?: TicketModalDataUncheckedCreateNestedManyWithoutTicketSetupInput
     Tickets?: TicketsUncheckedCreateNestedManyWithoutTicketSetupInput
   }
@@ -134699,7 +134521,6 @@ export namespace Prisma {
     TicketStatusMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     TicketStatusChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
-    TicketSettings?: TicketSetupsUpdateTicketSettingsInput | string[]
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -134707,6 +134528,7 @@ export namespace Prisma {
     SlashCommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    TicketSettings?: TicketSetupsUpdateTicketSettingsInput | string[]
     ModalOptions?: TicketModalDataUpdateManyWithoutTicketSetupNestedInput
     Guilds?: GuildsUpdateOneRequiredWithoutTicketSetupsNestedInput
     Tickets?: TicketsUpdateManyWithoutTicketSetupNestedInput
@@ -134739,7 +134561,6 @@ export namespace Prisma {
     TicketStatusMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     TicketStatusChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
-    TicketSettings?: TicketSetupsUpdateTicketSettingsInput | string[]
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -134748,6 +134569,7 @@ export namespace Prisma {
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
     GuildId?: StringFieldUpdateOperationsInput | string
+    TicketSettings?: TicketSetupsUpdateTicketSettingsInput | string[]
     ModalOptions?: TicketModalDataUncheckedUpdateManyWithoutTicketSetupNestedInput
     Tickets?: TicketsUncheckedUpdateManyWithoutTicketSetupNestedInput
   }
@@ -134798,7 +134620,6 @@ export namespace Prisma {
     TicketStatusMessageId?: string | null
     TicketStatusChannelId?: string | null
     AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
-    TicketSettings?: TicketSetupsCreateTicketSettingsInput | string[]
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
     SlashCommandId?: string | null
@@ -134806,6 +134627,7 @@ export namespace Prisma {
     SlashCommandDescription?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
+    TicketSettings?: TicketSetupsCreateTicketSettingsInput | string[]
     ModalOptions?: TicketModalDataCreateNestedManyWithoutTicketSetupInput
     TicketPermissions?: TicketPermissionsCreateNestedManyWithoutTicketSetupInput
     Guilds: GuildsCreateNestedOneWithoutTicketSetupsInput
@@ -134838,7 +134660,6 @@ export namespace Prisma {
     TicketStatusMessageId?: string | null
     TicketStatusChannelId?: string | null
     AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
-    TicketSettings?: TicketSetupsCreateTicketSettingsInput | string[]
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
     SlashCommandId?: string | null
@@ -134847,6 +134668,7 @@ export namespace Prisma {
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
     GuildId: string
+    TicketSettings?: TicketSetupsCreateTicketSettingsInput | string[]
     ModalOptions?: TicketModalDataUncheckedCreateNestedManyWithoutTicketSetupInput
     TicketPermissions?: TicketPermissionsUncheckedCreateNestedManyWithoutTicketSetupInput
   }
@@ -134919,7 +134741,6 @@ export namespace Prisma {
     TicketStatusMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     TicketStatusChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
-    TicketSettings?: TicketSetupsUpdateTicketSettingsInput | string[]
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -134927,6 +134748,7 @@ export namespace Prisma {
     SlashCommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    TicketSettings?: TicketSetupsUpdateTicketSettingsInput | string[]
     ModalOptions?: TicketModalDataUpdateManyWithoutTicketSetupNestedInput
     TicketPermissions?: TicketPermissionsUpdateManyWithoutTicketSetupNestedInput
     Guilds?: GuildsUpdateOneRequiredWithoutTicketSetupsNestedInput
@@ -134959,7 +134781,6 @@ export namespace Prisma {
     TicketStatusMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     TicketStatusChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
-    TicketSettings?: TicketSetupsUpdateTicketSettingsInput | string[]
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -134968,6 +134789,7 @@ export namespace Prisma {
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
     GuildId?: StringFieldUpdateOperationsInput | string
+    TicketSettings?: TicketSetupsUpdateTicketSettingsInput | string[]
     ModalOptions?: TicketModalDataUncheckedUpdateManyWithoutTicketSetupNestedInput
     TicketPermissions?: TicketPermissionsUncheckedUpdateManyWithoutTicketSetupNestedInput
   }
@@ -135159,7 +134981,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -135193,7 +135015,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -135242,7 +135064,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -135276,7 +135098,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -135309,7 +135131,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -135343,7 +135165,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -135392,7 +135214,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -135426,7 +135248,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -135459,7 +135281,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -135493,7 +135315,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -135542,7 +135364,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -135576,7 +135398,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -135634,7 +135456,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutCreateNestedOneWithoutGuildsInput
     Polls?: PollsCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsCreateNestedManyWithoutGuildsInput
   }
 
@@ -135668,7 +135490,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedCreateNestedManyWithoutGuildsInput
     ModerationScout?: ModerationScoutUncheckedCreateNestedOneWithoutGuildsInput
     Polls?: PollsUncheckedCreateNestedManyWithoutGuildsInput
-    TempVoices?: TempVoiceUncheckedCreateNestedManyWithoutGuildsInput
+    TempVoices?: TempVoiceUncheckedCreateNestedOneWithoutGuildsInput
     TicketSetups?: TicketSetupsUncheckedCreateNestedManyWithoutGuildsInput
   }
 
@@ -135679,25 +135501,25 @@ export namespace Prisma {
 
   export type LevelsCreateWithoutLevelSettingsInput = {
     XP?: string | null
-    RequiredXp?: string | null
     Level?: number | null
+    UUID: string
     ClaimedXPDrops?: LevelsCreateClaimedXPDropsInput | string[]
     CurrentStreakDay?: number | null
+    RequiredXp?: string | null
     LastXPStreakUpdate?: string | null
-    UUID: string
     Users: UsersCreateNestedOneWithoutLevelsInput
   }
 
   export type LevelsUncheckedCreateWithoutLevelSettingsInput = {
     Id?: number
     XP?: string | null
-    RequiredXp?: string | null
     Level?: number | null
     UserId: string
+    UUID: string
     ClaimedXPDrops?: LevelsCreateClaimedXPDropsInput | string[]
     CurrentStreakDay?: number | null
+    RequiredXp?: string | null
     LastXPStreakUpdate?: string | null
-    UUID: string
   }
 
   export type LevelsCreateOrConnectWithoutLevelSettingsInput = {
@@ -135711,24 +135533,24 @@ export namespace Prisma {
   }
 
   export type XPDropsCreateWithoutLevelSettingsInput = {
-    UUID: string
     XPRange?: string | null
     TimeToRespawn?: string | null
     ChannelIds?: XPDropsCreateChannelIdsInput | string[]
     ClaimAmount?: number | null
     ExpireTime?: string | null
+    UUID: string
     LastSpawned?: string | null
     MessageIdsToDelete?: XPDropsCreateMessageIdsToDeleteInput | string[]
   }
 
   export type XPDropsUncheckedCreateWithoutLevelSettingsInput = {
     Id?: number
-    UUID: string
     XPRange?: string | null
     TimeToRespawn?: string | null
     ChannelIds?: XPDropsCreateChannelIdsInput | string[]
     ClaimAmount?: number | null
     ExpireTime?: string | null
+    UUID: string
     LastSpawned?: string | null
     MessageIdsToDelete?: XPDropsCreateMessageIdsToDeleteInput | string[]
   }
@@ -135842,7 +135664,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUpdateManyWithoutGuildsNestedInput
   }
 
@@ -135876,7 +135698,7 @@ export namespace Prisma {
     MessageTemplates?: MessageTemplatesUncheckedUpdateManyWithoutGuildsNestedInput
     ModerationScout?: ModerationScoutUncheckedUpdateOneWithoutGuildsNestedInput
     Polls?: PollsUncheckedUpdateManyWithoutGuildsNestedInput
-    TempVoices?: TempVoiceUncheckedUpdateManyWithoutGuildsNestedInput
+    TempVoices?: TempVoiceUncheckedUpdateOneWithoutGuildsNestedInput
     TicketSetups?: TicketSetupsUncheckedUpdateManyWithoutGuildsNestedInput
   }
 
@@ -135902,14 +135724,14 @@ export namespace Prisma {
     NOT?: LevelsScalarWhereInput | LevelsScalarWhereInput[]
     Id?: IntFilter<"Levels"> | number
     XP?: StringNullableFilter<"Levels"> | string | null
-    RequiredXp?: StringNullableFilter<"Levels"> | string | null
     Level?: IntNullableFilter<"Levels"> | number | null
     UserId?: StringFilter<"Levels"> | string
     GuildId?: StringFilter<"Levels"> | string
+    UUID?: StringFilter<"Levels"> | string
     ClaimedXPDrops?: StringNullableListFilter<"Levels">
     CurrentStreakDay?: IntNullableFilter<"Levels"> | number | null
+    RequiredXp?: StringNullableFilter<"Levels"> | string | null
     LastXPStreakUpdate?: StringNullableFilter<"Levels"> | string | null
-    UUID?: StringFilter<"Levels"> | string
   }
 
   export type XPDropsUpsertWithWhereUniqueWithoutLevelSettingsInput = {
@@ -135933,13 +135755,13 @@ export namespace Prisma {
     OR?: XPDropsScalarWhereInput[]
     NOT?: XPDropsScalarWhereInput | XPDropsScalarWhereInput[]
     Id?: IntFilter<"XPDrops"> | number
-    UUID?: StringFilter<"XPDrops"> | string
     GuildId?: StringFilter<"XPDrops"> | string
     XPRange?: StringNullableFilter<"XPDrops"> | string | null
     TimeToRespawn?: StringNullableFilter<"XPDrops"> | string | null
     ChannelIds?: StringNullableListFilter<"XPDrops">
     ClaimAmount?: IntNullableFilter<"XPDrops"> | number | null
     ExpireTime?: StringNullableFilter<"XPDrops"> | string | null
+    UUID?: StringFilter<"XPDrops"> | string
     LastSpawned?: StringNullableFilter<"XPDrops"> | string | null
     MessageIdsToDelete?: StringNullableListFilter<"XPDrops">
   }
@@ -135977,7 +135799,6 @@ export namespace Prisma {
 
   export type LevelSettingsCreateWithoutXPDropsInput = {
     LevelUpChannelId?: string | null
-    LevelUpMessageType?: string | null
     LeaderboardMessageTemplateId?: string | null
     LeaderboardDisplayAmount?: number | null
     RequiredXPForFirstLevel?: number | null
@@ -135994,11 +135815,12 @@ export namespace Prisma {
     MessageXPCooldown?: string | null
     MessageXPType?: LevelSettingsCreateMessageXPTypeInput | string[]
     RequiredXPFormular?: string | null
+    LevelUpMessageType?: string | null
     LevelUserInfoMessageTemplate?: string | null
-    XPDropsMessageTemplate?: string | null
     XPStreaksMessageType?: string | null
-    XPStreaksIncreaseType?: LevelSettingsCreateXPStreaksIncreaseTypeInput | string[]
     XPStreaksMessageChannelId?: string | null
+    XPStreaksIncreaseType?: LevelSettingsCreateXPStreaksIncreaseTypeInput | string[]
+    XPDropsMessageTemplate?: string | null
     LevelRoles?: LevelRolesCreateNestedManyWithoutLevelSettingsInput
     Guilds: GuildsCreateNestedOneWithoutLevelSettingsInput
     Levels?: LevelsCreateNestedManyWithoutLevelSettingsInput
@@ -136008,7 +135830,6 @@ export namespace Prisma {
   export type LevelSettingsUncheckedCreateWithoutXPDropsInput = {
     Id?: number
     LevelUpChannelId?: string | null
-    LevelUpMessageType?: string | null
     LeaderboardMessageTemplateId?: string | null
     LeaderboardDisplayAmount?: number | null
     RequiredXPForFirstLevel?: number | null
@@ -136026,11 +135847,12 @@ export namespace Prisma {
     MessageXPCooldown?: string | null
     MessageXPType?: LevelSettingsCreateMessageXPTypeInput | string[]
     RequiredXPFormular?: string | null
+    LevelUpMessageType?: string | null
     LevelUserInfoMessageTemplate?: string | null
-    XPDropsMessageTemplate?: string | null
     XPStreaksMessageType?: string | null
-    XPStreaksIncreaseType?: LevelSettingsCreateXPStreaksIncreaseTypeInput | string[]
     XPStreaksMessageChannelId?: string | null
+    XPStreaksIncreaseType?: LevelSettingsCreateXPStreaksIncreaseTypeInput | string[]
+    XPDropsMessageTemplate?: string | null
     LevelRoles?: LevelRolesUncheckedCreateNestedManyWithoutLevelSettingsInput
     Levels?: LevelsUncheckedCreateNestedManyWithoutLevelSettingsInput
     XPStreaks?: XPStreaksUncheckedCreateNestedManyWithoutLevelSettingsInput
@@ -136054,7 +135876,6 @@ export namespace Prisma {
 
   export type LevelSettingsUpdateWithoutXPDropsInput = {
     LevelUpChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardDisplayAmount?: NullableIntFieldUpdateOperationsInput | number | null
     RequiredXPForFirstLevel?: NullableIntFieldUpdateOperationsInput | number | null
@@ -136071,11 +135892,12 @@ export namespace Prisma {
     MessageXPCooldown?: NullableStringFieldUpdateOperationsInput | string | null
     MessageXPType?: LevelSettingsUpdateMessageXPTypeInput | string[]
     RequiredXPFormular?: NullableStringFieldUpdateOperationsInput | string | null
+    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LevelUserInfoMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
-    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
     XPStreaksMessageType?: NullableStringFieldUpdateOperationsInput | string | null
-    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
     XPStreaksMessageChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
+    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
     LevelRoles?: LevelRolesUpdateManyWithoutLevelSettingsNestedInput
     Guilds?: GuildsUpdateOneRequiredWithoutLevelSettingsNestedInput
     Levels?: LevelsUpdateManyWithoutLevelSettingsNestedInput
@@ -136085,7 +135907,6 @@ export namespace Prisma {
   export type LevelSettingsUncheckedUpdateWithoutXPDropsInput = {
     Id?: IntFieldUpdateOperationsInput | number
     LevelUpChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardDisplayAmount?: NullableIntFieldUpdateOperationsInput | number | null
     RequiredXPForFirstLevel?: NullableIntFieldUpdateOperationsInput | number | null
@@ -136103,11 +135924,12 @@ export namespace Prisma {
     MessageXPCooldown?: NullableStringFieldUpdateOperationsInput | string | null
     MessageXPType?: LevelSettingsUpdateMessageXPTypeInput | string[]
     RequiredXPFormular?: NullableStringFieldUpdateOperationsInput | string | null
+    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LevelUserInfoMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
-    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
     XPStreaksMessageType?: NullableStringFieldUpdateOperationsInput | string | null
-    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
     XPStreaksMessageChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
+    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
     LevelRoles?: LevelRolesUncheckedUpdateManyWithoutLevelSettingsNestedInput
     Levels?: LevelsUncheckedUpdateManyWithoutLevelSettingsNestedInput
     XPStreaks?: XPStreaksUncheckedUpdateManyWithoutLevelSettingsNestedInput
@@ -136115,7 +135937,6 @@ export namespace Prisma {
 
   export type LevelSettingsCreateWithoutXPStreaksInput = {
     LevelUpChannelId?: string | null
-    LevelUpMessageType?: string | null
     LeaderboardMessageTemplateId?: string | null
     LeaderboardDisplayAmount?: number | null
     RequiredXPForFirstLevel?: number | null
@@ -136132,11 +135953,12 @@ export namespace Prisma {
     MessageXPCooldown?: string | null
     MessageXPType?: LevelSettingsCreateMessageXPTypeInput | string[]
     RequiredXPFormular?: string | null
+    LevelUpMessageType?: string | null
     LevelUserInfoMessageTemplate?: string | null
-    XPDropsMessageTemplate?: string | null
     XPStreaksMessageType?: string | null
-    XPStreaksIncreaseType?: LevelSettingsCreateXPStreaksIncreaseTypeInput | string[]
     XPStreaksMessageChannelId?: string | null
+    XPStreaksIncreaseType?: LevelSettingsCreateXPStreaksIncreaseTypeInput | string[]
+    XPDropsMessageTemplate?: string | null
     LevelRoles?: LevelRolesCreateNestedManyWithoutLevelSettingsInput
     Guilds: GuildsCreateNestedOneWithoutLevelSettingsInput
     Levels?: LevelsCreateNestedManyWithoutLevelSettingsInput
@@ -136146,7 +135968,6 @@ export namespace Prisma {
   export type LevelSettingsUncheckedCreateWithoutXPStreaksInput = {
     Id?: number
     LevelUpChannelId?: string | null
-    LevelUpMessageType?: string | null
     LeaderboardMessageTemplateId?: string | null
     LeaderboardDisplayAmount?: number | null
     RequiredXPForFirstLevel?: number | null
@@ -136164,11 +135985,12 @@ export namespace Prisma {
     MessageXPCooldown?: string | null
     MessageXPType?: LevelSettingsCreateMessageXPTypeInput | string[]
     RequiredXPFormular?: string | null
+    LevelUpMessageType?: string | null
     LevelUserInfoMessageTemplate?: string | null
-    XPDropsMessageTemplate?: string | null
     XPStreaksMessageType?: string | null
-    XPStreaksIncreaseType?: LevelSettingsCreateXPStreaksIncreaseTypeInput | string[]
     XPStreaksMessageChannelId?: string | null
+    XPStreaksIncreaseType?: LevelSettingsCreateXPStreaksIncreaseTypeInput | string[]
+    XPDropsMessageTemplate?: string | null
     LevelRoles?: LevelRolesUncheckedCreateNestedManyWithoutLevelSettingsInput
     Levels?: LevelsUncheckedCreateNestedManyWithoutLevelSettingsInput
     XPDrops?: XPDropsUncheckedCreateNestedManyWithoutLevelSettingsInput
@@ -136192,7 +136014,6 @@ export namespace Prisma {
 
   export type LevelSettingsUpdateWithoutXPStreaksInput = {
     LevelUpChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardDisplayAmount?: NullableIntFieldUpdateOperationsInput | number | null
     RequiredXPForFirstLevel?: NullableIntFieldUpdateOperationsInput | number | null
@@ -136209,11 +136030,12 @@ export namespace Prisma {
     MessageXPCooldown?: NullableStringFieldUpdateOperationsInput | string | null
     MessageXPType?: LevelSettingsUpdateMessageXPTypeInput | string[]
     RequiredXPFormular?: NullableStringFieldUpdateOperationsInput | string | null
+    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LevelUserInfoMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
-    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
     XPStreaksMessageType?: NullableStringFieldUpdateOperationsInput | string | null
-    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
     XPStreaksMessageChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
+    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
     LevelRoles?: LevelRolesUpdateManyWithoutLevelSettingsNestedInput
     Guilds?: GuildsUpdateOneRequiredWithoutLevelSettingsNestedInput
     Levels?: LevelsUpdateManyWithoutLevelSettingsNestedInput
@@ -136223,7 +136045,6 @@ export namespace Prisma {
   export type LevelSettingsUncheckedUpdateWithoutXPStreaksInput = {
     Id?: IntFieldUpdateOperationsInput | number
     LevelUpChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardDisplayAmount?: NullableIntFieldUpdateOperationsInput | number | null
     RequiredXPForFirstLevel?: NullableIntFieldUpdateOperationsInput | number | null
@@ -136241,11 +136062,12 @@ export namespace Prisma {
     MessageXPCooldown?: NullableStringFieldUpdateOperationsInput | string | null
     MessageXPType?: LevelSettingsUpdateMessageXPTypeInput | string[]
     RequiredXPFormular?: NullableStringFieldUpdateOperationsInput | string | null
+    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LevelUserInfoMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
-    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
     XPStreaksMessageType?: NullableStringFieldUpdateOperationsInput | string | null
-    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
     XPStreaksMessageChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
+    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
     LevelRoles?: LevelRolesUncheckedUpdateManyWithoutLevelSettingsNestedInput
     Levels?: LevelsUncheckedUpdateManyWithoutLevelSettingsNestedInput
     XPDrops?: XPDropsUncheckedUpdateManyWithoutLevelSettingsNestedInput
@@ -136253,7 +136075,6 @@ export namespace Prisma {
 
   export type LevelSettingsCreateWithoutLevelRolesInput = {
     LevelUpChannelId?: string | null
-    LevelUpMessageType?: string | null
     LeaderboardMessageTemplateId?: string | null
     LeaderboardDisplayAmount?: number | null
     RequiredXPForFirstLevel?: number | null
@@ -136270,11 +136091,12 @@ export namespace Prisma {
     MessageXPCooldown?: string | null
     MessageXPType?: LevelSettingsCreateMessageXPTypeInput | string[]
     RequiredXPFormular?: string | null
+    LevelUpMessageType?: string | null
     LevelUserInfoMessageTemplate?: string | null
-    XPDropsMessageTemplate?: string | null
     XPStreaksMessageType?: string | null
-    XPStreaksIncreaseType?: LevelSettingsCreateXPStreaksIncreaseTypeInput | string[]
     XPStreaksMessageChannelId?: string | null
+    XPStreaksIncreaseType?: LevelSettingsCreateXPStreaksIncreaseTypeInput | string[]
+    XPDropsMessageTemplate?: string | null
     Guilds: GuildsCreateNestedOneWithoutLevelSettingsInput
     Levels?: LevelsCreateNestedManyWithoutLevelSettingsInput
     XPDrops?: XPDropsCreateNestedManyWithoutLevelSettingsInput
@@ -136284,7 +136106,6 @@ export namespace Prisma {
   export type LevelSettingsUncheckedCreateWithoutLevelRolesInput = {
     Id?: number
     LevelUpChannelId?: string | null
-    LevelUpMessageType?: string | null
     LeaderboardMessageTemplateId?: string | null
     LeaderboardDisplayAmount?: number | null
     RequiredXPForFirstLevel?: number | null
@@ -136302,11 +136123,12 @@ export namespace Prisma {
     MessageXPCooldown?: string | null
     MessageXPType?: LevelSettingsCreateMessageXPTypeInput | string[]
     RequiredXPFormular?: string | null
+    LevelUpMessageType?: string | null
     LevelUserInfoMessageTemplate?: string | null
-    XPDropsMessageTemplate?: string | null
     XPStreaksMessageType?: string | null
-    XPStreaksIncreaseType?: LevelSettingsCreateXPStreaksIncreaseTypeInput | string[]
     XPStreaksMessageChannelId?: string | null
+    XPStreaksIncreaseType?: LevelSettingsCreateXPStreaksIncreaseTypeInput | string[]
+    XPDropsMessageTemplate?: string | null
     Levels?: LevelsUncheckedCreateNestedManyWithoutLevelSettingsInput
     XPDrops?: XPDropsUncheckedCreateNestedManyWithoutLevelSettingsInput
     XPStreaks?: XPStreaksUncheckedCreateNestedManyWithoutLevelSettingsInput
@@ -136330,7 +136152,6 @@ export namespace Prisma {
 
   export type LevelSettingsUpdateWithoutLevelRolesInput = {
     LevelUpChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardDisplayAmount?: NullableIntFieldUpdateOperationsInput | number | null
     RequiredXPForFirstLevel?: NullableIntFieldUpdateOperationsInput | number | null
@@ -136347,11 +136168,12 @@ export namespace Prisma {
     MessageXPCooldown?: NullableStringFieldUpdateOperationsInput | string | null
     MessageXPType?: LevelSettingsUpdateMessageXPTypeInput | string[]
     RequiredXPFormular?: NullableStringFieldUpdateOperationsInput | string | null
+    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LevelUserInfoMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
-    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
     XPStreaksMessageType?: NullableStringFieldUpdateOperationsInput | string | null
-    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
     XPStreaksMessageChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
+    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
     Guilds?: GuildsUpdateOneRequiredWithoutLevelSettingsNestedInput
     Levels?: LevelsUpdateManyWithoutLevelSettingsNestedInput
     XPDrops?: XPDropsUpdateManyWithoutLevelSettingsNestedInput
@@ -136361,7 +136183,6 @@ export namespace Prisma {
   export type LevelSettingsUncheckedUpdateWithoutLevelRolesInput = {
     Id?: IntFieldUpdateOperationsInput | number
     LevelUpChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardDisplayAmount?: NullableIntFieldUpdateOperationsInput | number | null
     RequiredXPForFirstLevel?: NullableIntFieldUpdateOperationsInput | number | null
@@ -136379,11 +136200,12 @@ export namespace Prisma {
     MessageXPCooldown?: NullableStringFieldUpdateOperationsInput | string | null
     MessageXPType?: LevelSettingsUpdateMessageXPTypeInput | string[]
     RequiredXPFormular?: NullableStringFieldUpdateOperationsInput | string | null
+    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LevelUserInfoMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
-    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
     XPStreaksMessageType?: NullableStringFieldUpdateOperationsInput | string | null
-    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
     XPStreaksMessageChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
+    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
     Levels?: LevelsUncheckedUpdateManyWithoutLevelSettingsNestedInput
     XPDrops?: XPDropsUncheckedUpdateManyWithoutLevelSettingsNestedInput
     XPStreaks?: XPStreaksUncheckedUpdateManyWithoutLevelSettingsNestedInput
@@ -136391,7 +136213,6 @@ export namespace Prisma {
 
   export type LevelSettingsCreateWithoutLevelsInput = {
     LevelUpChannelId?: string | null
-    LevelUpMessageType?: string | null
     LeaderboardMessageTemplateId?: string | null
     LeaderboardDisplayAmount?: number | null
     RequiredXPForFirstLevel?: number | null
@@ -136408,11 +136229,12 @@ export namespace Prisma {
     MessageXPCooldown?: string | null
     MessageXPType?: LevelSettingsCreateMessageXPTypeInput | string[]
     RequiredXPFormular?: string | null
+    LevelUpMessageType?: string | null
     LevelUserInfoMessageTemplate?: string | null
-    XPDropsMessageTemplate?: string | null
     XPStreaksMessageType?: string | null
-    XPStreaksIncreaseType?: LevelSettingsCreateXPStreaksIncreaseTypeInput | string[]
     XPStreaksMessageChannelId?: string | null
+    XPStreaksIncreaseType?: LevelSettingsCreateXPStreaksIncreaseTypeInput | string[]
+    XPDropsMessageTemplate?: string | null
     LevelRoles?: LevelRolesCreateNestedManyWithoutLevelSettingsInput
     Guilds: GuildsCreateNestedOneWithoutLevelSettingsInput
     XPDrops?: XPDropsCreateNestedManyWithoutLevelSettingsInput
@@ -136422,7 +136244,6 @@ export namespace Prisma {
   export type LevelSettingsUncheckedCreateWithoutLevelsInput = {
     Id?: number
     LevelUpChannelId?: string | null
-    LevelUpMessageType?: string | null
     LeaderboardMessageTemplateId?: string | null
     LeaderboardDisplayAmount?: number | null
     RequiredXPForFirstLevel?: number | null
@@ -136440,11 +136261,12 @@ export namespace Prisma {
     MessageXPCooldown?: string | null
     MessageXPType?: LevelSettingsCreateMessageXPTypeInput | string[]
     RequiredXPFormular?: string | null
+    LevelUpMessageType?: string | null
     LevelUserInfoMessageTemplate?: string | null
-    XPDropsMessageTemplate?: string | null
     XPStreaksMessageType?: string | null
-    XPStreaksIncreaseType?: LevelSettingsCreateXPStreaksIncreaseTypeInput | string[]
     XPStreaksMessageChannelId?: string | null
+    XPStreaksIncreaseType?: LevelSettingsCreateXPStreaksIncreaseTypeInput | string[]
+    XPDropsMessageTemplate?: string | null
     LevelRoles?: LevelRolesUncheckedCreateNestedManyWithoutLevelSettingsInput
     XPDrops?: XPDropsUncheckedCreateNestedManyWithoutLevelSettingsInput
     XPStreaks?: XPStreaksUncheckedCreateNestedManyWithoutLevelSettingsInput
@@ -136500,7 +136322,6 @@ export namespace Prisma {
 
   export type LevelSettingsUpdateWithoutLevelsInput = {
     LevelUpChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardDisplayAmount?: NullableIntFieldUpdateOperationsInput | number | null
     RequiredXPForFirstLevel?: NullableIntFieldUpdateOperationsInput | number | null
@@ -136517,11 +136338,12 @@ export namespace Prisma {
     MessageXPCooldown?: NullableStringFieldUpdateOperationsInput | string | null
     MessageXPType?: LevelSettingsUpdateMessageXPTypeInput | string[]
     RequiredXPFormular?: NullableStringFieldUpdateOperationsInput | string | null
+    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LevelUserInfoMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
-    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
     XPStreaksMessageType?: NullableStringFieldUpdateOperationsInput | string | null
-    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
     XPStreaksMessageChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
+    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
     LevelRoles?: LevelRolesUpdateManyWithoutLevelSettingsNestedInput
     Guilds?: GuildsUpdateOneRequiredWithoutLevelSettingsNestedInput
     XPDrops?: XPDropsUpdateManyWithoutLevelSettingsNestedInput
@@ -136531,7 +136353,6 @@ export namespace Prisma {
   export type LevelSettingsUncheckedUpdateWithoutLevelsInput = {
     Id?: IntFieldUpdateOperationsInput | number
     LevelUpChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     LeaderboardDisplayAmount?: NullableIntFieldUpdateOperationsInput | number | null
     RequiredXPForFirstLevel?: NullableIntFieldUpdateOperationsInput | number | null
@@ -136549,11 +136370,12 @@ export namespace Prisma {
     MessageXPCooldown?: NullableStringFieldUpdateOperationsInput | string | null
     MessageXPType?: LevelSettingsUpdateMessageXPTypeInput | string[]
     RequiredXPFormular?: NullableStringFieldUpdateOperationsInput | string | null
+    LevelUpMessageType?: NullableStringFieldUpdateOperationsInput | string | null
     LevelUserInfoMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
-    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
     XPStreaksMessageType?: NullableStringFieldUpdateOperationsInput | string | null
-    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
     XPStreaksMessageChannelId?: NullableStringFieldUpdateOperationsInput | string | null
+    XPStreaksIncreaseType?: LevelSettingsUpdateXPStreaksIncreaseTypeInput | string[]
+    XPDropsMessageTemplate?: NullableStringFieldUpdateOperationsInput | string | null
     LevelRoles?: LevelRolesUncheckedUpdateManyWithoutLevelSettingsNestedInput
     XPDrops?: XPDropsUncheckedUpdateManyWithoutLevelSettingsNestedInput
     XPStreaks?: XPStreaksUncheckedUpdateManyWithoutLevelSettingsNestedInput
@@ -136644,25 +136466,25 @@ export namespace Prisma {
 
   export type LevelsCreateWithoutUsersInput = {
     XP?: string | null
-    RequiredXp?: string | null
     Level?: number | null
+    UUID: string
     ClaimedXPDrops?: LevelsCreateClaimedXPDropsInput | string[]
     CurrentStreakDay?: number | null
+    RequiredXp?: string | null
     LastXPStreakUpdate?: string | null
-    UUID: string
     LevelSettings: LevelSettingsCreateNestedOneWithoutLevelsInput
   }
 
   export type LevelsUncheckedCreateWithoutUsersInput = {
     Id?: number
     XP?: string | null
-    RequiredXp?: string | null
     Level?: number | null
     GuildId: string
+    UUID: string
     ClaimedXPDrops?: LevelsCreateClaimedXPDropsInput | string[]
     CurrentStreakDay?: number | null
+    RequiredXp?: string | null
     LastXPStreakUpdate?: string | null
-    UUID: string
   }
 
   export type LevelsCreateOrConnectWithoutUsersInput = {
@@ -137591,8 +137413,8 @@ export namespace Prisma {
     DmMessage?: string | null
     Type?: string | null
     Notes?: GuildUserModerationCreateNotesInput | string[]
-    CreatedAt?: Date | string | null
     LinkedCaseId?: string | null
+    CreatedAt?: Date | string | null
   }
 
   export type GuildYoutubeNotificationsCreateManyGuildsInput = {
@@ -137629,13 +137451,6 @@ export namespace Prisma {
     CreatedAt: Date | string
   }
 
-  export type TempVoiceCreateManyGuildsInput = {
-    Id?: number
-    UserInviteMessageTemplateId?: string | null
-    ModeratorUserIds?: TempVoiceCreateModeratorUserIdsInput | string[]
-    TempVoiceLogChannelId?: string | null
-  }
-
   export type TicketSetupsCreateManyGuildsInput = {
     Id?: number
     CategoryId?: string | null
@@ -137663,7 +137478,6 @@ export namespace Prisma {
     TicketStatusMessageId?: string | null
     TicketStatusChannelId?: string | null
     AutoCloseAction?: TicketSetupsCreateAutoCloseActionInput | string[]
-    TicketSettings?: TicketSetupsCreateTicketSettingsInput | string[]
     OldTicketCategoryId?: string | null
     RequiredRoles?: TicketSetupsCreateRequiredRolesInput | string[]
     SlashCommandId?: string | null
@@ -137671,6 +137485,7 @@ export namespace Prisma {
     SlashCommandDescription?: string | null
     TextCommandName?: string | null
     SendTranscriptToUser?: boolean | null
+    TicketSettings?: TicketSetupsCreateTicketSettingsInput | string[]
   }
 
   export type GiveawaysUpdateWithoutGuildsInput = {
@@ -137983,8 +137798,8 @@ export namespace Prisma {
     DmMessage?: NullableStringFieldUpdateOperationsInput | string | null
     Type?: NullableStringFieldUpdateOperationsInput | string | null
     Notes?: GuildUserModerationUpdateNotesInput | string[]
-    CreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     LinkedCaseId?: NullableStringFieldUpdateOperationsInput | string | null
+    CreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type GuildUserModerationUncheckedUpdateManyWithoutGuildsInput = {
@@ -137997,8 +137812,8 @@ export namespace Prisma {
     DmMessage?: NullableStringFieldUpdateOperationsInput | string | null
     Type?: NullableStringFieldUpdateOperationsInput | string | null
     Notes?: GuildUserModerationUpdateNotesInput | string[]
-    CreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     LinkedCaseId?: NullableStringFieldUpdateOperationsInput | string | null
+    CreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type GuildYoutubeNotificationsUpdateWithoutGuildsInput = {
@@ -138104,30 +137919,6 @@ export namespace Prisma {
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type TempVoiceUpdateWithoutGuildsInput = {
-    UserInviteMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
-    ModeratorUserIds?: TempVoiceUpdateModeratorUserIdsInput | string[]
-    TempVoiceLogChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    TempVoiceConfigs?: TempVoiceConfigUpdateManyWithoutTempVoiceNestedInput
-    TempVoicePresets?: TempVoicePresetUpdateManyWithoutTempVoiceNestedInput
-  }
-
-  export type TempVoiceUncheckedUpdateWithoutGuildsInput = {
-    Id?: IntFieldUpdateOperationsInput | number
-    UserInviteMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
-    ModeratorUserIds?: TempVoiceUpdateModeratorUserIdsInput | string[]
-    TempVoiceLogChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-    TempVoiceConfigs?: TempVoiceConfigUncheckedUpdateManyWithoutTempVoiceNestedInput
-    TempVoicePresets?: TempVoicePresetUncheckedUpdateManyWithoutTempVoiceNestedInput
-  }
-
-  export type TempVoiceUncheckedUpdateManyWithoutGuildsInput = {
-    Id?: IntFieldUpdateOperationsInput | number
-    UserInviteMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
-    ModeratorUserIds?: TempVoiceUpdateModeratorUserIdsInput | string[]
-    TempVoiceLogChannelId?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
   export type TicketSetupsUpdateWithoutGuildsInput = {
     CategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     ChannelType?: NullableIntFieldUpdateOperationsInput | number | null
@@ -138154,7 +137945,6 @@ export namespace Prisma {
     TicketStatusMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     TicketStatusChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
-    TicketSettings?: TicketSetupsUpdateTicketSettingsInput | string[]
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -138162,6 +137952,7 @@ export namespace Prisma {
     SlashCommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    TicketSettings?: TicketSetupsUpdateTicketSettingsInput | string[]
     ModalOptions?: TicketModalDataUpdateManyWithoutTicketSetupNestedInput
     TicketPermissions?: TicketPermissionsUpdateManyWithoutTicketSetupNestedInput
     Tickets?: TicketsUpdateManyWithoutTicketSetupNestedInput
@@ -138194,7 +137985,6 @@ export namespace Prisma {
     TicketStatusMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     TicketStatusChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
-    TicketSettings?: TicketSetupsUpdateTicketSettingsInput | string[]
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -138202,6 +137992,7 @@ export namespace Prisma {
     SlashCommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    TicketSettings?: TicketSetupsUpdateTicketSettingsInput | string[]
     ModalOptions?: TicketModalDataUncheckedUpdateManyWithoutTicketSetupNestedInput
     TicketPermissions?: TicketPermissionsUncheckedUpdateManyWithoutTicketSetupNestedInput
     Tickets?: TicketsUncheckedUpdateManyWithoutTicketSetupNestedInput
@@ -138234,7 +138025,6 @@ export namespace Prisma {
     TicketStatusMessageId?: NullableStringFieldUpdateOperationsInput | string | null
     TicketStatusChannelId?: NullableStringFieldUpdateOperationsInput | string | null
     AutoCloseAction?: TicketSetupsUpdateAutoCloseActionInput | string[]
-    TicketSettings?: TicketSetupsUpdateTicketSettingsInput | string[]
     OldTicketCategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     RequiredRoles?: TicketSetupsUpdateRequiredRolesInput | string[]
     SlashCommandId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -138242,6 +138032,7 @@ export namespace Prisma {
     SlashCommandDescription?: NullableStringFieldUpdateOperationsInput | string | null
     TextCommandName?: NullableStringFieldUpdateOperationsInput | string | null
     SendTranscriptToUser?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    TicketSettings?: TicketSetupsUpdateTicketSettingsInput | string[]
   }
 
   export type BuildInCommandsCreateManyGuildCommandMangersInput = {
@@ -138723,7 +138514,7 @@ export namespace Prisma {
     ChannelRegion?: string | null
     ChannelBitRate?: string | null
     UserInviteType?: string | null
-    SendLogsInTempChannel?: boolean
+    SendLogsInTempChannel?: boolean | null
     BlacklistRoleId?: string | null
     ManageComponents?: TempVoicePresetCreateManageComponentsInput | string[]
     OwnerAllowedDiscordPermissions?: TempVoicePresetCreateOwnerAllowedDiscordPermissionsInput | string[]
@@ -138736,8 +138527,8 @@ export namespace Prisma {
     ChannelCategory?: NullableStringFieldUpdateOperationsInput | string | null
     ManageMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
     IsManageEnalbed?: BoolFieldUpdateOperationsInput | boolean
-    TempVoicePreset?: TempVoicePresetUpdateOneRequiredWithoutTempVoiceConfigsNestedInput
     TempVoiceChannels?: TempVoiceChannelsUpdateManyWithoutTempVoiceConfigNestedInput
+    TempVoicePreset?: TempVoicePresetUpdateOneRequiredWithoutTempVoiceConfigsNestedInput
   }
 
   export type TempVoiceConfigUncheckedUpdateWithoutTempVoiceInput = {
@@ -138768,13 +138559,13 @@ export namespace Prisma {
     ChannelRegion?: NullableStringFieldUpdateOperationsInput | string | null
     ChannelBitRate?: NullableStringFieldUpdateOperationsInput | string | null
     UserInviteType?: NullableStringFieldUpdateOperationsInput | string | null
-    SendLogsInTempChannel?: BoolFieldUpdateOperationsInput | boolean
+    SendLogsInTempChannel?: NullableBoolFieldUpdateOperationsInput | boolean | null
     BlacklistRoleId?: NullableStringFieldUpdateOperationsInput | string | null
     ManageComponents?: TempVoicePresetUpdateManageComponentsInput | string[]
     OwnerAllowedDiscordPermissions?: TempVoicePresetUpdateOwnerAllowedDiscordPermissionsInput | string[]
     OwnerDeniedDiscordPermissions?: TempVoicePresetUpdateOwnerDeniedDiscordPermissionsInput | string[]
-    RolePermissions?: TempVoicePresetDiscordRolePermissionUpdateManyWithoutTempVoicePresetNestedInput
-    TempVoiceConfigs?: TempVoiceConfigUpdateManyWithoutTempVoicePresetNestedInput
+    TempVoiceConfigs?: TempVoiceConfigUpdateOneWithoutTempVoicePresetNestedInput
+    RolePermissions?: TempVoicePresetDiscordRolePermissionUpdateOneWithoutTempVoicePresetNestedInput
   }
 
   export type TempVoicePresetUncheckedUpdateWithoutTempVoiceInput = {
@@ -138785,13 +138576,13 @@ export namespace Prisma {
     ChannelRegion?: NullableStringFieldUpdateOperationsInput | string | null
     ChannelBitRate?: NullableStringFieldUpdateOperationsInput | string | null
     UserInviteType?: NullableStringFieldUpdateOperationsInput | string | null
-    SendLogsInTempChannel?: BoolFieldUpdateOperationsInput | boolean
+    SendLogsInTempChannel?: NullableBoolFieldUpdateOperationsInput | boolean | null
     BlacklistRoleId?: NullableStringFieldUpdateOperationsInput | string | null
     ManageComponents?: TempVoicePresetUpdateManageComponentsInput | string[]
     OwnerAllowedDiscordPermissions?: TempVoicePresetUpdateOwnerAllowedDiscordPermissionsInput | string[]
     OwnerDeniedDiscordPermissions?: TempVoicePresetUpdateOwnerDeniedDiscordPermissionsInput | string[]
-    RolePermissions?: TempVoicePresetDiscordRolePermissionUncheckedUpdateManyWithoutTempVoicePresetNestedInput
-    TempVoiceConfigs?: TempVoiceConfigUncheckedUpdateManyWithoutTempVoicePresetNestedInput
+    TempVoiceConfigs?: TempVoiceConfigUncheckedUpdateOneWithoutTempVoicePresetNestedInput
+    RolePermissions?: TempVoicePresetDiscordRolePermissionUncheckedUpdateOneWithoutTempVoicePresetNestedInput
   }
 
   export type TempVoicePresetUncheckedUpdateManyWithoutTempVoiceInput = {
@@ -138802,7 +138593,7 @@ export namespace Prisma {
     ChannelRegion?: NullableStringFieldUpdateOperationsInput | string | null
     ChannelBitRate?: NullableStringFieldUpdateOperationsInput | string | null
     UserInviteType?: NullableStringFieldUpdateOperationsInput | string | null
-    SendLogsInTempChannel?: BoolFieldUpdateOperationsInput | boolean
+    SendLogsInTempChannel?: NullableBoolFieldUpdateOperationsInput | boolean | null
     BlacklistRoleId?: NullableStringFieldUpdateOperationsInput | string | null
     ManageComponents?: TempVoicePresetUpdateManageComponentsInput | string[]
     OwnerAllowedDiscordPermissions?: TempVoicePresetUpdateOwnerAllowedDiscordPermissionsInput | string[]
@@ -138820,7 +138611,7 @@ export namespace Prisma {
     GuildId?: StringFieldUpdateOperationsInput | string
     ChannelId?: StringFieldUpdateOperationsInput | string
     OwnerId?: StringFieldUpdateOperationsInput | string
-    TempVoiceChannelMembers?: TempVoiceChannelMemberUpdateManyWithoutTempVoiceChannelsNestedInput
+    TempVoiceChannelMembers?: TempVoiceChannelMemberUpdateOneWithoutTempVoiceChannelsNestedInput
   }
 
   export type TempVoiceChannelsUncheckedUpdateWithoutTempVoiceConfigInput = {
@@ -138828,7 +138619,7 @@ export namespace Prisma {
     GuildId?: StringFieldUpdateOperationsInput | string
     ChannelId?: StringFieldUpdateOperationsInput | string
     OwnerId?: StringFieldUpdateOperationsInput | string
-    TempVoiceChannelMembers?: TempVoiceChannelMemberUncheckedUpdateManyWithoutTempVoiceChannelsNestedInput
+    TempVoiceChannelMembers?: TempVoiceChannelMemberUncheckedUpdateOneWithoutTempVoiceChannelsNestedInput
   }
 
   export type TempVoiceChannelsUncheckedUpdateManyWithoutTempVoiceConfigInput = {
@@ -138836,97 +138627,6 @@ export namespace Prisma {
     GuildId?: StringFieldUpdateOperationsInput | string
     ChannelId?: StringFieldUpdateOperationsInput | string
     OwnerId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type TempVoicePresetDiscordRolePermissionCreateManyTempVoicePresetInput = {
-    Id?: number
-    RoleId: string
-    AllowedDiscordPermissions?: TempVoicePresetDiscordRolePermissionCreateAllowedDiscordPermissionsInput | string[]
-    DeniedDiscordPermissions?: TempVoicePresetDiscordRolePermissionCreateDeniedDiscordPermissionsInput | string[]
-  }
-
-  export type TempVoiceConfigCreateManyTempVoicePresetInput = {
-    Id?: number
-    UUID: string
-    CreatorChannel?: string | null
-    ChannelCategory?: string | null
-    ManageMessageTemplateId?: string | null
-    IsManageEnalbed?: boolean
-    TempVoiceId: string
-  }
-
-  export type TempVoicePresetDiscordRolePermissionUpdateWithoutTempVoicePresetInput = {
-    RoleId?: StringFieldUpdateOperationsInput | string
-    AllowedDiscordPermissions?: TempVoicePresetDiscordRolePermissionUpdateAllowedDiscordPermissionsInput | string[]
-    DeniedDiscordPermissions?: TempVoicePresetDiscordRolePermissionUpdateDeniedDiscordPermissionsInput | string[]
-  }
-
-  export type TempVoicePresetDiscordRolePermissionUncheckedUpdateWithoutTempVoicePresetInput = {
-    Id?: IntFieldUpdateOperationsInput | number
-    RoleId?: StringFieldUpdateOperationsInput | string
-    AllowedDiscordPermissions?: TempVoicePresetDiscordRolePermissionUpdateAllowedDiscordPermissionsInput | string[]
-    DeniedDiscordPermissions?: TempVoicePresetDiscordRolePermissionUpdateDeniedDiscordPermissionsInput | string[]
-  }
-
-  export type TempVoicePresetDiscordRolePermissionUncheckedUpdateManyWithoutTempVoicePresetInput = {
-    Id?: IntFieldUpdateOperationsInput | number
-    RoleId?: StringFieldUpdateOperationsInput | string
-    AllowedDiscordPermissions?: TempVoicePresetDiscordRolePermissionUpdateAllowedDiscordPermissionsInput | string[]
-    DeniedDiscordPermissions?: TempVoicePresetDiscordRolePermissionUpdateDeniedDiscordPermissionsInput | string[]
-  }
-
-  export type TempVoiceConfigUpdateWithoutTempVoicePresetInput = {
-    UUID?: StringFieldUpdateOperationsInput | string
-    CreatorChannel?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelCategory?: NullableStringFieldUpdateOperationsInput | string | null
-    ManageMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsManageEnalbed?: BoolFieldUpdateOperationsInput | boolean
-    TempVoiceChannels?: TempVoiceChannelsUpdateManyWithoutTempVoiceConfigNestedInput
-    TempVoice?: TempVoiceUpdateOneRequiredWithoutTempVoiceConfigsNestedInput
-  }
-
-  export type TempVoiceConfigUncheckedUpdateWithoutTempVoicePresetInput = {
-    Id?: IntFieldUpdateOperationsInput | number
-    UUID?: StringFieldUpdateOperationsInput | string
-    CreatorChannel?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelCategory?: NullableStringFieldUpdateOperationsInput | string | null
-    ManageMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsManageEnalbed?: BoolFieldUpdateOperationsInput | boolean
-    TempVoiceId?: StringFieldUpdateOperationsInput | string
-    TempVoiceChannels?: TempVoiceChannelsUncheckedUpdateManyWithoutTempVoiceConfigNestedInput
-  }
-
-  export type TempVoiceConfigUncheckedUpdateManyWithoutTempVoicePresetInput = {
-    Id?: IntFieldUpdateOperationsInput | number
-    UUID?: StringFieldUpdateOperationsInput | string
-    CreatorChannel?: NullableStringFieldUpdateOperationsInput | string | null
-    ChannelCategory?: NullableStringFieldUpdateOperationsInput | string | null
-    ManageMessageTemplateId?: NullableStringFieldUpdateOperationsInput | string | null
-    IsManageEnalbed?: BoolFieldUpdateOperationsInput | boolean
-    TempVoiceId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type TempVoiceChannelMemberCreateManyTempVoiceChannelsInput = {
-    Id?: number
-    UserId: string
-    Permissions?: TempVoiceChannelMemberCreatePermissionsInput | string[]
-  }
-
-  export type TempVoiceChannelMemberUpdateWithoutTempVoiceChannelsInput = {
-    UserId?: StringFieldUpdateOperationsInput | string
-    Permissions?: TempVoiceChannelMemberUpdatePermissionsInput | string[]
-  }
-
-  export type TempVoiceChannelMemberUncheckedUpdateWithoutTempVoiceChannelsInput = {
-    Id?: IntFieldUpdateOperationsInput | number
-    UserId?: StringFieldUpdateOperationsInput | string
-    Permissions?: TempVoiceChannelMemberUpdatePermissionsInput | string[]
-  }
-
-  export type TempVoiceChannelMemberUncheckedUpdateManyWithoutTempVoiceChannelsInput = {
-    Id?: IntFieldUpdateOperationsInput | number
-    UserId?: StringFieldUpdateOperationsInput | string
-    Permissions?: TempVoiceChannelMemberUpdatePermissionsInput | string[]
   }
 
   export type VerificationGatesCreateManyVerificationGatesInput = {
@@ -139330,23 +139030,23 @@ export namespace Prisma {
   export type LevelsCreateManyLevelSettingsInput = {
     Id?: number
     XP?: string | null
-    RequiredXp?: string | null
     Level?: number | null
     UserId: string
+    UUID: string
     ClaimedXPDrops?: LevelsCreateClaimedXPDropsInput | string[]
     CurrentStreakDay?: number | null
+    RequiredXp?: string | null
     LastXPStreakUpdate?: string | null
-    UUID: string
   }
 
   export type XPDropsCreateManyLevelSettingsInput = {
     Id?: number
-    UUID: string
     XPRange?: string | null
     TimeToRespawn?: string | null
     ChannelIds?: XPDropsCreateChannelIdsInput | string[]
     ClaimAmount?: number | null
     ExpireTime?: string | null
+    UUID: string
     LastSpawned?: string | null
     MessageIdsToDelete?: XPDropsCreateMessageIdsToDeleteInput | string[]
   }
@@ -139387,70 +139087,70 @@ export namespace Prisma {
 
   export type LevelsUpdateWithoutLevelSettingsInput = {
     XP?: NullableStringFieldUpdateOperationsInput | string | null
-    RequiredXp?: NullableStringFieldUpdateOperationsInput | string | null
     Level?: NullableIntFieldUpdateOperationsInput | number | null
+    UUID?: StringFieldUpdateOperationsInput | string
     ClaimedXPDrops?: LevelsUpdateClaimedXPDropsInput | string[]
     CurrentStreakDay?: NullableIntFieldUpdateOperationsInput | number | null
+    RequiredXp?: NullableStringFieldUpdateOperationsInput | string | null
     LastXPStreakUpdate?: NullableStringFieldUpdateOperationsInput | string | null
-    UUID?: StringFieldUpdateOperationsInput | string
     Users?: UsersUpdateOneRequiredWithoutLevelsNestedInput
   }
 
   export type LevelsUncheckedUpdateWithoutLevelSettingsInput = {
     Id?: IntFieldUpdateOperationsInput | number
     XP?: NullableStringFieldUpdateOperationsInput | string | null
-    RequiredXp?: NullableStringFieldUpdateOperationsInput | string | null
     Level?: NullableIntFieldUpdateOperationsInput | number | null
     UserId?: StringFieldUpdateOperationsInput | string
+    UUID?: StringFieldUpdateOperationsInput | string
     ClaimedXPDrops?: LevelsUpdateClaimedXPDropsInput | string[]
     CurrentStreakDay?: NullableIntFieldUpdateOperationsInput | number | null
+    RequiredXp?: NullableStringFieldUpdateOperationsInput | string | null
     LastXPStreakUpdate?: NullableStringFieldUpdateOperationsInput | string | null
-    UUID?: StringFieldUpdateOperationsInput | string
   }
 
   export type LevelsUncheckedUpdateManyWithoutLevelSettingsInput = {
     Id?: IntFieldUpdateOperationsInput | number
     XP?: NullableStringFieldUpdateOperationsInput | string | null
-    RequiredXp?: NullableStringFieldUpdateOperationsInput | string | null
     Level?: NullableIntFieldUpdateOperationsInput | number | null
     UserId?: StringFieldUpdateOperationsInput | string
+    UUID?: StringFieldUpdateOperationsInput | string
     ClaimedXPDrops?: LevelsUpdateClaimedXPDropsInput | string[]
     CurrentStreakDay?: NullableIntFieldUpdateOperationsInput | number | null
+    RequiredXp?: NullableStringFieldUpdateOperationsInput | string | null
     LastXPStreakUpdate?: NullableStringFieldUpdateOperationsInput | string | null
-    UUID?: StringFieldUpdateOperationsInput | string
   }
 
   export type XPDropsUpdateWithoutLevelSettingsInput = {
-    UUID?: StringFieldUpdateOperationsInput | string
     XPRange?: NullableStringFieldUpdateOperationsInput | string | null
     TimeToRespawn?: NullableStringFieldUpdateOperationsInput | string | null
     ChannelIds?: XPDropsUpdateChannelIdsInput | string[]
     ClaimAmount?: NullableIntFieldUpdateOperationsInput | number | null
     ExpireTime?: NullableStringFieldUpdateOperationsInput | string | null
+    UUID?: StringFieldUpdateOperationsInput | string
     LastSpawned?: NullableStringFieldUpdateOperationsInput | string | null
     MessageIdsToDelete?: XPDropsUpdateMessageIdsToDeleteInput | string[]
   }
 
   export type XPDropsUncheckedUpdateWithoutLevelSettingsInput = {
     Id?: IntFieldUpdateOperationsInput | number
-    UUID?: StringFieldUpdateOperationsInput | string
     XPRange?: NullableStringFieldUpdateOperationsInput | string | null
     TimeToRespawn?: NullableStringFieldUpdateOperationsInput | string | null
     ChannelIds?: XPDropsUpdateChannelIdsInput | string[]
     ClaimAmount?: NullableIntFieldUpdateOperationsInput | number | null
     ExpireTime?: NullableStringFieldUpdateOperationsInput | string | null
+    UUID?: StringFieldUpdateOperationsInput | string
     LastSpawned?: NullableStringFieldUpdateOperationsInput | string | null
     MessageIdsToDelete?: XPDropsUpdateMessageIdsToDeleteInput | string[]
   }
 
   export type XPDropsUncheckedUpdateManyWithoutLevelSettingsInput = {
     Id?: IntFieldUpdateOperationsInput | number
-    UUID?: StringFieldUpdateOperationsInput | string
     XPRange?: NullableStringFieldUpdateOperationsInput | string | null
     TimeToRespawn?: NullableStringFieldUpdateOperationsInput | string | null
     ChannelIds?: XPDropsUpdateChannelIdsInput | string[]
     ClaimAmount?: NullableIntFieldUpdateOperationsInput | number | null
     ExpireTime?: NullableStringFieldUpdateOperationsInput | string | null
+    UUID?: StringFieldUpdateOperationsInput | string
     LastSpawned?: NullableStringFieldUpdateOperationsInput | string | null
     MessageIdsToDelete?: XPDropsUpdateMessageIdsToDeleteInput | string[]
   }
@@ -139499,13 +139199,13 @@ export namespace Prisma {
   export type LevelsCreateManyUsersInput = {
     Id?: number
     XP?: string | null
-    RequiredXp?: string | null
     Level?: number | null
     GuildId: string
+    UUID: string
     ClaimedXPDrops?: LevelsCreateClaimedXPDropsInput | string[]
     CurrentStreakDay?: number | null
+    RequiredXp?: string | null
     LastXPStreakUpdate?: string | null
-    UUID: string
   }
 
   export type VanitysCreateManyUsersInput = {
@@ -139548,37 +139248,37 @@ export namespace Prisma {
 
   export type LevelsUpdateWithoutUsersInput = {
     XP?: NullableStringFieldUpdateOperationsInput | string | null
-    RequiredXp?: NullableStringFieldUpdateOperationsInput | string | null
     Level?: NullableIntFieldUpdateOperationsInput | number | null
+    UUID?: StringFieldUpdateOperationsInput | string
     ClaimedXPDrops?: LevelsUpdateClaimedXPDropsInput | string[]
     CurrentStreakDay?: NullableIntFieldUpdateOperationsInput | number | null
+    RequiredXp?: NullableStringFieldUpdateOperationsInput | string | null
     LastXPStreakUpdate?: NullableStringFieldUpdateOperationsInput | string | null
-    UUID?: StringFieldUpdateOperationsInput | string
     LevelSettings?: LevelSettingsUpdateOneRequiredWithoutLevelsNestedInput
   }
 
   export type LevelsUncheckedUpdateWithoutUsersInput = {
     Id?: IntFieldUpdateOperationsInput | number
     XP?: NullableStringFieldUpdateOperationsInput | string | null
-    RequiredXp?: NullableStringFieldUpdateOperationsInput | string | null
     Level?: NullableIntFieldUpdateOperationsInput | number | null
     GuildId?: StringFieldUpdateOperationsInput | string
+    UUID?: StringFieldUpdateOperationsInput | string
     ClaimedXPDrops?: LevelsUpdateClaimedXPDropsInput | string[]
     CurrentStreakDay?: NullableIntFieldUpdateOperationsInput | number | null
+    RequiredXp?: NullableStringFieldUpdateOperationsInput | string | null
     LastXPStreakUpdate?: NullableStringFieldUpdateOperationsInput | string | null
-    UUID?: StringFieldUpdateOperationsInput | string
   }
 
   export type LevelsUncheckedUpdateManyWithoutUsersInput = {
     Id?: IntFieldUpdateOperationsInput | number
     XP?: NullableStringFieldUpdateOperationsInput | string | null
-    RequiredXp?: NullableStringFieldUpdateOperationsInput | string | null
     Level?: NullableIntFieldUpdateOperationsInput | number | null
     GuildId?: StringFieldUpdateOperationsInput | string
+    UUID?: StringFieldUpdateOperationsInput | string
     ClaimedXPDrops?: LevelsUpdateClaimedXPDropsInput | string[]
     CurrentStreakDay?: NullableIntFieldUpdateOperationsInput | number | null
+    RequiredXp?: NullableStringFieldUpdateOperationsInput | string | null
     LastXPStreakUpdate?: NullableStringFieldUpdateOperationsInput | string | null
-    UUID?: StringFieldUpdateOperationsInput | string
   }
 
   export type VanitysUpdateWithoutUsersInput = {

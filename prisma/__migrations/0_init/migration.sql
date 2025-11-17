@@ -322,7 +322,7 @@ CREATE TABLE "public"."GuildUserModeration" (
     "DmMessage" TEXT,
     "Type" TEXT,
     "Notes" TEXT[],
-    "LinkedCaseId" TEXT,
+    "LinkedCaseId" TEXT NOT NULL,
     "CreatedAt" TIMESTAMP(3),
     "GuildId" TEXT NOT NULL,
 
@@ -504,58 +504,17 @@ CREATE TABLE "public"."Giveaways" (
 );
 
 -- CreateTable
-CREATE TABLE "public"."TempVoice" (
+CREATE TABLE "public"."TempVoices" (
     "Id" SERIAL NOT NULL,
-    "UserInviteMessageTemplateId" TEXT,
-    "ModeratorUserIds" TEXT[],
-    "TempVoiceLogChannelId" TEXT,
+    "UUID" TEXT NOT NULL,
+    "Name" TEXT,
+    "JointoCreateChannel" TEXT NOT NULL,
+    "JointoCreateCategory" TEXT NOT NULL,
+    "Manage" BOOLEAN NOT NULL,
+    "PresetLimit" INTEGER,
     "GuildId" TEXT NOT NULL,
 
-    CONSTRAINT "TempVoice_pkey" PRIMARY KEY ("Id")
-);
-
--- CreateTable
-CREATE TABLE "public"."TempVoiceConfig" (
-    "Id" SERIAL NOT NULL,
-    "UUID" TEXT NOT NULL,
-    "CreatorChannel" TEXT,
-    "ChannelCategory" TEXT,
-    "ManageMessageTemplateId" TEXT,
-    "IsManageEnalbed" BOOLEAN NOT NULL DEFAULT true,
-    "TempVoicePresetId" TEXT NOT NULL,
-    "TempVoiceId" TEXT NOT NULL,
-
-    CONSTRAINT "TempVoiceConfig_pkey" PRIMARY KEY ("Id")
-);
-
--- CreateTable
-CREATE TABLE "public"."TempVoicePreset" (
-    "Id" SERIAL NOT NULL,
-    "UUID" TEXT NOT NULL,
-    "ChannelName" TEXT,
-    "ChannelLimit" INTEGER,
-    "ChannelRegion" TEXT,
-    "ChannelBitRate" TEXT,
-    "UserInviteType" TEXT DEFAULT 'ping',
-    "SendLogsInTempChannel" BOOLEAN DEFAULT true,
-    "BlacklistRoleId" TEXT,
-    "ManageComponents" TEXT[],
-    "OwnerAllowedDiscordPermissions" TEXT[],
-    "OwnerDeniedDiscordPermissions" TEXT[],
-    "TempVoiceId" TEXT NOT NULL,
-
-    CONSTRAINT "TempVoicePreset_pkey" PRIMARY KEY ("Id")
-);
-
--- CreateTable
-CREATE TABLE "public"."TempVoicePresetDiscordRolePermission" (
-    "Id" SERIAL NOT NULL,
-    "RoleId" TEXT NOT NULL,
-    "AllowedDiscordPermissions" TEXT[],
-    "DeniedDiscordPermissions" TEXT[],
-    "TempVoicePresetId" TEXT NOT NULL,
-
-    CONSTRAINT "TempVoicePresetDiscordRolePermission_pkey" PRIMARY KEY ("Id")
+    CONSTRAINT "TempVoices_pkey" PRIMARY KEY ("Id")
 );
 
 -- CreateTable
@@ -564,19 +523,9 @@ CREATE TABLE "public"."TempVoiceChannels" (
     "GuildId" TEXT NOT NULL,
     "ChannelId" TEXT NOT NULL,
     "OwnerId" TEXT NOT NULL,
-    "TempVoiceConfigId" TEXT NOT NULL,
+    "TempVoiceId" TEXT NOT NULL,
 
     CONSTRAINT "TempVoiceChannels_pkey" PRIMARY KEY ("Id")
-);
-
--- CreateTable
-CREATE TABLE "public"."TempVoiceChannelMember" (
-    "Id" SERIAL NOT NULL,
-    "UserId" TEXT NOT NULL,
-    "ChannelId" TEXT NOT NULL,
-    "Permissions" TEXT[] DEFAULT ARRAY['kick', 'name', 'limit', 'look', 'unlook']::TEXT[],
-
-    CONSTRAINT "TempVoiceChannelMember_pkey" PRIMARY KEY ("Id")
 );
 
 -- CreateTable
@@ -680,10 +629,45 @@ CREATE TABLE "public"."MessageTemplates" (
     "OtherEmbeds" TEXT[],
     "Name" TEXT NOT NULL,
     "GuildId" TEXT NOT NULL,
-    "ComponentJSON" TEXT,
-    "IsComponentsV2Message" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "MessageTemplates_pkey" PRIMARY KEY ("Id")
+);
+
+-- CreateTable
+CREATE TABLE "public"."GuildReactionRoles" (
+    "Id" SERIAL NOT NULL,
+    "UUID" TEXT NOT NULL,
+    "Roles" TEXT[],
+    "MessageId" TEXT,
+    "ChannelId" TEXT,
+    "AddMessage" TEXT,
+    "RemoveMessage" TEXT,
+    "Emoji" TEXT,
+    "GuildId" TEXT NOT NULL,
+
+    CONSTRAINT "GuildReactionRoles_pkey" PRIMARY KEY ("Id")
+);
+
+-- CreateTable
+CREATE TABLE "public"."ReactionRoleSelectmenu" (
+    "Id" SERIAL NOT NULL,
+    "Emoji" TEXT,
+    "Label" TEXT,
+    "Description" TEXT,
+    "GuildReactionRoleId" TEXT NOT NULL,
+
+    CONSTRAINT "ReactionRoleSelectmenu_pkey" PRIMARY KEY ("Id")
+);
+
+-- CreateTable
+CREATE TABLE "public"."ReactionRoleButton" (
+    "Id" SERIAL NOT NULL,
+    "Emoji" TEXT,
+    "Type" TEXT,
+    "Label" TEXT,
+    "GuildReactionRoleId" TEXT NOT NULL,
+
+    CONSTRAINT "ReactionRoleButton_pkey" PRIMARY KEY ("Id")
 );
 
 -- CreateTable
@@ -735,6 +719,25 @@ CREATE TABLE "public"."GuildSpotifyNotifications" (
     "GuildId" TEXT NOT NULL,
 
     CONSTRAINT "GuildSpotifyNotifications_pkey" PRIMARY KEY ("Id")
+);
+
+-- CreateTable
+CREATE TABLE "public"."Tags" (
+    "Id" SERIAL NOT NULL,
+    "UUID" TEXT NOT NULL,
+    "TagId" TEXT NOT NULL,
+    "TriggerKeywords" TEXT[],
+    "MessageTemplateId" TEXT,
+    "IsShlashCommand" BOOLEAN NOT NULL,
+    "ShlashCommandId" TEXT,
+    "IsTextInputCommand" BOOLEAN NOT NULL,
+    "IsEnabled" BOOLEAN NOT NULL,
+    "PermissionRoleId" TEXT,
+    "CommandDescription" TEXT,
+    "FilterTextFromMessages" TEXT[],
+    "GuildId" TEXT NOT NULL,
+
+    CONSTRAINT "Tags_pkey" PRIMARY KEY ("Id")
 );
 
 -- CreateTable
@@ -814,7 +817,6 @@ CREATE TABLE "public"."TicketSetups" (
     "TextCommandName" TEXT,
     "SendTranscriptToUser" BOOLEAN,
     "GuildId" TEXT NOT NULL,
-    "TicketSettings" TEXT[],
 
     CONSTRAINT "TicketSetups_pkey" PRIMARY KEY ("Id")
 );
@@ -951,30 +953,23 @@ CREATE TABLE "public"."GuildYoutubeNotifications" (
 -- CreateTable
 CREATE TABLE "public"."LevelSettings" (
     "Id" SERIAL NOT NULL,
-    "LevelUpChannelId" TEXT,
-    "LeaderboardMessageTemplateId" TEXT,
-    "LeaderboardDisplayAmount" INTEGER,
-    "RequiredXPForFirstLevel" INTEGER,
-    "MessageXPRange" TEXT,
-    "VoiceXPRange" TEXT,
-    "VoiceXPCooldown" TEXT,
+    "LevelUpChannelId" TEXT NOT NULL,
+    "LevelUoMessageTemplateId" TEXT NOT NULL,
+    "LeaderboardMessageTemplateId" TEXT NOT NULL,
+    "LeaderboardDisplayAmount" INTEGER NOT NULL,
+    "RequiredXPForFirstLevel" INTEGER NOT NULL,
+    "Format" TEXT NOT NULL,
+    "MessageXP" BOOLEAN NOT NULL,
+    "MessageXPRange" TEXT NOT NULL,
+    "MesssageXPCooldown" TEXT NOT NULL,
+    "MessageXPType" TEXT NOT NULL,
+    "VoiceXP" BOOLEAN NOT NULL,
+    "VoiceXPRange" TEXT NOT NULL,
+    "VoiceXPCooldown" INTEGER NOT NULL,
     "ExcludedChannelIds" TEXT[],
     "ExcludeUserIds" TEXT[],
     "ExcludeRoleIds" TEXT[],
     "GuildId" TEXT NOT NULL,
-    "LevelUpMessageTemplateId" TEXT,
-    "IsLevelModuleEnabled" BOOLEAN NOT NULL DEFAULT false,
-    "IsMessageXPEnabled" BOOLEAN DEFAULT false,
-    "IsVoiceXPEnabled" BOOLEAN DEFAULT false,
-    "MessageXPCooldown" TEXT,
-    "MessageXPType" TEXT[],
-    "RequiredXPFormular" TEXT,
-    "LevelUpMessageType" TEXT,
-    "LevelUserInfoMessageTemplate" TEXT,
-    "XPStreaksMessageType" TEXT,
-    "XPStreaksMessageChannelId" TEXT,
-    "XPStreaksIncreaseType" TEXT[],
-    "XPDropsMessageTemplate" TEXT,
 
     CONSTRAINT "LevelSettings_pkey" PRIMARY KEY ("Id")
 );
@@ -983,14 +978,10 @@ CREATE TABLE "public"."LevelSettings" (
 CREATE TABLE "public"."XPDrops" (
     "Id" SERIAL NOT NULL,
     "GuildId" TEXT NOT NULL,
-    "XPRange" TEXT,
-    "TimeToRespawn" TEXT,
+    "XPRange" TEXT NOT NULL,
+    "ClaimType" INTEGER NOT NULL,
+    "TimeToRespawn" TEXT NOT NULL,
     "ChannelIds" TEXT[],
-    "ClaimAmount" INTEGER,
-    "ExpireTime" TEXT,
-    "UUID" TEXT NOT NULL,
-    "LastSpawned" TEXT,
-    "MessageIdsToDelete" TEXT[],
 
     CONSTRAINT "XPDrops_pkey" PRIMARY KEY ("Id")
 );
@@ -998,12 +989,13 @@ CREATE TABLE "public"."XPDrops" (
 -- CreateTable
 CREATE TABLE "public"."XPStreaks" (
     "Id" SERIAL NOT NULL,
-    "Days" INTEGER,
-    "Nickname" TEXT,
-    "BonusLevels" INTEGER,
-    "BonusXP" INTEGER,
-    "MessageTemplateId" TEXT,
-    "Multiplier" INTEGER,
+    "Days" INTEGER NOT NULL,
+    "Nickname" TEXT NOT NULL,
+    "BonusLevels" INTEGER NOT NULL,
+    "BonusXP" INTEGER NOT NULL,
+    "ChannelId" TEXT NOT NULL,
+    "MessageTemplateId" TEXT NOT NULL,
+    "Multiplier" INTEGER NOT NULL,
     "RoleRewardIds" TEXT[],
     "GuildId" TEXT NOT NULL,
 
@@ -1013,11 +1005,11 @@ CREATE TABLE "public"."XPStreaks" (
 -- CreateTable
 CREATE TABLE "public"."LevelRoles" (
     "Id" SERIAL NOT NULL,
-    "Level" INTEGER,
-    "Multiplier" INTEGER,
+    "Level" INTEGER NOT NULL,
+    "Multiplier" INTEGER NOT NULL,
+    "Type" TEXT NOT NULL,
     "RoleId" TEXT NOT NULL,
     "GuildId" TEXT NOT NULL,
-    "Types" TEXT[],
 
     CONSTRAINT "LevelRoles_pkey" PRIMARY KEY ("Id")
 );
@@ -1025,15 +1017,11 @@ CREATE TABLE "public"."LevelRoles" (
 -- CreateTable
 CREATE TABLE "public"."Levels" (
     "Id" SERIAL NOT NULL,
-    "XP" TEXT,
-    "Level" INTEGER,
+    "XP" INTEGER NOT NULL,
+    "RequiredXp" INTEGER NOT NULL,
+    "Level" INTEGER NOT NULL,
     "UserId" TEXT NOT NULL,
     "GuildId" TEXT NOT NULL,
-    "UUID" TEXT NOT NULL,
-    "ClaimedXPDrops" TEXT[],
-    "CurrentStreakDay" INTEGER,
-    "RequiredXp" TEXT,
-    "LastXPStreakUpdate" TEXT,
 
     CONSTRAINT "Levels_pkey" PRIMARY KEY ("Id")
 );
@@ -1273,28 +1261,13 @@ CREATE UNIQUE INDEX "Giveaways_UUID_key" ON "public"."Giveaways"("UUID");
 CREATE UNIQUE INDEX "Giveaways_MessageId_key" ON "public"."Giveaways"("MessageId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "TempVoice_GuildId_key" ON "public"."TempVoice"("GuildId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "TempVoiceConfig_UUID_key" ON "public"."TempVoiceConfig"("UUID");
-
--- CreateIndex
-CREATE UNIQUE INDEX "TempVoiceConfig_TempVoicePresetId_key" ON "public"."TempVoiceConfig"("TempVoicePresetId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "TempVoicePreset_UUID_key" ON "public"."TempVoicePreset"("UUID");
-
--- CreateIndex
-CREATE UNIQUE INDEX "TempVoicePresetDiscordRolePermission_TempVoicePresetId_key" ON "public"."TempVoicePresetDiscordRolePermission"("TempVoicePresetId");
+CREATE UNIQUE INDEX "TempVoices_UUID_key" ON "public"."TempVoices"("UUID");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "TempVoiceChannels_ChannelId_key" ON "public"."TempVoiceChannels"("ChannelId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "TempVoiceChannels_OwnerId_key" ON "public"."TempVoiceChannels"("OwnerId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "TempVoiceChannelMember_ChannelId_key" ON "public"."TempVoiceChannelMember"("ChannelId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "GuildLeaveSetup_ChannelId_key" ON "public"."GuildLeaveSetup"("ChannelId");
@@ -1321,6 +1294,15 @@ CREATE UNIQUE INDEX "GuildLogs_UUID_key" ON "public"."GuildLogs"("UUID");
 CREATE UNIQUE INDEX "MessageTemplates_Name_key" ON "public"."MessageTemplates"("Name");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "GuildReactionRoles_UUID_key" ON "public"."GuildReactionRoles"("UUID");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "ReactionRoleSelectmenu_GuildReactionRoleId_key" ON "public"."ReactionRoleSelectmenu"("GuildReactionRoleId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "ReactionRoleButton_GuildReactionRoleId_key" ON "public"."ReactionRoleButton"("GuildReactionRoleId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "GuildSecurity_GuildId_key" ON "public"."GuildSecurity"("GuildId");
 
 -- CreateIndex
@@ -1328,6 +1310,12 @@ CREATE UNIQUE INDEX "VerificationGates_UUID_key" ON "public"."VerificationGates"
 
 -- CreateIndex
 CREATE UNIQUE INDEX "GuildSpotifyNotifications_UUID_key" ON "public"."GuildSpotifyNotifications"("UUID");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Tags_UUID_key" ON "public"."Tags"("UUID");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Tags_TagId_key" ON "public"."Tags"("TagId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Polls_UUID_key" ON "public"."Polls"("UUID");
@@ -1364,15 +1352,6 @@ CREATE UNIQUE INDEX "GuildYoutubeNotifications_UUID_key" ON "public"."GuildYoutu
 
 -- CreateIndex
 CREATE UNIQUE INDEX "LevelSettings_GuildId_key" ON "public"."LevelSettings"("GuildId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "XPDrops_UUID_key" ON "public"."XPDrops"("UUID");
-
--- CreateIndex
-CREATE UNIQUE INDEX "LevelRoles_RoleId_key" ON "public"."LevelRoles"("RoleId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Levels_UUID_key" ON "public"."Levels"("UUID");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Users_UserId_key" ON "public"."Users"("UserId");
@@ -1483,7 +1462,7 @@ ALTER TABLE "public"."GuildUserModerationSettingUnmute" ADD CONSTRAINT "GuildUse
 ALTER TABLE "public"."GuildUserModeration" ADD CONSTRAINT "GuildUserModeration_GuildId_fkey" FOREIGN KEY ("GuildId") REFERENCES "public"."Guilds"("GuildId") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "public"."GuildUserModeration" ADD CONSTRAINT "GuildUserModeration_LinkedCaseId_fkey" FOREIGN KEY ("LinkedCaseId") REFERENCES "public"."ModerationScoutCases"("UUID") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "public"."GuildUserModeration" ADD CONSTRAINT "GuildUserModeration_LinkedCaseId_fkey" FOREIGN KEY ("LinkedCaseId") REFERENCES "public"."ModerationScoutCases"("UUID") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "public"."GuildDisBotAutoModeration" ADD CONSTRAINT "GuildDisBotAutoModeration_GuildId_fkey" FOREIGN KEY ("GuildId") REFERENCES "public"."Guilds"("GuildId") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -1522,25 +1501,10 @@ ALTER TABLE "public"."DiscordGuildAddon" ADD CONSTRAINT "DiscordGuildAddon_Guild
 ALTER TABLE "public"."Giveaways" ADD CONSTRAINT "Giveaways_GuildId_fkey" FOREIGN KEY ("GuildId") REFERENCES "public"."Guilds"("GuildId") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "public"."TempVoice" ADD CONSTRAINT "TempVoice_Guilds_fkey" FOREIGN KEY ("GuildId") REFERENCES "public"."Guilds"("GuildId") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE "public"."TempVoices" ADD CONSTRAINT "TempVoices_GuildId_fkey" FOREIGN KEY ("GuildId") REFERENCES "public"."Guilds"("GuildId") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "public"."TempVoiceConfig" ADD CONSTRAINT "TempVoiceConfig_Preset_fkey" FOREIGN KEY ("TempVoicePresetId") REFERENCES "public"."TempVoicePreset"("UUID") ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- AddForeignKey
-ALTER TABLE "public"."TempVoiceConfig" ADD CONSTRAINT "TempVoiceConfig_TempVoice_fkey" FOREIGN KEY ("TempVoiceId") REFERENCES "public"."TempVoice"("GuildId") ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- AddForeignKey
-ALTER TABLE "public"."TempVoicePreset" ADD CONSTRAINT "TempVoicePreset_TempVoice_fkey" FOREIGN KEY ("TempVoiceId") REFERENCES "public"."TempVoice"("GuildId") ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- AddForeignKey
-ALTER TABLE "public"."TempVoicePresetDiscordRolePermission" ADD CONSTRAINT "Permission_Preset_fkey" FOREIGN KEY ("TempVoicePresetId") REFERENCES "public"."TempVoicePreset"("UUID") ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- AddForeignKey
-ALTER TABLE "public"."TempVoiceChannels" ADD CONSTRAINT "Channel_Config_fkey" FOREIGN KEY ("TempVoiceConfigId") REFERENCES "public"."TempVoiceConfig"("UUID") ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- AddForeignKey
-ALTER TABLE "public"."TempVoiceChannelMember" ADD CONSTRAINT "Member_Channel_fkey" FOREIGN KEY ("ChannelId") REFERENCES "public"."TempVoiceChannels"("ChannelId") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE "public"."TempVoiceChannels" ADD CONSTRAINT "TempVoiceChannels_TempVoiceId_fkey" FOREIGN KEY ("TempVoiceId") REFERENCES "public"."TempVoices"("UUID") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "public"."GuildLeaveSetup" ADD CONSTRAINT "GuildLeaveSetup_GuildId_fkey" FOREIGN KEY ("GuildId") REFERENCES "public"."Guilds"("GuildId") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -1564,6 +1528,15 @@ ALTER TABLE "public"."GuildLogs" ADD CONSTRAINT "GuildLogs_GuildId_fkey" FOREIGN
 ALTER TABLE "public"."MessageTemplates" ADD CONSTRAINT "MessageTemplates_GuildId_fkey" FOREIGN KEY ("GuildId") REFERENCES "public"."Guilds"("GuildId") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "public"."GuildReactionRoles" ADD CONSTRAINT "GuildReactionRoles_GuildId_fkey" FOREIGN KEY ("GuildId") REFERENCES "public"."Guilds"("GuildId") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "public"."ReactionRoleSelectmenu" ADD CONSTRAINT "ReactionRoleSelectmenu_GuildReactionRoleId_fkey" FOREIGN KEY ("GuildReactionRoleId") REFERENCES "public"."GuildReactionRoles"("UUID") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "public"."ReactionRoleButton" ADD CONSTRAINT "ReactionRoleButton_GuildReactionRoleId_fkey" FOREIGN KEY ("GuildReactionRoleId") REFERENCES "public"."GuildReactionRoles"("UUID") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "public"."GuildSecurity" ADD CONSTRAINT "GuildSecurity_GuildId_fkey" FOREIGN KEY ("GuildId") REFERENCES "public"."Guilds"("GuildId") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -1574,6 +1547,9 @@ ALTER TABLE "public"."VerificationGatesPermission" ADD CONSTRAINT "VerificationG
 
 -- AddForeignKey
 ALTER TABLE "public"."GuildSpotifyNotifications" ADD CONSTRAINT "GuildSpotifyNotifications_GuildId_fkey" FOREIGN KEY ("GuildId") REFERENCES "public"."Guilds"("GuildId") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "public"."Tags" ADD CONSTRAINT "Tags_GuildId_fkey" FOREIGN KEY ("GuildId") REFERENCES "public"."Guilds"("GuildId") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "public"."Polls" ADD CONSTRAINT "Polls_GuildId_fkey" FOREIGN KEY ("GuildId") REFERENCES "public"."Guilds"("GuildId") ON DELETE RESTRICT ON UPDATE CASCADE;
