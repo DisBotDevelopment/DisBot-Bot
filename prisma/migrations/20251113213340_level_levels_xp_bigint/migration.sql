@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "public"."Levels" ALTER COLUMN "XP" SET DATA TYPE BIGINT;
