@@ -1,6 +1,6 @@
 import {EmbedBuilder, MessageFlags, UserSelectMenuInteraction} from "discord.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 
 export default {
     id: "embed-create-delete-sec",

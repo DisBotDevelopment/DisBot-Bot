@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import { pathToFileURL } from "url";
 import { getFilesRecursively } from "../../helper/fileHelper.js";
-import { ExtendedClient } from "../../types/client.js";
+import { ExtendedClient } from "../../types/ExtendedClient.js";
 import { LoggingAction } from "../../enums/loggingTypes.js";
 import { Logger } from "../../main/logger.js";
 import {Config} from "../../main/config.js";

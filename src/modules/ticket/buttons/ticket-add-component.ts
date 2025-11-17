@@ -9,7 +9,7 @@ import {
     StringSelectMenuBuilder,
     TextDisplayBuilder,
 } from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {randomUUID} from "crypto";
 import {database} from "../../../main/database.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
@@ -50,7 +50,7 @@ export default {
                             [
                                 `# ${await convertToEmojiToPng("puzzle")} Component Editor`,
                                 `- Use the Buttons and Menus to Setup your Ticket Component`,
-                                `- If you need help with this you can read more here: https://doc.xyzhub.link/s/disbot/doc/tickets-2mWrLmYgMh`,
+                                `- If you need help with this you can read more here: https://docs.disbot.app/doc/tickets-2mWrLmYgMh`,
                                 ``
                             ].join("\n")
                         )
@@ -74,8 +74,23 @@ export default {
                                 .setLabel("Message Template")
                         )
                     )
+                    .addActionRowComponents(
+                        new ActionRowBuilder<ButtonBuilder>().addComponents(
+                            new ButtonBuilder()
+                                .setCustomId("ticket-add-component-permission:" + uuid)
+                                .setEmoji("<:permissions:1277170947761111130>")
+                                .setStyle(ButtonStyle.Secondary)
+                                .setLabel("Ticket Permissions"),
+                            new ButtonBuilder()
+                                .setCustomId("ticket-add-component-settings:" + uuid)
+                                .setEmoji("<:setting:1260156922569687071>")
+                                .setStyle(ButtonStyle.Secondary)
+                                .setLabel("Ticket Settings")
+                        )
+                    )
+                    .addSeparatorComponents(new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Large))
                     .addTextDisplayComponents(
-                        new TextDisplayBuilder().setContent("Select Blacklist Roles, Transcript Channel and Permissions")
+                        new TextDisplayBuilder().setContent("Select custom and optional options")
                     )
                     .addActionRowComponents(
                         new ActionRowBuilder<RoleSelectMenuBuilder>().addComponents(
@@ -92,19 +107,6 @@ export default {
                                 .setCustomId("ticket-add-component-transcript:" + uuid)
                                 .setPlaceholder("Select a Transcript Channel")
                         )
-                    )
-                    .addActionRowComponents(
-                        new ActionRowBuilder<ButtonBuilder>().addComponents(
-                            new ButtonBuilder()
-                                .setCustomId("ticket-add-component-permission:" + uuid)
-                                .setEmoji("<:permissions:1277170947761111130>")
-                                .setStyle(ButtonStyle.Secondary)
-                                .setLabel("Ticket Permissions")
-                        )
-                    )
-                    .addSeparatorComponents(new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Large))
-                    .addTextDisplayComponents(
-                        new TextDisplayBuilder().setContent("Select custom and optional options")
                     )
                     .addActionRowComponents(
                         new ActionRowBuilder<RoleSelectMenuBuilder>().addComponents(

@@ -1,5 +1,5 @@
 import {Request, Response} from "express";
-import {ExtendedClient} from "../../../../types/client.js";
+import {ExtendedClient} from "../../../../types/ExtendedClient.js";
 
 export const disbotstatsRoute = async (
     req: Request,
@@ -47,9 +47,9 @@ export const disbotstatsRoute = async (
         tenguilds: topGuilds,
         guildcound: guildCounts.size,
         commands: (client as ExtendedClient).commands?.map((command) => ({
-            name: command.data?.name,
-            description: command.data?.description,
-            options: command.data?.options || []
+            name: command.command?.name,
+            description: command.command?.description,
+            options: command.command?.options || []
         })),
     });
 };

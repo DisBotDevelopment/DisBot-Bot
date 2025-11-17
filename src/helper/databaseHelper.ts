@@ -1,4 +1,4 @@
-import {ExtendedClient} from "../types/client.js";
+import {ExtendedClient} from "../types/ExtendedClient.js";
 import {default as axios} from "axios";
 import {database} from "../main/database.js";
 import {versionData} from "../main/version.js";
@@ -10,6 +10,7 @@ import {Config} from "../main/config.js";
 import fs from "fs";
 import path from "path";
 import {PrismaClient} from "../prisma/index.js";
+import {randomUUID} from "crypto";
 
 colors.enable();
 
@@ -63,6 +64,8 @@ export async function setupDisBotConfig(client: ExtendedClient): Promise<void> {
                 TwitchToken: twitchAccessToken
             }
         })
+
+        await migrateDataBase()
 
         Logger.info(
             {
@@ -174,7 +177,7 @@ export async function initGuildsToDatabase(client: ExtendedClient) {
                     timestamp: new Date().toISOString(),
                     level: "info",
                     label: "Database",
-                    message: `Database init loaded for Guild ${clientGuild.name} ${guildMembers.size} members!`.gray,
+                    message: `Database init loaded for Guild ${clientGuild.name} loaded and updated default tables.`.italic.gray,
                     botType: Config.BotType.toString() || "Unknown",
                     action: LoggingAction.Database,
                 }
@@ -190,7 +193,7 @@ export async function initGuildsToDatabase(client: ExtendedClient) {
                     timestamp: new Date().toISOString(),
                     level: "error",
                     label: "Database",
-                    message: `Database init failed for Guild member init with error ${e}`.red,
+                    message: `Database init failed for ${guild.name} error ${e}`.red,
                     botType: Config.BotType.toString() || "Unknown",
                     action: LoggingAction.Database,
                 }
@@ -274,7 +277,7 @@ export async function initGuildToDatabase(client: ExtendedClient, guild: Guild) 
                 timestamp: new Date().toISOString(),
                 level: "info",
                 label: "Database",
-                message: `Database init loaded for Guild ${clientGuild.name} ${guildMembers.size} members!`.gray,
+                message: `Database init loaded for Guild ${clientGuild.name} and ${guildMembers.size} members!`.gray,
                 botType: Config.BotType.toString() || "Unknown",
                 action: LoggingAction.Database,
             }
@@ -290,7 +293,7 @@ export async function initGuildToDatabase(client: ExtendedClient, guild: Guild) 
                 timestamp: new Date().toISOString(),
                 level: "error",
                 label: "Database",
-                message: `Database init failed for Guild member init with error ${e}`.red,
+                message: `Database init failed for ${guild.name} members with error ${e}`.red,
                 botType: Config.BotType.toString() || "Unknown",
                 action: LoggingAction.Database,
             }
@@ -320,4 +323,5 @@ export async function initUsersToDatabase(client: ExtendedClient, user: User) {
 
 export async function migrateDataBase(client?: ExtendedClient) {
 
+    
 }

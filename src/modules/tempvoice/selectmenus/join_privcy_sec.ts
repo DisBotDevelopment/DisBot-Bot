@@ -1,6 +1,6 @@
 import {ButtonStyle, Client, MessageFlags, Role, TextChannel, UserSelectMenuInteraction} from "discord.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 
 export default {
   id: "join_privcy_sec",

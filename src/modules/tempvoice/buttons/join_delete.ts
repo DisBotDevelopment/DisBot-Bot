@@ -1,7 +1,8 @@
 import { ButtonInteraction, ButtonStyle, EmbedBuilder, GuildMember, MessageFlags, TextInputStyle } from "discord.js";
-import { ExtendedClient } from "../../../types/client.js";
+import { ExtendedClient } from "../../../types/ExtendedClient.js";
 import { convertToEmojiToPng } from "../../../helper/emojis.js";
 import { database } from "../../../main/database.js";
+import {IDisBotInteraction} from "../../../types/Interaction.js";
 
 export default {
   id: "join_delete",
@@ -12,7 +13,7 @@ export default {
    * @param {ExtendedClient} client
    */
   async execute(interaction: ButtonInteraction, client: ExtendedClient) {
-    const { guild, member } = interaction;
+    const {guild, member} = interaction;
     const data = await database.tempVoiceChannels.findFirst({
       where: {
         GuildId: guild?.id,
@@ -49,15 +50,15 @@ export default {
         flags: MessageFlags.Ephemeral
       });
     const embedhasabot = new EmbedBuilder().setDescription(
-      [``, `### ${trash} You Channel has been deleted!`, ``].join("\n")
+        [``, `### ${trash} You Channel has been deleted!`, ``].join("\n")
     );
 
     const channel = interaction.guild?.channels.cache.get(
-      data.ChannelId as string
+        data.ChannelId as string
     );
 
     channel?.delete("Channel deleted by owner");
 
-    interaction.reply({ embeds: [embedhasabot], flags: MessageFlags.Ephemeral });
+    interaction.reply({embeds: [embedhasabot], flags: MessageFlags.Ephemeral});
   }
-};
+} as unknown as IDisBotInteraction

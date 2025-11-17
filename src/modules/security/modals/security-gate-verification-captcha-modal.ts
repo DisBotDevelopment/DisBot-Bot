@@ -1,7 +1,7 @@
 import {VerificationAction} from "../../../enums/verification.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {verifyAction} from "../../../systems/verifictionAction.js";
-import {ExtendedClient} from "../../../types/client.js"
+import {ExtendedClient} from "../../../types/ExtendedClient.js"
 import {GuildMember, MessageFlags, ModalSubmitInteraction,} from "discord.js";
 import pkg from "short-uuid";
 import {database} from "../../../main/database.js";

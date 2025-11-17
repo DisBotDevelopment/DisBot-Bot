@@ -6,6 +6,11 @@
     "moduleResolution": "nodenext",
     "outDir": "./.build",
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "jsx": "react",
+    "jsxFactory": "JSX.createElement",
+    "jsxFragmentFactory": "JSX.Fragment",
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true
   }
 }

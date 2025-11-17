@@ -1,4 +1,4 @@
-import {ExtendedClient} from "../types/client.js";
+import {ExtendedClient} from "../types/ExtendedClient.js";
 import axios from "axios";
 import {ChannelType, EmbedBuilder, Guild, NewsChannel, TextChannel, ThreadChannel,} from "discord.js";
 import {database} from "../main/database.js";

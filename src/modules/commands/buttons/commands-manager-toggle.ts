@@ -8,7 +8,7 @@ import {
     TextInputStyle
 } from "discord.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {protectedCommands} from "../../../main/data.js";
 import {database} from "../../../main/database.js";
 import {Logger} from "../../../main/logger.js";
@@ -56,7 +56,7 @@ export default {
 
                     const restClient = new REST({version: "10"}).setToken(Config.Bot.DiscordBotToken);
 
-                    const json = client.commands.get(data.CodeName).data.toJSON();
+                    const json = client.commands.get(data.CodeName).command.toJSON();
 
                     json.name = data.CustomName;
                     json.description = data.Description;

@@ -6,12 +6,12 @@ import {
     StringSelectMenuBuilder,
     UserSelectMenuInteraction
 } from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {database} from "../../../main/database.js";
 import {randomUUID} from "crypto";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {cli} from "winston/lib/winston/config/index.js";
-import {ticketActions} from "../../../helper/ticketHelper.js";
+import {ticketActionsPermissions} from "../../../helper/ticketHelper.js";
 
 export default {
     id: "ticket-add-component-permission-user",
@@ -93,9 +93,9 @@ export default {
                                     new StringSelectMenuBuilder()
                                         .setCustomId("ticket-add-component-permission-ticket:" + uuid)
                                         .setPlaceholder("Select Ticket Permissions")
-                                        .setMaxValues(ticketActions.length)
+                                        .setMaxValues(ticketActionsPermissions.length)
                                         .setMinValues(0)
-                                        .addOptions(ticketActions)
+                                        .addOptions(ticketActionsPermissions)
                                 )
                         )
                         .addActionRowComponents(

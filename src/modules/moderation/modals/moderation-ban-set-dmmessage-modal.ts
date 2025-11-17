@@ -1,5 +1,5 @@
-import {MessageFlags, ModalSubmitInteraction,} from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ContainerBuilder, MessageFlags, ModalSubmitInteraction, TextDisplayBuilder,} from "discord.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 
@@ -27,10 +27,15 @@ export default {
             }
         });
 
-        if (!client.user) throw new Error("Client not found");
-        interaction.reply({
-            content: `## ${await convertToEmojiToPng("check")} DM Message has been set to \n\`${reason}\``,
-            flags: MessageFlags.Ephemeral,
+        await interaction.reply({
+            flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
+            components: [
+                new ContainerBuilder()
+                    .addTextDisplayComponents(
+                        new TextDisplayBuilder()
+                            .setContent(`## ${await convertToEmojiToPng("check")} DM Message has been set to \n${reason}`)
+                    )
+            ]
         });
     },
 };

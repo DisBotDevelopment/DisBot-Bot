@@ -1,7 +1,7 @@
 import {ButtonInteraction, ChannelType, MessageFlags, StringSelectMenuBuilder, TextDisplayBuilder} from "discord.js";
 import {PaginationBuilder} from "../../../helper/paginationHelper.js";
-import {ExtendedClient} from "../../../types/client.js";
-import {PaginationData} from "../../../types/pagination.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
+import {PaginationData} from "../../../types/Pagination.js";
 import {database} from "../../../main/database.js";
 
 export default {
@@ -26,7 +26,7 @@ export default {
         const list = data.slice(currentIndex, currentIndex + 5);
         const embedMessages = new TextDisplayBuilder()
             .setContent(
-                (await Promise.all(list.map(async (l) => `**Command Name:** ${l.interactionName ?? "N/A"}${l.interactionDescription ? `\n**Description:** ${l.interactionDescription ?? "N/A"}` : ""}\n**Slash Command Name:** ${l.data.name}`))).join("\n\n")
+                (await Promise.all(list.map(async (l) => `**Command Name:** ${l.interactionName ?? "N/A"}${l.interactionDescription ? `\n**Description:** ${l.interactionDescription ?? "N/A"}` : ""}\n**Slash Command Name:** ${l.command.name}`))).join("\n\n")
             );
 
         const selectMenu = new StringSelectMenuBuilder()
@@ -34,9 +34,9 @@ export default {
             .setPlaceholder("Select a Option to manage")
             .addOptions(
                 await Promise.all(list.map(async (l) => ({
-                    label: `${l.interactionName ?? "N/A"} (${l.data.name})`,
-                    description: `Slash Command Name: ${l.data.name}`,
-                    value: l.data.name,
+                    label: `${l.interactionName ?? "N/A"} (${l.command.name})`,
+                    description: `Slash Command Name: ${l.command.name}`,
+                    value: l.command.name,
                     emoji: "<:terminal:1260322426323996783>",
                 })) as any)
             );

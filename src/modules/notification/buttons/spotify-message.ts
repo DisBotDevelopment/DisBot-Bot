@@ -6,7 +6,7 @@ import {
     TextInputBuilder,
     TextInputStyle
 } from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 
 export default {
     id: "spotify-message",

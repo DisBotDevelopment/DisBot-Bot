@@ -7,8 +7,7 @@ import {
     MessagePayload,
     TextChannel
 } from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
-import {drawCard, LinearGradient} from "discord-welcome-card";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {database} from "../../../main/database.js";
 import {drawCardCanvas, uploadToCDN} from "../../../helper/utilityHelper.js";
 import {replacePlaceholders} from "../../../main/placeholder.js";

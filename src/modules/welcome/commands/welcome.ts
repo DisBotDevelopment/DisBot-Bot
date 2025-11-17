@@ -3,7 +3,7 @@ import {
     ButtonBuilder, ButtonStyle,
     ChannelType,
     ChatInputCommandInteraction,
-    CommandInteraction, ContainerBuilder, MessageFlags,
+    CommandInteraction, ContainerBuilder, InteractionContextType, MessageFlags,
     PermissionsBitField,
     SlashCommandBuilder, TextDisplayBuilder
 } from "discord.js";
@@ -24,7 +24,7 @@ export default {
         .setName("welcome")
         .setDescription("Welcome Module")
         .setDescriptionLocalizations({de: "Willkommen Module"})
-        .setDMPermission(false)
+        .setContexts(InteractionContextType.Guild)
         .setDefaultMemberPermissions(PermissionsBitField.Flags.ManageGuild),
     async execute(interaction: ChatInputCommandInteraction) {
 

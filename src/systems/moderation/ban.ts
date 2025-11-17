@@ -1,11 +1,15 @@
-import {ExtendedClient} from "../../types/client.js";
 import {database} from "../../main/database.js";
 import ms from "ms";
+import {ExtendedClient} from "../../types/ExtendedClient.js";
 
 export async function banScheduled(client: ExtendedClient) {
     const data = await database.guildUserModeration.findMany()
 
+    // SOON BACK!
+
+    return
     for (const d of data) {
+
         const currentTime = Date.now();
         const banDuration = ms(d.Duration as ms.StringValue);
         const banStartTime = new Date(d.CreatedAt).getTime();

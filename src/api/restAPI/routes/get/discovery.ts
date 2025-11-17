@@ -1,6 +1,6 @@
 import {database} from "../../../../main/database.js";
 import {Request, Response} from "express";
-import {ExtendedClient} from "../../../../types/client.js";
+import {ExtendedClient} from "../../../../types/ExtendedClient.js";
 
 const bannedWords = [
     "hitler", "heil", "nazi", "fascist", "racist", "slavery", "genocide", "holocaust", "ss",

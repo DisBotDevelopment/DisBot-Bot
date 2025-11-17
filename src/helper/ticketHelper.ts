@@ -5,7 +5,7 @@ import {
     BitField, ButtonBuilder,
     ButtonInteraction, ButtonStyle,
     ChannelType,
-    ChatInputCommandInteraction, Client, ContainerBuilder, Embed,
+    ChatInputCommandInteraction, Client, ComponentType, ContainerBuilder, Embed,
     EmbedBuilder, FileBuilder,
     Guild,
     GuildMember, GuildTextBasedChannel, Interaction,
@@ -17,21 +17,21 @@ import {
     PermissionsString,
     PrivateThreadChannel, Role, SectionBuilder, StringSelectMenuBuilder,
     StringSelectMenuInteraction, TextBasedChannel,
-    TextChannel, TextDisplayBuilder,
+    TextChannel, TextDisplayBuilder, TextDisplayComponent,
     TextInputBuilder, TextInputStyle,
     ThreadChannel,
     User
 } from "discord.js";
 import {convertToEmojiToPng} from "./emojis.js";
-import {ExtendedClient} from "../types/client.js";
-import {ModalData} from "../types/ticket.js";
+import {ExtendedClient} from "../types/ExtendedClient.js";
 import {randomUUID} from "crypto";
 import {cli} from "winston/lib/winston/config/index.js";
-import {createTranscript, ExportReturnType} from "discord-html-transcripts";
+import htmlTranscript, {ExportReturnType} from "discord-html-transcripts";
 import ticket from "../modules/ticket/commands/ticket.js";
 import {replacePlaceholders} from "../main/placeholder.js";
 import {Logger} from "../main/logger.js";
 import {MessageBuilder} from "./messageHelper.js";
+import {sendDefaultMessage} from "./utilityHelper.js";
 
 export async function ticketHelper(
     ticketSetupId: string,
@@ -60,7 +60,6 @@ export async function ticketHelper(
             guild = interaction.guild;
             user = interaction.member as GuildMember;
         }
-
 
         const data = await database.ticketSetups.findFirst({
             include: {
@@ -131,14 +130,12 @@ export async function ticketHelper(
                 }
             }
 
-            if (statusMessageTemplate.EmbedJSON)
-                await message.edit({
-                    embeds: [new EmbedBuilder(JSON.parse(replacePlaceholders(statusMessageTemplate.EmbedJSON, ticketPlaceholderType)))],
-                    content: statusMessageTemplate.Content ? replacePlaceholders(statusMessageTemplate.Content ?? "", ticketPlaceholderType) : "ㅤ"
-                })
-            else await message.edit({
-                content: statusMessageTemplate.Content ? replacePlaceholders(statusMessageTemplate.Content ?? "", ticketPlaceholderType) : "ㅤ"
-            })
+            const messageBuilder = await MessageBuilder(
+                statusMessageTemplate,
+                ticketPlaceholderType
+            )
+
+            await message.edit(messageBuilder.messageData)
 
             if (allTicketsFromComponentCount >= redState) {
                 if (ticketType == "event") {
@@ -158,7 +155,6 @@ export async function ticketHelper(
                 }
             }
         }
-
 
         // EnableTicketsOnlyFromTime
         if (data.EnableTicketsOnlyFromTime) {
@@ -267,8 +263,9 @@ export async function ticketHelper(
         if (data.TicketLimit) {
             const openTicketsPerUser = await database.tickets.findMany({
                 where: {
-                    TicketId: ticketSetupId,
+                    TicketSetupId: ticketSetupId,
                     IsClosed: false,
+                    GuildId: guild.id,
                     TicketOwnerId: user.id
                 }
             })
@@ -284,15 +281,12 @@ export async function ticketHelper(
                     })
                     return;
                 } else if (ticketType == "interaction") {
-                    await interaction.editReply({
+                    return await interaction.editReply({
                         content: `-# ${await convertToEmojiToPng("ticket")} You have reached the ticket limit! You can only open ${data.TicketLimit} more tickets.`
                     })
-                    return;
                 }
             }
-
         }
-
 
         let messageData = await database.messageTemplates.findFirst({
             where: {
@@ -303,8 +297,6 @@ export async function ticketHelper(
         if (!messageData) {
             const ticketTemplateMessage = await fetch("https://cdn.xyzhub.link/raw/VqvWD9.json?download=true")
             const ticketTemplateMessageData = await ticketTemplateMessage.json()
-
-            console.log(ticketTemplateMessageData)
 
             messageData = {
                 Id: Number(Math.random() * 134324),
@@ -456,21 +448,23 @@ export async function ticketHelper(
             autoHandler = role.members[randomNum].id
         }
 
+        if (!data.TicketSettings.includes("disable_actions_button")) {
+            await channel.send({
+                components: [
+                    new ActionRowBuilder<ButtonBuilder>().addComponents(
+                        new ButtonBuilder()
+                            .setCustomId("ticket-actions:" + ticketId)
+                            .setEmoji("<:ticket:1400577766205816852>")
+                            .setStyle(ButtonStyle.Secondary)
+                    )
+                ]
+            }).then(async (m) => {
+                await m.pin("Ticket-Manage-Component")
+                const lastMessage = channel.messages.cache.get(channel.lastMessageId)
+                await lastMessage.delete()
+            })
+        }
 
-        await channel.send({
-            components: [
-                new ActionRowBuilder<ButtonBuilder>().addComponents(
-                    new ButtonBuilder()
-                        .setCustomId("ticket-actions:" + ticketId)
-                        .setEmoji("<:ticket:1400577766205816852>")
-                        .setStyle(ButtonStyle.Secondary)
-                )
-            ]
-        }).then(async (m) => {
-            await m.pin("Ticket-Manage-Component")
-            const lastMessage = channel.messages.cache.get(channel.lastMessageId)
-            await lastMessage.delete()
-        })
         await database.tickets.create({
             data: {
                 GuildId: guild.id,
@@ -587,7 +581,18 @@ export async function ticketErrorMessage(message: string, interaction: ChatInput
 }
 
 export async function handleCloseAction(client: ExtendedClient, guild: Guild, channel: TextChannel | PrivateThreadChannel, ticketId: string, confirm?: boolean, reason?: string, isAuto?: boolean, interaction?: ChatInputCommandInteraction | ButtonInteraction | ModalSubmitInteraction | AnySelectMenuInteraction) {
-    let actionCounter: number = 0
+
+
+    if (!isAuto && !interaction.deferred) await interaction.deferReply({flags: MessageFlags.Ephemeral})
+    const actionData: {
+        type: string,
+        message: string,
+    }[] = [
+        {
+            message: "Ticket Close Action Started.",
+            type: "general"
+        }
+    ]
 
     const data = await database.tickets.findFirst({
         include: {
@@ -614,27 +619,31 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
 
     // Default Ticket Close Actions
     const owner = await guild.members.fetch(data.TicketOwnerId)
-
     const actions = data.AutoCloseAction
 
     if (actions.includes("confirm") && !confirm && !isAuto) {
-        actionCounter += 1
         return await interaction.reply({
-            flags: MessageFlags.Ephemeral,
-            content: "-# **You need to confirm your action**",
+            flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
             components: [
-                new ActionRowBuilder<ButtonBuilder>().addComponents(
-                    new ButtonBuilder()
-                        .setCustomId("ticket-close-action-confirm:" + ticketId)
-                        .setStyle(ButtonStyle.Secondary)
-                        .setLabel("Confirm")
-                        .setEmoji("<:check:1320090167444377713>")
-                )
+
+                new ContainerBuilder()
+                    .addTextDisplayComponents(
+                        new TextDisplayBuilder()
+                            .setContent("-# **You need to confirm your action**")
+                    )
+                    .addActionRowComponents(
+                        new ActionRowBuilder<ButtonBuilder>().addComponents(
+                            new ButtonBuilder()
+                                .setCustomId("ticket-close-action-confirm:" + ticketId)
+                                .setStyle(ButtonStyle.Secondary)
+                                .setLabel("Confirm")
+                                .setEmoji("<:check:1320090167444377713>")
+                        )
+                    )
             ]
         })
     }
     if (actions.includes("reason") && !reason && !isAuto) {
-        actionCounter += 1
         const modal = new ModalBuilder()
         const reason = new TextInputBuilder()
 
@@ -662,13 +671,14 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
         })
     }
 
-    if (!isAuto)
-        await interaction.deferReply({
-            flags: MessageFlags.Ephemeral,
-        })
-
     // Check Rate Limit
     if (data.TicketSetup.TicketRateLimit) {
+
+        actionData.push({
+            type: "ratelimit",
+            message: "Updated Rate Limit Message"
+        })
+
         const channel = await guild.channels.fetch(data.TicketSetup.TicketStatusChannelId) as GuildTextBasedChannel
         const message = await channel.messages.fetch(data.TicketSetup.TicketStatusMessageId)
         const allTicketsFromComponentCount = (await database.tickets.findMany({
@@ -709,24 +719,19 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
             }
         }
 
-        if (statusMessageTemplate.EmbedJSON)
-            await message.edit({
-                embeds: [new EmbedBuilder(JSON.parse(replacePlaceholders(statusMessageTemplate.EmbedJSON, ticketPlaceholderType)))],
-                content: statusMessageTemplate.Content ? replacePlaceholders(statusMessageTemplate.Content ?? "", ticketPlaceholderType) : "ㅤ"
-            })
-        else await message.edit({
-            content: statusMessageTemplate.Content ? replacePlaceholders(statusMessageTemplate.Content ?? "", ticketPlaceholderType) : "ㅤ"
-        })
+        const messageBuilder = await MessageBuilder(
+            statusMessageTemplate,
+            ticketPlaceholderType
+        )
+        await message.edit(messageBuilder.messageData)
     }
 
     // Default Ticket Close Actions
     if (data.UserDMWhenCloseMessageTemplateId) {
-        actionCounter += 1
-
-        if (!isAuto)
-            await interaction.editReply({
-                content: `## ${await convertToEmojiToPng("check")} User DM has been sent.`,
-            })
+        actionData.push({
+            type: "closedm",
+            message: "Requested DM for User..."
+        })
 
         const messageData = await database.messageTemplates.findFirst({
             where: {
@@ -734,6 +739,7 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
             }
         })
 
+        const claimedUser = data.UserWhoHasClaimedId ? (await guild.members.fetch(data.UserWhoHasClaimedId)).user.username : "N/A"
         const ticketPlaceholderType = {
             member: {
                 name: owner.user.username,
@@ -746,40 +752,44 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
             },
             ticket: {
                 id: ticketId,
-                reason: reason,
+                reason: reason ?? "N/A",
                 isClosed: data.IsClosed,
                 isClaimed: data.IsClaimed,
                 userWhoHasClaimedId: data.UserWhoHasClaimedId,
                 userWhoHasClaimedTag: `<@${data.UserWhoHasClaimedId}>`,
-                userWhoHasClaimedName: guild.members.cache.get(data.UserWhoHasClaimedId).user.username,
+                userWhoHasClaimedName: claimedUser,
                 isLocked: data.IsLocked,
                 isArchived: data.IsArchived,
             },
         }
 
         await owner.createDM(true)
-        if (messageData.EmbedJSON) {
+        const messageBuilder = await MessageBuilder(
+            messageData,
+            ticketPlaceholderType
+        )
+
+        try {
+            await owner.send(messageBuilder.messageData)
             await owner.send({
-                content: replacePlaceholders(messageData.Content, ticketPlaceholderType) ?? "",
-                embeds: [new EmbedBuilder(JSON.parse(replacePlaceholders(messageData.EmbedJSON, ticketPlaceholderType)))]
+                content: `-# Message from ${channel.guild.name}. Ticket Closed with ID ${ticketId}.`,
             })
-        } else {
-            await owner.send({
-                content: messageData.Content ?? "",
+            actionData.push({
+                type: "closedm-success",
+                message: "Sent to user successfully.",
+            })
+        } catch (e) {
+            actionData.push({
+                type: "closedm-error",
+                message: "Can't send DM for User (SKIP)"
             })
         }
-
-        await owner.send({
-            content: `-# Message from ${channel.guild.name}. Ticket Closed with ID ${ticketId}.`,
-        })
     }
     if (data.WithTicketFeedback) {
-        actionCounter += 1
-
-        if (!isAuto)
-            await interaction.editReply({
-                content: `## ${await convertToEmojiToPng("check")} Feedback message sent to user`,
-            })
+        actionData.push({
+            type: "feedback",
+            message: "Sent Ticket Feedback Message."
+        })
 
         await owner.createDM(true)
         await owner.send({
@@ -861,33 +871,31 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
         })
     }
     if (data.SendTranscriptToUser) {
-        actionCounter += 1
+        actionData.push({
+            type: "usertranscript",
+            message: "Exported Transcript to Ticket Owner"
+        })
 
-        if (!isAuto)
-            await interaction.editReply({
-                content: `## ${await convertToEmojiToPng("check")} Transcript sent to user`,
-            })
-
-        await ticketTranscriptBuilder(
+        const userTranscript = await ticketTranscriptBuilder(
             ticketId,
             client,
             guild,
             channel,
-            owner,
-            interaction ? interaction : null
+            null,
+            null
         )
+        await owner.createDM(true)
+        await owner.send(userTranscript as any)
         await owner.send({
             content: `-# Message from ${interaction.guild.name}. Transcript sent from ticket with ID ${ticketId}.`,
         })
 
     }
     if (actions.includes("look")) {
-        actionCounter += 1
-
-        if (!isAuto)
-            await interaction.editReply({
-                content: `## ${await convertToEmojiToPng("check")} Thread has beed looked!`,
-            })
+        actionData.push({
+            type: "look",
+            message: "Looked Ticket successfully."
+        })
 
         await ticketLookAction(
             channel,
@@ -899,12 +907,10 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
         )
     }
     if (actions.includes("archive")) {
-        actionCounter += 1
-
-        if (!isAuto)
-            await interaction.editReply({
-                content: `## ${await convertToEmojiToPng("check")} Ticket has beed archived.`,
-            })
+        actionData.push({
+            type: "archive",
+            message: "Ticket has beed archived."
+        })
 
         await ticketArchiveAction(
             channel,
@@ -915,12 +921,10 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
         )
     }
     if (actions.includes("channel")) {
-        actionCounter += 1
-
-        if (!isAuto)
-            await interaction.editReply({
-                content: `## ${await convertToEmojiToPng("check")} Channel has beed looked!`,
-            })
+        actionData.push({
+            type: "channel",
+            message: "Channel has beed looked!"
+        })
 
         await ticketLookAction(
             channel,
@@ -932,10 +936,9 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
         )
     }
     if (actions.includes("remove_user_from_ticket")) {
-        actionCounter += 1
-
-        await interaction.editReply({
-            content: `## ${await convertToEmojiToPng("check")} Removed user from ticket.`,
+        actionData.push({
+            type: "remove_user_from_ticket",
+            message: "Removed user from ticket."
         })
 
         const addedMembers = data.AddedMemberIds
@@ -964,18 +967,20 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
         }
     }
     if (data.OldTicketCategoryId) {
-        actionCounter += 1
-
-        if (!isAuto)
-            await interaction.editReply({
-                content: `## ${await convertToEmojiToPng("check")} Moved Channel to <#${data.OldTicketCategoryId}>`,
-            })
+        actionData.push({
+            type: "movechannel",
+            message: `Moved Channel to <#${data.OldTicketCategoryId}>`
+        })
 
         if (data.ChannelType == ChannelType.PrivateThread) return
         await (channel as TextChannel).setParent(data.OldTicketCategoryId)
     }
     if (!actions.includes("no_close_message")) {
-        actionCounter += 1
+        actionData.push({
+            type: "no_close_message",
+            message: "Skip Close Message for ticket."
+        })
+
         await channel.send({
             flags: MessageFlags.IsComponentsV2,
             components: [
@@ -987,12 +992,10 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
         })
     }
     if (data.TranscriptChannelId) {
-        actionCounter += 1
-
-        if (!isAuto)
-            await interaction.editReply({
-                content: `## ${await convertToEmojiToPng("check")} Exported Ticket-Transcript to Channel.`,
-            })
+        actionData.push({
+            type: "transcript-created",
+            message: "Exported Ticket-Transcript to Channel."
+        })
 
         const tChannel = await guild.channels.fetch(data.TranscriptChannelId) as TextChannel | PrivateThreadChannel
         if (tChannel) {
@@ -1005,37 +1008,56 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
                 null
             )
 
-            const message = await tChannel.send(transcript as any)
+            await tChannel.send(transcript as any)
 
-            if (!isAuto)
-                await interaction.editReply({
-                    content: `## ${await convertToEmojiToPng("check")} Exported Ticket-Transcript ${message.url}`,
-                })
+            actionData.push({
+                type: "transcript-sent",
+                message: "Successfully exported Transcript."
+            })
         }
     }
+
+    if (!isAuto) {
+        const permission = (await hasTicketPermission("close_result", interaction.user as unknown as GuildMember, data.TicketId, client) || await hasTicketPermission("all", interaction.user as unknown as GuildMember, data.TicketId, client))
+
+        if (permission)
+            await sendDefaultMessage(
+                [
+                    `## ${await convertToEmojiToPng("ticket")} Ticket Result.`,
+                    `-# Ticket has been closed successfully.`,
+                    ``,
+                    `**Ticket Action Log**`,
+                    `${actionData.map((a) => `-# **${a.type}**: ${a.message}`).join("\n")}`
+                ].join("\n"),
+                interaction,
+                true,
+                "deferReply")
+        else await sendDefaultMessage(
+            [
+                `-# ${await convertToEmojiToPng("ticket")} Ticket has been closed!`,
+            ].join("\n"),
+            interaction,
+            true,
+            "deferReply")
+    }
+
+    // To save that the ticket will be closed.
     if (!actions.includes("not_thread_close")) {
         if (data.ChannelType == ChannelType.PrivateThread) {
+            /*      
+            actionData.push({
+                type: "not_thread_close",
+                message: "Skip Ticket Close for thread"
+            })
+            */
             await (channel as ThreadChannel).setArchived(true, "Moderator Action from Ticket with Id " + ticketId)
         }
     }
 
-    if (!isAuto)
-        await interaction.editReply({
-            content: `## ${await convertToEmojiToPng("check")} Ticket Close actions successfully executed! (${actionCounter} executed)`,
-        })
-
     // To prevent errors, execute at the end!
     if (actions.includes("delete")) {
-        actionCounter += 1
-
-        if (!isAuto)
-            await interaction.editReply({
-                content: `## ${await convertToEmojiToPng("check")} Channel Deleted!`,
-            })
-
         await interaction.channel.delete(`Ticket Close action by ${interaction.user.username} (${interaction.user.id})`)
     }
-
 }
 
 export async function ticketArchiveAction(channel: TextChannel | PrivateThreadChannel, client: ExtendedClient, ticketId: string, isClose?: boolean, interaction?: ChatInputCommandInteraction | ButtonInteraction | ModalSubmitInteraction | AnySelectMenuInteraction) {
@@ -1087,7 +1109,7 @@ export async function ticketArchiveAction(channel: TextChannel | PrivateThreadCh
 
                 .addSectionComponents(
                     new SectionBuilder()
-                        .addTextDisplayComponents(new TextDisplayBuilder().setContent("### Ticket is Archived. Moderators can manage this ticket"))
+                        .addTextDisplayComponents(new TextDisplayBuilder().setContent(`## ${await convertToEmojiToPng("package")} Ticket has been archived.\n-# Manage the Ticket with the ${await convertToEmojiToPng("ticket")} -Button.`))
                         .setButtonAccessory(new ButtonBuilder()
                             .setEmoji("<:ticket:1400577766205816852>")
                             .setCustomId("ticket-actions")
@@ -1274,15 +1296,34 @@ export async function ticketTranscriptBuilder(
         TicketNotes: data.TicketNotes,
     };
 
-    // @ts-ignore
-    const rawBuffer = await createTranscript(channel, {
-        poweredBy: false,
-        favicon: 'guild',
-        filename: `transcript-${data.TicketId}-${data.TicketOwnerId}.html`,
-        footerText: '',
-        saveImages: true,
-        returnType: ExportReturnType.Buffer,
-    });
+    let rawBuffer;
+
+    const messages = await channel.messages.fetch()
+
+    messages.map((m) => {
+        if (m.components.length > 0 && m.flags.has(MessageFlags.IsComponentsV2)) {
+            m.components = [m.components[0]]
+            m.content = `${m.content}\n\n\n**Removed Components for this Transcript because of Components V2 Bugs.**`
+        }
+        return m
+    })
+
+    try {
+        // @ts-ignore
+        rawBuffer = await htmlTranscript.generateFromMessages(messages,
+            channel,
+            {
+                limit: -1,
+                poweredBy: false,
+                favicon: 'guild',
+                filename: `transcript-${data.TicketId}-${data.TicketOwnerId}.html`,
+                footerText: '',
+                saveImages: false,
+                returnType: ExportReturnType.Buffer,
+            });
+    } catch (e) {
+        console.log(e)
+    }
 
     let html = rawBuffer.toString('utf-8');
 
@@ -1530,7 +1571,7 @@ export async function ticketActionsHelper(client: ExtendedClient, ticketId: stri
     });
 }
 
-export const ticketActions = [
+export const ticketActionsPermissions = [
     {
         label: "All",
         value: "all",
@@ -1544,6 +1585,12 @@ export const ticketActions = [
     {
         label: "Close",
         value: "close",
+        emoji: "<:permissions:1277170947761111130>"
+    },
+    {
+        label: "Close Result",
+        description: "Show the Ticket Close Result (Actions...)",
+        value: "close_result",
         emoji: "<:permissions:1277170947761111130>"
     },
     {
@@ -1638,6 +1685,62 @@ export const ticketActions = [
     },
 ]
 
+export const ticketSettings = [
+    {
+        label: "Disable Ticket Actions Button",
+        value: "disable_actions_button",
+        emoji: "<:button:1327305176553492520>"
+    },
+]
+
+export const ticketCloseAction = [
+    {
+        label: "Look Ticket (Thread)",
+        value: "look",
+        emoji: "<:threads:1298014776965857372>"
+    },
+    {
+        label: "Archive (Both)",
+        value: "archive",
+        emoji: "<:threds:1395716084870549575>"
+    },
+    {
+        label: "Move to Old Ticket Category (Channel)",
+        value: "channel",
+        emoji: "<:text:1395716083452874826>"
+    },
+    {
+        label: "Delete the Ticket (Both)",
+        value: "delete",
+        emoji: "<:threds:1395716084870549575>"
+    },
+    {
+        label: "With Confirm Message (Both)",
+        value: "confirm",
+        emoji: "<:threds:1395716084870549575>"
+    },
+    {
+        label: "Remove user from Ticket Close (Both)",
+        value: "remove_user_from_ticket",
+        emoji: "<:threds:1395716084870549575>"
+    },
+    {
+        label: "No Close Message (Both)",
+        value: "no_close_message",
+        emoji: "<:threds:1395716084870549575>"
+    },
+    {
+        label: "Not \"Close\" Thread (Thread)",
+        value: "not_thread_close",
+        emoji: "<:threds:1395716084870549575>"
+    },
+    {
+        label: "Require Reason (Both)",
+        value: "reason",
+        emoji: "<:threds:1395716084870549575>"
+    },
+]
+
 export async function hasTicketPermission(permission: string, user: GuildMember, ticketId: string, client: ExtendedClient) {
     const data = await database.tickets.findFirst({
         include: {
@@ -1665,7 +1768,7 @@ export async function hasTicketPermission(permission: string, user: GuildMember,
     return false
 }
 
-export async function ticketModalHelper(customId: string, title: string, modalData: ModalData[], interaction: ChatInputCommandInteraction | ButtonInteraction | StringSelectMenuInteraction, client: ExtendedClient) {
+export async function ticketModalHelper(customId: string, title: string, modalData: any, interaction: ChatInputCommandInteraction | ButtonInteraction | StringSelectMenuInteraction, client: ExtendedClient) {
 
     const data = modalData
     const modal = new ModalBuilder().setCustomId("ticket-create-modal:" + customId).setTitle(title)

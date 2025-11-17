@@ -1,6 +1,6 @@
 import {ChatInputCommandInteraction, EmbedBuilder, Events, GuildMember, MessageFlags} from "discord.js";
 import {inviteTracker} from "../../../systems/inviteTracker/inviteTracker.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {database} from "../../../main/database.js";
 import {ticketErrorMessage, ticketHelper, ticketModalHelper} from "../../../helper/ticketHelper.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";

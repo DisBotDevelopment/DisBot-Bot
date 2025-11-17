@@ -1,5 +1,5 @@
 import {ActivityType, PresenceUpdateStatus} from "discord.js";
-import {ExtendedClient} from "../types/client.js";
+import {ExtendedClient} from "../types/ExtendedClient.js";
 
 export async function versionData(client?: ExtendedClient) {
 

@@ -1,5 +1,5 @@
 import {Events, Invite} from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 
 export default {
     name: Events.InviteDelete,
@@ -9,7 +9,7 @@ export default {
      * @param {ExtendedClient} client
      */
     async execute(invite: Invite, client: ExtendedClient) {
-        const cachedInvites = client.inviteTracker.invitesCache.get(invite.guild!.id);
+        const cachedInvites = client.inviteTrackerInvitesCache.get(invite.guild!.id);
         if (cachedInvites && cachedInvites.get(invite.code)) {
             cachedInvites.get(invite.code)!.deletedTimestamp = Date.now();
         }

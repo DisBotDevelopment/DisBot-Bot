@@ -3,11 +3,11 @@ import {
     ButtonStyle,
     ContextMenuCommandBuilder,
     ContextMenuCommandInteraction,
-    EmbedBuilder,
+    EmbedBuilder, InteractionContextType,
     MessageFlags,
     PermissionFlagsBits
 } from "discord.js";
-import { ExtendedClient } from "types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 
 export default {
     context: true,
@@ -20,7 +20,7 @@ export default {
         })
 
         .setDefaultMemberPermissions(PermissionFlagsBits.UseApplicationCommands)
-        .setDMPermission(false)
+        .setContexts(InteractionContextType.Guild)
         .setType(ApplicationCommandType.User),
 
     /**

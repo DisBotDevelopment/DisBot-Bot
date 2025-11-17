@@ -1,7 +1,7 @@
 import {Events, type Guild, Invite} from "discord.js";
 import {mapInviteData} from "../../../systems/inviteTracker/guildFetcher.js";
 import {fetchGuildCache} from "../../../systems/inviteTracker/inviteTracker.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 
 export default {
     name: Events.InviteCreate,
@@ -12,8 +12,8 @@ export default {
      */
     async execute(invite: Invite, client: ExtendedClient) {
         await fetchGuildCache(client, invite.guild as Guild, true);
-        if (client.inviteTracker.invitesCache.get(invite.guild!.id)) {
-            client.inviteTracker.invitesCache.get(invite.guild!.id)!.set(invite.code, mapInviteData(invite));
+        if (client.inviteTrackerVanityInvitesCache.get(invite.guild!.id)) {
+            client.inviteTrackerInvitesCache.get(invite.guild!.id)!.set(invite.code, mapInviteData(invite));
         }
     },
 };

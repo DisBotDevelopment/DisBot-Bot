@@ -8,45 +8,32 @@ import * as process from "node:process";
 
 colors.enable();
 
-await configStartup();
-
+await configStartup().then(() => Logger.info("Loaded Configuration (1/2)"))
 Logger.info(`Running on ${process.env.ENVIRONMENT} Environment.`.cyan)
+const shardList = Config.Bot.ShardList.split(",").map(Number)
 
-Sentry.init({
-    dsn: process.env.SENTRY_DSN,
-    sendDefaultPii: true,
+
+Logger.info("Starting Shard Manager from discord.js")
+const manager = new ShardingManager("./.build/src/main/bot.js", {
+    token: Config.Bot.DiscordBotToken,
+    totalShards: Number(Config.Bot.ShardCount),
+    shardList: Config.Bot?.ShardList.length <= 0 ? null : Config.Bot.ShardList.split(",").map(Number),
+    mode: "process",
+    respawn: true,
+
 });
 
-if (Config.BotType == "DISBOT") {
-    const manager = new ShardingManager("./.build/src/main/bot.js", {
-        token: Config.Bot.DiscordBotToken,
-        totalShards: Number(Config.Bot.ShardCount),
-        shardList: Config.Bot?.ShardList.length <= 0 ? null : Config.Bot.ShardList.split(",").map(Number),
-        mode: "process",
-        respawn: true,
+Logger.info("Starting Shards with Id " + Config.Bot?.ShardList.length)
+manager.on("shardCreate", (shard) => {
+    Logger.info(`Shard ${shard.id} launched`.italic, {
+        label: "ShardManager",
+        level: "info",
+        botType: Config.BotType,
+        timestamp: new Date().toISOString(),
     });
+});
 
-    manager.on("shardCreate", (shard) => {
-        Logger.info(`Shard ${shard.id} launched`, {
-            label: "ShardManager",
-            level: "info",
-            botType: Config.BotType,
-            timestamp: new Date().toISOString(),
-        });
-    });
+Logger.info("Spawning Cluster from Manager.");
+manager.spawn({timeout: -1}).then(r =>
+    Logger.info(`Spawned Cluster with Shards: ${shardList}`.magenta));
 
-    manager.spawn({timeout: -1});
-} else if (Config.BotType == "CUSTOMER") {
-    const manager = new ShardingManager("./.build/src/main/bot.js", {
-        token: Config.Bot.DiscordBotToken,
-        totalShards: 1,
-        mode: "process",
-        respawn: true,
-        //silent: false
-    });
-
-    manager.on("shardCreate", (shard) => {
-        console.log(colors.cyan(`Shard ${shard.id} launched`));
-    });
-    manager.spawn({timeout: -1});
-}

@@ -1,5 +1,5 @@
 import {Client, EmbedBuilder, MessageFlags, ModalSubmitInteraction} from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 
 export default {
     id: "modal-embed-create-footer",

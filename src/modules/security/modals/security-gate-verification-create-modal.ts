@@ -1,4 +1,4 @@
-import {ExtendedClient} from "../../../types/client.js"
+import {ExtendedClient} from "../../../types/ExtendedClient.js"
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {
     ActionRowBuilder,

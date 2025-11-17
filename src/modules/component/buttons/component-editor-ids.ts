@@ -6,7 +6,7 @@ import {
     MessageFlags, ModalBuilder, TextDisplayBuilder, TextDisplayComponent,
     UserSelectMenuInteraction
 } from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {isInDevelopment} from "../../../helper/utilityHelper.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 

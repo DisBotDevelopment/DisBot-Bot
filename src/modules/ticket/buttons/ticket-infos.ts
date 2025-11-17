@@ -10,7 +10,7 @@ import {
     SeparatorSpacingSize,
     TextDisplayBuilder, ThumbnailBuilder,
 } from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {database} from "../../../main/database.js";
 import {handleCloseAction, hasTicketPermission, ticketErrorMessage} from "../../../helper/ticketHelper.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";

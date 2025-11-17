@@ -6,7 +6,7 @@ import {
     RoleSelectMenuBuilder, SeparatorBuilder, SeparatorSpacingSize, TextChannel, TextDisplayBuilder,
     UserSelectMenuInteraction
 } from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {database} from "../../../main/database.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {hasTicketPermission, ticketErrorMessage, ticketTranscriptBuilder} from "../../../helper/ticketHelper.js";

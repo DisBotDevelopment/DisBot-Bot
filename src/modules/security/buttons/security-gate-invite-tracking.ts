@@ -1,6 +1,6 @@
 import {ButtonInteraction, MessageFlags, TextInputStyle} from "discord.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {database} from "../../../main/database.js";
 import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 

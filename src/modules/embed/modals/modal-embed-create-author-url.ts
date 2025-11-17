@@ -1,5 +1,5 @@
 import {EmbedBuilder, MessageFlags, ModalSubmitInteraction} from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {URL_PLACEHOLDER} from "../../../main/placeholder.js";
 
 export default {

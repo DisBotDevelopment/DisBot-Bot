@@ -1,4 +1,3 @@
-import * as Sentry from "@sentry/node";
 import colors from "colors";
 import {
     ActionRowBuilder, AnySelectMenuInteraction,
@@ -41,7 +40,36 @@ export async function errorHandler(interaction: ButtonInteraction | ModalSubmitI
                         .addTextDisplayComponents(
                             new TextDisplayBuilder()
                                 .setContent([
-                                    `## ${await convertToEmojiToPng("error")} An error occurred while processing your actions.`,
+                                    `### ${await convertToEmojiToPng("error")} ${customMessage ? customMessage : "Process and Action Failed"}`,
+                                    customDescription
+                                ].join("\n"))
+                        )
+                        .setButtonAccessory(
+                            new ButtonBuilder()
+                                .setCustomId("report-error")
+                                .setStyle(ButtonStyle.Danger)
+                                .setLabel("Report Error")
+                                .setEmoji("<:error:1366426689961459893>")
+                        )
+                )
+                .addSeparatorComponents(new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Large))
+                .addTextDisplayComponents(
+                    new TextDisplayBuilder()
+                        .setContent([
+                            `||\`\`\`${error as Error}\`\`\`||`
+                        ].join("\n"))
+                )
+                .addSeparatorComponents(
+                    new SeparatorBuilder()
+                        .setSpacing(SeparatorSpacingSize.Small)
+                        .setDivider(true)
+                )
+                .addSectionComponents(
+                    new SectionBuilder()
+                        .addTextDisplayComponents(
+                            new TextDisplayBuilder()
+                                .setContent([
+                                    `## ${await convertToEmojiToPng("error")} Follow this Steps!`,
                                     `-# **Steps you can do**`,
                                     `-# - Check your Action or Input.`,
                                     `-# - Check the Error Message and the Error Details below.`,
@@ -50,52 +78,14 @@ export async function errorHandler(interaction: ButtonInteraction | ModalSubmitI
                                     `-# - Thanks for your Report - You will see a message with the Reports Liked.`,
                                 ].join("\n"))
                         )
-                        .setButtonAccessory(new ButtonBuilder()
-                            .setCustomId("report-error")
-                            .setStyle(ButtonStyle.Danger)
-                            .setLabel("Report Error")
-                            .setEmoji("<:error:1366426689961459893>"))
-                )
-                .addSeparatorComponents(new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Large))
-                .addTextDisplayComponents(
-                    new TextDisplayBuilder()
-                        .setContent([
-                            `### ${customMessage ? customMessage : "Process and Action Failed"}`,
-                            `-# __${customDescription ? customDescription : "You Interaction or Action failed!"}__`,
-                            `### ${await convertToEmojiToPng("box")} Error Message`,
-                        ].join("\n"))
-                )
-                .addTextDisplayComponents(
-                    new TextDisplayBuilder()
-                        .setContent([
-                            `||\`\`\`${error as Error}\`\`\`||`
-                        ].join("\n"))
-                )
-                .addSeparatorComponents(new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Small).setDivider(true))
-                .addSeparatorComponents(new SeparatorBuilder().setSpacing(SeparatorSpacingSize.Large).setDivider(true))
-                .addSectionComponents(
-                    new SectionBuilder()
-                        .addTextDisplayComponents(
-                            new TextDisplayBuilder()
-                                .setContent([
-                                    `### ${await convertToEmojiToPng("info")} What will happen if you do it.`,
-                                    `> -# You will share you public user ID`,
-                                    `> -# You will send an Error stack trace`,
-                                    `> -# You will send Interaction related data`,
-                                    `> -# \"Public Database Id's\" like uuids of you setup and or a not sensitive ID`,
-                                    `> -# You will send a contact for the devs to contact you!`,
-                                    `> -# You will open a GitHub Issue!`,
-                                    `> -# You will open a Forum Post on Discord!`,
-                                ].join("\n"))
+                        .setButtonAccessory(
+                            new ButtonBuilder()
+                                .setStyle(ButtonStyle.Link)
+                                .setURL("https://doc.xyzhub.link/s/disbot/doc/troubleshooting-8PWsSMRNvH")
+                                .setLabel("Read More")
+                                .setEmoji("<:outline:1438974310042697909>")
                         )
-                        .setButtonAccessory(new ButtonBuilder()
-                            .setStyle(ButtonStyle.Link)
-                            .setURL("https://doc.xyzhub.link/s/disbot/doc/troubleshooting-8PWsSMRNvH")
-                            .setLabel("Read More")
-                            .setEmoji("<:link:1321941111090057248>"))
                 )
-
-
         ],
         flags: MessageFlags.IsComponentsV2,
     })
@@ -229,4 +219,55 @@ async function exportToGithubIssues(title: string, message: string) {
         }
     })
     return issue.url
+}
+
+export async function errorSetupForNodeJs() {
+
+    // Unhandled Rejection Event
+    process.on("unhandledRejection", async (reason, promise) => {
+        Logger.error({
+            timestamp: new Date().toISOString(),
+            level: "error",
+            label: "UnhandledRejection",
+            message: `Unhandled Rejection at: ${promise}, reason: ${reason instanceof Error ? reason.message : String(reason)}`,
+            botType: Config.BotType.toString() || "Unknown",
+            action: LoggingAction.Other,
+        });
+    });
+
+    // Uncaught Exception Event
+    process.on("uncaughtException", async (err) => {
+        Logger.error({
+            timestamp: new Date().toISOString(),
+            level: "error",
+            label: "UncaughtException",
+            message: `Uncaught Exception: \n${err instanceof Error ? err.message : String(err)}`,
+            botType: Config.BotType.toString() || "Unknown",
+            action: LoggingAction.Other,
+        });
+    });
+
+    // AggregateError Handling
+    process.on("uncaughtException", (error) => {
+        Logger.error({
+            timestamp: new Date().toISOString(),
+            level: "error",
+            label: "AggregateError",
+            message: `AggregateError: \n${error.message}`,
+            botType: Config.BotType.toString() || "Unknown",
+            action: LoggingAction.Other,
+        });
+    });
+
+    // Uncaught Exception Monitor Event
+    process.on("uncaughtExceptionMonitor", async (err, origin) => {
+        Logger.error({
+            timestamp: new Date().toISOString(),
+            level: "error",
+            label: "UncaughtExceptionMonitor",
+            message: `Uncaught Exception Monitor: \n${err instanceof Error ? err.message : String(err)}\nOrigin: ${origin}`,
+            botType: Config.BotType.toString() || "Unknown",
+            action: LoggingAction.Other,
+        });
+    });
 }

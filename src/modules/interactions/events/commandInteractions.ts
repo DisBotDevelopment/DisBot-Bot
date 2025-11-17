@@ -1,7 +1,7 @@
 import {ChatInputCommandInteraction, Events, Guild, GuildMember, Interaction, MessageFlags,} from "discord.js";
 import {DisBotInteractionType} from "../../../enums/disBotInteractionType.js";
 import {GuildPermissionType, PermissionType} from "../../../enums/permissionType.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {errorHandler} from "../../../helper/errorHelper.js";
 import {InteractionHelper} from "../../../helper/InteractionHelper.js";
 import {LoggingAction} from "../../../enums/loggingTypes.js";
@@ -67,8 +67,8 @@ export default {
                     const interactionPermission = await database.guildInteractionPermissions.findFirst({
                         where: {
                             GuildId: interaction.guildId,
-                            CommandName: activeHandler?.data?.name ? activeHandler.data.name : activeHandler.subCommand ? activeHandler.subCommand : activeHandler.subCommandGroup,
-                            Type: activeHandler?.data?.name ? GuildPermissionType.COMMAND : activeHandler.subCommand ? GuildPermissionType.SUBCOMMAND : GuildPermissionType.SUBCOMMANDGROUP
+                            CommandName: activeHandler?.command?.name ? activeHandler.command.name : activeHandler.subCommand ? activeHandler.subCommand : activeHandler.subCommandGroup,
+                            Type: activeHandler?.command?.name ? GuildPermissionType.COMMAND : activeHandler.subCommand ? GuildPermissionType.SUBCOMMAND : GuildPermissionType.SUBCOMMANDGROUP
                         }
                     })
 

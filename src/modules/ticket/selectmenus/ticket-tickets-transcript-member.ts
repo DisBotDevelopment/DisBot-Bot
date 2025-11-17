@@ -8,7 +8,7 @@ import {
     TextChannel,
     UserSelectMenuInteraction
 } from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {database} from "../../../main/database.js";
 import {ticketErrorMessage, ticketTranscriptBuilder} from "../../../helper/ticketHelper.js";
 

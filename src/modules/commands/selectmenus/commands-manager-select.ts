@@ -18,7 +18,7 @@ import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 import {GuildPermissionType} from "../../../enums/permissionType.js";
 import {randomUUID} from "crypto";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 
 export default {
     id: "commands-manager-select",
@@ -44,8 +44,8 @@ export default {
                         UUID: randomUUID(),
                         CustomName: commandName,
                         CodeName: commandName,
-                        Description: client.commands.get(commandName).data.description,
-                        Permissions: client.commands.get(commandName).data.default_member_permissions as string,
+                        Description: client.commands.get(commandName).command.description,
+                        Permissions: client.commands.get(commandName).command.default_member_permissions as string,
                         GuildCommandMangers: {
                             connect: {
                                 GuildId: interaction.guildId
@@ -71,7 +71,7 @@ export default {
                                     [`## ${await convertToEmojiToPng("terminal")} ${data.CustomName} (Build-in Command)`,
                                         ``,
                                         `**Custom Name:** ${data.CustomName}`,
-                                        `**Description:** ${client.commands.get(data.CodeName).data.description ?? "N/A"}`,
+                                        `**Description:** ${client.commands.get(data.CodeName).command.description ?? "N/A"}`,
                                         `**Code Name**: ${data.CodeName}`,
                                         `**UUID**: ${data.UUID}`,
                                     ].join("\n"))

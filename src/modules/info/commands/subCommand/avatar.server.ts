@@ -7,7 +7,7 @@ import {
     MessageFlags,
     PermissionFlagsBits
 } from "discord.js";
-import { ExtendedClient } from "../../../../types/client.js";
+import { ExtendedClient } from "../../../../types/ExtendedClient.js";
 import { PermissionType } from "../../../../enums/permissionType.js";
 
 export default {

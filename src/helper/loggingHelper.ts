@@ -8,7 +8,7 @@ import {
     WebhookClient
 } from "discord.js";
 import {database} from "../main/database.js";
-import {ExtendedClient} from "../types/client.js";
+import {ExtendedClient} from "../types/ExtendedClient.js";
 import {randomUUID} from "crypto";
 
 export async function loggingHelper(

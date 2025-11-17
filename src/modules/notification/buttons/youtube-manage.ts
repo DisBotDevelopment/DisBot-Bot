@@ -8,12 +8,12 @@ import {
     StringSelectMenuBuilder, TextDisplayBuilder,
     TextInputStyle
 } from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import Parser from "rss-parser";
 import {database} from "../../../main/database.js";
 import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
-import {PaginationData} from "../../../types/pagination.js";
+import {PaginationData} from "../../../types/Pagination.js";
 import {PaginationBuilder} from "../../../helper/paginationHelper.js";
 
 export default {

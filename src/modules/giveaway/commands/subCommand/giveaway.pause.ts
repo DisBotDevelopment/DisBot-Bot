@@ -9,12 +9,13 @@ import {
     TextInputStyle
 } from "discord.js";
 import ms from "ms";
-import {ExtendedClient} from "../../../../types/client.js";
+import {ExtendedClient} from "../../../../types/ExtendedClient.js";
 import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 import {database} from "../../../../main/database.js";
 import moment from "moment/moment.js";
 import {sendDefaultMessage} from "../../../../helper/utilityHelper.js";
+import {replacePlaceholders} from "../../../../main/placeholder.js";
 
 export default {
     subCommand: "giveaway.pause",
@@ -91,18 +92,36 @@ export default {
 
         const timeStamp = Math.floor(endTimeForTimestamp.getTime() / 1000)
 
+        const placeholderType = {
+            giveaway: {
+                action: {
+                    message: ""
+                },
+                prize: data.Prize as string,
+                winner: String(data.Winners),
+                requirements: data.Requirements[0] ? `<@&${data.Requirements[0]}>` : "No requirements",
+                hostedBy: `<@${data.HostedBy}>`,
+                duration: `<t:${timeStamp}:R>`,
+                entrys: data.Entrys ? data.Entrys.length.toString() : "N/A"
+            }
+        }
+        const gMessage = replacePlaceholders(data.Content, placeholderType)
+
         await message.edit({
             components: [
-                new ContainerBuilder().addTextDisplayComponents(
-                    new TextDisplayBuilder()
-                        .setContent(data.Content.replace("{action.message}", `**${await convertToEmojiToPng("giveaway")} Giveaway paused**`).replace("{prize}", data.Prize as string).replace("{winner}", String(data.Winners)).replace("{requirements}", data.Requirements[0] ? `<@&${data.Requirements[0]}>` : "No requirements").replace("{hostedBy}", `<@${interaction.user.id}>`).replace("{duration}", `<t:${timeStamp}:R>`).replace("{entrys}", data.Entrys ? data.Entrys.length.toString() : "N/A"))
-                ).addActionRowComponents(new ActionRowBuilder<ButtonBuilder>().addComponents(
-                    new ButtonBuilder()
-                        .setCustomId(`giveaway-enter:${data.UUID}`)
-                        .setEmoji("<:giveaway:1366020996934668419>")
-                        .setStyle(ButtonStyle.Secondary)
-                        .setDisabled(true)
-                )),
+                new ContainerBuilder()
+                    .addTextDisplayComponents(
+                        new TextDisplayBuilder()
+                            .setContent(gMessage)
+                    )
+                    .addActionRowComponents(
+                        new ActionRowBuilder<ButtonBuilder>().addComponents(
+                            new ButtonBuilder()
+                                .setCustomId(`giveaway-enter:${data.UUID}`)
+                                .setEmoji("<:giveaway:1366020996934668419>")
+                                .setStyle(ButtonStyle.Secondary)
+                                .setDisabled(true)
+                        )),
             ], flags: MessageFlags.IsComponentsV2,
         })
 

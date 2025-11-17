@@ -11,7 +11,7 @@ import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 import {GuildPermissionType} from "../../../enums/permissionType.js";
 import {randomUUID} from "crypto";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 
 export default {
     id: "permissions-manage-users",

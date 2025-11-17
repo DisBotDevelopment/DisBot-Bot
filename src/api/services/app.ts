@@ -1,6 +1,5 @@
 import express from "express";
-import path from "path"
-import {ExtendedClient} from "../../types/client.js";
+import path from "path";
 import {secureHeapUsed} from "crypto";
 import {VerificationAction, VerificationActionType} from "../../enums/verification.js";
 import {GuildChannel} from "discord.js";
@@ -8,6 +7,7 @@ import {Logger} from "../../main/logger.js";
 import {LoggingAction} from "../../enums/loggingTypes.js";
 import {database} from "../../main/database.js";
 import {Config} from "../../main/config.js";
+import {ExtendedClient} from "../../types/ExtendedClient.js";
 
 export async function app(client: ExtendedClient) {
     const app = express();

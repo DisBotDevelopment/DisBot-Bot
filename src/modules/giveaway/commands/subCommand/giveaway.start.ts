@@ -11,7 +11,7 @@ import {
 } from "discord.js";
 import moment from "moment";
 import ms from "ms";
-import {ExtendedClient} from "../../../../types/client.js";
+import {ExtendedClient} from "../../../../types/ExtendedClient.js";
 import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 import {database} from "../../../../main/database.js";

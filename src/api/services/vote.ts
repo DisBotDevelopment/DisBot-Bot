@@ -2,7 +2,7 @@ import { Webhook, WebhookPayload } from "@top-gg/sdk";
 import bodyParser from "body-parser";
 import { EmbedBuilder, User, WebhookClient } from "discord.js";
 import express, { Request, Response } from "express";
-import { ExtendedClient } from "../../types/client.js";
+import { ExtendedClient } from "../../types/ExtendedClient.js";
 import { Logger } from "../../main/logger.js";
 import { LoggingAction } from "../../enums/loggingTypes.js";
 import { database } from "../../main/database.js";

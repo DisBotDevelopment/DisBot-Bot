@@ -8,7 +8,7 @@ import {
     TextDisplayBuilder, UserSelectMenuBuilder
 } from "discord.js";
 import {convertToEmojiToPng} from "./emojis.js";
-import {PaginationData} from "../types/pagination.js";
+import {PaginationData} from "../types/Pagination.js";
 
 export async function PaginationBuilder(data: PaginationData) {
 

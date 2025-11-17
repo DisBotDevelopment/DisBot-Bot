@@ -1,5 +1,5 @@
 import {Client, ColorResolvable, EmbedBuilder, ModalSubmitInteraction, MessageFlags} from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 export default {

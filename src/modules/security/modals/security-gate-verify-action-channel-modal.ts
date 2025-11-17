@@ -1,4 +1,4 @@
-import {ExtendedClient} from "../../../types/client.js"
+import {ExtendedClient} from "../../../types/ExtendedClient.js"
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ActionRowBuilder, MessageFlags, ModalSubmitInteraction, StringSelectMenuBuilder,} from "discord.js";
 import {database} from "../../../main/database.js";
@@ -42,7 +42,7 @@ export default {
                 }
             },
         );
-        
+
         return await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} Security gate verification Channel action has been successfully added.`, interaction, true, "reply")
     }
 };

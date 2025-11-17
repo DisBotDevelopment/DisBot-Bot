@@ -7,7 +7,7 @@ import {
     PermissionFlagsBits,
     PermissionsString
 } from "discord.js";
-import {ExtendedClient} from "../../../../types/client.js";
+import {ExtendedClient} from "../../../../types/ExtendedClient.js";
 import {convertToEmojiGif, convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 import {Config} from "../../../../main/config.js";

@@ -11,7 +11,7 @@ import {
     TextDisplayBuilder
 } from "discord.js";
 import {PermissionType} from "../../../enums/permissionType.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 

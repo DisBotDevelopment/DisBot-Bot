@@ -63,7 +63,7 @@ class DiscordTransport extends Transport {
                 isWebhook: true
             }).catch(console.error);
         } catch (err) {
-            console.error("Fehler beim Discord Logging:", err);
+            console.error("Error: ", err);
         } finally {
             callback();
         }

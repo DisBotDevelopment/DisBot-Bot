@@ -10,7 +10,7 @@ import {
     TextDisplayBuilder
 } from "discord.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {LoggingAction} from "../../../enums/loggingTypes.js";
 import {Logger} from "../../../main/logger.js";
 import {initGuildsToDatabase, initGuildToDatabase, initUsersToDatabase} from "../../../helper/databaseHelper.js";

@@ -1,11 +1,11 @@
 import {ChannelType, TextChannel} from "discord.js";
 import express, {Request, Response} from "express";
 import path from "path";
-import {ExtendedClient} from "../../types/client.js";
 import {Logger} from "../../main/logger.js";
 import {LoggingAction} from "../../enums/loggingTypes.js";
 import {Config} from "../../main/config.js";
 import {database} from "../../main/database.js";
+import {ExtendedClient} from "../../types/ExtendedClient.js";
 
 
 export async function vanityAPI(client: ExtendedClient) {

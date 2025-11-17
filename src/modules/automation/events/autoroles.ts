@@ -1,5 +1,5 @@
 import {ChannelType, Events, GuildMember} from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {database} from "../../../main/database.js";
 
 export default {

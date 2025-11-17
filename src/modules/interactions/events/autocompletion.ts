@@ -1,5 +1,5 @@
 import {AutocompleteInteraction, ChatInputCommandInteraction, Events} from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {initUsersToDatabase} from "../../../helper/databaseHelper.js";
 
 export default {

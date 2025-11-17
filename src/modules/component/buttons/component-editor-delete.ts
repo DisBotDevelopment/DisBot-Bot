@@ -4,7 +4,7 @@ import {
     MessageFlags, ModalBuilder, TextInputBuilder, TextInputStyle,
     UserSelectMenuInteraction
 } from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {isInDevelopment} from "../../../helper/utilityHelper.js";
 
 export default {

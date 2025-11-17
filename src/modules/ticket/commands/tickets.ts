@@ -6,8 +6,9 @@ import {
     PermissionFlagsBits,
     SlashCommandBuilder, TextDisplayBuilder
 } from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
+import {DocsButton} from "../../../helper/utilityHelper.js";
 
 export default {
     help: {
@@ -57,6 +58,7 @@ export default {
                             .setLabel("Manage your Components")
                             .setEmoji("<:setting:1260156922569687071>")
                             .setStyle(ButtonStyle.Secondary),
+                        new DocsButton("https://doc.xyzhub.link/s/disbot/doc/tickets-2mWrLmYgMh")
                     )
                 )
             ]

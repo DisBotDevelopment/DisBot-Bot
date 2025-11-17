@@ -8,36 +8,37 @@ import {
     MessageFlags, ModalBuilder, ModalSubmitInteraction, TextDisplayBuilder
 } from "discord.js";
 import {replacePlaceholders} from "../main/placeholder.js";
+import {errorHandler} from "./errorHelper.js";
+import {disbotClient} from "../main/bot.js";
+import {ExtendedClient} from "../types/ExtendedClient.js";
 
-export async function showComponentFollowModal(interaction: ModalSubmitInteraction, modal: ModalBuilder, type: string) {
-    await interaction.reply({
-        flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
-        components: [
-            new ContainerBuilder()
-                .addTextDisplayComponents(new TextDisplayBuilder().setContent("Fill out the Component you want to create!"))
-                .addActionRowComponents(
-                    new ActionRowBuilder<ButtonBuilder>().addComponents(
-                        new ButtonBuilder()
-                            .setCustomId(`component-editor-create-${type}`)
-                            .setLabel("Follow the next steps")
-                            .setEmoji("<:next:1287457822526935090>")
-                            .setStyle(ButtonStyle.Secondary)
+export async function showComponentFollowModal(interaction: ModalSubmitInteraction, id: string, messageId: string, position: string, type: string, client: ExtendedClient) {
+    try {
+        await interaction.reply({
+            flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
+            components: [
+                new ContainerBuilder()
+                    .addTextDisplayComponents(new TextDisplayBuilder().setContent(`Fill out the Component you want to create! (${type}, ${position})`))
+                    .addActionRowComponents(
+                        new ActionRowBuilder<ButtonBuilder>().addComponents(
+                            new ButtonBuilder()
+                                .setCustomId(`component-editor-create:${type}:${id}:${messageId}:${position}`)
+                                .setLabel("Follow the next steps")
+                                .setEmoji("<:next:1287457822526935090>")
+                                .setStyle(ButtonStyle.Secondary)
+                        )
                     )
-                )
-        ]
-    })
-
-    const collector = interaction.channel?.createMessageComponentCollector({
-        filter: (i: {
-            customId: string;
-            user: { id: any; };
-        }) => i.customId == `component-editor-create-${type}` && i.user.id === interaction.user.id,
-        time: 60000,
-    });
-
-    collector?.on("collect", async (i: ButtonInteraction) => {
-        await i.showModal(modal)
-    })
+            ]
+        })
+    } catch (e) {
+        await errorHandler(
+            interaction,
+            client,
+            e,
+            "Failed to Update Message Component",
+            "Please try to parse the values RIGHT!"
+        )
+    }
 }
 
 export async function updateComponentsWithPositions(message: Message, json: any, positions: string[]) {

@@ -368,9 +368,9 @@ exports.Prisma.GuildUserModerationScalarFieldEnum = {
   DmMessage: 'DmMessage',
   Type: 'Type',
   Notes: 'Notes',
-  LinkedCaseId: 'LinkedCaseId',
   CreatedAt: 'CreatedAt',
-  GuildId: 'GuildId'
+  GuildId: 'GuildId',
+  LinkedCaseId: 'LinkedCaseId'
 };
 
 exports.Prisma.GuildDisBotAutoModerationScalarFieldEnum = {
@@ -511,15 +511,47 @@ exports.Prisma.GiveawaysScalarFieldEnum = {
   GuildId: 'GuildId'
 };
 
-exports.Prisma.TempVoicesScalarFieldEnum = {
+exports.Prisma.TempVoiceScalarFieldEnum = {
+  Id: 'Id',
+  UserInviteMessageTemplateId: 'UserInviteMessageTemplateId',
+  ModeratorUserIds: 'ModeratorUserIds',
+  TempVoiceLogChannelId: 'TempVoiceLogChannelId',
+  GuildId: 'GuildId'
+};
+
+exports.Prisma.TempVoiceConfigScalarFieldEnum = {
   Id: 'Id',
   UUID: 'UUID',
-  Name: 'Name',
-  JointoCreateChannel: 'JointoCreateChannel',
-  JointoCreateCategory: 'JointoCreateCategory',
-  Manage: 'Manage',
-  PresetLimit: 'PresetLimit',
-  GuildId: 'GuildId'
+  CreatorChannel: 'CreatorChannel',
+  ChannelCategory: 'ChannelCategory',
+  ManageMessageTemplateId: 'ManageMessageTemplateId',
+  IsManageEnalbed: 'IsManageEnalbed',
+  TempVoicePresetId: 'TempVoicePresetId',
+  TempVoiceId: 'TempVoiceId'
+};
+
+exports.Prisma.TempVoicePresetScalarFieldEnum = {
+  Id: 'Id',
+  UUID: 'UUID',
+  ChannelName: 'ChannelName',
+  ChannelLimit: 'ChannelLimit',
+  ChannelRegion: 'ChannelRegion',
+  ChannelBitRate: 'ChannelBitRate',
+  UserInviteType: 'UserInviteType',
+  SendLogsInTempChannel: 'SendLogsInTempChannel',
+  BlacklistRoleId: 'BlacklistRoleId',
+  ManageComponents: 'ManageComponents',
+  OwnerAllowedDiscordPermissions: 'OwnerAllowedDiscordPermissions',
+  OwnerDeniedDiscordPermissions: 'OwnerDeniedDiscordPermissions',
+  TempVoiceId: 'TempVoiceId'
+};
+
+exports.Prisma.TempVoicePresetDiscordRolePermissionScalarFieldEnum = {
+  Id: 'Id',
+  RoleId: 'RoleId',
+  AllowedDiscordPermissions: 'AllowedDiscordPermissions',
+  DeniedDiscordPermissions: 'DeniedDiscordPermissions',
+  TempVoicePresetId: 'TempVoicePresetId'
 };
 
 exports.Prisma.TempVoiceChannelsScalarFieldEnum = {
@@ -527,7 +559,14 @@ exports.Prisma.TempVoiceChannelsScalarFieldEnum = {
   GuildId: 'GuildId',
   ChannelId: 'ChannelId',
   OwnerId: 'OwnerId',
-  TempVoiceId: 'TempVoiceId'
+  TempVoiceConfigId: 'TempVoiceConfigId'
+};
+
+exports.Prisma.TempVoiceChannelMemberScalarFieldEnum = {
+  Id: 'Id',
+  UserId: 'UserId',
+  ChannelId: 'ChannelId',
+  Permissions: 'Permissions'
 };
 
 exports.Prisma.GuildLeaveSetupScalarFieldEnum = {
@@ -609,11 +648,11 @@ exports.Prisma.MessageTemplatesScalarFieldEnum = {
   Id: 'Id',
   Content: 'Content',
   EmbedJSON: 'EmbedJSON',
-  ComponentJSON: 'ComponentJSON',
-  IsComponentsV2Message: 'IsComponentsV2Message',
   OtherEmbeds: 'OtherEmbeds',
   Name: 'Name',
-  GuildId: 'GuildId'
+  GuildId: 'GuildId',
+  ComponentJSON: 'ComponentJSON',
+  IsComponentsV2Message: 'IsComponentsV2Message'
 };
 
 exports.Prisma.GuildSecurityScalarFieldEnum = {
@@ -714,6 +753,7 @@ exports.Prisma.TicketSetupsScalarFieldEnum = {
   TicketStatusMessageId: 'TicketStatusMessageId',
   TicketStatusChannelId: 'TicketStatusChannelId',
   AutoCloseAction: 'AutoCloseAction',
+  TicketSettings: 'TicketSettings',
   OldTicketCategoryId: 'OldTicketCategoryId',
   RequiredRoles: 'RequiredRoles',
   SlashCommandId: 'SlashCommandId',
@@ -835,31 +875,42 @@ exports.Prisma.GuildYoutubeNotificationsScalarFieldEnum = {
 exports.Prisma.LevelSettingsScalarFieldEnum = {
   Id: 'Id',
   LevelUpChannelId: 'LevelUpChannelId',
-  LevelUoMessageTemplateId: 'LevelUoMessageTemplateId',
+  LevelUpMessageType: 'LevelUpMessageType',
   LeaderboardMessageTemplateId: 'LeaderboardMessageTemplateId',
   LeaderboardDisplayAmount: 'LeaderboardDisplayAmount',
   RequiredXPForFirstLevel: 'RequiredXPForFirstLevel',
-  Format: 'Format',
-  MessageXP: 'MessageXP',
   MessageXPRange: 'MessageXPRange',
-  MesssageXPCooldown: 'MesssageXPCooldown',
-  MessageXPType: 'MessageXPType',
-  VoiceXP: 'VoiceXP',
   VoiceXPRange: 'VoiceXPRange',
   VoiceXPCooldown: 'VoiceXPCooldown',
   ExcludedChannelIds: 'ExcludedChannelIds',
   ExcludeUserIds: 'ExcludeUserIds',
   ExcludeRoleIds: 'ExcludeRoleIds',
-  GuildId: 'GuildId'
+  GuildId: 'GuildId',
+  LevelUpMessageTemplateId: 'LevelUpMessageTemplateId',
+  IsLevelModuleEnabled: 'IsLevelModuleEnabled',
+  IsMessageXPEnabled: 'IsMessageXPEnabled',
+  IsVoiceXPEnabled: 'IsVoiceXPEnabled',
+  MessageXPCooldown: 'MessageXPCooldown',
+  MessageXPType: 'MessageXPType',
+  RequiredXPFormular: 'RequiredXPFormular',
+  LevelUserInfoMessageTemplate: 'LevelUserInfoMessageTemplate',
+  XPDropsMessageTemplate: 'XPDropsMessageTemplate',
+  XPStreaksMessageType: 'XPStreaksMessageType',
+  XPStreaksIncreaseType: 'XPStreaksIncreaseType',
+  XPStreaksMessageChannelId: 'XPStreaksMessageChannelId'
 };
 
 exports.Prisma.XPDropsScalarFieldEnum = {
   Id: 'Id',
+  UUID: 'UUID',
   GuildId: 'GuildId',
   XPRange: 'XPRange',
-  ClaimType: 'ClaimType',
   TimeToRespawn: 'TimeToRespawn',
-  ChannelIds: 'ChannelIds'
+  ChannelIds: 'ChannelIds',
+  ClaimAmount: 'ClaimAmount',
+  ExpireTime: 'ExpireTime',
+  LastSpawned: 'LastSpawned',
+  MessageIdsToDelete: 'MessageIdsToDelete'
 };
 
 exports.Prisma.XPStreaksScalarFieldEnum = {
@@ -868,7 +919,6 @@ exports.Prisma.XPStreaksScalarFieldEnum = {
   Nickname: 'Nickname',
   BonusLevels: 'BonusLevels',
   BonusXP: 'BonusXP',
-  ChannelId: 'ChannelId',
   MessageTemplateId: 'MessageTemplateId',
   Multiplier: 'Multiplier',
   RoleRewardIds: 'RoleRewardIds',
@@ -879,9 +929,9 @@ exports.Prisma.LevelRolesScalarFieldEnum = {
   Id: 'Id',
   Level: 'Level',
   Multiplier: 'Multiplier',
-  Type: 'Type',
   RoleId: 'RoleId',
-  GuildId: 'GuildId'
+  GuildId: 'GuildId',
+  Types: 'Types'
 };
 
 exports.Prisma.LevelsScalarFieldEnum = {
@@ -890,7 +940,11 @@ exports.Prisma.LevelsScalarFieldEnum = {
   RequiredXp: 'RequiredXp',
   Level: 'Level',
   UserId: 'UserId',
-  GuildId: 'GuildId'
+  GuildId: 'GuildId',
+  ClaimedXPDrops: 'ClaimedXPDrops',
+  CurrentStreakDay: 'CurrentStreakDay',
+  LastXPStreakUpdate: 'LastXPStreakUpdate',
+  UUID: 'UUID'
 };
 
 exports.Prisma.UsersScalarFieldEnum = {
@@ -1052,8 +1106,12 @@ exports.Prisma.ModelName = {
   SyncedChannelLinkMessages: 'SyncedChannelLinkMessages',
   DiscordGuildAddon: 'DiscordGuildAddon',
   Giveaways: 'Giveaways',
-  TempVoices: 'TempVoices',
+  TempVoice: 'TempVoice',
+  TempVoiceConfig: 'TempVoiceConfig',
+  TempVoicePreset: 'TempVoicePreset',
+  TempVoicePresetDiscordRolePermission: 'TempVoicePresetDiscordRolePermission',
   TempVoiceChannels: 'TempVoiceChannels',
+  TempVoiceChannelMember: 'TempVoiceChannelMember',
   GuildLeaveSetup: 'GuildLeaveSetup',
   LeaveImageData: 'LeaveImageData',
   GuildWelcomeSetup: 'GuildWelcomeSetup',

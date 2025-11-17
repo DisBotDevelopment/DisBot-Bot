@@ -1,7 +1,6 @@
 import {handleCloseAction} from "../helper/ticketHelper.js";
 
 export const URL_PLACEHOLDER = {
-    // Done
     "{twitch.url}": "https://twitch.tv/streamurl",
     "{youtube.link}": "https://youtube.com/@yourname",
     "{spotify.episode.url}": "https://open.spotify.com/episode/episodeid",
@@ -9,16 +8,18 @@ export const URL_PLACEHOLDER = {
 }
 
 export const IMAGE_PLACEHOLDER = {
-    // Done
     "{twitch.vod}": "https://twitch.tv/vod.png",
     "{youtube.thumbnail}": "https://youtube.com/thumbnail.png",
     "{member.avatar}": "https://i.imgur.com/kjEQRRI.png",
+    "{user.avatar}": "https://cdn.xyzhub.link/u/TbZSAH.png",
     "{spotify.episode.image}": "https://cdn.xyzhub.link/u/nM7pNI.png",
     "{spotify.author.image}": "https://cdn.xyzhub.link/u/HsqWSk.png",
     "{polls.image}": "https://i.imgur.com/FHBicGA.png",
     "{welcome.image}": "https://cdn.xyzhub.link/u/e3IChB.png",
-    // ----
-    "{inviter.avatar}": "https://i.imgur.com/kjEQRRI.png",
+    "{level.rankCard}": "https://cdn.xyzhub.link/u/uFmQ8z.png",
+    "{level.leaderboard.leaderboardImageHorizontal}": "https://cdn.xyzhub.link/u/dtKeTY.png",
+    "{level.leaderboard.leaderboardImageDefault}": "https://cdn.xyzhub.link/u/aLvYLD.png",
+    "{inviter.avatar}": "https://cdn.xyzhub.link/u/7cU4sY.png",
 };
 
 export const TIMESTAMP_PLACEHOLDER = {

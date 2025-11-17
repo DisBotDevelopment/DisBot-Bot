@@ -10,12 +10,12 @@ import {
     SeparatorSpacingSize, StringSelectMenuBuilder,
     TextDisplayBuilder, ThumbnailBuilder,
 } from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {database} from "../../../main/database.js";
 import {handleCloseAction, hasTicketPermission, ticketErrorMessage} from "../../../helper/ticketHelper.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {cli} from "winston/lib/winston/config/index.js";
-import {PaginationData} from "../../../types/pagination.js";
+import {PaginationData} from "../../../types/Pagination.js";
 import {PaginationBuilder} from "../../../helper/paginationHelper.js";
 
 export default {

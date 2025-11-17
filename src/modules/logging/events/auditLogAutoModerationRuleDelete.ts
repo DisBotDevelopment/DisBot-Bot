@@ -4,7 +4,7 @@ import {
     Events,
     WebhookClient
 } from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {database} from "../../../main/database.js"; // Prisma v1
 import {loggingHelper} from "../../../helper/loggingHelper.js";
 

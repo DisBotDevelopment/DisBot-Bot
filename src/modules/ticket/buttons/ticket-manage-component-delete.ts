@@ -6,7 +6,7 @@ import {
     TextInputBuilder,
     TextInputStyle
 } from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {database} from "../../../main/database.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {cli} from "winston/lib/winston/config/index.js";

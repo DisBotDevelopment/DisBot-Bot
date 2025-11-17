@@ -3,10 +3,10 @@ import fs from "fs";
 import path from "path";
 import {pathToFileURL} from "url";
 import {getFilesRecursively} from "../../helper/fileHelper.js";
-import {ExtendedClient} from "../../types/client.js";
 import {LoggingAction} from "../../enums/loggingTypes.js";
 import {Logger} from "../../main/logger.js";
 import {Config} from "../../main/config.js";
+import {ExtendedClient} from "../../types/ExtendedClient.js";
 
 colors.enable();
 
@@ -22,7 +22,7 @@ export async function loadModals(client: ExtendedClient): Promise<void> {
             console.warn("Modules folder does not exist.".red);
             return;
         }
-        
+
         const moduleDirectories = fs.readdirSync(modulesFolder, {withFileTypes: true})
             .filter(dirent => dirent.isDirectory())
             .map(dirent => dirent.name);
@@ -46,12 +46,12 @@ export async function loadModals(client: ExtendedClient): Promise<void> {
                     const modalModule = await import(moduleUrl);
                     const modal = modalModule.default ?? modalModule;
 
-                    if (!modal.id) {
+                    if (!modal.id && !modal.customId) {
                         console.error(`${fileName || "UNKNOWN"}`.yellow, `❗ FAILED`.red, "Missing an id.");
                         continue;
                     }
 
-                    client.modals?.set(modal.id, modal);
+                    client.modals?.set(modal.id ?? modal.customId, modal);
                     totalModals++;
                 } catch (error) {
                     Logger?.error({

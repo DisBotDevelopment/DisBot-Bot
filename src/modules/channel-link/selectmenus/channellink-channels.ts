@@ -12,7 +12,7 @@ import {
 import {DisBotInteractionType} from "../../../enums/disBotInteractionType.js";
 import {PermissionType} from "../../../enums/permissionType.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {database} from "../../../main/database.js";
 import {randomUUID} from "crypto";
 import {cli} from "winston/lib/winston/config/index.js";

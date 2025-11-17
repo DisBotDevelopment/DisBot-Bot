@@ -11,7 +11,7 @@ import {
     ModalSubmitInteraction,
     RoleSelectMenuBuilder, TextBasedChannel,
 } from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {randomUUID} from "crypto";
 import {database} from "../../../main/database.js";
 import {convertToEmojiGif, convertToEmojiToPng} from "../../../helper/emojis.js";

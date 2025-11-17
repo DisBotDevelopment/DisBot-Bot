@@ -1,7 +1,7 @@
 import { ButtonInteraction, Guild, MessageFlags } from "discord.js";
 import { convertToEmojiToPng } from "../../../helper/emojis.js";
 import backup from "../../../systems/backup/index.js";
-import { ExtendedClient } from "../../../types/client.js";
+import { ExtendedClient } from "../../../types/ExtendedClient.js";
 import { database } from "../../../main/database.js";
 
 export default {

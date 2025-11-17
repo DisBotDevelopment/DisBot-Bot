@@ -1,7 +1,7 @@
 import {Events, Guild, GuildMember, InteractionType, MessageFlags, ModalSubmitInteraction,} from "discord.js";
 import {DisBotInteractionType} from "../../../enums/disBotInteractionType.js";
 import {GuildPermissionType, PermissionType} from "../../../enums/permissionType.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {errorHandler} from "../../../helper/errorHelper.js";
 import {InteractionHelper} from "../../../helper/InteractionHelper.js";
 import {LoggingAction} from "../../../enums/loggingTypes.js";
@@ -54,7 +54,7 @@ export default {
                 const interactionPermission = await database.guildInteractionPermissions.findFirst({
                     where: {
                         GuildId: interaction.guildId,
-                        CommandName: activeHandler.id,
+                        CommandName: activeHandler.customId,
                         Type: GuildPermissionType.MODAL
                     }
                 })

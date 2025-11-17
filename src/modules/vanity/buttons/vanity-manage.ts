@@ -7,11 +7,11 @@ import {
     MessageFlags,
     StringSelectMenuBuilder, TextDisplayBuilder
 } from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 import {PaginationBuilder} from "../../../helper/paginationHelper.js";
-import {PaginationData} from "../../../types/pagination.js";
+import {PaginationData} from "../../../types/Pagination.js";
 import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {

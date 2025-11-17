@@ -1,4 +1,4 @@
-import { ChannelType, PermissionsBitField, SlashCommandBuilder } from "discord.js";
+import {ChannelType, InteractionContextType, PermissionsBitField, SlashCommandBuilder} from "discord.js";
 
 export default {
   help: {
@@ -15,7 +15,7 @@ export default {
     .setDescriptionLocalizations({
       de: "Erhalte Informationen über den Server, User, Rolle oder Channel",
     })
-    .setDMPermission(false)
+    .setContexts(InteractionContextType.Guild)
     .setDefaultMemberPermissions(PermissionsBitField.Flags.ManageGuild)
     .addSubcommand((subCommand) =>
       subCommand

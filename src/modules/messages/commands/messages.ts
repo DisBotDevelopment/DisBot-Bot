@@ -1,4 +1,4 @@
-import {PermissionsBitField, SlashCommandBuilder} from "discord.js";
+import {InteractionContextType, PermissionsBitField, SlashCommandBuilder} from "discord.js";
 import {
     ActionRowBuilder,
     ButtonBuilder,
@@ -11,7 +11,7 @@ import {
     TextDisplayBuilder
 } from "discord.js";
 import {PermissionType} from "../../../enums/permissionType.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 
@@ -19,7 +19,7 @@ export default {
     data: new SlashCommandBuilder()
         .setName("messages")
         .setDescription("Create, Manage and Delete Messages")
-        .setDMPermission(false)
+        .setContexts(InteractionContextType.Guild)
         .setDefaultMemberPermissions(PermissionsBitField.Flags.ManageMessages),
     options: {
         once: false,

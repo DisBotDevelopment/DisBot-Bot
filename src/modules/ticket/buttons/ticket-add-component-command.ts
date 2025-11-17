@@ -9,7 +9,7 @@ import {
     StringSelectMenuBuilder,
     TextDisplayBuilder,
 } from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {randomUUID} from "crypto";
 import {database} from "../../../main/database.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";

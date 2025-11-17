@@ -1,5 +1,4 @@
 import disbotstatsRoute from "./routes/get/disbotstats.js";
-import {ExtendedClient} from "../../types/client.js";
 import express from "express";
 import multer from "multer";
 import {Logger} from "../../main/logger.js";
@@ -9,6 +8,7 @@ import {versionData} from "../../main/version.js";
 import {Config} from "../../main/config.js";
 import {discoveryApi} from "./routes/get/discovery.js";
 import {banList} from "./routes/get/banlist.js";
+import {ExtendedClient} from "../../types/ExtendedClient.js";
 
 export const APIServer = express();
 

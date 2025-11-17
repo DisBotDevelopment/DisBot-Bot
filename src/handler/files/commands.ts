@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import {pathToFileURL} from "url";
 import {getFilesRecursively} from "../../helper/fileHelper.js";
-import type {ExtendedClient} from "../../types/client.js";
+import type {ExtendedClient} from "../../types/ExtendedClient.js";
 import {Logger} from "../../main/logger.js";
 import {LoggingAction} from "../../enums/loggingTypes.js";
 import {Config} from "../../main/config.js";
@@ -61,15 +61,17 @@ export async function loadCommands(client: ExtendedClient) {
                         if (!commandModule) continue;
                         const command = commandModule.default ?? commandModule;
 
-                        if (!command.data && (command.subCommand || command.subCommandGroup)) {
+                        const commandData = command?.data || command?.command;
+
+                        if (!commandData && (command.subCommand || command.subCommandGroup)) {
                             continue;
                         }
-                        if (!command.data?.name || !command.data?.description) {
+                        if (!commandData?.name || !commandData?.description) {
                             console.error(`${fileName}`.yellow, `❗ FAILED`.red, "Missing name or description.");
                             continue;
                         }
 
-                        client.commands?.set(command.data.name, command);
+                        client.commands?.set(commandData.name, command);
                         loadedStats.commands++;
                     } catch (error) {
                         console.error(`Failed to load command ${fileName} from ${moduleDir}:`.red, error);
@@ -112,15 +114,17 @@ export async function loadCommands(client: ExtendedClient) {
                         if (!userInstallModule) continue;
                         const userInstall = userInstallModule.default ?? userInstallModule;
 
-                        if (!userInstall.data && (userInstall.subCommand || userInstall.subCommandGroup)) {
+                        const userInstallData = userInstall.data ?? userInstall.command;
+
+                        if (!userInstallData && (userInstall.subCommand || userInstall.subCommandGroup)) {
                             continue;
                         }
-                        if (!userInstall.data?.name || !userInstall.data?.description) {
+                        if (!userInstallData?.name || !userInstallData?.description) {
                             console.error(`${fileName}`.yellow, `❗ FAILED`.red, "Missing name or description.");
                             continue;
                         }
 
-                        client.commands?.set(userInstall.data.name, userInstall);
+                        client.commands?.set(userInstallData.name, userInstall);
                         loadedStats.userInstall++;
                     } catch (error) {
                         console.error(`Failed to load user install ${fileName} from ${moduleDir}:`.red, error);

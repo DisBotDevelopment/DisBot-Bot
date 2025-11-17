@@ -5,7 +5,7 @@ import {
     ButtonBuilder,
     ButtonInteraction,
     ButtonStyle,
-    ChatInputCommandInteraction,
+    ChatInputCommandInteraction, ComponentEmojiResolvable,
     ComponentType,
     ContainerBuilder,
     FileBuilder, InteractionType,
@@ -20,7 +20,7 @@ import FormData from "form-data";
 import {Config} from "../main/config.js";
 import axios from "axios";
 import * as process from "node:process";
-import {ExtendedClient} from "../types/client.js";
+import {ExtendedClient} from "../types/ExtendedClient.js";
 import {convertToEmojiToPng} from "./emojis.js";
 import {DrawCardOptions} from "../types/drawcardoptions.js";
 
@@ -115,6 +115,33 @@ export async function sendDefaultMessage(message: string, interaction: ChatInput
     }
 }
 
+export class DocsButton extends ButtonBuilder {
+    constructor(url: string) {
+        super(
+            {
+                url: url,
+                style: ButtonStyle.Link,
+                emoji: "<:outline:1438974310042697909>",
+                label: "Docs",
+            }
+        )
+    }
+
+    override setEmoji(emoji: ComponentEmojiResolvable): this {
+        return super.setEmoji(emoji);
+    }
+
+    setStyle(style: ButtonStyle): this {
+        return super.setStyle(style);
+    }
+
+
+    setLabel(label: string): this {
+        return super.setLabel(label);
+    }
+}
+
+// Switch to canvacord. => To systems/imageGeneration/ or helper/imageGeneration/
 export async function createPollImage(poll: { title: any; description: any; options: any; }) {
     const width = 800;
     const height = 270;
@@ -215,6 +242,7 @@ export async function isInDevelopment(
     }
 }
 
+// Switch to canvacord. => To systems/imageGeneration/ or helper/imageGeneration/
 export async function drawCardCanvas(opts: DrawCardOptions): Promise<Buffer> {
     const width = 800;
     const height = 300;

@@ -1,7 +1,7 @@
 import colors from "colors";
 import {ChannelType, EmbedBuilder, NewsChannel, TextChannel, ThreadChannel} from "discord.js";
 import Parser from "rss-parser";
-import {ExtendedClient} from "../types/client.js";
+import {ExtendedClient} from "../types/ExtendedClient.js";
 import {database} from "../main/database.js";
 import {MessageBuilder} from "../helper/messageHelper.js";
 

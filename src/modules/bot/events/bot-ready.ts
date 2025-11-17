@@ -1,5 +1,5 @@
 import {ActivityType, Events, Guild, PresenceUpdateStatus} from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {guildFetcher} from "../../../systems/inviteTracker/guildFetcher.js";
 import {banScheduled} from "../../../systems/moderation/ban.js";
 import {giveaway} from "../../../systems/giveaway.js";
@@ -9,7 +9,6 @@ import {checkYoutube} from "../../../systems/youtube.js";
 import {checkTwitch} from "../../../systems/twitch.js";
 import {spotify} from "../../../systems/spotify.js";
 import {api} from "../../../api/restAPI/api.js";
-import {emojiCache} from "../../../api/services/emojiCache.js";
 import {vote} from "../../../api/services/vote.js";
 import {app} from "../../../api/services/app.js";
 import {vanityAPI} from "../../../api/services/vanity.js";
@@ -18,6 +17,8 @@ import {Config} from "../../../main/config.js";
 import {LoggingAction} from "../../../enums/loggingTypes.js";
 import {initDataToDatabase} from "../../../main/database.js";
 import {versionData} from "../../../main/version.js";
+import {emojiCache} from "../../../helper/emojis.js";
+import {scheduleLevelXPDrops} from "../../../systems/level/levelMath.js";
 
 export default {
     name: Events.ClientReady,
@@ -32,12 +33,16 @@ export default {
 
             // Load Commands
             CommandHelper.loadCommands(client);
-            CommandHelper.adminGuildLoadCommands(client);
 
             // Invite Tracker Fetch
             client.guilds.cache.forEach(async (guild: Guild) => {
                 guildFetcher(client, guild);
             })
+
+            // Spawn Drops...
+            setInterval(() => {
+                scheduleLevelXPDrops(client);
+            }, 1000)
 
             // Moderation && Giveaway
             setInterval(async () => {

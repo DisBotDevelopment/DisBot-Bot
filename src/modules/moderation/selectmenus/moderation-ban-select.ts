@@ -8,8 +8,9 @@ import {
     UserSelectMenuInteraction,
 } from "discord.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {database} from "../../../main/database.js";
+import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
 
 export default {
     id: "moderation-ban-select",
@@ -23,7 +24,6 @@ export default {
         client: ExtendedClient
     ) {
         try {
-            if (!client.user) throw new Error("Client is not defined");
 
             const uuid = interaction.customId.split(":")[1];
             for (const value of interaction.values) {
@@ -35,12 +35,8 @@ export default {
 
                 const user = await interaction.guild?.members.fetch(value);
 
-                if (!client.user) throw new Error("Client is not defined");
                 if (!user) {
-                    interaction.reply({
-                        content: `## ${await convertToEmojiToPng("error")} A user you selected is not in the server`,
-                        flags: MessageFlags.Ephemeral,
-                    });
+                    return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} A user you selected is not in the server`, interaction, true, "reply")
                 }
 
                 if (
@@ -48,10 +44,7 @@ export default {
                             interaction.member.roles.highest.position) ||
                         0) <= user.roles.highest.position
                 ) {
-                    await interaction.reply({
-                        content: `## ${await convertToEmojiToPng("error")} You can't ban a user with a higher or equal role`,
-                        flags: MessageFlags.Ephemeral,
-                    });
+                    return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} You can't ban a user with a higher or equal role`, interaction, true, "reply")
                 }
                 await database.guildUserModeration.update(
                     {
@@ -71,8 +64,7 @@ export default {
                     {
                         where: {
                             UUID: uuid,
-                        }
-                        ,
+                        },
                         data: {
                             UserIds: {
                                 push: value

@@ -19,7 +19,7 @@ import {convertToEmojiToPng} from "../../../helper/emojis.js"
 import {database} from "../../../main/database.js";
 import {randomUUID} from "crypto";
 import {ticketErrorMessage, ticketHelper, ticketModalHelper} from "../../../helper/ticketHelper.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 
 export default {
     id: "ticket-close-action-feedback",

@@ -6,7 +6,7 @@ import {
     ModalBuilder,
     TextInputBuilder
 } from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 
 export default {
     id: "vanity-create",

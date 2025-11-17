@@ -1,4 +1,4 @@
-import {ExtendedClient} from "../../../../types/client.js";
+import {ExtendedClient} from "../../../../types/ExtendedClient.js";
 import {convertToEmojiGif} from "../../../../helper/emojis.js";
 import {createTranscript, ExportReturnType} from "discord-html-transcripts";
 import {

@@ -1,6 +1,6 @@
-import { Client, MessageFlags, UserSelectMenuInteraction, VoiceChannel } from "discord.js";
-import { convertToEmojiToPng } from "../../../helper/emojis.js";
-import { ExtendedClient } from "../../../types/client.js";
+import {Client, MessageFlags, UserSelectMenuInteraction, VoiceChannel} from "discord.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 
 export default {
     id: "join_untrust_sec",
@@ -13,7 +13,7 @@ export default {
         interaction: UserSelectMenuInteraction,
         client: ExtendedClient
     ) {
-        await interaction.deferReply({ flags: MessageFlags.Ephemeral });
+        await interaction.deferReply({flags: MessageFlags.Ephemeral});
 
         interaction.values.forEach(async (value) => {
             if (value == interaction.member?.user.id)

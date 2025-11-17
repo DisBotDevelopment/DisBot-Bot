@@ -3,7 +3,7 @@ import {
     GuildMember,
     WebhookClient
 } from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {loggingHelper} from "../../../helper/loggingHelper.js";
 import {database} from "../../../main/database.js";
 

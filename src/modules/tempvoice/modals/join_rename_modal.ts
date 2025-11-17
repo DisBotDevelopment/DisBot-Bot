@@ -1,5 +1,5 @@
 import {EmbedBuilder, GuildMember, MessageFlags, ModalSubmitInteraction, VoiceChannel} from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 
 export default {
   id: "join_rename_modal",

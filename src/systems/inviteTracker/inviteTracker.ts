@@ -1,7 +1,7 @@
 import {mapInviteData} from "./guildFetcher.js";
 import {InviteData, TrackedInviteData} from "./inviteTrackerTypes.js";
-import {ExtendedClient} from "../../types/client.js";
 import {Collection, type Guild, GuildFeature, type GuildMember, type Invite, PermissionFlagsBits,} from "discord.js";
+import {ExtendedClient} from "../../types/ExtendedClient.js";
 
 export async function inviteTracker(member: GuildMember, client: ExtendedClient): Promise<{
     guildMember: GuildMember,
@@ -18,9 +18,9 @@ export async function inviteTracker(member: GuildMember, client: ExtendedClient)
         currentInvitesData.set(invite.code, mapInviteData(invite));
     });
     if (!currentInvites) return
-    const cachedInvites = client.inviteTracker.invitesCache.get(member.guild.id);
-    client.inviteTracker.invitesCache.set(member.guild.id, currentInvitesData);
-    client.inviteTracker.invitesCacheUpdates.set(member.guild.id, Date.now());
+    const cachedInvites = client.inviteTrackerInvitesCache.get(member.guild.id);
+    client.inviteTrackerInvitesCache.set(member.guild.id, currentInvitesData);
+    client.inviteTrackerInvitesCacheUpdates.set(member.guild.id, Date.now());
     if (!cachedInvites) {
         return;
     }
@@ -30,8 +30,8 @@ export async function inviteTracker(member: GuildMember, client: ExtendedClient)
     let isVanity = false;
     if (usedInvites.length === 0 && member.guild.features.includes(GuildFeature.VanityURL)) {
         const vanityInvite = await member.guild.fetchVanityData();
-        const vanityInviteCache = client.inviteTracker.vanityInvitesCache.get(member.guild.id);
-        client.inviteTracker.vanityInvitesCache.set(member.guild.id, vanityInvite);
+        const vanityInviteCache = client.inviteTrackerVanityInvitesCache.get(member.guild.id);
+        client.inviteTrackerVanityInvitesCache.set(member.guild.id, vanityInvite);
         if (vanityInviteCache) {
             if (vanityInviteCache.uses! < vanityInvite.uses!) isVanity = true;
         }
@@ -77,18 +77,18 @@ export function fetchGuildCache(client: ExtendedClient, guild: Guild, useCache: 
     return new Promise((resolve) => {
         guild.fetch().then(() => {
             guild.members.me!.fetch().then(() => {
-                if (client.inviteTracker.invitesCache.has(guild.id) && useCache) return resolve();
+                if (client.inviteTrackerInvitesCache.has(guild.id) && useCache) return resolve();
                 if (guild.members.me!.permissions.has(PermissionFlagsBits.ManageGuild)) {
                     guild.invites.fetch().then((invites) => {
                         const invitesData = new Collection<string, TrackedInviteData>();
                         invites.forEach((invite) => {
                             invitesData.set(invite.code, mapInviteData(invite));
                         });
-                        client.inviteTracker.invitesCache.set(guild.id, invitesData);
-                        client.inviteTracker.invitesCacheUpdates.set(guild.id, Date.now());
+                        client.inviteTrackerInvitesCache.set(guild.id, invitesData);
+                        client.inviteTrackerInvitesCacheUpdates.set(guild.id, Date.now());
                         if (guild.features.includes(GuildFeature.VanityURL)) {
                             guild.fetchVanityData().then((vanityInvite) => {
-                                client.inviteTracker.vanityInvitesCache.set(guild.id, vanityInvite);
+                                client.inviteTrackerVanityInvitesCache.set(guild.id, vanityInvite);
                                 resolve();
                             });
                         } else resolve();

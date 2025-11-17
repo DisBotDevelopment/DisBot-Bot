@@ -3,7 +3,7 @@ import {Guild, REST, Routes} from "discord.js";
 import fs from "fs";
 import path from "path";
 import {pathToFileURL} from "url";
-import {ExtendedClient} from "../types/client.js";
+import {ExtendedClient} from "../types/ExtendedClient.js";
 import {LoggingAction} from "../enums/loggingTypes.js";
 import {getFilesRecursively} from "./fileHelper.js";
 import {Logger} from "../main/logger.js";
@@ -16,14 +16,6 @@ colors.enable();
 export class CommandHelper {
 
     public static async loadCommandsForGuild(client: ExtendedClient, guild: Guild) {
-        Logger.info({
-            timestamp: new Date().toISOString(),
-            level: "info",
-            label: "CommandHelper",
-            message: `Loading commands for ${client.user?.displayName || "Unknown Bot"}`,
-            botType: Config.BotType.toString() || "Unknown",
-            action: LoggingAction.Command,
-        });
 
         let cmdlist: any[] = [];
         const stats = {
@@ -153,8 +145,8 @@ export class CommandHelper {
                         return {
                             ...cmd,
                             name: override.CustomName,
-                            description: override.Description ?? client.commands.get(override.CodeName).data.description,
-                            default_member_permissions: override.Permissions ?? client.commands.get(override.CodeName).data.default_member_permissions
+                            description: override.Description ?? client.commands.get(override.CodeName).command.description,
+                            default_member_permissions: override.Permissions ?? client.commands.get(override.CodeName).command.default_member_permissions
                         };
                     }
                     return cmd;
@@ -232,15 +224,6 @@ export class CommandHelper {
     }
 
     public static async loadCommands(client: ExtendedClient) {
-        Logger.info({
-            timestamp: new Date().toISOString(),
-            level: "info",
-            label: "CommandHelper",
-            message: `Loading commands for ${client.user?.displayName || "Unknown Bot"}`,
-            botType: Config.BotType.toString() || "Unknown",
-            action: LoggingAction.Command,
-        });
-
         let cmdlist: any[] = [];
         const stats = {
             commands: 0,
@@ -372,8 +355,8 @@ export class CommandHelper {
                             return {
                                 ...cmd,
                                 name: override.CustomName,
-                                description: override.Description ?? client.commands.get(override.CodeName).data.description,
-                                default_member_permissions: override.Permissions ?? client.commands.get(override.CodeName).data.default_member_permissions
+                                description: override.Description ?? client.commands.get(override.CodeName).command.description,
+                                default_member_permissions: override.Permissions ?? client.commands.get(override.CodeName).command.default_member_permissions
                             };
                         }
                         return cmd;
@@ -446,57 +429,6 @@ export class CommandHelper {
                 level: "info",
                 label: "CommandHelper",
                 message: `Discord added ${cmdlist.length} commands (${stats.subCommands} subCommands, ${stats.subCommandGroups} subCommandGroups), ${stats.userInstall} userInstall commands, ${stats.contextMenus} context menu commands from ${moduleDirectories.length} module(s) for \"${guild.name}\" (${guild.id})`,
-                botType: Config.BotType.toString() || "Unknown",
-                action: LoggingAction.Command,
-            });
-        }
-
-    }
-
-    public static async adminGuildLoadCommands(client: ExtendedClient) {
-        const cmdlist: any[] = [];
-
-        const commandFiles = fs
-            .readdirSync(path.join(process.cwd(), ".build", "src", "internal", "commands"))
-            .filter(file => file.endsWith(".js"));
-
-        const subCommandFiles = fs
-            .readdirSync(path.join(process.cwd(), ".build", "src", "internal", "commands", "subCommand"))
-            .filter(file => file.endsWith(".js"));
-
-        for (const file of commandFiles) {
-            const fullPath = path.join(process.cwd(), ".build", "src", "internal", "commands", file);
-            const module = await import(pathToFileURL(fullPath).href);
-            cmdlist.push(module.default.data.toJSON());
-        }
-
-        if (!Config.Bot.DiscordApplicationId || !Config.Bot.DiscordBotToken || !Config.Bot.AdminGuildId) {
-            console.warn("[GUILD] Skipped guild command registration – missing env variables.".yellow);
-            return;
-        }
-
-        const restClient = new REST({version: "10"}).setToken(Config.Bot.DiscordBotToken);
-
-        try {
-            await restClient.put(
-                Routes.applicationGuildCommands(Config.Bot.DiscordApplicationId, Config.Bot.AdminGuildId),
-                {body: cmdlist}
-            );
-
-            Logger.info({
-                timestamp: new Date().toISOString(),
-                level: "info",
-                label: "CommandHelper",
-                message: `Discord added ${cmdlist.length} guild commands (${subCommandFiles.length} subCommands)`,
-                botType: Config.BotType.toString() || "Unknown",
-                action: LoggingAction.Command,
-            });
-        } catch (err) {
-            Logger.error({
-                timestamp: new Date().toISOString(),
-                level: "error",
-                label: "CommandHelper",
-                message: `Failed to load guild commands: ${err instanceof Error ? err.message : String(err)}`,
                 botType: Config.BotType.toString() || "Unknown",
                 action: LoggingAction.Command,
             });

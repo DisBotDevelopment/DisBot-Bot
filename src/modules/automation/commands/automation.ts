@@ -12,7 +12,7 @@ import {
     TextDisplayBuilder
 } from "discord.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {PermissionType} from "../../../enums/permissionType.js";
 
 export default {

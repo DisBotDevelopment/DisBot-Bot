@@ -5,11 +5,11 @@ import {
     ButtonStyle, ContainerBuilder,
     ContextMenuCommandBuilder,
     ContextMenuCommandInteraction,
-    EmbedBuilder,
+    EmbedBuilder, InteractionContextType,
     MessageFlags,
     PermissionFlagsBits, TextDisplayBuilder, TextDisplayComponent
 } from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {DisBotInteractionType} from "../../../enums/disBotInteractionType.js";
 import {PermissionType} from "../../../enums/permissionType.js";
@@ -33,7 +33,7 @@ export default {
         })
 
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
-        .setDMPermission(false)
+        .setContexts(InteractionContextType.Guild)
         .setType(ApplicationCommandType.Message),
 
     /**

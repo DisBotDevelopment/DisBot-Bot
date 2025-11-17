@@ -5,7 +5,7 @@ import {
     User,
     GuildMember
 } from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {verifyAction} from "../../../systems/verifictionAction.js";
 import {VerificationAction} from "../../../enums/verification.js";
 import {database} from "../../../main/database.js";

@@ -10,7 +10,7 @@ import {
 } from "discord.js";
 import { DisBotInteractionType } from "../../../../enums/disBotInteractionType.js";
 import { PermissionType } from "../../../../enums/permissionType.js";
-import { ExtendedClient } from "../../../../types/client.js";
+import { ExtendedClient } from "../../../../types/ExtendedClient.js";
 
 export default {
     subCommand: "avatar.user",

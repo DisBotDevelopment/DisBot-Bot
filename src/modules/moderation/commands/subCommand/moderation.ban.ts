@@ -2,20 +2,21 @@ import {
     ActionRowBuilder,
     ButtonBuilder,
     ButtonStyle,
-    ChatInputCommandInteraction,
+    ChatInputCommandInteraction, ContainerBuilder,
     MessageFlags,
     PermissionFlagsBits,
-    PermissionsBitField,
+    PermissionsBitField, TextDisplayBuilder,
     UserSelectMenuBuilder,
 } from "discord.js";
 import pkg from "short-uuid";
 
 const {uuid} = pkg;
-import {ExtendedClient} from "../../../../types/client.js";
+import {ExtendedClient} from "../../../../types/ExtendedClient.js";
 import {convertToEmojiToPng} from "../../../../helper/emojis.js";
 import {PermissionType} from "../../../../enums/permissionType.js";
 import {database} from "../../../../main/database.js";
 import {isInDevelopment} from "../../../../helper/utilityHelper.js";
+import {randomUUID} from "crypto";
 
 export default {
     subCommand: "moderation.ban",
@@ -37,10 +38,7 @@ export default {
         interaction: ChatInputCommandInteraction,
         client: ExtendedClient
     ) {
-        
-        // INDEV
-        await isInDevelopment(client, interaction)
-        
+
         await interaction.deferReply({
             flags: MessageFlags.Ephemeral
         });
@@ -79,7 +77,7 @@ export default {
             });
         }
 
-        const uuids = uuid();
+        const uuids = randomUUID();
 
         const row = new ActionRowBuilder<UserSelectMenuBuilder>().addComponents(
             new UserSelectMenuBuilder()
@@ -112,7 +110,6 @@ export default {
                 .setStyle(ButtonStyle.Secondary)
         );
 
-        /*
         await database.guildUserModeration.create({
             data: {
                 UUID: uuids,
@@ -123,12 +120,23 @@ export default {
                 }
             }
         });
-         */
 
         if (!client.user) throw new Error("Client is not defined");
-        interaction.editReply({
-            content: `## ${await convertToEmojiToPng("user")} Edit you ban settings and then select the user to ban`,
-            components: [row, row2],
+        await interaction.editReply({
+            flags: MessageFlags.IsComponentsV2,
+            components: [
+
+                new ContainerBuilder()
+                    .addTextDisplayComponents(
+                        new TextDisplayBuilder()
+                            .setContent(`## ${await convertToEmojiToPng("user")} Edit you ban settings and then select the user to ban\n-# Use the User Select Button to confirm the Ban!`)
+                    )
+                    .addActionRowComponents(
+                        row
+                    )
+                    .addActionRowComponents(
+                        row2
+                    )],
         });
     },
 };

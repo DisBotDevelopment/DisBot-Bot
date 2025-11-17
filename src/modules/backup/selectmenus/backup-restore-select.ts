@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ContainerBuilder, MessageFlags, StringSelectMenuInteraction, TextDisplayBuilder } from "discord.js";
-import { ExtendedClient } from "../../../types/client.js";
+import { ExtendedClient } from "../../../types/ExtendedClient.js";
 import { convertToEmojiGif, convertToEmojiToPng } from "../../../helper/emojis.js";
 import backup from "../../../systems/backup/index.js";
 import { database } from "../../../main/database.js";

@@ -1,5 +1,5 @@
 import "dotenv/config";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {MessageFlags, ModalSubmitInteraction} from "discord.js";
 import {database} from "../../../main/database.js";

@@ -9,9 +9,9 @@ import {
     TextDisplayBuilder,
     UserSelectMenuInteraction
 } from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {PaginationBuilder} from "../../../helper/paginationHelper.js";
-import {PaginationData} from "../../../types/pagination.js";
+import {PaginationData} from "../../../types/Pagination.js";
 import {database} from "../../../main/database.js";
 
 export default {

@@ -2,7 +2,7 @@ import {
     ActionRowBuilder,
     ButtonInteraction, ModalBuilder, TextInputBuilder, TextInputStyle,
 } from "discord.js";
-import {ExtendedClient} from "../../../types/client.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {database} from "../../../main/database.js";
 import {handleCloseAction, ticketErrorMessage} from "../../../helper/ticketHelper.js";
 
