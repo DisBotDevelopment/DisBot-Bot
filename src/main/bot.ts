@@ -28,7 +28,10 @@ await configStartup().then((c) => Logger.info("Loading Configuration (2/2).")
 Logger.info("Building DisBot Extended Client.")
 export const disbotClient = new ExtendedClient(
     {
-        intents: Object.keys(GatewayIntentBits).map(key => GatewayIntentBits[key]),
+        intents: Object.keys(GatewayIntentBits).map(key => {
+            if (GatewayIntentBits[key] == GatewayIntentBits.GuildPresences) return
+            return GatewayIntentBits[key]
+        }),
         partials: Object.keys(Partials).map(key => Partials[key]),
     })
 

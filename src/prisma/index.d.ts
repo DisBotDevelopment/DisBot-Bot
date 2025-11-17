@@ -504,6 +504,16 @@ export class PrismaClient<
    */
   $queryRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<T>;
 
+  /**
+   * Executes a typed SQL query and returns a typed result
+   * @example
+   * ```
+   * import { myQuery } from '@prisma/client/sql'
+   * 
+   * const result = await prisma.$queryRawTyped(myQuery())
+   * ```
+   */
+  $queryRawTyped<T>(typedSql: runtime.TypedSql<unknown[], T>): Prisma.PrismaPromise<T[]>
 
   /**
    * Allows the running of a sequence of read/write operations that are guaranteed to either succeed or fail as a whole.
@@ -7723,6 +7733,10 @@ export namespace Prisma {
         $queryRawUnsafe: {
           args: [query: string, ...values: any[]],
           result: any
+        }
+        $queryRawTyped: {
+          args: runtime.UnknownTypedSql,
+          result: Prisma.JsonObject
         }
       }
     }
