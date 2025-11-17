@@ -1,4 +1,3 @@
-import * as Sentry from "@sentry/node";
 import "dotenv/config";
 import colors from "colors";
 import {ShardingManager} from "discord.js";
