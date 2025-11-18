@@ -7,8 +7,28 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Entities\" />
+      <Folder Include="Entities\Internal\" />
+      <Folder Include="Entities\Users\" />
       <Folder Include="Models\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="10.0.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="10.0.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.0" />
+      <PackageReference Include="NetCord" Version="1.0.0-alpha.448" />
+      <PackageReference Include="NetCord.Hosting" Version="1.0.0-alpha.448" />
+      <PackageReference Include="NetCord.Hosting.AspNetCore" Version="1.0.0-alpha.448" />
+      <PackageReference Include="NetCord.Hosting.Services" Version="1.0.0-alpha.448" />
+      <PackageReference Include="NetCord.Services" Version="1.0.0-alpha.448" />
+      <PackageReference Include="Npgsql" Version="10.0.0-rc.1" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0-rc.2" />
+      <PackageReference Include="Spectre.Console" Version="0.54.1-alpha.0.6" />
+      <PackageReference Include="Spectre.Console.Cli" Version="1.0.0-alpha.0.7" />
+      <PackageReference Include="Spectre.Console.Json" Version="0.54.1-alpha.0.6" />
     </ItemGroup>
 
 </Project>
