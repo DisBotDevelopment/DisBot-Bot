@@ -1,3 +1,0 @@
--- AlterTable
-ALTER TABLE "public"."Levels" ALTER COLUMN "XP" SET DATA TYPE TEXT,
-ALTER COLUMN "RequiredXp" SET DATA TYPE TEXT;

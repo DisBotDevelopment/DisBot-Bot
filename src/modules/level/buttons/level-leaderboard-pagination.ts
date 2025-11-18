@@ -23,6 +23,8 @@ export default {
         const [action, uuid, currentIndexStr] = interaction.customId.split(":");
         const currentIndex = parseInt(currentIndexStr) || 0;
 
+        await interaction.deferReply()
+
         let data = await database.levelSettings.findFirst({
             include: {
                 Levels: true
@@ -41,10 +43,12 @@ export default {
         if (!message) {
             return
         }
-        const list = data.Levels.slice(currentIndex, currentIndex + 5);
+        const list = data.Levels.sort((a, b) => {
+            return b.Level - a.Level;
+        }).slice(currentIndex, currentIndex + (data.LeaderboardDisplayAmount == null || data.LeaderboardDisplayAmount == 0 ? 10 : data.LeaderboardDisplayAmount));
 
-        const leaderboardImageDefault = await generateLevelLeaderboard(interaction.guild, "default")
-        const leaderboardImageHorizontal = await generateLevelLeaderboard(interaction.guild, "horizontal")
+        const leaderboardImageDefault = await generateLevelLeaderboard(interaction.guild, "default", list)
+        const leaderboardImageHorizontal = await generateLevelLeaderboard(interaction.guild, "horizontal", list)
         const placeholder = {
             user: {
                 id: interaction.user.id,
@@ -104,11 +108,12 @@ export default {
             (builder.messageData as any).components.forEach((component: any) => {
                 components.push(component);
             })
+            components.push(navigationRow)
         } else {
             components.push(navigationRow)
         }
 
-        await interaction.reply({
+        await interaction.editReply({
             ...builder.messageData,
             components: components
         });

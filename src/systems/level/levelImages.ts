@@ -16,7 +16,7 @@ export async function generateLevelCardImage(user: GuildMember, guildId: string)
     Font.loadDefault()
     const image = new RankCardBuilder()
         .setUsername(user.user.username)
-        .setRank(levelData.Level)
+        .setLevel(levelData.Level)
         .setRequiredXP(Number(levelData.RequiredXp))
         .setAvatar(user.displayAvatarURL({extension: "png", forceStatic: true}))
         .setCurrentXP(Number(levelData.XP))
@@ -29,8 +29,11 @@ export async function generateLevelCardImage(user: GuildMember, guildId: string)
     return null
 }
 
-export async function generateLevelLeaderboard(guild: Guild, type: "default" | "horizontal") {
+export async function generateLevelLeaderboard(guild: Guild, type: "default" | "horizontal", playerData: any) {
     const data = await database.levels.findMany({
+        include: {
+            LevelSettings: true
+        },
         where: {
             GuildId: guild.id
         }
@@ -42,12 +45,12 @@ export async function generateLevelLeaderboard(guild: Guild, type: "default" | "
     })
 
     const players = await Promise.all(
-        data
-            .sort((a, b) => {
-                return b.Level - a.Level;
-            })
-            .map(async (user) => {
+        playerData
+            .map(async (user, rank) => {
                 try {
+                    const position = data.filter((f) => f.UserId == user.UserId).map((i, c) => {
+                        return c
+                    })[0]
                     const guildMember = await guild.members.fetch(user.UserId);
                     return {
                         level: user.Level ?? 0,
@@ -55,7 +58,7 @@ export async function generateLevelLeaderboard(guild: Guild, type: "default" | "
                         displayName: guildMember?.displayName ?? "N/A",
                         avatar: guildMember.displayAvatarURL({extension: "png", forceStatic: true}),
                         xp: Number(user.XP) ?? 0,
-                        rank: user.Level ?? 0
+                        rank: rank ? (rank + 1) : 0
                     };
                 } catch (error) {
                     return

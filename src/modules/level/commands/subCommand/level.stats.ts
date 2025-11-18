@@ -33,6 +33,7 @@ export default {
      */
     async execute(interaction: ChatInputCommandInteraction, client: ExtendedClient) {
 
+        await interaction.deferReply()
         try {
             const user = await interaction.guild.members.fetch(interaction.options.getUser("user")?.id ?? interaction.user.id);
 
@@ -81,7 +82,6 @@ export default {
                 return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} No User Data found...`, interaction, true, "reply")
             }
 
-
             let message = await database.messageTemplates.findFirst({
                 where: {
                     Name: data.LevelSettings.LevelUserInfoMessageTemplate
@@ -114,7 +114,7 @@ export default {
                 message, placeholder
             )
 
-            await interaction.reply(builder.messageData)
+            await interaction.editReply(builder.messageData)
         } catch (e) {
             console.log(e)
         }
