@@ -14,34 +14,34 @@ model Guilds {
   GuildId                     String                        @unique
   GuildName                   String
   GuildOwner                  String
-  DiscordAddons               DiscordGuildAddon?
-  Giveaways                   Giveaways[]
-  AutoAutoDeletes             GuildAutoDeletes[]
-  AutoPublish                 GuildAutoPublish?
-  AutoReacts                  GuildAutoReacts[]
-  AutoRoles                   GuildAutoRoles[]
-  GuildChannelLinks           GuildChannelLinks[]
+  DiscordAddons               DiscordGuildAddon? // DONE
+  Giveaways                   Giveaways[] // DONE
+  AutoAutoDeletes             GuildAutoDeletes[] // DONE
+  AutoPublish                 GuildAutoPublish? // DONE
+  AutoReacts                  GuildAutoReacts[] // DONE
+  AutoRoles                   GuildAutoRoles[] // DONE
+  GuildChannelLinks           GuildChannelLinks[] // DONE
   GuildCommandManger          GuildCommandManger?
   GuildComponentManager       GuildComponentManager?
   GuildDisBotAutoModeration   GuildDisBotAutoModeration?
-  GuildFeatureToggle          GuildFeatureToggles?
+  GuildFeatureToggle          GuildFeatureToggles? // DONE
   GuildInteractionPermissions GuildInteractionPermissions[]
-  GuildLeaveSetup             GuildLeaveSetup?
-  GuildLogging                GuildLogging?
-  GuildLogs                   GuildLogs[]
+  GuildLeaveSetup             GuildLeaveSetup? // DONE
+  GuildLogging                GuildLogging? // DONE
+  GuildLogs                   GuildLogs[] // DONE
   GuildModeration             GuildModeration?
-  Security                    GuildSecurity?
-  SpotifyNotifications        GuildSpotifyNotifications[]
-  TwitchNotifications         GuildTwitchNotifications[]
+  Security                    GuildSecurity? // DONE
+  SpotifyNotifications        GuildSpotifyNotifications[] // DONE
+  TwitchNotifications         GuildTwitchNotifications[] // DONE
   GuildUserModeration         GuildUserModeration[]
-  GuildWelcomeSetup           GuildWelcomeSetup?
-  YoutubeNotifications        GuildYoutubeNotifications[]
-  LevelSettings               LevelSettings?
-  MessageTemplates            MessageTemplates[]
+  GuildWelcomeSetup           GuildWelcomeSetup? // DONE
+  YoutubeNotifications        GuildYoutubeNotifications[] // DONE
+  LevelSettings               LevelSettings? // DONE
+  MessageTemplates            MessageTemplates[] // DONE
   ModerationScout             ModerationScout?
-  Polls                       Polls[]
-  TempVoices                  TempVoice?
-  TicketSetups                TicketSetups[]
+  Polls                       Polls[] // DONE
+  TempVoices                  TempVoice? // DONE
+  TicketSetups                TicketSetups[] // DONE
 }
 
 model GuildCommandManger {
