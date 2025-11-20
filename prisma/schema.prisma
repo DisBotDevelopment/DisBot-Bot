@@ -29,7 +29,7 @@ model Guilds {
   GuildLeaveSetup             GuildLeaveSetup? // DONE
   GuildLogging                GuildLogging? // DONE
   GuildLogs                   GuildLogs[] // DONE
-  GuildModeration             GuildModeration? //TODO
+  GuildModeration             GuildModeration? // DONE
   Security                    GuildSecurity? // DONE
   SpotifyNotifications        GuildSpotifyNotifications[] // DONE
   TwitchNotifications         GuildTwitchNotifications[] // DONE
