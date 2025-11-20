@@ -10,5 +10,6 @@ public class GuildInteractionManagerEntity
     public DateTimeOffset UpdatedAt { get; set; }
 
     public GuildCommandMangerEntity CommandManager { get; set; } = new();
+    public GuildComponentManagerEntity ComponentManager { get; set; } = new();
     [Required] public GuildEntity Guild { get; set; }
 }

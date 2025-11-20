@@ -5,6 +5,7 @@ namespace Shared.Entities.Guilds.Interactions;
 public class GuildCommandMangerEntity
 {
     public int Id { get; set; }
+    // TODO: Add Custom Commands
     //  public string? Commands { get; set; }
     // public string? SubCommands { get; set; }
     //  public string? SubCommandGroups { get; set; }

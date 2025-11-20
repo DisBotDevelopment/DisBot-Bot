@@ -19,7 +19,7 @@ namespace Shared.Entities.Guilds;
 
 public class GuildEntity
 {
-    [Key] public int Id { get; set; }
+    public int Id { get; set; }
     [Required] public ulong GuildId { get; set; }
 
     public string? GuildName { get; set; }
