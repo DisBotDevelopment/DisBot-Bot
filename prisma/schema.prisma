@@ -21,24 +21,24 @@ model Guilds {
   AutoReacts                  GuildAutoReacts[] // DONE
   AutoRoles                   GuildAutoRoles[] // DONE
   GuildChannelLinks           GuildChannelLinks[] // DONE
-  GuildCommandManger          GuildCommandManger?
-  GuildComponentManager       GuildComponentManager?
-  GuildDisBotAutoModeration   GuildDisBotAutoModeration?
+  GuildCommandManger          GuildCommandManger? // DONE
+  GuildComponentManager       GuildComponentManager? // DONE
+  GuildDisBotAutoModeration   GuildDisBotAutoModeration? //TODO
   GuildFeatureToggle          GuildFeatureToggles? // DONE
   GuildInteractionPermissions GuildInteractionPermissions[]
   GuildLeaveSetup             GuildLeaveSetup? // DONE
   GuildLogging                GuildLogging? // DONE
   GuildLogs                   GuildLogs[] // DONE
-  GuildModeration             GuildModeration?
+  GuildModeration             GuildModeration? //TODO
   Security                    GuildSecurity? // DONE
   SpotifyNotifications        GuildSpotifyNotifications[] // DONE
   TwitchNotifications         GuildTwitchNotifications[] // DONE
-  GuildUserModeration         GuildUserModeration[]
+  GuildUserModeration         GuildUserModeration[] //TODO
   GuildWelcomeSetup           GuildWelcomeSetup? // DONE
   YoutubeNotifications        GuildYoutubeNotifications[] // DONE
   LevelSettings               LevelSettings? // DONE
   MessageTemplates            MessageTemplates[] // DONE
-  ModerationScout             ModerationScout?
+  ModerationScout             ModerationScout? //TODO
   Polls                       Polls[] // DONE
   TempVoices                  TempVoice? // DONE
   TicketSetups                TicketSetups[] // DONE
