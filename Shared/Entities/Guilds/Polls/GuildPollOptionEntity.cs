@@ -14,5 +14,5 @@ public class GuildPollOptionEntity
     public DateTimeOffset UpdatedAt { get; set; }
 
     public List<GuildPollAnswerEntity> PollAnswers { get; set; } = [];
-    [Required] public GuildPollEntity GuildPoll { get; set; }
+    [Required] public GuildPollEntity Poll { get; set; }
 }

@@ -12,5 +12,5 @@ public class UserGuildVanityAnalyticsLatest30DayEntity
     public DateTimeOffset CreatedAt { get; set; }
     public DateTimeOffset UpdatedAt { get; set; }
 
-    [Required] public UserGuildVanityAnalyticsEntity UserGuildVanityAnalytics { get; set; }
+    [Required] public UserGuildVanityAnalyticsEntity GuildVanityAnalytics { get; set; }
 }

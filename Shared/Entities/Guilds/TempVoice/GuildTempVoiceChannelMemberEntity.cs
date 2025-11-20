@@ -11,5 +11,5 @@ public class GuildTempVoiceChannelMemberEntity
     public DateTimeOffset CreatedAt { get; set; }
     public DateTimeOffset UpdatedAt { get; set; }
 
-    [Required] public GuildTempVoiceChannelEntity GuildTempVoiceChannel { get; set; }
+    [Required] public GuildTempVoiceChannelEntity TempVoiceChannel { get; set; }
 }

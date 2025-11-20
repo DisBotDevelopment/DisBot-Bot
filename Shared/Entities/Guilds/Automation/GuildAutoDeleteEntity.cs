@@ -11,5 +11,9 @@ public class GuildAutoDeleteEntity
     public ulong[] WhitelistedMessageIds { get; set; } = [];
     public ulong[] WhitelistedRoleIds { get; set; } = [];
     public ulong[] WhitelistedUserIds { get; set; } = [];
+    
+    public DateTimeOffset CreatedAt { get; set; }
+    public DateTimeOffset UpdatedAt { get; set; }
+    
     [Required] public GuildEntity Guild { get; set; }
 }

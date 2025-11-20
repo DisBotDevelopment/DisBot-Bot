@@ -12,5 +12,5 @@ public class UserGuildVanityEmbedAuthorEntity
     public DateTimeOffset CreatedAt { get; set; }
     public DateTimeOffset UpdatedAt { get; set; }
 
-    [Required] public UserGuildVanityEmbedEntity UserGuildVanityEmbed { get; set; }
+    [Required] public UserGuildVanityEmbedEntity GuildVanityEmbed { get; set; }
 }

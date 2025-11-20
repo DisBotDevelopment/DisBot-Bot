@@ -17,5 +17,5 @@ public class GuildTempVoiceConfigEntity
     public GuildMessageTemplateEntity? ManageMessageTemplate { get; set; }
     public GuildTempVoicePresetEntity? TempVoicePreset { get; set; }
     public List<GuildTempVoiceChannelEntity> TempVoiceChannels { get; } = [];
-    [Required] public GuildTempVoiceSettingsEntity GuildTempVoiceSettings { get; set; }
+    [Required] public GuildTempVoiceSettingsEntity TempVoiceSettings { get; set; }
 }

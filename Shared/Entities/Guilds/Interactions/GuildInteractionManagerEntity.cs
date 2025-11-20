@@ -1,15 +1,14 @@
 using System.ComponentModel.DataAnnotations;
-using NetCord.Gateway;
 
-namespace Shared.Entities.Guilds.Automation;
+namespace Shared.Entities.Guilds.Interactions;
 
-public class GuildAutoRoleEntity
+public class GuildInteractionManagerEntity
 {
     public int Id { get; set; }
-    public ulong[] RoleIds { get; set; } = [];
-    
+
     public DateTimeOffset CreatedAt { get; set; }
     public DateTimeOffset UpdatedAt { get; set; }
-    
+
+    public GuildCommandMangerEntity CommandManager { get; set; } = new();
     [Required] public GuildEntity Guild { get; set; }
 }

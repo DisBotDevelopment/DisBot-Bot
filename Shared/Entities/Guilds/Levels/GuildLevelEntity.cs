@@ -17,6 +17,6 @@ public class GuildLevelEntity
     public DateTimeOffset CreatedAt { get; set; }
     public DateTimeOffset UpdatedAt { get; set; }
 
-    [Required] public GuildLevelSettingsEntity GuildLevelSettings { get; set; }
+    [Required] public GuildLevelSettingsEntity LevelSettings { get; set; }
     [Required] public UserEntity User { get; set; }
 }

@@ -17,5 +17,5 @@ public class GuildXpStreakEntity
     public DateTimeOffset UpdatedAt { get; set; }
 
     public GuildMessageTemplateEntity? MessageTemplate { get; set; }
-    [Required] public GuildLevelSettingsEntity GuildLevelSettings { get; set; }
+    [Required] public GuildLevelSettingsEntity LevelSettings { get; set; }
 }

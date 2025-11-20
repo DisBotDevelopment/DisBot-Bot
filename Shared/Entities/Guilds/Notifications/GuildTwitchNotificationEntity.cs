@@ -14,6 +14,6 @@ public class GuildTwitchNotificationEntity
     public DateTimeOffset CreatedAt { get; set; }
     public DateTimeOffset UpdatedAt { get; set; }
 
-    public GuildMessageTemplateEntity? MessageTemplateId { get; set; }
+    public GuildMessageTemplateEntity? MessageTemplate { get; set; }
     [Required] public GuildEntity Guilds { get; set; }
 }

@@ -3,6 +3,7 @@ using Shared.Entities.Guilds.Automation;
 using Shared.Entities.Guilds.ChannelLinks;
 using Shared.Entities.Guilds.DiscordUtility;
 using Shared.Entities.Guilds.Giveaways;
+using Shared.Entities.Guilds.Interactions;
 using Shared.Entities.Guilds.Leave;
 using Shared.Entities.Guilds.Levels;
 using Shared.Entities.Guilds.Logging;
@@ -28,22 +29,22 @@ public class GuildEntity
     public DateTimeOffset UpdatedAt { get; set; }
 
     public GuildDiscordGuildAddonEntity? DiscordGuildAddon { get; set; }
-
     public GuildTempVoiceSettingsEntity? TempVoice { get; set; }
-    public GuildLeaveSetupEntity? GuildLeaveSetup { get; set; }
-    public GuildWelcomeSetupEntity? GuildWelcomeSetup { get; set; }
-    public GuildLoggingEntity? GuildLogging { get; set; }
-    public GuildSecurityEntity? GuildSecurity { get; set; }
+    public GuildLeaveSetupEntity? LeaveSetup { get; set; }
+    public GuildWelcomeSetupEntity? WelcomeSetup { get; set; }
+    public GuildLoggingEntity? Logging { get; set; }
+    public GuildSecurityEntity? Security { get; set; }
     public GuildLevelSettingsEntity? LevelSettings { get; set; }
     public GuildAutoPublishEntity? AutoPublish { get; set; }
     public GuildAutoRoleEntity? AutoRole { get; set; }
+    public GuildInteractionManagerEntity? InteractionManager { get; set; }
 
     public List<GuildMessageTemplateEntity> MessageTemplates { get; set; } = [];
     public List<GuildSpotifyNotificationEntity> SpotifyNotification { get; set; } = [];
     public List<GuildTwitchNotificationEntity> TwitchNotification { get; set; } = [];
     public List<GuildYoutubeNotificationEntity> YoutubeNotification { get; set; } = [];
     public List<GuildGiveawayEntity> Giveaways { get; set; } = [];
-    public List<GuildLogsEntity> GuildLogs { get; set; } = [];
+    public List<GuildLogsEntity> Logs { get; set; } = [];
     public List<GuildTicketSetupEntity> TicketSetups { get; set; } = [];
     public List<GuildPollEntity> Polls { get; set; } = [];
     public List<GuildAutoDeleteEntity> AutoDelete { get; set; } = [];

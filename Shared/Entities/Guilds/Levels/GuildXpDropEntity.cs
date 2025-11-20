@@ -10,7 +10,11 @@ public class GuildXpDropEntity
     public ulong[] ChannelIds { get; set; } = [];
     public int ClaimAmount { get; set; }
     public int ExpireTime { get; set; }
-    public DateTimeOffset LastSpawned { get; set; }
     public ulong[] MessageIdsToDelete { get; set; } = [];
-    [Required] public GuildLevelSettingsEntity GuildLevelSettings { get; set; }
+
+    public DateTimeOffset LastSpawned { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+    public DateTimeOffset UpdatedAt { get; set; }
+
+    [Required] public GuildLevelSettingsEntity LevelSettings { get; set; }
 }

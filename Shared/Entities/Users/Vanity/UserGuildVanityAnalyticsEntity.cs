@@ -17,5 +17,5 @@ public class UserGuildVanityAnalyticsEntity
 
     public GuildMessageTemplateEntity? TrackMessageTemplate { get; set; }
     public UserGuildVanityAnalyticsLatest30DayEntity? VanityAnalyticsLatest30Day { get; set; }
-    [Required] public UserGuildVanityEntity UserGuildVanity { get; set; }
+    [Required] public UserGuildVanityEntity GuildVanity { get; set; }
 }

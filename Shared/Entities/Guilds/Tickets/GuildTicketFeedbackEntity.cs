@@ -13,5 +13,5 @@ public class GuildTicketFeedbackEntity
     public DateTimeOffset CreatedAt { get; set; }
     public DateTimeOffset UpdatedAt { get; set; }
 
-    [Required] public GuildTicketEntity Guild { get; set; }
+    [Required] public GuildTicketEntity Ticket { get; set; }
 }

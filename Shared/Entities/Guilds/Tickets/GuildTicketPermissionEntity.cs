@@ -17,5 +17,5 @@ public class GuildTicketPermissionEntity
     public DateTimeOffset CreatedAt { get; set; }
     public DateTimeOffset UpdatedAt { get; set; }
 
-    [Required] public GuildTicketSetupEntity GuildTicketSetup { get; set; }
+    [Required] public GuildTicketSetupEntity TicketSetup { get; set; }
 }

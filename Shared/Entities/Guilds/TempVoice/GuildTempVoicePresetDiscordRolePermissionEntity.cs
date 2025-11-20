@@ -13,5 +13,5 @@ public class GuildTempVoicePresetDiscordRolePermissionEntity
     public DateTimeOffset CreatedAt { get; set; }
     public DateTimeOffset UpdatedAt { get; set; }
 
-    [Required] public GuildTempVoicePresetEntity GuildTempVoicePreset { get; set; }
+    [Required] public GuildTempVoicePresetEntity TempVoicePreset { get; set; }
 }

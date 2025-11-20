@@ -13,7 +13,7 @@ public class GuildWelcomeSetupEntity
     public DateTimeOffset CreatedAt { get; set; }
     public DateTimeOffset UpdatedAt { get; set; }
 
-    [Required] public GuildMessageTemplateEntity GuildMessageTemplate { get; set; }
+    [Required] public GuildMessageTemplateEntity MessageTemplate { get; set; }
 
     public GuildWelcomeImageDataEntity? ImageData { get; set; }
     [Required] public GuildEntity Guild { get; set; }

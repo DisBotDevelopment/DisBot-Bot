@@ -12,5 +12,5 @@ public class GuildVerificationGatesPermissionEntity
     public DateTimeOffset CreatedAt { get; set; }
     public DateTimeOffset UpdatedAt { get; set; }
 
-    [Required] public GuildVerificationGateEntity GuildVerificationGate { get; set; }
+    [Required] public GuildVerificationGateEntity VerificationGate { get; set; }
 }

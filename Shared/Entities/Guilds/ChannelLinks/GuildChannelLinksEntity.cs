@@ -16,5 +16,5 @@ public class GuildChannelLinksEntity
     public DateTimeOffset UpdatedAt { get; set; }
 
     public List<GuildSyncedChannelLinkMessageEntity> SyncedChannelLinkMessages { get; set; } = [];
-    [Required] public Guild Guild { get; set; }
+    [Required] public GuildEntity Guild { get; set; }
 }

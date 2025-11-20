@@ -23,5 +23,5 @@ public class GuildTempVoicePresetEntity
 
     public List<GuildTempVoiceConfigEntity>? TempVoiceConfig { get; set; } = [];
     public List<GuildTempVoicePresetDiscordRolePermissionEntity> RolePermissions { get; set; } = [];
-    [Required] public GuildTempVoiceSettingsEntity GuildTempVoiceSettings { get; set; }
+    [Required] public GuildTempVoiceSettingsEntity TempVoiceSettings { get; set; }
 }

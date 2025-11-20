@@ -16,5 +16,5 @@ public class GuildLeaveImageDataEntity
     public DateTimeOffset CreatedAt { get; set; }
     public DateTimeOffset UpdatedAt { get; set; }
 
-    [Required] public GuildLeaveSetupEntity GuildLeaveSetup { get; set; }
+    [Required] public GuildLeaveSetupEntity LeaveSetup { get; set; }
 }

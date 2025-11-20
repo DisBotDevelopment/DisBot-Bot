@@ -14,6 +14,6 @@ public class GuildTempVoiceChannelEntity
 
     public List<GuildTempVoiceChannelMemberEntity> TempVoiceChannelMembers = [];
 
-    [Required] public GuildTempVoiceConfigEntity GuildTempVoiceConfig { get; set; }
+    [Required] public GuildTempVoiceConfigEntity TempVoiceConfig { get; set; }
     [Required] public GuildEntity Guild { get; set; }
 }

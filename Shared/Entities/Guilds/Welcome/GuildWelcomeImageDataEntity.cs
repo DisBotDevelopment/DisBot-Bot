@@ -16,5 +16,5 @@ public class GuildWelcomeImageDataEntity
     public DateTimeOffset CreatedAt { get; set; }
     public DateTimeOffset UpdatedAt { get; set; }
 
-    [Required] public GuildWelcomeSetupEntity GuildWelcomeSetup { get; set; }
+    [Required] public GuildWelcomeSetupEntity WelcomeSetup { get; set; }
 }

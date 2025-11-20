@@ -8,5 +8,9 @@ public class UserApiEntity
     [Required] public Guid Key { get; set; }
     public string[]? Permissions { get; set; }
     public string[]? Flags { get; set; }
+    
+    public DateTimeOffset CreatedAt { get; set; }
+        public DateTimeOffset UpdatedAt { get; set; }
+    
     [Required] public UserEntity User { get; set; }
 }

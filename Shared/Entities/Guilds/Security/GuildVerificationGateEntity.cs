@@ -19,5 +19,5 @@ public class GuildVerificationGateEntity
     public DateTimeOffset UpdatedAt { get; set; }
 
     public List<GuildVerificationGatesPermissionEntity> ChannelPermissions = [];
-    [Required] public GuildSecurityEntity GuildSecurity { get; set; }
+    [Required] public GuildSecurityEntity Security { get; set; }
 }
