@@ -1,3 +1,4 @@
+// TODO: Database Migrations checks!!!
 generator client {
   provider      = "prisma-client-js"
   output        = "../src/prisma"
@@ -23,7 +24,7 @@ model Guilds {
   GuildChannelLinks           GuildChannelLinks[] // DONE
   GuildCommandManger          GuildCommandManger? // DONE
   GuildComponentManager       GuildComponentManager? // DONE
-  GuildDisBotAutoModeration   GuildDisBotAutoModeration? //TODO
+  GuildDisBotAutoModeration   GuildDisBotAutoModeration? // DONE
   GuildFeatureToggle          GuildFeatureToggles? // DONE
   GuildInteractionPermissions GuildInteractionPermissions[]
   GuildLeaveSetup             GuildLeaveSetup? // DONE
@@ -33,12 +34,12 @@ model Guilds {
   Security                    GuildSecurity? // DONE
   SpotifyNotifications        GuildSpotifyNotifications[] // DONE
   TwitchNotifications         GuildTwitchNotifications[] // DONE
-  GuildUserModeration         GuildUserModeration[] //TODO
+  GuildUserModeration         GuildUserModeration[] // DONE
   GuildWelcomeSetup           GuildWelcomeSetup? // DONE
   YoutubeNotifications        GuildYoutubeNotifications[] // DONE
   LevelSettings               LevelSettings? // DONE
   MessageTemplates            MessageTemplates[] // DONE
-  ModerationScout             ModerationScout? //TODO
+  ModerationScout             ModerationScout? // DONE
   Polls                       Polls[] // DONE
   TempVoices                  TempVoice? // DONE
   TicketSetups                TicketSetups[] // DONE
