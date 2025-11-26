@@ -23,11 +23,11 @@ export default {
      */
     async execute(member: GuildMember, client: ExtendedClient) {
 
-        const {guild} = member;
-
+        const guild = await client.guilds.fetch(member.guild.id)
         const toggleData = await database.guildFeatureToggles.findFirst({
             where: {GuildId: guild.id}
         });
+
         if (!toggleData?.WecomeEnabled) return;
 
         const data = await database.guildWelcomeSetup.findFirst({
@@ -44,7 +44,7 @@ export default {
             })
             : null;
 
-        const channel = client.channels.cache.get(data.ChannelId) as TextChannel;
+        const channel = await guild.channels.fetch(data.ChannelId) as TextChannel;
         if (!channel) return;
 
         const replacements = {
@@ -109,6 +109,7 @@ export default {
             messageData,
             withImagePlaceholder
         )
+        
         await channel.send(message.messageData)
     }
 };
