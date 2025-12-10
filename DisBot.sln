@@ -1,10 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordBot", "DiscordBot\DiscordBot.csproj", "{D661F1CB-BB6F-4F5B-B26E-3C8CF2AC6A02}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisBot.DiscordBot", "DisBot.DiscordBot\DisBot.DiscordBot.csproj", "{D661F1CB-BB6F-4F5B-B26E-3C8CF2AC6A02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{42A3D118-8F53-4B98-B28C-A07A07A9DAEA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisBot.API", "DisBot.API\DisBot.API.csproj", "{42A3D118-8F53-4B98-B28C-A07A07A9DAEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{4102E8E7-45C5-42B9-9665-E14AB3F0A0CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisBot.Shared", "DisBot.Shared\DisBot.Shared.csproj", "{4102E8E7-45C5-42B9-9665-E14AB3F0A0CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisBot.Dashboard", "DisBot.Dashboard\DisBot.Dashboard.csproj", "{280A2EC1-E26E-412A-A301-C9C8239DA9A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +26,9 @@ Global
 		{4102E8E7-45C5-42B9-9665-E14AB3F0A0CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4102E8E7-45C5-42B9-9665-E14AB3F0A0CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4102E8E7-45C5-42B9-9665-E14AB3F0A0CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{280A2EC1-E26E-412A-A301-C9C8239DA9A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{280A2EC1-E26E-412A-A301-C9C8239DA9A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{280A2EC1-E26E-412A-A301-C9C8239DA9A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{280A2EC1-E26E-412A-A301-C9C8239DA9A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
