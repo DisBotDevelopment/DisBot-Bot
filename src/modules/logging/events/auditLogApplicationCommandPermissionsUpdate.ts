@@ -1,15 +1,12 @@
 import {
     ApplicationCommandPermissionsUpdateData,
     ApplicationCommandPermissionType,
-    AuditLogChange,
     AuditLogEvent,
     Client,
-    EmbedBuilder,
     Events,
     WebhookClient
 } from "discord.js";
 import {ExtendedClient} from "../../../types/ExtendedClient.js";
-
 import {loggingHelper} from "../../../helper/loggingHelper.js";
 import {database} from "../../../main/database.js";
 
@@ -24,7 +21,6 @@ export default {
         data: ApplicationCommandPermissionsUpdateData,
         client: ExtendedClient
     ) {
-
         const guildId = data.guildId;
         const guild = await client.guilds.fetch(guildId);
 
@@ -36,6 +32,7 @@ export default {
         });
 
         if (!enabled || !enabled.LoggingEnabled) return;
+
         const loggingData = await database.guildLogging.findFirst({
             where: {
                 GuildId: guildId
@@ -55,35 +52,52 @@ export default {
 
         const permissionsText = data.permissions
             .map((permission) => {
+                let type = "Unknown";
+                let mention = permission.id;
+
                 if (permission.type == ApplicationCommandPermissionType.User) {
-                    return `> **- User** <@${permission.id}> (\`${permission.id}\`) - **Allowed**: \`${permission.permission}\``;
+                    type = "User";
+                    mention = `<@${permission.id}>`;
+                } else if (permission.type == ApplicationCommandPermissionType.Role) {
+                    type = "Role";
+                    mention = `<@&${permission.id}>`;
+                } else if (permission.type == ApplicationCommandPermissionType.Channel) {
+                    type = "Channel";
+                    mention = `<#${permission.id}>`;
                 }
 
-                if (permission.type == ApplicationCommandPermissionType.Role) {
-                    return `> **- Role** <@&${permission.id}> (\`${permission.id}\`) - **Allowed**: \`${permission.permission}\``;
-                }
-
-                if (permission.type == ApplicationCommandPermissionType.Channel) {
-                    return `> **- Channel** <#${permission.id}> (\`${permission.id}\`) - **Allowed**: \`${permission.permission}\``;
-                }
-
-                return `> **- Unknown Type** ${permission.id} - **Allowed**: \`${permission.permission}\``;
+                return `> **${type}:** ${mention} (\`${permission.id}\`) - **Allowed:** \`${permission.permission}\``;
             })
             .join("\n");
 
-        await loggingHelper(client,
-            [
-                `### Application Command Permissions Updated`,
-                ``,
-                `> **Command Id:** \`${data.id ? data.id : "Unknown Command"}\``,
-                `> **Permissions:**`,
-                `${permissionsText}`,
-                ``,
-                `-# **Executor: @${executor?.tag}**`
-            ].join("\n"),
+        const logMessage = [
+            `### 🔧 Command Permissions Updated`,
+            ``,
+            `### Executor`,
+            ...(executor ? [
+                `> <@${executor.id}>`,
+                `> **User ID:** \`${executor.id}\``,
+                `> **Username:** \`${executor.tag}\``
+            ] : [
+                `> *Unknown Executor*`
+            ]),
+            ``,
+            `### Details`,
+            `> **Command ID:** \`${data.id || "Unknown"}\``,
+            `> **Application ID:** \`${data.applicationId}\``,
+            ``,
+            `### Permissions`,
+            permissionsText,
+            ``,
+            `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
+        ].join("\n");
+
+        await loggingHelper(
+            client,
+            logMessage,
             webhook,
-            JSON.stringify(data),
+            JSON.stringify(data, null, 2),
             "ApplicationCommandPermissionsUpdate"
-        )
+        );
     }
 };

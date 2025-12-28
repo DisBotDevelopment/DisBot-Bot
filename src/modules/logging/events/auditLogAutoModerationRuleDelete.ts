@@ -1,12 +1,45 @@
 import {
     AuditLogEvent,
+    AutoModerationActionType,
     AutoModerationRule,
+    AutoModerationRuleEventType,
+    AutoModerationRuleTriggerType,
     Events,
     WebhookClient
 } from "discord.js";
 import {ExtendedClient} from "../../../types/ExtendedClient.js";
-import {database} from "../../../main/database.js"; // Prisma v1
+import {database} from "../../../main/database.js";
 import {loggingHelper} from "../../../helper/loggingHelper.js";
+
+// Helper functions for readable names
+function getTriggerTypeName(type: AutoModerationRuleTriggerType): string {
+    const types: Record<AutoModerationRuleTriggerType, string> = {
+        [AutoModerationRuleTriggerType.Keyword]: "Keyword",
+        [AutoModerationRuleTriggerType.Spam]: "Spam",
+        [AutoModerationRuleTriggerType.KeywordPreset]: "Keyword Preset",
+        [AutoModerationRuleTriggerType.MentionSpam]: "Mention Spam",
+        [AutoModerationRuleTriggerType.MemberProfile]: "Member Profile"
+    };
+    return types[type] || `Unknown (${type})`;
+}
+
+function getEventTypeName(type: AutoModerationRuleEventType): string {
+    const types: Record<AutoModerationRuleEventType, string> = {
+        [AutoModerationRuleEventType.MessageSend]: "Message Send",
+        [AutoModerationRuleEventType.MemberUpdate]: ""
+    };
+    return types[type] || `Unknown (${type})`;
+}
+
+function getActionTypeName(type: AutoModerationActionType): string {
+    const types: Record<AutoModerationActionType, string> = {
+        [AutoModerationActionType.BlockMessage]: "Block Message",
+        [AutoModerationActionType.SendAlertMessage]: "Send Alert Message",
+        [AutoModerationActionType.Timeout]: "Timeout User",
+        [AutoModerationActionType.BlockMemberInteraction]: "Block Member Interaction"
+    };
+    return types[type] || `Unknown (${type})`;
+}
 
 export default {
     name: Events.AutoModerationRuleDelete,
@@ -45,37 +78,40 @@ export default {
         const ruleName = autoModerationRule?.name ?? "Deleted Rule";
         const ruleId = autoModerationRule?.id ?? "Unknown Rule ID";
 
-        const changes: string[] = [];
-
-        if (!autoModerationRule) {
-            changes.push(`**Rule Status**: **Deleted**`);
-        } else {
-            const oldRuleData = autoModerationRule.toJSON
-                ? (autoModerationRule.toJSON() as AutoModerationRule)
-                : autoModerationRule;
-
-            for (const key of Object.keys(oldRuleData)) {
-                const value = (oldRuleData as any)[key];
-                changes.push(
-                    `**${key.charAt(0).toUpperCase() + key.slice(1)}**: \`${value}\``
-                );
-            }
-        }
-
-        const changesText = changes.length > 0 ? changes.join("\n") : "- No changes.";
+        // Build actions text if available
+        const actionsText = autoModerationRule?.actions
+            ? autoModerationRule.actions
+                .map(action => `> **${getActionTypeName(action.type)}**`)
+                .join("\n")
+            : "> *No actions available*";
 
         const message = [
-            `### Auto Moderation Rule Deleted`,
+            `### 🗑️ AutoMod Rule Deleted`,
             ``,
-            `> **Rule Name**: \`${ruleName}\``,
-            `> **Rule ID**: \`${ruleId}\``,
-            `> **Deleted By**: ${executor} (\`${executor?.id}\`)`,
+            `### Executor`,
+            `> <@${executor?.id}>`,
+            `> **User ID:** \`${executor?.id}\``,
+            `> **Username:** \`${executor?.tag}\``,
             ``,
-            `### Details`,
-            `${changesText}`,
+            `### Deleted Rule`,
+            `> **Name:** \`${ruleName}\``,
+            `> **Rule ID:** \`${ruleId}\``,
+            `> **Was Enabled:** \`${autoModerationRule?.enabled ? "Yes" : "No"}\``,
+            ``,
+            ...(autoModerationRule ? [
+                `### Configuration`,
+                `> **Trigger Type:** \`${getTriggerTypeName(autoModerationRule.triggerType)}\``,
+                `> **Event Type:** \`${getEventTypeName(autoModerationRule.eventType)}\``,
+                ``,
+                `### Actions`,
+                actionsText,
+                ``
+            ] : []),
+            `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
         ].join("\n");
 
-        await loggingHelper(client,
+        await loggingHelper(
+            client,
             message,
             webhook,
             JSON.stringify(autoModerationRule, null, 2),

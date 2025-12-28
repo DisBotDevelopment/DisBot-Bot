@@ -9,6 +9,15 @@ import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {loggingHelper} from "../../../helper/loggingHelper.js";
 import {database} from "../../../main/database.js";
 
+function formatKeyName(key: string): string {
+    return key
+        .replace(/([A-Z])/g, ' $1')
+        .trim()
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+}
+
 export default {
     name: Events.GuildAuditLogEntryCreate,
 
@@ -17,11 +26,9 @@ export default {
         guild: Guild,
         client: ExtendedClient
     ) {
-        // Only handle integration update events
         if (auditLogEntry.action !== AuditLogEvent.IntegrationUpdate) return;
         if (!guild) return;
 
-        // Check if logging is enabled
         const enabled = await database.guildFeatureToggles.findFirst({
             where: {
                 GuildId: guild.id,
@@ -45,62 +52,79 @@ export default {
             const executor = auditLogEntry.executor;
             if (!executor) return;
 
-            // Extract integration details from changes
-            const changes = auditLogEntry.changes.map(change => ({
-                key: change.key,
-                old: change.old?.toString() || "None",
-                new: change.new?.toString() || "None"
-            }));
+            const changes: string[] = [];
+            const changesData: Array<{key: string, old: string, new: string}> = [];
 
-            // Format changes for display
-            const formattedChanges = changes.map(change =>
-                `> **${change.key.replace(/([A-Z])/g, ' $1').trim()}**: \`${change.old}\` → \`${change.new}\``
-            );
+            auditLogEntry.changes.forEach(change => {
+                const oldValue = change.old?.toString() || "None";
+                const newValue = change.new?.toString() || "None";
 
-            // Get integration name (either from changes or target)
-            const integrationName = changes.find(c => c.key === 'name')?.new ||
+                changesData.push({
+                    key: change.key,
+                    old: oldValue,
+                    new: newValue
+                });
+
+                changes.push(
+                    `> **${formatKeyName(change.key)}**`,
+                    `> Before: \`${oldValue}\``,
+                    `> After: \`${newValue}\``
+                );
+            });
+
+            const integrationName = auditLogEntry.changes.find(c => c.key === 'name')?.new as string ||
                 auditLogEntry.target?.toString() ||
                 "Unknown";
 
-            // Prepare the log message
-            const messageContent = [
-                `### Integration Updated`,
+            if (changes.length === 0) return;
+
+            const message = [
+                `### 🔄 Integration Updated`,
                 ``,
-                `> **Executor**: ${executor} (\`${executor.id}\`)`,
-                `> **Integration**: \`${integrationName}\``,
+                `### Executor`,
+                `> <@${executor.id}>`,
+                `> **User ID:** \`${executor.id}\``,
+                `> **Username:** \`${executor.tag}\``,
                 ``,
-                ...formattedChanges,
+                `### Integration Details`,
+                `> **Name:** \`${integrationName}\``,
+                `> **Integration ID:** \`${auditLogEntry.targetId || "Unknown"}\``,
                 ``,
-                `- **Updated at**: \`${new Date().toLocaleString()}\``
+                `### Changes`,
+                ...changes,
+                ``,
+                ...(auditLogEntry.reason ? [
+                    `### Reason`,
+                    `> ${auditLogEntry.reason}`,
+                    ``
+                ] : []),
+                `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
             ].join("\n");
 
-            // Prepare the JSON data
-            const jsonData = {
-                integration: {
-                    id: auditLogEntry.targetId,
-                    name: integrationName,
-                    changes: changes,
-                    updatedAt: new Date().toISOString()
-                },
-                executor: {
-                    id: executor.id,
-                    username: executor.username,
-                    tag: executor.tag,
-                    avatarURL: executor.displayAvatarURL()
-                },
-                guild: {
-                    id: guild.id,
-                    name: guild.name
-                },
-                updateDetails: {
-                    reason: auditLogEntry.reason || "Not specified"
-                }
-            };
-
-            await loggingHelper(client,
-                messageContent,
+            await loggingHelper(
+                client,
+                message,
                 webhook,
-                JSON.stringify(jsonData, null, 2),
+                JSON.stringify({
+                    integration: {
+                        id: auditLogEntry.targetId,
+                        name: integrationName,
+                        changes: changesData,
+                        updatedAt: new Date().toISOString()
+                    },
+                    executor: {
+                        id: executor.id,
+                        username: executor.username,
+                        tag: executor.tag
+                    },
+                    guild: {
+                        id: guild.id,
+                        name: guild.name
+                    },
+                    updateDetails: {
+                        reason: auditLogEntry.reason || null
+                    }
+                }, null, 2),
                 "IntegrationUpdate"
             );
         } catch (error) {

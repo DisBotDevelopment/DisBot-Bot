@@ -1,6 +1,5 @@
 import {
     AuditLogEvent,
-    Client,
     Events,
     GuildEmoji,
     WebhookClient
@@ -19,7 +18,6 @@ export default {
     ) {
         const guildId = oldEmoji.guild.id;
 
-        // Check if logging is enabled
         const enabled = await database.guildFeatureToggles.findFirst({
             where: {
                 GuildId: guildId,
@@ -39,7 +37,6 @@ export default {
 
         const webhook = new WebhookClient({url: loggingData.Integration});
 
-        // Fetch audit logs to get who updated the emoji
         const auditLogs = await oldEmoji.guild.fetchAuditLogs({
             type: AuditLogEvent.EmojiUpdate,
             limit: 1
@@ -47,37 +44,51 @@ export default {
         const logEntry = auditLogs.entries.first();
         const executor = logEntry?.executor;
 
-        // Track changes between old and new emoji
         const changes: string[] = [];
 
         if (oldEmoji.name !== newEmoji.name) {
             changes.push(
-                `> **Name**: \`${oldEmoji.name}\` → \`${newEmoji.name}\``
+                `> **Name**`,
+                `> Before: \`${oldEmoji.name}\``,
+                `> After: \`${newEmoji.name}\``
             );
         }
 
         if (oldEmoji.animated !== newEmoji.animated) {
             changes.push(
-                `> **Animated**: \`${oldEmoji.animated ? "Yes" : "No"}\` → \`${newEmoji.animated ? "Yes" : "No"}\``
+                `> **Animated**`,
+                `> Before: \`${oldEmoji.animated ? "Yes" : "No"}\``,
+                `> After: \`${newEmoji.animated ? "Yes" : "No"}\``
             );
         }
 
-        // If no changes were detected (shouldn't happen for this event)
-        if (changes.length === 0) {
-            changes.push("> No detectable changes were found");
-        }
+        if (changes.length === 0) return;
 
-        await loggingHelper(client,
-            [
-                `### Emoji Updated`,
-                ``,
-                `> **ID**: \`${newEmoji.id}\``,
-                `> **Preview**: <${newEmoji.animated ? 'a' : ''}:${newEmoji.name}:${newEmoji.id}>`,
-                ``,
-                ...changes,
-                ``,
-                `- **Updated by**: @${executor?.tag}`
-            ].join("\n"),
+        const message = [
+            `### 🔄 Emoji Updated`,
+            ``,
+            `### Executor`,
+            ...(executor ? [
+                `> <@${executor.id}>`,
+                `> **User ID:** \`${executor.id}\``,
+                `> **Username:** \`${executor.tag}\``
+            ] : [
+                `> *Unknown Executor*`
+            ]),
+            ``,
+            `### Emoji Details`,
+            `> **Emoji ID:** \`${newEmoji.id}\``,
+            `> **Current Preview:** <${newEmoji.animated ? 'a' : ''}:${newEmoji.name}:${newEmoji.id}>`,
+            ``,
+            `### Changes`,
+            ...changes,
+            ``,
+            `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
+        ].join("\n");
+
+        await loggingHelper(
+            client,
+            message,
             webhook,
             JSON.stringify({
                 oldEmoji: {
@@ -104,7 +115,7 @@ export default {
                     tag: executor.tag
                 } : null,
                 updateTime: new Date().toISOString()
-            }),
+            }, null, 2),
             "EmojiUpdate"
         );
     }

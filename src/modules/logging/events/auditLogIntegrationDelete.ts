@@ -1,6 +1,5 @@
 import {
     AuditLogEvent,
-    Client,
     Events,
     Guild,
     GuildAuditLogsEntry,
@@ -18,11 +17,9 @@ export default {
         guild: Guild,
         client: ExtendedClient
     ) {
-        // Only handle integration deletion events
         if (auditLogEntry.action !== AuditLogEvent.IntegrationDelete) return;
         if (!guild) return;
 
-        // Check if logging is enabled
         const enabled = await database.guildFeatureToggles.findFirst({
             where: {
                 GuildId: guild.id,
@@ -46,7 +43,6 @@ export default {
             const executor = auditLogEntry.executor;
             if (!executor) return;
 
-            // Extract integration details from changes
             const integrationName = auditLogEntry.changes.find(change =>
                 change.key === 'name'
             )?.old as string | undefined;
@@ -55,44 +51,51 @@ export default {
                 change.key === 'type'
             )?.old as string | undefined;
 
-            // Prepare the log message
-            const messageContent = [
-                `### Integration Deleted`,
+            const message = [
+                `### 🗑️ Integration Deleted`,
                 ``,
-                `> **Executor**: ${executor} (\`${executor.id}\`)`,
-                `> **Integration Name**: \`${integrationName || "Unknown"}\``,
-                `> **Type**: \`${integrationType || "Unknown"}\``,
+                `### Executor`,
+                `> <@${executor.id}>`,
+                `> **User ID:** \`${executor.id}\``,
+                `> **Username:** \`${executor.tag}\``,
                 ``,
-                `- **Deleted at**: \`${new Date().toLocaleString()}\``
+                `### Deleted Integration`,
+                `> **Name:** \`${integrationName || "Unknown"}\``,
+                `> **Type:** \`${integrationType || "Unknown"}\``,
+                `> **Integration ID:** \`${auditLogEntry.targetId || "Unknown"}\``,
+                ...(auditLogEntry.reason ? [
+                    ``,
+                    `### Reason`,
+                    `> ${auditLogEntry.reason}`
+                ] : []),
+                ``,
+                `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
             ].join("\n");
 
-            // Prepare the JSON data
-            const jsonData = {
-                integration: {
-                    id: auditLogEntry.targetId,
-                    name: integrationName,
-                    type: integrationType,
-                    deletedAt: new Date().toISOString()
-                },
-                executor: {
-                    id: executor.id,
-                    username: executor.username,
-                    tag: executor.tag,
-                    avatarURL: executor.displayAvatarURL()
-                },
-                guild: {
-                    id: guild.id,
-                    name: guild.name
-                },
-                deletionDetails: {
-                    reason: auditLogEntry.reason || "Not specified"
-                }
-            };
-
-            await loggingHelper(client,
-                messageContent,
+            await loggingHelper(
+                client,
+                message,
                 webhook,
-                JSON.stringify(jsonData, null, 2),
+                JSON.stringify({
+                    integration: {
+                        id: auditLogEntry.targetId,
+                        name: integrationName,
+                        type: integrationType,
+                        deletedAt: new Date().toISOString()
+                    },
+                    executor: {
+                        id: executor.id,
+                        username: executor.username,
+                        tag: executor.tag
+                    },
+                    guild: {
+                        id: guild.id,
+                        name: guild.name
+                    },
+                    deletionDetails: {
+                        reason: auditLogEntry.reason || null
+                    }
+                }, null, 2),
                 "IntegrationDelete"
             );
         } catch (error) {

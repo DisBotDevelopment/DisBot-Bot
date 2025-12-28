@@ -1,12 +1,33 @@
 import {
     Events,
     GuildScheduledEvent,
+    GuildScheduledEventEntityType,
+    GuildScheduledEventStatus,
     User,
     WebhookClient
 } from "discord.js";
 import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {loggingHelper} from "../../../helper/loggingHelper.js";
 import {database} from "../../../main/database.js";
+
+function getEntityTypeName(type: GuildScheduledEventEntityType): string {
+    const types: Record<GuildScheduledEventEntityType, string> = {
+        [GuildScheduledEventEntityType.StageInstance]: "Stage Channel",
+        [GuildScheduledEventEntityType.Voice]: "Voice Channel",
+        [GuildScheduledEventEntityType.External]: "External"
+    };
+    return types[type] || `Unknown (${type})`;
+}
+
+function getStatusName(status: GuildScheduledEventStatus): string {
+    const statuses: Record<GuildScheduledEventStatus, string> = {
+        [GuildScheduledEventStatus.Scheduled]: "Scheduled",
+        [GuildScheduledEventStatus.Active]: "Active",
+        [GuildScheduledEventStatus.Completed]: "Completed",
+        [GuildScheduledEventStatus.Canceled]: "Canceled"
+    };
+    return statuses[status] || `Unknown (${status})`;
+}
 
 export default {
     name: Events.GuildScheduledEventUserAdd,
@@ -17,12 +38,8 @@ export default {
         client: ExtendedClient
     ) {
         const guild = guildScheduledEvent.guild;
-        if (!guild) {
-            console.error("Guild not found for event:", guildScheduledEvent.id);
-            return;
-        }
+        if (!guild) return;
 
-        // Check if logging is enabled
         const enabled = await database.guildFeatureToggles.findFirst({
             where: {
                 GuildId: guild.id,
@@ -42,30 +59,50 @@ export default {
 
         const webhook = new WebhookClient({url: loggingData.Integration});
 
-        // Format event details
-        const eventDetails = [
-            `### User Joined Scheduled Event`,
-            ``,
-            `> **Event**: \`${guildScheduledEvent.name}\` (\`${guildScheduledEvent.id}\`)`,
-            `> **User**: ${user} (\`${user.id}\`)`,
-            `> **Start Time**: \`${guildScheduledEvent.scheduledStartAt?.toLocaleString() || "Not specified"}\``,
-            `> **Location**: ${guildScheduledEvent.channel ? `<#${guildScheduledEvent.channel.id}>` : "None"}`,
-            `> **Event Type**: \`${guildScheduledEvent.entityType}\``,
-            ``,
-            `- **Joined at**: \`${new Date().toLocaleString()}\``
-        ];
+        const startTimestamp = guildScheduledEvent.scheduledStartAt
+            ? Math.floor(guildScheduledEvent.scheduledStartAt.getTime() / 1000)
+            : null;
 
-        await loggingHelper(client,
-            eventDetails.join("\n"),
+        const message = [
+            `### ➕ User Joined Event`,
+            ``,
+            `### User`,
+            `> <@${user.id}>`,
+            `> **User ID:** \`${user.id}\``,
+            `> **Username:** \`${user.tag}\``,
+            ``,
+            `### Event Details`,
+            `> **Name:** \`${guildScheduledEvent.name}\``,
+            `> **Event ID:** \`${guildScheduledEvent.id}\``,
+            `> **Type:** \`${getEntityTypeName(guildScheduledEvent.entityType)}\``,
+            `> **Status:** \`${getStatusName(guildScheduledEvent.status)}\``,
+            ...(guildScheduledEvent.channel ? [
+                `> **Channel:** <#${guildScheduledEvent.channel.id}>`
+            ] : []),
+            ...(guildScheduledEvent.entityMetadata?.location ? [
+                `> **Location:** \`${guildScheduledEvent.entityMetadata.location}\``
+            ] : []),
+            ...(startTimestamp ? [
+                `> **Starts:** <t:${startTimestamp}:F> (<t:${startTimestamp}:R>)`
+            ] : []),
+            `> **Event URL:** [View Event](${guildScheduledEvent.url})`,
+            ``,
+            `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
+        ].join("\n");
+
+        await loggingHelper(
+            client,
+            message,
             webhook,
             JSON.stringify({
                 event: {
                     id: guildScheduledEvent.id,
                     name: guildScheduledEvent.name,
                     description: guildScheduledEvent.description,
-                    entityType: guildScheduledEvent.entityType,
-                    status: guildScheduledEvent.status,
+                    entityType: getEntityTypeName(guildScheduledEvent.entityType),
+                    status: getStatusName(guildScheduledEvent.status),
                     channelId: guildScheduledEvent.channel?.id,
+                    location: guildScheduledEvent.entityMetadata?.location,
                     scheduledStartAt: guildScheduledEvent.scheduledStartAt?.toISOString(),
                     scheduledEndAt: guildScheduledEvent.scheduledEndAt?.toISOString(),
                     url: guildScheduledEvent.url
@@ -73,8 +110,7 @@ export default {
                 user: {
                     id: user.id,
                     username: user.username,
-                    tag: user.tag,
-                    avatarURL: user.displayAvatarURL()
+                    tag: user.tag
                 },
                 joinTime: new Date().toISOString()
             }, null, 2),

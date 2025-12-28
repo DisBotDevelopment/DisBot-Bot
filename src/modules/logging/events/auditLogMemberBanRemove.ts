@@ -3,6 +3,7 @@ import {
     Events,
     Guild,
     GuildAuditLogsEntry,
+    User,
     WebhookClient
 } from "discord.js";
 import {ExtendedClient} from "../../../types/ExtendedClient.js";
@@ -17,10 +18,8 @@ export default {
         guild: Guild,
         client: ExtendedClient
     ) {
-        // Only handle member unban events
         if (auditLogEntry.action !== AuditLogEvent.MemberBanRemove) return;
 
-        // Check if logging is enabled
         const enabled = await database.guildFeatureToggles.findFirst({
             where: {
                 GuildId: guild.id,
@@ -45,46 +44,63 @@ export default {
 
             if (!executor || !target) return;
 
-            // Get additional user details
-            const unbannedUser = await client.users.fetch((target as Guild).id).catch(() => null);
+            const targetUser = target as User;
+            const unbannedUser = await client.users.fetch(targetUser.id).catch(() => null);
             const moderator = await client.users.fetch(executor.id).catch(() => null);
 
-            // Prepare the log message
-            const messageContent = [
-                `### Member Unbanned`,
+            const message = [
+                `### ✅ Member Unbanned`,
                 ``,
-                `> **User**: ${unbannedUser ? unbannedUser.toString() : `\`${(target as Guild).id}\``}`,
-                `> **User ID**: \`${(target as Guild).id}\``,
-                `> **Moderator**: ${moderator ? moderator.toString() : `\`${executor.id}\``}`,
-                `> **Reason**: \`${reason || "No reason provided"}\``,
+                `### Moderator`,
+                ...(moderator ? [
+                    `> <@${moderator.id}>`,
+                    `> **User ID:** \`${moderator.id}\``,
+                    `> **Username:** \`${moderator.tag}\``
+                ] : [
+                    `> *Unknown Moderator*`,
+                    `> **User ID:** \`${executor.id}\``
+                ]),
                 ``,
-                `- **Unbanned at**: \`${new Date().toLocaleString()}\``
+                `### Unbanned User`,
+                ...(unbannedUser ? [
+                    `> <@${unbannedUser.id}>`,
+                    `> **User ID:** \`${unbannedUser.id}\``,
+                    `> **Username:** \`${unbannedUser.tag}\``
+                ] : [
+                    `> *Unknown User*`,
+                    `> **User ID:** \`${targetUser.id}\``
+                ]),
+                ``,
+                ...(reason ? [
+                    `### Reason`,
+                    `> ${reason}`,
+                    ``
+                ] : []),
+                `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
             ].join("\n");
 
-            // Prepare the JSON data
-            const jsonData = {
-                unban: {
-                    userId: (target as Guild).id,
-                    userTag: unbannedUser?.tag,
-                    reason: reason,
-                    timestamp: new Date().toISOString()
-                },
-                moderator: moderator ? {
-                    id: moderator.id,
-                    username: moderator.username,
-                    tag: moderator.tag,
-                    avatarURL: moderator.displayAvatarURL()
-                } : null,
-                guild: {
-                    id: guild.id,
-                    name: guild.name
-                }
-            };
-
-            await loggingHelper(client,
-                messageContent,
+            await loggingHelper(
+                client,
+                message,
                 webhook,
-                JSON.stringify(jsonData, null, 2),
+                JSON.stringify({
+                    unban: {
+                        userId: targetUser.id,
+                        userTag: unbannedUser?.tag,
+                        username: unbannedUser?.username,
+                        reason: reason || null,
+                        timestamp: new Date().toISOString()
+                    },
+                    moderator: {
+                        id: executor.id,
+                        username: moderator?.username,
+                        tag: moderator?.tag || executor.tag
+                    },
+                    guild: {
+                        id: guild.id,
+                        name: guild.name
+                    }
+                }, null, 2),
                 "MemberUnban"
             );
         } catch (error) {

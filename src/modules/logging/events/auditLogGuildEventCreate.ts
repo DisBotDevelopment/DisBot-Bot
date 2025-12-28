@@ -1,13 +1,41 @@
 import {
     AuditLogEvent,
-    Client,
     Events,
     GuildScheduledEvent,
+    GuildScheduledEventEntityType,
+    GuildScheduledEventPrivacyLevel,
+    GuildScheduledEventStatus,
     WebhookClient
 } from "discord.js";
 import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {loggingHelper} from "../../../helper/loggingHelper.js";
 import {database} from "../../../main/database.js";
+
+function getEntityTypeName(type: GuildScheduledEventEntityType): string {
+    const types: Record<GuildScheduledEventEntityType, string> = {
+        [GuildScheduledEventEntityType.StageInstance]: "Stage Channel",
+        [GuildScheduledEventEntityType.Voice]: "Voice Channel",
+        [GuildScheduledEventEntityType.External]: "External"
+    };
+    return types[type] || `Unknown (${type})`;
+}
+
+function getStatusName(status: GuildScheduledEventStatus): string {
+    const statuses: Record<GuildScheduledEventStatus, string> = {
+        [GuildScheduledEventStatus.Scheduled]: "Scheduled",
+        [GuildScheduledEventStatus.Active]: "Active",
+        [GuildScheduledEventStatus.Completed]: "Completed",
+        [GuildScheduledEventStatus.Canceled]: "Canceled"
+    };
+    return statuses[status] || `Unknown (${status})`;
+}
+
+function getPrivacyLevelName(level: GuildScheduledEventPrivacyLevel): string {
+    const levels: Record<GuildScheduledEventPrivacyLevel, string> = {
+        [GuildScheduledEventPrivacyLevel.GuildOnly]: "Guild Only"
+    };
+    return levels[level] || `Unknown (${level})`;
+}
 
 export default {
     name: Events.GuildScheduledEventCreate,
@@ -17,12 +45,8 @@ export default {
         client: ExtendedClient
     ) {
         const guild = guildScheduledEvent.guild;
-        if (!guild) {
-            console.error("Guild not found for event:", guildScheduledEvent.id);
-            return;
-        }
+        if (!guild) return;
 
-        // Check if logging is enabled
         const enabled = await database.guildFeatureToggles.findFirst({
             where: {
                 GuildId: guild.id,
@@ -42,34 +66,72 @@ export default {
 
         const webhook = new WebhookClient({url: loggingData.Integration});
 
-        // Get event creator from audit logs
         const auditLogs = await guild.fetchAuditLogs({
             type: AuditLogEvent.GuildScheduledEventCreate,
             limit: 1
         });
         const creator = auditLogs.entries.first()?.executor;
 
-        // Format event details
-        const eventDetails = [
-            `### New Scheduled Event Created`,
-            ``,
-            `> **Name**: \`${guildScheduledEvent.name}\``,
-            `> **Type**: \`${guildScheduledEvent.entityType}\``,
-            `> **Start**: \`${guildScheduledEvent.scheduledStartAt?.toLocaleString() || "Not specified"}\``,
-            `> **End**: \`${guildScheduledEvent.scheduledEndAt?.toLocaleString() || "Not specified"}\``,
-            `> **Channel**: ${guildScheduledEvent.channel ? `<#${guildScheduledEvent.channel.id}>` : "None"}`,
-            `> **Status**: \`${guildScheduledEvent.status}\``,
-            `> **Privacy**: \`${guildScheduledEvent.privacyLevel}\``,
-            ``,
-            `**Description**:`,
-            `\`\`\`${guildScheduledEvent.description || "No description provided"}\`\`\``,
-            ``,
-            `- **Created by**: @${creator?.tag || "Unknown"}`,
-            `- **Event ID**: \`${guildScheduledEvent.id}\``
-        ];
+        const startTimestamp = guildScheduledEvent.scheduledStartAt
+            ? Math.floor(guildScheduledEvent.scheduledStartAt.getTime() / 1000)
+            : null;
+        const endTimestamp = guildScheduledEvent.scheduledEndAt
+            ? Math.floor(guildScheduledEvent.scheduledEndAt.getTime() / 1000)
+            : null;
 
-        await loggingHelper(client,
-            eventDetails.join("\n"),
+        const message = [
+            `### 📅 Event Created`,
+            ``,
+            `### Executor`,
+            ...(creator ? [
+                `> <@${creator.id}>`,
+                `> **User ID:** \`${creator.id}\``,
+                `> **Username:** \`${creator.tag}\``
+            ] : [
+                `> *Unknown Executor*`
+            ]),
+            ``,
+            `### Event Details`,
+            `> **Name:** \`${guildScheduledEvent.name}\``,
+            `> **Event ID:** \`${guildScheduledEvent.id}\``,
+            `> **Type:** \`${getEntityTypeName(guildScheduledEvent.entityType)}\``,
+            `> **Status:** \`${getStatusName(guildScheduledEvent.status)}\``,
+            `> **Privacy:** \`${getPrivacyLevelName(guildScheduledEvent.privacyLevel)}\``,
+            ...(guildScheduledEvent.channel ? [
+                `> **Channel:** <#${guildScheduledEvent.channel.id}>`
+            ] : []),
+            ...(guildScheduledEvent.entityMetadata?.location ? [
+                `> **Location:** \`${guildScheduledEvent.entityMetadata.location}\``
+            ] : []),
+            ``,
+            `### Schedule`,
+            ...(startTimestamp ? [
+                `> **Start:** <t:${startTimestamp}:F> (<t:${startTimestamp}:R>)`
+            ] : [
+                `> **Start:** \`Not specified\``
+            ]),
+            ...(endTimestamp ? [
+                `> **End:** <t:${endTimestamp}:F> (<t:${endTimestamp}:R>)`
+            ] : [
+                `> **End:** \`Not specified\``
+            ]),
+            ``,
+            ...(guildScheduledEvent.description ? [
+                `### Description`,
+                `> ${guildScheduledEvent.description}`,
+                ``
+            ] : []),
+            ...(guildScheduledEvent.coverImageURL() ? [
+                `### Cover Image`,
+                `> [View Cover Image](${guildScheduledEvent.coverImageURL()})`,
+                ``
+            ] : []),
+            `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
+        ].join("\n");
+
+        await loggingHelper(
+            client,
+            message,
             webhook,
             JSON.stringify({
                 event: {
@@ -77,10 +139,11 @@ export default {
                     name: guildScheduledEvent.name,
                     description: guildScheduledEvent.description,
                     url: guildScheduledEvent.url,
-                    entityType: guildScheduledEvent.entityType,
-                    status: guildScheduledEvent.status,
-                    privacyLevel: guildScheduledEvent.privacyLevel,
+                    entityType: getEntityTypeName(guildScheduledEvent.entityType),
+                    status: getStatusName(guildScheduledEvent.status),
+                    privacyLevel: getPrivacyLevelName(guildScheduledEvent.privacyLevel),
                     channelId: guildScheduledEvent.channel?.id,
+                    location: guildScheduledEvent.entityMetadata?.location,
                     scheduledStartAt: guildScheduledEvent.scheduledStartAt?.toISOString(),
                     scheduledEndAt: guildScheduledEvent.scheduledEndAt?.toISOString(),
                     createdAt: guildScheduledEvent.createdAt?.toISOString(),

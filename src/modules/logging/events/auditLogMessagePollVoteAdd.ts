@@ -47,31 +47,46 @@ export default {
 
         const webhook = new WebhookClient({url: loggingData.Poll});
         const user = await client.users.fetch(userId).catch(() => null);
-        const voteTime = new Date();
         const selectedAnswer = answers.get(id);
+        const pollUrl = `https://discord.com/channels/${guildId}/${channel.id}/${message.id}`;
 
-        await loggingHelper(client,
-            [
-                "### Poll Vote Added",
-                "",
-                `> **Poll:** [Jump to Poll](https://discord.com/channels/${guildId}/${channel.id}/${message.id})`,
-                `> **Voter:** ${user ? `<@${user.id}> (\`${user.tag}\`)` : "Unknown"}`,
-                `> **Question:** \`${question.text || "No question"}\``,
-                `> **Selected Option:**`,
-                `> - **ID:** \`${id}\``,
-                `> - **Text:** \`${selectedAnswer?.text || "Unknown"}\``,
-                `> - **Votes:** \`${voteCount}\``,
-                `> **Voted At:** \`${voteTime.toLocaleString()}\``,
-                "",
-                `-# **Voter ID:** ${userId}`,
-                `-# **Channel:** <#${channel.id}>`
-            ].join("\n"),
+        const messageLog = [
+            `### 🗳️ Poll Vote Added`,
+            ``,
+            `### Voter`,
+            ...(user ? [
+                `> <@${user.id}>`,
+                `> **User ID:** \`${user.id}\``,
+                `> **Username:** \`${user.tag}\``
+            ] : [
+                `> *Unknown User*`,
+                `> **User ID:** \`${userId}\``
+            ]),
+            ``,
+            `### Poll Details`,
+            `> **Question:** \`${question.text || "No question"}\``,
+            `> **Poll URL:** [Jump to Poll](${pollUrl})`,
+            `> **Channel:** <#${channel.id}>`,
+            `> **Total Options:** \`${answers.size}\``,
+            ``,
+            `### Vote Details`,
+            `> **Selected Option ID:** \`${id}\``,
+            `> **Option Text:** \`${selectedAnswer?.text || "Unknown"}\``,
+            `> **Current Vote Count:** \`${voteCount}\``,
+            ``,
+            `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
+        ].join("\n");
+
+        await loggingHelper(
+            client,
+            messageLog,
             webhook,
             JSON.stringify({
                 poll: {
                     messageId: message.id,
                     question: question.text,
-                    totalAnswers: answers.size
+                    totalAnswers: answers.size,
+                    url: pollUrl
                 },
                 vote: {
                     answerId: id,
@@ -81,14 +96,16 @@ export default {
                 voter: user ? {
                     id: user.id,
                     username: user.username,
-                    discriminator: user.discriminator
-                } : null,
+                    tag: user.tag
+                } : {
+                    id: userId
+                },
                 channel: {
                     id: channel.id,
                     name: channel.name
                 },
-                timestamp: voteTime.toISOString()
-            }),
+                timestamp: new Date().toISOString()
+            }, null, 2),
             "PollVoteAdd"
         );
     }

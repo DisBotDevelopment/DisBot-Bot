@@ -9,17 +9,20 @@ import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {loggingHelper} from "../../../helper/loggingHelper.js";
 import {database} from "../../../main/database.js";
 
+function formatPermissionName(permission: string): string {
+    return permission
+        .split(/(?=[A-Z])/)
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+}
+
 export default {
     name: Events.GuildRoleUpdate,
 
     async execute(oldRole: Role, newRole: Role, client: ExtendedClient) {
         const guild = newRole.guild;
-        if (!guild) {
-            console.error("Guild not found for role:", newRole.id);
-            return;
-        }
+        if (!guild) return;
 
-        // Check if logging is enabled
         const enabled = await database.guildFeatureToggles.findFirst({
             where: {
                 GuildId: guild.id,
@@ -39,7 +42,6 @@ export default {
 
         const webhook = new WebhookClient({url: loggingData.Integration});
 
-        // Get role updater from audit logs
         const auditLogs = await guild.fetchAuditLogs({
             type: AuditLogEvent.RoleUpdate,
             limit: 1
@@ -47,116 +49,158 @@ export default {
 
         const updater = auditLogs?.entries.first()?.executor;
 
-        // Track all changes between old and new role
         const changes: string[] = [];
 
-        // Helper function to format permission names
-        const formatPermission = (permission: string) => {
-            return permission
-                .replace(/([A-Z])/g, ' $1')
-                .replace(/^./, str => str.toUpperCase())
-                .trim();
-        };
-
-        // Check basic role properties
         if (oldRole.name !== newRole.name) {
-            changes.push(`> **Name**: \`${oldRole.name}\` → \`${newRole.name}\``);
+            changes.push(
+                `> **Name**`,
+                `> Before: \`${oldRole.name}\``,
+                `> After: \`${newRole.name}\``
+            );
         }
 
         if (oldRole.color !== newRole.color) {
-            changes.push(`> **Color**: \`${oldRole.hexColor}\` → \`${newRole.hexColor}\``);
+            changes.push(
+                `> **Color**`,
+                `> Before: \`${oldRole.hexColor}\``,
+                `> After: \`${newRole.hexColor}\``
+            );
         }
 
         if (oldRole.position !== newRole.position) {
-            changes.push(`> **Position**: \`${oldRole.position}\` → \`${newRole.position}\``);
+            changes.push(
+                `> **Position**`,
+                `> Before: \`${oldRole.position}\``,
+                `> After: \`${newRole.position}\``
+            );
         }
 
         if (oldRole.hoist !== newRole.hoist) {
-            changes.push(`> **Display Separately**: \`${oldRole.hoist ? "Yes" : "No"}\` → \`${newRole.hoist ? "Yes" : "No"}\``);
+            changes.push(
+                `> **Display Separately (Hoisted)**`,
+                `> Before: \`${oldRole.hoist ? "Yes" : "No"}\``,
+                `> After: \`${newRole.hoist ? "Yes" : "No"}\``
+            );
         }
 
         if (oldRole.mentionable !== newRole.mentionable) {
-            changes.push(`> **Mentionable**: \`${oldRole.mentionable ? "Yes" : "No"}\` → \`${newRole.mentionable ? "Yes" : "No"}\``);
+            changes.push(
+                `> **Mentionable**`,
+                `> Before: \`${oldRole.mentionable ? "Yes" : "No"}\``,
+                `> After: \`${newRole.mentionable ? "Yes" : "No"}\``
+            );
         }
 
-        // Check permission changes with detailed tracking
+        if (oldRole.icon !== newRole.icon) {
+            changes.push(
+                `> **Icon**`,
+                `> Before: ${oldRole.iconURL() ? `[View Icon](${oldRole.iconURL()})` : "\`None\`"}`,
+                `> After: ${newRole.iconURL() ? `[View Icon](${newRole.iconURL()})` : "\`None\`"}`
+            );
+        }
+
+        if (oldRole.unicodeEmoji !== newRole.unicodeEmoji) {
+            changes.push(
+                `> **Unicode Emoji**`,
+                `> Before: \`${oldRole.unicodeEmoji || "None"}\``,
+                `> After: \`${newRole.unicodeEmoji || "None"}\``
+            );
+        }
+
         if (oldRole.permissions.bitfield !== newRole.permissions.bitfield) {
-            const oldPerms = new PermissionsBitField(oldRole.permissions);
-            const newPerms = new PermissionsBitField(newRole.permissions);
+            const oldPerms = new PermissionsBitField(oldRole.permissions.bitfield);
+            const newPerms = new PermissionsBitField(newRole.permissions.bitfield);
 
             const added = newPerms.toArray().filter(p => !oldPerms.has(p));
             const removed = oldPerms.toArray().filter(p => !newPerms.has(p));
 
-            if (added.length > 0) {
-                changes.push(
-                    `> **Permissions Added**:\n\`\`\`diff\n+ ${added.map(formatPermission).join("\n+ ")}\n\`\`\``
-                );
-            }
-            if (removed.length > 0) {
-                changes.push(
-                    `> **Permissions Removed**:\n\`\`\`diff\n- ${removed.map(formatPermission).join("\n- ")}\n\`\`\``
-                );
+            if (added.length > 0 || removed.length > 0) {
+                changes.push(`> **Permissions Changed**`);
+
+                if (added.length > 0) {
+                    const formattedAdded = added.map(p => `+ ${formatPermissionName(p)}`).join("\n");
+                    changes.push(`\`\`\`diff\n${formattedAdded}\`\`\``);
+                }
+
+                if (removed.length > 0) {
+                    const formattedRemoved = removed.map(p => `- ${formatPermissionName(p)}`).join("\n");
+                    changes.push(`\`\`\`diff\n${formattedRemoved}\`\`\``);
+                }
             }
         }
 
-        // If no changes detected, don't log
         if (changes.length === 0) return;
 
-        // Prepare the log message
-        const messageContent = [
-            `### Role Updated: ${newRole.name} (${newRole.id})`,
+        const message = [
+            `### 🔄 Role Updated`,
             ``,
+            `### Executor`,
+            ...(updater ? [
+                `> <@${updater.id}>`,
+                `> **User ID:** \`${updater.id}\``,
+                `> **Username:** \`${updater.tag}\``
+            ] : [
+                `> *Unknown Executor*`
+            ]),
+            ``,
+            `### Role Details`,
+            `> **Name:** ${newRole} (\`${newRole.name}\`)`,
+            `> **Role ID:** \`${newRole.id}\``,
+            ``,
+            `### Changes`,
             ...changes,
             ``,
-            `- **Updated by**: ${updater ? `@${updater.tag}` : "Unknown"}`,
-            `- **Updated at**: \`${new Date().toLocaleString()}\``
+            `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
         ].join("\n");
 
-        // Prepare the JSON data
-        const jsonData = {
-            oldRole: {
-                id: oldRole.id,
-                name: oldRole.name,
-                color: oldRole.color,
-                hexColor: oldRole.hexColor,
-                position: oldRole.position,
-                hoist: oldRole.hoist,
-                mentionable: oldRole.mentionable,
-                permissions: oldRole.permissions.toArray(),
-                createdAt: oldRole.createdAt.toISOString()
-            },
-            newRole: {
-                id: newRole.id,
-                name: newRole.name,
-                color: newRole.color,
-                hexColor: newRole.hexColor,
-                position: newRole.position,
-                hoist: newRole.hoist,
-                mentionable: newRole.mentionable,
-                permissions: newRole.permissions.toArray(),
-                createdAt: newRole.createdAt.toISOString()
-            },
-            changes: {
-                name: oldRole.name !== newRole.name,
-                color: oldRole.color !== newRole.color,
-                position: oldRole.position !== newRole.position,
-                hoist: oldRole.hoist !== newRole.hoist,
-                mentionable: oldRole.mentionable !== newRole.mentionable,
-                permissions: oldRole.permissions.bitfield !== newRole.permissions.bitfield
-            },
-            updater: updater ? {
-                id: updater.id,
-                username: updater.username,
-                tag: updater.tag,
-                avatarURL: updater.displayAvatarURL()
-            } : null,
-            updateTime: new Date().toISOString()
-        };
-
-        await loggingHelper(client,
-            messageContent,
+        await loggingHelper(
+            client,
+            message,
             webhook,
-            JSON.stringify(jsonData, null, 2),
+            JSON.stringify({
+                oldRole: {
+                    id: oldRole.id,
+                    name: oldRole.name,
+                    color: oldRole.color,
+                    hexColor: oldRole.hexColor,
+                    position: oldRole.position,
+                    hoist: oldRole.hoist,
+                    mentionable: oldRole.mentionable,
+                    icon: oldRole.icon,
+                    unicodeEmoji: oldRole.unicodeEmoji,
+                    permissions: oldRole.permissions.toArray().map(p => formatPermissionName(p)),
+                    createdAt: oldRole.createdAt.toISOString()
+                },
+                newRole: {
+                    id: newRole.id,
+                    name: newRole.name,
+                    color: newRole.color,
+                    hexColor: newRole.hexColor,
+                    position: newRole.position,
+                    hoist: newRole.hoist,
+                    mentionable: newRole.mentionable,
+                    icon: newRole.icon,
+                    unicodeEmoji: newRole.unicodeEmoji,
+                    permissions: newRole.permissions.toArray().map(p => formatPermissionName(p)),
+                    createdAt: newRole.createdAt.toISOString()
+                },
+                changes: {
+                    name: oldRole.name !== newRole.name,
+                    color: oldRole.color !== newRole.color,
+                    position: oldRole.position !== newRole.position,
+                    hoist: oldRole.hoist !== newRole.hoist,
+                    mentionable: oldRole.mentionable !== newRole.mentionable,
+                    icon: oldRole.icon !== newRole.icon,
+                    unicodeEmoji: oldRole.unicodeEmoji !== newRole.unicodeEmoji,
+                    permissions: oldRole.permissions.bitfield !== newRole.permissions.bitfield
+                },
+                updater: updater ? {
+                    id: updater.id,
+                    username: updater.username,
+                    tag: updater.tag
+                } : null,
+                updateTime: new Date().toISOString()
+            }, null, 2),
             "RoleUpdate"
         );
     }

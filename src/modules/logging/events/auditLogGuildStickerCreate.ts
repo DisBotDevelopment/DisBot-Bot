@@ -2,23 +2,30 @@ import {
     AuditLogEvent,
     Events,
     Sticker,
+    StickerFormatType,
     WebhookClient
 } from "discord.js";
 import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {loggingHelper} from "../../../helper/loggingHelper.js";
 import {database} from "../../../main/database.js";
 
+function getStickerFormatName(format: StickerFormatType): string {
+    const formats: Record<StickerFormatType, string> = {
+        [StickerFormatType.PNG]: "PNG",
+        [StickerFormatType.APNG]: "APNG (Animated PNG)",
+        [StickerFormatType.Lottie]: "Lottie (JSON)",
+        [StickerFormatType.GIF]: "GIF"
+    };
+    return formats[format] || `Unknown (${format})`;
+}
+
 export default {
     name: Events.GuildStickerCreate,
 
     async execute(sticker: Sticker, client: ExtendedClient) {
         const guild = sticker.guild;
-        if (!guild) {
-            console.error("Guild not found for sticker:", sticker.id);
-            return;
-        }
+        if (!guild) return;
 
-        // Check if logging is enabled
         const enabled = await database.guildFeatureToggles.findFirst({
             where: {
                 GuildId: guild.id,
@@ -38,7 +45,6 @@ export default {
 
         const webhook = new WebhookClient({url: loggingData.Integration});
 
-        // Get sticker creator from audit logs
         const auditLogs = await guild.fetchAuditLogs({
             type: AuditLogEvent.StickerCreate,
             limit: 1
@@ -46,31 +52,40 @@ export default {
 
         const creator = auditLogs?.entries.first()?.executor;
 
-        // Format sticker details
-        const stickerDetails = [
-            `### New Sticker Created`,
+        const message = [
+            `### 🎨 Sticker Created`,
             ``,
-            `> **Name**: \`${sticker.name}\``,
-            `> **ID**: \`${sticker.id}\``,
-            `> **Description**: \`${sticker.description || "No description"}\``,
-            `> **Format**: \`${sticker.format}\``,
-            `> **Tags**: \`${sticker.tags || "None"}\``,
+            `### Executor`,
+            ...(creator ? [
+                `> <@${creator.id}>`,
+                `> **User ID:** \`${creator.id}\``,
+                `> **Username:** \`${creator.tag}\``
+            ] : [
+                `> *Unknown Executor*`
+            ]),
             ``,
-            `[View Sticker](${sticker.url})`,
+            `### Sticker Details`,
+            `> **Name:** \`${sticker.name}\``,
+            `> **Sticker ID:** \`${sticker.id}\``,
+            `> **Description:** \`${sticker.description || "No description"}\``,
+            `> **Format:** \`${getStickerFormatName(sticker.format)}\``,
+            `> **Tags:** \`${sticker.tags || "None"}\``,
+            `> **Available:** \`${sticker.available ? "Yes" : "No"}\``,
+            `> **URL:** [View Sticker](${sticker.url})`,
             ``,
-            `- **Created by**: ${creator ? `@${creator.tag}` : "Unknown"}`,
-            `- **Created at**: \`${new Date().toLocaleString()}\``
-        ];
+            `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
+        ].join("\n");
 
-        await loggingHelper(client,
-            stickerDetails.join("\n"),
+        await loggingHelper(
+            client,
+            message,
             webhook,
             JSON.stringify({
                 sticker: {
                     id: sticker.id,
                     name: sticker.name,
                     description: sticker.description,
-                    format: sticker.format,
+                    format: getStickerFormatName(sticker.format),
                     tags: sticker.tags,
                     url: sticker.url,
                     createdAt: new Date(sticker.createdTimestamp).toISOString(),
@@ -80,8 +95,7 @@ export default {
                 creator: creator ? {
                     id: creator.id,
                     username: creator.username,
-                    tag: creator.tag,
-                    avatarURL: creator.displayAvatarURL()
+                    tag: creator.tag
                 } : null,
                 creationTime: new Date().toISOString()
             }, null, 2),

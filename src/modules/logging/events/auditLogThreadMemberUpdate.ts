@@ -1,4 +1,5 @@
 import {
+    ChannelType,
     Events,
     ThreadChannel,
     ThreadMember,
@@ -7,6 +8,25 @@ import {
 import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {loggingHelper} from "../../../helper/loggingHelper.js";
 import {database} from "../../../main/database.js";
+
+function getThreadTypeName(type: ChannelType): string {
+    const types: Record<ChannelType, string> = {
+        [ChannelType.PublicThread]: "Public Thread",
+        [ChannelType.PrivateThread]: "Private Thread",
+        [ChannelType.AnnouncementThread]: "Announcement Thread",
+        [ChannelType.GuildText]: "Text Channel",
+        [ChannelType.GuildVoice]: "Voice Channel",
+        [ChannelType.GuildCategory]: "Category",
+        [ChannelType.GuildAnnouncement]: "Announcement Channel",
+        [ChannelType.GuildStageVoice]: "Stage Channel",
+        [ChannelType.GuildDirectory]: "Directory",
+        [ChannelType.GuildForum]: "Forum Channel",
+        [ChannelType.GuildMedia]: "Media Channel",
+        [ChannelType.DM]: "DM",
+        [ChannelType.GroupDM]: "Group DM"
+    };
+    return types[type] || `Unknown (${type})`;
+}
 
 export default {
     name: Events.ThreadMembersUpdate,
@@ -23,10 +43,7 @@ export default {
         thread: ThreadChannel,
         client: ExtendedClient
     ) {
-        if (!thread.guild) {
-            console.error("Guild not found for thread:", thread.id);
-            return;
-        }
+        if (!thread.guild) return;
 
         const enabled = await database.guildFeatureToggles.findFirst({
             where: {
@@ -46,54 +63,59 @@ export default {
         if (!loggingData || !loggingData.Thread) return;
 
         const webhook = new WebhookClient({url: loggingData.Thread});
-        const actionTime = new Date();
 
-        // Process all changes in a single batch
-        const processMembers = async (members: Set<ThreadMember>, action: string) => {
+        const processMembers = async (members: Set<ThreadMember>, action: "Joined" | "Left", emoji: string) => {
             for (const member of members) {
                 const user = await client.users.fetch(member.id).catch(() => null);
                 if (!user) continue;
 
-                await loggingHelper(client,
-                    [
-                        `### Thread Member ${action}`,
-                        "",
-                        `> **User:** <@${user.id}> (\`${user.tag}\`)`,
-                        `> **Action:** \`${action} the thread\``,
-                        `> **Thread:** \`${thread.name}\` (ID: \`${thread.id}\`)`,
-                        `> **Channel:** <#${thread.parentId}>`,
-                        `> **Action Time:** \`${actionTime.toLocaleString()}\``,
-                        "",
-                        `-# **Thread ID:** ${thread.id}`,
-                        `-# **User ID:** ${user.id}`
-                    ].join("\n"),
+                const message = [
+                    `### ${emoji} Thread Member ${action}`,
+                    ``,
+                    `### User`,
+                    `> <@${user.id}>`,
+                    `> **User ID:** \`${user.id}\``,
+                    `> **Username:** \`${user.tag}\``,
+                    ``,
+                    `### Thread Details`,
+                    `> **Thread:** <#${thread.id}> (\`${thread.name}\`)`,
+                    `> **Thread ID:** \`${thread.id}\``,
+                    `> **Type:** \`${getThreadTypeName(thread.type)}\``,
+                    `> **Parent Channel:** <#${thread.parentId}>`,
+                    ``,
+                    `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
+                ].join("\n");
+
+                await loggingHelper(
+                    client,
+                    message,
                     webhook,
                     JSON.stringify({
                         thread: {
                             id: thread.id,
                             name: thread.name,
+                            type: getThreadTypeName(thread.type),
                             parentId: thread.parentId
                         },
                         user: {
                             id: user.id,
+                            username: user.username,
                             tag: user.tag
                         },
                         action: action,
-                        timestamp: actionTime.toISOString()
-                    }),
+                        timestamp: new Date().toISOString()
+                    }, null, 2),
                     `ThreadMember${action}`
                 );
             }
         };
 
-        // Process added members
         if (addedMembers.size > 0) {
-            await processMembers(addedMembers, "Joined");
+            await processMembers(addedMembers, "Joined", "➕");
         }
 
-        // Process removed members
         if (removedMembers.size > 0) {
-            await processMembers(removedMembers, "Left");
+            await processMembers(removedMembers, "Left", "➖");
         }
     }
 };

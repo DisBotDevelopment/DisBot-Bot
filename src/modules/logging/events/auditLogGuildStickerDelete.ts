@@ -2,23 +2,30 @@ import {
     AuditLogEvent,
     Events,
     Sticker,
+    StickerFormatType,
     WebhookClient
 } from "discord.js";
 import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {loggingHelper} from "../../../helper/loggingHelper.js";
 import {database} from "../../../main/database.js";
 
+function getStickerFormatName(format: StickerFormatType): string {
+    const formats: Record<StickerFormatType, string> = {
+        [StickerFormatType.PNG]: "PNG",
+        [StickerFormatType.APNG]: "APNG (Animated PNG)",
+        [StickerFormatType.Lottie]: "Lottie (JSON)",
+        [StickerFormatType.GIF]: "GIF"
+    };
+    return formats[format] || `Unknown (${format})`;
+}
+
 export default {
     name: Events.GuildStickerDelete,
 
     async execute(sticker: Sticker, client: ExtendedClient) {
         const guild = sticker.guild;
-        if (!guild) {
-            console.error("Guild not found for sticker:", sticker.id);
-            return;
-        }
+        if (!guild) return;
 
-        // Check if logging is enabled
         const enabled = await database.guildFeatureToggles.findFirst({
             where: {
                 GuildId: guild.id,
@@ -38,7 +45,6 @@ export default {
 
         const webhook = new WebhookClient({url: loggingData.Integration});
 
-        // Get sticker deleter from audit logs
         const auditLogs = await guild.fetchAuditLogs({
             type: AuditLogEvent.StickerDelete,
             limit: 1
@@ -46,32 +52,43 @@ export default {
 
         const deleter = auditLogs?.entries.first()?.executor;
 
-        // Format sticker details
-        const stickerDetails = [
-            `### Sticker Deleted`,
-            ``,
-            `> **Name**: \`${sticker.name}\``,
-            `> **ID**: \`${sticker.id}\``,
-            `> **Description**: \`${sticker.description || "No description"}\``,
-            `> **Format**: \`${sticker.format}\``,
-            `> **Tags**: \`${sticker.tags || "None"}\``,
-            ``,
-            `[View Sticker](${sticker.url})`,
-            ``,
-            `- **Deleted by**: ${deleter ? `@${deleter.tag}` : "Unknown"}`,
-            `- **Deleted at**: \`${new Date().toLocaleString()}\``,
-            `- **Created at**: \`${new Date(sticker.createdTimestamp).toLocaleString()}\``
-        ];
+        const createdTimestamp = Math.floor(sticker.createdTimestamp / 1000);
 
-        await loggingHelper(client,
-            stickerDetails.join("\n"),
+        const message = [
+            `### 🗑️ Sticker Deleted`,
+            ``,
+            `### Executor`,
+            ...(deleter ? [
+                `> <@${deleter.id}>`,
+                `> **User ID:** \`${deleter.id}\``,
+                `> **Username:** \`${deleter.tag}\``
+            ] : [
+                `> *Unknown Executor*`
+            ]),
+            ``,
+            `### Deleted Sticker`,
+            `> **Name:** \`${sticker.name}\``,
+            `> **Sticker ID:** \`${sticker.id}\``,
+            `> **Description:** \`${sticker.description || "No description"}\``,
+            `> **Format:** \`${getStickerFormatName(sticker.format)}\``,
+            `> **Tags:** \`${sticker.tags || "None"}\``,
+            `> **Was Available:** \`${sticker.available ? "Yes" : "No"}\``,
+            `> **URL:** [View Sticker](${sticker.url})`,
+            `> **Created:** <t:${createdTimestamp}:F> (<t:${createdTimestamp}:R>)`,
+            ``,
+            `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
+        ].join("\n");
+
+        await loggingHelper(
+            client,
+            message,
             webhook,
             JSON.stringify({
                 sticker: {
                     id: sticker.id,
                     name: sticker.name,
                     description: sticker.description,
-                    format: sticker.format,
+                    format: getStickerFormatName(sticker.format),
                     tags: sticker.tags,
                     url: sticker.url,
                     createdAt: new Date(sticker.createdTimestamp).toISOString(),
@@ -81,11 +98,10 @@ export default {
                 deleter: deleter ? {
                     id: deleter.id,
                     username: deleter.username,
-                    tag: deleter.tag,
-                    avatarURL: deleter.displayAvatarURL()
+                    tag: deleter.tag
                 } : null,
                 deletionTime: new Date().toISOString(),
-                existedFor: Date.now() - sticker.createdTimestamp
+                existedForMs: Date.now() - sticker.createdTimestamp
             }, null, 2),
             "StickerDelete"
         );

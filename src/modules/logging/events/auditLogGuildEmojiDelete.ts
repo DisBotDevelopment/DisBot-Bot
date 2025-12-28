@@ -1,6 +1,5 @@
 import {
     AuditLogEvent,
-    Client,
     Events,
     GuildEmoji,
     WebhookClient
@@ -19,7 +18,6 @@ export default {
     async execute(emoji: GuildEmoji, client: ExtendedClient) {
         const guildId = emoji.guild.id;
 
-        // Check if logging is enabled
         const enabled = await database.guildFeatureToggles.findFirst({
             where: {
                 GuildId: guildId,
@@ -39,7 +37,6 @@ export default {
 
         const webhook = new WebhookClient({url: loggingData.Integration});
 
-        // Fetch audit logs to get who deleted the emoji
         const auditLogs = await emoji.guild.fetchAuditLogs({
             type: AuditLogEvent.EmojiDelete,
             limit: 1
@@ -47,17 +44,32 @@ export default {
         const logEntry = auditLogs.entries.first();
         const executor = logEntry?.executor;
 
-        await loggingHelper(client,
-            [
-                `### Emoji Deleted`,
-                ``,
-                `> **Name**: \`${emoji.name}\``,
-                `> **ID**: \`${emoji.id}\``,
-                `> **Animated**: \`${emoji.animated ? "Yes" : "No"}\``,
-                `> **Was**: <${emoji.animated ? "a" : ""}:${emoji.name}:${emoji.id}>`,
-                ``,
-                `- **Deleted by**: @${executor?.tag}`
-            ].join("\n"),
+        const message = [
+            `### 🗑️ Emoji Deleted`,
+            ``,
+            `### Executor`,
+            ...(executor ? [
+                `> <@${executor.id}>`,
+                `> **User ID:** \`${executor.id}\``,
+                `> **Username:** \`${executor.tag}\``
+            ] : [
+                `> *Unknown Executor*`
+            ]),
+            ``,
+            `### Deleted Emoji`,
+            `> **Name:** \`${emoji.name}\``,
+            `> **Emoji ID:** \`${emoji.id}\``,
+            `> **Animated:** \`${emoji.animated ? "Yes" : "No"}\``,
+            `> **Requires Colons:** \`${emoji.requiresColons ? "Yes" : "No"}\``,
+            `> **Was:** <${emoji.animated ? "a" : ""}:${emoji.name}:${emoji.id}>`,
+            `> **URL:** [Click here](${emoji.url})`,
+            ``,
+            `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
+        ].join("\n");
+
+        await loggingHelper(
+            client,
+            message,
             webhook,
             JSON.stringify({
                 emoji: {
@@ -75,7 +87,7 @@ export default {
                     tag: executor.tag
                 } : null,
                 deletionTime: new Date().toISOString()
-            }),
+            }, null, 2),
             "EmojiDelete"
         );
     }

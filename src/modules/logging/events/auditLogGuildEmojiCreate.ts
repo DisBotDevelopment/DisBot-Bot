@@ -1,6 +1,5 @@
 import {
     AuditLogEvent,
-    Client,
     Events,
     GuildEmoji,
     WebhookClient
@@ -19,7 +18,6 @@ export default {
     async execute(emoji: GuildEmoji, client: ExtendedClient) {
         const guildId = emoji.guild.id;
 
-        // Check if logging is enabled
         const enabled = await database.guildFeatureToggles.findFirst({
             where: {
                 GuildId: guildId,
@@ -39,7 +37,6 @@ export default {
 
         const webhook = new WebhookClient({url: loggingData.Integration});
 
-        // Fetch audit logs to get who created the emoji
         const auditLogs = await emoji.guild.fetchAuditLogs({
             type: AuditLogEvent.EmojiCreate,
             limit: 1
@@ -47,17 +44,32 @@ export default {
         const logEntry = auditLogs.entries.first();
         const executor = logEntry?.executor;
 
-        await loggingHelper(client,
-            [
-                `### New Emoji Created`,
-                ``,
-                `> **Name**: \`${emoji.name}\``,
-                `> **ID**: \`${emoji.id}\``,
-                `> **Animated**: \`${emoji.animated ? "Yes" : "No"}\``,
-                `> **Preview**: <${emoji.animated ? "a" : ""}:${emoji.name}:${emoji.id}>`,
-                ``,
-                `- **Created by**: @${executor?.tag}`
-            ].join("\n"),
+        const message = [
+            `### 😀 Emoji Created`,
+            ``,
+            `### Executor`,
+            ...(executor ? [
+                `> <@${executor.id}>`,
+                `> **User ID:** \`${executor.id}\``,
+                `> **Username:** \`${executor.tag}\``
+            ] : [
+                `> *Unknown Executor*`
+            ]),
+            ``,
+            `### Emoji Details`,
+            `> **Name:** \`${emoji.name}\``,
+            `> **Emoji ID:** \`${emoji.id}\``,
+            `> **Animated:** \`${emoji.animated ? "Yes" : "No"}\``,
+            `> **Requires Colons:** \`${emoji.requiresColons ? "Yes" : "No"}\``,
+            `> **Preview:** <${emoji.animated ? "a" : ""}:${emoji.name}:${emoji.id}>`,
+            `> **URL:** [Click here](${emoji.url})`,
+            ``,
+            `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
+        ].join("\n");
+
+        await loggingHelper(
+            client,
+            message,
             webhook,
             JSON.stringify({
                 emoji: {
@@ -74,7 +86,7 @@ export default {
                     username: executor.username,
                     tag: executor.tag
                 } : null
-            }),
+            }, null, 2),
             "EmojiCreate"
         );
     }

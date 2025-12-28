@@ -1,11 +1,20 @@
 import {
+    AuditLogEvent,
     Events,
     StageInstance,
+    GuildScheduledEventPrivacyLevel,
     WebhookClient
 } from "discord.js";
 import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {loggingHelper} from "../../../helper/loggingHelper.js";
 import {database} from "../../../main/database.js";
+
+function getPrivacyLevelName(level: GuildScheduledEventPrivacyLevel): string {
+    const levels: Record<GuildScheduledEventPrivacyLevel, string> = {
+        [GuildScheduledEventPrivacyLevel.GuildOnly]: "Guild Only"
+    };
+    return levels[level] || `Unknown (${level})`;
+}
 
 export default {
     name: Events.StageInstanceDelete,
@@ -16,11 +25,7 @@ export default {
      */
     async execute(stageInstance: StageInstance, client: ExtendedClient) {
         const guild = stageInstance.guild;
-
-        if (!guild) {
-            console.error("Guild not found for stage instance:", stageInstance.id);
-            return;
-        }
+        if (!guild) return;
 
         const enabled = await database.guildFeatureToggles.findFirst({
             where: {
@@ -41,20 +46,61 @@ export default {
 
         const webhook = new WebhookClient({url: loggingData.Stage});
 
-        await loggingHelper(client,
-            [
-                "### Stage Instance Deleted",
-                "",
-                `> **Topic:** \`${stageInstance.topic || "No topic"}\``,
-                `> **Channel:** <#${stageInstance.channel?.id}>`,
-                `> **Privacy Level:** \`${stageInstance.privacyLevel || "Unknown"}\``,
-                `> **Created At:** \`${new Date(stageInstance.createdTimestamp).toLocaleString()}\``,
-                `> **Deleted At:** \`${new Date().toLocaleString()}\``,
-                "",
-                `-# **Stage Channel ID:** ${stageInstance.channel?.id}`
-            ].join("\n"),
+        let deleter = null;
+        try {
+            const auditLogs = await guild.fetchAuditLogs({
+                type: AuditLogEvent.StageInstanceDelete,
+                limit: 1
+            });
+            deleter = auditLogs.entries.first()?.executor;
+        } catch (error) {
+            console.error("Failed to fetch audit logs:", error);
+        }
+
+        const createdTimestamp = Math.floor(stageInstance.createdTimestamp / 1000);
+
+        const message = [
+            `### 🛑 Stage Ended`,
+            ``,
+            ...(deleter ? [
+                `### Ended By`,
+                `> <@${deleter.id}>`,
+                `> **User ID:** \`${deleter.id}\``,
+                `> **Username:** \`${deleter.tag}\``,
+                ``
+            ] : []),
+            `### Stage Details`,
+            `> **Topic:** \`${stageInstance.topic || "No topic"}\``,
+            `> **Stage ID:** \`${stageInstance.id}\``,
+            `> **Channel:** <#${stageInstance.channel?.id}>`,
+            `> **Privacy Level:** \`${getPrivacyLevelName(stageInstance.privacyLevel as any)}\``,
+            `> **Was Discoverable:** \`${stageInstance.discoverableDisabled ? "No" : "Yes"}\``,
+            `> **Created:** <t:${createdTimestamp}:F> (<t:${createdTimestamp}:R>)`,
+            ``,
+            `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
+        ].join("\n");
+
+        await loggingHelper(
+            client,
+            message,
             webhook,
-            JSON.stringify(stageInstance),
+            JSON.stringify({
+                stageInstance: {
+                    id: stageInstance.id,
+                    topic: stageInstance.topic,
+                    channelId: stageInstance.channelId,
+                    guildId: stageInstance.guildId,
+                    privacyLevel: getPrivacyLevelName(stageInstance.privacyLevel as any),
+                    discoverableDisabled: stageInstance.discoverableDisabled,
+                    createdAt: new Date(stageInstance.createdTimestamp).toISOString(),
+                    deletedAt: new Date().toISOString()
+                },
+                deleter: deleter ? {
+                    id: deleter.id,
+                    username: deleter.username,
+                    tag: deleter.tag
+                } : null
+            }, null, 2),
             "StageInstanceDelete"
         );
     }

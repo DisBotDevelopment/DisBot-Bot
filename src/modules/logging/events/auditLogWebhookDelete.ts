@@ -6,9 +6,9 @@ import {
     Webhook,
     WebhookClient
 } from "discord.js";
-import {ExtendedClient} from "../../../types/ExtendedClient.js";
-import {loggingHelper} from "../../../helper/loggingHelper.js";
-import {database} from "../../../main/database.js";
+import { ExtendedClient } from "../../../types/ExtendedClient.js";
+import { loggingHelper } from "../../../helper/loggingHelper.js";
+import { database } from "../../../main/database.js";
 
 export default {
     name: Events.GuildAuditLogEntryCreate,
@@ -23,7 +23,7 @@ export default {
         guild: Guild,
         client: ExtendedClient
     ) {
-        // Only process webhook deletion events
+        // Nur Webhook-Löschungen loggen
         if (auditLog.action !== AuditLogEvent.WebhookDelete) return;
         if (!guild || !auditLog.target) return;
 
@@ -33,44 +33,53 @@ export default {
                 LoggingEnabled: true
             }
         });
-
         if (!enabled?.LoggingEnabled) return;
 
         const loggingData = await database.guildLogging.findFirst({
-            where: {
-                GuildId: guild.id
-            }
+            where: { GuildId: guild.id }
         });
-
         if (!loggingData?.Webhook) return;
 
-        const webhookClient = new WebhookClient({url: loggingData.Webhook});
-        const executor = auditLog.executor ? await client.users.fetch(auditLog.executor.id).catch(() => null) : null;
+        const webhookClient = new WebhookClient({ url: loggingData.Webhook });
+        const executor = auditLog.executor
+            ? await client.users.fetch(auditLog.executor.id).catch(() => null)
+            : null;
         const deletedWebhook = auditLog.target as Webhook;
         const deletionTime = new Date();
 
-        await loggingHelper(client,
-            [
-                "### Webhook Deleted",
-                "",
-                `> **Executor:** ${executor ? `<@${executor.id}> (\`${executor.tag}\`)` : 'System'}`,
-                `> **Webhook Name:** \`${deletedWebhook.name || "Unknown"}\``,
-                `> **Channel:** <#${deletedWebhook.channelId}>`,
-                `> **Webhook ID:** \`${deletedWebhook.id}\``,
-                `> **Type:** \`${deletedWebhook.type}\``,
-                `> **Reason:** \`${auditLog.reason || "No reason provided"}\``,
-                `> **Deleted At:** \`${deletionTime.toLocaleString()}\``,
-                "",
-                `-# **Executor ID:** ${executor?.id || "System"}`,
-                `-# **Webhook Created At:** ${deletedWebhook.createdAt ? deletedWebhook.createdAt.toLocaleString() : "Unknown"}`
-            ].join("\n"),
+        let emoji = "🗑️";
+        let action = "Webhook Deleted";
+        let detailsLines: string[] = [];
+
+        detailsLines.push(`> **Webhook Name:** \`${deletedWebhook.name || "Unknown"}\``);
+        detailsLines.push(`> **Channel:** <#${deletedWebhook.channelId}>`);
+        detailsLines.push(`> **Webhook ID:** \`${deletedWebhook.id}\``);
+        detailsLines.push(`> **Type:** \`${deletedWebhook.type}\``);
+        detailsLines.push(`> **Reason:** \`${auditLog.reason || "No reason provided"}\``);
+
+        const message = [
+            `### ${emoji} ${action}`,
+            ``,
+            `### Executor`,
+            `> ${executor ? `<@${executor.id}> (\`${executor.tag}\`)` : 'System'}`,
+            `> **Executor ID:** \`${executor?.id || "System"}\``,
+            ``,
+            ...(detailsLines.length > 0 ? [
+                `### Details`,
+                ...detailsLines,
+                ``
+            ] : []),
+            `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
+        ].join("\n");
+
+        await loggingHelper(
+            client,
+            message,
             webhookClient,
             JSON.stringify({
-                executor: executor ? {
-                    id: executor.id,
-                    username: executor.username,
-                    discriminator: executor.discriminator
-                } : null,
+                executor: executor
+                    ? { id: executor.id, username: executor.username, tag: executor.tag }
+                    : null,
                 webhook: {
                     id: deletedWebhook.id,
                     name: deletedWebhook.name,
@@ -85,7 +94,7 @@ export default {
                     changes: auditLog.changes
                 },
                 timestamp: deletionTime.toISOString()
-            }),
+            }, null, 2),
             "WebhookDelete"
         );
     }

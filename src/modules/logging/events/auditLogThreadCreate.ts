@@ -1,4 +1,5 @@
 import {
+    ChannelType,
     Events,
     ThreadChannel,
     WebhookClient
@@ -6,6 +7,25 @@ import {
 import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {loggingHelper} from "../../../helper/loggingHelper.js";
 import {database} from "../../../main/database.js";
+
+function getThreadTypeName(type: ChannelType): string {
+    const types: Record<ChannelType, string> = {
+        [ChannelType.PublicThread]: "Public Thread",
+        [ChannelType.PrivateThread]: "Private Thread",
+        [ChannelType.AnnouncementThread]: "Announcement Thread",
+        [ChannelType.GuildText]: "Text Channel",
+        [ChannelType.GuildVoice]: "Voice Channel",
+        [ChannelType.GuildCategory]: "Category",
+        [ChannelType.GuildAnnouncement]: "Announcement Channel",
+        [ChannelType.GuildStageVoice]: "Stage Channel",
+        [ChannelType.GuildDirectory]: "Directory",
+        [ChannelType.GuildForum]: "Forum Channel",
+        [ChannelType.GuildMedia]: "Media Channel",
+        [ChannelType.DM]: "DM",
+        [ChannelType.GroupDM]: "Group DM"
+    };
+    return types[type] || `Unknown (${type})`;
+}
 
 export default {
     name: Events.ThreadCreate,
@@ -37,36 +57,62 @@ export default {
         const webhook = new WebhookClient({url: loggingData.Thread});
         const owner = thread.guild.members.cache.get(thread.ownerId);
 
-        await loggingHelper(client,
-            [
-                "### Thread Created",
-                "",
-                `> **Creator:** <@${owner?.id}> (\`${owner?.id}\`)`,
-                `> **Thread Name:** <#${thread.id}> (\`${thread.name}\`)`,
-                `> **Channel:** <#${thread.parentId}>`,
-                `> **Created At:** \`${thread.createdAt?.toLocaleString()}\``,
-                `> **Type:** \`${thread.type}\``,
-                `> **Archived:** \`${thread.archived ? "Yes" : "No"}\``,
-                `> **Locked:** \`${thread.locked ? "Yes" : "No"}\``,
-                "",
-                `-# **Thread ID:** ${thread.id}`,
-                `-# **Owner Tag:** @${owner?.user.tag}`
-            ].join("\n"),
+        const createdTimestamp = thread.createdAt
+            ? Math.floor(thread.createdAt.getTime() / 1000)
+            : null;
+
+        const message = [
+            `### 🧵 Thread Created`,
+            ``,
+            `### Creator`,
+            ...(owner ? [
+                `> <@${owner.id}>`,
+                `> **User ID:** \`${owner.id}\``,
+                `> **Username:** \`${owner.user.tag}\``
+            ] : [
+                `> *Unknown Creator*`,
+                `> **Owner ID:** \`${thread.ownerId}\``
+            ]),
+            ``,
+            `### Thread Details`,
+            `> **Name:** <#${thread.id}> (\`${thread.name}\`)`,
+            `> **Thread ID:** \`${thread.id}\``,
+            `> **Type:** \`${getThreadTypeName(thread.type)}\``,
+            `> **Parent Channel:** <#${thread.parentId}>`,
+            `> **Archived:** \`${thread.archived ? "Yes" : "No"}\``,
+            `> **Locked:** \`${thread.locked ? "Yes" : "No"}\``,
+            ...(thread.rateLimitPerUser ? [
+                `> **Slowmode:** \`${thread.rateLimitPerUser} seconds\``
+            ] : []),
+            ...(createdTimestamp ? [
+                `> **Created:** <t:${createdTimestamp}:F> (<t:${createdTimestamp}:R>)`
+            ] : []),
+            ``,
+            `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
+        ].join("\n");
+
+        await loggingHelper(
+            client,
+            message,
             webhook,
             JSON.stringify({
                 thread: {
                     id: thread.id,
                     name: thread.name,
-                    type: thread.type,
+                    type: getThreadTypeName(thread.type),
                     parentId: thread.parentId,
                     ownerId: thread.ownerId,
-                    createdAt: thread.createdAt,
+                    createdAt: thread.createdAt?.toISOString(),
                     archived: thread.archived,
                     locked: thread.locked,
                     rateLimitPerUser: thread.rateLimitPerUser
                 },
-                owner: owner?.user
-            }),
+                owner: owner ? {
+                    id: owner.id,
+                    username: owner.user.username,
+                    tag: owner.user.tag
+                } : null
+            }, null, 2),
             "ThreadCreate"
         );
     }

@@ -1,24 +1,27 @@
 import {
-    ApplicationCommandPermissionsUpdateData,
-    ApplicationCommandPermissionType,
     AuditLogEvent,
     Events,
-    WebhookClient,
-    Client
+    GuildSoundboardSound,
+    WebhookClient
 } from "discord.js";
 import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {loggingHelper} from "../../../helper/loggingHelper.js";
 import {database} from "../../../main/database.js";
 
 export default {
-    name: Events.ApplicationCommandPermissionsUpdate,
+    name: Events.GuildSoundboardSoundUpdate,
 
     /**
-     * @param {ApplicationCommandPermissionsUpdateData} data
+     * @param {GuildSoundboardSound} oldSoundboardSound
+     * @param {GuildSoundboardSound} newSoundboardSound
      * @param {ExtendedClient} client
      */
-    async execute(data: ApplicationCommandPermissionsUpdateData, client: ExtendedClient) {
-        const guildId = data.guildId;
+    async execute(
+        oldSoundboardSound: GuildSoundboardSound,
+        newSoundboardSound: GuildSoundboardSound,
+        client: ExtendedClient
+    ) {
+        const guildId = oldSoundboardSound.guildId;
         if (!guildId) return;
 
         const guild = await client.guilds.fetch(guildId).catch(() => null);
@@ -32,44 +35,91 @@ export default {
         const loggingData = await database.guildLogging.findFirst({
             where: {GuildId: guildId}
         });
-        if (!loggingData || !loggingData.Integration) return;
+        if (!loggingData || !loggingData.SoundBoard) return;
 
-        const webhook = new WebhookClient({url: loggingData.Integration});
+        const webhook = new WebhookClient({url: loggingData.SoundBoard});
 
         const auditLogs = await guild.fetchAuditLogs({
-            type: AuditLogEvent.ApplicationCommandPermissionUpdate,
+            type: AuditLogEvent.SoundboardSoundUpdate,
             limit: 1
         });
         const logEntry = auditLogs.entries.first();
         const executor = logEntry?.executor;
 
-        const permissionsText = data.permissions
-            .map(permission => {
-                switch (permission.type) {
-                    case ApplicationCommandPermissionType.User:
-                        return `> **- User** <@${permission.id}> (\`${permission.id}\`) - **Allowed**: \`${permission.permission}\``;
-                    case ApplicationCommandPermissionType.Role:
-                        return `> **- Role** <@&${permission.id}> (\`${permission.id}\`) - **Allowed**: \`${permission.permission}\``;
-                    case ApplicationCommandPermissionType.Channel:
-                        return `> **- Channel** <#${permission.id}> (\`${permission.id}\`) - **Allowed**: \`${permission.permission}\``;
-                    default:
-                        return `> **- Unknown Type** ${permission.id} - **Allowed**: \`${permission.permission}\``;
-                }
-            })
-            .join("\n");
+        const changes: string[] = [];
+
+        if (oldSoundboardSound.name !== newSoundboardSound.name) {
+            changes.push(
+                `> **Name**`,
+                `> Before: \`${oldSoundboardSound.name}\``,
+                `> After: \`${newSoundboardSound.name}\``
+            );
+        }
+
+        if (oldSoundboardSound.volume !== newSoundboardSound.volume) {
+            changes.push(
+                `> **Volume**`,
+                `> Before: \`${oldSoundboardSound.volume}\``,
+                `> After: \`${newSoundboardSound.volume}\``
+            );
+        }
+
+        if (oldSoundboardSound.emoji.id !== newSoundboardSound.emoji.id) {
+            changes.push(
+                `> **Emoji ID**`,
+                `> Before: \`${oldSoundboardSound.emoji.id || "None"}\``,
+                `> After: \`${newSoundboardSound.emoji.id || "None"}\``
+            );
+        }
+
+        if (oldSoundboardSound.emoji.name !== newSoundboardSound.emoji.name) {
+            changes.push(
+                `> **Emoji Name**`,
+                `> Before: \`${oldSoundboardSound.emoji.name || "None"}\``,
+                `> After: \`${newSoundboardSound.emoji.name || "None"}\``
+            );
+        }
+
+        if (changes.length === 0) return;
 
         const message = [
-            "### Application Command Permissions Updated",
-            "",
-            `> **Command Id:** \`${data.id ?? "Unknown Command"}\``,
-            `> **Guild:** \`${guild.name} (${guildId})\``,
-            "",
-            "**Permissions:**",
-            permissionsText,
-            "",
-            `**Executor:** ${executor ? `${executor.tag} (\`${executor.id}\`)` : "Unknown"}`
+            `### 🔄 Soundboard Sound Updated`,
+            ``,
+            `### Executor`,
+            ...(executor ? [
+                `> <@${executor.id}>`,
+                `> **User ID:** \`${executor.id}\``,
+                `> **Username:** \`${executor.tag}\``
+            ] : [
+                `> *Unknown Executor*`
+            ]),
+            ``,
+            `### Sound Details`,
+            `> **Name:** \`${newSoundboardSound.name}\``,
+            `> **Sound ID:** \`${newSoundboardSound.soundId}\``,
+            ``,
+            `### Changes`,
+            ...changes,
+            ``,
+            `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
         ].join("\n");
 
-        await loggingHelper(client,message, webhook, JSON.stringify(data), "ApplicationCommandPermissionsUpdate");
+        await loggingHelper(
+            client,
+            message,
+            webhook,
+            JSON.stringify({
+                action: "SoundboardSoundUpdated",
+                guildId: guild.id,
+                oldSound: oldSoundboardSound,
+                newSound: newSoundboardSound,
+                executor: executor ? {
+                    id: executor.id,
+                    username: executor.username,
+                    tag: executor.tag
+                } : null
+            }, null, 2),
+            "SoundboardUpdate"
+        );
     }
 };

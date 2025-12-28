@@ -1,5 +1,4 @@
 import {
-    EmbedBuilder,
     Events,
     MessageReaction,
     User,
@@ -42,28 +41,56 @@ export default {
 
         const messageLink = `https://discord.com/channels/${guildId}/${reaction.message.channel.id}/${reaction.message.id}`;
 
-        const logMessage = [
-            `### Reaction Removed`,
+        const emojiDisplay = reaction.emoji.id
+            ? `<:${reaction.emoji.name}:${reaction.emoji.id}>`
+            : reaction.emoji.name || "Unknown";
+
+        const message = [
+            `### ➖ Reaction Removed`,
             ``,
-            `> **Message Link:** [\`Jump to message\`](${messageLink})`,
-            `> **User:** <@${user.id}> (\`${user.id}\`)`,
-            `> **Emoji:** ${reaction.emoji.name || "Custom Emoji"}`,
+            `### User`,
+            `> <@${user.id}>`,
+            `> **User ID:** \`${user.id}\``,
+            `> **Username:** \`${user.tag}\``,
             ``,
-            `-# **Tag:** @${user.tag}`
+            `### Reaction Details`,
+            `> **Emoji:** ${emojiDisplay}`,
+            `> **Emoji Name:** \`${reaction.emoji.name || "Unknown"}\``,
+            ...(reaction.emoji.id ? [
+                `> **Emoji ID:** \`${reaction.emoji.id}\``,
+                `> **Custom Emoji:** \`Yes\``
+            ] : [
+                `> **Custom Emoji:** \`No\``
+            ]),
+            ``,
+            `### Message`,
+            `> **Channel:** <#${reaction.message.channel.id}>`,
+            `> **Message ID:** \`${reaction.message.id}\``,
+            `> **Jump Link:** [Click here to view message](${messageLink})`,
+            ``,
+            `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
         ].join("\n");
 
-        await loggingHelper(client,
-            logMessage,
+        await loggingHelper(
+            client,
+            message,
             webhook,
             JSON.stringify({
                 messageId: reaction.message.id,
                 channelId: reaction.message.channel.id,
                 guildId,
-                emoji: reaction.emoji,
+                emoji: {
+                    name: reaction.emoji.name,
+                    id: reaction.emoji.id,
+                    animated: reaction.emoji.animated,
+                    url: reaction.emoji.imageURL()
+                },
                 user: {
                     id: user.id,
+                    username: user.username,
                     tag: user.tag
-                }
+                },
+                messageUrl: messageLink
             }, null, 2),
             "MessageReactionRemove"
         );

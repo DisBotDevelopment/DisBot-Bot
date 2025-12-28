@@ -1,11 +1,9 @@
 import {
     APIAuditLogEntry,
     AuditLogEvent,
-    Client,
     Events,
     Guild,
-    WebhookClient,
-    userMention
+    WebhookClient
 } from "discord.js";
 import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {database} from "../../../main/database.js";
@@ -26,7 +24,6 @@ export default {
     ) {
         const guildId = guild.id;
 
-        // Prisma: Logging aktiviert?
         const enabled = await database.guildFeatureToggles.findFirst({
             where: {
                 GuildId: guildId,
@@ -36,14 +33,12 @@ export default {
 
         if (!enabled?.LoggingEnabled) return;
 
-        // Prisma: URL holen
         const data = await database.guildLogging.findFirst({
             where: {GuildId: guildId}
         });
 
         if (!data?.SoundBoard) return;
 
-        // Action-Type 130 = Soundboard erstellt
         if (auditLogEntry.action_type !== 130) return;
 
         const logs = await guild.fetchAuditLogs({
@@ -54,29 +49,59 @@ export default {
         if (!logEntry) return;
 
         const executor = logEntry.executor;
-        const sound = logEntry.target as any; // Soundboard sounds haben keine klare Typisierung
+        const sound = logEntry.target as any;
         const webhook = new WebhookClient({url: data.SoundBoard});
 
-        const content = [
-            `### New Soundboard Created`,
+        const message = [
+            `### 🔊 Soundboard Sound Created`,
             ``,
-            `> **Soundboard Name:** \`${sound?.name || "Unknown"}\``,
-            `> **Created by:** ${userMention(executor?.id || "")} (\`${executor?.id || "Unknown"}\`)`
+            `### Executor`,
+            ...(executor ? [
+                `> <@${executor.id}>`,
+                `> **User ID:** \`${executor.id}\``,
+                `> **Username:** \`${executor.tag}\``
+            ] : [
+                `> *Unknown Executor*`
+            ]),
+            ``,
+            `### Sound Details`,
+            `> **Name:** \`${sound?.name || "Unknown"}\``,
+            ...(sound?.soundId ? [
+                `> **Sound ID:** \`${sound.soundId}\``
+            ] : []),
+            ...(sound?.volume !== undefined ? [
+                `> **Volume:** \`${sound.volume}\``
+            ] : []),
+            ...(sound?.emojiId ? [
+                `> **Emoji ID:** \`${sound.emojiId}\``
+            ] : []),
+            ...(sound?.emojiName ? [
+                `> **Emoji Name:** \`${sound.emojiName}\``
+            ] : []),
+            ``,
+            `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
         ].join("\n");
 
-        await loggingHelper(client,
-            content,
+        await loggingHelper(
+            client,
+            message,
             webhook,
-            JSON.stringify(
-                {
-                    action: "SoundboardCreated",
-                    guildId: guild.id,
-                    soundName: sound?.name,
-                    createdBy: executor?.id
+            JSON.stringify({
+                action: "SoundboardSoundCreated",
+                guildId: guild.id,
+                sound: {
+                    name: sound?.name,
+                    soundId: sound?.soundId,
+                    volume: sound?.volume,
+                    emojiId: sound?.emojiId,
+                    emojiName: sound?.emojiName
                 },
-                null,
-                2
-            ),
+                executor: executor ? {
+                    id: executor.id,
+                    username: executor.username,
+                    tag: executor.tag
+                } : null
+            }, null, 2),
             "SoundboardCreate"
         );
     }

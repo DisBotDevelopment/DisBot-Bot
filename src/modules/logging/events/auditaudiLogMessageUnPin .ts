@@ -61,11 +61,19 @@ export default {
         const jumpLink = `https://discord.com/channels/${guild.id}/${channelId}/${messageId}`;
 
         const logMessage = [
-            `### Message Unpinned`,
+            `### 📌 Message Unpinned`,
             ``,
-            `> **Member:** <@${executor.id}> (\`${executor.id}\`)`,
+            `### Executor`,
+            `> <@${executor.id}>`,
+            `> **User ID:** \`${executor.id}\``,
+            `> **Username:** \`${executor.tag}\``,
+            ``,
+            `### Details`,
             `> **Channel:** <#${channelId}> (\`${channelId}\`)`,
-            `> **Message:** [\`Jump to message\`](${jumpLink})`
+            `> **Message ID:** \`${messageId}\``,
+            `> **Jump Link:** [Click here to view message](${jumpLink})`,
+            ``,
+            `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
         ].join("\n");
 
         await loggingHelper(client,

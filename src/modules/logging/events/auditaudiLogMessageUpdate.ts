@@ -58,14 +58,22 @@ export default {
 
         if ((newMessage.content?.length || 0) > 1024) {
             const content = [
-                `### Message Updated (Content Too Long)`,
+                `### ✏️ Message Updated`,
                 ``,
-                `> **Member:** ${memberMention} (\`${executor.id}\`)`,
+                `### Executor`,
+                `> ${memberMention}`,
+                `> **User ID:** \`${executor.id}\``,
+                `> **Username:** \`${executor.tag}\``,
+                ``,
+                `### Details`,
                 `> **Channel:** ${channelMention(channelId)} (\`${channelId}\`)`,
+                `> **Message ID:** \`${newMessage.id}\``,
+                `> **Jump Link:** [Click here to view message](${jumpLink})`,
                 ``,
-                `> **Message URL:** [\`Jump to message\`](${jumpLink})`,
+                `### Content`,
+                `> ⚠️ **Updated message content exceeds 1024 characters and cannot be displayed.**`,
                 ``,
-                `**Updated message content exceeds 1024 characters and cannot be displayed.**`
+                `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
             ].join("\n");
 
             return loggingHelper(
@@ -88,18 +96,26 @@ export default {
         }
 
         const logContent = [
-            `### Message Updated`,
+            `### ✏️ Message Updated`,
             ``,
-            `> **Member:** ${memberMention} (\`${executor.id}\`)`,
+            `### Executor`,
+            `> ${memberMention}`,
+            `> **User ID:** \`${executor.id}\``,
+            `> **Username:** \`${executor.tag}\``,
+            ``,
+            `### Details`,
             `> **Channel:** ${channelMention(channelId)} (\`${channelId}\`)`,
+            `> **Message ID:** \`${newMessage.id}\``,
+            `> **Jump Link:** [Click here to view message](${jumpLink})`,
             ``,
-            `> **Old Message:**`,
-            oldMessage.content || "*No content*",
+            `### Content`,
+            `> **Before:**`,
+            `> ${oldMessage.content || "*No content*"}`,
             ``,
-            `> **Message URL:** [\`Jump to message\`](${jumpLink})`,
+            `> **After:**`,
+            `> ${newMessage.content || "*No content*"}`,
             ``,
-            `> **Updated Message:**`,
-            newMessage.content || "*No content*"
+            `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
         ].join("\n");
 
         await loggingHelper(client,

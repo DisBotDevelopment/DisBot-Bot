@@ -1,12 +1,44 @@
 import {
     AuditLogEvent,
+    AutoModerationActionType,
     AutoModerationRule,
+    AutoModerationRuleEventType,
+    AutoModerationRuleTriggerType,
     Events,
     WebhookClient
 } from "discord.js";
 import {ExtendedClient} from "../../../types/ExtendedClient.js";
-import {database} from "../../../main/database.js"; // Prisma DB
+import {database} from "../../../main/database.js";
 import {loggingHelper} from "../../../helper/loggingHelper.js";
+
+function getTriggerTypeName(type: AutoModerationRuleTriggerType): string {
+    const types: Record<AutoModerationRuleTriggerType, string> = {
+        [AutoModerationRuleTriggerType.Keyword]: "Keyword",
+        [AutoModerationRuleTriggerType.Spam]: "Spam",
+        [AutoModerationRuleTriggerType.KeywordPreset]: "Keyword Preset",
+        [AutoModerationRuleTriggerType.MentionSpam]: "Mention Spam",
+        [AutoModerationRuleTriggerType.MemberProfile]: "Member Profile"
+    };
+    return types[type] || `Unknown (${type})`;
+}
+
+function getEventTypeName(type: AutoModerationRuleEventType): string {
+    const types: Record<AutoModerationRuleEventType, string> = {
+        [AutoModerationRuleEventType.MessageSend]: "Message Send",
+        [AutoModerationRuleEventType.MemberUpdate]: ""
+    };
+    return types[type] || `Unknown (${type})`;
+}
+
+function getActionTypeName(type: AutoModerationActionType): string {
+    const types: Record<AutoModerationActionType, string> = {
+        [AutoModerationActionType.BlockMessage]: "Block Message",
+        [AutoModerationActionType.SendAlertMessage]: "Send Alert Message",
+        [AutoModerationActionType.Timeout]: "Timeout User",
+        [AutoModerationActionType.BlockMemberInteraction]: "Block Member Interaction"
+    };
+    return types[type] || `Unknown (${type})`;
+}
 
 export default {
     name: Events.AutoModerationRuleCreate,
@@ -44,17 +76,35 @@ export default {
         const executor = rule.executor;
         const ruleTarget = rule.target as unknown as AutoModerationRule;
 
+        const actionsText = ruleTarget.actions
+            .map(action => `> **${getActionTypeName(action.type)}**`)
+            .join("\n");
+
         const message = [
-            `### Auto Moderation Rule Created`,
+            `### 🛡️ AutoMod Rule Created`,
             ``,
-            `> **Rule Name**: \`${ruleTarget.name}\``,
-            `> **Rule ID**: \`${ruleTarget.id}\``,
-            `> **Created By**: ${executor} (\`${executor?.id}\`)`,
+            `### Executor`,
+            `> <@${executor?.id}>`,
+            `> **User ID:** \`${executor?.id}\``,
+            `> **Username:** \`${executor?.tag}\``,
             ``,
-            `-# **Executor: ${executor}**`
+            `### Rule Details`,
+            `> **Name:** \`${ruleTarget.name}\``,
+            `> **Rule ID:** \`${ruleTarget.id}\``,
+            `> **Enabled:** \`${ruleTarget.enabled ? "Yes" : "No"}\``,
+            ``,
+            `### Configuration`,
+            `> **Trigger Type:** \`${getTriggerTypeName(ruleTarget.triggerType)}\``,
+            `> **Event Type:** \`${getEventTypeName(ruleTarget.eventType)}\``,
+            ``,
+            `### Actions`,
+            actionsText,
+            ``,
+            `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
         ].join("\n");
 
-        await loggingHelper(client,
+        await loggingHelper(
+            client,
             message,
             webhook,
             JSON.stringify(auditLog, null, 2),

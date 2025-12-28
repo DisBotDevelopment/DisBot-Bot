@@ -41,7 +41,7 @@ export default {
             });
 
             if (!loggingData?.Message) return;
-            
+
             const webhook = new WebhookClient({url: loggingData.Message});
 
             const executor = auditLogEntry.executor;
@@ -60,28 +60,39 @@ export default {
                 return;
             }
 
+            const jumpLink = `https://discord.com/channels/${guild.id}/${channelId}/${messageId}`;
+
             const message = [
-                `### Message Pinned`,
+                `### 📌 Message Pinned`,
                 ``,
-                `> **Member:** <@${executor.id}> (\`${executor.id}\`)`,
+                `### Executor`,
+                `> <@${executor.id}>`,
+                `> **User ID:** \`${executor.id}\``,
+                `> **Username:** \`${executor.tag}\``,
+                ``,
+                `### Details`,
                 `> **Channel:** <#${channelId}> (\`${channelId}\`)`,
-                `> **Message:** [Jump to message](https://discord.com/channels/${guild.id}/${channelId}/${messageId})`,
+                `> **Message ID:** \`${messageId}\``,
+                `> **Jump Link:** [Click here to view message](${jumpLink})`,
                 ``,
-                `-# **Executor: @${executor.tag}**`
+                `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
             ].join("\n");
 
-            await loggingHelper(client,
+            await loggingHelper(
+                client,
                 message,
                 webhook,
                 JSON.stringify({
+                    action: "MessagePin",
+                    guildId: guild.id,
                     executor: {
                         id: executor.id,
                         tag: executor.tag
                     },
                     channelId,
                     messageId,
-                    guildId: guild.id
-                }),
+                    jumpLink
+                }, null, 2),
                 "MessagePin"
             );
 

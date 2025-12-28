@@ -1,31 +1,44 @@
 import {
-    channelMention,
-    EmbedBuilder,
-    Events, GuildChannel,
+    ChannelType,
+    Events,
+    GuildChannel,
     Message,
-    userMention,
     WebhookClient,
 } from "discord.js";
 import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {loggingHelper} from "../../../helper/loggingHelper.js";
 import {database} from "../../../main/database.js";
 
+function getChannelTypeName(type: ChannelType): string {
+    const types: Record<ChannelType, string> = {
+        [ChannelType.GuildText]: "Text Channel",
+        [ChannelType.GuildVoice]: "Voice Channel",
+        [ChannelType.GuildCategory]: "Category",
+        [ChannelType.GuildAnnouncement]: "Announcement Channel",
+        [ChannelType.AnnouncementThread]: "Announcement Thread",
+        [ChannelType.PublicThread]: "Public Thread",
+        [ChannelType.PrivateThread]: "Private Thread",
+        [ChannelType.GuildStageVoice]: "Stage Channel",
+        [ChannelType.GuildDirectory]: "Directory",
+        [ChannelType.GuildForum]: "Forum Channel",
+        [ChannelType.GuildMedia]: "Media Channel",
+        [ChannelType.DM]: "DM",
+        [ChannelType.GroupDM]: "Group DM"
+    };
+    return types[type] || `Unknown (${type})`;
+}
+
 export default {
     name: Events.MessageCreate,
 
     async execute(message: Message, client: ExtendedClient): Promise<void> {
         try {
-            // Basic validations
             if (!message.reference || !message.guildId || message.author.bot) return;
             if (!message.messageSnapshots || message.messageSnapshots.size === 0) return;
 
             const guild = client.guilds.cache.get(message.guildId);
-            if (!guild) {
-                console.error(`Guild not found for message ${message.id}`);
-                return;
-            }
+            if (!guild) return;
 
-            // Check if logging is enabled
             const enabled = await database.guildFeatureToggles.findFirst({
                 where: {
                     GuildId: guild.id,
@@ -48,71 +61,84 @@ export default {
 
             if (!originalMessage) return;
 
-            // Prepare the log message
-            const messageContent = [
-                `### Message Forwarded`,
+            const truncatedContent = originalMessage.content?.length > 1500
+                ? `${originalMessage.content.substring(0, 1500)}...`
+                : originalMessage.content || "*No text content*";
+
+            const originalCreatedTimestamp = Math.floor(originalMessage.createdAt.getTime() / 1000);
+
+            const messageLog = [
+                `### ↗️ Message Forwarded`,
                 ``,
-                `> **Forwarded by**: ${userMention(message.author.id)} (\`${message.author.tag}\`)`,
-                `> **Current Channel**: ${channelMention(message.channel.id)}`,
+                `### Forwarded By`,
+                `> <@${message.author.id}>`,
+                `> **User ID:** \`${message.author.id}\``,
+                `> **Username:** \`${message.author.tag}\``,
                 ``,
-                `**Original Message**:`,
-                `> **Author**: ${userMention(originalMessage.author.id)} (\`${originalMessage.author.tag}\`)`,
-                `> **From Channel**: ${channelMention(message.reference.channelId!)}`,
-                `> **From Guild**: \`${guild.name}\` (\`${guild.id}\`)`,
-                `> **Sent at**: \`${originalMessage.createdAt.toLocaleString()}\``,
+                `### Original Message`,
+                `> **Author:** <@${originalMessage.author.id}> (\`${originalMessage.author.tag}\`)`,
+                `> **From Channel:** <#${message.reference.channelId}>`,
+                `> **From Guild:** \`${guild.name}\``,
+                `> **Created:** <t:${originalCreatedTimestamp}:F> (<t:${originalCreatedTimestamp}:R>)`,
+                `> **Has Attachments:** \`${originalMessage.attachments.size > 0 ? "Yes" : "No"}\``,
+                ...(originalMessage.attachments.size > 0 ? [
+                    `> **Attachment Count:** \`${originalMessage.attachments.size}\``
+                ] : []),
                 ``,
-                `**Content**:`,
-                `\`\`\`${originalMessage.content?.substring(0, 1500) || "No text content"}\`\`\``,
+                `### Content`,
+                `> ${truncatedContent}`,
                 ``,
-                `[Jump to Original](${originalMessage.url})`,
-                `[Jump to Forward](${message.url})`,
-                `- Has Attachment**: \`${message.attachments.size > 0 ? "Yes" : "No"}\``,
+                `### Links`,
+                `> **Original:** [Jump to Message](${originalMessage.url})`,
+                `> **Forward:** [Jump to Message](${message.url})`,
+                ``,
+                `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
             ].join("\n");
 
-            // Prepare the JSON data
-            const jsonData = {
-                forwardedMessage: {
-                    id: message.id,
-                    createdAt: message.createdAt.toISOString(),
-                    url: message.url,
-                    forwarder: {
-                        id: message.author.id,
-                        username: message.author.username,
-                        tag: message.author.tag
-                    }
-                },
-                originalMessage: {
-                    id: originalMessage.id,
-                    content: originalMessage.content,
-                    cleanContent: originalMessage.cleanContent,
-                    createdAt: originalMessage.createdAt.toISOString(),
-                    url: originalMessage.url,
-                    author: {
-                        id: originalMessage.author.id,
-                        username: originalMessage.author.username,
-                        tag: originalMessage.author.tag
-                    },
-                    channel: {
-                        id: message.reference.channelId,
-                        name: message.channel.isTextBased() ? (message.channel as GuildChannel).name : "Unknown"
-                    },
-                    guild: {
-                        id: guild.id,
-                        name: guild.name
-                    }
-                },
-                attachments: originalMessage.attachments.map(a => ({
-                    name: a.name,
-                    url: a.url,
-                    size: a.size
-                }))
-            };
-
-
-            await loggingHelper(client,
-                messageContent,
+            await loggingHelper(
+                client,
+                messageLog,
                 webhook,
-                JSON.stringify(jsonData, null, 2),
+                JSON.stringify({
+                    forwardedMessage: {
+                        id: message.id,
+                        createdAt: message.createdAt.toISOString(),
+                        url: message.url,
+                        channelId: message.channel.id,
+                        forwarder: {
+                            id: message.author.id,
+                            username: message.author.username,
+                            tag: message.author.tag
+                        }
+                    },
+                    originalMessage: {
+                        id: originalMessage.id,
+                        content: originalMessage.content,
+                        cleanContent: originalMessage.cleanContent,
+                        createdAt: originalMessage.createdAt.toISOString(),
+                        url: originalMessage.url,
+                        author: {
+                            id: originalMessage.author.id,
+                            username: originalMessage.author.username,
+                            tag: originalMessage.author.tag
+                        },
+                        channel: {
+                            id: message.reference.channelId,
+                            name: message.channel.isTextBased() ? (message.channel as GuildChannel).name : "Unknown",
+                            type: getChannelTypeName(message.channel.type)
+                        },
+                        guild: {
+                            id: guild.id,
+                            name: guild.name
+                        }
+                    },
+                    attachments: originalMessage.attachments.map(a => ({
+                        name: a.name,
+                        url: a.url,
+                        size: a.size,
+                        contentType: a.contentType
+                    }))
+                }, null, 2),
                 "MessageForward"
             );
 

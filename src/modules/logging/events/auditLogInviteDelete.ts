@@ -1,6 +1,7 @@
 import {
     AuditLogEvent,
-    Events, Guild,
+    Events,
+    Guild,
     Invite,
     WebhookClient
 } from "discord.js";
@@ -13,12 +14,8 @@ export default {
 
     async execute(invite: Invite, client: ExtendedClient) {
         const guild = invite.guild as Guild;
-        if (!guild) {
-            console.error("Guild not found for invite:", invite.code);
-            return;
-        }
+        if (!guild) return;
 
-        // Check if logging is enabled
         const enabled = await database.guildFeatureToggles.findFirst({
             where: {
                 GuildId: guild.id,
@@ -39,7 +36,6 @@ export default {
         const webhook = new WebhookClient({url: loggingData.Integration});
         const inviter = invite.inviter;
 
-        // Try to fetch audit logs to find who deleted the invite
         let deleter = null;
         try {
             const auditLogs = await guild.fetchAuditLogs({
@@ -51,24 +47,39 @@ export default {
             console.error("Failed to fetch audit logs:", error);
         }
 
-        // Format invite details
-        const inviteDetails = [
-            `### Invite Deleted`,
-            ``,
-            `> **Code**: \`${invite.code}\``,
-            `> **Channel**: ${invite.channel?.toString() || "Unknown"}`,
-            `> **Original Inviter**: ${inviter ? inviter.toString() : "Unknown"}`,
-            `> **Max Uses**: \`${invite.maxUses || "Unlimited"}\``,
-            `> **Expired**: \`${invite.expiresAt && invite.expiresAt < new Date() ? "Yes" : "No"}\``,
-            `> **Temporary**: \`${invite.temporary ? "Yes" : "No"}\``,
-            ``,
-            `- **Deleted by**: ${deleter ? deleter.toString() : "Unknown"}`,
-            `- **Deleted at**: \`${new Date().toLocaleString()}\``,
-            `- **Created at**: \`${invite.createdAt?.toLocaleString() || "Unknown"}\``
-        ];
+        const wasExpired = invite.expiresAt && invite.expiresAt < new Date();
+        const createdTimestamp = invite.createdAt
+            ? Math.floor(invite.createdAt.getTime() / 1000)
+            : null;
 
-        await loggingHelper(client,
-            inviteDetails.join("\n"),
+        const message = [
+            `### 🗑️ Invite Deleted`,
+            ``,
+            ...(deleter ? [
+                `### Deleted By`,
+                `> <@${deleter.id}>`,
+                `> **User ID:** \`${deleter.id}\``,
+                `> **Username:** \`${deleter.tag}\``,
+                ``
+            ] : []),
+            `### Deleted Invite`,
+            `> **Code:** \`${invite.code}\``,
+            `> **URL:** https://discord.gg/${invite.code}`,
+            `> **Channel:** ${invite.channel ? `<#${invite.channel.id}>` : "\`Unknown\`"}`,
+            `> **Original Inviter:** ${inviter ? `<@${inviter.id}>` : "\`Unknown\`"}`,
+            `> **Max Uses:** \`${invite.maxUses || "Unlimited"}\``,
+            `> **Temporary Membership:** \`${invite.temporary ? "Yes" : "No"}\``,
+            `> **Was Expired:** \`${wasExpired ? "Yes" : "No"}\``,
+            ...(createdTimestamp ? [
+                `> **Created:** <t:${createdTimestamp}:F> (<t:${createdTimestamp}:R>)`
+            ] : []),
+            ``,
+            `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
+        ].join("\n");
+
+        await loggingHelper(
+            client,
+            message,
             webhook,
             JSON.stringify({
                 invite: {
@@ -86,21 +97,19 @@ export default {
                 inviter: inviter ? {
                     id: inviter.id,
                     username: inviter.username,
-                    tag: inviter.tag,
-                    avatarURL: inviter.displayAvatarURL()
+                    tag: inviter.tag
                 } : null,
                 deleter: deleter ? {
                     id: deleter.id,
                     username: deleter.username,
-                    tag: deleter.tag,
-                    avatarURL: deleter.displayAvatarURL()
+                    tag: deleter.tag
                 } : null,
                 guild: {
                     id: guild.id,
                     name: guild.name
                 },
                 deletionDetails: {
-                    wasExpired: invite.expiresAt && invite.expiresAt < new Date(),
+                    wasExpired: wasExpired,
                     wasTemporary: invite.temporary
                 }
             }, null, 2),

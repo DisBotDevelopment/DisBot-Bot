@@ -1,5 +1,4 @@
 import {
-    Client,
     Events,
     Invite,
     WebhookClient
@@ -13,12 +12,8 @@ export default {
 
     async execute(invite: Invite, client: ExtendedClient) {
         const guild = invite.guild;
-        if (!guild) {
-            console.error("Guild not found for invite:", invite.code);
-            return;
-        }
+        if (!guild) return;
 
-        // Check if logging is enabled
         const enabled = await database.guildFeatureToggles.findFirst({
             where: {
                 GuildId: guild.id,
@@ -39,22 +34,40 @@ export default {
         const webhook = new WebhookClient({url: loggingData.Integration});
         const inviter = invite.inviter;
 
-        // Format invite details
-        const inviteDetails = [
-            `### New Invite Created`,
-            ``,
-            `> **Code**: \`${invite.code}\``,
-            `> **Channel**: ${invite.channel?.toString() || "Unknown"}`,
-            `> **Inviter**: ${inviter ? inviter.toString() : "Unknown"}`,
-            `> **Max Uses**: \`${invite.maxUses || "Unlimited"}\``,
-            `> **Expires**: \`${invite.expiresAt?.toLocaleString() || "Never"}\``,
-            `> **Temporary**: \`${invite.temporary ? "Yes" : "No"}\``,
-            ``,
-            `- **Created at**: \`${new Date().toLocaleString()}\``
-        ];
+        const expiresTimestamp = invite.expiresAt
+            ? Math.floor(invite.expiresAt.getTime() / 1000)
+            : null;
 
-        await loggingHelper(client,
-            inviteDetails.join("\n"),
+        const message = [
+            `### 📨 Invite Created`,
+            ``,
+            `### Inviter`,
+            ...(inviter ? [
+                `> <@${inviter.id}>`,
+                `> **User ID:** \`${inviter.id}\``,
+                `> **Username:** \`${inviter.tag}\``
+            ] : [
+                `> *Unknown Inviter*`
+            ]),
+            ``,
+            `### Invite Details`,
+            `> **Code:** \`${invite.code}\``,
+            `> **URL:** ${invite.url}`,
+            `> **Channel:** ${invite.channel ? `<#${invite.channel.id}>` : "\`Unknown\`"}`,
+            `> **Max Uses:** \`${invite.maxUses || "Unlimited"}\``,
+            `> **Temporary Membership:** \`${invite.temporary ? "Yes" : "No"}\``,
+            ...(expiresTimestamp ? [
+                `> **Expires:** <t:${expiresTimestamp}:F> (<t:${expiresTimestamp}:R>)`
+            ] : [
+                `> **Expires:** \`Never\``
+            ]),
+            ``,
+            `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
+        ].join("\n");
+
+        await loggingHelper(
+            client,
+            message,
             webhook,
             JSON.stringify({
                 invite: {
@@ -71,8 +84,7 @@ export default {
                 inviter: inviter ? {
                     id: inviter.id,
                     username: inviter.username,
-                    tag: inviter.tag,
-                    avatarURL: inviter.displayAvatarURL()
+                    tag: inviter.tag
                 } : null,
                 guild: {
                     id: guild.id,

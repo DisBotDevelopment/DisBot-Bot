@@ -1,6 +1,5 @@
 import {
     AuditLogEvent,
-    EmbedBuilder,
     Events,
     GuildMember,
     WebhookClient
@@ -19,7 +18,6 @@ export default {
     ) {
         const guild = newMember.guild;
 
-        // Check if logging is enabled
         const enabled = await database.guildFeatureToggles.findFirst({
             where: {
                 GuildId: guild.id,
@@ -40,20 +38,17 @@ export default {
         const webhook = new WebhookClient({url: loggingData.Integration});
 
         try {
-            // Track all changes
             const changes: string[] = [];
-            let title = "Member Updated";
             let requiresAuditLog = false;
 
-            // Nickname change
             if (oldMember.nickname !== newMember.nickname) {
                 changes.push(
-                    `> **Nickname**: \`${oldMember.nickname || "None"}\` → \`${newMember.nickname || "None"}\``
+                    `> **Nickname**`,
+                    `> Before: \`${oldMember.nickname || "None"}\``,
+                    `> After: \`${newMember.nickname || "None"}\``
                 );
-                title = "Nickname Changed";
             }
 
-            // Role changes
             const addedRoles = newMember.roles.cache.filter(
                 role => !oldMember.roles.cache.has(role.id)
             );
@@ -63,40 +58,54 @@ export default {
 
             if (addedRoles.size > 0) {
                 changes.push(
-                    `> **Roles Added**: ${addedRoles.map(r => r.toString()).join(", ")}`
+                    `> **Roles Added**`,
+                    `> ${addedRoles.map(r => r.toString()).join(", ")}`
                 );
-                title = "Roles Updated";
                 requiresAuditLog = true;
             }
 
             if (removedRoles.size > 0) {
                 changes.push(
-                    `> **Roles Removed**: ${removedRoles.map(r => r.toString()).join(", ")}`
+                    `> **Roles Removed**`,
+                    `> ${removedRoles.map(r => r.toString()).join(", ")}`
                 );
-                title = "Roles Updated";
                 requiresAuditLog = true;
             }
 
-            // Timeout changes
             if (oldMember.communicationDisabledUntilTimestamp !== newMember.communicationDisabledUntilTimestamp) {
                 const oldTimeout = oldMember.communicationDisabledUntil
-                    ? `<t:${Math.floor(oldMember.communicationDisabledUntilTimestamp! / 1000)}:R>`
+                    ? `<t:${Math.floor(oldMember.communicationDisabledUntilTimestamp! / 1000)}:F>`
                     : "None";
                 const newTimeout = newMember.communicationDisabledUntil
-                    ? `<t:${Math.floor(newMember.communicationDisabledUntilTimestamp! / 1000)}:R>`
+                    ? `<t:${Math.floor(newMember.communicationDisabledUntilTimestamp! / 1000)}:F>`
                     : "None";
 
                 changes.push(
-                    `> **Timeout**: ${oldTimeout} → ${newTimeout}`
+                    `> **Timeout**`,
+                    `> Before: ${oldTimeout}`,
+                    `> After: ${newTimeout}`
                 );
-                title = "Timeout Updated";
                 requiresAuditLog = true;
             }
 
-            // If no changes detected, exit
+            if (oldMember.avatar !== newMember.avatar) {
+                changes.push(
+                    `> **Server Avatar**`,
+                    `> Before: ${oldMember.avatarURL() ? `[View Avatar](${oldMember.avatarURL()})` : "\`None\`"}`,
+                    `> After: ${newMember.avatarURL() ? `[View Avatar](${newMember.avatarURL()})` : "\`None\`"}`
+                );
+            }
+
+            if (oldMember.pending !== newMember.pending) {
+                changes.push(
+                    `> **Membership Screening**`,
+                    `> Before: \`${oldMember.pending ? "Pending" : "Completed"}\``,
+                    `> After: \`${newMember.pending ? "Pending" : "Completed"}\``
+                );
+            }
+
             if (changes.length === 0) return;
 
-            // Get audit log details if needed
             let executor = null;
             if (requiresAuditLog) {
                 const auditLogs = await guild.fetchAuditLogs({
@@ -113,51 +122,61 @@ export default {
                 }
             }
 
-            // Prepare the log message
-            const messageContent = [
-                `### ${title}`,
+            const message = [
+                `### 👤 Member Updated`,
                 ``,
-                `> **Member**: ${newMember.user.toString()} (\`${newMember.id}\`)`,
+                ...(executor ? [
+                    `### Executor`,
+                    `> <@${executor.id}>`,
+                    `> **User ID:** \`${executor.id}\``,
+                    `> **Username:** \`${executor.tag}\``,
+                    ``
+                ] : []),
+                `### Member`,
+                `> <@${newMember.id}>`,
+                `> **User ID:** \`${newMember.id}\``,
+                `> **Username:** \`${newMember.user.tag}\``,
                 ``,
+                `### Changes`,
                 ...changes,
                 ``,
-                executor ? `- **Modified by**: ${executor.toString()}` : ''
-            ].filter(Boolean).join("\n");
+                `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
+            ].join("\n");
 
-            // Prepare the JSON data
-            const jsonData = {
-                member: {
-                    id: newMember.id,
-                    username: newMember.user.username,
-                    tag: newMember.user.tag,
-                    avatarURL: newMember.user.displayAvatarURL()
-                },
-                changes: {
-                    nickname: oldMember.nickname !== newMember.nickname,
-                    roles: addedRoles.size > 0 || removedRoles.size > 0,
-                    timeout: oldMember.communicationDisabledUntilTimestamp !== newMember.communicationDisabledUntilTimestamp
-                },
-                details: {
-                    oldNickname: oldMember.nickname,
-                    newNickname: newMember.nickname,
-                    addedRoles: addedRoles.map(r => r.id),
-                    removedRoles: removedRoles.map(r => r.id),
-                    oldTimeout: oldMember.communicationDisabledUntil?.toISOString(),
-                    newTimeout: newMember.communicationDisabledUntil?.toISOString()
-                },
-                executor: executor ? {
-                    id: executor.id,
-                    username: executor.username,
-                    tag: executor.tag,
-                    avatarURL: executor.displayAvatarURL()
-                } : null,
-                updateTime: new Date().toISOString()
-            };
-
-            await loggingHelper(client,
-                messageContent,
+            await loggingHelper(
+                client,
+                message,
                 webhook,
-                JSON.stringify(jsonData, null, 2),
+                JSON.stringify({
+                    member: {
+                        id: newMember.id,
+                        username: newMember.user.username,
+                        tag: newMember.user.tag
+                    },
+                    changes: {
+                        nickname: oldMember.nickname !== newMember.nickname,
+                        roles: addedRoles.size > 0 || removedRoles.size > 0,
+                        timeout: oldMember.communicationDisabledUntilTimestamp !== newMember.communicationDisabledUntilTimestamp,
+                        avatar: oldMember.avatar !== newMember.avatar,
+                        pending: oldMember.pending !== newMember.pending
+                    },
+                    details: {
+                        oldNickname: oldMember.nickname,
+                        newNickname: newMember.nickname,
+                        addedRoles: addedRoles.map(r => ({id: r.id, name: r.name})),
+                        removedRoles: removedRoles.map(r => ({id: r.id, name: r.name})),
+                        oldTimeout: oldMember.communicationDisabledUntil?.toISOString(),
+                        newTimeout: newMember.communicationDisabledUntil?.toISOString(),
+                        oldPending: oldMember.pending,
+                        newPending: newMember.pending
+                    },
+                    executor: executor ? {
+                        id: executor.id,
+                        username: executor.username,
+                        tag: executor.tag
+                    } : null,
+                    updateTime: new Date().toISOString()
+                }, null, 2),
                 "MemberUpdate"
             );
         } catch (error) {

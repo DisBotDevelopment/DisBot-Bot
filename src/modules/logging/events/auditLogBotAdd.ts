@@ -1,13 +1,12 @@
 import {
     AuditLogEvent,
-    EmbedBuilder,
     Events,
     Guild,
     GuildAuditLogsEntry,
     WebhookClient
 } from "discord.js";
 import {ExtendedClient} from "../../../types/ExtendedClient.js";
-import {database} from "../../../main/database.js"; // Prisma client
+import {database} from "../../../main/database.js";
 import {loggingHelper} from "../../../helper/loggingHelper.js";
 
 export default {
@@ -19,7 +18,6 @@ export default {
      * @param {ExtendedClient} client
      */
     async execute(auditLog: GuildAuditLogsEntry, guild: Guild, client: ExtendedClient) {
-        // Bot Add Event
         if (auditLog.action === AuditLogEvent.BotAdd) {
             if (!guild) return;
 
@@ -51,10 +49,27 @@ export default {
             const executor = await client.users.fetch(logEntry.executorId ?? "");
             const botUser = await client.users.fetch(logEntry.targetId ?? "");
 
-            await loggingHelper(client,
-                `### Bot Add\n> **Username**: @${botUser.username} (<@${botUser.id}>)\n**Executor**: @${executor.tag}`,
+            const message = [
+                `### 🤖 Bot Added`,
+                ``,
+                `### Executor`,
+                `> <@${executor.id}>`,
+                `> **User ID:** \`${executor.id}\``,
+                `> **Username:** \`${executor.tag}\``,
+                ``,
+                `### Bot Details`,
+                `> **Bot:** <@${botUser.id}>`,
+                `> **Bot ID:** \`${botUser.id}\``,
+                `> **Bot Username:** \`${botUser.tag}\``,
+                ``,
+                `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
+            ].join("\n");
+
+            await loggingHelper(
+                client,
+                message,
                 webhook,
-                JSON.stringify(auditLog),
+                JSON.stringify(auditLog, null, 2),
                 "GuildAuditLogEntryCreate_BotAdd"
             );
         }

@@ -3,8 +3,7 @@ import {
     AuditLogEvent,
     Events,
     Guild,
-    WebhookClient,
-    userMention
+    WebhookClient
 } from "discord.js";
 import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {database} from "../../../main/database.js";
@@ -25,7 +24,6 @@ export default {
     ) {
         const guildId = guild.id;
 
-        // Logging aktiviert?
         const enabled = await database.guildFeatureToggles.findFirst({
             where: {
                 GuildId: guildId,
@@ -34,13 +32,11 @@ export default {
         });
         if (!enabled?.LoggingEnabled) return;
 
-        // Logging-URLs abrufen
         const data = await database.guildLogging.findFirst({
             where: {GuildId: guildId}
         });
         if (!data?.SoundBoard) return;
 
-        // Nur Soundboard-Löschaktion
         if (auditLogEntry.action_type !== AuditLogEvent.SoundboardSoundDelete) return;
 
         const logs = await guild.fetchAuditLogs({
@@ -54,26 +50,56 @@ export default {
         const sound = logEntry.target as any;
         const webhook = new WebhookClient({url: data.SoundBoard});
 
-        const content = [
-            `### Soundboard Sound Deleted`,
+        const message = [
+            `### 🗑️ Soundboard Sound Deleted`,
             ``,
-            `> **Soundboard Name:** \`${sound?.name || "Unknown"}\``,
-            `> **Deleted by:** ${userMention(executor?.id || "")} (\`${executor?.id || "Unknown"}\`)`
+            `### Executor`,
+            ...(executor ? [
+                `> <@${executor.id}>`,
+                `> **User ID:** \`${executor.id}\``,
+                `> **Username:** \`${executor.tag}\``
+            ] : [
+                `> *Unknown Executor*`
+            ]),
+            ``,
+            `### Deleted Sound`,
+            `> **Name:** \`${sound?.name || "Unknown"}\``,
+            ...(sound?.soundId ? [
+                `> **Sound ID:** \`${sound.soundId}\``
+            ] : []),
+            ...(sound?.volume !== undefined ? [
+                `> **Volume:** \`${sound.volume}\``
+            ] : []),
+            ...(sound?.emojiId ? [
+                `> **Emoji ID:** \`${sound.emojiId}\``
+            ] : []),
+            ...(sound?.emojiName ? [
+                `> **Emoji Name:** \`${sound.emojiName}\``
+            ] : []),
+            ``,
+            `**Timestamp:** <t:${Math.floor(Date.now() / 1000)}:F>`
         ].join("\n");
 
-        await loggingHelper(client,
-            content,
+        await loggingHelper(
+            client,
+            message,
             webhook,
-            JSON.stringify(
-                {
-                    action: "SoundboardDeleted",
-                    guildId: guild.id,
-                    soundName: sound?.name,
-                    deletedBy: executor?.id
+            JSON.stringify({
+                action: "SoundboardSoundDeleted",
+                guildId: guild.id,
+                sound: {
+                    name: sound?.name,
+                    soundId: sound?.soundId,
+                    volume: sound?.volume,
+                    emojiId: sound?.emojiId,
+                    emojiName: sound?.emojiName
                 },
-                null,
-                2
-            ),
+                executor: executor ? {
+                    id: executor.id,
+                    username: executor.username,
+                    tag: executor.tag
+                } : null
+            }, null, 2),
             "SoundboardDelete"
         );
     }
