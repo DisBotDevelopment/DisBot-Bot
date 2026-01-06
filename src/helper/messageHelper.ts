@@ -41,24 +41,28 @@ export async function showComponentFollowModal(interaction: ModalSubmitInteracti
     }
 }
 
-export async function updateComponentsWithPositions(message: Message, json: any, positions: string[]) {
+export async function updateComponentsWithPositions(message: Message, json: any, positions?: string[]) {
 
     let newComponents = [];
-    if (positions.length == 1) {
-        newComponents = JSON.parse(JSON.stringify(message.components));
-        newComponents[Number(positions[0])] = json;
-    } else if (positions.length == 2) {
-        newComponents = JSON.parse(JSON.stringify(message.components));
+    if (positions) {
+        if (positions.length == 1) {
+            newComponents = JSON.parse(JSON.stringify(message.components));
+            newComponents[Number(positions[0])] = json;
+        } else if (positions.length == 2) {
+            newComponents = JSON.parse(JSON.stringify(message.components));
 
-        if (newComponents[Number(positions[0])]?.components) {
-            newComponents[Number(positions[0])].components[Number(positions[1])] = json
-        }
-    } else if (positions.length == 3) {
-        newComponents = JSON.parse(JSON.stringify(message.components));
+            if (newComponents[Number(positions[0])]?.components) {
+                newComponents[Number(positions[0])].components[Number(positions[1])] = json
+            }
+        } else if (positions.length == 3) {
+            newComponents = JSON.parse(JSON.stringify(message.components));
 
-        if (newComponents[Number(positions[0])]?.components?.[Number(positions[1])]?.components) {
-            newComponents[Number(positions[0])].components[Number(positions[1])].components[Number(positions[2])] = json
+            if (newComponents[Number(positions[0])]?.components?.[Number(positions[1])]?.components) {
+                newComponents[Number(positions[0])].components[Number(positions[1])].components[Number(positions[2])] = json
+            }
         }
+    } else if (positions == null){
+        newComponents = json
     }
 
     const updatedComponents = await Promise.all(

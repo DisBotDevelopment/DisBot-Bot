@@ -18,7 +18,7 @@ export async function generateLevelCardImage(user: GuildMember, guildId: string)
         .setUsername(user.user.username)
         .setLevel(levelData.Level)
         .setRequiredXP(Number(levelData.RequiredXp))
-        .setAvatar(user.displayAvatarURL({extension: "png", forceStatic: true}))
+        .setAvatar(user.displayAvatarURL({extension: "png", forceStatic: true}) ?? "https://cdn.discordapp.com/emojis/1259432940383768647.webp?size=96/mes")
         .setCurrentXP(Number(levelData.XP))
 
 
@@ -56,9 +56,9 @@ export async function generateLevelLeaderboard(guild: Guild, type: "default" | "
                         level: user.Level ?? 0,
                         username: guildMember?.user?.username ?? "N/A",
                         displayName: guildMember?.displayName ?? "N/A",
-                        avatar: guildMember.displayAvatarURL({extension: "png", forceStatic: true}),
+                        avatar: guildMember?.displayAvatarURL({extension: "png", forceStatic: true}) ?? "https://cdn.discordapp.com/emojis/1259432940383768647.webp?size=96",
                         xp: Number(user.XP) ?? 0,
-                        rank: rank ? (rank + 1) : 0
+                        rank:  (rank + 1)
                     };
                 } catch (error) {
                     return

@@ -33,9 +33,6 @@ export default {
 
             embeds[embedIndex] = newEmbed;
 
-            console.log(embeds[embedIndex])
-            console.log(embeds)
-
             if (message.webhookId) {
                 const webhooks = await interaction.guild?.fetchWebhooks();
                 const webhook = webhooks?.find((wh) => wh.id == message.webhookId);
