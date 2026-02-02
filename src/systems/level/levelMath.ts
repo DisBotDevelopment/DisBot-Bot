@@ -386,7 +386,7 @@ export async function scheduleLevelXPDrops(client: ExtendedClient) {
                     drop: {
                         xpRange: drop.XPRange,
                         claimAmount: drop.ClaimAmount,
-                        timeToRespawn: drop.TimeToRespawn 
+                        timeToRespawn: drop.TimeToRespawn
                     }
                 }
 
@@ -409,35 +409,33 @@ export async function scheduleLevelXPDrops(client: ExtendedClient) {
                 if (!channel) continue
 
                 const msg1 = await channel.send(messageBuilder.messageData)
-                if ((messageBuilder.messageData as any).embeds.length > 0 || !(JSON.stringify((messageBuilder.messageData as any).components).includes("level-drop-claim:" + drop.UUID))) {
-                    try {
-                        const msg2 = await channel.send({
-                            flags: MessageFlags.IsComponentsV2,
-                            components: [
-                                new ActionRowBuilder<ButtonBuilder>().addComponents(
-                                    new ButtonBuilder()
-                                        .setCustomId("level-drop-claim:" + drop.UUID + ":" + msg1.id)
-                                        .setLabel("Claim Drop")
-                                        .setEmoji("<:package:1365715766623604746>")
-                                        .setStyle(ButtonStyle.Secondary)
-                                )
-                            ]
-                        })
+                try {
+                    const msg2 = await channel.send({
+                        flags: MessageFlags.IsComponentsV2,
+                        components: [
+                            new ActionRowBuilder<ButtonBuilder>().addComponents(
+                                new ButtonBuilder()
+                                    .setCustomId("level-drop-claim:" + drop.UUID + ":" + msg1.id)
+                                    .setLabel("Claim Drop")
+                                    .setEmoji("<:package:1365715766623604746>")
+                                    .setStyle(ButtonStyle.Secondary)
+                            )
+                        ]
+                    })
 
-                        await database.xPDrops.update({
-                            where: {
-                                UUID: drop.UUID
-                            },
-                            data: {
-                                MessageIdsToDelete: {
-                                    set: [`${msg1.channel.id}-${msg1.id}`, `${msg2.channel.id}-${msg2.id}`]
-                                }
+                    await database.xPDrops.update({
+                        where: {
+                            UUID: drop.UUID
+                        },
+                        data: {
+                            MessageIdsToDelete: {
+                                set: [`${msg1.channel.id}-${msg1.id}`, `${msg2.channel.id}-${msg2.id}`]
                             }
-                        })
+                        }
+                    })
 
-                    } catch (e) {
+                } catch (e) {
 
-                    }
                 }
 
                 await database.xPDrops.update({
