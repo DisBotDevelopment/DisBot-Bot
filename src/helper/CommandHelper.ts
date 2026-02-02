@@ -123,11 +123,18 @@ export class CommandHelper {
 
         const restClient = new REST({version: "10"}).setToken(Config.Bot.DiscordBotToken);
 
+        
+        
         // Clear application command
         await restClient.put(Routes.applicationCommands(Config.Bot.DiscordApplicationId), {
             body: [],
         });
 
+        // Clear Guild Commands
+        await restClient.put(Routes.applicationGuildCommands(Config.Bot.DiscordApplicationId, guild.id), {
+            body: [],
+        });
+        
         const buildInCommandOverrides = await database.buildInCommands.findMany({
             where: {
                 GuildCommandMangerId: guild.id
@@ -335,9 +342,14 @@ export class CommandHelper {
             body: [],
         });
 
-
         const allGuilds = await client.guilds.fetch();
         for (const guild of allGuilds.values()) {
+
+            // Clear Guild Commands
+            await restClient.put(Routes.applicationGuildCommands(Config.Bot.DiscordApplicationId, guild.id), {
+                body: [],
+            });
+            
             const buildInCommandOverrides = await database.buildInCommands.findMany({
                 where: {
                     GuildCommandMangerId: guild.id

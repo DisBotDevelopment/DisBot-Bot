@@ -10,7 +10,7 @@ import {ExtendedClient} from "../../../../types/ExtendedClient.js";
 
 export default {
     data: new SlashCommandBuilder()
-        .setName("let-me-google-that-for-you")
+        .setName("let-me-google-that")
         .setDescription("Use the pupular tool 'Let me google that for you'")
         .setDescriptionLocalizations({
             de: "Benutze das beliebte Tool 'Let me google that for you'"
