@@ -37,8 +37,9 @@ export async function connectToDatabase(client: ExtendedClient) {
 export async function initDataToDatabase(client: ExtendedClient) {
 
     try {
-        await migrateDataBase(client)
-        await initGuildsToDatabase(client)
+        // TODO: Update database inits
+        // await migrateDataBase(client)
+        // await initGuildsToDatabase(client)
         await setupDisBotConfig(client)
 
         // Repeat Database Init

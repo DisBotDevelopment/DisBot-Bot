@@ -78,7 +78,8 @@ await disbotClient
         disbotClient.setMaxListeners(0);
 
         // Database init (Default)
-        initDataToDatabase(disbotClient)
+        await initDataToDatabase(disbotClient)
+        
         // Load Commands
         await CommandHelper.loadCommands(disbotClient);
 
@@ -91,7 +92,7 @@ await disbotClient
         await vote(disbotClient);
         await app(disbotClient);
         await vanityAPI(disbotClient);
-        
+
     })
     .catch((err) => {
         Logger.error(`Failed to login: ${err instanceof Error ? err.message : String(err)}`);
