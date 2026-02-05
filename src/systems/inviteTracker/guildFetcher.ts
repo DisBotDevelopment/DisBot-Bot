@@ -24,7 +24,6 @@ export async function guildFetcher(client: ExtendedClient, guild: Guild, useCach
                     }).catch(() => {
                     });
                 } else return;
-                ;
             });
         }).catch(() => {
         });

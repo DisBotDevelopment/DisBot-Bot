@@ -24,19 +24,18 @@ export default {
     name: Events.ClientReady,
     async execute(client: ExtendedClient) {
         try {
-            // INFO: Only a little await because I have to load everything here since I definitely have a client here, 
-            // and therefore no await that everything is loaded correctly and then loads in sequence...
-            // (This events load everything sync and then the functions that need longer they load longer but all functions will be loaded!!!)
-
             // Database init (Default)
-            initDataToDatabase(client)
+            await initDataToDatabase(client)
 
             // Load Commands
-            CommandHelper.loadCommands(client);
+            setTimeout(async () => {
+                Logger.info("Loading Command...")
+                await CommandHelper.loadCommands(client);
+            }, 10000)
 
             // Invite Tracker Fetch
             client.guilds.cache.forEach(async (guild: Guild) => {
-                guildFetcher(client, guild);
+                await guildFetcher(client, guild);
             })
 
             // Spawn Drops...
@@ -53,13 +52,6 @@ export default {
 
             // AutoDelete
             Scheduler.deleteMessagesFromAutoDelete(client);
-
-            // Run Guild Commands
-            const guilds = await client.guilds.fetch();
-            for (const fakeGuild of guilds.values()) {
-                const guild = await client.guilds.fetch(fakeGuild.id)
-                CommandHelper.loadCommandsForGuild(client, guild);
-            }
 
             // Schedule Vanity URL's && Vote Role on Guild
             setInterval(async () => {

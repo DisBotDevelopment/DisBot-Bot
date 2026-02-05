@@ -73,22 +73,6 @@ export class CommandHelper {
                 }
             }
 
-            // Load userInstall commands
-            if (fs.existsSync(commandDirs.userInstall)) {
-                const userCommandFiles = getFilesRecursively(commandDirs.userInstall, [".js"]);
-                for (const filePath of userCommandFiles) {
-                    try {
-                        const module = await import(pathToFileURL(filePath).href);
-                        if (module.default?.data) {
-                            cmdlist.push(module.default.data.toJSON());
-                            stats.userInstall++;
-                        }
-                    } catch (error) {
-                        console.error(`Failed to load userInstall command from ${filePath}:`.red, error);
-                    }
-                }
-            }
-
             // Load context menu commands
             if (fs.existsSync(commandDirs.contextMenus)) {
                 const contextCommandFiles = getFilesRecursively(commandDirs.contextMenus, [".js"]);
@@ -123,8 +107,7 @@ export class CommandHelper {
 
         const restClient = new REST({version: "10"}).setToken(Config.Bot.DiscordBotToken);
 
-        
-        
+
         // Clear application command
         await restClient.put(Routes.applicationCommands(Config.Bot.DiscordApplicationId), {
             body: [],
@@ -134,7 +117,7 @@ export class CommandHelper {
         await restClient.put(Routes.applicationGuildCommands(Config.Bot.DiscordApplicationId, guild.id), {
             body: [],
         });
-        
+
         const buildInCommandOverrides = await database.buildInCommands.findMany({
             where: {
                 GuildCommandMangerId: guild.id
@@ -232,6 +215,7 @@ export class CommandHelper {
 
     public static async loadCommands(client: ExtendedClient) {
         let cmdlist: any[] = [];
+        let applicationcmdlist: any[] = [];
         const stats = {
             commands: 0,
             userInstall: 0,
@@ -294,7 +278,7 @@ export class CommandHelper {
                     try {
                         const module = await import(pathToFileURL(filePath).href);
                         if (module.default?.data) {
-                            cmdlist.push(module.default.data.toJSON());
+                            applicationcmdlist.push(module.default.data.toJSON());
                             stats.userInstall++;
                         }
                     } catch (error) {
@@ -342,14 +326,18 @@ export class CommandHelper {
             body: [],
         });
 
-        const allGuilds = await client.guilds.fetch();
-        for (const guild of allGuilds.values()) {
+        await restClient.put(Routes.applicationCommands(Config.Bot.DiscordApplicationId), {
+            body: applicationcmdlist,
+        });
 
+        Logger.info("Application Command Loaded")
+        Logger.info(`Loading guild commands for ${client.guilds.cache.size} guilds...`)
+        client.guilds.cache.forEach(async (guild) => {
             // Clear Guild Commands
             await restClient.put(Routes.applicationGuildCommands(Config.Bot.DiscordApplicationId, guild.id), {
                 body: [],
             });
-            
+
             const buildInCommandOverrides = await database.buildInCommands.findMany({
                 where: {
                     GuildCommandMangerId: guild.id
@@ -444,6 +432,6 @@ export class CommandHelper {
                 botType: Config.BotType.toString() || "Unknown",
                 action: LoggingAction.Command,
             });
-        }
+        })
     }
 }
