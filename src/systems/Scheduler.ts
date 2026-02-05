@@ -53,7 +53,7 @@ export class Scheduler {
 
                 }
             } catch (error) {
-                
+
             }
         }
     }
@@ -120,11 +120,15 @@ export class Scheduler {
 
         for (const data of autoDeletes) {
 
-            const channel = await client.channels.fetch(data.ChannelId as string).catch(() => null);
+            if (!data.ChannelId) continue
+            const channel = await client.channels.fetch(data.ChannelId as string)
             if (!channel || !channel.isTextBased()) continue;
 
-            for (const msgId of channel.messages.cache.keys()) {
-                const msg = await channel.messages.fetch(msgId).catch(() => null);
+            const messages = await channel.messages.fetch()
+
+            for (const message of messages.values()) {
+                if (message.id) continue
+                const msg = await channel.messages.fetch(message.id)
                 if (!msg) continue;
                 const whitelistedMessages = data.WhitelistedMessages;
                 const whitelistedUsers = data.WhitelistedUsers;
@@ -140,6 +144,7 @@ export class Scheduler {
                 }
 
                 await msg.delete().catch(() => {
+
                 });
             }
         }
@@ -157,24 +162,31 @@ export class Scheduler {
         for (const ticket of ticketData) {
 
             if (ticket.IsAutoDone) continue;
+            if (!ticket.GuildId) continue;
 
             const guild = await client.guilds.fetch(ticket.GuildId)
             if (!guild) continue;
             let channel: TextChannel | PrivateThreadChannel
             if (ticket.ChannelType == ChannelType.GuildCategory) {
                 try {
+                    if (!ticket.ChannelId) continue;
                     channel = await guild.channels.fetch(ticket.ChannelId) as TextChannel
+                    if (!channel) continue
                 } catch (e) {
                     continue;
                 }
             } else if (ticket.ChannelType == ChannelType.PrivateThread) {
                 try {
+                    if (!ticket.TicketSetup.CategoryId) continue;
+                    if (!ticket.ThreadId) continue;
                     const threadChannel = await guild.channels.fetch(ticket.TicketSetup.CategoryId) as TextChannel
+                    if (!threadChannel) continue
                     channel = await threadChannel.threads.fetch(ticket.ThreadId) as PrivateThreadChannel
                 } catch (e) {
                     continue;
                 }
             }
+            if (channel == null) continue
 
             if (ticket.TicketSetup.AutoCloseAfterInactivity) {
                 if (!ticket.LastMessageId) continue;
@@ -184,6 +196,9 @@ export class Scheduler {
                 } catch (err) {
                     continue
                 }
+
+                if (latestMessage == null) continue
+
                 const inactivityTime = ticket.TicketSetup.AutoCloseAfterInactivity; // MS TIME
 
                 if (latestMessage && latestMessage.createdAt instanceof Date) {

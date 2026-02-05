@@ -19,115 +19,122 @@ export async function giveaway(client: ExtendedClient) {
 
     if (!data) return;
     for (const giveaway1 of data) {
+        try {
 
-        const guild = await client.guilds.fetch(giveaway1.GuildId as string)
-        if (!guild) continue;
-        const channel = await guild.channels.fetch(giveaway1.ChannelId as string) as GuildTextBasedChannel
-        if (!channel) continue;
-        if (!channel.isSendable()) continue;
-        const message = await channel.messages.fetch(giveaway1.MessageId as string)
-        if (!message) continue;
+            if (!giveaway1.ChannelId) continue
+            if (!giveaway1.MessageId) continue
 
-        if (giveaway1.Paused) continue;
-        if (giveaway1.Ended) continue;
+            const guild = await client.guilds.fetch(giveaway1.GuildId as string)
+            if (!guild) continue;
+            const channel = await guild.channels.fetch(giveaway1.ChannelId as string) as GuildTextBasedChannel
+            if (!channel) continue;
+            if (!channel.isSendable()) continue;
+            const message = await channel.messages.fetch(giveaway1.MessageId as string)
+            if (!message) continue;
 
-        const duration = ms(giveaway1.Time as ms.StringValue)
-        const createdAt = giveaway1.CreatedAt
-        const endTime = moment(createdAt).add(duration, "milliseconds").toDate()
+            if (giveaway1.Paused) continue;
+            if (giveaway1.Ended) continue;
 
-        const timeStamp = Math.floor(endTime.getTime() / 1000)
+            const duration = ms(giveaway1.Time as ms.StringValue)
+            const createdAt = giveaway1.CreatedAt
+            const endTime = moment(createdAt).add(duration, "milliseconds").toDate()
 
-        const now = new Date()
-        if (now >= endTime) {
+            const timeStamp = Math.floor(endTime.getTime() / 1000)
 
-            const doneWinners: string[] = [];
+            const now = new Date()
+            if (now >= endTime) {
 
-            const shuffled = giveaway1.Entrys
-                .filter(entry => entry)
-                .sort(() => Math.random() - 0.5);
+                const doneWinners: string[] = [];
 
-            const winnersCount = giveaway1.Winners ?? 1;
+                const shuffled = giveaway1.Entrys
+                    .filter(entry => entry)
+                    .sort(() => Math.random() - 0.5);
 
-            for (let i = 0; i < winnersCount && i < shuffled.length; i++) {
-                doneWinners.push(shuffled[i]);
-            }
+                const winnersCount = giveaway1.Winners ?? 1;
 
-            const placeholderType = {
-                giveaway: {
-                    action: {
-                        message: ""
-                    },
-                    prize: giveaway1.Prize as string,
-                    winner: String(giveaway1.Winners),
-                    requirements: giveaway1.Requirements[0] ? `<@&${giveaway1.Requirements[0]}>` : "No requirements",
-                    hostedBy: `<@${giveaway1.HostedBy}>`,
-                    duration: `<t:${timeStamp}:R>`,
-                    entrys: giveaway1.Entrys ? giveaway1.Entrys.length.toString() : "N/A"
+                for (let i = 0; i < winnersCount && i < shuffled.length; i++) {
+                    doneWinners.push(shuffled[i]);
                 }
-            }
-            const gMessage = replacePlaceholders(giveaway1.Content, placeholderType)
 
-            if (!client.user) continue;
-            await message.edit({
-                components: [
-                    new ContainerBuilder().addTextDisplayComponents(
-                        new TextDisplayBuilder()
-                            .setContent(gMessage)
-                    ).addActionRowComponents(
-                        new ActionRowBuilder<ButtonBuilder>().addComponents(
-                            new ButtonBuilder()
-                                .setCustomId(`giveaway-enter:${giveaway1.UUID}`)
-                                .setEmoji("<:giveaway:1366020996934668419>")
-                                .setStyle(ButtonStyle.Secondary)
-                                .setDisabled(true)
-                        )),
+                const placeholderType = {
+                    giveaway: {
+                        action: {
+                            message: ""
+                        },
+                        prize: giveaway1.Prize as string,
+                        winner: String(giveaway1.Winners),
+                        requirements: giveaway1.Requirements[0] ? `<@&${giveaway1.Requirements[0]}>` : "No requirements",
+                        hostedBy: `<@${giveaway1.HostedBy}>`,
+                        duration: `<t:${timeStamp}:R>`,
+                        entrys: giveaway1.Entrys ? giveaway1.Entrys.length.toString() : "N/A"
+                    }
+                }
+                const gMessage = replacePlaceholders(giveaway1.Content, placeholderType)
 
-                ],
-                flags: MessageFlags.IsComponentsV2,
-            })
+                if (!client.user) continue;
+                await message.edit({
+                    components: [
+                        new ContainerBuilder().addTextDisplayComponents(
+                            new TextDisplayBuilder()
+                                .setContent(gMessage)
+                        ).addActionRowComponents(
+                            new ActionRowBuilder<ButtonBuilder>().addComponents(
+                                new ButtonBuilder()
+                                    .setCustomId(`giveaway-enter:${giveaway1.UUID}`)
+                                    .setEmoji("<:giveaway:1366020996934668419>")
+                                    .setStyle(ButtonStyle.Secondary)
+                                    .setDisabled(true)
+                            )),
 
-            await database.giveaways.update(
-                {
-                    where: {
-                        UUID: giveaway1.UUID
-                    },
-                    data: {
-                        Ended: true,
-                        EndedAt: new Date(),
-                        EndedBy: "System",
-                        WinnerIds: {
-                            set: doneWinners
+                    ],
+                    flags: MessageFlags.IsComponentsV2,
+                })
+
+                await database.giveaways.update(
+                    {
+                        where: {
+                            UUID: giveaway1.UUID
+                        },
+                        data: {
+                            Ended: true,
+                            EndedAt: new Date(),
+                            EndedBy: "System",
+                            WinnerIds: {
+                                set: doneWinners
+                            }
                         }
-                    }
-                })
+                    })
 
-            const endedBy = await database.giveaways.findFirst({
-                where: {
-                    UUID: giveaway1.UUID
-                }
-            })
-
-            const endedMsg = await message.reply({
-                content: `## ${await convertToEmojiToPng("giveaway")} **Giveaway Winners** \n\n` +
-                    `**Winners:** \n` +
-                    `${doneWinners.map((winner) => `<@${winner}>`).join(", ") || "No winners"}` +
-                    `\n> **Giveaway ended at:** <t:${timeStamp}:F>` +
-                    `\n> **Giveaway ended by:** ${endedBy?.EndedBy == "System" ? client.user.tag : `<@${giveaway1.EndedBy}>`}`,
-                allowedMentions: {users: doneWinners},
-                embeds: [],
-                components: [],
-                flags: MessageFlags.SuppressEmbeds,
-            })
-
-            await database.giveaways.update(
-                {
+                const endedBy = await database.giveaways.findFirst({
                     where: {
                         UUID: giveaway1.UUID
-                    },
-                    data: {
-                        EndedMessage: (endedMsg).id,
                     }
                 })
+
+                const endedMsg = await message.reply({
+                    content: `## ${await convertToEmojiToPng("giveaway")} **Giveaway Winners** \n\n` +
+                        `**Winners:** \n` +
+                        `${doneWinners.map((winner) => `<@${winner}>`).join(", ") || "No winners"}` +
+                        `\n> **Giveaway ended at:** <t:${timeStamp}:F>` +
+                        `\n> **Giveaway ended by:** ${endedBy?.EndedBy == "System" ? client.user.tag : `<@${giveaway1.EndedBy}>`}`,
+                    allowedMentions: {users: doneWinners},
+                    embeds: [],
+                    components: [],
+                    flags: MessageFlags.SuppressEmbeds,
+                })
+
+                await database.giveaways.update(
+                    {
+                        where: {
+                            UUID: giveaway1.UUID
+                        },
+                        data: {
+                            EndedMessage: (endedMsg).id,
+                        }
+                    })
+
+            }
+        } catch (e) {
 
         }
     }

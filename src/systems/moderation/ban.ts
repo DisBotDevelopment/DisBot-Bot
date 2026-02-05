@@ -3,6 +3,7 @@ import ms from "ms";
 import {ExtendedClient} from "../../types/ExtendedClient.js";
 
 export async function banScheduled(client: ExtendedClient) {
+    /* 
     const data = await database.guildUserModeration.findMany()
 
     // SOON BACK!
@@ -24,6 +25,7 @@ export async function banScheduled(client: ExtendedClient) {
             await handleBanExpiration(client, d);
         }
     }
+     */
 }
 
 async function handleBanExpiration(client: ExtendedClient, d: any) {

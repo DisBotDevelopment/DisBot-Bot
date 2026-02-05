@@ -22,7 +22,7 @@ const types = [
         value: "moderation",
     },
     {
-        name: "🎭 Emoji (Create, Delete, Update",
+        name: "🎭 Emoji (Create, Delete, Update)",
         value: "emoji",
     },
     {
@@ -38,7 +38,7 @@ const types = [
         value: "event",
     },
     {
-        name: "🎶 SoundBoard (Create, Delete, Update",
+        name: "🎶 SoundBoard (Create, Delete, Update)",
         value: "soundboard",
     },
     {

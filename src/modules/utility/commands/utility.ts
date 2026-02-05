@@ -16,7 +16,7 @@ export default {
             de: "Kurzbefehl zum schnellen Anpassen von Einstellungen..."
         })
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
-        .setContexts([InteractionContextType.Guild])
+        .setContexts(InteractionContextType.Guild)
         .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
         .addSubcommand((subCommand) =>
             subCommand
@@ -36,8 +36,8 @@ export default {
         )
         .addSubcommand((subCommand) =>
             subCommand
-                .setName("look-channel")
-                .setDescription("Look a channel")
+                .setName("lock-channel")
+                .setDescription("Lock a channel")
                 .setDescriptionLocalizations({
                     de: "Sperre den Kanal"
                 })
@@ -59,7 +59,7 @@ export default {
         )
         .addSubcommand((subCommand) =>
             subCommand
-                .setName("unlook-channel")
+                .setName("unlock-channel")
                 .setDescription("Unlock a channel")
                 .setDescriptionLocalizations({
                     de: "Entsperre den Kanal"

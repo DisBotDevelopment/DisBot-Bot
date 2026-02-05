@@ -3,7 +3,7 @@ import {
     ButtonBuilder,
     ButtonStyle,
     ChatInputCommandInteraction, ContainerBuilder,
-    EmbedBuilder,
+    EmbedBuilder, InteractionContextType,
     MessageFlags,
     PermissionFlagsBits,
     SlashCommandBuilder, TextDisplayBuilder, UserSelectMenuBuilder
@@ -27,6 +27,7 @@ export default {
         .setDescriptionLocalizations({
             de: "Permissions Einstellungen von Interactions",
         })
+        .setContexts(InteractionContextType.Guild)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
     options: {
         once: false,

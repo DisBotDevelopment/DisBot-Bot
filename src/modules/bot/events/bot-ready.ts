@@ -24,24 +24,16 @@ export default {
     name: Events.ClientReady,
     async execute(client: ExtendedClient) {
         try {
-            // Database init (Default)
-            await initDataToDatabase(client)
-
-            // Load Commands
-            setTimeout(async () => {
-                Logger.info("Loading Command...")
-                await CommandHelper.loadCommands(client);
-            }, 10000)
 
             // Invite Tracker Fetch
             client.guilds.cache.forEach(async (guild: Guild) => {
-                await guildFetcher(client, guild);
+                guildFetcher(client, guild);
             })
 
             // Spawn Drops...
             setInterval(() => {
                 scheduleLevelXPDrops(client);
-            }, 1000)
+            }, 5000)
 
             // Moderation && Giveaway
             setInterval(async () => {
@@ -66,33 +58,6 @@ export default {
                 spotify(client);
                 Scheduler.schedulePolls(client);
             }, 300000);
-
-            // API && Version 
-            await api(client);
-            await emojiCache(client);
-            await versionData(client)
-
-            // API Entypoint
-            await vote(client);
-            await app(client);
-            await vanityAPI(client);
-
-            // const commandsJson = client.commands?.map((command: any) => ({
-            //     name: command.data?.name,
-            //     description: command.data?.description,
-            //     options: command.data?.options,
-            //     type: command.data?.integration_types,
-            //     default_member_permissions: command.data?.default_member_permissions,
-            // }));
-
-            // await axios.post(`https://discordbotlist.com/api/v1/bots/disbot/commands`,
-            //     JSON.stringify(commandsJson),
-            //     {
-            //         headers: {
-            //             Authorization: `Bot ${process.env.DC_BOT_LIST_TOKEN}` as string,
-            //             "Content-Type": "application/json",
-            //         },
-            //     });
 
             Logger.info({
                 timestamp: new Date().toISOString(),

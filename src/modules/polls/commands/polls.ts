@@ -31,7 +31,7 @@ export default {
             de: "Erstelle Polls mit Discord oder DisBot"
         })
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
-        .setContexts([InteractionContextType.Guild])
+        .setContexts(InteractionContextType.Guild)
         .setIntegrationTypes(ApplicationIntegrationType.GuildInstall),
     async execute(
         interaction: ChatInputCommandInteraction,

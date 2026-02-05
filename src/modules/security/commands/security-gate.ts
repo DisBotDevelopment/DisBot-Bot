@@ -3,7 +3,7 @@ import {
     ButtonBuilder,
     ButtonStyle,
     ChatInputCommandInteraction, ContainerBuilder,
-    EmbedBuilder,
+    EmbedBuilder, InteractionContextType,
     MessageFlags,
     PermissionFlagsBits,
     SlashCommandBuilder, TextDisplayBuilder
@@ -28,6 +28,7 @@ export default {
         .setDescriptionLocalizations({
             de: "Sicherheitsgate Einstellungen verwalten",
         })
+        .setContexts(InteractionContextType.Guild)
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
     options: {
         once: false,

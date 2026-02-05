@@ -2,7 +2,8 @@ import {
     ActionRowBuilder,
     ApplicationIntegrationType, ChannelSelectMenuBuilder, ChannelType,
     ChatInputCommandInteraction,
-    ContainerBuilder, InteractionContextType, MessageFlags, PermissionFlagsBits, SlashCommandBuilder, TextDisplayBuilder
+    ContainerBuilder, InteractionContextType,
+    InteractionType, MessageFlags, PermissionFlagsBits, SlashCommandBuilder, TextDisplayBuilder
 } from "discord.js";
 import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
@@ -26,12 +27,12 @@ export default {
     },
     data: new SlashCommandBuilder()
         .setName("channel-link")
-        .setDescription("Channel Link to link channel over servers'")
+        .setDescription("Channel Link to link channel over servers")
         .setDescriptionLocalizations({
             de: "Kanalverbindung zum Verbinden von Kanälen über Server"
         })
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
-        .setContexts([InteractionContextType.Guild])
+        .setContexts(InteractionContextType.Guild)
         .setIntegrationTypes(ApplicationIntegrationType.GuildInstall),
     async execute(
         interaction: ChatInputCommandInteraction,

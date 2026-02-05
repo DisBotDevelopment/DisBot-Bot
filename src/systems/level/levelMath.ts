@@ -303,150 +303,158 @@ export async function manageXPStreakDays(guild: Guild, member: GuildMember, chan
 }
 
 export async function scheduleLevelXPDrops(client: ExtendedClient) {
+    try {
 
-    const data = await database.levelSettings.findMany({
-        include: {
-            XPDrops: true
-        }
-    })
-
-    if (!data) return
-    for (const settings of data) {
-        if (!settings.GuildId) continue
-        if (!settings.IsLevelModuleEnabled) continue
-        if (!settings.XPDropsMessageTemplate) continue
-        const guild = await client.guilds.fetch(settings.GuildId)
-        if (!guild) continue
-        if (settings.XPDrops.length <= 0) continue
-
-
-        for (const drop of settings.XPDrops) {
-            if (!drop.ExpireTime) continue
-
-            const spawnedAt = new Date(drop.LastSpawned).getTime();
-            const expireTime = ms(drop.ExpireTime as StringValue);
-            const expireTimestamp = spawnedAt + expireTime;
-
-            if (Date.now() > expireTimestamp) {
-                for (const messageData of drop.MessageIdsToDelete) {
-                    const channelId = messageData.split("-")[0]
-                    const messageId = messageData.split("-")[1];
-                    await (await ((await guild.channels.fetch(channelId)) as GuildTextBasedChannel).messages.fetch(messageId)).delete()
-                }
-                await database.xPDrops.update({
-                    where: {
-                        UUID: drop.UUID
-                    },
-                    data: {
-                        MessageIdsToDelete: {
-                            set: []
-                        }
-                    }
-                })
+        const data = await database.levelSettings.findMany({
+            include: {
+                XPDrops: true
             }
+        })
 
-            // Check Spawn
-            const last = new Date(drop.LastSpawned).getTime()
-            const msRespawn = ms(drop.TimeToRespawn as StringValue)
-            const timestamp = last + msRespawn
-            const now = Date.now()
-            if (now > timestamp) {
-                const allClaimedUsers = await database.levels.findMany({
-                    where: {
-                        ClaimedXPDrops: {
-                            has: drop.UUID
+        if (!data) return
+        for (const settings of data) {
+            if (!settings.GuildId) continue
+            if (!settings.IsLevelModuleEnabled) continue
+            if (!settings.XPDropsMessageTemplate) continue
+            const guild = await client.guilds.fetch(settings.GuildId)
+            if (!guild) continue
+            if (settings.XPDrops.length <= 0) continue
+
+
+            for (const drop of settings.XPDrops) {
+                if (!drop.ExpireTime) continue
+
+                try {
+                    const spawnedAt = new Date(drop.LastSpawned).getTime();
+                    const expireTime = ms(drop.ExpireTime as StringValue);
+                    const expireTimestamp = spawnedAt + expireTime;
+
+                    if (Date.now() > expireTimestamp) {
+                        for (const messageData of drop.MessageIdsToDelete) {
+                            const channelId = messageData.split("-")[0]
+                            const messageId = messageData.split("-")[1];
+                            await (await ((await guild.channels.fetch(channelId)) as GuildTextBasedChannel).messages.fetch(messageId)).delete()
                         }
+                        await database.xPDrops.update({
+                            where: {
+                                UUID: drop.UUID
+                            },
+                            data: {
+                                MessageIdsToDelete: {
+                                    set: []
+                                }
+                            }
+                        })
                     }
-                })
-                await database.xPDrops.update({
-                    where: {
-                        UUID: drop.UUID
-                    },
-                    data: {
-                        LastSpawned: null
-                    }
-                })
-                for (const claimedUser of allClaimedUsers) {
-                    const update = claimedUser.ClaimedXPDrops.filter((f) => f != drop.UUID)
-                    await database.levels.update({
+                } catch (e) {
+                    continue
+                }
+
+                // Check Spawn
+                const last = new Date(drop.LastSpawned).getTime()
+                const msRespawn = ms(drop.TimeToRespawn as StringValue)
+                const timestamp = last + msRespawn
+                const now = Date.now()
+                if (now > timestamp) {
+                    const allClaimedUsers = await database.levels.findMany({
                         where: {
-                            UUID: claimedUser.UUID
-                        },
-                        data: {
                             ClaimedXPDrops: {
-                                set: update
+                                has: drop.UUID
                             }
                         }
                     })
-                }
-
-                if (drop.LastSpawned) return
-
-                const placeholder = {
-                    drop: {
-                        xpRange: drop.XPRange,
-                        claimAmount: drop.ClaimAmount,
-                        timeToRespawn: drop.TimeToRespawn
-                    }
-                }
-
-
-                const template = await database.messageTemplates.findFirst(
-                    {
+                    await database.xPDrops.update({
                         where: {
-                            Name: settings.XPDropsMessageTemplate
+                            UUID: drop.UUID
+                        },
+                        data: {
+                            LastSpawned: null
+                        }
+                    })
+                    for (const claimedUser of allClaimedUsers) {
+                        const update = claimedUser.ClaimedXPDrops.filter((f) => f != drop.UUID)
+                        await database.levels.update({
+                            where: {
+                                UUID: claimedUser.UUID
+                            },
+                            data: {
+                                ClaimedXPDrops: {
+                                    set: update
+                                }
+                            }
+                        })
+                    }
+
+                    if (drop.LastSpawned) return
+
+                    const placeholder = {
+                        drop: {
+                            xpRange: drop.XPRange,
+                            claimAmount: drop.ClaimAmount,
+                            timeToRespawn: drop.TimeToRespawn
                         }
                     }
-                )
-                if (!template) continue
-                const messageBuilder = await MessageBuilder(
-                    template,
-                    placeholder,
-                )
 
-                const randNumberForChannel = Math.round(Math.random() * drop.ChannelIds.length)
-                const channel = await guild.channels.fetch(drop.ChannelIds[randNumberForChannel]) as GuildTextBasedChannel
-                if (!channel) continue
 
-                const msg1 = await channel.send(messageBuilder.messageData)
-                try {
-                    const msg2 = await channel.send({
-                        flags: MessageFlags.IsComponentsV2,
-                        components: [
-                            new ActionRowBuilder<ButtonBuilder>().addComponents(
-                                new ButtonBuilder()
-                                    .setCustomId("level-drop-claim:" + drop.UUID + ":" + msg1.id)
-                                    .setLabel("Claim Drop")
-                                    .setEmoji("<:package:1365715766623604746>")
-                                    .setStyle(ButtonStyle.Secondary)
-                            )
-                        ]
-                    })
+                    const template = await database.messageTemplates.findFirst(
+                        {
+                            where: {
+                                Name: settings.XPDropsMessageTemplate
+                            }
+                        }
+                    )
+                    if (!template) continue
+                    const messageBuilder = await MessageBuilder(
+                        template,
+                        placeholder,
+                    )
+
+                    const randNumberForChannel = Math.round(Math.random() * drop.ChannelIds.length)
+                    const channel = await guild.channels.fetch(drop.ChannelIds[randNumberForChannel]) as GuildTextBasedChannel
+                    if (!channel) continue
+
+                    const msg1 = await channel.send(messageBuilder.messageData)
+                    try {
+                        const msg2 = await channel.send({
+                            flags: MessageFlags.IsComponentsV2,
+                            components: [
+                                new ActionRowBuilder<ButtonBuilder>().addComponents(
+                                    new ButtonBuilder()
+                                        .setCustomId("level-drop-claim:" + drop.UUID + ":" + msg1.id)
+                                        .setLabel("Claim Drop")
+                                        .setEmoji("<:package:1365715766623604746>")
+                                        .setStyle(ButtonStyle.Secondary)
+                                )
+                            ]
+                        })
+
+                        await database.xPDrops.update({
+                            where: {
+                                UUID: drop.UUID
+                            },
+                            data: {
+                                MessageIdsToDelete: {
+                                    set: [`${msg1.channel.id}-${msg1.id}`, `${msg2.channel.id}-${msg2.id}`]
+                                }
+                            }
+                        })
+
+                    } catch (e) {
+
+                    }
 
                     await database.xPDrops.update({
                         where: {
                             UUID: drop.UUID
                         },
                         data: {
-                            MessageIdsToDelete: {
-                                set: [`${msg1.channel.id}-${msg1.id}`, `${msg2.channel.id}-${msg2.id}`]
-                            }
+                            LastSpawned: new Date().toISOString(),
                         }
                     })
-
-                } catch (e) {
-
                 }
-
-                await database.xPDrops.update({
-                    where: {
-                        UUID: drop.UUID
-                    },
-                    data: {
-                        LastSpawned: new Date().toISOString(),
-                    }
-                })
             }
         }
+    } catch (error) {
+        return
     }
 }

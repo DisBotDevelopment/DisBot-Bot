@@ -13,12 +13,6 @@ export default {
     context: true,
     data: new ContextMenuCommandBuilder()
         .setName("User Avatar")
-        .setNameLocalizations({
-            "en-GB": "User Avatar",
-            de: "Nutzer Avatar",
-            "en-US": "User Avatar"
-        })
-
         .setDefaultMemberPermissions(PermissionFlagsBits.UseApplicationCommands)
         .setContexts(InteractionContextType.Guild)
         .setType(ApplicationCommandType.User),
@@ -31,7 +25,7 @@ export default {
         interaction: ContextMenuCommandInteraction,
         client: ExtendedClient
     ) {
-        const { guild } = interaction;
+        const {guild} = interaction;
         const getMember = await guild?.members.fetch(interaction.targetId);
 
         const getMemberObj = await guild?.members.fetch(getMember);

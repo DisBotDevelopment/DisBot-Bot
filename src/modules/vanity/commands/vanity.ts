@@ -3,7 +3,7 @@ import {
     ButtonBuilder,
     ButtonStyle,
     ChatInputCommandInteraction, ContainerBuilder,
-    EmbedBuilder,
+    EmbedBuilder, InteractionContextType,
     MessageFlags,
     PermissionFlagsBits,
     SlashCommandBuilder, TextDisplayBuilder
@@ -27,6 +27,7 @@ export default {
         .setDescriptionLocalizations({
             de: "Verwalte Vanity URLs",
         })
+        .setContexts(InteractionContextType.Guild)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
     options: {
         once: false,

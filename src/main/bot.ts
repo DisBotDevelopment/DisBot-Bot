@@ -16,9 +16,16 @@ import {loadSelectMenus} from "../handler/files/selectmenus.js";
 import {ExtendedClient} from "../types/ExtendedClient.js";
 import {Logger} from "./logger.js";
 import {LoggingAction} from "../enums/loggingTypes.js";
-import {connectToDatabase} from "./database.js";
+import {connectToDatabase, initDataToDatabase} from "./database.js";
 import {Config, configStartup} from "./config.js";
 import {errorSetupForNodeJs} from "../helper/errorHelper.js";
+import {CommandHelper} from "../helper/CommandHelper.js";
+import {api} from "../api/restAPI/api.js";
+import {emojiCache} from "../helper/emojis.js";
+import {versionData} from "./version.js";
+import {vote} from "../api/services/vote.js";
+import {app} from "../api/services/app.js";
+import {vanityAPI} from "../api/services/vanity.js";
 
 colors.enable();
 
@@ -69,6 +76,22 @@ await disbotClient
         Logger.info(`Connected to Discord as ${disbotClient.user.tag} on ${disbotClient.guilds.cache.size}!`)
         process.setMaxListeners(0);
         disbotClient.setMaxListeners(0);
+
+        // Database init (Default)
+        initDataToDatabase(disbotClient)
+        // Load Commands
+        await CommandHelper.loadCommands(disbotClient);
+
+        // API && Version 
+        await api(disbotClient);
+        await emojiCache(disbotClient);
+        await versionData(disbotClient)
+
+        // API Entypoint
+        await vote(disbotClient);
+        await app(disbotClient);
+        await vanityAPI(disbotClient);
+        
     })
     .catch((err) => {
         Logger.error(`Failed to login: ${err instanceof Error ? err.message : String(err)}`);
