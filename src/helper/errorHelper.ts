@@ -229,7 +229,7 @@ export async function errorSetupForNodeJs() {
             timestamp: new Date().toISOString(),
             level: "error",
             label: "UnhandledRejection",
-            message: `Unhandled Rejection at: ${promise}, reason: ${reason instanceof Error ? reason.message : String(reason)}`,
+            message: `Unhandled Rejection at: ${promise}, reason: ${reason}`,
             botType: Config.BotType.toString() || "Unknown",
             action: LoggingAction.Other,
         });
@@ -241,7 +241,7 @@ export async function errorSetupForNodeJs() {
             timestamp: new Date().toISOString(),
             level: "error",
             label: "UncaughtException",
-            message: `Uncaught Exception: \n${err instanceof Error ? err.message : String(err)}`,
+            message: `Uncaught Exception: \n${err}`,
             botType: Config.BotType.toString() || "Unknown",
             action: LoggingAction.Other,
         });
@@ -253,7 +253,7 @@ export async function errorSetupForNodeJs() {
             timestamp: new Date().toISOString(),
             level: "error",
             label: "AggregateError",
-            message: `AggregateError: \n${error.message}`,
+            message: `AggregateError: \n${error}`,
             botType: Config.BotType.toString() || "Unknown",
             action: LoggingAction.Other,
         });
@@ -265,7 +265,7 @@ export async function errorSetupForNodeJs() {
             timestamp: new Date().toISOString(),
             level: "error",
             label: "UncaughtExceptionMonitor",
-            message: `Uncaught Exception Monitor: \n${err instanceof Error ? err.message : String(err)}\nOrigin: ${origin}`,
+            message: `Uncaught Exception Monitor: \n${err}\nOrigin: ${origin}`,
             botType: Config.BotType.toString() || "Unknown",
             action: LoggingAction.Other,
         });
