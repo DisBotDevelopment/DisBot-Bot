@@ -1,5 +1,5 @@
 import {
-    ActionRowBuilder, ButtonBuilder, ButtonStyle,
+    ActionRowBuilder, ApplicationIntegrationType, ButtonBuilder, ButtonStyle,
     ChannelType, ChatInputCommandInteraction,
     CommandInteraction, ContainerBuilder,
     InteractionContextType, MessageFlags,
@@ -23,6 +23,7 @@ export default {
         .setDescription("Levels Module")
         .setDescriptionLocalizations({de: "Levels Module"})
         .setContexts(InteractionContextType.Guild)
+        .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
         .setDefaultMemberPermissions(PermissionsBitField.Flags.ManageGuild),
 
     async execute(interaction: ChatInputCommandInteraction) {

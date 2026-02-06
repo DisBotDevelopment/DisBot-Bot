@@ -1,4 +1,4 @@
-import { InteractionContextType, PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
+import {ApplicationIntegrationType, InteractionContextType, PermissionFlagsBits, SlashCommandBuilder} from "discord.js";
 
 
 export default {
@@ -16,6 +16,7 @@ export default {
     .setContexts(InteractionContextType.Guild)
     .setDescriptionLocalizations({ de: "Erstelle ein giveaway" })
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
+      .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
     .addSubcommand((subCommand) =>
       subCommand
         .setName("delete")

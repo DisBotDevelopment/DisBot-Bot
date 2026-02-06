@@ -37,9 +37,9 @@ export default {
             botType: Config.BotType.toString() || "Unknown",
             action: LoggingAction.Event,
         });
-        await CommandHelper.loadCommandsForGuild(client, guild);
+        await CommandHelper.loadCommandsForGuild(client, guild.id);
         await initGuildToDatabase(client, guild)
-        guild.members.cache.forEach(async (member) => {
+        guild.members.cache.map(async (member) => {
             await initUsersToDatabase(client, member.user)
         })
     }

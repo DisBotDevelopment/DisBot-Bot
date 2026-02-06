@@ -1,5 +1,5 @@
 import colors from "colors";
-import {Guild, REST, Routes} from "discord.js";
+import {ChatInputCommandInteraction, Guild, REST, Routes, SlashCommandBuilder} from "discord.js";
 import fs from "fs";
 import path from "path";
 import {pathToFileURL} from "url";
@@ -10,12 +10,16 @@ import {Logger} from "../main/logger.js";
 import {Config} from "../main/config.js";
 import {database} from "../main/database.js";
 import {cli} from "winston/lib/winston/config/index.js";
+import {IDisBotCommand} from "../types/Interaction.js";
+import {DisBotInteractionType} from "../enums/disBotInteractionType.js";
 
 colors.enable();
 
 export class CommandHelper {
 
-    public static async loadCommandsForGuild(client: ExtendedClient, guild: Guild) {
+    public static async loadCommandsForGuild(client: ExtendedClient, guildId: string) {
+
+        Logger.info(`Starting Command loading for ${guildId}....`.gray.italic)
 
         let cmdlist: any[] = [];
         const stats = {
@@ -105,103 +109,94 @@ export class CommandHelper {
             throw new Error("Missing Config variables: DiscordApplicationId or DiscordBotToken");
         }
 
-        const restClient = new REST({version: "10"}).setToken(Config.Bot.DiscordBotToken);
-        
-        // Clear Guild Commands
-        await restClient.put(Routes.applicationGuildCommands(Config.Bot.DiscordApplicationId, guild.id), {
-            body: [],
-        });
-
         const buildInCommandOverrides = await database.buildInCommands.findMany({
             where: {
-                GuildCommandMangerId: guild.id
+                GuildCommandMangerId: guildId
             }
         })
+
+        // TODO: ADD COMMAND_OVERWRITES
+
+        Logger.info(`Sending commands to guild ${guildId} for client ${client.user.username}`);
+
         try {
-            cmdlist = cmdlist
-                .filter(cmd => {
-                    const override = buildInCommandOverrides.find(o => o.CodeName === cmd.name);
-                    return !(override && override.IsEnabled === false);
-                })
-                .map(cmd => {
-                    const override = buildInCommandOverrides.find(o => o.CodeName === cmd.name);
-                    if (override) {
-                        return {
-                            ...cmd,
-                            name: override.CustomName,
-                            description: override.Description ?? client.commands.get(override.CodeName).command.description,
-                            default_member_permissions: override.Permissions ?? client.commands.get(override.CodeName).command.default_member_permissions
-                        };
-                    }
-                    return cmd;
-                })
-
-            await restClient.put(Routes.applicationGuildCommands(Config.Bot.DiscordApplicationId, guild.id), {
-                body: cmdlist,
-            });
-
-            const ticketCommands = await database.ticketSetups.findMany({
-                where: {
-                    GuildId: guild.id
-                }
+            const commandReq = await fetch(`https://discord.com/api/v10/applications/${client.user.id}/guilds/${guildId}/commands`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bot ${Config.Bot.DiscordBotToken}`
+                },
+                body: JSON.stringify(cmdlist)
             })
+            const data = await commandReq.json()
+            console.log(JSON.stringify(data))
 
+        } catch (e) {
+            Logger.error(`Failed to load commands: ${e}`)
+        }
+
+        const ticketCommands = await database.ticketSetups.findMany({
+            where: {
+                GuildId: guildId
+            }
+        })
+
+        if (ticketCommands.length > 0) {
             for (const ticketCommand of ticketCommands) {
-                const clientGuild = await client.guilds.fetch(guild.id);
+                const clientGuild = await client.guilds.fetch(guildId);
 
                 let guildCommand = null;
                 try {
                     guildCommand = await clientGuild.commands.fetch(ticketCommand.SlashCommandId);
-                } catch {
+                } catch (e) {
+                    Logger.error(`Failed to load commands: ${e}`)
                 }
 
                 if (!guildCommand) {
-                    guildCommand = await clientGuild.commands.create({
-                        name: ticketCommand.SlashCommandName ?? `open-${ticketCommand.CustomId}-ticket`,
-                        description: ticketCommand.SlashCommandDescription ?? ticketCommand.CustomId,
-                    });
+                    try {
+                        guildCommand = await clientGuild.commands.create({
+                            name: ticketCommand.SlashCommandName ?? `open-${ticketCommand.CustomId}-ticket`,
+                            description: ticketCommand.SlashCommandDescription ?? ticketCommand.CustomId,
+                        });
 
-                    await database.ticketSetups.update({
-                        where: {
-                            CustomId: ticketCommand.CustomId,
-                        },
-                        data: {
-                            SlashCommandId: guildCommand.id,
-                        },
-                    });
+                        await database.ticketSetups.update({
+                            where: {
+                                CustomId: ticketCommand.CustomId,
+                            },
+                            data: {
+                                SlashCommandId: guildCommand.id,
+                            },
+                        });
+                    } catch (e) {
+                        Logger.error(`Failed to load commands: ${e}`)
+                    }
                 } else {
                     if (
                         guildCommand.name !== ticketCommand.SlashCommandName ||
                         guildCommand.description !== ticketCommand.SlashCommandDescription
                     ) {
-                        const updated = await guildCommand.edit({
-                            name: ticketCommand.SlashCommandName ?? guildCommand.name,
-                            description: ticketCommand.SlashCommandDescription ?? guildCommand.description,
-                        });
+                        try {
+                            const updated = await guildCommand.edit({
+                                name: ticketCommand.SlashCommandName ?? guildCommand.name,
+                                description: ticketCommand.SlashCommandDescription ?? guildCommand.description,
+                            });
 
-                        await database.ticketSetups.update({
-                            where: {CustomId: ticketCommand.CustomId},
-                            data: {SlashCommandId: updated.id},
-                        });
+                            await database.ticketSetups.update({
+                                where: {CustomId: ticketCommand.CustomId},
+                                data: {SlashCommandId: updated.id},
+                            });
+                        } catch (e) {
+                            Logger.error(`Failed to load commands: ${e}`)
+                        }
                     }
                 }
             }
-        } catch (e) {
-            Logger.error({
-                timestamp: new Date().toISOString(),
-                level: "error",
-                label: "CommandHelper",
-                message: `Command loading failed with error: ${e} - Commands failed at ${cmdlist.map((c) => c.name)} commands on Guild \"${guild.name}\" (${guild.id})`,
-                botType: Config.BotType.toString() || "Unknown",
-                action: LoggingAction.Command,
-            });
         }
-
         Logger.info({
             timestamp: new Date().toISOString(),
             level: "info",
             label: "CommandHelper",
-            message: `Discord added ${cmdlist.length} commands (${stats.subCommands} subCommands, ${stats.subCommandGroups} subCommandGroups), ${stats.userInstall} userInstall commands, ${stats.contextMenus} context menu commands from ${moduleDirectories.length} module(s) for \"${guild.name}\" (${guild.id})`,
+            message: `Discord added ${cmdlist.length} commands (${stats.subCommands} subCommands, ${stats.subCommandGroups} subCommandGroups), ${stats.userInstall} userInstall commands, ${stats.contextMenus} context menu commands from ${moduleDirectories.length} module(s) for ${guildId}`,
             botType: Config.BotType.toString() || "Unknown",
             action: LoggingAction.Command,
         });
@@ -329,11 +324,72 @@ export class CommandHelper {
 
         const guilds = await client.guilds.fetch()
         guilds.map(async (guild) => {
-            const clientGuild = await client.guilds.fetch(guild.id)
-            await this.loadCommandsForGuild(client, clientGuild)
-            setTimeout(() => {
-            }, 1500)
-            console.log("NEXT GUILD")
+            await this.loadCommandsForGuild(client, guild.id)
         })
+    }
+
+    public static async loadCustomAdminCommands(client: ExtendedClient) {
+        const guild = await client.guilds.fetch(Config.Bot.AdminGuildId)
+
+        const commands = [
+            {
+                interactionName: "Load Guild Commands",
+                type: DisBotInteractionType.Command,
+                command: new SlashCommandBuilder()
+                    .setName("loadcommands")
+                    .setDescription("Load Commands for all Guilds."),
+                execute: async (interaction: ChatInputCommandInteraction, client: ExtendedClient) => {
+                    await interaction.deferReply();
+
+                    const guilds = await client.guilds.fetch();
+                    const guildArray = Array.from(guilds.values());
+
+                    const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+                    let processedCount = 0;
+                    let successCount = 0;
+                    let errorCount = 0;
+                    const BATCH_SIZE = 5;
+                    const DELAY_MS = 3000; 
+
+                    for (const guild of guildArray) {
+                        try {
+                            if (processedCount > 0 && processedCount % BATCH_SIZE === 0) {
+                                await interaction.editReply({
+                                    content: `-# 📡 Loading commands... (${processedCount}/${guilds.size}) - ⏸️ Waiting 3s...`
+                                });
+                                await delay(DELAY_MS);
+                            }
+                            
+                            await CommandHelper.loadCommandsForGuild(client, guild.id);
+                            successCount++;
+
+                            if (processedCount % 3 === 0 || processedCount === guildArray.length - 1) {
+                                await interaction.editReply({
+                                    content: `-# 📡 Loading commands... (${processedCount + 1}/${guilds.size})`
+                                });
+                            }
+                        } catch (error) {
+                            errorCount++;
+                            console.error(`Failed to load commands for guild ${guild.id}:`, error);
+                        } finally {
+                            processedCount++;
+                        }
+                    }
+
+                    await interaction.editReply({
+                        content: `-# ✅ Commands loaded for ${successCount}/${guilds.size} guild(s)${errorCount > 0 ? ` (${errorCount} failed)` : ''}`
+                    });
+                }
+            } as IDisBotCommand
+        ]
+
+
+        commands.map((commandData) => {
+            client.guildCommands.set(commandData.command.name, commandData)
+        })
+        await guild.commands.set(
+            commands.map((commandData) => commandData.command)
+        )
     }
 }

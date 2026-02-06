@@ -1,5 +1,5 @@
 import {
-    ActionRowBuilder,
+    ActionRowBuilder, ApplicationIntegrationType,
     ButtonBuilder, ButtonStyle,
     ChannelType,
     ChatInputCommandInteraction,
@@ -24,6 +24,7 @@ export default {
         .setName("welcome")
         .setDescription("Welcome Module")
         .setDescriptionLocalizations({de: "Willkommen Module"})
+        .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
         .setContexts(InteractionContextType.Guild)
         .setDefaultMemberPermissions(PermissionsBitField.Flags.ManageGuild),
     async execute(interaction: ChatInputCommandInteraction) {

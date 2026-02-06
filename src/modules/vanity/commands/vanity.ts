@@ -1,5 +1,5 @@
 import {
-    ActionRowBuilder,
+    ActionRowBuilder, ApplicationIntegrationType,
     ButtonBuilder,
     ButtonStyle,
     ChatInputCommandInteraction, ContainerBuilder,
@@ -27,6 +27,7 @@ export default {
         .setDescriptionLocalizations({
             de: "Verwalte Vanity URLs",
         })
+        .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
         .setContexts(InteractionContextType.Guild)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
     options: {

@@ -25,6 +25,9 @@ export default {
     async execute(client: ExtendedClient) {
         try {
 
+            // Load Admin Guild Commands
+            await CommandHelper.loadCustomAdminCommands(client);
+
             // Invite Tracker Fetch
             client.guilds.cache.forEach(async (guild: Guild) => {
                 guildFetcher(client, guild);

@@ -1,4 +1,9 @@
-import {InteractionContextType, PermissionsBitField, SlashCommandBuilder,} from "discord.js";
+import {
+    ApplicationIntegrationType,
+    InteractionContextType,
+    PermissionsBitField,
+    SlashCommandBuilder,
+} from "discord.js";
 
 export default {
     help: {
@@ -14,6 +19,7 @@ export default {
         .setDescription("Manage the moderation of the server")
         .setContexts(InteractionContextType.Guild)
         .setDefaultMemberPermissions(PermissionsBitField.Flags.ModerateMembers)
+        .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
         .addSubcommand((subcommand) =>
             subcommand.setName("ban").setDescription("Ban a user from the server")
         )

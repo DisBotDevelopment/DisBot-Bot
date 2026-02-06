@@ -1,4 +1,4 @@
-import {InteractionContextType, PermissionsBitField, SlashCommandBuilder} from "discord.js";
+import {ApplicationIntegrationType, InteractionContextType, PermissionsBitField, SlashCommandBuilder} from "discord.js";
 import {
     ActionRowBuilder,
     ButtonBuilder,
@@ -20,6 +20,7 @@ export default {
         .setName("messages")
         .setDescription("Create, Manage and Delete Messages")
         .setContexts(InteractionContextType.Guild)
+        .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
         .setDefaultMemberPermissions(PermissionsBitField.Flags.ManageMessages),
     options: {
         once: false,

@@ -1,5 +1,5 @@
 import {
-    ActionRowBuilder,
+    ActionRowBuilder, ApplicationIntegrationType,
     ChannelType,
     ChatInputCommandInteraction,
     ContainerBuilder,
@@ -33,6 +33,7 @@ export default {
         .setDescriptionLocalizations({
             de: "Automatisierungen verwalten",
         })
+        .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
         .setContexts(InteractionContextType.Guild)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels),
     help: {

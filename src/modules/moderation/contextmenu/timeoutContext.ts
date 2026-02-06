@@ -1,6 +1,6 @@
 import {
     ActionRowBuilder,
-    ApplicationCommandType,
+    ApplicationCommandType, ApplicationIntegrationType,
     ButtonBuilder,
     ButtonStyle,
     ContextMenuCommandBuilder,
@@ -33,6 +33,7 @@ export default {
         .setName("Timeout")
         .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
         .setContexts(InteractionContextType.Guild)
+        .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
         .setType(ApplicationCommandType.User),
 
     /**

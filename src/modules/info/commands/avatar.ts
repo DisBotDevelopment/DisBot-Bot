@@ -1,4 +1,4 @@
-import { InteractionContextType, PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
+import {ApplicationIntegrationType, InteractionContextType, PermissionFlagsBits, SlashCommandBuilder} from "discord.js";
 
 export default {
     help: {
@@ -13,6 +13,7 @@ export default {
         .setName("avatar")
         .setDefaultMemberPermissions(PermissionFlagsBits.UseApplicationCommands)
         .setDescription("Show your or a Member Avatar")
+        .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
         .setDescriptionLocalizations({
             de: "Zeige dein oder ein Mitglieder Avatar",
         })

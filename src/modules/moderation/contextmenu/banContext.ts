@@ -1,6 +1,6 @@
 import {
     ActionRowBuilder,
-    ApplicationCommandType,
+    ApplicationCommandType, ApplicationIntegrationType,
     ButtonBuilder,
     ButtonStyle, ContainerBuilder,
     ContextMenuCommandBuilder,
@@ -34,6 +34,7 @@ export default {
         .setName("Ban")
         .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
         .setContexts(InteractionContextType.Guild)
+        .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
         .setType(ApplicationCommandType.User),
 
     /**

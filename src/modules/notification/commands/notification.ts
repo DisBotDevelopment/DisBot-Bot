@@ -1,5 +1,5 @@
 import {
-    ActionRowBuilder,
+    ActionRowBuilder, ApplicationIntegrationType,
     ChannelType, ChatInputCommandInteraction,
     CommandInteraction, ContainerBuilder,
     InteractionContextType, MessageFlags,
@@ -24,7 +24,7 @@ export default {
         .setDescriptionLocalizations({
             de: "Richte eine Benachrichtigung für einige Social Media Plattformen ein",
         })
-        .setContexts(InteractionContextType.Guild)
+        .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
         .setDefaultMemberPermissions(PermissionsBitField.Flags.ManageGuild),
     async execute(interaction: ChatInputCommandInteraction) {
 

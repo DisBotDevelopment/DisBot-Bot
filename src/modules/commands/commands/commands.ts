@@ -1,4 +1,4 @@
-import {InteractionContextType, PermissionsBitField, SlashCommandBuilder} from "discord.js";
+import {ApplicationIntegrationType, InteractionContextType, PermissionsBitField, SlashCommandBuilder} from "discord.js";
 import {
     ActionRowBuilder,
     ButtonBuilder,
@@ -21,6 +21,7 @@ export default {
         .setName("commands")
         .setDescription("Create, Manage, and use the Command Manager!")
         .setContexts(InteractionContextType.Guild)
+        .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
     options: {
         once: false,

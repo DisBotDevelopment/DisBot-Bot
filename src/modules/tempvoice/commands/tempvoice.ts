@@ -1,4 +1,5 @@
 import {
+    ApplicationIntegrationType,
     ChannelType,
     ChatInputCommandInteraction,
     InteractionContextType,
@@ -26,6 +27,7 @@ export default {
         .setDescription("Setup a temporary voice channel system")
         .setDescriptionLocalizations({de: "Erstelle ein TempVoice Channels"})
         .setContexts(InteractionContextType.Guild)
+        .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
         .setDefaultMemberPermissions(PermissionsBitField.Flags.ManageGuild),
     async execute(interaction: ChatInputCommandInteraction, client: ExtendedClient) {
         await isInDevelopment(client, interaction);

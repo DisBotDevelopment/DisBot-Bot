@@ -1,5 +1,5 @@
 import {
-    ActionRowBuilder, ButtonBuilder, ButtonStyle,
+    ActionRowBuilder, ApplicationIntegrationType, ButtonBuilder, ButtonStyle,
     ChannelType,
     ChatInputCommandInteraction, ContainerBuilder,
     InteractionContextType, MessageFlags,
@@ -22,6 +22,7 @@ export default {
             de: "Verwalte tickets und führe aktionen aus.",
         })
         .setContexts(InteractionContextType.Guild)
+        .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
         .setDefaultMemberPermissions(PermissionFlagsBits.UseApplicationCommands),
 
     async execute(interaction: ChatInputCommandInteraction, client: ExtendedClient) {

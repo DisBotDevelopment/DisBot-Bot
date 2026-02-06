@@ -8,9 +8,11 @@ export class ExtendedClient extends Client {
     // Interactions
     public commands?: Collection<string, IDisBotCommand> = new Collection();
     public subCommands?: Collection<string, IDisBotCommand> = new Collection();
+    public subCommandGroups?: Collection<string, IDisBotCommand> = new Collection();
+    
     public guildCommands?: Collection<string, IDisBotCommand> = new Collection();
     public guildSubCommands?: Collection<string, IDisBotCommand> = new Collection();
-    public subCommandGroups?: Collection<string, IDisBotCommand> = new Collection();
+    
     public buttons?: Collection<string, IDisBotInteractive> = new Collection();
     public selectmenus?: Collection<string, IDisBotInteractive> = new Collection();
     public modals?: Collection<string, IDisBotInteractive> = new Collection();

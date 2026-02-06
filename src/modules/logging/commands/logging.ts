@@ -1,4 +1,10 @@
-import {ChannelType, InteractionContextType, PermissionsBitField, SlashCommandBuilder,} from "discord.js";
+import {
+    ApplicationIntegrationType,
+    ChannelType,
+    InteractionContextType,
+    PermissionsBitField,
+    SlashCommandBuilder,
+} from "discord.js";
 
 const types = [
     {
@@ -98,7 +104,7 @@ export default {
         .setDescriptionLocalizations({de: "Logging System"})
         .setContexts(InteractionContextType.Guild)
         .setDefaultMemberPermissions(PermissionsBitField.Flags.ViewAuditLog)
-
+        .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
         .addSubcommand((subCommand) =>
             subCommand
                 .setName("settings")

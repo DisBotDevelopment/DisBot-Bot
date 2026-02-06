@@ -7,9 +7,13 @@ import {
     SlashCommandBuilder
 } from "discord.js";
 import {ExtendedClient} from "../../../../types/ExtendedClient.js";
+import {IDisBotCommand} from "../../../../types/Interaction.js";
+import {DisBotInteractionType} from "../../../../enums/disBotInteractionType.js";
 
 export default {
-    data: new SlashCommandBuilder()
+    interactionName: "LetMeGoogleThatForYou",
+    type: DisBotInteractionType.Command,
+    command: new SlashCommandBuilder()
         .setName("let-me-google-that")
         .setDescription("Use the pupular tool 'Let me google that for you'")
         .setDescriptionLocalizations({
@@ -19,7 +23,7 @@ export default {
             InteractionContextType.PrivateChannel,
             InteractionContextType.Guild
         ])
-        .setIntegrationTypes(ApplicationIntegrationType.UserInstall)
+        .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
         .addStringOption((option) =>
             option
                 .setName("promt")
@@ -43,4 +47,4 @@ export default {
             content: `https://letmegooglethat.com//?q=${encodeURIComponent(query as string)}`
         });
     }
-};
+}

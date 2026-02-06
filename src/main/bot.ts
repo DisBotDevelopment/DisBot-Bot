@@ -6,7 +6,7 @@ import {
     GatewayIntentBits,
     Guild,
     Partials,
-    PresenceStatusData,
+    PresenceStatusData, SlashCommandBuilder,
 } from "discord.js";
 import {loadButtons} from "../handler/files/buttons.js";
 import {loadCommands} from "../handler/files/commands.js";
@@ -26,6 +26,9 @@ import {versionData} from "./version.js";
 import {vote} from "../api/services/vote.js";
 import {app} from "../api/services/app.js";
 import {vanityAPI} from "../api/services/vanity.js";
+import {ConicGradient} from "discord-welcome-card";
+import {IDisBotCommand} from "../types/Interaction.js";
+import {DisBotInteractionType} from "../enums/disBotInteractionType.js";
 
 colors.enable();
 
@@ -54,7 +57,7 @@ export const disbotClient = new ExtendedClient(
             GatewayIntentBits.GuildScheduledEvents,
             GatewayIntentBits.AutoModerationConfiguration,
             GatewayIntentBits.GuildModeration,
-            GatewayIntentBits.GuildMessagePolls,
+            GatewayIntentBits.GuildMessagePolls
         ],
         partials: Object.keys(Partials).map(key => Partials[key]),
     })
@@ -77,11 +80,11 @@ await disbotClient
         process.setMaxListeners(0);
         disbotClient.setMaxListeners(0);
 
-        // Database init (Default)
+        // Database init (Default) 
         await initDataToDatabase(disbotClient)
-        
+
         // Load Commands
-        await CommandHelper.loadCommands(disbotClient);
+        // await CommandHelper.loadCommands(disbotClient);
 
         // API && Version 
         await api(disbotClient);
@@ -95,7 +98,7 @@ await disbotClient
 
     })
     .catch((err) => {
-        Logger.error(`Failed to login: ${err instanceof Error ? err.message : String(err)}`);
+        Logger.error(`Failed to login: ${err}`);
         process.exit(1);
     });
 

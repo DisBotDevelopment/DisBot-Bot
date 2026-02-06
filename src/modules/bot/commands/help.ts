@@ -1,4 +1,5 @@
 import {
+    ApplicationIntegrationType,
     ButtonBuilder,
     ButtonStyle,
     ChatInputCommandInteraction,
@@ -24,6 +25,7 @@ export default {
         .setName("help")
         .setDescription("Use this command to get help about the bot")
         .setContexts(InteractionContextType.Guild)
+        .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
         .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator),
     async execute(interaction: ChatInputCommandInteraction, client: ExtendedClient) {
         if (!client.user) throw new Error("Client user not found");
