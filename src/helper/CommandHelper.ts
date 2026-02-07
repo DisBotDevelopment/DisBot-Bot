@@ -21,16 +21,6 @@ export class CommandHelper {
 
         Logger.info(`Starting Command loading for ${guildId}....`.gray.italic)
 
-        // ADD /commands to GUILD
-        await fetch(`https://discord.com/api/v10/applications/${client.user.id}/guilds/${guildId}/commands`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bot ${Config.Bot.DiscordBotToken}`
-            },
-            body: JSON.stringify(client.commands.get("commands").command)
-        })
-
         let cmdlist: any[] = [];
         const stats = {
             commands: 0,
@@ -164,6 +154,8 @@ export class CommandHelper {
             })
         } catch (e) {
             Logger.error(`Failed to load commands: ${e}`)
+        } finally {
+            await this.addDefaultCommandsToGuild(client, guildId)
         }
 
         const ticketCommands = await database.ticketSetups.findMany({
@@ -376,46 +368,22 @@ export class CommandHelper {
                     const guilds = await client.guilds.fetch();
                     const guildArray = Array.from(guilds.values());
 
-                    const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-
-                    let processedCount = 0;
-                    let successCount = 0;
-                    let errorCount = 0;
-                    const BATCH_SIZE = 5;
-                    const DELAY_MS = 3000;
-
                     for (const guild of guildArray) {
                         try {
-                            if (processedCount > 0 && processedCount % BATCH_SIZE === 0) {
-                                await interaction.editReply({
-                                    content: `-# 📡 Loading commands... (${processedCount}/${guilds.size}) - ⏸️ Waiting 3s...`
-                                });
-                                await delay(DELAY_MS);
-                            }
-
                             await CommandHelper.loadCommandsForGuild(client, guild.id);
-                            successCount++;
-
-                            if (processedCount % 3 === 0 || processedCount === guildArray.length - 1) {
-                                await interaction.editReply({
-                                    content: `-# 📡 Loading commands... (${processedCount + 1}/${guilds.size})`
-                                });
-                            }
                         } catch (error) {
-                            errorCount++;
                             console.error(`Failed to load commands for guild ${guild.id}:`, error);
                         } finally {
-                            processedCount++;
+                            await this.addDefaultCommandsToGuild(client, guild.id)
                         }
                     }
 
                     await interaction.editReply({
-                        content: `-# ✅ Commands loaded for ${successCount}/${guilds.size} guild(s)${errorCount > 0 ? ` (${errorCount} failed)` : ''}`
+                        content: `-# ✅ Commands loaded`
                     });
                 }
             } as IDisBotCommand
         ]
-
 
         commands.map((commandData) => {
             client.guildCommands.set(commandData.command.name, commandData)
@@ -424,4 +392,17 @@ export class CommandHelper {
             commands.map((commandData) => commandData.command)
         )
     }
+
+    public static async addDefaultCommandsToGuild(client: ExtendedClient, guildId: string) {
+        // ADD /commands to GUILD
+        await fetch(`https://discord.com/api/v10/applications/${client.user.id}/guilds/${guildId}/commands`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bot ${Config.Bot.DiscordBotToken}`
+            },
+            body: JSON.stringify(client.commands.get("commands").command)
+        })
+    }
+
 }
