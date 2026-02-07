@@ -30,7 +30,7 @@ export default {
         userHasOnePermission: true,
         isGuildOwner: false,
     },
-    data: new ContextMenuCommandBuilder()
+    command: new ContextMenuCommandBuilder()
         .setName("Ban")
         .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
         .setContexts(InteractionContextType.Guild)

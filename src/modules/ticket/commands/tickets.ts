@@ -19,7 +19,7 @@ export default {
         aliases: [],
         docsLink: 'https://docs.disbot.app/docs/commands/ticket'
     },
-    data: new SlashCommandBuilder()
+    command: new SlashCommandBuilder()
         .setName("tickets")
         .setDescription(
             "Manage your ticket components and create new ones"

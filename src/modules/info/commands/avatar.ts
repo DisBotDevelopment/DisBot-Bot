@@ -9,7 +9,7 @@ export default {
         aliases: [],
         docsLink: 'https://docs.disbot.app/docs/commands/avatar'
     },
-    data: new SlashCommandBuilder()
+    command: new SlashCommandBuilder()
         .setName("avatar")
         .setDefaultMemberPermissions(PermissionFlagsBits.UseApplicationCommands)
         .setDescription("Show your or a Member Avatar")

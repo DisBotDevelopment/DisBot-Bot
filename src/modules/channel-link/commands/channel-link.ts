@@ -25,7 +25,7 @@ export default {
         aliases: [],
         docsLink: 'https://docs.disbot.app/docs/commands/channel-link'
     },
-    data: new SlashCommandBuilder()
+    command: new SlashCommandBuilder()
         .setName("channel-link")
         .setDescription("Channel Link to link channel over servers")
         .setDescriptionLocalizations({

@@ -18,7 +18,7 @@ export default {
         aliases: [],
         docsLink: 'https://docs.disbot.app/docs/commands/leave'
     },
-    data: new SlashCommandBuilder()
+    command: new SlashCommandBuilder()
         .setName("leave")
         .setDescription("Leave Module")
         .setDescriptionLocalizations({de: "Leave Module"})

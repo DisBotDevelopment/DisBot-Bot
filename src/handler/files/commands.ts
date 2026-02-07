@@ -61,7 +61,7 @@ export async function loadCommands(client: ExtendedClient) {
                         if (!commandModule) continue;
                         const command = commandModule.default ?? commandModule;
 
-                        const commandData = command?.data || command?.command;
+                        const commandData = command?.command;
 
                         if (!commandData && (command.subCommand || command.subCommandGroup)) {
                             continue;
@@ -90,12 +90,12 @@ export async function loadCommands(client: ExtendedClient) {
                         if (!contextMenuModule) continue;
                         const contextMenu = contextMenuModule.default ?? contextMenuModule;
 
-                        if (!contextMenu.data?.name) {
+                        if (!contextMenu.command?.name) {
                             console.error(`${fileName}`.yellow, `❗ FAILED`.red, "Missing name.");
                             continue;
                         }
 
-                        client.commands?.set(contextMenu.data.name, contextMenu);
+                        client.commands?.set(contextMenu.command.name, contextMenu);
                         loadedStats.contextMenus++;
                     } catch (error) {
                         console.error(`Failed to load context menu ${fileName} from ${moduleDir}:`.red, error);
@@ -114,7 +114,7 @@ export async function loadCommands(client: ExtendedClient) {
                         if (!userInstallModule) continue;
                         const userInstall = userInstallModule.default ?? userInstallModule;
 
-                        const userInstallData = userInstall.data ?? userInstall.command;
+                        const userInstallData = userInstall.command;
 
                         if (!userInstallData && (userInstall.subCommand || userInstall.subCommandGroup)) {
                             continue;

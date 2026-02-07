@@ -84,7 +84,8 @@ await disbotClient
         await initDataToDatabase(disbotClient)
 
         // Load Commands
-        // await CommandHelper.loadCommands(disbotClient);
+        await CommandHelper.loadCommands(disbotClient);
+        await CommandHelper.loadCustomAdminCommands(disbotClient);
 
         // API && Version 
         await api(disbotClient);

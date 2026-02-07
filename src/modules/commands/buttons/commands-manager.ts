@@ -18,6 +18,9 @@ export default {
         const pageSize = 5;
         const data = client.commands.map(value => value)
 
+        console.log(data)
+        
+
         if (data.length <= 0) return interaction.reply({
             content: "No commands found.",
             flags: MessageFlags.Ephemeral
@@ -34,7 +37,7 @@ export default {
             .setPlaceholder("Select a Option to manage")
             .addOptions(
                 await Promise.all(list.map(async (l) => ({
-                    label: `${l.command.name}`,
+                    label: `${l.command.name ?? "N/A"}`,
                     description: `${l.command.description ?? "N/A"}`,
                     value: l.command.name,
                     emoji: "<:terminal:1260322426323996783>",

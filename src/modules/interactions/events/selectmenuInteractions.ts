@@ -62,7 +62,7 @@ export default {
                 const interactionPermission = await database.guildInteractionPermissions.findFirst({
                     where: {
                         GuildId: interaction.guildId,
-                        CommandName: activeHandler.customId,
+                        CustomId: interaction.customId,
                         Type: GuildPermissionType.SELECTMENU
                     }
                 })

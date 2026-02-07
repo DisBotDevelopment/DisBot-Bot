@@ -68,7 +68,7 @@ export default {
                 const interactionPermission = await database.guildInteractionPermissions.findFirst({
                     where: {
                         GuildId: interaction.guildId,
-                        CustomId: activeHandler.customId,
+                        CustomId: interaction.customId,
                         Type: GuildPermissionType.BUTTON
                     }
                 })
@@ -91,7 +91,7 @@ export default {
                         )) {
                             return await (interaction as any).reply({
                                 flags: MessageFlags.Ephemeral,
-                                content: `## ${await convertToEmojiToPng("permission")} You can't perform this interaction!`
+                                content: `## ${await convertToEmojiToPng("permission")} You can't perform this interaction! (Channel)`
                             })
                         }
                     }
@@ -105,7 +105,7 @@ export default {
                     if (!allowedToUse.some((a) => a == true)) {
                         return await (interaction as any).reply({
                             flags: MessageFlags.Ephemeral,
-                            content: `## ${await convertToEmojiToPng("permission")} You can't perform this interaction!`
+                            content: `## ${await convertToEmojiToPng("permission")} You can't perform this interaction! (User)`
                         })
                     }
 

@@ -17,7 +17,7 @@ export default {
         aliases: [],
         docsLink: 'https://docs.disbot.app/docs/commands/notification'
     },
-    data: new SlashCommandBuilder()
+    command: new SlashCommandBuilder()
         .setName("notification")
         .setContexts(InteractionContextType.Guild)
         .setDescription("Setup a notification for some Social Media Platforms")

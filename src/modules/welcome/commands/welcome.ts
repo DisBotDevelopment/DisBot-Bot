@@ -20,13 +20,14 @@ export default {
         aliases: [],
         docsLink: 'https://docs.disbot.app/docs/commands/welcome'
     },
-    data: new SlashCommandBuilder()
+    command: new SlashCommandBuilder()
         .setName("welcome")
         .setDescription("Welcome Module")
         .setDescriptionLocalizations({de: "Willkommen Module"})
         .setIntegrationTypes(ApplicationIntegrationType.GuildInstall)
         .setContexts(InteractionContextType.Guild)
         .setDefaultMemberPermissions(PermissionsBitField.Flags.ManageGuild),
+    
     async execute(interaction: ChatInputCommandInteraction) {
 
         const toggle = await database.guildFeatureToggles.findFirst({

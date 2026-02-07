@@ -13,7 +13,7 @@ import {database} from "../../../main/database.js";
 import {Channel} from "diagnostics_channel";
 
 export default {
-    data: new SlashCommandBuilder()
+    command: new SlashCommandBuilder()
         .setName("ticket")
         .setDescription(
             "Manage tickets and perform actions."

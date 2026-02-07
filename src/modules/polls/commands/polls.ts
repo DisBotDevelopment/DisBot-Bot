@@ -24,7 +24,7 @@ export default {
         aliases: [],
         docsLink: 'https://docs.disbot.app/docs/commands/polls'
     },
-    data: new SlashCommandBuilder()
+    command: new SlashCommandBuilder()
         .setName("polls")
         .setDescription("Create a Polls/Vote with Discord or DisBot")
         .setDescriptionLocalizations({

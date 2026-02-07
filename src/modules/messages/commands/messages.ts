@@ -16,7 +16,7 @@ import {convertToEmojiToPng} from "../../../helper/emojis.js";
 
 
 export default {
-    data: new SlashCommandBuilder()
+    command: new SlashCommandBuilder()
         .setName("messages")
         .setDescription("Create, Manage and Delete Messages")
         .setContexts(InteractionContextType.Guild)

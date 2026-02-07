@@ -27,7 +27,7 @@ export default {
         userHasOnePermission: true,
         isGuildOwner: false,
     },
-    data: new SlashCommandBuilder()
+    command: new SlashCommandBuilder()
         .setName("automations")
         .setDescription("Manage all automations")
         .setDescriptionLocalizations({

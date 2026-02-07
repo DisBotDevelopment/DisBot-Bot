@@ -15,7 +15,7 @@ export default {
         aliases: [],
         docsLink: 'https://docs.disbot.app/docs/commands/info'
     },
-    data: new SlashCommandBuilder()
+    command: new SlashCommandBuilder()
         .setName("info")
         .setDescription("Get Information about the Server, User, Role or Channel")
         .setDescriptionLocalizations({

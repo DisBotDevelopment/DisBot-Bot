@@ -28,8 +28,7 @@ export default {
         userHasOnePermission: true,
         isGuildOwner: false,
     },
-    context: true,
-    data: new ContextMenuCommandBuilder()
+    command: new ContextMenuCommandBuilder()
         .setName("Timeout")
         .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
         .setContexts(InteractionContextType.Guild)

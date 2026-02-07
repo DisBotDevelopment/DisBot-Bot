@@ -22,7 +22,7 @@ export default {
         aliases: [],
         docsLink: 'https://docs.disbot.app/docs/commands/security-gate'
     },
-    data: new SlashCommandBuilder()
+    command: new SlashCommandBuilder()
         .setName("security-gate")
         .setDescription("Manage Security Gate Settings")
         .setDescriptionLocalizations({

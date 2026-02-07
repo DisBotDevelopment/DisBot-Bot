@@ -22,7 +22,7 @@ export default {
         aliases: [],
         docsLink: 'https://docs.disbot.app/docs/commands/backups'
     },
-    data: new SlashCommandBuilder()
+    command: new SlashCommandBuilder()
         .setName("backups")
         .setDescription("Manage Backups")
         .setDescriptionLocalizations({

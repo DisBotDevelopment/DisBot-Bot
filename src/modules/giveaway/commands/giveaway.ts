@@ -10,7 +10,7 @@ export default {
     aliases: [],
     docsLink: 'https://docs.disbot.app/docs/commands/giveaway'
   },
-  data: new SlashCommandBuilder()
+    command: new SlashCommandBuilder()
     .setName("giveaway")
     .setDescription("Make a give a way")
     .setContexts(InteractionContextType.Guild)

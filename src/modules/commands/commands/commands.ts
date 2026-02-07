@@ -17,7 +17,7 @@ import {database} from "../../../main/database.js";
 
 
 export default {
-    data: new SlashCommandBuilder()
+    command: new SlashCommandBuilder()
         .setName("commands")
         .setDescription("Create, Manage, and use the Command Manager!")
         .setContexts(InteractionContextType.Guild)

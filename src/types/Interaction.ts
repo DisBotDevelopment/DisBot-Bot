@@ -18,6 +18,7 @@ export interface IDisBotInteraction {
 
 export interface IDisBotInteractive extends IDisBotInteraction {
     customId?: string;
+    id?: string
 }
 
 export interface IDisBotEvent extends IDisBotInteraction {

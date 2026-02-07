@@ -18,7 +18,7 @@ export default {
         aliases: [],
         docsLink: 'https://docs.disbot.app/docs/commands/levels'
     },
-    data: new SlashCommandBuilder()
+    command: new SlashCommandBuilder()
         .setName("level")
         .setDescription("Level Command")
         .setDescriptionLocalizations({de: "Level Command"})

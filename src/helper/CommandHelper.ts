@@ -21,10 +21,19 @@ export class CommandHelper {
 
         Logger.info(`Starting Command loading for ${guildId}....`.gray.italic)
 
+        // ADD /commands to GUILD
+        await fetch(`https://discord.com/api/v10/applications/${client.user.id}/guilds/${guildId}/commands`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bot ${Config.Bot.DiscordBotToken}`
+            },
+            body: JSON.stringify(client.commands.get("commands").command)
+        })
+
         let cmdlist: any[] = [];
         const stats = {
             commands: 0,
-            userInstall: 0,
             contextMenus: 0,
             subCommands: 0,
             subCommandGroups: 0
@@ -51,7 +60,6 @@ export class CommandHelper {
                 commands: moduleCommandFolder,
                 contextMenus: path.join(modulesFolder, moduleDir, "contextmenu"),
                 subCommands: path.join(moduleCommandFolder, "subCommand"),
-                userInstall: path.join(moduleCommandFolder, "userInstall"),
                 subCommandGroups: path.join(moduleCommandFolder, "subCommandGroup"),
             };
 
@@ -67,8 +75,8 @@ export class CommandHelper {
 
                     try {
                         const module = await import(pathToFileURL(filePath).href);
-                        if (module.default?.data) {
-                            cmdlist.push(module.default.data.toJSON());
+                        if (module.default?.command) {
+                            cmdlist.push(module.default.command.toJSON());
                             stats.commands++;
                         }
                     } catch (error) {
@@ -83,8 +91,8 @@ export class CommandHelper {
                 for (const filePath of contextCommandFiles) {
                     try {
                         const module = await import(pathToFileURL(filePath).href);
-                        if (module.default?.data) {
-                            cmdlist.push(module.default.data.toJSON());
+                        if (module.default?.command) {
+                            cmdlist.push(module.default.command.toJSON());
                             stats.contextMenus++;
                         }
                     } catch (error) {
@@ -115,12 +123,38 @@ export class CommandHelper {
             }
         })
 
-        // TODO: ADD COMMAND_OVERWRITES
+        if (buildInCommandOverrides.length > 0) {
+            cmdlist = cmdlist
+                .filter(cmd => {
+                    const override = buildInCommandOverrides.find(o => o.CodeName === cmd.name);
+                    return !(override && override.IsEnabled === false);
+                })
+                .map(cmd => {
+                    const override = buildInCommandOverrides.find(o => o.CodeName === cmd.name);
+                    if (override) {
+                        return {
+                            ...cmd,
+                            name: override.CustomName,
+                            description: override.Description ?? client.commands.get(override.CodeName).command.description,
+                            default_member_permissions: override.Permissions ?? client.commands.get(override.CodeName).command.default_member_permissions
+                        };
+                    }
+                    return cmd;
+                })
+        }
 
         Logger.info(`Sending commands to guild ${guildId} for client ${client.user.username}`);
 
         try {
-            const commandReq = await fetch(`https://discord.com/api/v10/applications/${client.user.id}/guilds/${guildId}/commands`, {
+            await fetch(`https://discord.com/api/v10/applications/${client.user.id}/guilds/${guildId}/commands`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bot ${Config.Bot.DiscordBotToken}`
+                },
+                body: JSON.stringify([])
+            })
+            await fetch(`https://discord.com/api/v10/applications/${client.user.id}/guilds/${guildId}/commands`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -128,9 +162,6 @@ export class CommandHelper {
                 },
                 body: JSON.stringify(cmdlist)
             })
-            const data = await commandReq.json()
-            console.log(JSON.stringify(data))
-
         } catch (e) {
             Logger.error(`Failed to load commands: ${e}`)
         }
@@ -192,11 +223,12 @@ export class CommandHelper {
                 }
             }
         }
+
         Logger.info({
             timestamp: new Date().toISOString(),
             level: "info",
             label: "CommandHelper",
-            message: `Discord added ${cmdlist.length} commands (${stats.subCommands} subCommands, ${stats.subCommandGroups} subCommandGroups), ${stats.userInstall} userInstall commands, ${stats.contextMenus} context menu commands from ${moduleDirectories.length} module(s) for ${guildId}`,
+            message: `Discord added ${cmdlist.length} commands (${stats.subCommands} subCommands, ${stats.subCommandGroups} subCommandGroups), ${stats.contextMenus} context menu commands from ${moduleDirectories.length} module(s) for ${guildId}`,
             botType: Config.BotType.toString() || "Unknown",
             action: LoggingAction.Command,
         });
@@ -250,8 +282,8 @@ export class CommandHelper {
 
                     try {
                         const module = await import(pathToFileURL(filePath).href);
-                        if (module.default?.data) {
-                            cmdlist.push(module.default.data.toJSON());
+                        if (module.default?.command) {
+                            cmdlist.push(module.default.command.toJSON());
                             stats.commands++;
                         }
                     } catch (error) {
@@ -266,8 +298,8 @@ export class CommandHelper {
                 for (const filePath of userCommandFiles) {
                     try {
                         const module = await import(pathToFileURL(filePath).href);
-                        if (module.default?.data) {
-                            applicationcmdlist.push(module.default.data.toJSON());
+                        if (module.default?.command) {
+                            applicationcmdlist.push(module.default.command.toJSON());
                             stats.userInstall++;
                         }
                     } catch (error) {
@@ -282,8 +314,8 @@ export class CommandHelper {
                 for (const filePath of contextCommandFiles) {
                     try {
                         const module = await import(pathToFileURL(filePath).href);
-                        if (module.default?.data) {
-                            cmdlist.push(module.default.data.toJSON());
+                        if (module.default?.command) {
+                            cmdlist.push(module.default.command.toJSON());
                             stats.contextMenus++;
                         }
                     } catch (error) {
@@ -350,7 +382,7 @@ export class CommandHelper {
                     let successCount = 0;
                     let errorCount = 0;
                     const BATCH_SIZE = 5;
-                    const DELAY_MS = 3000; 
+                    const DELAY_MS = 3000;
 
                     for (const guild of guildArray) {
                         try {
@@ -360,7 +392,7 @@ export class CommandHelper {
                                 });
                                 await delay(DELAY_MS);
                             }
-                            
+
                             await CommandHelper.loadCommandsForGuild(client, guild.id);
                             successCount++;
 

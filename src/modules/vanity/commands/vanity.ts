@@ -21,7 +21,7 @@ export default {
         aliases: [],
         docsLink: 'https://docs.disbot.app/docs/commands/vanity'
     },
-    data: new SlashCommandBuilder()
+    command: new SlashCommandBuilder()
         .setName("vanity")
         .setDescription("Manage Vanity URLs")
         .setDescriptionLocalizations({

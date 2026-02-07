@@ -14,7 +14,7 @@ export default {
         aliases: [],
         docsLink: 'https://docs.disbot.app/docs/commands/moderation'
     },
-    data: new SlashCommandBuilder()
+    command: new SlashCommandBuilder()
         .setName("moderation")
         .setDescription("Manage the moderation of the server")
         .setContexts(InteractionContextType.Guild)

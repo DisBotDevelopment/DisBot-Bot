@@ -26,7 +26,7 @@ export default {
     },
     type: DisBotInteractionType.ContextMenu,
     context: true,
-    data: new ContextMenuCommandBuilder()
+    command: new ContextMenuCommandBuilder()
         .setName("Edit this message")
         .setNameLocalizations({
             de: "Bearbeite diese Nachricht",

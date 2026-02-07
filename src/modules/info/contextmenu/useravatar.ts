@@ -11,7 +11,7 @@ import {ExtendedClient} from "../../../types/ExtendedClient.js";
 
 export default {
     context: true,
-    data: new ContextMenuCommandBuilder()
+    command: new ContextMenuCommandBuilder()
         .setName("User Avatar")
         .setDefaultMemberPermissions(PermissionFlagsBits.UseApplicationCommands)
         .setContexts(InteractionContextType.Guild)

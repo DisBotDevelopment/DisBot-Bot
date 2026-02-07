@@ -9,7 +9,7 @@ export default {
         aliases: [],
         docsLink: 'https://docs.disbot.app/docs/commands/server'
     },
-    data: new SlashCommandBuilder()
+    command: new SlashCommandBuilder()
         .setName("utility")
         .setDescription("A small command to quickly adjust settings...")
         .setDescriptionLocalizations({

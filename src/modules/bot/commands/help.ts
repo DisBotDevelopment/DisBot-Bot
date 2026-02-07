@@ -21,7 +21,7 @@ export default {
         aliases: [],
         docsLink: 'https://docs.disbot.app/docs/commands/help'
     },
-    data: new SlashCommandBuilder()
+    command: new SlashCommandBuilder()
         .setName("help")
         .setDescription("Use this command to get help about the bot")
         .setContexts(InteractionContextType.Guild)

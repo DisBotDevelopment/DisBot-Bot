@@ -21,7 +21,7 @@ export default {
         aliases: [],
         docsLink: 'https://docs.disbot.app/docs/commands/permissions'
     },
-    data: new SlashCommandBuilder()
+    command: new SlashCommandBuilder()
         .setName("permissions")
         .setDescription("Permissions Settings from Interactions")
         .setDescriptionLocalizations({

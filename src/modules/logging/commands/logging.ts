@@ -98,7 +98,7 @@ export default {
         aliases: [],
         docsLink: 'https://docs.disbot.app/docs/commands/logging'
     },
-    data: new SlashCommandBuilder()
+    command: new SlashCommandBuilder()
         .setName("logging")
         .setDescription("Logging System")
         .setDescriptionLocalizations({de: "Logging System"})
