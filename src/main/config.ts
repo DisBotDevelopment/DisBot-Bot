@@ -69,6 +69,9 @@ export async function configStartup() {
                     ApiKey: "",
                 },
             },
+            Commands: {
+                CommandsToUpdate: []
+            },
             Logging: {
                 ErrorWebhook: "",
                 BotLogger: "",

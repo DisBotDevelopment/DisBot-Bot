@@ -77,8 +77,8 @@ await disbotClient
     .login(Config.Bot.DiscordBotToken)
     .then(async () => {
         Logger.info(`Connected to Discord as ${disbotClient.user.tag} on ${disbotClient.guilds.cache.size}!`)
-        process.setMaxListeners(0);
-        disbotClient.setMaxListeners(0);
+        process.setMaxListeners(Infinity);
+        disbotClient.setMaxListeners(Infinity);
 
         // Database init (Default) 
         await initDataToDatabase(disbotClient)

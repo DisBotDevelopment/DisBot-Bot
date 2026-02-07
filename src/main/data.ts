@@ -1,4 +1,4 @@
-export const configVersion = "1.3.0"
+export const configVersion = "1.3.1"
 
 export const protectedCommands: string[] = [
     "permissions", "commands", "letmegooglethat"

@@ -1,4 +1,4 @@
-import { BotType } from "enums/botType.js";
+import {BotType} from "enums/botType.js";
 
 export type DisBotConfigData = {
     Bot: {
@@ -57,6 +57,9 @@ export type DisBotConfigData = {
         ErrorWebhook: string;
         BotLogger: string;
         GitHubAPIToken: string;
+    };
+    Commands: {
+        CommandsToUpdate: string[]
     };
     BotType: string;
     CONFIG_VERSION: string

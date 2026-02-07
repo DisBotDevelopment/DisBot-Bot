@@ -21,6 +21,8 @@ export class CommandHelper {
 
         Logger.info(`Starting Command loading for ${guildId}....`.gray.italic)
 
+        await this.addDefaultCommandsToGuild(client, guildId)
+
         let cmdlist: any[] = [];
         const stats = {
             commands: 0,
@@ -112,50 +114,60 @@ export class CommandHelper {
                 GuildCommandMangerId: guildId
             }
         })
-
-        if (buildInCommandOverrides.length > 0) {
-            cmdlist = cmdlist
-                .filter(cmd => {
-                    const override = buildInCommandOverrides.find(o => o.CodeName === cmd.name);
-                    return !(override && override.IsEnabled === false);
-                })
-                .map(cmd => {
-                    const override = buildInCommandOverrides.find(o => o.CodeName === cmd.name);
-                    if (override) {
-                        return {
-                            ...cmd,
-                            name: override.CustomName,
-                            description: override.Description ?? client.commands.get(override.CodeName).command.description,
-                            default_member_permissions: override.Permissions ?? client.commands.get(override.CodeName).command.default_member_permissions
-                        };
-                    }
-                    return cmd;
-                })
-        }
+        const commands = cmdlist
+            .filter(cmd => {
+                const override = buildInCommandOverrides.find(o => o.CodeName === cmd.name);
+                return !(override && override.IsEnabled === false);
+            })
+            .map(cmd => {
+                const override = buildInCommandOverrides.find(o => o.CodeName === cmd.name);
+                if (override) {
+                    return {
+                        ...cmd,
+                        name: override.CustomName.slice(0, 31),
+                        description: override.Description.slice(0, 99) ?? client.commands.get(override.CodeName).command.description.slice(0, 99),
+                        default_member_permissions: override.Permissions ?? client.commands.get(override.CodeName).command.default_member_permissions
+                    };
+                }
+                return cmd;
+            })
 
         Logger.info(`Sending commands to guild ${guildId} for client ${client.user.username}`);
 
-        try {
-            await fetch(`https://discord.com/api/v10/applications/${client.user.id}/guilds/${guildId}/commands`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bot ${Config.Bot.DiscordBotToken}`
-                },
-                body: JSON.stringify([])
-            })
-            await fetch(`https://discord.com/api/v10/applications/${client.user.id}/guilds/${guildId}/commands`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bot ${Config.Bot.DiscordBotToken}`
-                },
-                body: JSON.stringify(cmdlist)
-            })
-        } catch (e) {
-            Logger.error(`Failed to load commands: ${e}`)
-        } finally {
-            await this.addDefaultCommandsToGuild(client, guildId)
+        const restClient = new REST().setToken(Config.Bot.DiscordBotToken)
+        const currentCommands = await (await client.guilds.fetch(guildId)).commands.fetch();
+
+        for (const [commandId, command] of currentCommands) {
+            try {
+                const cmd = commands.find((c) => c.name === command.name);
+
+                if (!cmd) {
+                    await restClient.delete(
+                        Routes.applicationGuildCommand(client.user.id, guildId, commandId)
+                    );
+                    Logger.info(`[CMD DELETE] Deleted command: ${command.name}`);
+                } else {
+                    if (Config.Commands.CommandsToUpdate.includes(command.name)) {
+                        await restClient.patch(
+                            Routes.applicationGuildCommand(client.user.id, guildId, commandId),
+                            {body: cmd}
+                        );
+                        Logger.info(`[CMD UPDATE] Updated command: ${command.name}`);
+                    }
+                }
+            } catch (e) {
+                Logger.error(`[CMD] Failed to process command ${command.name}: ${e}`);
+            }
+        }
+
+        for (const cmd of commands) {
+            if (!currentCommands.some((c) => c.name === cmd.name)) {
+                await restClient.post(
+                    Routes.applicationGuildCommands(client.user.id, guildId),
+                    {body: cmd}
+                );
+                Logger.info(`[CMD ADD] Added new command: ${cmd.name}`);
+            }
         }
 
         const ticketCommands = await database.ticketSetups.findMany({
@@ -166,52 +178,79 @@ export class CommandHelper {
 
         if (ticketCommands.length > 0) {
             for (const ticketCommand of ticketCommands) {
-                const clientGuild = await client.guilds.fetch(guildId);
-
-                let guildCommand = null;
                 try {
-                    guildCommand = await clientGuild.commands.fetch(ticketCommand.SlashCommandId);
-                } catch (e) {
-                    Logger.error(`Failed to load commands: ${e}`)
-                }
+                    const clientGuild = await client.guilds.fetch(guildId);
 
-                if (!guildCommand) {
+                    if (!clientGuild || !ticketCommand || !ticketCommand.SlashCommandId) return
+
+                    let guildCommand = null;
                     try {
-                        guildCommand = await clientGuild.commands.create({
-                            name: ticketCommand.SlashCommandName ?? `open-${ticketCommand.CustomId}-ticket`,
-                            description: ticketCommand.SlashCommandDescription ?? ticketCommand.CustomId,
-                        });
-
-                        await database.ticketSetups.update({
-                            where: {
-                                CustomId: ticketCommand.CustomId,
-                            },
-                            data: {
-                                SlashCommandId: guildCommand.id,
-                            },
-                        });
+                        guildCommand = await clientGuild.commands.fetch(ticketCommand.SlashCommandId);
                     } catch (e) {
-                        Logger.error(`Failed to load commands: ${e}`)
+                        Logger.error(`[TICKET] Failed to load commands: ${e}`)
+                        return
                     }
-                } else {
-                    if (
-                        guildCommand.name !== ticketCommand.SlashCommandName ||
-                        guildCommand.description !== ticketCommand.SlashCommandDescription
-                    ) {
+
+                    let name = `open-${ticketCommand.CustomId.split("-")[0]}-ticket`
+                    if (name.length >= 32 || (ticketCommand?.SlashCommandName && ticketCommand.SlashCommandName?.length >= 32)) {
+                        return
+                    } else if (ticketCommand.SlashCommandName.length <= 30) {
+                        name = ticketCommand.SlashCommandName
+                    }
+
+                    let description = "Open Ticket with command."
+                    if (ticketCommand && ticketCommand.SlashCommandDescription.length < 31) {
+                        description = "Open Ticket with command."
+                    } else if (guildCommand && guildCommand?.description < 99) {
+                        description = guildCommand.description
+                    }
+
+                    if (!guildCommand) {
                         try {
-                            const updated = await guildCommand.edit({
-                                name: ticketCommand.SlashCommandName ?? guildCommand.name,
-                                description: ticketCommand.SlashCommandDescription ?? guildCommand.description,
+
+
+                            guildCommand = await clientGuild.commands.create({
+                                name: name,
+                                description: description,
                             });
 
                             await database.ticketSetups.update({
-                                where: {CustomId: ticketCommand.CustomId},
-                                data: {SlashCommandId: updated.id},
+                                where: {
+                                    CustomId: ticketCommand.CustomId,
+                                },
+                                data: {
+                                    SlashCommandId: guildCommand.id,
+                                },
                             });
                         } catch (e) {
-                            Logger.error(`Failed to load commands: ${e}`)
+                            Logger.error(`[TICKET] Failed to load commands: ${e}`)
+                            return
+                        }
+                    } else {
+                        if (
+                            guildCommand.name !== ticketCommand.SlashCommandName ||
+                            guildCommand.description !== ticketCommand.SlashCommandDescription
+                        ) {
+
+
+                            try {
+                                const updated = await guildCommand.edit({
+                                    name: name,
+                                    description: description,
+                                });
+
+                                await database.ticketSetups.update({
+                                    where: {CustomId: ticketCommand.CustomId},
+                                    data: {SlashCommandId: updated.id},
+                                });
+                            } catch (e) {
+                                Logger.error(`[TICKET] Failed to load commands: ${e}`)
+                                return
+                            }
                         }
                     }
+                } catch (e) {
+                    return
                 }
             }
         }
