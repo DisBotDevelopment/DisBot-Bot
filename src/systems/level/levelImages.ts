@@ -1,5 +1,5 @@
 import {Font, LeaderboardBuilder, RankCardBuilder} from "canvacord";
-import {Guild, GuildMember} from "discord.js";
+import {FetchMemberOptions, FetchMembersOptions, Guild, GuildMember, UserResolvable} from "discord.js";
 import {database} from "../../main/database.js";
 import {uploadToCDN} from "../../helper/utilityHelper.js";
 
@@ -18,7 +18,10 @@ export async function generateLevelCardImage(user: GuildMember, guildId: string)
         .setUsername(user.user.username)
         .setLevel(levelData.Level)
         .setRequiredXP(Number(levelData.RequiredXp))
-        .setAvatar(user.displayAvatarURL({extension: "png", forceStatic: true}) ?? "https://cdn.discordapp.com/emojis/1259432940383768647.webp?size=96/mes")
+        .setAvatar(user.displayAvatarURL({
+            extension: "png",
+            forceStatic: true
+        }) ?? "https://cdn.discordapp.com/embed/avatars/0.png")
         .setCurrentXP(Number(levelData.XP))
 
 
@@ -46,22 +49,40 @@ export async function generateLevelLeaderboard(guild: Guild, type: "default" | "
 
     const players = await Promise.all(
         playerData
-            .map(async (user, rank) => {
+            .map(async (user: {
+                UserId: UserResolvable | FetchMemberOptions | (FetchMembersOptions & { user: UserResolvable; });
+                Level: any;
+                XP: any;
+            }, rank: number) => {
                 try {
-                    const position = data.filter((f) => f.UserId == user.UserId).map((i, c) => {
-                        return c
-                    })[0]
+                    /*
+                const position = data.filter((f) => f.UserId == user.UserId).map((i, c) => {
+                    return c
+                })[0]
+                 */
                     const guildMember = await guild.members.fetch(user.UserId);
+                    if (guildMember) {
+                        return {
+                            level: user.Level ?? 0,
+                            username: guildMember?.user?.username ?? "N/A",
+                            displayName: guildMember?.displayName ?? "N/A",
+                            avatar: guildMember.displayAvatarURL({
+                                extension: "png",
+                                forceStatic: true
+                            }) ?? "https://cdn.discordapp.com/embed/avatars/0.png",
+                            xp: Number(user.XP) ?? 0,
+                            rank: (rank + 1)
+                        };
+                    }
+                } catch (e) {
                     return {
                         level: user.Level ?? 0,
-                        username: guildMember?.user?.username ?? "N/A",
-                        displayName: guildMember?.displayName ?? "N/A",
-                        avatar: guildMember?.displayAvatarURL({extension: "png", forceStatic: true}) ?? "https://cdn.discordapp.com/emojis/1259432940383768647.webp?size=96",
+                        username: user?.UserId ?? "N/A",
+                        displayName: user?.UserId ?? "N/A",
+                        avatar: "https://cdn.discordapp.com/embed/avatars/0.png",
                         xp: Number(user.XP) ?? 0,
-                        rank:  (rank + 1)
+                        rank: (rank + 1)
                     };
-                } catch (error) {
-                    return
                 }
             })
     )
@@ -70,14 +91,16 @@ export async function generateLevelLeaderboard(guild: Guild, type: "default" | "
     const leaderboard = new LeaderboardBuilder()
         .setHeader({
             title: `Level Leaderboard`,
-            image: guild.iconURL({extension: "png", forceStatic: true}),
+            image: guild.iconURL({
+                extension: "png",
+                forceStatic: true
+            }) ?? "https://cdn.discordapp.com/embed/avatars/0.png",
             subtitle: `Total Members: ${data.length}/${guild.memberCount} - Global XP ${allXP}`,
         })
         .setPlayers(players)
         .setVariant(type)
 
-
-    const image = await leaderboard.build({format: "png"})
+    const image = await leaderboard.build()
     if (Buffer.isBuffer(image)) {
         return await uploadToCDN(image)
     }

@@ -26,8 +26,6 @@ export default {
             const input = interaction.fields.getSelectedChannels("channel", true, [ChannelType.GuildText])
             for (const channel of input.values()) {
 
-                console.log(channel.id)
-
                 await database.levelSettings.update({
                     where: {
                         GuildId: interaction.guild.id

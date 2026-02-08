@@ -44,7 +44,7 @@ export default {
             return
         }
         const list = data.Levels.sort((a, b) => {
-            return b.Level - a.Level;
+            return (b.Level - a.Level)
         }).slice(currentIndex, currentIndex + (data.LeaderboardDisplayAmount == null || data.LeaderboardDisplayAmount == 0 ? 10 : data.LeaderboardDisplayAmount));
 
         const leaderboardImageDefault = await generateLevelLeaderboard(interaction.guild, "default", list)
@@ -54,12 +54,15 @@ export default {
                 id: interaction.user.id,
                 name: interaction.user.username,
                 displayName: interaction.user.displayName,
-                avatar: interaction.user.displayAvatarURL()
+                avatar: interaction.user.displayAvatarURL({
+                    extension: "png",
+                    forceStatic: true
+                }) ?? "https://cdn.discordapp.com/embed/avatars/0.png"
             },
             level: {
                 leaderboard: {
-                    leaderboardImageDefault: leaderboardImageDefault,
-                    leaderboardImageHorizontal: leaderboardImageHorizontal,
+                    leaderboardImageDefault: leaderboardImageDefault.replace("cdn.xyzhub.link", "cdn.xyzify.ing"),
+                    leaderboardImageHorizontal: leaderboardImageHorizontal.replace("cdn.xyzhub.link", "cdn.xyzify.ing"),
                     message: data?.Levels.length < 0 ? list.map((l, index) => {
                         const user = interaction.guild.members.cache.get(l.UserId);
                         const rank = index + 1;

@@ -57,7 +57,7 @@ export default {
             }
 
             const list = data.Levels.sort((a, b) => {
-                return b.Level - a.Level;
+                return (b.Level - a.Level)
             }).slice(currentIndex, currentIndex + (data.LeaderboardDisplayAmount == null || data.LeaderboardDisplayAmount == 0 ? 10 : data.LeaderboardDisplayAmount));
 
             const leaderboardImageDefault = await generateLevelLeaderboard(interaction.guild, "default", list)
@@ -67,7 +67,7 @@ export default {
                     id: interaction.user.id,
                     name: interaction.user.username,
                     displayName: interaction.user.displayName,
-                    avatar: interaction.user.displayAvatarURL()
+                    avatar: interaction.user.displayAvatarURL() ?? "https://cdn.discordapp.com/embed/avatars/0.png"
                 },
                 level: {
                     leaderboard: {

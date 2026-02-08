@@ -27,7 +27,7 @@ export class ExtendedClient extends Client {
     public inviteTrackerInvitesCacheUpdates: Collection<Snowflake, number> = new Collection();
 
     // Cache Data
-    public cache: Collection<string, {}> = new Collection();
+    public cache: Collection<string, any> = new Collection();
 
     public ExtendedClient() {
         return this;

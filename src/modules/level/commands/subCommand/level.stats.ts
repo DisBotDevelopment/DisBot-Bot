@@ -84,7 +84,7 @@ export default {
 
             let message = await database.messageTemplates.findFirst({
                 where: {
-                    Name: data.LevelSettings.LevelUserInfoMessageTemplate
+                    Name: data.LevelSettings?.LevelUserInfoMessageTemplate ?? ""
                 }
             })
 
@@ -102,8 +102,8 @@ export default {
                 },
                 level: {
                     rankCard: rankImage,
-                    xp: data.XP,
-                    requiredXp: data.RequiredXp,
+                    xp: Math.round(parseInt(data.XP)),
+                    requiredXp: Math.round(parseInt(data.RequiredXp)),
                     level: data.Level,
                     streakDay: data.CurrentStreakDay
                 }

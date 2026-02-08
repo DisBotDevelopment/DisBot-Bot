@@ -112,7 +112,7 @@ export default {
                 ClaimedXPDrops: {
                     push: data.UUID
                 },
-                XP: userData.XP + xpRange
+                XP: (parseInt(userData.XP) + xpRange).toString()
             }
         })
         return await sendDefaultMessage(`-# Claimed XP Drop successfully!`, interaction, true, "reply")

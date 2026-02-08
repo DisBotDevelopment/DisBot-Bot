@@ -25,9 +25,18 @@ export default {
      */
     async execute(oldState: VoiceState, newState: VoiceState, client: ExtendedClient) {
 
+
         const guild = newState.guild;
-        const member = newState.member;
+        const member = newState?.member ?? oldState.member;
         const channel = newState.channel as VoiceChannel;
+
+
+        if (!newState.channelId) return
+        if (client.cache.has(`${guild.id}-level-voice-${member.id}`)) {
+            (client.cache.get(`${guild.id}-level-voice-${member.id}`).timer as NodeJS.Timeout).close()
+            client.cache.delete(`${guild.id}-level-voice-${member.id}`)
+            return
+        }
 
         const data = await database.levelSettings.findFirst({
             include: {
@@ -42,16 +51,15 @@ export default {
         })
         if (!data) return
         if (!data.IsVoiceXPEnabled) return
-        const user = await client.users.fetch(newState.member.id)
+        const user = await client.users.fetch(newState?.member?.id ?? oldState.member.id)
         if (user.bot) return
         if (!data.VoiceXPCooldown) return
 
-        if (client.cooldowns.has(`${guild.id}-level-voice`)) {
-            const timer = client.cooldowns.get(`${guild.id}-level-voice`) as NodeJS.Timeout
-            timer.close()
-        }
-
         const interval = setInterval(async () => {
+
+            const levelCache = client.cache.get(`${guild.id}-level-voice-${member.id}`)
+            if (!levelCache) return
+            if (member.id != levelCache.userId) return
 
             let userData = await database.levels.findFirst({
                 where: {
@@ -157,7 +165,10 @@ export default {
             )
         }, ms(data.VoiceXPCooldown as StringValue))
 
-        client.cooldowns.set(`${guild.id}-level-voice`, interval)
+        client.cache.set(`${guild.id}-level-voice-${member.id}`, {
+            timer: interval,
+            userId: member.id
+        })
     }
 }
 

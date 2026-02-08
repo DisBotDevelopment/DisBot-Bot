@@ -1,7 +1,7 @@
 {
   "name": "disbot",
   "main": "./.build/startup.js",
-  "version": "v.1.6.5",
+  "version": "v.1.6.5.1",
   "scripts": {
     "disbot": "npx prisma migrate deploy && node ./.build/src/main/startup.js",
     "disbotdev": "bun run build && node ./.build/src/main/startup.js",

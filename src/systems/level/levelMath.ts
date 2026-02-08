@@ -12,10 +12,7 @@ import {replacePlaceholders} from "../../main/placeholder.js";
 import {MessageBuilder} from "../../helper/messageHelper.js";
 import {ExtendedClient} from "../../types/ExtendedClient.js";
 import ms, {StringValue} from "ms";
-import Interceptors from "undici/types/interceptors.js";
 import * as mathjs from "mathjs";
-import logging from "../../modules/logging/commands/logging.js";
-import {randomUUID} from "crypto";
 
 export function calcXP(minXP: number, maxXP: number) {
     return Math.random() * (maxXP - minXP) + minXP
@@ -399,7 +396,7 @@ export async function scheduleLevelXPDrops(client: ExtendedClient) {
                     const template = await database.messageTemplates.findFirst(
                         {
                             where: {
-                                Name: settings.XPDropsMessageTemplate
+                                Name: settings.XPDropsMessageTemplate ?? ""
                             }
                         }
                     )
