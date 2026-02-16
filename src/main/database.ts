@@ -6,6 +6,7 @@ import {initGuildsToDatabase, migrateDataBase, setupDisBotConfig} from "../helpe
 import {Config} from "./config.js";
 import * as process from "node:process";
 import {ExtendedClient} from "../types/ExtendedClient.js";
+import {PrismaPg} from "@prisma/adapter-pg";
 
 colors.enable();
 
@@ -13,8 +14,9 @@ export let database: PrismaClient = new PrismaClient();
 
 export async function connectToDatabase(client: ExtendedClient) {
 
-    const dbClient = new PrismaClient();
-    await dbClient.$connect().then(() => {
+    const adapter = new PrismaPg({connectionString: process.env.POSTGRESQL})
+    const prisma = new PrismaClient({adapter})
+    await prisma.$connect().then(() => {
         Logger.info(
             {
                 guildId: "0",
@@ -31,7 +33,7 @@ export async function connectToDatabase(client: ExtendedClient) {
         );
     })
 
-    database = dbClient;
+    database = prisma;
 }
 
 export async function initDataToDatabase(client: ExtendedClient) {
