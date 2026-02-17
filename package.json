@@ -1,7 +1,7 @@
 {
   "name": "disbot",
   "main": "./src/main/startup.ts",
-  "version": "v.1.6.5.3r1",
+  "version": "v.1.6.5.3r2",
   "scripts": {
     "start": "bun run prisma:migrate && bun run prisma:generate && bun run serve",
     "serve": "bun run src/main/startup.ts",
