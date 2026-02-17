@@ -22,7 +22,5 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
 
 RUN bun install @napi-rs/canvas
 RUN bun install --force
-RUN bun run prisma:migrate
-RUN bun run prisma:generate
 
 CMD ["bun", "run", "serve"]
