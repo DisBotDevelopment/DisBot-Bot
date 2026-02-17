@@ -1,4 +1,3 @@
-import {PrismaClient} from "../prisma/index.js";
 import {LoggingAction} from "../enums/loggingTypes.js";
 import {Logger} from "./logger.js";
 import colors from "colors"
@@ -7,16 +6,21 @@ import {Config} from "./config.js";
 import * as process from "node:process";
 import {ExtendedClient} from "../types/ExtendedClient.js";
 import {PrismaPg} from "@prisma/adapter-pg";
+import {PrismaClient} from "../prisma/client";
 
 colors.enable();
 
-export let database: PrismaClient = new PrismaClient();
+const adapter = new PrismaPg({
+    connectionString: process.env.POSTGRESQL!,
+});
+
+export const database = new PrismaClient({
+    adapter,
+});
 
 export async function connectToDatabase(client: ExtendedClient) {
 
-    const adapter = new PrismaPg({connectionString: process.env.POSTGRESQL})
-    const prisma = new PrismaClient({adapter})
-    await prisma.$connect().then(() => {
+    await database.$connect().then(() => {
         Logger.info(
             {
                 guildId: "0",
@@ -32,8 +36,6 @@ export async function connectToDatabase(client: ExtendedClient) {
             }
         );
     })
-
-    database = prisma;
 }
 
 export async function initDataToDatabase(client: ExtendedClient) {

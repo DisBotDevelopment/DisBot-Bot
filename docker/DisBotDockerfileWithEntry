@@ -17,14 +17,10 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /bot
 COPY . .
 
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
-    apt-get install -y nodejs
-
 RUN bun install @napi-rs/canvas
-
 RUN bun install --force
-
-RUN bun run build
+RUN bun run prisma:migrate
+RUN bun run prisma:generate
 
 USER        container
 ENV         USER=container HOME=/home/container

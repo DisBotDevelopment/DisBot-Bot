@@ -13,10 +13,10 @@ const shardList = Config.Bot.ShardList.split(",").map(Number)
 
 
 Logger.info("Starting Shard Manager from discord.js")
-const manager = new ShardingManager("./.build/src/main/bot.js", {
+const manager = new ShardingManager("./src/main/bot.ts", {
     token: Config.Bot.DiscordBotToken,
     totalShards: Number(Config.Bot.ShardCount),
-    shardList: Config.Bot?.ShardList.length <= 0 ? null : Config.Bot.ShardList.split(",").map(Number),
+    shardList: Config.Bot?.ShardList.length <= 0 ? "auto" : Config.Bot.ShardList.split(",").map(Number),
     mode: "process",
     respawn: true,
 

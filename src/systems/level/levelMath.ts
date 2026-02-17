@@ -47,7 +47,7 @@ export async function levelUpHelper(member: GuildMember, guild: Guild, channel: 
     // {level} {xp}
     const xpFormular = {
         level: userData?.Level ?? 0,
-        xp: userData?.XP ?? 0
+        xp: userData?.RequiredXp ?? 0
     }
     const formular = replacePlaceholders(data.RequiredXPFormular, xpFormular)
     const reqXPForLevel = parseInt(mathjs.evaluate(formular))

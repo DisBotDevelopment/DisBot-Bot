@@ -6,7 +6,6 @@ import {
     GatewayIntentBits,
     Guild,
     Partials,
-    PresenceStatusData, SlashCommandBuilder,
 } from "discord.js";
 import {loadButtons} from "../handler/files/buttons.js";
 import {loadCommands} from "../handler/files/commands.js";
@@ -26,9 +25,6 @@ import {versionData} from "./version.js";
 import {vote} from "../api/services/vote.js";
 import {app} from "../api/services/app.js";
 import {vanityAPI} from "../api/services/vanity.js";
-import {ConicGradient} from "discord-welcome-card";
-import {IDisBotCommand} from "../types/Interaction.js";
-import {DisBotInteractionType} from "../enums/disBotInteractionType.js";
 
 colors.enable();
 
@@ -76,7 +72,7 @@ await loadEvents(disbotClient).then(() => Logger.info("Loaded Configuration - Ev
 await disbotClient
     .login(Config.Bot.DiscordBotToken)
     .then(async () => {
-        Logger.info(`Connected to Discord as ${disbotClient.user.tag} on ${disbotClient.guilds.cache.size}!`)
+        Logger.info(`Connected to Discord as ${disbotClient.user?.tag} on ${disbotClient.guilds.cache.size}!`)
         process.setMaxListeners(Infinity);
         disbotClient.setMaxListeners(Infinity);
 

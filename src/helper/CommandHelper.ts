@@ -10,7 +10,7 @@ import {Logger} from "../main/logger.js";
 import {Config} from "../main/config.js";
 import {database} from "../main/database.js";
 import {cli} from "winston/lib/winston/config/index.js";
-import {IDisBotCommand} from "../types/Interaction.js";
+import type {IDisBotCommand} from "../types/Interaction.js";
 import {DisBotInteractionType} from "../enums/disBotInteractionType.js";
 
 colors.enable();
@@ -125,14 +125,14 @@ export class CommandHelper {
                     return {
                         ...cmd,
                         name: override.CustomName.slice(0, 31),
-                        description: override.Description.slice(0, 99) ?? client.commands.get(override.CodeName).command.description.slice(0, 99),
-                        default_member_permissions: override.Permissions ?? client.commands.get(override.CodeName).command.default_member_permissions
+                        description: override.Description?.slice(0, 99) ?? client.commands?.get(override.CodeName)?.command.description.slice(0, 99),
+                        default_member_permissions: override.Permissions ?? client.commands?.get(override.CodeName)?.command.default_member_permissions
                     };
                 }
                 return cmd;
             })
 
-        Logger.info(`Sending commands to guild ${guildId} for client ${client.user.username}`);
+        Logger.info(`Sending commands to guild ${guildId} for client ${client.user?.username}`);
 
         const restClient = new REST().setToken(Config.Bot.DiscordBotToken)
         const currentCommands = await (await client.guilds.fetch(guildId)).commands.fetch();
