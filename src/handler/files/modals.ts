@@ -17,7 +17,7 @@ export async function loadModals(client: ExtendedClient): Promise<void> {
     try {
         client.modals?.clear();
 
-        const modulesFolder = path.join(process.cwd(), ".build", "src", "modules");
+        const modulesFolder = path.join(process.cwd(), "src", "modules");
         if (!fs.existsSync(modulesFolder)) {
             console.warn("Modules folder does not exist.".red);
             return;
@@ -36,7 +36,7 @@ export async function loadModals(client: ExtendedClient): Promise<void> {
                 continue;
             }
 
-            const modalFiles = getFilesRecursively(modalFolder, [".js"]);
+            const modalFiles = getFilesRecursively(modalFolder, [".ts"]);
 
             for (const filePath of modalFiles) {
                 const fileName = path.basename(filePath, path.extname(filePath));

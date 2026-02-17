@@ -31,7 +31,7 @@ export class CommandHelper {
             subCommandGroups: 0
         };
 
-        const modulesFolder = path.join(process.cwd(), ".build", "src", "modules");
+        const modulesFolder = path.join(process.cwd(), "src", "modules");
         if (!fs.existsSync(modulesFolder)) {
             console.warn("Modules folder does not exist.".red);
             return;
@@ -57,7 +57,7 @@ export class CommandHelper {
 
             // Load main commands
             if (fs.existsSync(commandDirs.commands)) {
-                const commandFiles = getFilesRecursively(commandDirs.commands, [".js"]);
+                const commandFiles = getFilesRecursively(commandDirs.commands, [".ts"]);
 
                 for (const filePath of commandFiles) {
                     const relativePath = path.relative(commandDirs.commands, filePath);
@@ -79,7 +79,7 @@ export class CommandHelper {
 
             // Load context menu commands
             if (fs.existsSync(commandDirs.contextMenus)) {
-                const contextCommandFiles = getFilesRecursively(commandDirs.contextMenus, [".js"]);
+                const contextCommandFiles = getFilesRecursively(commandDirs.contextMenus, [".ts"]);
                 for (const filePath of contextCommandFiles) {
                     try {
                         const module = await import(pathToFileURL(filePath).href);
@@ -95,12 +95,12 @@ export class CommandHelper {
 
             // Count subCommands and subCommandGroups (für Stats)
             if (fs.existsSync(commandDirs.subCommands)) {
-                const subCommandFiles = getFilesRecursively(commandDirs.subCommands, [".js"]);
+                const subCommandFiles = getFilesRecursively(commandDirs.subCommands, [".ts"]);
                 stats.subCommands += subCommandFiles.length;
             }
 
             if (fs.existsSync(commandDirs.subCommandGroups)) {
-                const subCommandGroupFiles = getFilesRecursively(commandDirs.subCommandGroups, [".js"]);
+                const subCommandGroupFiles = getFilesRecursively(commandDirs.subCommandGroups, [".ts"]);
                 stats.subCommandGroups += subCommandGroupFiles.length;
             }
         }
@@ -276,7 +276,7 @@ export class CommandHelper {
             subCommandGroups: 0
         };
 
-        const modulesFolder = path.join(process.cwd(), ".build", "src", "modules");
+        const modulesFolder = path.join(process.cwd(), "src", "modules");
         if (!fs.existsSync(modulesFolder)) {
             console.warn("Modules folder does not exist.".red);
             return;
@@ -303,7 +303,7 @@ export class CommandHelper {
 
             // Load main commands
             if (fs.existsSync(commandDirs.commands)) {
-                const commandFiles = getFilesRecursively(commandDirs.commands, [".js"]);
+                const commandFiles = getFilesRecursively(commandDirs.commands, [".ts"]);
 
                 for (const filePath of commandFiles) {
                     const relativePath = path.relative(commandDirs.commands, filePath);
@@ -325,7 +325,7 @@ export class CommandHelper {
 
             // Load userInstall commands
             if (fs.existsSync(commandDirs.userInstall)) {
-                const userCommandFiles = getFilesRecursively(commandDirs.userInstall, [".js"]);
+                const userCommandFiles = getFilesRecursively(commandDirs.userInstall, [".ts"]);
                 for (const filePath of userCommandFiles) {
                     try {
                         const module = await import(pathToFileURL(filePath).href);
@@ -341,7 +341,7 @@ export class CommandHelper {
 
             // Load context menu commands
             if (fs.existsSync(commandDirs.contextMenus)) {
-                const contextCommandFiles = getFilesRecursively(commandDirs.contextMenus, [".js"]);
+                const contextCommandFiles = getFilesRecursively(commandDirs.contextMenus, [".ts"]);
                 for (const filePath of contextCommandFiles) {
                     try {
                         const module = await import(pathToFileURL(filePath).href);
@@ -357,12 +357,12 @@ export class CommandHelper {
 
             // Count subCommands and subCommandGroups (für Stats)
             if (fs.existsSync(commandDirs.subCommands)) {
-                const subCommandFiles = getFilesRecursively(commandDirs.subCommands, [".js"]);
+                const subCommandFiles = getFilesRecursively(commandDirs.subCommands, [".ts"]);
                 stats.subCommands += subCommandFiles.length;
             }
 
             if (fs.existsSync(commandDirs.subCommandGroups)) {
-                const subCommandGroupFiles = getFilesRecursively(commandDirs.subCommandGroups, [".js"]);
+                const subCommandGroupFiles = getFilesRecursively(commandDirs.subCommandGroups, [".ts"]);
                 stats.subCommandGroups += subCommandGroupFiles.length;
             }
         }

@@ -2,11 +2,11 @@ import colors from "colors";
 import fs from "fs";
 import path from "path";
 import {pathToFileURL} from "url";
-import {getFilesRecursively} from "../../helper/fileHelper.js";
-import {ExtendedClient} from "../../types/ExtendedClient.js";
-import {LoggingAction} from "../../enums/loggingTypes.js";
-import {Logger} from "../../main/logger.js";
-import {Config} from "../../main/config.js";
+import {getFilesRecursively} from "../../helper/fileHelper";
+import {ExtendedClient} from "../../types/ExtendedClient";
+import {LoggingAction} from "../../enums/loggingTypes";
+import {Logger} from "../../main/logger";
+import {Config} from "../../main/config";
 
 colors.enable();
 
@@ -17,7 +17,7 @@ export async function loadSelectMenus(client: ExtendedClient): Promise<void> {
     try {
         client.selectmenus?.clear();
 
-        const modulesFolder = path.join(process.cwd(), ".build", "src", "modules");
+        const modulesFolder = path.join(process.cwd(), "src", "modules");
         if (!fs.existsSync(modulesFolder)) {
             console.warn("Modules folder does not exist.".red);
             return;
@@ -36,10 +36,10 @@ export async function loadSelectMenus(client: ExtendedClient): Promise<void> {
                 continue;
             }
 
-            const selectmenuFiles = getFilesRecursively(selectmenuFolder, [".js"]);
+            const selectmenuFiles = getFilesRecursively(selectmenuFolder, [".ts"]);
 
             for (const filePath of selectmenuFiles) {
-                const fileName = path.basename(filePath, ".js");
+                const fileName = path.basename(filePath, ".ts");
                 try {
 
                     const moduleUrl = pathToFileURL(filePath).href;

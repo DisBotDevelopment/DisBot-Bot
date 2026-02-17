@@ -16,7 +16,7 @@ export async function loadCommands(client: ExtendedClient) {
         client.subCommands?.clear?.();
         client.subCommandGroups?.clear?.();
 
-        const modulesFolder = path.join(process.cwd(), ".build", "src", "modules");
+        const modulesFolder = path.join(process.cwd(), "src", "modules");
         if (!fs.existsSync(modulesFolder)) {
             console.warn("Modules folder does not exist.".red);
             return;
@@ -52,7 +52,7 @@ export async function loadCommands(client: ExtendedClient) {
 
             // Commands
             if (fs.existsSync(commandDirs.commands)) {
-                const allCommandFiles = getFilesRecursively(commandDirs.commands, [".js"]);
+                const allCommandFiles = getFilesRecursively(commandDirs.commands, [".ts"]);
                 for (const filePath of allCommandFiles) {
                     const fileName = path.basename(filePath);
                     try {
@@ -81,7 +81,7 @@ export async function loadCommands(client: ExtendedClient) {
 
             // Context Menus
             if (fs.existsSync(commandDirs.contextMenus)) {
-                const contextMenuFiles = getFilesRecursively(commandDirs.contextMenus, [".js"]);
+                const contextMenuFiles = getFilesRecursively(commandDirs.contextMenus, [".ts"]);
                 for (const filePath of contextMenuFiles) {
                     const fileName = path.basename(filePath);
                     try {
@@ -105,7 +105,7 @@ export async function loadCommands(client: ExtendedClient) {
 
             // User Install Commands
             if (fs.existsSync(commandDirs.userInstall)) {
-                const userInstallFiles = getFilesRecursively(commandDirs.userInstall, [".js"]);
+                const userInstallFiles = getFilesRecursively(commandDirs.userInstall, [".ts"]);
                 for (const filePath of userInstallFiles) {
                     const fileName = path.basename(filePath);
                     try {
@@ -134,7 +134,7 @@ export async function loadCommands(client: ExtendedClient) {
 
             // User Install Subcommands
             if (fs.existsSync(commandDirs.userInstallSub)) {
-                const userInstallSubCommandFiles = getFilesRecursively(commandDirs.userInstallSub, [".js"]);
+                const userInstallSubCommandFiles = getFilesRecursively(commandDirs.userInstallSub, [".ts"]);
                 for (const filePath of userInstallSubCommandFiles) {
                     const fileName = path.basename(filePath);
                     try {
@@ -158,7 +158,7 @@ export async function loadCommands(client: ExtendedClient) {
 
             // Subcommands
             if (fs.existsSync(commandDirs.subCommands)) {
-                const subCommandFiles = getFilesRecursively(commandDirs.subCommands, [".js"]);
+                const subCommandFiles = getFilesRecursively(commandDirs.subCommands, [".ts"]);
                 for (const filePath of subCommandFiles) {
                     const fileName = path.basename(filePath);
                     try {
@@ -182,7 +182,7 @@ export async function loadCommands(client: ExtendedClient) {
 
             // Subcommand Groups
             if (fs.existsSync(commandDirs.subCommandGroups)) {
-                const subCommandGroupFiles = getFilesRecursively(commandDirs.subCommandGroups, [".js"]);
+                const subCommandGroupFiles = getFilesRecursively(commandDirs.subCommandGroups, [".ts"]);
                 for (const filePath of subCommandGroupFiles) {
                     const fileName = path.basename(filePath);
                     try {

@@ -14,7 +14,7 @@ export async function loadButtons(client: ExtendedClient): Promise<void> {
     try {
         client.buttons?.clear();
 
-        const modulesFolder = path.join(process.cwd(), ".build", "src", "modules");
+        const modulesFolder = path.join(process.cwd(), "src", "modules");
         if (!fs.existsSync(modulesFolder)) {
             console.warn("Modules folder does not exist.".red);
             return;
@@ -32,7 +32,7 @@ export async function loadButtons(client: ExtendedClient): Promise<void> {
                 continue;
             }
 
-            const buttonFiles = getFilesRecursively(buttonFolder, [".js"]);
+            const buttonFiles = getFilesRecursively(buttonFolder, [".ts"]);
 
             for (const filePath of buttonFiles) {
                 const fileName = path.basename(filePath, path.extname(filePath));

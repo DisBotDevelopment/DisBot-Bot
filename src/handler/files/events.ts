@@ -17,7 +17,7 @@ export async function loadEvents(client: ExtendedClient) {
   try {
     client.events?.clear();
 
-    const modulesFolder = path.join(process.cwd(), ".build", "src", "modules");
+    const modulesFolder = path.join(process.cwd(), "src", "modules");
     if (!fs.existsSync(modulesFolder)) {
       console.warn("Modules folder does not exist.".red);
       return;
@@ -36,7 +36,7 @@ export async function loadEvents(client: ExtendedClient) {
         continue;
       }
 
-      const eventFiles = getFilesRecursively(eventFolder, [".js"]);
+      const eventFiles = getFilesRecursively(eventFolder, [".ts"]);
 
       for (const filePath of eventFiles) {
         const fileName = path.basename(filePath, path.extname(filePath));
