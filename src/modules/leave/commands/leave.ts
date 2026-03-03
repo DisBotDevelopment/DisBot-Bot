@@ -30,7 +30,7 @@ export default {
 
         const toggle = await database.guildFeatureToggles.findFirst({
             where: {
-                GuildId: interaction.guild.id
+                GuildId: interaction.guild?.id
             }
         })
 
@@ -44,7 +44,7 @@ export default {
                                 [
                                     `## ${await convertToEmojiToPng("eyeclosed")} Leave`,
                                     ``,
-                                    `- **Toggled**: ${toggle.LeaveEnabled ? `${await convertToEmojiToPng("toggleon")} (On)` : `${await convertToEmojiToPng("toggleoff")} (Off)`}`,
+                                    `- **Toggled**: ${toggle?.LeaveEnabled ? `${await convertToEmojiToPng("toggleon")} (On)` : `${await convertToEmojiToPng("toggleoff")} (Off)`}`,
                                     ``,
                                     `- Use a Components V2 Message or an Embed.`,
                                     `- Generate a Custom Image with your Style for the Message`,
