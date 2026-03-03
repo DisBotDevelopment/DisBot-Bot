@@ -72,8 +72,8 @@ export default {
                                 .setStyle(ButtonStyle.Secondary),
                             new ButtonBuilder()
                                 .setCustomId("leave-toggle")
-                                .setLabel((toggle.LeaveEnabled ? "Disable" : "Enable") + " Module")
-                                .setEmoji(toggle.LeaveEnabled ? "<:toggleoff:1301864526848987196>" : "<:toggleon:1301864515838672908>")
+                                .setLabel((toggle?.LeaveEnabled ? "Disable" : "Enable") + " Module")
+                                .setEmoji(toggle?.LeaveEnabled ? "<:toggleoff:1301864526848987196>" : "<:toggleon:1301864515838672908>")
                                 .setStyle(ButtonStyle.Secondary)
                         )
                     )
