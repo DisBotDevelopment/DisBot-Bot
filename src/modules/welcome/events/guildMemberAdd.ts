@@ -4,7 +4,6 @@ import {
     EmbedBuilder,
     Events,
     GuildMember,
-    MessageCreateOptions,
     MessagePayload,
     TextChannel
 } from "discord.js";
@@ -37,12 +36,12 @@ export default {
             where: {GuildId: guild.id}
         });
         if (!data?.ChannelId) return;
+        if (!data.MessageTemplateId) return
 
-        const messageData = data.MessageTemplateId
-            ? await database.messageTemplates.findFirst({
-                where: {Name: data.MessageTemplateId}
-            })
-            : null;
+        const messageData = await database.messageTemplates.findFirst({
+            where: {Name: data.MessageTemplateId}
+        })
+
 
         const channel = await guild.channels.fetch(data.ChannelId) as TextChannel;
         if (!channel) return;
@@ -104,12 +103,12 @@ export default {
                 image: cdnUrl ?? "https://cdn.xyzify.ing/u/ixBzIX.png",
             },
         }
-
+        
         const message = await MessageBuilder(
-            messageData,
+            messageData!!,
             withImagePlaceholder
         )
-        
+
         await channel.send(message.messageData)
     }
 };
