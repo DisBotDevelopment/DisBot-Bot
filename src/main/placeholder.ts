@@ -23,7 +23,7 @@ export const IMAGE_PLACEHOLDER = {
 };
 
 export const TIMESTAMP_PLACEHOLDER = {
-    "{current.date}": "9250-08-03T22:00:00.000Z",
+    "{current.date}": "9250-08-03T22:00:00+00:00",
 }
 
 // ONLY CODE USE
