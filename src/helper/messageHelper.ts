@@ -30,7 +30,7 @@ export async function showComponentFollowModal(interaction: ModalSubmitInteracti
                     )
             ]
         })
-    } catch (e) {
+    } catch (e: any) {
         await errorHandler(
             interaction,
             client,
@@ -61,12 +61,17 @@ export async function updateComponentsWithPositions(message: Message, json: any,
                 newComponents[Number(positions[0])].components[Number(positions[1])].components[Number(positions[2])] = json
             }
         }
-    } else if (positions == null){
+    } else if (positions == null) {
         newComponents = json
     }
 
     const updatedComponents = await Promise.all(
-        newComponents?.map(async (c) => {
+        newComponents?.map(async (c: {
+            type: number;
+            components: any[];
+            file: { url: string | URL | Request; };
+            name: string;
+        }) => {
 
             if (c.type == 17) {
                 c.components = await Promise.all(c.components.map(async (c: any) => {
@@ -130,8 +135,8 @@ export async function MessageBuilder(data: {
     let messageData = {}
 
     if (data.IsComponentsV2Message) {
-
-        const string = replacePlaceholders(data.ComponentJSON, placeholderType);
+        if (!data.ComponentJSON) return
+        const string = replacePlaceholders(data.ComponentJSON!!, placeholderType);
         const parsed = await parseComponentData(string)
 
         messageData = {
@@ -162,8 +167,8 @@ export async function MessageBuilder(data: {
 
 export async function parseComponentData(json: any) {
 
-    const fileData = []
-    const data = await Promise.all(JSON.parse(json).map(async (c) => {
+    const fileData: any[] = []
+    const data = await Promise.all(JSON.parse(json).map(async (c: any) => {
         if (c.type == 17) {
             c.components = await Promise.all(c.components.map(async (c: any) => {
                 if (c.type == 13) {
