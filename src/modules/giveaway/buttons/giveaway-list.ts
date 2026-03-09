@@ -10,8 +10,9 @@ import {
 import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
-import {PaginationData} from "../../../types/Pagination.js";
+import type {PaginationData} from "../../../types/Pagination.js";
 import {PaginationBuilder} from "../../../helper/paginationHelper.js";
+import {randomUUID} from "crypto";
 
 export default {
     id: "giveaway-list",
@@ -77,7 +78,7 @@ export default {
             pageSize: pageSize,
             client: client,
             currentIndex: currentIndex,
-            latestUUID: uuid
+            latestUUID: uuid ?? randomUUID()
         }
 
         await PaginationBuilder(

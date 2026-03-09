@@ -78,12 +78,12 @@ export default {
                 requirements: giveaway.Requirements[0] ? `<@&${giveaway.Requirements[0]}>` : "No requirements",
                 hostedBy: `<@${giveaway.HostedBy}>`,
                 duration: `<t:${timeStamp}:R>`,
-                entrys: updatedGiveaway.Entrys ? updatedGiveaway.Entrys.length.toString() : "N/A"
+                entrys: updatedGiveaway?.Entrys ? updatedGiveaway?.Entrys.length.toString() : "N/A"
             }
         }
-        const gMessage = replacePlaceholders(giveaway.Content, placeholderType)
+        const gMessage = replacePlaceholders(giveaway?.Content ?? " ", placeholderType)
 
-        await message.edit({
+        await message?.edit({
             components: [
                 new ContainerBuilder().addTextDisplayComponents(
                     new TextDisplayBuilder()
