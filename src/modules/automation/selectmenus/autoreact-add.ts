@@ -1,7 +1,6 @@
 import "dotenv/config";
 import {
     ActionRowBuilder,
-    MessageFlags,
     ModalBuilder,
     StringSelectMenuInteraction,
     TextInputBuilder,

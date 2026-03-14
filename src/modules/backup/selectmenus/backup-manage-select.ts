@@ -3,12 +3,11 @@ import {
     ActionRowBuilder,
     ButtonBuilder,
     ContainerBuilder,
-    EmbedBuilder,
     MessageFlags,
     StringSelectMenuInteraction, TextDisplayBuilder
 } from "discord.js";
 import { ExtendedClient } from "../../../types/ExtendedClient.js";
-import { BackupData } from "../../../systems/backup/types/BackupData.js";
+import type {BackupData} from "../../../systems/backup/types/BackupData.js";
 import { convertToEmojiToPng } from "../../../helper/emojis.js";
 import { database } from "../../../main/database.js";
 
@@ -35,7 +34,7 @@ export default {
                 });
             }
 
-            const jsonBackupData = JSON.parse(data.BackupJSON as string) as BackupData
+            const jsonBackupData = JSON.parse(data?.BackupJSON as string) as BackupData
 
             await interaction.update({
                 flags: MessageFlags.IsComponentsV2,
@@ -46,8 +45,8 @@ export default {
                                 `## ${await convertToEmojiToPng("package")} Backup Details`,
                                 ``,
                                 `> **Name:** ${jsonBackupData.name ?? "N/A"}`,
-                                `> **UUID:** ${data.UUID ?? "N/A"}`,
-                                `> **Created At:** ${data.CreatedAt?.toLocaleString() ?? "N/A"}`,
+                                `> **UUID:** ${data?.UUID ?? "N/A"}`,
+                                `> **Created At:** ${data?.CreatedAt?.toLocaleString() ?? "N/A"}`,
                                 `### Backup Contents`,
                                 `> ${await convertToEmojiToPng("user")} **Members:** ${jsonBackupData.members?.length ?? "N/A"}`,
                                 `> ${await convertToEmojiToPng("role")} **Roles:** ${jsonBackupData.roles?.length ?? "N/A"}`,

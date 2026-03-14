@@ -1,5 +1,4 @@
 import axios from "axios";
-import {EmbedBuilder} from "discord.js";
 import {ExtendedClient} from "../types/ExtendedClient.js";
 import {database} from "../main/database.js";
 import {Config} from "../main/config.js";
@@ -102,9 +101,10 @@ export async function spotify(client: ExtendedClient) {
         }
 
         const message = await MessageBuilder(
-            messageData,
+            messageData!!,
             placeholder
         )
+        if (!message) return
 
         await channel.send(message.messageData)
         await database.guildSpotifyNotifications.update({

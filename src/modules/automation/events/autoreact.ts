@@ -36,7 +36,7 @@ export default {
 
         const autodata = await database.guildAutoReacts.findMany({
             where: {
-                GuildId: message.guildId
+                GuildId: message.guildId ?? ""
             }
         })
         for (const eventData of autodata) {

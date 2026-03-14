@@ -1,7 +1,6 @@
 import {Client, Collection, type Snowflake} from "discord.js";
-import {TrackedInviteData, VanityInviteData} from "../systems/inviteTracker/inviteTrackerTypes.js";
-import {Logger} from "../main/logger.js";
-import {IDisBotCommand, IDisBotEvent, IDisBotInteractive} from "./Interaction.js";
+import type {TrackedInviteData, VanityInviteData} from "../systems/inviteTracker/inviteTrackerTypes.js";
+import type {IDisBotCommand, IDisBotEvent, IDisBotInteractive} from "./Interaction.js";
 
 export class ExtendedClient extends Client {
 
@@ -9,10 +8,10 @@ export class ExtendedClient extends Client {
     public commands?: Collection<string, IDisBotCommand> = new Collection();
     public subCommands?: Collection<string, IDisBotCommand> = new Collection();
     public subCommandGroups?: Collection<string, IDisBotCommand> = new Collection();
-    
+
     public guildCommands?: Collection<string, IDisBotCommand> = new Collection();
     public guildSubCommands?: Collection<string, IDisBotCommand> = new Collection();
-    
+
     public buttons?: Collection<string, IDisBotInteractive> = new Collection();
     public selectmenus?: Collection<string, IDisBotInteractive> = new Collection();
     public modals?: Collection<string, IDisBotInteractive> = new Collection();

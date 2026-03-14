@@ -1,7 +1,7 @@
 import {LoggingAction} from "../enums/loggingTypes.js";
 import {Logger} from "./logger.js";
 import colors from "colors"
-import {initGuildsToDatabase, migrateDataBase, setupDisBotConfig} from "../helper/databaseHelper.js";
+import {setupDisBotConfig} from "../helper/databaseHelper.js";
 import {Config} from "./config.js";
 import * as process from "node:process";
 import {ExtendedClient} from "../types/ExtendedClient.js";

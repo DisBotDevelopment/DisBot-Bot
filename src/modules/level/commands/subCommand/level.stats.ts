@@ -82,7 +82,7 @@ export default {
                 return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} No User Data found...`, interaction, true, "reply")
             }
 
-            let message = await database.messageTemplates.findFirst({
+            const message = await database.messageTemplates.findFirst({
                 where: {
                     Name: data.LevelSettings?.LevelUserInfoMessageTemplate ?? ""
                 }

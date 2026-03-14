@@ -1,5 +1,3 @@
-import {BotType} from "enums/botType.js";
-
 export type DisBotConfigData = {
     Bot: {
         DiscordBotToken: string;

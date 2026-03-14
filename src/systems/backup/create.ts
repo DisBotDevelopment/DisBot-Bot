@@ -8,21 +8,21 @@ import type {
     ThreadChannel,
     VoiceChannel
 } from 'discord.js';
-import { ChannelType } from 'discord.js';
+import {ChannelType} from 'discord.js';
 import nodeFetch from 'node-fetch';
 import pkg from "short-uuid";
-import { BanData } from "./types/BanData.js";
-import { CategoryData } from "./types/CategoryData.js";
-import { ChannelsData } from "./types/ChannelsData.js";
-import { CreateOptions } from "./types/CreateOptions.js";
-import { EmojiData } from "./types/EmojiData.js";
-import { MemberData } from "./types/MemberData.js";
-import { RoleData } from "./types/RoleData.js";
-import { TextChannelData } from "./types/TextChannelData.js";
-import { VoiceChannelData } from "./types/VoiceChannelData.js";
-import { fetchChannelPermissions, fetchTextChannelData, fetchVoiceChannelData } from "./util.js";
+import type {BanData} from "./types/BanData.js";
+import type {CategoryData} from "./types/CategoryData.js";
+import type {ChannelsData} from "./types/ChannelsData.js";
+import type {CreateOptions} from "./types/CreateOptions.js";
+import type {EmojiData} from "./types/EmojiData.js";
+import type {MemberData} from "./types/MemberData.js";
+import type {RoleData} from "./types/RoleData.js";
+import type {TextChannelData} from "./types/TextChannelData.js";
+import type {VoiceChannelData} from "./types/VoiceChannelData.js";
+import {fetchChannelPermissions, fetchTextChannelData, fetchVoiceChannelData} from "./util.js";
 
-const { uuid } = pkg;
+const {uuid} = pkg;
 
 /**
  * Returns an array with the banned members of the guild

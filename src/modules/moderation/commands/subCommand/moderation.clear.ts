@@ -28,7 +28,7 @@ export default {
     const { guild, options, channel } = interaction;
     const getAmount = options.getInteger("amount");
     try {
-      let { size } = await (channel as TextChannel).bulkDelete(
+      const { size } = await (channel as TextChannel).bulkDelete(
         (getAmount as number) + 1
       );
 

@@ -1,7 +1,7 @@
 {
   "name": "disbot",
   "main": "./src/main/startup.ts",
-  "version": "v.1.6.5.3r2",
+  "version": "v.1.6.5.8",
   "scripts": {
     "start": "bun run prisma:migrate && bun run prisma:generate && bun run serve",
     "serve": "bun run src/main/startup.ts",
@@ -15,10 +15,10 @@
   "description": "DisBot",
   "type": "module",
   "dependencies": {
-    "@napi-rs/canvas": "^0.1.93",
+    "@napi-rs/canvas": "^0.1.96",
     "@octokit/core": "^7.0.6",
-    "@prisma/adapter-pg": "^7.4.0",
-    "@prisma/client": "^7.4.0",
+    "@prisma/adapter-pg": "^7.5.0",
+    "@prisma/client": "^7.5.0",
     "@top-gg/sdk": "^3.1.6",
     "@types/body-parser": "^1.19.6",
     "axios": "1.13.5",
@@ -29,7 +29,7 @@
     "copyfiles": "^2.4.1",
     "cors": "^2.8.6",
     "discord-html-transcripts": "3.2.0",
-    "discord-welcome-card": "^4.9.3",
+    "discord-welcome-card": "^4.9.4",
     "discord.js": "^14.25.1",
     "dotenv": "^17.3.1",
     "ejs": "^3.1.10",
@@ -42,34 +42,39 @@
     "node-fetch": "^3.3.2",
     "node-gyp": "^12.2.0",
     "node-superfetch": "^0.3.5",
-    "nodemon": "^3.1.11",
-    "pg": "^8.18.0",
-    "prisma": "^7.4.0",
+    "nodemon": "^3.1.14",
+    "pg": "^8.20.0",
+    "prisma": "^7.5.0",
     "rss-parser": "^3.13.0",
     "short-uuid": "^5.2.0",
     "topgg-autoposter": "^2.0.2",
     "typedoc": "^0.28.17",
-    "undici": "^7.22.0",
+    "undici": "^7.24.2",
     "uuid": "^13.0.0",
     "winston": "^3.19.0",
     "yaml": "^2.8.2"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/bcrypt": "^6.0.0",
-    "@types/bun": "^1.3.9",
+    "@types/bun": "^1.3.10",
     "@types/eslint-config-prettier": "^6.11.3",
     "@types/express": "^5.0.6",
     "@types/ms": "^2.1.0",
-    "@types/multer": "^2.0.0",
-    "@types/node": "^25.2.3",
+    "@types/multer": "^2.1.0",
+    "@types/node": "^25.5.0",
     "@types/node-fetch": "^2.6.13",
-    "@types/pg": "^8.16.0",
-    "esbuild": "^0.27.3",
-    "postcss": "^8.5.6",
-    "prettier": "^3.8.1"
+    "@types/pg": "^8.18.0",
+    "esbuild": "^0.27.4",
+    "eslint": "^10.0.3",
+    "globals": "^17.4.0",
+    "jiti": "^2.6.1",
+    "postcss": "^8.5.8",
+    "prettier": "^3.8.1",
+    "typescript-eslint": "^8.57.0"
   },
   "private": true,
   "peerDependencies": {
-    "typescript": "^5"
+    "typescript": "^5.9.3"
   }
 }

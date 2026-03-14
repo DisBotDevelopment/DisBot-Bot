@@ -28,7 +28,7 @@ export default {
         const winner = interaction.fields.getTextInputValue("giveaway-winner") || "No winner";
         const requirements = interaction.fields.getTextInputValue("giveaway-requirements") || "No requirements";
 
-        let role = interaction.guild?.roles.cache.find(r => r.name === requirements);
+        const role = interaction.guild?.roles.cache.find(r => r.name === requirements);
 
 
         const uuids = randomUUID()

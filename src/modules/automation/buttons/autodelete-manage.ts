@@ -1,8 +1,9 @@
 import {ButtonInteraction, MessageFlags, StringSelectMenuBuilder, TextDisplayBuilder} from "discord.js";
 import {PaginationBuilder} from "../../../helper/paginationHelper.js";
 import {ExtendedClient} from "../../../types/ExtendedClient.js";
-import {PaginationData} from "../../../types/Pagination.js";
+import type {PaginationData} from "../../../types/Pagination.js";
 import {database} from "../../../main/database.js";
+import {randomUUID} from "crypto";
 
 export default {
     id: "autodelete-manage",
@@ -14,11 +15,11 @@ export default {
      */
     async execute(interaction: ButtonInteraction, client: ExtendedClient) {
         const [action, uuid, currentIndexStr] = interaction.customId.split(":");
-        const currentIndex = parseInt(currentIndexStr) || 0;
+        const currentIndex = parseInt(currentIndexStr ?? "0") || 0;
         const pageSize = 5;
         const data = await database.guildAutoDeletes.findMany({
             where: {
-                GuildId: interaction.guildId
+                GuildId: interaction.guildId ?? ""
             }
         })
 
@@ -54,7 +55,7 @@ export default {
             pageSize: pageSize,
             client: client,
             currentIndex: currentIndex,
-            latestUUID: uuid
+            latestUUID: uuid ?? randomUUID()
         }
 
         await PaginationBuilder(

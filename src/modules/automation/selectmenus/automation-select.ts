@@ -6,7 +6,6 @@ import {
     ChannelSelectMenuBuilder,
     ChannelType,
     ContainerBuilder,
-    EmbedBuilder,
     MessageFlags,
     RoleSelectMenuBuilder,
     StringSelectMenuInteraction,
@@ -29,7 +28,7 @@ export default {
 
             const toggleData = await database.guildFeatureToggles.findFirst({
                 where: {
-                    GuildId: interaction.guild.id
+                    GuildId: interaction.guild?.id ?? ""
                 }
             });
 
@@ -165,8 +164,8 @@ export default {
                         }
                     })
 
-                    let channels = autoreactData.map((channel) => ` <#${channel.ChannelId}> `).join(", ")
-                    let emojis = autoreactData.map((emoji) => ` ${emoji.Emoji} `).join(", ")
+                    const channels = autoreactData.map((channel) => ` <#${channel.ChannelId}> `).join(", ")
+                    const emojis = autoreactData.map((emoji) => ` ${emoji.Emoji} `).join(", ")
 
                     await interaction.update({
                         flags: MessageFlags.IsComponentsV2,

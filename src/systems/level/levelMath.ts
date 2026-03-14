@@ -5,13 +5,13 @@ import {
     ButtonBuilder, ButtonStyle,
     Guild,
     GuildMember,
-    GuildTextBasedChannel,
+    type GuildTextBasedChannel,
     Message, MessageFlags
 } from "discord.js";
 import {replacePlaceholders} from "../../main/placeholder.js";
 import {MessageBuilder} from "../../helper/messageHelper.js";
 import {ExtendedClient} from "../../types/ExtendedClient.js";
-import ms, {StringValue} from "ms";
+import ms, {type StringValue} from "ms";
 import * as mathjs from "mathjs";
 
 export function calcXP(minXP: number, maxXP: number) {
@@ -40,8 +40,9 @@ export async function levelUpHelper(member: GuildMember, guild: Guild, channel: 
             GuildId: guild.id
         }
     })
+    if (!userData) return
 
-    if (parseInt(userData.RequiredXp) > parseInt(userData.XP)) return
+    if (parseInt(userData.RequiredXp ?? "0") > parseInt(userData.XP ?? "0")) return
     {
     }
     // {level} {xp}
@@ -49,7 +50,7 @@ export async function levelUpHelper(member: GuildMember, guild: Guild, channel: 
         level: userData?.Level ?? 0,
         xp: userData?.RequiredXp ?? 0
     }
-    const formular = replacePlaceholders(data.RequiredXPFormular, xpFormular)
+    const formular = replacePlaceholders(data.RequiredXPFormular ?? "", xpFormular)
     const reqXPForLevel = parseInt(mathjs.evaluate(formular))
     if (isNaN(reqXPForLevel)) return
     await database.levels.update({
@@ -73,11 +74,11 @@ export async function levelUpHelper(member: GuildMember, guild: Guild, channel: 
 
     // Level Roles...
     for (const roleData of data.LevelRoles) {
-        const level = userData.Level
+        const level = userData!.Level
         if (level == roleData.Level) {
             const role = await guild.roles.fetch(roleData.RoleId)
-            await member.roles.add(role)
-        } else if ((level - 1) == roleData.Level) {
+            await member.roles.add(role ?? "")
+        } else if ((level! - 1) == roleData.Level) {
             if (roleData.Types.includes("not")) {
 
             } else if (roleData.Types.includes("role")) {
@@ -93,6 +94,7 @@ export async function levelUpHelper(member: GuildMember, guild: Guild, channel: 
     }
 
     const levelUpMessageType = data.LevelUpMessageType
+    // @ts-ignore
     const levelUpPlaceholder = {
         user: {
             username: member.user.username,
@@ -116,28 +118,32 @@ export async function levelUpHelper(member: GuildMember, guild: Guild, channel: 
         }
     })
 
-    const messageBuilder = await MessageBuilder(streakDayTemplate, levelUpPlaceholder)
-    switch (levelUpMessageType) {
-        case "channel": {
-            await (channel as GuildTextBasedChannel).send(messageBuilder.messageData)
-        }
-            break
-        case "custom": {
-            const channelId = data.LevelUpChannelId
-            if (!channelId) return
-            const channel = await guild.channels.fetch(channelId) as GuildTextBasedChannel
-            await channel.send(messageBuilder.messageData)
-        }
-            break
-        case "user": {
-            try {
-                await member.createDM(true)
-                await member.user.send(messageBuilder.messageData)
-            } catch (e) {
 
+    if (streakDayTemplate) {
+        const messageBuilder = await MessageBuilder(streakDayTemplate!, levelUpPlaceholder)
+        if (!messageBuilder) return
+        switch (levelUpMessageType) {
+            case "channel": {
+                await (channel as GuildTextBasedChannel).send(messageBuilder.messageData)
             }
+                break
+            case "custom": {
+                const channelId = data.LevelUpChannelId
+                if (!channelId) return
+                const channel = await guild.channels.fetch(channelId) as GuildTextBasedChannel
+                await channel.send(messageBuilder.messageData)
+            }
+                break
+            case "user": {
+                try {
+                    await member.createDM(true)
+                    await member.user.send(messageBuilder.messageData)
+                } catch (e) {
+
+                }
+            }
+                break
         }
-            break
     }
 
     await manageXPStreakDays(
@@ -170,6 +176,7 @@ export async function manageXPStreakDays(guild: Guild, member: GuildMember, chan
             GuildId: guild.id
         }
     })
+    if (!userData) return
 
 
     // level, message, voice 
@@ -214,7 +221,7 @@ export async function manageXPStreakDays(guild: Guild, member: GuildMember, chan
             CurrentStreakDay: (userData.CurrentStreakDay ?? 0) + 1,
             LastXPStreakUpdate: new Date().toISOString(),
             Level: userData.Level + (streakDay.BonusLevels ?? 0),
-            XP: `${parseInt(userData.XP) + (parseInt(String(streakDay.BonusXP ?? 0)))}`
+            XP: `${parseInt(userData.XP ?? "0") + (parseInt(String(streakDay.BonusXP ?? 0)))}`
         }
     })
     userData = await database.levels.findFirst({
@@ -227,8 +234,8 @@ export async function manageXPStreakDays(guild: Guild, member: GuildMember, chan
         const nickPlaceholder = {
             username: member.user.username,
             id: member.id,
-            xp: userData.XP,
-            level: userData.Level,
+            xp: userData?.XP ?? "",
+            level: userData?.Level ?? "",
             displayName: member.displayName,
             globalName: member.user.globalName,
         }
@@ -252,7 +259,7 @@ export async function manageXPStreakDays(guild: Guild, member: GuildMember, chan
     // Streak Message 
     const streakPlaceholder = {
         username: member.user.username,
-        xp: userData.XP,
+        xp: userData?.XP ?? "",
         user: {
             username: member.user.username,
             id: member.id,
@@ -261,10 +268,10 @@ export async function manageXPStreakDays(guild: Guild, member: GuildMember, chan
             globalName: member.user.globalName
         },
         level: {
-            xp: userData.XP,
-            level: userData.Level,
-            streakDay: userData.CurrentStreakDay ?? 0,
-            oldStreakDay: (userData.CurrentStreakDay ?? 0) - 1,
+            xp: userData?.XP ?? "",
+            level: userData?.Level ?? "",
+            streakDay: userData?.CurrentStreakDay ?? 0,
+            oldStreakDay: (userData?.CurrentStreakDay ?? 0) - 1,
             bonusXP: streakDay.BonusXP ?? 0,
             bonusLevel: streakDay.BonusLevels ?? 0,
             streakMultiplier: streakDay.Multiplier ?? "N/A",
@@ -276,7 +283,9 @@ export async function manageXPStreakDays(guild: Guild, member: GuildMember, chan
             Name: streakDay.MessageTemplateId
         }
     })
+    if (!streakDayTemplate) return
     const messageBuilder = await MessageBuilder(streakDayTemplate, streakPlaceholder)
+    if (!messageBuilder) return
     // user channel custom
     switch (data.XPStreaksMessageType) {
         case "channel": {
@@ -319,6 +328,7 @@ export async function scheduleLevelXPDrops(client: ExtendedClient) {
 
 
             for (const drop of settings.XPDrops) {
+                if (!drop) continue
                 if (!drop.ExpireTime) continue
 
                 try {
@@ -330,7 +340,7 @@ export async function scheduleLevelXPDrops(client: ExtendedClient) {
                         for (const messageData of drop.MessageIdsToDelete) {
                             const channelId = messageData.split("-")[0]
                             const messageId = messageData.split("-")[1];
-                            await (await ((await guild.channels.fetch(channelId)) as GuildTextBasedChannel).messages.fetch(messageId)).delete()
+                            await (await ((await guild.channels.fetch(channelId ?? "0")) as GuildTextBasedChannel).messages.fetch(messageId)).delete()
                         }
                         await database.xPDrops.update({
                             where: {
@@ -410,7 +420,7 @@ export async function scheduleLevelXPDrops(client: ExtendedClient) {
                     const channel = await guild.channels.fetch(drop.ChannelIds[randNumberForChannel]) as GuildTextBasedChannel
                     if (!channel) continue
 
-                    const msg1 = await channel.send(messageBuilder.messageData)
+                    const msg1 = await channel.send(messageBuilder!.messageData)
                     try {
                         const msg2 = await channel.send({
                             flags: MessageFlags.IsComponentsV2,

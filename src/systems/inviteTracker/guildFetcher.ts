@@ -1,4 +1,4 @@
-import {TrackedInviteData} from "./inviteTrackerTypes.js";
+import type {TrackedInviteData} from "./inviteTrackerTypes.js";
 import {ExtendedClient} from "../../types/ExtendedClient.js";
 import {Collection, type Guild, GuildFeature, type Invite, PermissionFlagsBits} from "discord.js";
 

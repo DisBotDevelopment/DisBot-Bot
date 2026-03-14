@@ -1,23 +1,20 @@
 import {database} from "../main/database.js";
 import {
     ActionRowBuilder,
-    AnySelectMenuInteraction, AttachmentBuilder,
-    BitField, ButtonBuilder,
+    type AnySelectMenuInteraction, AttachmentBuilder, ButtonBuilder,
     ButtonInteraction, ButtonStyle,
     ChannelType,
-    ChatInputCommandInteraction, Client, ComponentType, ContainerBuilder, Embed,
-    EmbedBuilder, FileBuilder,
+    ChatInputCommandInteraction, ContainerBuilder, FileBuilder,
     Guild,
-    GuildMember, GuildTextBasedChannel, Interaction,
-    Message, MessageCreateOptions,
+    GuildMember, type GuildTextBasedChannel,
+    Message,
     MessageFlags,
     ModalBuilder,
     ModalSubmitInteraction,
     PermissionsBitField,
-    PermissionsString,
-    PrivateThreadChannel, Role, SectionBuilder, StringSelectMenuBuilder,
-    StringSelectMenuInteraction, TextBasedChannel,
-    TextChannel, TextDisplayBuilder, TextDisplayComponent,
+    type PrivateThreadChannel, SectionBuilder, StringSelectMenuBuilder,
+    StringSelectMenuInteraction,
+    TextChannel, TextDisplayBuilder,
     TextInputBuilder, TextInputStyle,
     ThreadChannel,
     User
@@ -32,6 +29,7 @@ import {replacePlaceholders} from "../main/placeholder.js";
 import {Logger} from "../main/logger.js";
 import {MessageBuilder} from "./messageHelper.js";
 import {sendDefaultMessage} from "./utilityHelper.js";
+import {Config} from "../main/config.ts";
 
 export async function ticketHelper(
     ticketSetupId: string,
@@ -42,24 +40,27 @@ export async function ticketHelper(
     messageEvent?: Message,
 ) {
     try {
-        let message: Message
-        let guild: Guild;
-        let user: GuildMember
-        if (ticketType == "event") {
-            guild = messageEvent.guild;
-            user = messageEvent.member;
-        } else if (ticketType == "interaction") {
+        let message: Message | null = null
+        let guild: Guild | null = null;
+        let user: GuildMember | null = null
 
-            await interaction.deferReply({
+        if (ticketType == "event") {
+            guild = messageEvent?.guild ?? null;
+            user = messageEvent?.member ?? null;
+        } else if (ticketType == "interaction") {
+            await interaction?.deferReply({
                 flags: MessageFlags.Ephemeral
             })
 
             if (interaction instanceof ModalSubmitInteraction || interaction instanceof ButtonInteraction || interaction instanceof StringSelectMenuInteraction) {
                 message = interaction.message
             }
-            guild = interaction.guild;
-            user = interaction.member as GuildMember;
+            guild = interaction?.guild ?? null;
+            user = interaction?.member as GuildMember ?? null;
         }
+
+
+        if (message == null && guild == null && user == null) return
 
         const data = await database.ticketSetups.findFirst({
             include: {
@@ -71,11 +72,12 @@ export async function ticketHelper(
                 CustomId: ticketSetupId
             }
         })
+        if (!data) return
 
         // Validate Ticket
-        if (data?.TicketPermissions?.length <= 0) {
+        if ((data?.TicketPermissions?.length ?? 0) <= 0) {
             if (ticketType == "event") {
-                (messageEvent.channel as TextChannel).send({
+                (messageEvent?.channel as TextChannel).send({
                     content: `-# ${await convertToEmojiToPng("ticket")} I can't create a Ticket without Moderators `
                 }).then(async (m) => {
                     setTimeout(async () => {
@@ -84,7 +86,7 @@ export async function ticketHelper(
                 })
                 return;
             } else if (ticketType == "interaction") {
-                await interaction.editReply({
+                await interaction?.editReply({
                     content: `-# ${await convertToEmojiToPng("ticket")} I can't create a Ticket without Moderators `
                 })
                 return;
@@ -92,12 +94,13 @@ export async function ticketHelper(
         }
 
         // Check Rate Limit
-        if (data.TicketRateLimit) {
-            const channel = await guild.channels.fetch(data.TicketStatusChannelId) as GuildTextBasedChannel
-            const message = await channel.messages.fetch(data.TicketStatusMessageId)
+        if (data?.TicketRateLimit) {
+
+            const channel = await guild?.channels.fetch(data?.TicketStatusChannelId ?? "") as GuildTextBasedChannel
+            const message = await channel.messages.fetch(data.TicketStatusMessageId ?? "")
             const allTicketsFromComponentCount = (await database.tickets.findMany({
                 where: {
-                    TicketSetupId: data.CustomId,
+                    TicketSetupId: data?.CustomId,
                     IsClosed: false
                 }
             })).length
@@ -111,13 +114,11 @@ export async function ticketHelper(
 
             const statusMessageTemplate = await database.messageTemplates.findFirst({
                 where: {
-                    Name: data.TicketStatusMessageTemplateId
+                    Name: data.TicketStatusMessageTemplateId ?? ""
                 }
             })
-            if (!statusMessageTemplate) {
-            }
-            if (message.author.id != client.user.id) {
-            }
+            if (!statusMessageTemplate) return
+            if (message.author.id != Config.Bot.DiscordApplicationId) return
 
             const ticketPlaceholderType = {
                 ticket: {
@@ -131,15 +132,15 @@ export async function ticketHelper(
             }
 
             const messageBuilder = await MessageBuilder(
-                statusMessageTemplate,
+                statusMessageTemplate!,
                 ticketPlaceholderType
             )
 
-            await message.edit(messageBuilder.messageData)
+            await message.edit(messageBuilder?.messageData!)
 
             if (allTicketsFromComponentCount >= redState) {
                 if (ticketType == "event") {
-                    (messageEvent.channel as TextChannel).send({
+                    (messageEvent?.channel as TextChannel).send({
                         content: `-# ${await convertToEmojiToPng("sirenred")} At the moment our support team is busy!`
                     }).then(async (m) => {
                         setTimeout(async () => {
@@ -148,7 +149,7 @@ export async function ticketHelper(
                     })
                     return;
                 } else if (ticketType == "interaction") {
-                    await interaction.editReply({
+                    await interaction?.editReply({
                         content: `-# ${await convertToEmojiToPng("sirenred")} At the moment our support team is busy! Please wait for a ${await convertToEmojiToPng("sirengreen")}, ${await convertToEmojiToPng("sirenyellow")} status!`
                     })
                     return;
@@ -160,18 +161,18 @@ export async function ticketHelper(
         if (data.EnableTicketsOnlyFromTime) {
 
             const [startStr, endStr] = data.EnableTicketsOnlyFromTime.split(',');
-            const [startHour, startMinute] = startStr.split(':').map(Number);
+            const [startHour, startMinute] = startStr?.split(':').map(Number) ?? [0, 0];
 
-            const [endHour, endMinute] = endStr.split(':').map(Number);
+            const [endHour, endMinute] = endStr?.split(':').map(Number) ?? [0, 0];
 
             const now = new Date();
             const currentMinutes = now.getHours() * 60 + now.getMinutes();
-            const startMinutes = startHour * 60 + startMinute;
-            const endMinutes = endHour * 60 + endMinute;
+            const startMinutes = (startHour ?? 0) * 60 + (startMinute ?? 0);
+            const endMinutes = (endHour ?? 0) * 60 + (endMinute ?? 0);
 
             if (!(currentMinutes > startMinutes && currentMinutes <= endMinutes)) {
                 if (ticketType == "event") {
-                    (messageEvent.channel as TextChannel).send({
+                    (messageEvent?.channel as TextChannel).send({
                         content: `-# ${await convertToEmojiToPng("ticket")} You only can open Tickets from ${startStr}-${endStr}!`
                     }).then(async (m) => {
                         setTimeout(async () => {
@@ -180,7 +181,7 @@ export async function ticketHelper(
                     })
                     return;
                 } else if (ticketType == "interaction") {
-                    await interaction.editReply({
+                    await interaction?.editReply({
                         content: `-# ${await convertToEmojiToPng("ticket")} You only can open Tickets from ${startStr}-${endStr}!`
                     })
                     return;
@@ -191,13 +192,13 @@ export async function ticketHelper(
         // Blacklist
         if (data.TicketBlacklistRoles.length > 0) {
             for (const roleId of data.TicketBlacklistRoles) {
-                const role = guild.roles.cache.get(roleId)
+                const role = guild?.roles.cache.get(roleId) ?? null
                 if (!role) {
                     return;
                 }
-                if (user.roles.cache.has(roleId)) {
+                if (user?.roles.cache.has(roleId)) {
                     if (ticketType == "event") {
-                        (messageEvent.channel as TextChannel).send({
+                        (messageEvent?.channel as TextChannel).send({
                             content: `-# ${await convertToEmojiToPng("ticket")} You are blacklisted for this Ticket!`
                         }).then(async (m) => {
                             setTimeout(async () => {
@@ -206,7 +207,7 @@ export async function ticketHelper(
                         })
                         return;
                     } else if (ticketType == "interaction") {
-                        await interaction.editReply({
+                        await interaction?.editReply({
                             content: `-# ${await convertToEmojiToPng("ticket")} You are blacklisted for this Ticket!`
                         })
                         return;
@@ -218,7 +219,7 @@ export async function ticketHelper(
         // Cooldown
         if (data.TicketCreationCooldownPerUser) {
             const cooldownTime = 3000
-            const cooldownKey = `${user.id}:${data.CustomId}`;
+            const cooldownKey = `${user?.id}:${data.CustomId}`;
             const now = Date.now();
 
             if (client.cooldowns?.has(cooldownKey)) {
@@ -236,10 +237,10 @@ export async function ticketHelper(
 
         // RequiredRoles
         if (data.RequiredRoles.length > 0) {
-            if (!user.roles.cache.some((r) => data.RequiredRoles.includes(r.id))) {
+            if (!user?.roles.cache.some((r) => data.RequiredRoles.includes(r.id))) {
 
                 if (ticketType == "event") {
-                    (messageEvent.channel as TextChannel).send({
+                    (messageEvent?.channel as TextChannel).send({
                         allowedMentions: {
                             repliedUser: false,
                         },
@@ -251,7 +252,7 @@ export async function ticketHelper(
                     })
                     return;
                 } else if (ticketType == "interaction") {
-                    await interaction.editReply({
+                    await interaction?.editReply({
                         content: `-# ${await convertToEmojiToPng("ticket")} You need one of the Required Roles! \n > -# ${data.RequiredRoles.map((r) => `<@&${r}>`).join(", ")}`
                     })
                     return;
@@ -265,14 +266,14 @@ export async function ticketHelper(
                 where: {
                     TicketSetupId: ticketSetupId,
                     IsClosed: false,
-                    GuildId: guild.id,
-                    TicketOwnerId: user.id
+                    GuildId: guild?.id ?? "",
+                    TicketOwnerId: user?.id ?? ""
                 }
             })
 
             if (openTicketsPerUser.length >= data.TicketLimit) {
                 if (ticketType == "event") {
-                    (messageEvent.channel as TextChannel).send({
+                    (messageEvent?.channel as TextChannel).send({
                         content: `-# ${await convertToEmojiToPng("ticket")} You have reached the ticket limit! You can only open ${data.TicketLimit} more tickets.`
                     }).then(async (m) => {
                         setTimeout(async () => {
@@ -281,13 +282,14 @@ export async function ticketHelper(
                     })
                     return;
                 } else if (ticketType == "interaction") {
-                    return await interaction.editReply({
+                    return await interaction?.editReply({
                         content: `-# ${await convertToEmojiToPng("ticket")} You have reached the ticket limit! You can only open ${data.TicketLimit} more tickets.`
                     })
                 }
             }
         }
 
+        // @ts-ignore
         let messageData = await database.messageTemplates.findFirst({
             where: {
                 Name: data?.MessageTemplateId?.length >= 2 ? data.MessageTemplateId : ""
@@ -300,7 +302,7 @@ export async function ticketHelper(
 
             messageData = {
                 Id: Number(Math.random() * 134324),
-                GuildId: guild.id,
+                GuildId: guild?.id ?? "",
                 Content: null,
                 ComponentJSON: null,
                 IsComponentsV2Message: false,
@@ -313,18 +315,18 @@ export async function ticketHelper(
         const ticketId = randomUUID()
         const ticketPlaceholderType = {
             member: {
-                name: user.user.username,
-                username: user.user.username,
-                tag: `<@${user.user.id}>`,
-                id: user.user.id,
-                displayName: user.user.displayName,
-                globalName: user.user.globalName,
-                avatar: user.displayAvatarURL()
+                name: user?.user.username ?? "",
+                username: user?.user.username ?? "",
+                tag: `<@${user?.user.id ?? ""}>`,
+                id: user?.user.id ?? "",
+                displayName: user?.user.displayName ?? "",
+                globalName: user?.user.globalName ?? "",
+                avatar: user?.displayAvatarURL() ?? ""
             },
             ticket: {
                 id: ticketId,
-                autoCloseAfterInactivity: data.AutoCloseAfterInactivity / 1000,
-                autoCloseAfterTime: data.AutoCloseAfterTime / 1000,
+                autoCloseAfterInactivity: (data.AutoCloseAfterInactivity ?? 0) / 1000,
+                autoCloseAfterTime: (data.AutoCloseAfterTime ?? 0) / 1000,
             },
             modal: {
                 option: {
@@ -337,31 +339,34 @@ export async function ticketHelper(
             }
         }
 
-        const category = await guild.channels.fetch(data.CategoryId)
-        let channel: TextChannel | ThreadChannel
+        const category = await guild?.channels.fetch(data.CategoryId ?? "") ?? null
+        if (!category) return
+        let channel: TextChannel | ThreadChannel | null = null
         const IsThread = data.ChannelType == ChannelType.PrivateThread
         const IsChannel = data.ChannelType == ChannelType.GuildCategory
         if (data.ChannelType == ChannelType.GuildCategory) {
-            channel = await guild.channels.create({
-                name: replacePlaceholders(data.TicketChannelName, ticketPlaceholderType),
+            channel = await guild?.channels.create({
+                name: replacePlaceholders(data.TicketChannelName ?? "", ticketPlaceholderType),
                 parent: category.id,
                 type: ChannelType.GuildText
             })
         } else if (data.ChannelType == ChannelType.PrivateThread) {
             channel = await (category as TextChannel).threads.create({
-                name: replacePlaceholders(data.TicketChannelName, ticketPlaceholderType),
+                name: replacePlaceholders(data.TicketChannelName ?? randomUUID().split("-")[0], ticketPlaceholderType),
                 type: ChannelType.PrivateThread
             })
         } else {
             return
         }
+        if (!channel) return
+
 
         // Pre Permissions
-        if (IsChannel) await (channel as TextChannel).permissionOverwrites.create(user.id, {
+        if (IsChannel) await (channel as TextChannel).permissionOverwrites.create(user?.id, {
             ViewChannel: true,
             SendMessages: true
         });
-        if (IsThread) await (channel as ThreadChannel).members.add(user.id)
+        if (IsThread) await (channel as ThreadChannel).members.add(user?.id)
 
         // Ticket Permissions
         if (data.TicketPermissions) {
@@ -431,21 +436,22 @@ export async function ticketHelper(
         }
 
         const ticketMessage = await MessageBuilder(
-            messageData,
+            messageData!,
             ticketPlaceholderType
         )
-        await channel.send(ticketMessage.messageData)
+        if (!ticketMessage) return
+        await channel.send(ticketMessage!.messageData)
 
-        let autoHandler: string
+        let autoHandler: string | null = null
 
         if (data.AutoAssignHandler) {
-            const role = guild.roles.cache.get(data.AutoAssignHandler)
+            const role = guild?.roles.cache.get(data.AutoAssignHandler)
             if (!role) {
                 return
             }
             const randomNum = Math.random() * role.members.size
 
-            autoHandler = role.members[randomNum].id
+            autoHandler = role.members[randomNum]?.id ?? null
         }
 
         if (!data.TicketSettings.includes("disable_actions_button")) {
@@ -460,16 +466,17 @@ export async function ticketHelper(
                 ]
             }).then(async (m) => {
                 await m.pin("Ticket-Manage-Component")
-                const lastMessage = channel.messages.cache.get(channel.lastMessageId)
-                await lastMessage.delete()
+                const lastMessage = channel.messages.cache.get(channel.lastMessageId ?? "") ?? null
+                if (!lastMessage) return
+                await lastMessage?.delete()
             })
         }
 
         await database.tickets.create({
             data: {
-                GuildId: guild.id,
+                GuildId: guild?.id,
                 TicketId: ticketId,
-                TicketOwnerId: user.id,
+                TicketOwnerId: user?.id,
                 CreatedAt: new Date,
                 IsClosed: false,
                 IsLocked: false,
@@ -527,7 +534,7 @@ export async function ticketHelper(
         }
 
         if (ticketType == "event") {
-            (messageEvent.channel as TextChannel).send({
+            (messageEvent?.channel as TextChannel).send({
                 allowedMentions: {
                     repliedUser: false,
                 },
@@ -539,7 +546,7 @@ export async function ticketHelper(
             })
             return;
         } else if (ticketType == "interaction") {
-            await interaction.editReply({
+            await interaction?.editReply({
                 content: `-# ${await convertToEmojiToPng("ticket")} Your ticket has beed created here ${channel.url}`
             })
             return;
@@ -547,7 +554,7 @@ export async function ticketHelper(
     } catch (e) {
         Logger.error(`Ticket Error: ${e}`)
         if (ticketType == "event") {
-            (messageEvent.channel as TextChannel).send({
+            (messageEvent?.channel as TextChannel).send({
                 allowedMentions: {
                     repliedUser: false,
                 },
@@ -559,7 +566,7 @@ export async function ticketHelper(
             })
             return;
         } else if (ticketType == "interaction") {
-            await interaction.editReply({
+            await interaction?.editReply({
                 content: `-# ${await convertToEmojiToPng("ticket")} Please wait a moment and try again.`
             })
             return;
@@ -583,7 +590,7 @@ export async function ticketErrorMessage(message: string, interaction: ChatInput
 export async function handleCloseAction(client: ExtendedClient, guild: Guild, channel: TextChannel | PrivateThreadChannel, ticketId: string, confirm?: boolean, reason?: string, isAuto?: boolean, interaction?: ChatInputCommandInteraction | ButtonInteraction | ModalSubmitInteraction | AnySelectMenuInteraction) {
 
 
-    if (!isAuto && !interaction.deferred) await interaction.deferReply({flags: MessageFlags.Ephemeral})
+    if (!isAuto && !interaction?.deferred) await interaction?.deferReply({flags: MessageFlags.Ephemeral})
     const actionData: {
         type: string,
         message: string,
@@ -618,11 +625,11 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
     })
 
     // Default Ticket Close Actions
-    const owner = await guild.members.fetch(data.TicketOwnerId)
-    const actions = data.AutoCloseAction
+    const owner = await guild.members.fetch(data?.TicketOwnerId ?? "") ?? null
+    const actions = data?.AutoCloseAction
 
-    if (actions.includes("confirm") && !confirm && !isAuto) {
-        return await interaction.reply({
+    if (actions?.includes("confirm") && !confirm && !isAuto) {
+        await interaction?.reply({
             flags: MessageFlags.Ephemeral | MessageFlags.IsComponentsV2,
             components: [
 
@@ -642,8 +649,9 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
                     )
             ]
         })
+        return
     }
-    if (actions.includes("reason") && !reason && !isAuto) {
+    if (actions?.includes("reason") && !reason && !isAuto) {
         const modal = new ModalBuilder()
         const reason = new TextInputBuilder()
 
@@ -672,15 +680,15 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
     }
 
     // Check Rate Limit
-    if (data.TicketSetup.TicketRateLimit) {
+    if (data?.TicketSetup.TicketRateLimit) {
 
         actionData.push({
             type: "ratelimit",
             message: "Updated Rate Limit Message"
         })
 
-        const channel = await guild.channels.fetch(data.TicketSetup.TicketStatusChannelId) as GuildTextBasedChannel
-        const message = await channel.messages.fetch(data.TicketSetup.TicketStatusMessageId)
+        const channel = await guild.channels.fetch(data.TicketSetup.TicketStatusChannelId ?? "") as GuildTextBasedChannel
+        const message = await channel.messages.fetch(data.TicketSetup.TicketStatusMessageId ?? "")
         const allTicketsFromComponentCount = (await database.tickets.findMany({
             where: {
                 TicketSetupId: data.TicketSetup.CustomId,
@@ -698,15 +706,15 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
 
         const statusMessageTemplate = await database.messageTemplates.findFirst({
             where: {
-                Name: data.TicketSetup.TicketStatusMessageTemplateId
+                Name: data.TicketSetup.TicketStatusMessageTemplateId ?? ""
             }
         })
-        if (!statusMessageTemplate) {
+        if (!statusMessageTemplate)
             return
-        }
-        if (message.author.id != client.user.id) {
+
+        if (message.author.id != Config.Bot.DiscordApplicationId)
             return
-        }
+
 
         const ticketPlaceholderType = {
             ticket: {
@@ -720,14 +728,15 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
         }
 
         const messageBuilder = await MessageBuilder(
-            statusMessageTemplate,
+            statusMessageTemplate!,
             ticketPlaceholderType
         )
-        await message.edit(messageBuilder.messageData)
+        if (!messageBuilder) return
+        await message.edit(messageBuilder!.messageData)
     }
 
     // Default Ticket Close Actions
-    if (data.UserDMWhenCloseMessageTemplateId) {
+    if (data?.UserDMWhenCloseMessageTemplateId) {
         actionData.push({
             type: "closedm",
             message: "Requested DM for User..."
@@ -735,11 +744,11 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
 
         const messageData = await database.messageTemplates.findFirst({
             where: {
-                Name: data.UserDMWhenCloseMessageTemplateId
+                Name: data?.UserDMWhenCloseMessageTemplateId ?? ""
             }
         })
 
-        const claimedUser = data.UserWhoHasClaimedId ? (await guild.members.fetch(data.UserWhoHasClaimedId)).user.username : "N/A"
+        const claimedUser = data?.UserWhoHasClaimedId ? (await guild.members.fetch(data!.UserWhoHasClaimedId)).user.username : "N/A"
         const ticketPlaceholderType = {
             member: {
                 name: owner.user.username,
@@ -765,12 +774,13 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
 
         await owner.createDM(true)
         const messageBuilder = await MessageBuilder(
-            messageData,
+            messageData!,
             ticketPlaceholderType
         )
+        if (!messageBuilder) return
 
         try {
-            await owner.send(messageBuilder.messageData)
+            await owner.send(messageBuilder!.messageData)
             await owner.send({
                 content: `-# Message from ${channel.guild.name}. Ticket Closed with ID ${ticketId}.`,
             })
@@ -785,7 +795,7 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
             })
         }
     }
-    if (data.WithTicketFeedback) {
+    if (data?.WithTicketFeedback) {
         actionData.push({
             type: "feedback",
             message: "Sent Ticket Feedback Message."
@@ -870,7 +880,7 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
             ]
         })
     }
-    if (data.SendTranscriptToUser) {
+    if (data?.SendTranscriptToUser) {
         actionData.push({
             type: "usertranscript",
             message: "Exported Transcript to Ticket Owner"
@@ -881,17 +891,17 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
             client,
             guild,
             channel,
-            null,
-            null
+            undefined,
+            undefined
         )
         await owner.createDM(true)
         await owner.send(userTranscript as any)
         await owner.send({
-            content: `-# Message from ${interaction.guild.name}. Transcript sent from ticket with ID ${ticketId}.`,
+            content: `-# Message from ${interaction?.guild?.name ?? "N/A"}. Transcript sent from ticket with ID ${ticketId}.`,
         })
 
     }
-    if (actions.includes("look")) {
+    if (actions?.includes("look")) {
         actionData.push({
             type: "look",
             message: "Looked Ticket successfully."
@@ -902,11 +912,11 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
             client,
             ticketId,
             true,
-            interaction ? interaction : null,
-            isAuto ?? null
+            interaction ? interaction : undefined,
+            isAuto ?? undefined
         )
     }
-    if (actions.includes("archive")) {
+    if (actions?.includes("archive")) {
         actionData.push({
             type: "archive",
             message: "Ticket has beed archived."
@@ -917,10 +927,10 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
             client,
             ticketId,
             true,
-            interaction ? interaction : null,
+            interaction ? interaction : undefined,
         )
     }
-    if (actions.includes("channel")) {
+    if (actions?.includes("channel")) {
         actionData.push({
             type: "channel",
             message: "Channel has beed looked!"
@@ -931,42 +941,43 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
             client,
             ticketId,
             true,
-            interaction ? interaction : null,
-            isAuto ?? null
+            interaction ? interaction : undefined,
+            isAuto ?? undefined
         )
     }
-    if (actions.includes("remove_user_from_ticket")) {
+    if (actions?.includes("remove_user_from_ticket")) {
         actionData.push({
             type: "remove_user_from_ticket",
             message: "Removed user from ticket."
         })
 
-        const addedMembers = data.AddedMemberIds
-        if (data.ChannelType == ChannelType.PrivateThread) {
+        const addedMembers = data?.AddedMemberIds
+        if (data?.ChannelType == ChannelType.PrivateThread) {
 
+            if (addedMembers?.length <= 0) return
             for (const member of addedMembers) {
-                await (interaction.channel as PrivateThreadChannel).members.remove(
+                await (interaction?.channel as PrivateThreadChannel).members.remove(
                     member
                 )
             }
-            await (interaction.channel as PrivateThreadChannel).members.remove(
+            await (interaction?.channel as PrivateThreadChannel).members.remove(
                 data.TicketOwnerId
             )
 
-        } else if (data.ChannelType == ChannelType.GuildCategory) {
-            await (interaction.channel as TextChannel).permissionOverwrites.edit(data.TicketOwnerId, {
+        } else if (data?.ChannelType == ChannelType.GuildCategory) {
+            await (interaction?.channel as TextChannel).permissionOverwrites.edit(data?.TicketOwnerId, {
                 ViewChannel: false
             })
 
-            for (const memberId of data.AddedMemberIds) {
-                await (interaction.channel as TextChannel).permissionOverwrites.edit(memberId, {
+            for (const memberId of data?.AddedMemberIds) {
+                await (interaction?.channel as TextChannel).permissionOverwrites.edit(memberId, {
                     ViewChannel: false
                 })
             }
 
         }
     }
-    if (data.OldTicketCategoryId) {
+    if (data?.OldTicketCategoryId) {
         actionData.push({
             type: "movechannel",
             message: `Moved Channel to <#${data.OldTicketCategoryId}>`
@@ -975,7 +986,7 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
         if (data.ChannelType == ChannelType.PrivateThread) return
         await (channel as TextChannel).setParent(data.OldTicketCategoryId)
     }
-    if (!actions.includes("no_close_message")) {
+    if (!actions?.includes("no_close_message")) {
         actionData.push({
             type: "no_close_message",
             message: "Skip Close Message for ticket."
@@ -991,21 +1002,21 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
             ]
         })
     }
-    if (data.TranscriptChannelId) {
+    if (data?.TranscriptChannelId) {
         actionData.push({
             type: "transcript-created",
             message: "Exported Ticket-Transcript to Channel."
         })
 
-        const tChannel = await guild.channels.fetch(data.TranscriptChannelId) as TextChannel | PrivateThreadChannel
+        const tChannel = await guild.channels.fetch(data?.TranscriptChannelId) as TextChannel | PrivateThreadChannel
         if (tChannel) {
             const transcript = await ticketTranscriptBuilder(
                 ticketId,
                 client,
                 guild,
                 channel,
-                null,
-                null
+                undefined,
+                undefined
             )
 
             await tChannel.send(transcript as any)
@@ -1018,7 +1029,7 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
     }
 
     if (!isAuto) {
-        const permission = (await hasTicketPermission("close_result", interaction.user as unknown as GuildMember, data.TicketId, client) || await hasTicketPermission("all", interaction.user as unknown as GuildMember, data.TicketId, client))
+        const permission = (await hasTicketPermission("close_result", interaction?.user as unknown as GuildMember, data!.TicketId, client) || await hasTicketPermission("all", interaction?.user as unknown as GuildMember, data!.TicketId, client))
 
         if (permission)
             await sendDefaultMessage(
@@ -1029,21 +1040,21 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
                     `**Ticket Action Log**`,
                     `${actionData.map((a) => `-# **${a.type}**: ${a.message}`).join("\n")}`
                 ].join("\n"),
-                interaction,
+                interaction!,
                 true,
                 "deferReply")
         else await sendDefaultMessage(
             [
                 `-# ${await convertToEmojiToPng("ticket")} Ticket has been closed!`,
             ].join("\n"),
-            interaction,
+            interaction!,
             true,
             "deferReply")
     }
 
     // To save that the ticket will be closed.
-    if (!actions.includes("not_thread_close")) {
-        if (data.ChannelType == ChannelType.PrivateThread) {
+    if (!actions?.includes("not_thread_close")) {
+        if (data?.ChannelType == ChannelType.PrivateThread) {
             /*      
             actionData.push({
                 type: "not_thread_close",
@@ -1055,8 +1066,8 @@ export async function handleCloseAction(client: ExtendedClient, guild: Guild, ch
     }
 
     // To prevent errors, execute at the end!
-    if (actions.includes("delete")) {
-        await interaction.channel.delete(`Ticket Close action by ${interaction.user.username} (${interaction.user.id})`)
+    if (actions?.includes("delete")) {
+        await interaction?.channel?.delete(`Ticket Close action by ${interaction?.user.username} (${interaction?.user.id})`)
     }
 }
 
@@ -1071,22 +1082,23 @@ export async function ticketArchiveAction(channel: TextChannel | PrivateThreadCh
             TicketId: uuid
         }
     })
+    if (!data) return
 
     if (!data && !isClose) {
-        return ticketErrorMessage("No Ticket found", interaction, client)
+        return ticketErrorMessage("No Ticket found", interaction!, client)
     }
 
     if (!isClose) {
         if (data.IsLocked) {
-            return ticketErrorMessage("Ticket is Looked", interaction, client)
+            return ticketErrorMessage("Ticket is Looked", interaction!, client)
         }
 
         if (data.IsArchived) {
-            return ticketErrorMessage("Ticket is Archived", interaction, client)
+            return ticketErrorMessage("Ticket is Archived", interaction!, client)
         }
 
         if (!data.IsClosed) {
-            return ticketErrorMessage("Ticket is not closed!", interaction, client)
+            return ticketErrorMessage("Ticket is not closed!", interaction!, client)
         }
     }
 
@@ -1155,12 +1167,13 @@ export async function ticketLookAction(channel: TextChannel | PrivateThreadChann
             TicketId: uuid
         }
     })
+    if (!data) return
 
     if (!data && !isAuto && interaction != null) {
         return ticketErrorMessage("No Ticket found", interaction, client)
     }
 
-    if (!isAuto && !isClose && data.IsLocked && (await hasTicketPermission("disable_lock", interaction.member as GuildMember, data.TicketId, client) || await hasTicketPermission("all", interaction.member as GuildMember, data.TicketId, client))) {
+    if (!isAuto && !isClose && data!.IsLocked && (await hasTicketPermission("disable_lock", interaction?.member as GuildMember, data.TicketId, client) || await hasTicketPermission("all", interaction?.member as GuildMember, data.TicketId, client))) {
 
         await database.tickets.update({
             where: {
@@ -1176,7 +1189,7 @@ export async function ticketLookAction(channel: TextChannel | PrivateThreadChann
             components: [
                 new ContainerBuilder()
                     .addTextDisplayComponents(
-                        new TextDisplayBuilder().setContent(`### ${await convertToEmojiToPng("ticket")} ${interaction.user} has unlocked the ticket.`)
+                        new TextDisplayBuilder().setContent(`### ${await convertToEmojiToPng("ticket")} ${interaction?.user} has unlocked the ticket.`)
                     )
             ]
         })
@@ -1199,7 +1212,7 @@ export async function ticketLookAction(channel: TextChannel | PrivateThreadChann
 
         }
 
-        if (!isAuto && !isClose) await interaction.reply({
+        if (!isAuto && !isClose) await interaction?.reply({
             content: `## ${await convertToEmojiToPng("lockopen")} You unlocked the Ticket successfully!`,
             flags: MessageFlags.Ephemeral,
         })
@@ -1243,7 +1256,7 @@ export async function ticketLookAction(channel: TextChannel | PrivateThreadChann
         ]
     })
     if (!isClose && !isAuto) {
-        return await interaction.reply({
+        return await interaction?.reply({
             content: `## ${await convertToEmojiToPng("lock")} You locked the Ticket successfully! Unlock the ticket with a new Click.`,
             flags: MessageFlags.Ephemeral,
         })
@@ -1259,6 +1272,7 @@ export async function ticketTranscriptBuilder(
     user?: GuildMember,
     interaction?: ChatInputCommandInteraction | ButtonInteraction | AnySelectMenuInteraction | ModalSubmitInteraction
 ) {
+    if (!channel) return
     const data = await database.tickets.findFirst({
         include: {
             TicketSetup: {
@@ -1272,7 +1286,7 @@ export async function ticketTranscriptBuilder(
         },
     });
 
-    const addedMembers = data.AddedMemberIds.map((memberId) => {
+    const addedMembers = data?.AddedMemberIds.map((memberId) => {
         const member = guild?.members.cache.get(memberId);
         return {
             Name: member?.user.tag || 'Unknown',
@@ -1284,16 +1298,16 @@ export async function ticketTranscriptBuilder(
     const ticketData = {
         ChannelName: channel.name,
         ChannelType: channel.type === ChannelType.PrivateThread ? 'Thread' : 'Channel',
-        OwnerId: data.TicketOwnerId,
-        Claimed: data.IsClaimed,
-        Closed: data.IsClosed,
-        Looked: data.IsLocked,
-        Archived: data.IsArchived,
+        OwnerId: data?.TicketOwnerId,
+        Claimed: data?.IsClaimed ?? false,
+        Closed: data?.IsClosed ?? false,
+        Looked: data?.IsLocked ?? false,
+        Archived: data?.IsArchived,
         AddedMembers: addedMembers,
-        WhoHasClaimed: data.UserWhoHasClaimedId,
+        WhoHasClaimed: data?.UserWhoHasClaimedId ?? null,
         MessageCount: channel.messages.cache.size,
-        Permissions: data.TicketSetup.TicketPermissions,
-        TicketNotes: data.TicketNotes,
+        Permissions: data?.TicketSetup.TicketPermissions ?? [],
+        TicketNotes: data?.TicketNotes ?? [],
     };
 
     let rawBuffer;
@@ -1302,6 +1316,7 @@ export async function ticketTranscriptBuilder(
 
     messages.map((m) => {
         if (m.components.length > 0 && m.flags.has(MessageFlags.IsComponentsV2)) {
+            // @ts-ignore
             m.components = [m.components[0]]
             m.content = `${m.content}\n\n\n**Removed Components for this Transcript because of Components V2 Bugs.**`
         }
@@ -1311,12 +1326,12 @@ export async function ticketTranscriptBuilder(
     try {
         // @ts-ignore
         rawBuffer = await htmlTranscript.generateFromMessages(messages,
-            channel,
+            channel!,
             {
                 limit: -1,
                 poweredBy: false,
                 favicon: 'guild',
-                filename: `transcript-${data.TicketId}-${data.TicketOwnerId}.html`,
+                filename: `transcript-${data?.TicketId}-${data?.TicketOwnerId}.html`,
                 footerText: '',
                 saveImages: false,
                 returnType: ExportReturnType.Buffer,
@@ -1325,7 +1340,7 @@ export async function ticketTranscriptBuilder(
         console.log(e)
     }
 
-    let html = rawBuffer.toString('utf-8');
+    let html = rawBuffer?.toString('utf-8');
 
     const ticketMetaHTML = `
     <div class="ticket-meta" style="padding: 1rem; margin: 1rem; background: #1e1e1e; color: #fff; border-radius: 8px; border-left: 4px solid #7289da; font-family: 'Segoe UI', sans-serif;">
@@ -1335,7 +1350,7 @@ export async function ticketTranscriptBuilder(
             <span>${ticketData.ChannelName} (${ticketData.ChannelType})</span> 
             
             <span style="color: #b9bbbe;">Owner:</span>
-            <span>${guild.members.cache.get(ticketData.OwnerId).displayName} (${ticketData.OwnerId})</span>
+            <span>${guild.members.cache.get(ticketData.OwnerId ?? "")?.displayName} (${ticketData.OwnerId})</span>
             
             <span style="color: #b9bbbe;">Status:</span>
             <span>${ticketData.Closed ? '🔴 Closed' : '🟢 Open'}</span>
@@ -1344,7 +1359,7 @@ export async function ticketTranscriptBuilder(
             <span>${ticketData.MessageCount}</span>
             
             <span style="color: #b9bbbe;">Added Members:</span>
-            <span>${ticketData.AddedMembers.map(m => m.Name).join(', ') || 'None'}</span>
+            <span>${ticketData.AddedMembers?.map(m => m.Name).join(', ') || 'None'}</span>
             
             <span style="color: #b9bbbe;">Notes:</span>
             <span>${ticketData.TicketNotes.length > 0 ? ticketData.TicketNotes : 'No notes provided'}</span>
@@ -1385,11 +1400,12 @@ export async function ticketTranscriptBuilder(
         }
     </style>`;
 
-    const headEndIndex = html.indexOf('</head>');
-    const bodyStartIndex = html.indexOf('<body>') + 6;
+    const headEndIndex = html?.indexOf('</head>');
+    // @ts-ignore
+    const bodyStartIndex = html?.indexOf('<body>') + 6;
 
     if (headEndIndex !== -1 && bodyStartIndex !== -1) {
-        html = html.slice(0, headEndIndex) + siliconCSS + html.slice(headEndIndex);
+        html = html?.slice(0, headEndIndex) + siliconCSS + html?.slice(headEndIndex);
 
         html = html.slice(0, bodyStartIndex) + ticketMetaHTML + html.slice(bodyStartIndex);
     } else {
@@ -1418,13 +1434,13 @@ export async function ticketTranscriptBuilder(
                         new TextDisplayBuilder().setContent([
                             `## ${await convertToEmojiToPng("ticket")} Ticket-Transcript Export`,
                             ``,
-                            `> **Ticket-ID**: \`${data.TicketId}\``,
-                            `> **Owner**: <@${data.TicketOwnerId}>`,
+                            `> **Ticket-ID**: \`${data?.TicketId}\``,
+                            `> **Owner**: <@${data?.TicketOwnerId}>`,
                             `> **Channel**: \`${channel.name}\` (${channel.type === ChannelType.PrivateThread ? 'Thread' : 'Channel'})`,
-                            `> **Status**: ${data.IsClosed ? 'Closed' : 'Open'}, ${data.IsLocked ? 'Locked' : 'UnLocked'}, ${data.IsArchived ? 'Achrived' : 'Un-Archived'}`,
-                            `> **Claimed by**: ${data.UserWhoHasClaimedId ? `<@${data.UserWhoHasClaimedId}>` : 'Not Claimed'}`,
+                            `> **Status**: ${data?.IsClosed ? 'Closed' : 'Open'}, ${data?.IsLocked ? 'Locked' : 'UnLocked'}, ${data?.IsArchived ? 'Achrived' : 'Un-Archived'}`,
+                            `> **Claimed by**: ${data?.UserWhoHasClaimedId ? `<@${data?.UserWhoHasClaimedId}>` : 'Not Claimed'}`,
                             `> **Message Count**: ${channel.messages.cache.size}`,
-                            `> **Notes**: ${data.TicketNotes?.length ? 'In Transcript' : 'N/A'}`,
+                            `> **Notes**: ${data?.TicketNotes?.length ? 'In Transcript' : 'N/A'}`,
                         ].join("\n"))
                     )
                     .addFileComponents(
@@ -1462,23 +1478,24 @@ export async function ticketActionsHelper(client: ExtendedClient, ticketId: stri
             TicketId: ticketId
         }
     })
+    if (!data) return
 
     const member = interaction.member as GuildMember;
 
     const permissions = {
-        delete: await hasTicketPermission("delete", member, data.TicketId, client),
-        close: await hasTicketPermission("close", member, data.TicketId, client),
-        archive: await hasTicketPermission("archive", member, data.TicketId, client),
-        reopen: await hasTicketPermission("reopen", member, data.TicketId, client),
-        claim: await hasTicketPermission("claim", member, data.TicketId, client),
-        transcript: await hasTicketPermission("transcript", member, data.TicketId, client),
-        close_request: await hasTicketPermission("close_request", member, data.TicketId, client),
-        infos: await hasTicketPermission("infos", member, data.TicketId, client),
-        notes: await hasTicketPermission("notes", member, data.TicketId, client),
-        lock: await hasTicketPermission("look", member, data.TicketId, client),
-        add_member_to_ticket: await hasTicketPermission("add_member_to_ticket", member, data.TicketId, client),
-        remove_user_from_ticket: await hasTicketPermission("remove_user_from_ticket", member, data.TicketId, client),
-        all: await hasTicketPermission("all", member, data.TicketId, client)
+        delete: await hasTicketPermission("delete", member, data?.TicketId, client),
+        close: await hasTicketPermission("close", member, data?.TicketId, client),
+        archive: await hasTicketPermission("archive", member, data?.TicketId, client),
+        reopen: await hasTicketPermission("reopen", member, data?.TicketId, client),
+        claim: await hasTicketPermission("claim", member, data?.TicketId, client),
+        transcript: await hasTicketPermission("transcript", member, data?.TicketId, client),
+        close_request: await hasTicketPermission("close_request", member, data?.TicketId, client),
+        infos: await hasTicketPermission("infos", member, data?.TicketId, client),
+        notes: await hasTicketPermission("notes", member, data?.TicketId, client),
+        lock: await hasTicketPermission("look", member, data?.TicketId, client),
+        add_member_to_ticket: await hasTicketPermission("add_member_to_ticket", member, data?.TicketId, client),
+        remove_user_from_ticket: await hasTicketPermission("remove_user_from_ticket", member, data?.TicketId, client),
+        all: await hasTicketPermission("all", member, data?.TicketId, client)
     };
 
     await interaction.editReply({
@@ -1754,11 +1771,12 @@ export async function hasTicketPermission(permission: string, user: GuildMember,
             TicketId: ticketId
         }
     })
-    const guildMember = await (await client.guilds.fetch(data.GuildId)).members.fetch(user.id)
+    const guildMember = await (await client.guilds.fetch(data?.GuildId ?? "")).members.fetch(user.id)
 
 
-    for (const perms of data.TicketSetup.TicketPermissions) {
-        if (guildMember.roles.cache.has(perms.DiscordRoleId)) {
+    if (data?.TicketSetup.TicketPermissions.length <= 0) return
+    for (const perms of data?.TicketSetup.TicketPermissions) {
+        if (guildMember.roles.cache.has(perms.DiscordRoleId ?? "")) {
             return perms.TicketPermissions.includes(permission);
         }
         if (perms.DiscordUserId == guildMember.id) {

@@ -82,7 +82,7 @@ export default {
 
 
         const message = await channelObj.messages.fetch(messageId);
-        let role = interaction.guild?.roles.cache.get(data.Requirements[0] as string)
+        const role = interaction.guild?.roles.cache.get(data.Requirements[0] as string)
 
         const duration = ms(data.Time as ms.StringValue)
         const createdAt = Date.now()

@@ -119,14 +119,14 @@ export async function updateComponentsWithPositions(message: Message, json: any,
 
 
 export async function MessageBuilder(data: {
-                                         Id: number
-                                         Content?: string;
-                                         EmbedJSON?: string;
-                                         ComponentJSON?: string;
-                                         IsComponentsV2Message: boolean
-                                         OtherEmbeds: string[]
-                                         Name: string
-                                         GuildId: string
+                                         Id: number;
+                                         GuildId: string;
+                                         Content: string | null;
+                                         EmbedJSON: string | null;
+                                         OtherEmbeds: string[];
+                                         Name: string;
+                                         ComponentJSON: string | null;
+                                         IsComponentsV2Message: boolean;
                                      },
                                      placeholderType: Record<string, any>
 ) {
@@ -136,7 +136,7 @@ export async function MessageBuilder(data: {
 
     if (data.IsComponentsV2Message) {
         if (!data.ComponentJSON) return
-        const string = replacePlaceholders(data.ComponentJSON!!, placeholderType);
+        const string = replacePlaceholders(data.ComponentJSON!, placeholderType);
         const parsed = await parseComponentData(string)
 
         messageData = {

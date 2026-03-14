@@ -1,5 +1,5 @@
 import colors from "colors";
-import {ChannelType, EmbedBuilder, NewsChannel, TextChannel, ThreadChannel} from "discord.js";
+import {ChannelType, TextChannel} from "discord.js";
 import Parser from "rss-parser";
 import {ExtendedClient} from "../types/ExtendedClient.js";
 import {database} from "../main/database.js";
@@ -21,14 +21,14 @@ export async function checkYoutube(client: ExtendedClient) {
 
     for (const data of youtubeData) {
         try {
-            let videodata = await parser.parseURL(
+            const videodata = await parser.parseURL(
                 `https://www.youtube.com/feeds/videos.xml?channel_id=${data.YoutubeChannelId}`
             );
 
             if (!videodata) continue;
             if (!videodata.items[0]) continue;
 
-            let guild = guilds.cache.get(`${data.GuildId}`);
+            const guild = guilds.cache.get(`${data.GuildId}`);
             if (!guild) continue;
 
             const toggleData = await database.guildFeatureToggles.findFirst({
@@ -42,7 +42,7 @@ export async function checkYoutube(client: ExtendedClient) {
             const youtubeChannel = channels.cache.get(`${data.ChannelId}`);
             if (!youtubeChannel) new Error("twitchChannel not found");
 
-            let {link, author, title, id} = videodata.items[0];
+            const {link, author, title, id} = videodata.items[0];
 
             const thumbnail = `https://img.youtube.com/vi/${id.split(":")[2]
             }/0.jpg`;
@@ -62,7 +62,7 @@ export async function checkYoutube(client: ExtendedClient) {
                 })
             }
 
-            let pingrole = data.PingRoles[0];
+            const pingrole = data.PingRoles[0];
 
             const messageData = await database.messageTemplates.findFirst({
 
@@ -70,10 +70,12 @@ export async function checkYoutube(client: ExtendedClient) {
                     Name: data.MessageTemplateId,
                 }
             });
+            if (!messageData) return
 
             const channel = guild.channels.cache.get(
                 (youtubeChannel as TextChannel)?.id as string
             );
+            if (!channel) return
 
             if (!messageData) continue;
             const placeholder = {
@@ -89,9 +91,10 @@ export async function checkYoutube(client: ExtendedClient) {
                 messageData,
                 placeholder
             )
+            if (!message) return
 
             if (channel.type == ChannelType.PublicThread) {
-                await channel.send(message.messageData)
+                await channel.send(message!.messageData)
             } else {
                 await (channel as TextChannel).send(message.messageData)
             }

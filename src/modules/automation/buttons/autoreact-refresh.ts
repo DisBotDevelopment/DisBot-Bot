@@ -35,8 +35,8 @@ export default {
             }
         })
 
-        let channels = []
-        let emojis = []
+        const channels: any[] = []
+        const emojis: any[] = []
         autoreactData.map((data) => {
             channels.push(data.ChannelId)
             emojis.push(data.Emoji)

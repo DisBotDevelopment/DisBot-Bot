@@ -1,4 +1,4 @@
-import {AutocompleteInteraction, ChannelType, ChatInputCommandInteraction, Events, Message} from "discord.js";
+import {ChannelType, Events, Message} from "discord.js";
 import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {database} from "../../../main/database.js";
 
@@ -15,7 +15,7 @@ export default {
 
         const deleteSetups = await database.guildAutoDeletes.findMany({
             where: {
-                GuildId: message.guildId,
+                GuildId: message.guildId ?? "",
                 IsActive: true
             }
         });

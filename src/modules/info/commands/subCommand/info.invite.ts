@@ -51,7 +51,7 @@ export default {
     }
 
     if (!invite) return;
-    let me = client.guilds.cache.get(invite.guild?.id as string);
+    const me = client.guilds.cache.get(invite.guild?.id as string);
 
     return interaction.editReply({
       content: "",

@@ -1,10 +1,5 @@
 import {
-    ActionRowBuilder,
-    ButtonInteraction,
-    ButtonStyle, ChannelSelectMenuInteraction,
-    MessageFlags,
-    ModalBuilder,
-    TextInputBuilder
+    ChannelSelectMenuInteraction,
 } from "discord.js";
 import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {database} from "../../../main/database.js";
@@ -21,11 +16,13 @@ export default {
      */
     async execute(interaction: ChannelSelectMenuInteraction, client: ExtendedClient) {
 
-        const channel = await interaction.guild.channels.fetch(interaction.values[0]);
+        const channel = await interaction.guild?.channels.fetch(interaction.values[0] ?? "");
+
+        if (!interaction.guildId && !channel) return
 
         const data = await database.guildWelcomeSetup.findFirst({
             where: {
-                GuildId: interaction.guild.id
+                GuildId: interaction.guild?.id
             }
         })
 
@@ -36,7 +33,7 @@ export default {
                     ChannelId: channel.id,
                     Guilds: {
                         connect: {
-                            GuildId: interaction.guild.id
+                            GuildId: interaction.guildId
                         },
                     }
                 }
@@ -45,7 +42,7 @@ export default {
 
         await database.guildWelcomeSetup.update({
             where: {
-                GuildId: interaction.guild.id
+                GuildId: interaction.guildId
             },
             data: {
                 ChannelId: channel.id

@@ -1,10 +1,8 @@
 import {
-    ActionRowBuilder,
-    AttachmentBuilder, ButtonBuilder, ButtonInteraction, ButtonStyle, ChannelSelectMenuBuilder, ChannelType,
+    ActionRowBuilder, ButtonBuilder, ButtonStyle,
     ContainerBuilder,
-    FileBuilder,
     MessageFlags, SeparatorBuilder, SeparatorSpacingSize,
-    TextDisplayBuilder, UserSelectMenuBuilder, Webhook,
+    TextDisplayBuilder,
     WebhookClient
 } from "discord.js";
 import {database} from "../main/database.js";
@@ -48,7 +46,7 @@ export async function loggingHelper(
         })
 
     try {
-        const webhookData = await client.fetchWebhook(webhookMessage.webhook_id)
+        const webhookData = await client.fetchWebhook(webhookMessage.webhook_id ?? "")
         await database.guildLogs.create({
             data: {
                 GuildId: webhookData.guildId,

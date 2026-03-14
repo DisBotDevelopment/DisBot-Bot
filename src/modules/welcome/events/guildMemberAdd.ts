@@ -1,10 +1,6 @@
 import {
-    Attachment,
-    AttachmentBuilder,
-    EmbedBuilder,
     Events,
     GuildMember,
-    MessagePayload,
     TextChannel
 } from "discord.js";
 import {ExtendedClient} from "../../../types/ExtendedClient.js";
@@ -103,11 +99,12 @@ export default {
                 image: cdnUrl ?? "https://cdn.xyzify.ing/u/ixBzIX.png",
             },
         }
-        
+
         const message = await MessageBuilder(
-            messageData!!,
+            messageData!,
             withImagePlaceholder
         )
+        if (!message) return
 
         await channel.send(message.messageData)
     }

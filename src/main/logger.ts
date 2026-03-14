@@ -2,14 +2,10 @@ import winston from "winston";
 import Transport from "winston-transport";
 import {
     WebhookClient,
-    ActionRowBuilder,
-    ButtonBuilder,
-    ButtonStyle,
     TextDisplayBuilder,
     ContainerBuilder,
     MessageFlags,
-    AttachmentBuilder,
-    FileBuilder
+    AttachmentBuilder
 } from "discord.js";
 import color from "colors";
 import {randomUUID} from "crypto";
@@ -25,7 +21,7 @@ class DiscordTransport extends Transport {
         this.webhook = new WebhookClient({url: opts.webhookUrl});
     }
 
-    async log(info: any, callback: () => void) {
+    override async log(info: any, callback: () => void) {
         try {
 
             const uuid = randomUUID();

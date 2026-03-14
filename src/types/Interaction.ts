@@ -1,6 +1,5 @@
-import {Events, PermissionResolvable, SlashCommandBuilder} from "discord.js";
+import {Events, type PermissionResolvable, SlashCommandBuilder} from "discord.js";
 import type {DisBotInteractionType} from "../enums/disBotInteractionType.js";
-import type {PermissionType} from "../enums/permissionType.js";
 import {ExtendedClient} from "./ExtendedClient.js";
 
 export interface IDisBotInteraction {

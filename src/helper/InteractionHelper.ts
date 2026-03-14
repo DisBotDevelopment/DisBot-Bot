@@ -1,17 +1,13 @@
 import {
-    Guild,
     GuildMember,
-    Interaction,
+    type Interaction,
     MessageFlags,
-    PermissionFlagsBits,
-    PermissionResolvable,
+    type PermissionResolvable,
     PermissionsBitField
 } from "discord.js";
 import {DisBotInteractionType} from "../enums/disBotInteractionType.js";
-import {PermissionType} from "../enums/permissionType.js";
 import {convertToEmojiToPng} from "./emojis.js";
 import {ExtendedClient} from "../types/ExtendedClient.js";
-import {database} from "../main/database.js";
 
 export class InteractionHelper {
 
@@ -104,7 +100,7 @@ export class InteractionHelper {
     }
 
     public static async channelRequirements(interaction: Interaction, client: ExtendedClient, channels: string[]) {
-        return !channels.includes(interaction.channelId);
+        return !channels.includes(interaction.channelId ?? "0");
     }
 
     public static async userRequirements(

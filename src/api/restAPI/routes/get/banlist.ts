@@ -1,4 +1,4 @@
-import {Request, Response} from "express";
+import type {Request, Response} from "express";
 import {ExtendedClient} from "../../../../types/ExtendedClient.js";
 import {database} from "../../../../main/database.js";
 import {Config} from "../../../../main/config.js";

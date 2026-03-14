@@ -3,13 +3,12 @@ import {
     MessageFlags,
     StringSelectMenuBuilder, TextDisplayBuilder,
 } from "discord.js";
-import { convertToEmojiToPng } from "../../../helper/emojis.js";
-import { BackupData } from "../../../systems/backup/types/BackupData.js";
-import { ExtendedClient } from "../../../types/ExtendedClient.js";
-import { PaginationData } from "../../../types/Pagination.js";
-import { PaginationBuilder } from "../../../helper/paginationHelper.js";
-import { database } from "../../../main/database.js";
-import { cli } from "winston/lib/winston/config/index.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
+import type {PaginationData} from "../../../types/Pagination.js";
+import {PaginationBuilder} from "../../../helper/paginationHelper.js";
+import {database} from "../../../main/database.js";
+import {randomUUID} from "crypto";
 
 export default {
     id: "backup-manage",
@@ -33,7 +32,7 @@ export default {
         }
 
         const [action, uuid, currentIndexStr] = interaction.customId.split(":");
-        const currentIndex = parseInt(currentIndexStr) || 0;
+        const currentIndex = parseInt(currentIndexStr ?? "") || 0;
         const pageSize = 5;
         const data = await database.guildBackups.findMany({
             where: {
@@ -43,7 +42,8 @@ export default {
 
         if (data.length <= 0) {
             return interaction.reply({
-                content: `## ${await convertToEmojiToPng("error")} No Backup found for your user account`, flags: MessageFlags.Ephemeral
+                content: `## ${await convertToEmojiToPng("error")} No Backup found for your user account`,
+                flags: MessageFlags.Ephemeral
             })
         }
 
@@ -76,7 +76,7 @@ export default {
             pageSize: pageSize,
             client: client,
             currentIndex: currentIndex,
-            latestUUID: uuid
+            latestUUID: uuid ?? randomUUID()
         }
 
         await PaginationBuilder(

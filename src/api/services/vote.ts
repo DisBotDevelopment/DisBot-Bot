@@ -1,7 +1,7 @@
-import { Webhook, WebhookPayload } from "@top-gg/sdk";
+import { Webhook, type WebhookPayload } from "@top-gg/sdk";
 import bodyParser from "body-parser";
-import { EmbedBuilder, User, WebhookClient } from "discord.js";
-import express, { Request, Response } from "express";
+import { EmbedBuilder, WebhookClient } from "discord.js";
+import express, {type Request, type Response } from "express";
 import { ExtendedClient } from "../../types/ExtendedClient.js";
 import { Logger } from "../../main/logger.js";
 import { LoggingAction } from "../../enums/loggingTypes.js";
@@ -94,7 +94,7 @@ export async function vote(client: ExtendedClient) {
 
             await initUsersToDatabase(client, user)
 
-            let data = await database.users.findFirst({
+            const data = await database.users.findFirst({
                 where: {
                     UserId: vote.id
                 }

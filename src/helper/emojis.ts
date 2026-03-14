@@ -95,7 +95,9 @@ export async function emojiCache(client: ExtendedClient) {
         }
 
         for (const emoji of emojiFiles) {
+            // @ts-ignore
             let emojiName = path.basename(emoji, path.extname(emoji.split(".")[1]));
+            // @ts-ignore
             emojiName = emojiName.split(".")[0]
             emojiName = emojiName.toLowerCase()
                 .replace(/[^a-z0-9_]/g, '_')
@@ -114,7 +116,7 @@ export async function emojiCache(client: ExtendedClient) {
             try {
                 const fileData = fs.readFileSync(emoji);
                 const base64Data = fileData.toString('base64');
-                const fileExt = emoji.split(".")[1].toLowerCase();
+                const fileExt = emoji.split(".")[1]?.toLowerCase() ?? "";
 
                 console.log(`Uploading emoji: ${emojiName}`);
 

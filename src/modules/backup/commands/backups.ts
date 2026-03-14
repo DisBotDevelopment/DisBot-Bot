@@ -3,7 +3,6 @@ import {
     ButtonBuilder,
     ButtonStyle,
     ChatInputCommandInteraction, ContainerBuilder,
-    EmbedBuilder,
     InteractionContextType,
     MessageFlags,
     PermissionFlagsBits,

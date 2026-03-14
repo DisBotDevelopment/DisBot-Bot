@@ -1,6 +1,5 @@
 import disbotstatsRoute from "./routes/get/disbotstats.js";
 import express from "express";
-import multer from "multer";
 import {Logger} from "../../main/logger.js";
 import {LoggingAction} from "../../enums/loggingTypes.js";
 import cors from "cors";

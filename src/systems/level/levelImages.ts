@@ -1,5 +1,5 @@
 import {Font, LeaderboardBuilder, RankCardBuilder} from "canvacord";
-import {FetchMemberOptions, FetchMembersOptions, Guild, GuildMember, UserResolvable} from "discord.js";
+import {type FetchMemberOptions, type FetchMembersOptions, Guild, GuildMember, type UserResolvable} from "discord.js";
 import {database} from "../../main/database.js";
 import {uploadToCDN} from "../../helper/utilityHelper.js";
 
@@ -16,7 +16,7 @@ export async function generateLevelCardImage(user: GuildMember, guildId: string)
     Font.loadDefault()
     const image = new RankCardBuilder()
         .setUsername(user.user.username)
-        .setLevel(levelData.Level)
+        .setLevel(levelData.Level ?? 0)
         .setRequiredXP(Number(levelData.RequiredXp))
         .setAvatar(user.displayAvatarURL({
             extension: "png",
@@ -44,7 +44,7 @@ export async function generateLevelLeaderboard(guild: Guild, type: "default" | "
 
     let allXP: number = 0
     data.map((x) => x.XP).forEach((n) => {
-        allXP += parseInt(n)
+        allXP += parseInt(n ?? "0")
     })
 
     const players = await Promise.all(

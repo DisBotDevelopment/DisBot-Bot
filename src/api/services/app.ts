@@ -1,6 +1,5 @@
 import express from "express";
 import path from "path";
-import {secureHeapUsed} from "crypto";
 import {VerificationAction, VerificationActionType} from "../../enums/verification.js";
 import {GuildChannel} from "discord.js";
 import {Logger} from "../../main/logger.js";

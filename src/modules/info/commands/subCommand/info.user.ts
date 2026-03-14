@@ -112,7 +112,7 @@ export default {
         )
             permissions = "``Owner``";
 
-        let data = await axios.get(
+        const data = await axios.get(
             `https://discord.com/api/v10/users/${getMember.id}`,
             {
                 headers: {

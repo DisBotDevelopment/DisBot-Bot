@@ -74,7 +74,7 @@ export default {
             emoji: emojiinput || undefined,
         };
 
-        let rows =
+        const rows =
             (message.components as ActionRow<MessageActionRowComponent>[]) || [];
         let updatedRows: ActionRowBuilder<AnyComponentBuilder>[] = [];
         let optionAdded = false;

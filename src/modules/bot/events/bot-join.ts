@@ -1,19 +1,11 @@
 import {
-    ActionRowBuilder,
-    ButtonBuilder,
-    ButtonStyle,
-    ContainerBuilder,
-    EmbedBuilder,
     Events,
     Guild,
-    MessageFlags,
-    TextDisplayBuilder
 } from "discord.js";
-import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {LoggingAction} from "../../../enums/loggingTypes.js";
 import {Logger} from "../../../main/logger.js";
-import {initGuildsToDatabase, initGuildToDatabase, initUsersToDatabase} from "../../../helper/databaseHelper.js";
+import {initGuildToDatabase, initUsersToDatabase} from "../../../helper/databaseHelper.js";
 import {Config} from "../../../main/config.js";
 import {CommandHelper} from "../../../helper/CommandHelper.js";
 

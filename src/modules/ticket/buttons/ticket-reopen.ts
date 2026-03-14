@@ -47,11 +47,11 @@ export default {
             flags: MessageFlags.Ephemeral
         })
 
-        let currentName = interaction.channel.name;
-        let cleanedName = currentName.replace(/archived\s*/i, "");
-        let parts = cleanedName.split("-");
+        const currentName = interaction.channel.name;
+        const cleanedName = currentName.replace(/archived\s*/i, "");
+        const parts = cleanedName.split("-");
         if (parts.length > 1) {
-            let newName = parts.slice(1).join("-");
+            const newName = parts.slice(1).join("-");
             await interaction.channel.setName(newName);
         }
 

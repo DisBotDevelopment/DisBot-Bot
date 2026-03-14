@@ -2,7 +2,7 @@ import * as YAML from "yaml";
 import {YAMLMap} from "yaml";
 import fs from "fs";
 import colors from "colors";
-import {DisBotConfigData} from "../types/Config.js";
+import type {DisBotConfigData} from "../types/Config.js";
 import {configVersion} from "./data.js";
 
 colors.enable();
@@ -10,8 +10,9 @@ colors.enable();
 export let Config: DisBotConfigData
 
 export async function configStartup() {
+    if (!process.env.CONFIG_PATH) return
     const fileCheck = fs.existsSync(process.env.CONFIG_PATH);
-    let content: string
+    let content: string | null = null
     if (fileCheck) {
         const fileContent = fs.readFileSync(process.env.CONFIG_PATH);
         content = fileContent.toString();

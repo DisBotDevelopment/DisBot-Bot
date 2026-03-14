@@ -1,14 +1,13 @@
 import {
     AttachmentBuilder,
     ButtonInteraction,
-    ButtonStyle,
     ContainerBuilder,
     FileBuilder,
     MessageFlags,
     TextDisplayBuilder
 } from "discord.js";
 import {convertToEmojiToPng} from "../../../helper/emojis.js";
-import {BackupData} from "../../../systems/backup/types/BackupData.js";
+import type {BackupData} from "../../../systems/backup/types/BackupData.js";
 import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {database} from "../../../main/database.js";
 

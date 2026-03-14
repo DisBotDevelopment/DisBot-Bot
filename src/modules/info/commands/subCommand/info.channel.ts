@@ -31,8 +31,8 @@ export default {
 
     const getChannel = interaction.options.getChannel("channel") as TextChannel;
 
-    let nsfw = getChannel.nsfw;
-    let nsfwText = nsfw ? "Yes" : "No";
+    const nsfw = getChannel.nsfw;
+    const nsfwText = nsfw ? "Yes" : "No";
 
     return interaction.editReply({
       embeds: [

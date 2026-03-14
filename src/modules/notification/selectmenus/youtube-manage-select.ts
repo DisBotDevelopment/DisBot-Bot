@@ -35,10 +35,10 @@ export default {
             });
 
 
-            let videodata = await parser.parseURL(
+            const videodata = await parser.parseURL(
                 `https://www.youtube.com/feeds/videos.xml?channel_id=${data.YoutubeChannelId}`
             );
-            let {author} = videodata.items[0];
+            const {author} = videodata.items[0];
 
             const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
                 new ButtonBuilder()

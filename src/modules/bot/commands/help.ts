@@ -4,8 +4,7 @@ import {
     ButtonStyle,
     ChatInputCommandInteraction,
     ContainerBuilder, InteractionContextType,
-    MessageFlags,
-    PermissionFlagsBits, PermissionsBitField,
+    MessageFlags, PermissionsBitField,
     SeparatorSpacingSize, SlashCommandBuilder,
     TextDisplayBuilder
 } from "discord.js";
@@ -54,11 +53,11 @@ export default {
 
             for (const command of pageCommands) {
                 const help = command.help;
-                const content = `### ${await convertToEmojiToPng("bookmarked")} [${help.name}](${help.docsLink ?? "https://docs.disbot.app"})\n` +
-                    `> ${await convertToEmojiToPng("paperclip")} **Description:** ${help.description}\n` +
-                    `> ${await convertToEmojiToPng("use")} **Usage:** \`${help.usage}\`\n` +
-                    (help.examples.length > 0 ? `> ${await convertToEmojiToPng("bookdashed")} **Example:**\n${help.examples.map(e => `> - ${e}`).join("\n")}` : "") +
-                    (help.aliases.length > 0 ? `\n> ${await convertToEmojiToPng("filestack")} **Aliases:**\n ${help.aliases.map(e => `> - ${e}`).join("\n")}` : "");
+                const content = `### ${await convertToEmojiToPng("bookmarked")} [${help?.name}](${help?.docsLink ?? "https://docs.disbot.app"})\n` +
+                    `> ${await convertToEmojiToPng("paperclip")} **Description:** ${help?.description}\n` +
+                    `> ${await convertToEmojiToPng("use")} **Usage:** \`${help?.usage}\`\n` +
+                    (help.examples?.length > 0 ? `> ${await convertToEmojiToPng("bookdashed")} **Example:**\n${help?.examples?.map(e => `> - ${e}`).join("\n")}` : "") +
+                    (help.aliases?.length > 0 ? `\n> ${await convertToEmojiToPng("filestack")} **Aliases:**\n ${help?.aliases?.map(e => `> - ${e}`).join("\n")}` : "");
 
                 container.addTextDisplayComponents(new TextDisplayBuilder().setContent(content));
                 container.addSeparatorComponents(s => s.setSpacing(SeparatorSpacingSize.Small));

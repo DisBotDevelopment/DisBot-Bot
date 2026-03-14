@@ -1,5 +1,4 @@
 import {
-    ActionRow,
     ActionRowBuilder,
     ButtonBuilder,
     ButtonInteraction,
@@ -7,7 +6,6 @@ import {
     ChannelSelectMenuBuilder,
     ChannelType,
     ContainerBuilder,
-    EmbedBuilder,
     MessageFlags,
     RoleSelectMenuBuilder,
     TextDisplayBuilder,

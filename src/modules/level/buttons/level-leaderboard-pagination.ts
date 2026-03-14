@@ -25,7 +25,7 @@ export default {
 
         await interaction.deferReply()
 
-        let data = await database.levelSettings.findFirst({
+        const data = await database.levelSettings.findFirst({
             include: {
                 Levels: true
             },
@@ -34,7 +34,7 @@ export default {
             }
         })
 
-        let message = await database.messageTemplates.findFirst({
+        const message = await database.messageTemplates.findFirst({
             where: {
                 Name: data.LeaderboardMessageTemplateId
             }
@@ -106,7 +106,7 @@ export default {
                 .setDisabled(currentIndex + data.LeaderboardDisplayAmount >= data.Levels.length)
         );
 
-        let components = []
+        const components = []
         if ((builder.messageData as any).components && (builder.messageData as any).components?.length > 0) {
             (builder.messageData as any).components.forEach((component: any) => {
                 components.push(component);

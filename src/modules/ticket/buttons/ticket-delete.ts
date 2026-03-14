@@ -46,7 +46,7 @@ export default {
         }
 
         if (data.AutoCloseAction.includes("confirm")) {
-            if (Boolean(interaction.customId.split(":")[2])) {
+            if (interaction.customId.split(":")[2]) {
 
             } else {
                 return await interaction.reply({

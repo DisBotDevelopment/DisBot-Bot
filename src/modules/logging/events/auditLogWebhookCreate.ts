@@ -46,9 +46,9 @@ export default {
             : null;
         const targetWebhook = auditLog.target as Webhook;
 
-        let emoji = "🔗";
-        let action = "Webhook Created";
-        let detailsLines: string[] = [];
+        const emoji = "🔗";
+        const action = "Webhook Created";
+        const detailsLines: string[] = [];
 
         detailsLines.push(`> **Webhook Name:** \`${targetWebhook.name || "Unknown"}\``);
         detailsLines.push(`> **Channel:** <#${targetWebhook.channelId}>`);

@@ -1,5 +1,5 @@
-import {Client, GuildChannel, GuildMember, Interaction} from "discord.js";
-import {VerificationAction, VerificationActionType} from "../enums/verification.js";
+import { GuildMember, type Interaction} from "discord.js";
+import {VerificationAction} from "../enums/verification.js";
 import {createCanvas} from "@napi-rs/canvas";
 import {ExtendedClient} from "../types/ExtendedClient.js";
 import {database} from "../main/database.js";

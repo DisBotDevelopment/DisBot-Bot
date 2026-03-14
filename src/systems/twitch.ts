@@ -1,6 +1,6 @@
 import {ExtendedClient} from "../types/ExtendedClient.js";
 import axios from "axios";
-import {ChannelType, EmbedBuilder, Guild, NewsChannel, TextChannel, ThreadChannel,} from "discord.js";
+import {ChannelType, TextChannel} from "discord.js";
 import {database} from "../main/database.js";
 import {Config} from "../main/config.js";
 import {MessageBuilder} from "../helper/messageHelper.js";
@@ -87,6 +87,7 @@ export async function checkTwitch(client: ExtendedClient) {
                 const channel = guild.channels.cache.get(
                     channeltype?.id as string
                 );
+                if (!channel) return
 
                 const toggledata = await database.guildFeatureToggles.findFirst({
                     where: {
@@ -122,14 +123,14 @@ export async function checkTwitch(client: ExtendedClient) {
                     }
                 }
                 const message = await MessageBuilder(
-                    messageData,
+                    messageData!,
                     placeholder
                 )
 
                 if (channel.type == ChannelType.PublicThread) {
-                    await channel.send(message.messageData)
+                    await channel.send(message!.messageData)
                 } else {
-                    await (channel as TextChannel).send(message.messageData)
+                    await (channel as TextChannel).send(message!.messageData)
                 }
 
             } else return

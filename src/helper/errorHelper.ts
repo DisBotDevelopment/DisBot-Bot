@@ -1,9 +1,9 @@
 import colors from "colors";
 import {
-    ActionRowBuilder, AnySelectMenuInteraction,
+    type AnySelectMenuInteraction,
     ButtonBuilder, ButtonInteraction,
     ButtonStyle, ChatInputCommandInteraction,
-    ContainerBuilder, ContextMenuCommandInteraction, Interaction,
+    ContainerBuilder, ContextMenuCommandInteraction,
     MessageFlags, ModalSubmitInteraction, SectionBuilder, SeparatorBuilder, SeparatorSpacingSize,
     TextDisplayBuilder,
     WebhookClient

@@ -100,7 +100,7 @@ export default {
 
             await message?.edit({components: [newRow]});
         } else {
-            let lastRow = rows[rows.length - 1];
+            const lastRow = rows[rows.length - 1];
 
             if (lastRow.components.length >= maxComponentsPerRow) {
                 if (rows.length >= maxRows) {

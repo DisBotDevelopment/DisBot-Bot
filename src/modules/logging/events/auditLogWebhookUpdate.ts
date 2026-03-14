@@ -44,9 +44,9 @@ export default {
         const updatedWebhook = auditLog.target as Webhook;
         const updateTime = new Date();
 
-        let emoji = "✏️";
-        let action = "Webhook Updated";
-        let detailsLines: string[] = [];
+        const emoji = "✏️";
+        const action = "Webhook Updated";
+        const detailsLines: string[] = [];
 
         // Changes
         for (const change of auditLog.changes) {

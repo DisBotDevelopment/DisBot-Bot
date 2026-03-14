@@ -6,7 +6,6 @@ import {
     ChannelSelectMenuBuilder,
     ChannelType,
     ContainerBuilder,
-    EmbedBuilder,
     MessageFlags,
     TextDisplayBuilder
 } from "discord.js";
@@ -32,7 +31,7 @@ export default {
         });
         const autoPublishData = await database.guildAutoPublish.findFirst({
             where: {
-                GuildId: interaction.guild.id
+                GuildId: interaction.guild?.id ?? ""
             }
         });
 

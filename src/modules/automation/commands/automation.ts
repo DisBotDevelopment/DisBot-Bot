@@ -1,9 +1,7 @@
 import {
     ActionRowBuilder, ApplicationIntegrationType,
-    ChannelType,
     ChatInputCommandInteraction,
     ContainerBuilder,
-    EmbedBuilder,
     InteractionContextType,
     MessageFlags,
     PermissionFlagsBits,

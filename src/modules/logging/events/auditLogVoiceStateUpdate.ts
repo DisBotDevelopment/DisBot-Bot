@@ -46,7 +46,7 @@ export default {
 
         let emoji = "🔊";
         let action = "";
-        let detailsLines: string[] = [];
+        const detailsLines: string[] = [];
 
         if (!oldState.channel && newState.channel) {
             emoji = "📥";

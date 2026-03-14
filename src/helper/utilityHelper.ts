@@ -1,17 +1,12 @@
 import {
-    ActionRowBuilder,
-    AnySelectMenuInteraction,
-    AttachmentBuilder,
+    type AnySelectMenuInteraction,
     ButtonBuilder,
     ButtonInteraction,
     ButtonStyle,
-    ChatInputCommandInteraction, ComponentEmojiResolvable,
-    ComponentType,
+    ChatInputCommandInteraction, type ComponentEmojiResolvable,
     ContainerBuilder,
-    FileBuilder, InteractionType,
-    Message,
+    InteractionType,
     MessageFlags,
-    ModalBuilder,
     ModalSubmitInteraction,
     TextDisplayBuilder
 } from "discord.js";
@@ -22,7 +17,7 @@ import axios from "axios";
 import * as process from "node:process";
 import {ExtendedClient} from "../types/ExtendedClient.js";
 import {convertToEmojiToPng} from "./emojis.js";
-import {DrawCardOptions} from "../types/drawcardoptions.js";
+import type {DrawCardOptions} from "../types/drawcardoptions.js";
 
 export function getInteractionData(interaction: ButtonInteraction | ModalSubmitInteraction | AnySelectMenuInteraction, split: number) {
     return interaction.customId.split(":")[split];
@@ -131,12 +126,12 @@ export class DocsButton extends ButtonBuilder {
         return super.setEmoji(emoji);
     }
 
-    setStyle(style: ButtonStyle): this {
+    override setStyle(style: ButtonStyle): this {
         return super.setStyle(style);
     }
 
 
-    setLabel(label: string): this {
+    override setLabel(label: string): this {
         return super.setLabel(label);
     }
 }
@@ -152,12 +147,12 @@ export async function createPollImage(poll: { title: any; description: any; opti
 
     ctx.fillStyle = "#424549";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    const maxVotes = Math.max(...poll.options.map(o => o.votes ?? 0), 1);
+    const maxVotes = Math.max(...poll.options.map((o: { votes: any; }) => o.votes ?? 0), 1);
 
     ctx.textBaseline = "middle";
     ctx.font = "20px Arial";
 
-    poll.options.forEach((option, index) => {
+    poll.options.forEach((option: { votes: number; emoji: any; label: any; }, index: number) => {
         const y = 130 + index * optionHeight;
         const barWidth = (option.votes / maxVotes) * 600;
         const radius = 10;
@@ -173,12 +168,12 @@ export async function createPollImage(poll: { title: any; description: any; opti
         ctx.fillText(`${option.votes} votes`, 660, y + barHeight / 2);
     });
 
-    function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
+    function roundRect(ctx: any, x: any, y: any, width: any, height: any, radius: any, fill: any, stroke: any) {
         if (typeof radius === "number") {
             radius = {tl: radius, tr: radius, br: radius, bl: radius};
         } else {
             const defaultRadius = {tl: 0, tr: 0, br: 0, bl: 0};
-            for (let side in defaultRadius) {
+            for (const side in defaultRadius) {
                 radius[side] = radius[side] || 0;
             }
         }

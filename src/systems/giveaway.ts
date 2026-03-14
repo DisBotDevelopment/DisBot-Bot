@@ -2,7 +2,7 @@ import {
     ActionRowBuilder,
     ButtonBuilder,
     ButtonStyle,
-    ContainerBuilder, GuildTextBasedChannel,
+    ContainerBuilder, type GuildTextBasedChannel,
     MessageFlags,
     TextDisplayBuilder
 } from "discord.js";
@@ -69,7 +69,7 @@ export async function giveaway(client: ExtendedClient) {
                         entrys: giveaway1.Entrys ? giveaway1.Entrys.length.toString() : "N/A"
                     }
                 }
-                const gMessage = replacePlaceholders(giveaway1.Content, placeholderType)
+                const gMessage = replacePlaceholders(giveaway1.Content ?? "", placeholderType)
 
                 if (!client.user) continue;
                 await message.edit({

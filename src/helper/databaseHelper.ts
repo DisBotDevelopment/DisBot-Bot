@@ -7,11 +7,6 @@ import {LoggingAction} from "../enums/loggingTypes.js";
 import colors from "colors"
 import {Guild, User} from "discord.js";
 import {Config} from "../main/config.js";
-import fs from "fs";
-import path from "path";
-import {PrismaClient} from "../prisma/index.js";
-import {randomUUID} from "crypto";
-
 colors.enable();
 
 export async function setupDisBotConfig(client: ExtendedClient): Promise<void> {

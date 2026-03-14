@@ -1,5 +1,5 @@
 import colors from "colors";
-import {ChatInputCommandInteraction, Guild, REST, Routes, SlashCommandBuilder} from "discord.js";
+import {ChatInputCommandInteraction, REST, Routes, SlashCommandBuilder} from "discord.js";
 import fs from "fs";
 import path from "path";
 import {pathToFileURL} from "url";
@@ -9,7 +9,6 @@ import {getFilesRecursively} from "./fileHelper.js";
 import {Logger} from "../main/logger.js";
 import {Config} from "../main/config.js";
 import {database} from "../main/database.js";
-import {cli} from "winston/lib/winston/config/index.js";
 import type {IDisBotCommand} from "../types/Interaction.js";
 import {DisBotInteractionType} from "../enums/disBotInteractionType.js";
 
@@ -23,7 +22,7 @@ export class CommandHelper {
 
         await this.addDefaultCommandsToGuild(client, guildId)
 
-        let cmdlist: any[] = [];
+        const cmdlist: any[] = [];
         const stats = {
             commands: 0,
             contextMenus: 0,
@@ -143,13 +142,13 @@ export class CommandHelper {
 
                 if (!cmd) {
                     await restClient.delete(
-                        Routes.applicationGuildCommand(client.user.id, guildId, commandId)
+                        Routes.applicationGuildCommand(Config.Bot.DiscordApplicationId, guildId, commandId)
                     );
                     Logger.info(`[CMD DELETE] Deleted command: ${command.name}`);
                 } else {
                     if (Config.Commands.CommandsToUpdate.includes(command.name)) {
                         await restClient.patch(
-                            Routes.applicationGuildCommand(client.user.id, guildId, commandId),
+                            Routes.applicationGuildCommand(Config.Bot.DiscordApplicationId, guildId, commandId),
                             {body: cmd}
                         );
                         Logger.info(`[CMD UPDATE] Updated command: ${command.name}`);
@@ -163,7 +162,7 @@ export class CommandHelper {
         for (const cmd of commands) {
             if (!currentCommands.some((c) => c.name === cmd.name)) {
                 await restClient.post(
-                    Routes.applicationGuildCommands(client.user.id, guildId),
+                    Routes.applicationGuildCommands(Config.Bot.DiscordApplicationId, guildId),
                     {body: cmd}
                 );
                 Logger.info(`[CMD ADD] Added new command: ${cmd.name}`);
@@ -194,14 +193,15 @@ export class CommandHelper {
                     let name = `open-${ticketCommand.CustomId.split("-")[0]}-ticket`
                     if (name.length >= 32 || (ticketCommand?.SlashCommandName && ticketCommand.SlashCommandName?.length >= 32)) {
                         return
-                    } else if (ticketCommand.SlashCommandName.length <= 30) {
+                    } else if (ticketCommand.SlashCommandName?.length ?? 0 <= 30) {
+                        // @ts-ignore
                         name = ticketCommand.SlashCommandName
                     }
 
                     let description = "Open Ticket with command."
-                    if (ticketCommand && ticketCommand.SlashCommandDescription.length < 31) {
+                    if (ticketCommand && (ticketCommand.SlashCommandDescription?.length ?? 0) < 31) {
                         description = "Open Ticket with command."
-                    } else if (guildCommand && guildCommand?.description < 99) {
+                    } else if (guildCommand && guildCommand?.description.length < 99) {
                         description = guildCommand.description
                     }
 
@@ -266,8 +266,8 @@ export class CommandHelper {
     }
 
     public static async loadCommands(client: ExtendedClient) {
-        let cmdlist: any[] = [];
-        let applicationcmdlist: any[] = [];
+        const cmdlist: any[] = [];
+        const applicationcmdlist: any[] = [];
         const stats = {
             commands: 0,
             userInstall: 0,
@@ -425,7 +425,7 @@ export class CommandHelper {
         ]
 
         commands.map((commandData) => {
-            client.guildCommands.set(commandData.command.name, commandData)
+            client.guildCommands?.set(commandData.command.name, commandData)
         })
         await guild.commands.set(
             commands.map((commandData) => commandData.command)
@@ -434,13 +434,13 @@ export class CommandHelper {
 
     public static async addDefaultCommandsToGuild(client: ExtendedClient, guildId: string) {
         // ADD /commands to GUILD
-        await fetch(`https://discord.com/api/v10/applications/${client.user.id}/guilds/${guildId}/commands`, {
+        await fetch(`https://discord.com/api/v10/applications/${Config.Bot.DiscordApplicationId}/guilds/${guildId}/commands`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bot ${Config.Bot.DiscordBotToken}`
             },
-            body: JSON.stringify(client.commands.get("commands").command)
+            body: JSON.stringify(client.commands?.get("commands")?.command)
         })
     }
 

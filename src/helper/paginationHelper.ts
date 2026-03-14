@@ -1,5 +1,5 @@
 import {
-    ActionRowBuilder, AnyComponentBuilder, AnySelectMenuInteraction,
+    ActionRowBuilder,
     ButtonBuilder,
     ButtonStyle, ChannelSelectMenuBuilder,
     ContainerBuilder,
@@ -8,7 +8,7 @@ import {
     TextDisplayBuilder, UserSelectMenuBuilder
 } from "discord.js";
 import {convertToEmojiToPng} from "./emojis.js";
-import {PaginationData} from "../types/Pagination.js";
+import type {PaginationData} from "../types/Pagination.js";
 
 export async function PaginationBuilder(data: PaginationData) {
 

@@ -6,7 +6,6 @@ import {
     ChannelSelectMenuBuilder,
     ChannelType,
     ContainerBuilder,
-    EmbedBuilder,
     MessageFlags,
     RoleSelectMenuBuilder,
     StringSelectMenuInteraction,

@@ -1,8 +1,8 @@
-import { BackupData } from "./types/BackupData.js";
-import { LoadOptions } from "./types/LoadOptions.js";
-import { loadCategory, loadChannel } from "./util.js";
-import type { ForumChannel, NewsChannel, TextChannel, VoiceBasedChannel } from 'discord.js';
-import { ChannelType, Emoji, Guild, GuildFeature, Role, VoiceChannel } from 'discord.js';
+import type {BackupData} from "./types/BackupData.js";
+import type {LoadOptions} from "./types/LoadOptions.js";
+import {loadCategory, loadChannel} from "./util.js";
+import type {ForumChannel, NewsChannel, TextChannel, VoiceBasedChannel} from 'discord.js';
+import {ChannelType, Emoji, Guild, GuildFeature, Role, VoiceChannel} from 'discord.js';
 
 /**
  * Restores the guild configuration

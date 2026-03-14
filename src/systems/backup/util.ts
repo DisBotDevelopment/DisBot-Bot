@@ -3,9 +3,9 @@ import {
     CategoryChannel,
     ChannelType,
     Collection,
-    FetchMessagesOptions,
+    type   FetchMessagesOptions,
     Guild,
-    GuildChannelCreateOptions,
+    type GuildChannelCreateOptions,
     GuildDefaultMessageNotifications,
     GuildExplicitContentFilter,
     GuildFeature,
@@ -14,9 +14,9 @@ import {
     GuildVerificationLevel,
     Message,
     NewsChannel,
-    OverwriteData,
+    type  OverwriteData,
     OverwriteType,
-    Snowflake,
+    type  Snowflake,
     TextChannel,
     ThreadChannel,
     VoiceChannel,
@@ -80,7 +80,7 @@ export async function fetchVoiceChannelData(channel: VoiceChannel) {
 }
 
 export async function fetchChannelMessages(channel: TextChannel | NewsChannel | ThreadChannel, options: CreateOptions): Promise<MessageData[]> {
-    let messages: MessageData[] = [];
+    const messages: MessageData[] = [];
     const messageCount: number = isNaN(options.maxMessagesPerChannel ?? NaN) ? 10 : options.maxMessagesPerChannel!;
     const fetchOptions: FetchMessagesOptions = {limit: 100};
     let lastMessageId: Snowflake | undefined = undefined;
@@ -240,7 +240,7 @@ export async function loadChannel(
                             threadId: channel.isThread() ? channel.id : undefined
                         })
                         .catch((err) => {
-                          
+
                         });
                     if (msg.pinned && sentMsg) await (sentMsg as Message).pin();
                 }
@@ -294,7 +294,7 @@ export async function loadChannel(
                 /* Load threads */
                 if ((channelData as TextChannelData).threads.length > 0) { //&& guild.features.includes('THREADS_ENABLED')) {
                     await Promise.all((channelData as TextChannelData).threads.map(async (threadData) => {
-                        let autoArchiveDuration = threadData.autoArchiveDuration;
+                        const autoArchiveDuration = threadData.autoArchiveDuration;
                         //if (!guild.features.includes('SEVEN_DAY_THREAD_ARCHIVE') && autoArchiveDuration === 10080) autoArchiveDuration = 4320;
                         //if (!guild.features.includes('THREE_DAY_THREAD_ARCHIVE') && autoArchiveDuration === 4320) autoArchiveDuration = 1440;
                         return (channel as TextChannel).threads.create({

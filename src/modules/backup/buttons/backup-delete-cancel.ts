@@ -1,6 +1,6 @@
-import { ButtonInteraction, ButtonStyle, MessageFlags } from "discord.js";
-import { convertToEmojiToPng } from "../../../helper/emojis.js";
-import { ExtendedClient } from "../../../types/ExtendedClient.js";
+import {ButtonInteraction} from "discord.js";
+import {convertToEmojiToPng} from "../../../helper/emojis.js";
+import {ExtendedClient} from "../../../types/ExtendedClient.js";
 
 export default {
     id: "backup-delete-cancel",

@@ -1,23 +1,15 @@
 import {
     ButtonInteraction,
     ChannelType,
-    ContainerBuilder,
-    GuildMember,
     MessageFlags,
-    PrivateThreadChannel, StringSelectMenuBuilder, TextChannel,
+    StringSelectMenuBuilder,
     TextDisplayBuilder,
 } from "discord.js";
 import {ExtendedClient} from "../../../types/ExtendedClient.js";
 import {database} from "../../../main/database.js";
-import {
-    handleCloseAction,
-    hasTicketPermission,
-    ticketErrorMessage,
-    ticketLookAction
-} from "../../../helper/ticketHelper.js";
-import {convertToEmojiToPng} from "../../../helper/emojis.js";
-import {PaginationData} from "../../../types/Pagination.js";
+import type {PaginationData} from "../../../types/Pagination.js";
 import {PaginationBuilder} from "../../../helper/paginationHelper.js";
+import {randomUUID} from "crypto";
 
 export default {
     id: "ticket-list-guild-tickets",
@@ -39,7 +31,7 @@ export default {
                 TicketSetup: true
             },
             where: {
-                GuildId: interaction.guildId
+                GuildId: interaction.guildId ?? "0"
             }
         })
 
@@ -59,7 +51,7 @@ export default {
             .setPlaceholder("Select a Option to manage")
             .addOptions(
                 await Promise.all(list.map(async (l) => ({
-                    label: interaction.guild.members.cache.get(l.TicketOwnerId).displayName || "N/A",
+                    label: interaction.guild?.members.cache.get(l.TicketOwnerId)?.displayName || "N/A",
                     description: `UUID: ${l.TicketId} - Channel Type: ${l.ChannelType == ChannelType.GuildCategory ? "Category" : "Thread"}`,
                     value: l.TicketId,
                     emoji: "<:ticket:1400577766205816852>",
@@ -75,7 +67,7 @@ export default {
             pageSize: pageSize,
             client: client,
             currentIndex: currentIndex,
-            latestUUID: uuid
+            latestUUID: uuid ?? randomUUID()
         }
 
         await PaginationBuilder(

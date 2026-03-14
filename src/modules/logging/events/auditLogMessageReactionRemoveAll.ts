@@ -38,7 +38,7 @@ export default {
 
         const webhook = new WebhookClient({url: loggingData.Reaction});
 
-        let moderator = null;
+        const moderator = null;
 
         const messageLink = `https://discord.com/channels/${guildId}/${reaction.message.channel.id}/${reaction.message.id}`;
 

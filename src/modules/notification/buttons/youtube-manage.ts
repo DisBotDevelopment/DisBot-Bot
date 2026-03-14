@@ -48,10 +48,10 @@ export default {
                 .setContent((await Promise.all(list.map(async (l) => {
 
                     const parser = new Parser();
-                    let videodata = await parser.parseURL(
+                    const videodata = await parser.parseURL(
                         `https://www.youtube.com/feeds/videos.xml?channel_id=${l.YoutubeChannelId}`
                     );
-                    let {author} = videodata.items[0];
+                    const {author} = videodata.items[0];
 
                     return `**Youtube Channel**: ${author} (${l.YoutubeChannelId})\n**Channel Name:** ${l.ChannelId ? `<#${l.ChannelId}>` : "N/A"}\n**UUID:** ${l.UUID}`
                 }))).join("\n\n"))
@@ -63,10 +63,10 @@ export default {
                 .addOptions(await Promise.all(list.map(async (l) => {
 
                     const parser = new Parser();
-                    let videodata = await parser.parseURL(
+                    const videodata = await parser.parseURL(
                         `https://www.youtube.com/feeds/videos.xml?channel_id=${l.YoutubeChannelId}`
                     );
-                    let {author} = videodata.items[0];
+                    const {author} = videodata.items[0];
 
                     return {
                         label: `${author} (${l.YoutubeChannelId})`,

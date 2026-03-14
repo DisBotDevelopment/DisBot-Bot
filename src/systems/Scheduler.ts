@@ -1,19 +1,14 @@
 import {
     ActionRowBuilder,
-    AttachmentBuilder,
     ButtonBuilder,
-    ButtonInteraction,
     ButtonStyle, ChannelType,
-    ContainerBuilder,
-    FileBuilder,
-    MessageFlags, PrivateThreadChannel,
-    StringSelectMenuBuilder, TextChannel
+    type PrivateThreadChannel,
+    TextChannel
 } from "discord.js";
 import {ExtendedClient} from "../types/ExtendedClient.js";
 import {database} from "../main/database.js";
 import {handleCloseAction} from "../helper/ticketHelper.js";
 import {Config} from "../main/config.js";
-import {convertToEmojiToPng} from "../helper/emojis.js";
 
 export class Scheduler {
 
@@ -27,11 +22,11 @@ export class Scheduler {
                 if (!guild) {
                     continue
                 }
-                const channel = await guild?.channels?.fetch(data.ChannelId) ?? null
+                const channel = await guild?.channels?.fetch(data.ChannelId ?? "") ?? null
                 if (!channel) {
                     continue
                 }
-                const message = await (channel as TextChannel)?.messages?.fetch(data.MessageId) ?? null
+                const message = await (channel as TextChannel)?.messages?.fetch(data.MessageId ?? "") ?? null
                 if (!message) {
                     continue
                 }
@@ -166,7 +161,7 @@ export class Scheduler {
 
             const guild = await client.guilds.fetch(ticket.GuildId)
             if (!guild) continue;
-            let channel: TextChannel | PrivateThreadChannel
+            let channel: TextChannel | PrivateThreadChannel | null = null
             if (ticket.ChannelType == ChannelType.GuildCategory) {
                 try {
                     if (!ticket.ChannelId) continue;
@@ -213,7 +208,7 @@ export class Scheduler {
                             guild,
                             channel,
                             ticket.TicketId,
-                            null,
+                            undefined,
                             "Ticket Inactive",
                             true,
                         )
@@ -243,7 +238,7 @@ export class Scheduler {
                             guild,
                             channel,
                             ticket.TicketId,
-                            null,
+                            undefined,
                             "Ticket is too long open!",
                             true,
                         )

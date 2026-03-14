@@ -1,10 +1,6 @@
 import colors from "colors";
 import {
-    ActivityType,
-    Client,
-    Collection, Events,
     GatewayIntentBits,
-    Guild,
     Partials,
 } from "discord.js";
 import {loadButtons} from "../handler/files/buttons.js";
@@ -14,7 +10,6 @@ import {loadModals} from "../handler/files/modals.js";
 import {loadSelectMenus} from "../handler/files/selectmenus.js";
 import {ExtendedClient} from "../types/ExtendedClient.js";
 import {Logger} from "./logger.js";
-import {LoggingAction} from "../enums/loggingTypes.js";
 import {connectToDatabase, initDataToDatabase} from "./database.js";
 import {Config, configStartup} from "./config.js";
 import {errorSetupForNodeJs} from "../helper/errorHelper.js";
@@ -32,6 +27,8 @@ await configStartup().then((c) => Logger.info("Loading Configuration (2/2).")
 )
 
 Logger.info("Building DisBot Extended Client.")
+// @ts-ignore
+// @ts-ignore
 export const disbotClient = new ExtendedClient(
     {
         intents: [

@@ -47,9 +47,9 @@ export default {
         const deletedWebhook = auditLog.target as Webhook;
         const deletionTime = new Date();
 
-        let emoji = "🗑️";
-        let action = "Webhook Deleted";
-        let detailsLines: string[] = [];
+        const emoji = "🗑️";
+        const action = "Webhook Deleted";
+        const detailsLines: string[] = [];
 
         detailsLines.push(`> **Webhook Name:** \`${deletedWebhook.name || "Unknown"}\``);
         detailsLines.push(`> **Channel:** <#${deletedWebhook.channelId}>`);
