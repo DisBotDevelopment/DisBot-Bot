@@ -1,11 +1,8 @@
 import {
     ActionRowBuilder, ButtonBuilder, ButtonStyle,
-    ChannelType,
     ChatInputCommandInteraction, ContainerBuilder,
     MessageFlags,
-    PermissionFlagsBits,
-    RoleResolvable,
-    TextChannel, TextDisplayBuilder
+    PermissionFlagsBits, TextDisplayBuilder
 } from "discord.js";
 import {ExtendedClient} from "../../../../types/ExtendedClient.js";
 import {convertToEmojiToPng} from "../../../../helper/emojis.js";
@@ -50,7 +47,7 @@ export default {
                             new ButtonBuilder()
                                 .setEmoji("<:export:1321939859228721172>")
                                 .setLabel("Export Guild Data")
-                                .setDisabled(!(interaction.guild.ownerId == interaction.user.id))
+                                .setDisabled(!(interaction.guild?.ownerId == interaction.user.id))
                                 .setStyle(ButtonStyle.Secondary)
                                 .setCustomId("utility-export-guild"),
                             new ButtonBuilder()

@@ -22,7 +22,7 @@ export default {
     async execute(interaction: ButtonInteraction, client: ExtendedClient) {
 
 
-        if (interaction.user.id != interaction.guild.ownerId) {
+        if (interaction.user.id != interaction.guild?.ownerId) {
             return interaction.reply({
                 flags: MessageFlags.Ephemeral,
                 content: `## ${await convertToEmojiToPng("errorred")} This interaction is only for guild owners.`
@@ -100,7 +100,7 @@ export default {
                 YoutubeNotifications: true,
             },
             where: {
-                GuildId: interaction.guild.id
+                GuildId: interaction.guild?.id
             }
         })
 
@@ -115,11 +115,11 @@ export default {
                             .setContent(`## ${await convertToEmojiToPng("export")} Download your GuildData Export ${new Date().toDateString()}`)
                     )
                     .addFileComponents(
-                        new FileBuilder().setURL(`attachment://GuildData-${interaction.guild.name}.json`).setSpoiler(true)
+                        new FileBuilder().setURL(`attachment://GuildData-${interaction.guild?.name ?? "N/A"}.json`).setSpoiler(true)
                     )
             ],
             files: [
-                new AttachmentBuilder(Buffer.from(string)).setName(`GuildData-${interaction.guild.name}.json`),
+                new AttachmentBuilder(Buffer.from(string)).setName(`GuildData-${interaction.guild?.name ?? "N/A"}.json`),
             ]
         })
 
