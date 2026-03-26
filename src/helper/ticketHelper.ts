@@ -297,7 +297,7 @@ export async function ticketHelper(
         })
 
         if (!messageData) {
-            const ticketTemplateMessage = await fetch("https://cdn.xyzify.ing/raw/VqvWD9.json?download=true")
+            const ticketTemplateMessage = await fetch("https://cdn.jespersen.zip/raw/VqvWD9.json?download=true")
             const ticketTemplateMessageData = await ticketTemplateMessage.json()
 
             messageData = {

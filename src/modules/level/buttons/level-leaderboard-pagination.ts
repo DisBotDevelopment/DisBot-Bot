@@ -61,8 +61,8 @@ export default {
             },
             level: {
                 leaderboard: {
-                    leaderboardImageDefault: leaderboardImageDefault.replace("cdn.xyzhub.link", "cdn.xyzify.ing"),
-                    leaderboardImageHorizontal: leaderboardImageHorizontal.replace("cdn.xyzhub.link", "cdn.xyzify.ing"),
+                    leaderboardImageDefault: leaderboardImageDefault.replace("cdn.xyzhub.link", "cdn.jespersen.zip"),
+                    leaderboardImageHorizontal: leaderboardImageHorizontal.replace("cdn.xyzhub.link", "cdn.jespersen.zip"),
                     message: data?.Levels.length < 0 ? list.map((l, index) => {
                         const user = interaction.guild.members.cache.get(l.UserId);
                         const rank = index + 1;

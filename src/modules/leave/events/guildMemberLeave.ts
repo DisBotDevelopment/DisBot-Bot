@@ -88,7 +88,7 @@ export default {
                     outlineColor: data.ImageData?.Gradient?.split(",")[0] ?? "#fff"
                 },
                 card: {
-                    background: data.ImageData?.Background ?? "https://cdn.xyzify.ing/u/czdZgx.png",
+                    background: data.ImageData?.Background ?? "https://cdn.jespersen.zip/u/czdZgx.png",
                     blur: 1,
                     border: true,
                     rounded: true
@@ -99,7 +99,7 @@ export default {
         const withImagePlaceholder = {
             ...replacements,
             leave: {
-                image: cdnUrl ?? "https://cdn.xyzify.ing/u/ixBzIX.png",
+                image: cdnUrl ?? "https://cdn.jespersen.zip/u/ixBzIX.png",
             },
         }
 
