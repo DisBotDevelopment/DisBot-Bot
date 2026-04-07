@@ -22,7 +22,6 @@ export default {
         const toggleData = await database.guildFeatureToggles.findFirst({
             where: {GuildId: guild.id}
         });
-
         if (!toggleData?.WecomeEnabled) return;
 
         const data = await database.guildWelcomeSetup.findFirst({
@@ -33,11 +32,10 @@ export default {
         });
         if (!data?.ChannelId) return;
         if (!data.MessageTemplateId) return
-
+        
         const messageData = await database.messageTemplates.findFirst({
             where: {Name: data.MessageTemplateId}
         })
-
 
         const channel = await guild.channels.fetch(data.ChannelId) as TextChannel;
         if (!channel) return;
@@ -66,7 +64,7 @@ export default {
         };
 
         let cdnUrl;
-
+        
         if (data.ImageData) {
             const imageBuffer = await drawCardCanvas({
                 theme: (data.ImageData?.Theme as "dark" | "circuit" | "code") ?? "dark",
@@ -90,6 +88,7 @@ export default {
                     rounded: true
                 }
             });
+            
             cdnUrl = await uploadToCDN(imageBuffer)
         }
 
@@ -104,8 +103,7 @@ export default {
             messageData!,
             withImagePlaceholder
         )
-        if (!message) return
 
-        await channel.send(message.messageData)
+        await channel.send(message!.messageData)
     }
 };

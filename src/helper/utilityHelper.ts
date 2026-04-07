@@ -195,26 +195,7 @@ export async function createPollImage(poll: { title: any; description: any; opti
     }
 
     const buffer = canvas.toBuffer()
-
-    const form = new FormData();
-    form.append("file", buffer, {
-        filename: "image.png",
-        contentType: "image/png",
-    });
-
-    const req = await axios.post(`${Config.Other.CDN.Url}/api/upload`, form, {
-        headers: {
-            'Authorization': Config.Other.CDN.APIToken,
-            ...form.getHeaders(),
-            "Content-Type": "multipart/form-data",
-            "x-zipline-deletes-at": "5d"
-        },
-    });
-    if (req.status != 200) {
-        return null;
-    }
-    const data = await req.data;
-    return data.files[0].url ?? null;
+    return await uploadToCDN(buffer)
 }
 
 export async function isInDevelopment(

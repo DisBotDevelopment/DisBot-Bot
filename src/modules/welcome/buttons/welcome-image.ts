@@ -20,7 +20,7 @@ export default {
      * @param {ExtendedClient} client
      */
     async execute(interaction: ButtonInteraction, client: ExtendedClient) {
-
+        
         const modal = new ModalBuilder();
         const channel = new TextInputBuilder();
         const title = new TextInputBuilder();
