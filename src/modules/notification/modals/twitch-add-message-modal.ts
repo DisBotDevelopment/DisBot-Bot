@@ -30,16 +30,14 @@ export default {
             return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} Invalid Message ID! Try again.`, interaction, true)
         }
 
-        await database.guildTwitchNotifications.update(
-            {
-                where: {
-                    UUID: interaction.customId.split(":")[1]
-                },
-                data: {
-                    MessageTemplateId: getMessageID
-                }
+        await database.guildTwitchNotifications.update({
+            where: {
+                UUID: interaction.customId.split(":")[1],
+                GuildId: interaction.guild?.id
+            }, data: {
+                MessageTemplateId: getMessageID
             }
-        );
+        })
 
         await sendDefaultMessage(`## ${await convertToEmojiToPng("check")} Added the Message Template to the notification.`, interaction, true)
     }

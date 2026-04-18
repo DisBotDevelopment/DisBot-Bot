@@ -79,7 +79,7 @@ export default {
                         ChannelType.GuildAnnouncement
                     )
                     .setCustomId(
-                        "twitch-add-channel:" + interaction.customId.split(":")[1]
+                        "twitch-add-channel:" + uuids
                     )
                     .setMaxValues(1)
                     .setMinValues(1)
@@ -89,7 +89,7 @@ export default {
         const message = new ActionRowBuilder<ButtonBuilder>().addComponents(
             new ButtonBuilder()
                 .setCustomId(
-                    "twitch-add-message:" + interaction.customId.split(":")[1]
+                    "twitch-add-message:" + uuids
                 )
                 .setStyle(ButtonStyle.Secondary)
                 .setLabel("Message Template")
