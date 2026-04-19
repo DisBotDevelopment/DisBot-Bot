@@ -2,4 +2,6 @@ bin/
 obj/
 /packages/
 riderModule.iml
+/DisBot.DiscordBot/appsettings.json
+/DisBot.DiscordBot/appsettings.Development.json
 /_ReSharper.Caches/

@@ -9,26 +9,47 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.0" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="10.0.0" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="10.0.0" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.0" />
-      <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.0" />
-      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.0" />
-      <PackageReference Include="NetCord" Version="1.0.0-alpha.448" />
-      <PackageReference Include="NetCord.Hosting" Version="1.0.0-alpha.448" />
-      <PackageReference Include="NetCord.Hosting.AspNetCore" Version="1.0.0-alpha.448" />
-      <PackageReference Include="NetCord.Hosting.Services" Version="1.0.0-alpha.448" />
-      <PackageReference Include="NetCord.Services" Version="1.0.0-alpha.448" />
-      <PackageReference Include="Npgsql" Version="10.0.0-rc.1" />
-      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0-rc.2" />
-      <PackageReference Include="Scalar.Aspire" Version="0.7.3" />
-      <PackageReference Include="Scalar.AspNetCore" Version="2.10.3" />
-      <PackageReference Include="Scalar.AspNetCore.Microsoft" Version="2.10.3" />
-      <PackageReference Include="Scalar.AspNetCore.Swashbuckle" Version="2.10.3" />
-      <PackageReference Include="Spectre.Console" Version="0.54.1-alpha.0.6" />
-      <PackageReference Include="Spectre.Console.Cli" Version="1.0.0-alpha.0.7" />
-      <PackageReference Include="Spectre.Console.Json" Version="0.54.1-alpha.0.6" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.0"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="10.0.0"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="10.0.0"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.0"/>
+        <PackageReference Include="NetCord" Version="1.0.0-alpha.484"/>
+        <PackageReference Include="NetCord.Hosting" Version="1.0.0-alpha.448"/>
+        <PackageReference Include="NetCord.Hosting.AspNetCore" Version="1.0.0-alpha.448"/>
+        <PackageReference Include="NetCord.Hosting.Services" Version="1.0.0-alpha.448"/>
+        <PackageReference Include="NetCord.Services" Version="1.0.0-alpha.448"/>
+        <PackageReference Include="Npgsql" Version="10.0.2"/>
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0-rc.2"/>
+        <PackageReference Include="Scalar.AspNetCore" Version="2.14.1"/>
+        <PackageReference Include="Scalar.AspNetCore.Microsoft" Version="2.14.1"/>
+        <PackageReference Include="Scalar.AspNetCore.Swashbuckle" Version="2.14.1"/>
+        <PackageReference Include="Spectre.Console" Version="0.55.2"/>
+        <PackageReference Include="Spectre.Console.Cli" Version="1.0.0-alpha.0.7"/>
+        <PackageReference Include="Spectre.Console.Json" Version="0.54.1-alpha.0.6"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Update="appsettings.json">
+            <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </Content>
+        <Content Update="appsettings.Development.json">
+          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Contexts\"/>
+        <Folder Include="Modules\"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DisBot.Shared\DisBot.Shared.csproj" />
     </ItemGroup>
 
 </Project>
