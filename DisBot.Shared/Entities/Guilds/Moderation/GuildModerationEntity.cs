@@ -17,13 +17,13 @@ public class GuildModerationEntity
 
     public List<GuildAutoModerationEntity> AttachmentAutoModeration { get; set; } = [];
 
-    public GuildKickModerationSettings? GuildKickModerationSettings { get; set; }
-    public GuildBanModerationSettings? GuildBanModerationSettings { get; set; }
-    public GuildUnbanModerationSettings? GuildUnBanModerationSettings { get; set; }
-    public GuildMuteModerationSettings? GuildMuteModerationSettings { get; set; }
-    public GuildUnmuteModerationSettings? GuildUnMuteModerationSettings { get; set; }
-    public GuildUnwarnModerationSettings? GuildUnWarnModerationSettings { get; set; }
-    public GuildWarnModerationSetting? GuildWarnModerationSetting { get; set; }
+    public GuildKickModerationSettingsEntity? GuildKickModerationSettings { get; set; }
+    public GuildBanModerationSettingsEntity? GuildBanModerationSettings { get; set; }
+    public GuildUnbanModerationSettingsEntity? GuildUnBanModerationSettings { get; set; }
+    public GuildMuteModerationSettingsEntity? GuildMuteModerationSettings { get; set; }
+    public GuildUnmuteModerationSettingsEntity? GuildUnMuteModerationSettings { get; set; }
+    public GuildUnwarnModerationSettingsEntity? GuildUnWarnModerationSettings { get; set; }
+    public GuildWarnModerationSettingsEntity? GuildWarnModerationSetting { get; set; }
 
     [Required] public GuildEntity Guild { get; set; }
 }
