@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Shared.Entities.Guilds.Moderation.Settings;
 
-public class GuildUnbanModerationSettings
+public class GuildUnbanModerationSettingsEntity
 {
     public int Id { get; set; }
     public string DefaultReason { get; set; } = "User {user.username} has been unbanned by {moderator.username}";

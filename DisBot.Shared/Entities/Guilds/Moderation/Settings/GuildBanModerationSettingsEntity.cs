@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Shared.Entities.Guilds.Moderation.Settings;
 
-public class GuildBanModerationSettings
+public class GuildBanModerationSettingsEntity
 {
     public int Id { get; set; }
 

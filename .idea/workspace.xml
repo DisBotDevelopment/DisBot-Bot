@@ -10,7 +10,16 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d680bb56-c18c-4428-b895-58a460931289" name="Changes" comment="" />
+    <list default="true" id="d680bb56-c18c-4428-b895-58a460931289" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/DisBot.DiscordBot/Database/DataContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DisBot.DiscordBot/Database/DataContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildBanModerationSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildBanModerationSettingsEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildKickModerationSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildKickModerationSettingsEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildMuteModerationSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildMuteModerationSettingsEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildUnbanModerationSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildUnbanModerationSettingsEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildUnmuteModerationSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildUnmuteModerationSettingsEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildUnwarnModerationSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildUnwarnModerationSettingsEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildWarnModerationSetting.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildWarnModerationSettingsEntity.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,31 +33,71 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "jesperrichert"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;jesperrichert&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/DisBotDevelopment/DisBot-Bot",
-    "accountId": "49d7836c-9a3e-4a4b-ae4f-8f4e07282c4a"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/DisBotDevelopment/DisBot-Bot&quot;,
+    &quot;accountId&quot;: &quot;49d7836c-9a3e-4a4b-ae4f-8f4e07282c4a&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/DisBot.DiscordBot/Database/DataContext.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DisBot.DiscordBot/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.DiscordBot/Database/DataContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.DiscordBot/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DisBot.DiscordBot/Startup/Startup.Base.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DisBot.DiscordBot/Startup/Startup.Bot.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DisBot.DiscordBot/Startup/Startup.Database.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DisBot.DiscordBot/Startup/Startup.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.DiscordBot/Startup/Startup.Bot.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.DiscordBot/Startup/Startup.Database.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.DiscordBot/Startup/Startup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Logging/GuildLoggingEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Logging/GuildLogsEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/MessageTemplates/GuildMessageTemplateEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/AutoModeration/GuildAutoModerationEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/GuildModerationEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/GuildUserModerationEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/ModerationScout/GuildModerationScoutCaseEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/ModerationScout/GuildModerationScoutEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/ModerationScout/GuildModerationScoutFormEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/ModerationScout/GuildModerationScoutReportEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/ModerationScout/GuildModerationScoutUserAppealEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildKickModerationSettingsEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildMuteModerationSettingsEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildUnbanModerationSettingsEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildUnmuteModerationSettingsEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildUnwarnModerationSettingsEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildWarnModerationSettingsEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Notifications/GuildSpotifyNotificationEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Notifications/GuildTwitchNotificationEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Notifications/GuildYoutubeNotificationEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Polls/GuildPollAnswerEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Polls/GuildPollEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Polls/GuildPollOptionEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Security/GuildSecurityEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Security/GuildVerificationGateEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Security/GuildVerificationGatesPermissionEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/TempVoice/GuildTempVoiceChannelEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/TempVoice/GuildTempVoiceChannelMemberEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/TempVoice/GuildTempVoiceConfigEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/TempVoice/GuildTempVoicePresetDiscordRolePermissionEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/TempVoice/GuildTempVoicePresetEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/TempVoice/GuildTempVoiceSettingsEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Tickets/GuildTicketEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Tickets/GuildTicketFeedbackEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Tickets/GuildTicketModalDataEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Tickets/GuildTicketPermissionEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Tickets/GuildTicketSetupEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Welcome/GuildWelcomeImageDataEntity.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Welcome/GuildWelcomeSetupEntity.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "213f5fb6",
-  "associatedIndex": 1,
-  "fromUser": false
-}]]></component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;213f5fb6&quot;,
+  &quot;associatedIndex&quot;: 1,
+  &quot;fromUser&quot;: false
+}</component>
   <component name="ProjectId" id="3CerHIeyK2dQZCQoJY9ddE4s1jy" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -56,6 +105,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
@@ -70,6 +120,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "configurable.group.build",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -81,11 +132,49 @@
       <option name="presentableId" value="Default" />
       <updated>1776756787453</updated>
       <workItem from="1776756788662" duration="1221000" />
+      <workItem from="1776758868666" duration="2212000" />
     </task>
+    <task id="LOCAL-00001" summary="Added project config files.">
+      <option name="closed" value="true" />
+      <created>1776758921186</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1776758921186</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Added project config files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added project config files." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.OperationCanceledException" breakIfHandledByOtherCode="false" displayValue="System.OperationCanceledException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.Tasks.TaskCanceledException" breakIfHandledByOtherCode="false" displayValue="System.Threading.Tasks.TaskCanceledException" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
 </project>

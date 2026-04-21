@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Shared.Entities.Guilds.Moderation.Settings;
 
-public class GuildMuteModerationSettings
+public class GuildMuteModerationSettingsEntity
 {
     public int Id { get; set; }
     public string DefaultReason { get; set; } = "Muted user {user.username} by {moderator.username}.";
