@@ -6,6 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <OverrideHtmlAssetPlaceholders>true</OverrideHtmlAssetPlaceholders>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <RootNamespace>DisBot.Dashboard</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -37,12 +38,6 @@
       <AdditionalFiles Include="UI\Layout\MainLayout.razor" />
       <AdditionalFiles Include="UI\Pages\Home.razor" />
       <AdditionalFiles Include="UI\Pages\NotFound.razor" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Content Include="..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
     </ItemGroup>
 
 </Project>

@@ -36,7 +36,7 @@ jobs:
       - uses: docker/build-push-action@v5
         with:
           context: .
-          file: DisBot.Dashboard/Dockerfile
+          file: DisBot.Dashboard.Host/Dockerfile
           platforms: linux/amd64
           push: true
           tags: |
