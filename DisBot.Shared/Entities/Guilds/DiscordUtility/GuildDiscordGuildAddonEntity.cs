@@ -1,8 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.DiscordUtility;
 
-public class GuildDiscordGuildAddonEntity
+public class GuildDiscordGuildAddonEntity : IActionTimestamps
 {
     public int Id { get; set; }
 
@@ -10,8 +11,6 @@ public class GuildDiscordGuildAddonEntity
     public string[]? NoLinkEmbeds { get; set; }
     public bool InvitesPaused { get; set; } = false;
 
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
-
+    public int GuildId { get; set; }
     [Required] public GuildEntity Guild { get; set; }
 }

@@ -4,17 +4,13 @@
         <TargetFramework>net10.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <RootNamespace>API</RootNamespace>
+        <RootNamespace>DisBot.API</RootNamespace>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="10.0.7" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.7" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.0" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="10.0.0" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="10.0.0" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.0" />
         <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.0" />
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.0" />
         <PackageReference Include="NetCord" Version="1.0.0-alpha.484" />
@@ -22,13 +18,16 @@
         <PackageReference Include="NetCord.Hosting.AspNetCore" Version="1.0.0-alpha.484" />
         <PackageReference Include="NetCord.Hosting.Services" Version="1.0.0-alpha.484" />
         <PackageReference Include="NetCord.Services" Version="1.0.0-alpha.484" />
-        <PackageReference Include="Npgsql" Version="10.0.2" />
-        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0-rc.2" />
+        <PackageReference Include="Riok.Mapperly" Version="5.0.0-next.6" />
         <PackageReference Include="Scalar.AspNetCore" Version="2.14.3" />
         <PackageReference Include="Scalar.AspNetCore.Microsoft" Version="2.14.3" />
         <PackageReference Include="Spectre.Console" Version="0.55.2" />
         <PackageReference Include="Spectre.Console.Cli" Version="1.0.0-alpha.0.7" />
         <PackageReference Include="Spectre.Console.Json" Version="0.54.1-alpha.0.6" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.7">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
     <ItemGroup>

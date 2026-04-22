@@ -1,10 +1,10 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using Shared.Entities.Guilds.MessageTemplates;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.Giveaways;
 
-public class GuildGiveawayEntity
+public class GuildGiveawayEntity : IActionTimestamps
 {
     public int Id { get; set; }
     public ulong? MessageId { get; set; }
@@ -26,8 +26,7 @@ public class GuildGiveawayEntity
     public GuildMessageTemplateEntity? WinnerMessageTemplate { get; set; }
 
     public DateTimeOffset EndedAt { get; set; }
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
 
+    public int GuildId { get; set; }
     [Required] public GuildEntity Guild { get; set; }
 }

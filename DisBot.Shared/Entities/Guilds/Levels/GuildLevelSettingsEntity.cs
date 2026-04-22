@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Shared.Entities.Guilds.MessageTemplates;
 using Shared.Enums.Levels;
 
 namespace Shared.Entities.Guilds.Levels;
@@ -19,7 +20,7 @@ public class GuildLevelSettingsEntity
     public bool IsMessageXpEnabled { get; set; } = false;
     public bool IsVoiceXpEnabled { get; set; } = false;
     public int? MessageXpCooldown { get; set; } = 900000;
-    public MessageXpType[] MessageXpType { get; set; } = [Enums.Levels.MessageXpType.Cooldown];
+    public MessageXpType[] MessageXpType { get; set; } = [Shared.Enums.Levels.MessageXpType.Cooldown];
     public string? RequiredXpFormular { get; set; }
     public LevelMessageType? LevelUpMessageType { get; set; }
 
@@ -27,17 +28,19 @@ public class GuildLevelSettingsEntity
     public ulong? XpStreaksMessageChannelId { get; set; }
     public XpStreaksIncreaseType[]? XpStreaksIncreaseType { get; set; } = [];
 
-    public MessageTemplates.GuildMessageTemplateEntity? LeaderboardMessageTemplate { get; set; }
-    public MessageTemplates.GuildMessageTemplateEntity? LevelUpMessageTemplate { get; set; }
-    public MessageTemplates.GuildMessageTemplateEntity? LevelUserInfoMessageTemplate { get; set; }
-    public MessageTemplates.GuildMessageTemplateEntity? XpDropsMessageTemplate { get; set; }
+    public GuildMessageTemplateEntity? LeaderboardMessageTemplate { get; set; }
+    public GuildMessageTemplateEntity? LevelUpMessageTemplate { get; set; }
+    public GuildMessageTemplateEntity? LevelUserInfoMessageTemplate { get; set; }
+    public GuildMessageTemplateEntity? XpDropsMessageTemplate { get; set; }
 
     public DateTimeOffset CreatedAt { get; set; }
     public DateTimeOffset UpdatedAt { get; set; }
 
     public List<GuildLevelRoleEntity> LevelRoles = [];
-    public List<Levels.GuildLevelEntity> Levels = [];
+    public List<GuildLevelEntity> Levels = [];
     public List<GuildXpDropEntity> XpDrops = [];
     public List<GuildXpStreakEntity> XpStreaks = [];
+    
+    public int GuildId { get; set; }
     [Required] public GuildEntity Guild { get; set; }
 }

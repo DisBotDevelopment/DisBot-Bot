@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace Shared.Models.Http.Requests;
+namespace Shared.Http.Requests;
 
 public class FilterOptions : IParsable<FilterOptions>
 {

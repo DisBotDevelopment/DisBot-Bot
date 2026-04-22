@@ -1,4 +1,4 @@
-namespace DiscordBot.Configuration;
+namespace Shared.Configuration;
 
 public class DatabaseOptions
 {

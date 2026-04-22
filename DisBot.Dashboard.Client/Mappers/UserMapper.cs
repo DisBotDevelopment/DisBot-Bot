@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Riok.Mapperly.Abstractions;
-using Shared.Models.Http.Requests;
-using Shared.Models.Http.Responses.User;
+using Shared.Http.Requests.User;
+using Shared.Http.Responses.User;
 
 namespace DisBot.Dashboard.Mappers;
 

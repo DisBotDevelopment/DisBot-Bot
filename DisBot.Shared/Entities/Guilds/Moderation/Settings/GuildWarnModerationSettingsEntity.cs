@@ -1,8 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.Moderation.Settings;
 
-public class GuildWarnModerationSettingsEntity
+public class GuildWarnModerationSettingsEntity : IActionTimestamps
 {
     public int Id { get; set; }
     public string DefaultReason { get; set; } = "User {user.username} has been warned from {moderator.username}";
@@ -11,9 +12,7 @@ public class GuildWarnModerationSettingsEntity
     public string[] Actions { get; set; } = [];
     public bool DeleteProveMessage { get; set; }
     public bool NeedReason { get; set; } = false;
-
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
-
+    
+    public int ModerationId { get; set; }
     [Required] public GuildModerationEntity Moderation { get; set; }
 }

@@ -1,3 +1,3 @@
-namespace Shared.Models.Http.Responses.Auth;
+namespace Shared.Http.Responses.Auth;
 
 public record ClaimDto(string Type, string Value);

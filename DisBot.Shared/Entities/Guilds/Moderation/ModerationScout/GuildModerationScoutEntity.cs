@@ -1,10 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Shared.Entities.Guilds.MessageTemplates;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.Moderation.ModerationScout;
 
-public class GuildModerationScoutEntity
+public class GuildModerationScoutEntity : IActionTimestamps
 {
     // For the scout there can be one missing table.
     public int Id { get; set; }
@@ -21,9 +22,6 @@ public class GuildModerationScoutEntity
     public ulong[] NotAllowedToReportRoleIds { get; set; } = [];
     public GuildMessageTemplateEntity? SuccessReportMessageId { get; set; }
 
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
-
     public List<GuildModerationScoutReportEntity> ModerationScoutReports { get; set; } = [];
     public List<GuildModerationScoutFormEntity> ModerationScoutForms { get; set; } = [];
     
@@ -31,5 +29,6 @@ public class GuildModerationScoutEntity
     public List<GuildUserModerationEntity> UserModeration { get; set; } = [];
     public List<GuildModerationScoutUserAppealEntity> ModerationScoutUserAppeals { get; set; } = [];
 
+    public int ModerationId { get; set; }
     [Required] public GuildModerationEntity Moderation { get; set; }
 }

@@ -13,6 +13,5 @@ public static partial class Startup
         builder.Services.AddScoped<AuthenticationStateProvider, RemoteAuthProvider>();
         builder.Services.AddAuthorizationCore();
         builder.Services.AddCascadingAuthenticationState();
-        
     }
 }

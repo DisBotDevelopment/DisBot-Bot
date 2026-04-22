@@ -1,16 +1,16 @@
 using System.ComponentModel.DataAnnotations;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.Security;
 
-public class GuildSecurityEntity
+public class GuildSecurityEntity : IActionTimestamps
 {
     public int Id { get; set; }
     public bool? InviteLoggingActive { get; set; } = false;
     public int? MaxAccountAge { get; set; } = null;
 
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
-
     public List<GuildVerificationGateEntity> VerificationGates { get; set; } = [];
+
+    public int GuildId { get; set; }
     [Required] public GuildEntity Guild { get; set; }
 }

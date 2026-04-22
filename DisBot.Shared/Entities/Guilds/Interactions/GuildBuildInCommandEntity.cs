@@ -1,8 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.Interactions;
 
-public class GuildBuildInCommandEntity
+public class GuildBuildInCommandEntity : IActionTimestamps
 {
     public int Id { get; set; }
 
@@ -11,9 +12,6 @@ public class GuildBuildInCommandEntity
     public string? Description { get; set; }
     public string[] Permissions { get; set; } = [];
     public bool IsEnabled { get; set; } = false;
-
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
-
+    
     public GuildCommandMangerEntity GuildCommandManger { get; set; }
 }

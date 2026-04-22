@@ -1,10 +1,10 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using Shared.Entities.Guilds.MessageTemplates;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.Polls;
 
-public class GuildPollEntity
+public class GuildPollEntity : IActionTimestamps
 {
     public int Id { get; set; }
 
@@ -17,10 +17,7 @@ public class GuildPollEntity
     public string[] Requirements { get; set; } = [];
 
     public GuildMessageTemplateEntity? MessageTemplates { get; set; }
-
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
-
+    
     public List<GuildPollAnswerEntity> PollAnswers { get; set; } = [];
     public List<GuildPollOptionEntity> PollOptions { get; set; } = [];
     [Required] public GuildEntity Guild { get; set; }

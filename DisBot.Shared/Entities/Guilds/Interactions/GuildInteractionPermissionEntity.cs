@@ -1,8 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.Interactions;
 
-public class GuildInteractionPermissionEntity
+public class GuildInteractionPermissionEntity : IActionTimestamps
 {
     public int Id { get; set; }
     [Required] public int Type { get; set; }
@@ -16,9 +17,7 @@ public class GuildInteractionPermissionEntity
     public bool DisableInternalUserPermission { get; set; } = false;
     public bool OnlyGuildOwner { get; set; } = false;
     public int? Cooldown { get; set; }
-
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
-
+    
+    public int GuildId { get; set; }
     [Required] public GuildEntity Guild { get; set; }
 }

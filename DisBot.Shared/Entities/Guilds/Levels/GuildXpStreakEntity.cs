@@ -1,9 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using Shared.Entities.Guilds.MessageTemplates;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.Levels;
 
-public class GuildXpStreakEntity
+public class GuildXpStreakEntity : IActionTimestamps
 {
     public int Id { get; set; }
     [Required] public int Day { get; set; }
@@ -12,10 +13,7 @@ public class GuildXpStreakEntity
     public int? BonusXp { get; set; }
     public int? Multiplier { get; set; }
     public ulong[]? RoleRewardIds { get; set; } = [];
-
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
-
+    
     public GuildMessageTemplateEntity? MessageTemplate { get; set; }
     [Required] public GuildLevelSettingsEntity LevelSettings { get; set; }
 }

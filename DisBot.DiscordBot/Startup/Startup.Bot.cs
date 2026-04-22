@@ -9,11 +9,11 @@ using NetCord.Hosting.Services.ComponentInteractions;
 using NetCord.Services.ComponentInteractions;
 using Shared.Helper;
 
-namespace DiscordBot.Startup;
+namespace DisBot.DiscordBot.Startup;
 
 public static partial class Startup
 {
-    private static async Task InitialiseBot(IHostApplicationBuilder builder)
+    private static async Task InitialiseBot(this HostApplicationBuilder builder)
     {
         var version = await GitHubHelper.FetchLatestTag();
 
@@ -56,7 +56,7 @@ public static partial class Startup
             .AddShardedGatewayHandlers(typeof(Program).Assembly);
     }
 
-    private static async Task LoadBot(IHost host)
+    private static async Task LoadBot(this IHost host)
     {
         host.AddModules(typeof(Program).Assembly);
     }

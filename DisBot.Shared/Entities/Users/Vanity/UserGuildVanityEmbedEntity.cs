@@ -1,8 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Users.Vanity;
 
-public class UserGuildVanityEmbedEntity
+public class UserGuildVanityEmbedEntity : IActionTimestamps
 {
     public int Id { get; set; }
     [Required] public string Title { get; set; }
@@ -10,10 +11,9 @@ public class UserGuildVanityEmbedEntity
     public string? Color { get; set; }
     public string? ImageUrl { get; set; }
     public string? ThumbnailUrl { get; set; }
-
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
-
+    
     public UserGuildVanityEmbedAuthorEntity? VanityEmbedAuthor { get; set; }
+
+    public int GuildVanityId { get; set; }
     [Required] public UserGuildVanityEntity GuildVanity { get; set; }
 }

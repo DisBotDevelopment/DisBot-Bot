@@ -1,13 +1,13 @@
-using DiscordBot.Configuration;
-using DiscordBot.Database;
+using DisBot.DiscordBot.Database;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace DiscordBot.Startup;
+namespace DisBot.DiscordBot.Startup;
 
 public static partial class Startup
 {
-    private static async Task InitialiseDatabase(IHostApplicationBuilder builder)
+    private static async Task InitialiseDatabase(this HostApplicationBuilder builder)
     {
         builder.Services.AddDbContext<DataContext>();
     }

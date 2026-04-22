@@ -1,4 +1,4 @@
-namespace DiscordBot.Database.Interfaces;
+namespace Shared.Interfaces;
 
 public class IActionTimestamps
 {

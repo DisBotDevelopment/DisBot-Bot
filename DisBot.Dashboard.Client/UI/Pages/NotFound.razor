@@ -1,4 +1,21 @@
 ﻿@page "/not-found"
+@using LucideBlazor
+@using ShadcnBlazor.Buttons
 
-<h3>Not Found</h3>
-<p>Sorry, the content you are looking for does not exist.</p>
+<title>404 - Not Found</title>
+
+<div class="min-h-min flex justify-center items-center flex-col">
+    <img
+        alt="404"
+        class="w-44 h-auto"
+        src="assets/404.png"
+    />
+    <p>Sorry. There was no page found on this route. Please to an other page.</p>
+
+    <div class="flex flex-wrap items-center gap-2 md:flex-row">
+        <Button Variant="ButtonVariant.Outline" class="inline-flex">
+            <ArrowLeftIcon></ArrowLeftIcon>
+            <span>Go back</span>
+        </Button>
+    </div>
+</div>

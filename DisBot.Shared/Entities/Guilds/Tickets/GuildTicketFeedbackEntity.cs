@@ -1,8 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.Tickets;
 
-public class GuildTicketFeedbackEntity
+public class GuildTicketFeedbackEntity : IActionTimestamps
 {
     public int Id { get; set; }
     [Required] public int Rating { get; set; }
@@ -10,8 +11,7 @@ public class GuildTicketFeedbackEntity
     public bool Sent { get; set; } = false;
 
     public DateTimeOffset? SubmittedAt { get; set; }
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
 
+    public int TicketId { get; set; }
     [Required] public GuildTicketEntity Ticket { get; set; }
 }

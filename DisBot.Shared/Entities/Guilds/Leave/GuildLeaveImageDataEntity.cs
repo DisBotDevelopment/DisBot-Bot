@@ -1,8 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.Leave;
 
-public class GuildLeaveImageDataEntity
+public class GuildLeaveImageDataEntity : IActionTimestamps
 {
     public int Id { get; set; }
     [Required] public string Title { get; set; }
@@ -13,8 +14,6 @@ public class GuildLeaveImageDataEntity
     public string? Theme { get; set; }
     public string? Gradient { get; set; }
 
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
-
+    public int LeaveSetupId { get; set; }
     [Required] public GuildLeaveSetupEntity LeaveSetup { get; set; }
 }

@@ -1,10 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 using NetCord;
 using Shared.Entities.Guilds.MessageTemplates;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.Tickets;
 
-public class GuildTicketSetupEntity
+public class GuildTicketSetupEntity : IActionTimestamps
 {
     public int Id { get; set; }
     [Required] public ChannelType ChannelType { get; set; }
@@ -36,9 +37,6 @@ public class GuildTicketSetupEntity
     public string? TextCommandName { get; set; }
     public bool SendTranscriptToUser { get; set; }
     public string[] TicketSettings { get; set; } = [];
-
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
 
     public GuildMessageTemplateEntity? UserDmWhenCloseMessageTemplateId { get; set; }
     public GuildMessageTemplateEntity? AutoReplyMessageTemplateId { get; set; }

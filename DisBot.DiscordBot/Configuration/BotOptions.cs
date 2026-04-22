@@ -1,4 +1,4 @@
-namespace DiscordBot.Configuration;
+namespace DisBot.DiscordBot.Configuration;
 
 public class BotOptions
 {

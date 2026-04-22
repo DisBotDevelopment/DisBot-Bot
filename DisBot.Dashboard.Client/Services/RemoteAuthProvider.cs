@@ -3,7 +3,7 @@ using System.Net.Http.Json;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Components.Authorization;
 using Shared;
-using Shared.Models.Http.Responses.Auth;
+using Shared.Http.Responses.Auth;
 
 namespace DisBot.Dashboard.Services;
 

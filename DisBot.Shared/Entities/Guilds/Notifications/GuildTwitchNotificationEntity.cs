@@ -1,9 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using Shared.Entities.Guilds.MessageTemplates;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.Notifications;
 
-public class GuildTwitchNotificationEntity
+public class GuildTwitchNotificationEntity : IActionTimestamps
 {
     public int Id { get; set; }
     [Required] public string TwitchChannelName { get; set; }

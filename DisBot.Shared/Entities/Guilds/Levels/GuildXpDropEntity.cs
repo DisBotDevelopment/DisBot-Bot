@@ -1,8 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.Levels;
 
-public class GuildXpDropEntity
+public class GuildXpDropEntity : IActionTimestamps
 {
     public int Id { get; set; }
     public string? XpRange { get; set; }
@@ -13,8 +14,5 @@ public class GuildXpDropEntity
     public ulong[] MessageIdsToDelete { get; set; } = [];
 
     public DateTimeOffset LastSpawned { get; set; }
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
-
     [Required] public GuildLevelSettingsEntity LevelSettings { get; set; }
 }

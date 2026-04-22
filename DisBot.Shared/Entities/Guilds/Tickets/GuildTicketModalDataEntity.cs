@@ -1,10 +1,10 @@
 using System.ComponentModel.DataAnnotations;
-using NetCord.Rest;
 using Shared.Enums.Ticket;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.Tickets;
 
-public class GuildTicketModalDataEntity
+public class GuildTicketModalDataEntity : IActionTimestamps
 {
     public int Id { get; set; }
     [Required] public string Name { get; set; }
@@ -13,9 +13,6 @@ public class GuildTicketModalDataEntity
     public int? MinLength { get; set; }
     public int? MaxLength { get; set; }
     public bool Required { get; set; } = true;
-
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
 
     [Required] public GuildTicketSetupEntity TicketSetup { get; set; }
 }

@@ -1,9 +1,9 @@
 using System.ComponentModel.DataAnnotations;
-using NetCord;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.Tickets;
 
-public class GuildTicketPermissionEntity
+public class GuildTicketPermissionEntity : IActionTimestamps
 {
     public int Id { get; set; }
     public ulong? DiscordUserId { get; set; }

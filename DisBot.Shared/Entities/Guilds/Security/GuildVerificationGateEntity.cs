@@ -1,10 +1,10 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using Shared.Enums.Security;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.Security;
 
-public class GuildVerificationGateEntity
+public class GuildVerificationGateEntity : IActionTimestamps
 {
     public int Id { get; set; }
     public ulong? ChannelId { get; set; }
@@ -14,9 +14,6 @@ public class GuildVerificationGateEntity
     public ulong[] VerifiedUsers { get; set; } = [];
     public bool Active { get; set; }
     public ulong[] RoleIds { get; set; } = [];
-
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
 
     public List<GuildVerificationGatesPermissionEntity> ChannelPermissions = [];
     [Required] public GuildSecurityEntity Security { get; set; }

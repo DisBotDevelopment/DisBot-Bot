@@ -2,30 +2,64 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>DisBot.Dashboard</title>
-    <base href="/" />
-    <link rel="preload" id="webassembly" />
-    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="preload" id="webassembly"/>
+    <link rel="stylesheet" href="/style.min.css"/>
+    
+    <link rel="icon" href="assets/disbot.png">
+    
+    <script src="/_content/ShadcnBlazor/interop.js" defer></script>
     <script type="importmap"></script>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="/style.min.css"/>
 </head>
 
-<body>
-    <div id="app">
-        <svg class="loading-progress">
-            <circle r="40%" cx="50%" cy="50%" />
-            <circle r="40%" cx="50%" cy="50%" />
-        </svg>
-        <div class="loading-progress-text"></div>
-    </div>
+<body class="bg-background text-foreground">
+<div id="app">
+    <div class="h-screen w-full flex items-center justify-center">
 
-    <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="." class="reload">Reload</a>
-        <span class="dismiss">🗙</span>
+        <div class="flex flex-1 flex-col items-center justify-center gap-3 rounded-lg border-dashed p-6 text-center text-balance md:p-12">
+            <div class="flex max-w-sm flex-col items-center gap-2 text-center">
+                <img
+                        height="100"
+                        width="100"
+                        class="w-40 h-auto"
+                        src="assets/disbot.png"
+                        alt="404"
+                >
+            </div>
+            <div class="text-lg font-medium tracking-tight">
+                Loading Dashboard
+            </div>
+            <div class="flex w-full max-w-sm min-w-0 flex-col items-center gap-4 text-sm text-balance">
+
+                <div class="bg-primary/20 w-full relative h-2 overflow-hidden rounded-full">
+                    <div class="bg-primary h-full w-[var(--blazor-load-percentage,0)] flex-1 transition-all">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </div>
-    <script src="_framework/blazor.webassembly#[.{fingerprint}].js"></script>
+</div>
+
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="." class="reload">Reload</a>
+    <span class="dismiss">🗙</span>
+</div>
+
+<script src="_framework/blazor.webassembly#[.{fingerprint}].js"></script>
 </body>
 
 </html>

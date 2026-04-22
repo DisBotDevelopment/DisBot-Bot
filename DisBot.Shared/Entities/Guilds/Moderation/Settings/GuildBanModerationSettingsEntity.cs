@@ -1,8 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.Moderation.Settings;
 
-public class GuildBanModerationSettingsEntity
+public class GuildBanModerationSettingsEntity : IActionTimestamps
 {
     public int Id { get; set; }
 
@@ -15,9 +16,7 @@ public class GuildBanModerationSettingsEntity
     public int Duration { get; set; } = 0;
     public bool DeleteProveMessage { get; set; } = false;
     public bool NeedReason { get; set; } = true;
-
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
-
+    
+    public int ModerationId { get; set; }
     [Required] public GuildModerationEntity Moderation { get; set; }
 }

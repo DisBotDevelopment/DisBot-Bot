@@ -1,10 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Shared.Entities.Guilds.Moderation.ModerationScout;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.Moderation;
 
-public class GuildUserModerationEntity
+public class GuildUserModerationEntity : IActionTimestamps
 {
     public int Id { get; set; }
     [Required] public string CaseId { get; set; }
@@ -16,9 +17,6 @@ public class GuildUserModerationEntity
     public string? DmMessage { get; set; }
     public string[] Notes { get; set; } = [];
     [Column(TypeName = "jsonb")] public string? CustomData { get; set; }
-
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
 
     [Required] public GuildModerationScoutCaseEntity ModerationScoutCases { get; set; }
     [Required] public GuildModerationEntity Moderation { get; set; }

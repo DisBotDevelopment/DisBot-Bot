@@ -1,10 +1,10 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using Shared.Entities.Guilds.MessageTemplates;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.Notifications;
 
-public class GuildSpotifyNotificationEntity
+public class GuildSpotifyNotificationEntity : IActionTimestamps
 {
     public int Id { get; set; }
 
@@ -12,10 +12,7 @@ public class GuildSpotifyNotificationEntity
     [Required] public ulong ChannelId { get; set; }
     public string[] Latest { get; set; } = [];
     public string[] PingRoleIds { get; set; } = [];
-
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
-
+    
     public GuildMessageTemplateEntity? MessageTemplate { get; set; }
     [Required] public GuildEntity Guild { get; set; }
 }

@@ -2,10 +2,11 @@ using System.ComponentModel.DataAnnotations;
 using NetCord;
 using Shared.Entities.Guilds.MessageTemplates;
 using Shared.Enums.Ticket;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.Tickets;
 
-public class GuildTicketEntity
+public class GuildTicketEntity : IActionTimestamps
 {
     public int Id { get; set; }
     public bool IsClosed { get; set; }
@@ -38,9 +39,7 @@ public class GuildTicketEntity
     public GuildMessageTemplateEntity? UserDmWhenCloseMessageTemplateId { get; set; }
 
     public DateTimeOffset ClosedAt { get; set; }
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
-
+    
     public GuildTicketFeedbackEntity? TicketFeedback { get; set; }
     [Required] public GuildTicketSetupEntity TicketSetup { get; set; }
 }

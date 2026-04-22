@@ -1,7 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Shared.Models.Http.Requests;
-using Shared.Models.Http.Responses.Auth;
+using Shared.Http.Requests.User;
+using Shared.Http.Responses.Auth;
 
 namespace Shared;
 

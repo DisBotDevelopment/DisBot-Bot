@@ -1,8 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.Automation;
 
-public class GuildAutoDeleteEntity
+public class GuildAutoDeleteEntity : IActionTimestamps
 {
     public int Id { get; set; }
     [Required] public ulong ChannelId { get; set; }
@@ -12,8 +13,6 @@ public class GuildAutoDeleteEntity
     public ulong[] WhitelistedRoleIds { get; set; } = [];
     public ulong[] WhitelistedUserIds { get; set; } = [];
     
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
-    
+    public int GuildId { get; set; }
     [Required] public GuildEntity Guild { get; set; }
 }

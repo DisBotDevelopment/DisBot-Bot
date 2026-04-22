@@ -1,8 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.Welcome;
 
-public class GuildWelcomeImageDataEntity
+public class GuildWelcomeImageDataEntity : IActionTimestamps
 {
     public int Id { get; set; }
     [Required] public string Title { get; set; }
@@ -13,8 +14,6 @@ public class GuildWelcomeImageDataEntity
     public string? Theme { get; set; }
     public string? Gradient { get; set; }
 
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
-
+    public int WelcomeSetupId { get; set; }
     [Required] public GuildWelcomeSetupEntity WelcomeSetup { get; set; }
 }

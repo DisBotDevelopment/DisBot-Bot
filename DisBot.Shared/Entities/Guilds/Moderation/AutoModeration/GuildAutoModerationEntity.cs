@@ -1,10 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Shared.Enums.Moderation;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.Moderation.AutoModeration;
 
-public class GuildAutoModerationEntity
+public class GuildAutoModerationEntity : IActionTimestamps
 {
     public int Id { get; set; }
     [Required] public AutoModerationType Type { get; set; }
@@ -15,9 +16,6 @@ public class GuildAutoModerationEntity
     public string Actions { get; set; }
     [Column(TypeName = "jsonb")]
     public string Triggers { get; set; }
-
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
-
+    
     [Required] public GuildModerationEntity Moderation { get; set; }
 }

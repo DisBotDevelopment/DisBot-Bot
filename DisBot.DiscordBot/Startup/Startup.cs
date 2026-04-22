@@ -1,19 +1,19 @@
 using Microsoft.Extensions.Hosting;
 
-namespace DiscordBot.Startup;
+namespace DisBot.DiscordBot.Startup;
 
 public static partial class Startup
 {
-    public static async Task Initialise(IHostApplicationBuilder builder)
+    public static async Task Initialise(this HostApplicationBuilder builder)
     {
-        await InitialiseBase(builder);
-        await InitialiseDatabase(builder);
-        await InitialiseBot(builder);
+        await builder.InitialiseBase();
+        await builder.InitialiseDatabase();
+        await builder.InitialiseBot();
     }
 
-    public static async Task Load(IHost host)
+    public static async Task Load(this IHost host)
     {
-        await LoadBase(host);
-        await LoadBot(host);
+        await host.LoadBase();
+        await host.LoadBot();
     }
 }

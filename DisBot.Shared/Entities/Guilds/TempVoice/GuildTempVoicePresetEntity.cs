@@ -1,10 +1,10 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using Shared.Enums.TempVoice;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.TempVoice;
 
-public class GuildTempVoicePresetEntity
+public class GuildTempVoicePresetEntity : IActionTimestamps
 {
     public int Id { get; set; }
     public string? ChannelName { get; set; }
@@ -17,10 +17,7 @@ public class GuildTempVoicePresetEntity
     public string[] ManageComponents { get; set; } = [];
     public string[] OwnerAllowedDiscordPermissions { get; set; } = [];
     public string[] OwnerDeniedDiscordPermissions { get; set; } = [];
-
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
-
+    
     public List<GuildTempVoiceConfigEntity>? TempVoiceConfig { get; set; } = [];
     public List<GuildTempVoicePresetDiscordRolePermissionEntity> RolePermissions { get; set; } = [];
     [Required] public GuildTempVoiceSettingsEntity TempVoiceSettings { get; set; }

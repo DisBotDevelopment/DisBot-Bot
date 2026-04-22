@@ -1,0 +1,25 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@import "../bin/ShadcnBlazor/scrollbar.css";
+@import "../bin/ShadcnBlazor/default-theme.css";
+@source "../bin/ShadcnBlazor/ShadcnBlazor.map";
+
+@source "../**/*.razor";
+@source "../**/*.cs";
+@source "../**/*.html";
+
+@custom-variant dark (&:is(.dark *));
+
+#blazor-error-ui {
+    display: none;
+}
+
+@layer base {
+    * {
+        @apply border-border outline-ring/50;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}

@@ -1,6 +1,6 @@
-using DiscordBot.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Shared.Configuration;
 using Shared.Entities.Guilds;
 using Shared.Entities.Guilds.Automation;
 using Shared.Entities.Guilds.ChannelLinks;
@@ -25,7 +25,7 @@ using Shared.Entities.Users;
 using Shared.Entities.Users.Backup;
 using Shared.Entities.Users.Vanity;
 
-namespace DiscordBot.Database;
+namespace DisBot.DiscordBot.Database;
 
 public class DataContext : DbContext
 {
@@ -130,7 +130,7 @@ public class DataContext : DbContext
     public DbSet<UserGuildVanityEntity> UserGuildVanities { get; set; }
 
     #endregion
-    
+
     #region Config
 
     private readonly IOptions<DatabaseOptions> Options;
@@ -138,10 +138,6 @@ public class DataContext : DbContext
     public DataContext(IOptions<DatabaseOptions> options)
     {
         Options = options;
-    }
-
-    public DataContext(DbContextOptions<DataContext> options) : base(options)
-    {
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

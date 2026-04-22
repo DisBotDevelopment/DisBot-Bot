@@ -1,4 +1,4 @@
-namespace Shared.Models.Http.Requests;
+namespace Shared.Http.Requests.User;
 
 public class CreateUserDto
 {

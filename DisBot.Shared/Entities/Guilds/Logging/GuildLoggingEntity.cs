@@ -1,9 +1,9 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.Logging;
 
-public class GuildLoggingEntity
+public class GuildLoggingEntity : IActionTimestamps
 {
     public int Id { get; set; }
     public bool IsLoggingEnabled { get; set; } = false;
@@ -29,8 +29,7 @@ public class GuildLoggingEntity
     public string? StageWebhookUrl { get; set; }
     public string? EventWebhookUrl { get; set; }
 
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
 
+    public int GuildId { get; set; }
     [Required] public GuildEntity Guild { get; set; }
 }

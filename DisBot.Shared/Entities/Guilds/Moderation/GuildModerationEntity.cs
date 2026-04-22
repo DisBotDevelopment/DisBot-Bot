@@ -2,15 +2,13 @@ using System.ComponentModel.DataAnnotations;
 using Shared.Entities.Guilds.Moderation.AutoModeration;
 using Shared.Entities.Guilds.Moderation.ModerationScout;
 using Shared.Entities.Guilds.Moderation.Settings;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.Moderation;
 
-public class GuildModerationEntity
+public class GuildModerationEntity : IActionTimestamps
 {
     public int Id { get; set; }
-
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
 
     public List<GuildUserModerationEntity> UserModeration { get; set; } = [];
     public GuildModerationScoutEntity? ModerationScout { get; set; }
@@ -25,5 +23,6 @@ public class GuildModerationEntity
     public GuildUnwarnModerationSettingsEntity? GuildUnWarnModerationSettings { get; set; }
     public GuildWarnModerationSettingsEntity? GuildWarnModerationSetting { get; set; }
 
+    public int GuildId { get; set; }
     [Required] public GuildEntity Guild { get; set; }
 }

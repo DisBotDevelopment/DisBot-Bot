@@ -1,8 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.Interactions;
 
-public class GuildComponentManagerEntity
+public class GuildComponentManagerEntity : IActionTimestamps
 {
     public int Id { get; set; }
     // TODO: Add Custom Components
@@ -10,8 +11,6 @@ public class GuildComponentManagerEntity
     // public string? Buttons { get; set; }
     //  public string? Modals { get; set; }
 
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
-
-    [Required] public GuildEntity Guild { get; set; }
+    public int GuildInteractionManagerId { get; set; }
+    [Required] public GuildInteractionManagerEntity GuildInteractionManager { get; set; }
 }

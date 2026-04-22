@@ -1,14 +1,13 @@
 using System.ComponentModel.DataAnnotations;
+using Shared.Interfaces;
 
 namespace Shared.Entities.Guilds.Automation;
 
-public class GuildAutoRoleEntity
+public class GuildAutoRoleEntity: IActionTimestamps
 {
     public int Id { get; set; }
     public ulong[] RoleIds { get; set; } = [];
     
-    public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }
-    
+    public int GuildId { get; set; }
     [Required] public GuildEntity Guild { get; set; }
 }
