@@ -35,10 +35,8 @@
 
     <ItemGroup>
       <AdditionalFiles Include="UI\Layout\MainLayout.razor" />
-      <AdditionalFiles Include="UI\Pages\Counter.razor" />
       <AdditionalFiles Include="UI\Pages\Home.razor" />
       <AdditionalFiles Include="UI\Pages\NotFound.razor" />
-      <AdditionalFiles Include="UI\Pages\Weather.razor" />
     </ItemGroup>
 
     <ItemGroup>
