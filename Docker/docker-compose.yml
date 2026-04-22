@@ -17,14 +17,14 @@
     env_file:
       - .env
     ports:
-      - "3333:3333"
+      - "3333:5024"
   disbot-dashboard:
     image: ghcr.io/disbotdevelopment/disbot-dashboard:v2
     container_name: disbot-bot
     env_file:
       - .env
     ports:
-      - "3333:3333"
+      - "3333:5024"
   database:
     image: postgres
     container_name: disbot-database
