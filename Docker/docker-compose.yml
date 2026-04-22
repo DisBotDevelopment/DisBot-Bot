@@ -13,14 +13,14 @@
       - "DATABASE__Database=${DATABASE_DATABASE_NAME}"
   disbot-api:
     image: ghcr.io/disbotdevelopment/disbot-api:v2
-    container_name: disbot-bot
+    container_name: disbot-api
     env_file:
       - .env
     ports:
       - "3333:5024"
   disbot-dashboard:
     image: ghcr.io/disbotdevelopment/disbot-dashboard:v2
-    container_name: disbot-bot
+    container_name: disbot-dash
     env_file:
       - .env
     ports:
@@ -30,5 +30,7 @@
     container_name: disbot-database
     env_file:
       - .env
+    environment:
+      - "POSTGRES_PASSWORD=${DATABASE_PASSWORD}"
     ports:
       - "2343:5432"
