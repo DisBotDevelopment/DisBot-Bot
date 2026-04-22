@@ -8,7 +8,7 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["DisBot.API/DisBot.API.csproj", "DisBot.API/"]
-RUN dotnet restore "API/API.csproj"
+RUN dotnet restore "DisBot.API/DisBot.API.csproj"
 COPY . .
 WORKDIR "/src/DisBot.API"
 RUN dotnet build "./DisBot.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
