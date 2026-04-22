@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisBot.Dashboard.Client", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisBot.Dashboard.Host", "DisBot.Dashboard.Host\DisBot.Dashboard.Host.csproj", "{88AED986-EB3E-4EC4-ADE2-FF9427B637EA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DisBot.Dashboard", "DisBot.Dashboard", "{5368B16B-97A8-407B-931D-C2D8D8DA9749}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{88AED986-EB3E-4EC4-ADE2-FF9427B637EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88AED986-EB3E-4EC4-ADE2-FF9427B637EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88AED986-EB3E-4EC4-ADE2-FF9427B637EA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BF2574DA-9B50-417B-AFC2-C551AE5FD1B9} = {5368B16B-97A8-407B-931D-C2D8D8DA9749}
+		{88AED986-EB3E-4EC4-ADE2-FF9427B637EA} = {5368B16B-97A8-407B-931D-C2D8D8DA9749}
 	EndGlobalSection
 EndGlobal
