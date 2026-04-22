@@ -11,9 +11,19 @@
       - "DATABASE__Username=${DATABASE_USERNAME}"
       - "DATABASE__Password=${DATABASE_PASSWORD}"
       - "DATABASE__Database=${DATABASE_DATABASE_NAME}"
-  disbot-api:
+    depends_on:
+      - database
+  disbot-api:  
     image: ghcr.io/disbotdevelopment/disbot-api:v2
     container_name: disbot-api
+    environment:
+      - "DATABASE__Host=${DATABASE_HOST}"
+      - "DATABASE__Port=${DATABASE_PORT}"
+      - "DATABASE__Username=${DATABASE_USERNAME}"
+      - "DATABASE__Password=${DATABASE_PASSWORD}"
+      - "DATABASE__Database=${DATABASE_DATABASE_NAME}"
+    depends_on:
+      - database
     env_file:
       - .env
     ports:
