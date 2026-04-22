@@ -25,12 +25,11 @@
       <PackageReference Include="NetCord.Services" Version="1.0.0-alpha.448" />
       <PackageReference Include="Npgsql" Version="10.0.2" />
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0-rc.2" />
-      <PackageReference Include="Scalar.AspNetCore" Version="2.14.1" />
-      <PackageReference Include="Scalar.AspNetCore.Microsoft" Version="2.14.1" />
-      <PackageReference Include="Scalar.AspNetCore.Swashbuckle" Version="2.14.1" />
+      <PackageReference Include="Scalar.AspNetCore" Version="2.14.3" />
+      <PackageReference Include="Scalar.AspNetCore.Microsoft" Version="2.14.3" />
+      <PackageReference Include="Scalar.AspNetCore.Swashbuckle" Version="2.14.3" />
       <PackageReference Include="Spectre.Console" Version="0.55.2" />
       <PackageReference Include="Spectre.Console.Cli" Version="1.0.0-alpha.0.7" />
-      <PackageReference Include="Spectre.Console.Json" Version="0.54.1-alpha.0.6" />
     </ItemGroup>
 
 </Project>
