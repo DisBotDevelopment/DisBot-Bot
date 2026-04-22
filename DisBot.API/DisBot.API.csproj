@@ -5,6 +5,7 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <RootNamespace>API</RootNamespace>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
     <ItemGroup>
@@ -15,11 +16,11 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.0" />
         <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.0" />
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.0" />
-        <PackageReference Include="NetCord" Version="1.0.0-alpha.448" />
-        <PackageReference Include="NetCord.Hosting" Version="1.0.0-alpha.448" />
-        <PackageReference Include="NetCord.Hosting.AspNetCore" Version="1.0.0-alpha.448" />
-        <PackageReference Include="NetCord.Hosting.Services" Version="1.0.0-alpha.448" />
-        <PackageReference Include="NetCord.Services" Version="1.0.0-alpha.448" />
+        <PackageReference Include="NetCord" Version="1.0.0-alpha.484" />
+        <PackageReference Include="NetCord.Hosting" Version="1.0.0-alpha.484" />
+        <PackageReference Include="NetCord.Hosting.AspNetCore" Version="1.0.0-alpha.484" />
+        <PackageReference Include="NetCord.Hosting.Services" Version="1.0.0-alpha.484" />
+        <PackageReference Include="NetCord.Services" Version="1.0.0-alpha.484" />
         <PackageReference Include="Npgsql" Version="10.0.2" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0-rc.2" />
         <PackageReference Include="Scalar.AspNetCore" Version="2.14.3" />
@@ -31,6 +32,12 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DisBot.Shared\DisBot.Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
     </ItemGroup>
 
 </Project>

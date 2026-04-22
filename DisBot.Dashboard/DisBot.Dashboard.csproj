@@ -9,13 +9,36 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="LucideBlazor" Version="1.0.4"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="10.0.3"/>
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.0"/>
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.0" PrivateAssets="all"/>
+        <PackageReference Include="Riok.Mapperly" Version="5.0.0-next.2"/>
+        <PackageReference Include="ShadcnBlazor" Version="1.0.14"/>
+        <PackageReference Include="ShadcnBlazor.Extras" Version="1.0.14"/>
     </ItemGroup>
 
     <ItemGroup>
       <_ContentIncludedByDefault Remove="wwwroot\sample-data\weather.json" />
       <_ContentIncludedByDefault Remove="wwwroot\css\app.css" />
+      <_ContentIncludedByDefault Remove="Layout\MainLayout.razor" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DisBot.Shared\DisBot.Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Styles\" />
+      <Folder Include="UI\Components\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="UI\Layout\MainLayout.razor" />
+      <AdditionalFiles Include="UI\Pages\Counter.razor" />
+      <AdditionalFiles Include="UI\Pages\Home.razor" />
+      <AdditionalFiles Include="UI\Pages\NotFound.razor" />
+      <AdditionalFiles Include="UI\Pages\Weather.razor" />
     </ItemGroup>
 
     <ItemGroup>

@@ -8,6 +8,7 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["DisBot.Dashboard/DisBot.Dashboard.csproj", "DisBot.Dashboard/"]
+COPY ["DisBot.Shared/DisBot.Shared.csproj", "DisBot.Shared/"]
 RUN dotnet restore "DisBot.Dashboard/DisBot.Dashboard.csproj"
 COPY . .
 WORKDIR "/src/DisBot.Dashboard"

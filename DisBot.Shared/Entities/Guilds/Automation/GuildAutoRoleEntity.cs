@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using NetCord.Gateway;
 
 namespace Shared.Entities.Guilds.Automation;
 

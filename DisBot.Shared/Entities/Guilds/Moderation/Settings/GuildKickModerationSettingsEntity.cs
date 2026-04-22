@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Shared.Entities.Guilds.Moderation.Settings;
 
