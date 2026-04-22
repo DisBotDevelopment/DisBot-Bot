@@ -11,14 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d680bb56-c18c-4428-b895-58a460931289" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/DisBot.DiscordBot/Database/DataContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DisBot.DiscordBot/Database/DataContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildBanModerationSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildBanModerationSettingsEntity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildKickModerationSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildKickModerationSettingsEntity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildMuteModerationSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildMuteModerationSettingsEntity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildUnbanModerationSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildUnbanModerationSettingsEntity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildUnmuteModerationSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildUnmuteModerationSettingsEntity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildUnwarnModerationSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildUnwarnModerationSettingsEntity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildWarnModerationSetting.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DisBot.Shared/Entities/Guilds/Moderation/Settings/GuildWarnModerationSettingsEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +39,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/DisBot.DiscordBot/Database/DataContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DisBot.DiscordBot/Database/DataContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DisBot.DiscordBot/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DisBot.DiscordBot/Startup/Startup.Base.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DisBot.DiscordBot/Startup/Startup.Bot.cs" root0="FORCE_HIGHLIGHTING" />
@@ -120,7 +113,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "configurable.group.build",
+    "settings.editor.selected.configurable": "advanced.settings",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -132,7 +125,8 @@
       <option name="presentableId" value="Default" />
       <updated>1776756787453</updated>
       <workItem from="1776756788662" duration="1221000" />
-      <workItem from="1776758868666" duration="2212000" />
+      <workItem from="1776758868666" duration="2264000" />
+      <workItem from="1776837691459" duration="392000" />
     </task>
     <task id="LOCAL-00001" summary="Added project config files.">
       <option name="closed" value="true" />
@@ -142,7 +136,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776758921186</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added database structure.">
+      <option name="closed" value="true" />
+      <created>1776762021045</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1776762021045</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,7 +155,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Added project config files." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added project config files." />
+    <MESSAGE value="Added database structure." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added database structure." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

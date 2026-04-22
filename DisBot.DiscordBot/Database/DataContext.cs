@@ -130,8 +130,7 @@ public class DataContext : DbContext
     public DbSet<UserGuildVanityEntity> UserGuildVanities { get; set; }
 
     #endregion
-
-
+    
     #region Config
 
     private readonly IOptions<DatabaseOptions> Options;

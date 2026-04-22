@@ -1,0 +1,34 @@
+﻿services:
+  disbot-bot:
+    image: ghcr.io/disbotdevelopment/disbot-bot:v2
+    container_name: disbot-bot
+    env_file:
+      - .env
+    environment:
+      - "BOT__DiscordApplicationToken=${DISCORD_APPLICATION_TOKEN}"
+      - "DATABASE__Host=${DATABASE_HOST}"
+      - "DATABASE__Port=${DATABASE_PORT}"
+      - "DATABASE__Username=${DATABASE_USERNAME}"
+      - "DATABASE__Password=${DATABASE_PASSWORD}"
+      - "DATABASE__Database=${DATABASE_DATABASE_NAME}"
+  disbot-api:
+    image: ghcr.io/disbotdevelopment/disbot-api:v2
+    container_name: disbot-bot
+    env_file:
+      - .env
+    ports:
+      - "3333:3333"
+  disbot-dashboard:
+    image: ghcr.io/disbotdevelopment/disbot-dashboard:v2
+    container_name: disbot-bot
+    env_file:
+      - .env
+    ports:
+      - "3333:3333"
+  database:
+    image: postgres
+    container_name: disbot-database
+    env_file:
+      - .env
+    ports:
+      - "2343:5432"
