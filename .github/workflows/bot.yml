@@ -41,5 +41,5 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/disbotdevelopment/disbot-dashboard:${{ github.ref_name }}
+            ghcr.io/disbotdevelopment/disbot-bot:${{ github.ref_name }}
             ghcr.io/disbotdevelopment/disbot-bot:v2
