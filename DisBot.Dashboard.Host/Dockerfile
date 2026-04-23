@@ -23,19 +23,36 @@ COPY ["Hosts/Moonlight.Frontend.Host/Styles/package.json", "package.json"]
 RUN bun install
 
 WORKDIR /src
+
 COPY ["DisBot.Dashboard.Host/DisBot.Dashboard.Host.csproj", "DisBot.Dashboard.Host/"]
 COPY ["DisBot.Dashboard.Client/DisBot.Dashboard.Client.csproj", "DisBot.Dashboard.Client/"]
 COPY ["DisBot.Shared/DisBot.Shared.csproj", "DisBot.Shared/"]
+
+RUN dotnet restore "DisBot.Dashboard.Client/DisBot.Dashboard.Client.csproj"
 RUN dotnet restore "DisBot.Dashboard.Host/DisBot.Dashboard.Host.csproj"
+
 COPY . .
+
+WORKDIR "/src/DisBot.Dashboard.Client"
+RUN dotnet build "./DisBot.Dashboard.Client.csproj" -c $BUILD_CONFIGURATION -o /app/build-frontend
+
+WORKDIR "/src/DisBot.Dashboard.Client"
+RUN bun run build
+
 WORKDIR "/src/DisBot.Dashboard.Host"
 RUN dotnet build "./DisBot.Dashboard.Host.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
+
+WORKDIR "/src/DisBot.Dashboard.Host"
 RUN dotnet publish "./DisBot.Dashboard.Host.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+WORKDIR "/src/DisBot.Dashboard.Client"
+RUN dotnet publish "./DisBot.Dashboard.Client.csproj" -c $BUILD_CONFIGURATION -o /app/publish-frontend /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+COPY --from=publish /app/publish-frontend/wwwroot ./wwwroot
 ENTRYPOINT ["dotnet", "DisBot.Dashboard.Host.dll"]
