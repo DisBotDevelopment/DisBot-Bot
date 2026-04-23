@@ -1,5 +1,6 @@
 using DisBot.API.Database;
 using Microsoft.EntityFrameworkCore;
+using Shared.Configuration;
 
 namespace DisBot.API.Startup;
 
@@ -14,6 +15,8 @@ public static partial class Startup
     {
         application.Logger.Log(LogLevel.Information, "Loading database...");
 
+        Console.WriteLine(application.Configuration.GetSection("Database").Get<DatabaseOptions>());
+        
         await using var scope = application.Services.CreateAsyncScope();
         var dataContext = scope.ServiceProvider.GetService<DataContext>();
         application.Logger.Log(LogLevel.Information, "Database initialized.");
