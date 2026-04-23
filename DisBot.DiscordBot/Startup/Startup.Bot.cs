@@ -15,7 +15,7 @@ public static partial class Startup
 {
     private static async Task InitialiseBot(this HostApplicationBuilder builder)
     {
-        var version = await GitHubHelper.FetchLatestTag();
+        var version = await GitHubHelper.FetchLatestTagAsync();
 
         builder.Services
             .AddApplicationCommands()
@@ -40,7 +40,7 @@ public static partial class Startup
                                   | GatewayIntents.DirectMessageReactions
                                   | GatewayIntents.GuildMessageReactions
                                   | GatewayIntents.Guilds
-                                  | GatewayIntents.GuildPresences
+                                  // | GatewayIntents.GuildPresences
                                   | GatewayIntents.GuildVoiceStates
                                   | GatewayIntents.GuildMessages
                                   | GatewayIntents.DirectMessages

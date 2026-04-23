@@ -4,5 +4,8 @@ obj/
 riderModule.iml
 /DisBot.DiscordBot/appsettings.json
 /DisBot.DiscordBot/appsettings.Development.json
+/DisBot.API/appsettings.json
+/DisBot.API/appsettings.Development.json
+/DisBot.DiscordBot/appsettings.Development.json
 /_ReSharper.Caches/
 Docker/.env

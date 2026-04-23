@@ -18,6 +18,5 @@ public partial class Startup
     private static async Task LoadBase(this WebApplication application)
     {
         application.MapOpenApi();
-        application.UseHttpsRedirection();
     }
 }

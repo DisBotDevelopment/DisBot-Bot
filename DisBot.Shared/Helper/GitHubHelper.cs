@@ -8,7 +8,7 @@ public static class GitHubHelper
 {
     public static readonly HttpClient HttpClient = new HttpClient();
 
-    public static async Task<string> FetchLatestTag()
+    public static async Task<string> FetchLatestTagAsync()
     {
         HttpClient.DefaultRequestHeaders.Add("User-Agent", "DisBot-Github Helper");
         var data = await HttpClient.GetFromJsonAsync<GitHubTag[]>(
