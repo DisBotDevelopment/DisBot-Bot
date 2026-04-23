@@ -15,7 +15,7 @@ public static partial class Startup
     {
         application.Logger.Log(LogLevel.Information, "Loading database...");
 
-        Console.WriteLine(application.Configuration.GetSection("Database").Get<DatabaseOptions>());
+        Console.WriteLine(application.Configuration.GetSection("Database").Get<DatabaseOptions>().Password);
         
         await using var scope = application.Services.CreateAsyncScope();
         var dataContext = scope.ServiceProvider.GetService<DataContext>();
