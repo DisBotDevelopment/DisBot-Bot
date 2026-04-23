@@ -14,19 +14,16 @@ public static partial class Startup
     {
         application.Logger.Log(LogLevel.Information, "Loading database...");
 
-        await using (var scope = application.Services.CreateAsyncScope())
+        await using var scope = application.Services.CreateAsyncScope();
+        var dataContext = scope.ServiceProvider.GetService<DataContext>();
+        var migrations = await dataContext.Database.GetPendingMigrationsAsync();
+        application.Logger.Log(LogLevel.Information, "Database initialized.");
+        if (migrations.ToArray().Length > 0)
         {
-            var dataContext = scope.ServiceProvider.GetService<DataContext>();
-            var migrations = await dataContext.Database.GetPendingMigrationsAsync();
-            if (dataContext == null) throw new Exception("No Database Context found...");
-            application.Logger.Log(LogLevel.Information, "Database initialized.");
-            if (migrations.ToArray().Length > 0)
-            {
-                await dataContext.Database.MigrateAsync();
-                application.Logger.Log(LogLevel.Information, "Database migrated.");
-            }
-
-            application.Logger.Log(LogLevel.Information, "Database ready to accept connections.");
+            await dataContext.Database.MigrateAsync();
+            application.Logger.Log(LogLevel.Information, "Database migrated.");
         }
+
+        application.Logger.Log(LogLevel.Information, "Database ready to accept connections.");
     }
 }
