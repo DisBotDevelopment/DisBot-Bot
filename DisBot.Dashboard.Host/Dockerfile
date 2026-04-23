@@ -6,6 +6,22 @@ EXPOSE 8081
 
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 ARG BUILD_CONFIGURATION=Release
+
+# Install required packages
+RUN apt-get update; apt-get install unzip -y; apt-get clean
+RUN curl -fsSL https://bun.sh/install | bash
+ENV PATH="/root/.bun/bin:${PATH}"
+
+# Build options
+ARG BUILD_CONFIGURATION=Release
+
+# Download npm packages
+WORKDIR /src/Hosts/Moonlight.Frontend.Host/Styles
+
+COPY ["Hosts/Moonlight.Frontend.Host/Styles/package.json", "package.json"]
+
+RUN bun install
+
 WORKDIR /src
 COPY ["DisBot.Dashboard.Host/DisBot.Dashboard.Host.csproj", "DisBot.Dashboard.Host/"]
 COPY ["DisBot.Dashboard.Client/DisBot.Dashboard.Client.csproj", "DisBot.Dashboard.Client/"]

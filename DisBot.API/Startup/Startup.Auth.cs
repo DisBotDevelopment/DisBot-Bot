@@ -6,6 +6,7 @@ public static partial class Startup
     {
         builder.Services.AddAuthentication();
         builder.Services.AddAuthorization();
+        // TODO ADD AUTH
     }
 
     private static async Task LoadAuth(this WebApplication application)

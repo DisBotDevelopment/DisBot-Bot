@@ -12,6 +12,7 @@ public partial class Startup
         builder.Services.AddOptions<OAuth2Options>().BindConfiguration("OAuth2");
         builder.Services.AddOptions<SessionOptions>().BindConfiguration("Session");
         builder.Services.AddOpenApi();
+        // TODO SCALAR
     }
 
     private static async Task LoadBase(this WebApplication application)
