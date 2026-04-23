@@ -6,8 +6,6 @@ on:
   push:
     tags:
       - v.2.*
-    branches:
-      - v2
 env:
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 jobs:
