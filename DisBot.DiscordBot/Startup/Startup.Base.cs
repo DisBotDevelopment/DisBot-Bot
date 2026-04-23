@@ -1,7 +1,7 @@
 using DisBot.DiscordBot.Configuration;
+using DisBot.Shared.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Shared.Configuration;
 
 namespace DisBot.DiscordBot.Startup;
 

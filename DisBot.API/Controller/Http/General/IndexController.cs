@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DisBot.Shared.Helper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi;
-using Shared.Helper;
 
 namespace DisBot.API.Controller.Http.General;
 

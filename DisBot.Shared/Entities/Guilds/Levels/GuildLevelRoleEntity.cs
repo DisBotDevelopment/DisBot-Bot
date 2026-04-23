@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
-using Shared.Enums.Levels;
-using Shared.Interfaces;
+using DisBot.Shared.Enums.Levels;
+using DisBot.Shared.Interfaces;
 
-namespace Shared.Entities.Guilds.Levels;
+namespace DisBot.Shared.Entities.Guilds.Levels;
 
 public class GuildLevelRoleEntity : IActionTimestamps
 { 

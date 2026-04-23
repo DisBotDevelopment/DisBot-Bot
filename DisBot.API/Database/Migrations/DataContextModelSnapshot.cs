@@ -22,7 +22,7 @@ namespace DisBot.API.Database.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Automation.GuildAutoDeleteEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Automation.GuildAutoDeleteEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -67,7 +67,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildAutoDeletes");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Automation.GuildAutoPublishEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Automation.GuildAutoPublishEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -96,7 +96,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildAutoPublishes");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Automation.GuildAutoReactEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Automation.GuildAutoReactEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -127,7 +127,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildAutoReacts");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Automation.GuildAutoRoleEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Automation.GuildAutoRoleEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -156,7 +156,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildAutoRoles");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.ChannelLinks.GuildChannelLinksEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.ChannelLinks.GuildChannelLinksEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -199,7 +199,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildChannelLinks");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.ChannelLinks.GuildSyncedChannelLinkMessageEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.ChannelLinks.GuildSyncedChannelLinkMessageEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -235,7 +235,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildSyncedChannelLinkMessages");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.DiscordUtility.GuildDiscordGuildAddonEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.DiscordUtility.GuildDiscordGuildAddonEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -269,7 +269,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildDiscordGuildAddon");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Giveaways.GuildGiveawayEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Giveaways.GuildGiveawayEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -353,7 +353,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildGiveaways");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.GuildEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.GuildEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -381,7 +381,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("Guilds");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Interactions.GuildBuildInCommandEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Interactions.GuildBuildInCommandEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -423,7 +423,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildBuildInCommands");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Interactions.GuildCommandMangerEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Interactions.GuildCommandMangerEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -448,7 +448,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildCommandManger");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Interactions.GuildComponentManagerEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Interactions.GuildComponentManagerEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -473,7 +473,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildComponentManager");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Interactions.GuildInteractionManagerEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Interactions.GuildInteractionManagerEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -498,7 +498,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildInteractionManager");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Interactions.GuildInteractionPermissionEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Interactions.GuildInteractionPermissionEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -552,7 +552,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildInteractionPermissions");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Leave.GuildLeaveImageDataEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Leave.GuildLeaveImageDataEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -602,7 +602,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildLeaveImageData");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Leave.GuildLeaveSetupEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Leave.GuildLeaveSetupEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -638,7 +638,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildLeaveSetup");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Levels.GuildLevelEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Levels.GuildLevelEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -688,7 +688,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildLevel");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Levels.GuildLevelSettingsEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Levels.GuildLevelSettingsEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -791,7 +791,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildLevelSettings");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Levels.GuildXpDropEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Levels.GuildXpDropEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -838,7 +838,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildXpDrops");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Levels.GuildXpStreakEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Levels.GuildXpStreakEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -885,7 +885,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildXpStreaks");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Logging.GuildLoggingEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Logging.GuildLoggingEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -976,7 +976,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildLogging");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Logging.GuildLogsEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Logging.GuildLogsEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1014,7 +1014,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildLogs");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1057,7 +1057,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildMessageTemplates");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.AutoModeration.GuildAutoModerationEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.AutoModeration.GuildAutoModerationEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1101,7 +1101,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildAutoModerations");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.GuildModerationEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.GuildModerationEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1126,7 +1126,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildModeration");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.GuildUserModerationEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.GuildUserModerationEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1190,7 +1190,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildUserModerations");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutCaseEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutCaseEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1238,7 +1238,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildModerationScoutCases");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1302,7 +1302,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildModerationScout");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutFormEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutFormEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1334,7 +1334,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildModerationScoutForms");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutReportEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutReportEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1387,7 +1387,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildModerationScoutReports");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutUserAppealEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutUserAppealEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1435,7 +1435,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildModerationScoutUserAppeals");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.Settings.GuildBanModerationSettingsEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.Settings.GuildBanModerationSettingsEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1477,7 +1477,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildBanModerationSettings");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.Settings.GuildKickModerationSettingsEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.Settings.GuildKickModerationSettingsEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1513,7 +1513,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildKickModerationSettings");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.Settings.GuildMuteModerationSettingsEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.Settings.GuildMuteModerationSettingsEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1562,7 +1562,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildMuteModerationSettings");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.Settings.GuildUnbanModerationSettingsEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.Settings.GuildUnbanModerationSettingsEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1598,7 +1598,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildUnbanModerationSettings");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.Settings.GuildUnmuteModerationSettingsEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.Settings.GuildUnmuteModerationSettingsEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1638,7 +1638,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildUnmuteModerationSettings");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.Settings.GuildUnwarnModerationSettingsEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.Settings.GuildUnwarnModerationSettingsEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1678,7 +1678,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildUnwarnModerationSettings");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.Settings.GuildWarnModerationSettingsEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.Settings.GuildWarnModerationSettingsEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1724,7 +1724,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildWarnModerationSettings");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Notifications.GuildSpotifyNotificationEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Notifications.GuildSpotifyNotificationEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1768,7 +1768,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildSpotifyNotifications");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Notifications.GuildTwitchNotificationEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Notifications.GuildTwitchNotificationEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1810,7 +1810,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildTwitchNotifications");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Notifications.GuildYoutubeNotificationEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Notifications.GuildYoutubeNotificationEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1852,7 +1852,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildYoutubeNotifications");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Polls.GuildPollAnswerEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Polls.GuildPollAnswerEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1887,7 +1887,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildPollAnswers");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Polls.GuildPollEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Polls.GuildPollEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1939,7 +1939,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildPolls");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Polls.GuildPollOptionEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Polls.GuildPollOptionEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1976,7 +1976,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildPollOptions");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Security.GuildSecurityEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Security.GuildSecurityEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2007,7 +2007,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildSecurity");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Security.GuildVerificationGateEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Security.GuildVerificationGateEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2054,7 +2054,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildVerificationGates");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Security.GuildVerificationGatesPermissionEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Security.GuildVerificationGatesPermissionEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2085,7 +2085,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildVerificationGatesPermissions");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.TempVoice.GuildTempVoiceChannelEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.TempVoice.GuildTempVoiceChannelEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2120,7 +2120,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildTempVoiceChannels");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.TempVoice.GuildTempVoiceChannelMemberEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.TempVoice.GuildTempVoiceChannelMemberEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2151,7 +2151,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildTempVoiceChannelMembers");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.TempVoice.GuildTempVoiceConfigEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.TempVoice.GuildTempVoiceConfigEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2194,7 +2194,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildTempVoiceConfigs");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.TempVoice.GuildTempVoicePresetDiscordRolePermissionEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.TempVoice.GuildTempVoicePresetDiscordRolePermissionEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2229,7 +2229,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildTempVoicePresetDiscordRolePermissions");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.TempVoice.GuildTempVoicePresetEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.TempVoice.GuildTempVoicePresetEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2286,7 +2286,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildTempVoicePresets");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.TempVoice.GuildTempVoiceSettingsEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.TempVoice.GuildTempVoiceSettingsEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2323,7 +2323,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildTempVoiceSettings");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Tickets.GuildTicketEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Tickets.GuildTicketEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2437,7 +2437,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildTickets");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Tickets.GuildTicketFeedbackEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Tickets.GuildTicketFeedbackEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2474,7 +2474,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildTicketFeedback");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Tickets.GuildTicketModalDataEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Tickets.GuildTicketModalDataEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2517,7 +2517,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildTicketModalData");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Tickets.GuildTicketPermissionEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Tickets.GuildTicketPermissionEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2562,7 +2562,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildTicketPermissions");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Tickets.GuildTicketSetupEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Tickets.GuildTicketSetupEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2698,7 +2698,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildTicketSetups");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Welcome.GuildWelcomeImageDataEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Welcome.GuildWelcomeImageDataEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2748,7 +2748,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildWelcomeImageData");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Welcome.GuildWelcomeSetupEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Welcome.GuildWelcomeSetupEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2784,7 +2784,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("GuildWelcomeSetups");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Users.Backup.UserGuildBackupEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Users.Backup.UserGuildBackupEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2815,7 +2815,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("UserGuildBackups");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Users.UserApiEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Users.UserApiEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2849,7 +2849,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("UserApis");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Users.UserEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Users.UserEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2870,7 +2870,7 @@ namespace DisBot.API.Database.Migrations
                     b.Property<DateTimeOffset>("InvalidateTimestamp")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTimeOffset>("LastVote")
+                    b.Property<DateTimeOffset?>("LastVote")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("RefreshToken")
@@ -2891,7 +2891,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Users.Vanity.UserGuildVanityAnalyticsEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Users.Vanity.UserGuildVanityAnalyticsEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2936,7 +2936,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("UserGuildVanityAnalytic");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Users.Vanity.UserGuildVanityAnalyticsLatest30DayEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Users.Vanity.UserGuildVanityAnalyticsLatest30DayEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2970,7 +2970,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("UserGuildVanityAnalyticsLatest30Day");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Users.Vanity.UserGuildVanityEmbedAuthorEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Users.Vanity.UserGuildVanityEmbedAuthorEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -3004,7 +3004,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("UserGuildVanityEmbedAuthor");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Users.Vanity.UserGuildVanityEmbedEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Users.Vanity.UserGuildVanityEmbedEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -3045,7 +3045,7 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("UserGuildVanityEmbed");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Users.Vanity.UserGuildVanityEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Users.Vanity.UserGuildVanityEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -3087,9 +3087,9 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("UserGuildVanities");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Automation.GuildAutoDeleteEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Automation.GuildAutoDeleteEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.GuildEntity", "Guild")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.GuildEntity", "Guild")
                         .WithMany("AutoDelete")
                         .HasForeignKey("GuildId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3098,20 +3098,20 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("Guild");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Automation.GuildAutoPublishEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Automation.GuildAutoPublishEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.GuildEntity", "Guild")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.GuildEntity", "Guild")
                         .WithOne("AutoPublish")
-                        .HasForeignKey("Shared.Entities.Guilds.Automation.GuildAutoPublishEntity", "GuildId")
+                        .HasForeignKey("DisBot.Shared.Entities.Guilds.Automation.GuildAutoPublishEntity", "GuildId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Guild");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Automation.GuildAutoReactEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Automation.GuildAutoReactEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.GuildEntity", "Guild")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.GuildEntity", "Guild")
                         .WithMany("AutoReact")
                         .HasForeignKey("GuildId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3120,20 +3120,20 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("Guild");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Automation.GuildAutoRoleEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Automation.GuildAutoRoleEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.GuildEntity", "Guild")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.GuildEntity", "Guild")
                         .WithOne("AutoRole")
-                        .HasForeignKey("Shared.Entities.Guilds.Automation.GuildAutoRoleEntity", "GuildId")
+                        .HasForeignKey("DisBot.Shared.Entities.Guilds.Automation.GuildAutoRoleEntity", "GuildId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Guild");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.ChannelLinks.GuildChannelLinksEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.ChannelLinks.GuildChannelLinksEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.GuildEntity", "Guild")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.GuildEntity", "Guild")
                         .WithMany("ChannelLinks")
                         .HasForeignKey("GuildId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3142,9 +3142,9 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("Guild");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.ChannelLinks.GuildSyncedChannelLinkMessageEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.ChannelLinks.GuildSyncedChannelLinkMessageEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.ChannelLinks.GuildChannelLinksEntity", "ChannelLinks")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.ChannelLinks.GuildChannelLinksEntity", "ChannelLinks")
                         .WithMany("SyncedChannelLinkMessages")
                         .HasForeignKey("ChannelLinksId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3153,34 +3153,34 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("ChannelLinks");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.DiscordUtility.GuildDiscordGuildAddonEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.DiscordUtility.GuildDiscordGuildAddonEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.GuildEntity", "Guild")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.GuildEntity", "Guild")
                         .WithOne("DiscordGuildAddon")
-                        .HasForeignKey("Shared.Entities.Guilds.DiscordUtility.GuildDiscordGuildAddonEntity", "GuildId")
+                        .HasForeignKey("DisBot.Shared.Entities.Guilds.DiscordUtility.GuildDiscordGuildAddonEntity", "GuildId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Guild");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Giveaways.GuildGiveawayEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Giveaways.GuildGiveawayEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "EndedMessageTemplate")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "EndedMessageTemplate")
                         .WithMany()
                         .HasForeignKey("EndedMessageTemplateId");
 
-                    b.HasOne("Shared.Entities.Guilds.GuildEntity", "Guild")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.GuildEntity", "Guild")
                         .WithMany("Giveaways")
                         .HasForeignKey("GuildId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "MessageTemplate")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "MessageTemplate")
                         .WithMany()
                         .HasForeignKey("MessageTemplateId");
 
-                    b.HasOne("Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "WinnerMessageTemplate")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "WinnerMessageTemplate")
                         .WithMany()
                         .HasForeignKey("WinnerMessageTemplateId");
 
@@ -3193,9 +3193,9 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("WinnerMessageTemplate");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Interactions.GuildBuildInCommandEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Interactions.GuildBuildInCommandEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Interactions.GuildCommandMangerEntity", "GuildCommandManger")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Interactions.GuildCommandMangerEntity", "GuildCommandManger")
                         .WithMany("BuildInCommands")
                         .HasForeignKey("GuildCommandMangerId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3204,42 +3204,42 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("GuildCommandManger");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Interactions.GuildCommandMangerEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Interactions.GuildCommandMangerEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Interactions.GuildInteractionManagerEntity", "InteractionManager")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Interactions.GuildInteractionManagerEntity", "InteractionManager")
                         .WithOne("CommandManager")
-                        .HasForeignKey("Shared.Entities.Guilds.Interactions.GuildCommandMangerEntity", "InteractionManagerId")
+                        .HasForeignKey("DisBot.Shared.Entities.Guilds.Interactions.GuildCommandMangerEntity", "InteractionManagerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("InteractionManager");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Interactions.GuildComponentManagerEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Interactions.GuildComponentManagerEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Interactions.GuildInteractionManagerEntity", "GuildInteractionManager")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Interactions.GuildInteractionManagerEntity", "GuildInteractionManager")
                         .WithOne("ComponentManager")
-                        .HasForeignKey("Shared.Entities.Guilds.Interactions.GuildComponentManagerEntity", "GuildInteractionManagerId")
+                        .HasForeignKey("DisBot.Shared.Entities.Guilds.Interactions.GuildComponentManagerEntity", "GuildInteractionManagerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("GuildInteractionManager");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Interactions.GuildInteractionManagerEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Interactions.GuildInteractionManagerEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.GuildEntity", "Guild")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.GuildEntity", "Guild")
                         .WithOne("InteractionManager")
-                        .HasForeignKey("Shared.Entities.Guilds.Interactions.GuildInteractionManagerEntity", "GuildId")
+                        .HasForeignKey("DisBot.Shared.Entities.Guilds.Interactions.GuildInteractionManagerEntity", "GuildId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Guild");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Interactions.GuildInteractionPermissionEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Interactions.GuildInteractionPermissionEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.GuildEntity", "Guild")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.GuildEntity", "Guild")
                         .WithMany()
                         .HasForeignKey("GuildId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3248,26 +3248,26 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("Guild");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Leave.GuildLeaveImageDataEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Leave.GuildLeaveImageDataEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Leave.GuildLeaveSetupEntity", "LeaveSetup")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Leave.GuildLeaveSetupEntity", "LeaveSetup")
                         .WithOne("ImageData")
-                        .HasForeignKey("Shared.Entities.Guilds.Leave.GuildLeaveImageDataEntity", "LeaveSetupId")
+                        .HasForeignKey("DisBot.Shared.Entities.Guilds.Leave.GuildLeaveImageDataEntity", "LeaveSetupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("LeaveSetup");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Leave.GuildLeaveSetupEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Leave.GuildLeaveSetupEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.GuildEntity", "Guild")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.GuildEntity", "Guild")
                         .WithOne("LeaveSetup")
-                        .HasForeignKey("Shared.Entities.Guilds.Leave.GuildLeaveSetupEntity", "GuildId")
+                        .HasForeignKey("DisBot.Shared.Entities.Guilds.Leave.GuildLeaveSetupEntity", "GuildId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "GuildMessageTemplate")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "GuildMessageTemplate")
                         .WithMany()
                         .HasForeignKey("GuildMessageTemplateId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3278,15 +3278,15 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("GuildMessageTemplate");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Levels.GuildLevelEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Levels.GuildLevelEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Levels.GuildLevelSettingsEntity", "LevelSettings")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Levels.GuildLevelSettingsEntity", "LevelSettings")
                         .WithMany()
                         .HasForeignKey("LevelSettingsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Shared.Entities.Users.UserEntity", "User")
+                    b.HasOne("DisBot.Shared.Entities.Users.UserEntity", "User")
                         .WithMany("Levels")
                         .HasForeignKey("UserId1")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3297,27 +3297,27 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Levels.GuildLevelSettingsEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Levels.GuildLevelSettingsEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.GuildEntity", "Guild")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.GuildEntity", "Guild")
                         .WithOne("LevelSettings")
-                        .HasForeignKey("Shared.Entities.Guilds.Levels.GuildLevelSettingsEntity", "GuildId")
+                        .HasForeignKey("DisBot.Shared.Entities.Guilds.Levels.GuildLevelSettingsEntity", "GuildId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "LeaderboardMessageTemplate")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "LeaderboardMessageTemplate")
                         .WithMany()
                         .HasForeignKey("LeaderboardMessageTemplateId");
 
-                    b.HasOne("Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "LevelUpMessageTemplate")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "LevelUpMessageTemplate")
                         .WithMany()
                         .HasForeignKey("LevelUpMessageTemplateId");
 
-                    b.HasOne("Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "LevelUserInfoMessageTemplate")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "LevelUserInfoMessageTemplate")
                         .WithMany()
                         .HasForeignKey("LevelUserInfoMessageTemplateId");
 
-                    b.HasOne("Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "XpDropsMessageTemplate")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "XpDropsMessageTemplate")
                         .WithMany()
                         .HasForeignKey("XpDropsMessageTemplateId");
 
@@ -3332,9 +3332,9 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("XpDropsMessageTemplate");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Levels.GuildXpDropEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Levels.GuildXpDropEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Levels.GuildLevelSettingsEntity", "LevelSettings")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Levels.GuildLevelSettingsEntity", "LevelSettings")
                         .WithMany()
                         .HasForeignKey("LevelSettingsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3343,15 +3343,15 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("LevelSettings");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Levels.GuildXpStreakEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Levels.GuildXpStreakEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Levels.GuildLevelSettingsEntity", "LevelSettings")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Levels.GuildLevelSettingsEntity", "LevelSettings")
                         .WithMany()
                         .HasForeignKey("LevelSettingsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "MessageTemplate")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "MessageTemplate")
                         .WithMany()
                         .HasForeignKey("MessageTemplateId");
 
@@ -3360,20 +3360,20 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("MessageTemplate");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Logging.GuildLoggingEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Logging.GuildLoggingEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.GuildEntity", "Guild")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.GuildEntity", "Guild")
                         .WithOne("Logging")
-                        .HasForeignKey("Shared.Entities.Guilds.Logging.GuildLoggingEntity", "GuildId")
+                        .HasForeignKey("DisBot.Shared.Entities.Guilds.Logging.GuildLoggingEntity", "GuildId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Guild");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Logging.GuildLogsEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Logging.GuildLogsEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.GuildEntity", "Guild")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.GuildEntity", "Guild")
                         .WithMany("Logs")
                         .HasForeignKey("GuildId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3382,9 +3382,9 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("Guild");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.GuildEntity", "Guild")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.GuildEntity", "Guild")
                         .WithMany("MessageTemplates")
                         .HasForeignKey("GuildId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3393,9 +3393,9 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("Guild");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.AutoModeration.GuildAutoModerationEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.AutoModeration.GuildAutoModerationEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Moderation.GuildModerationEntity", "Moderation")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Moderation.GuildModerationEntity", "Moderation")
                         .WithMany("AttachmentAutoModeration")
                         .HasForeignKey("ModerationId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3404,30 +3404,30 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("Moderation");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.GuildModerationEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.GuildModerationEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.GuildEntity", "Guild")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.GuildEntity", "Guild")
                         .WithOne("Moderation")
-                        .HasForeignKey("Shared.Entities.Guilds.Moderation.GuildModerationEntity", "GuildId")
+                        .HasForeignKey("DisBot.Shared.Entities.Guilds.Moderation.GuildModerationEntity", "GuildId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Guild");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.GuildUserModerationEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.GuildUserModerationEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutEntity", null)
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutEntity", null)
                         .WithMany("UserModeration")
                         .HasForeignKey("GuildModerationScoutEntityId");
 
-                    b.HasOne("Shared.Entities.Guilds.Moderation.GuildModerationEntity", "Moderation")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Moderation.GuildModerationEntity", "Moderation")
                         .WithMany("UserModeration")
                         .HasForeignKey("ModerationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutCaseEntity", "ModerationScoutCases")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutCaseEntity", "ModerationScoutCases")
                         .WithMany("UserModeration")
                         .HasForeignKey("ModerationScoutCasesId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3438,15 +3438,15 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("ModerationScoutCases");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutCaseEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutCaseEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutEntity", "ModerationScout")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutEntity", "ModerationScout")
                         .WithMany("ModerationScoutCases")
                         .HasForeignKey("ModerationScoutId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutReportEntity", "ModerationScoutReport")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutReportEntity", "ModerationScoutReport")
                         .WithMany("ModerationScoutCases")
                         .HasForeignKey("ModerationScoutReportId");
 
@@ -3455,15 +3455,15 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("ModerationScoutReport");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Moderation.GuildModerationEntity", "Moderation")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Moderation.GuildModerationEntity", "Moderation")
                         .WithOne("ModerationScout")
-                        .HasForeignKey("Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutEntity", "ModerationId")
+                        .HasForeignKey("DisBot.Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutEntity", "ModerationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "SuccessReportMessageId")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "SuccessReportMessageId")
                         .WithMany()
                         .HasForeignKey("SuccessReportMessageIdId");
 
@@ -3472,9 +3472,9 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("SuccessReportMessageId");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutFormEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutFormEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutEntity", "ModerationScout")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutEntity", "ModerationScout")
                         .WithMany("ModerationScoutForms")
                         .HasForeignKey("ModerationScoutId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3483,9 +3483,9 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("ModerationScout");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutReportEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutReportEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutEntity", "ModerationScout")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutEntity", "ModerationScout")
                         .WithMany("ModerationScoutReports")
                         .HasForeignKey("ModerationScoutId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3494,21 +3494,21 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("ModerationScout");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutUserAppealEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutUserAppealEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutFormEntity", "LinkedModerationScoutForm")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutFormEntity", "LinkedModerationScoutForm")
                         .WithMany("ModerationScoutUserAppeals")
                         .HasForeignKey("LinkedModerationScoutFormId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutCaseEntity", "ModerationScoutCase")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutCaseEntity", "ModerationScoutCase")
                         .WithOne("ModerationScoutUserAppeal")
-                        .HasForeignKey("Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutUserAppealEntity", "ModerationScoutCaseId")
+                        .HasForeignKey("DisBot.Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutUserAppealEntity", "ModerationScoutCaseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutEntity", "ModerationScout")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutEntity", "ModerationScout")
                         .WithMany("ModerationScoutUserAppeals")
                         .HasForeignKey("ModerationScoutId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3521,92 +3521,92 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("ModerationScoutCase");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.Settings.GuildBanModerationSettingsEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.Settings.GuildBanModerationSettingsEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Moderation.GuildModerationEntity", "Moderation")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Moderation.GuildModerationEntity", "Moderation")
                         .WithOne("GuildBanModerationSettings")
-                        .HasForeignKey("Shared.Entities.Guilds.Moderation.Settings.GuildBanModerationSettingsEntity", "ModerationId")
+                        .HasForeignKey("DisBot.Shared.Entities.Guilds.Moderation.Settings.GuildBanModerationSettingsEntity", "ModerationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Moderation");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.Settings.GuildKickModerationSettingsEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.Settings.GuildKickModerationSettingsEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Moderation.GuildModerationEntity", "Moderation")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Moderation.GuildModerationEntity", "Moderation")
                         .WithOne("GuildKickModerationSettings")
-                        .HasForeignKey("Shared.Entities.Guilds.Moderation.Settings.GuildKickModerationSettingsEntity", "ModerationId")
+                        .HasForeignKey("DisBot.Shared.Entities.Guilds.Moderation.Settings.GuildKickModerationSettingsEntity", "ModerationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Moderation");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.Settings.GuildMuteModerationSettingsEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.Settings.GuildMuteModerationSettingsEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Moderation.GuildModerationEntity", "Moderation")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Moderation.GuildModerationEntity", "Moderation")
                         .WithOne("GuildMuteModerationSettings")
-                        .HasForeignKey("Shared.Entities.Guilds.Moderation.Settings.GuildMuteModerationSettingsEntity", "ModerationId")
+                        .HasForeignKey("DisBot.Shared.Entities.Guilds.Moderation.Settings.GuildMuteModerationSettingsEntity", "ModerationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Moderation");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.Settings.GuildUnbanModerationSettingsEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.Settings.GuildUnbanModerationSettingsEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Moderation.GuildModerationEntity", "Moderation")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Moderation.GuildModerationEntity", "Moderation")
                         .WithOne("GuildUnBanModerationSettings")
-                        .HasForeignKey("Shared.Entities.Guilds.Moderation.Settings.GuildUnbanModerationSettingsEntity", "ModerationId")
+                        .HasForeignKey("DisBot.Shared.Entities.Guilds.Moderation.Settings.GuildUnbanModerationSettingsEntity", "ModerationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Moderation");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.Settings.GuildUnmuteModerationSettingsEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.Settings.GuildUnmuteModerationSettingsEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Moderation.GuildModerationEntity", "Moderation")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Moderation.GuildModerationEntity", "Moderation")
                         .WithOne("GuildUnMuteModerationSettings")
-                        .HasForeignKey("Shared.Entities.Guilds.Moderation.Settings.GuildUnmuteModerationSettingsEntity", "ModerationId")
+                        .HasForeignKey("DisBot.Shared.Entities.Guilds.Moderation.Settings.GuildUnmuteModerationSettingsEntity", "ModerationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Moderation");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.Settings.GuildUnwarnModerationSettingsEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.Settings.GuildUnwarnModerationSettingsEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Moderation.GuildModerationEntity", "Moderation")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Moderation.GuildModerationEntity", "Moderation")
                         .WithOne("GuildUnWarnModerationSettings")
-                        .HasForeignKey("Shared.Entities.Guilds.Moderation.Settings.GuildUnwarnModerationSettingsEntity", "ModerationId")
+                        .HasForeignKey("DisBot.Shared.Entities.Guilds.Moderation.Settings.GuildUnwarnModerationSettingsEntity", "ModerationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Moderation");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.Settings.GuildWarnModerationSettingsEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.Settings.GuildWarnModerationSettingsEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Moderation.GuildModerationEntity", "Moderation")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Moderation.GuildModerationEntity", "Moderation")
                         .WithOne("GuildWarnModerationSetting")
-                        .HasForeignKey("Shared.Entities.Guilds.Moderation.Settings.GuildWarnModerationSettingsEntity", "ModerationId")
+                        .HasForeignKey("DisBot.Shared.Entities.Guilds.Moderation.Settings.GuildWarnModerationSettingsEntity", "ModerationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Moderation");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Notifications.GuildSpotifyNotificationEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Notifications.GuildSpotifyNotificationEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.GuildEntity", "Guild")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.GuildEntity", "Guild")
                         .WithMany("SpotifyNotification")
                         .HasForeignKey("GuildId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "MessageTemplate")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "MessageTemplate")
                         .WithMany()
                         .HasForeignKey("MessageTemplateId");
 
@@ -3615,15 +3615,15 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("MessageTemplate");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Notifications.GuildTwitchNotificationEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Notifications.GuildTwitchNotificationEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.GuildEntity", "Guilds")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.GuildEntity", "Guilds")
                         .WithMany("TwitchNotification")
                         .HasForeignKey("GuildsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "MessageTemplate")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "MessageTemplate")
                         .WithMany()
                         .HasForeignKey("MessageTemplateId");
 
@@ -3632,15 +3632,15 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("MessageTemplate");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Notifications.GuildYoutubeNotificationEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Notifications.GuildYoutubeNotificationEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.GuildEntity", "Guild")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.GuildEntity", "Guild")
                         .WithMany("YoutubeNotification")
                         .HasForeignKey("GuildId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "MessageTemplate")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "MessageTemplate")
                         .WithMany()
                         .HasForeignKey("MessageTemplateId");
 
@@ -3649,15 +3649,15 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("MessageTemplate");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Polls.GuildPollAnswerEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Polls.GuildPollAnswerEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Polls.GuildPollEntity", "Poll")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Polls.GuildPollEntity", "Poll")
                         .WithMany("PollAnswers")
                         .HasForeignKey("PollId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Shared.Entities.Guilds.Polls.GuildPollOptionEntity", "PollOption")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Polls.GuildPollOptionEntity", "PollOption")
                         .WithMany("PollAnswers")
                         .HasForeignKey("PollOptionId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3668,15 +3668,15 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("PollOption");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Polls.GuildPollEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Polls.GuildPollEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.GuildEntity", "Guild")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.GuildEntity", "Guild")
                         .WithMany("Polls")
                         .HasForeignKey("GuildId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "MessageTemplates")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "MessageTemplates")
                         .WithMany()
                         .HasForeignKey("MessageTemplatesId");
 
@@ -3685,9 +3685,9 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("MessageTemplates");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Polls.GuildPollOptionEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Polls.GuildPollOptionEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Polls.GuildPollEntity", "Poll")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Polls.GuildPollEntity", "Poll")
                         .WithMany("PollOptions")
                         .HasForeignKey("PollId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3696,20 +3696,20 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("Poll");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Security.GuildSecurityEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Security.GuildSecurityEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.GuildEntity", "Guild")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.GuildEntity", "Guild")
                         .WithOne("Security")
-                        .HasForeignKey("Shared.Entities.Guilds.Security.GuildSecurityEntity", "GuildId")
+                        .HasForeignKey("DisBot.Shared.Entities.Guilds.Security.GuildSecurityEntity", "GuildId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Guild");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Security.GuildVerificationGateEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Security.GuildVerificationGateEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Security.GuildSecurityEntity", "Security")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Security.GuildSecurityEntity", "Security")
                         .WithMany("VerificationGates")
                         .HasForeignKey("SecurityId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3718,9 +3718,9 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("Security");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Security.GuildVerificationGatesPermissionEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Security.GuildVerificationGatesPermissionEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Security.GuildVerificationGateEntity", "VerificationGate")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Security.GuildVerificationGateEntity", "VerificationGate")
                         .WithMany()
                         .HasForeignKey("VerificationGateId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3729,15 +3729,15 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("VerificationGate");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.TempVoice.GuildTempVoiceChannelEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.TempVoice.GuildTempVoiceChannelEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.GuildEntity", "Guild")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.GuildEntity", "Guild")
                         .WithMany()
                         .HasForeignKey("GuildId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Shared.Entities.Guilds.TempVoice.GuildTempVoiceConfigEntity", "TempVoiceConfig")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.TempVoice.GuildTempVoiceConfigEntity", "TempVoiceConfig")
                         .WithMany("TempVoiceChannels")
                         .HasForeignKey("TempVoiceConfigId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3748,9 +3748,9 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("TempVoiceConfig");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.TempVoice.GuildTempVoiceChannelMemberEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.TempVoice.GuildTempVoiceChannelMemberEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.TempVoice.GuildTempVoiceChannelEntity", "TempVoiceChannel")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.TempVoice.GuildTempVoiceChannelEntity", "TempVoiceChannel")
                         .WithMany()
                         .HasForeignKey("TempVoiceChannelId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3759,17 +3759,17 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("TempVoiceChannel");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.TempVoice.GuildTempVoiceConfigEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.TempVoice.GuildTempVoiceConfigEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "ManageMessageTemplate")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "ManageMessageTemplate")
                         .WithMany()
                         .HasForeignKey("ManageMessageTemplateId");
 
-                    b.HasOne("Shared.Entities.Guilds.TempVoice.GuildTempVoicePresetEntity", "TempVoicePreset")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.TempVoice.GuildTempVoicePresetEntity", "TempVoicePreset")
                         .WithMany("TempVoiceConfig")
                         .HasForeignKey("TempVoicePresetId");
 
-                    b.HasOne("Shared.Entities.Guilds.TempVoice.GuildTempVoiceSettingsEntity", "TempVoiceSettings")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.TempVoice.GuildTempVoiceSettingsEntity", "TempVoiceSettings")
                         .WithMany("TempVoiceConfigs")
                         .HasForeignKey("TempVoiceSettingsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3782,9 +3782,9 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("TempVoiceSettings");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.TempVoice.GuildTempVoicePresetDiscordRolePermissionEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.TempVoice.GuildTempVoicePresetDiscordRolePermissionEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.TempVoice.GuildTempVoicePresetEntity", "TempVoicePreset")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.TempVoice.GuildTempVoicePresetEntity", "TempVoicePreset")
                         .WithMany("RolePermissions")
                         .HasForeignKey("TempVoicePresetId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3793,9 +3793,9 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("TempVoicePreset");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.TempVoice.GuildTempVoicePresetEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.TempVoice.GuildTempVoicePresetEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.TempVoice.GuildTempVoiceSettingsEntity", "TempVoiceSettings")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.TempVoice.GuildTempVoiceSettingsEntity", "TempVoiceSettings")
                         .WithMany("TempVoicePreset")
                         .HasForeignKey("TempVoiceSettingsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3804,15 +3804,15 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("TempVoiceSettings");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.TempVoice.GuildTempVoiceSettingsEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.TempVoice.GuildTempVoiceSettingsEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.GuildEntity", "Guild")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.GuildEntity", "Guild")
                         .WithOne("TempVoice")
-                        .HasForeignKey("Shared.Entities.Guilds.TempVoice.GuildTempVoiceSettingsEntity", "GuildId")
+                        .HasForeignKey("DisBot.Shared.Entities.Guilds.TempVoice.GuildTempVoiceSettingsEntity", "GuildId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "UserInviteMessageTemplate")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "UserInviteMessageTemplate")
                         .WithMany()
                         .HasForeignKey("UserInviteMessageTemplateId");
 
@@ -3821,19 +3821,19 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("UserInviteMessageTemplate");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Tickets.GuildTicketEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Tickets.GuildTicketEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "AutoReplyMessageTemplateId")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "AutoReplyMessageTemplateId")
                         .WithMany()
                         .HasForeignKey("AutoReplyMessageTemplateIdId");
 
-                    b.HasOne("Shared.Entities.Guilds.Tickets.GuildTicketSetupEntity", "TicketSetup")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Tickets.GuildTicketSetupEntity", "TicketSetup")
                         .WithMany("Tickets")
                         .HasForeignKey("TicketSetupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "UserDmWhenCloseMessageTemplateId")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "UserDmWhenCloseMessageTemplateId")
                         .WithMany()
                         .HasForeignKey("UserDmWhenCloseMessageTemplateIdId");
 
@@ -3844,20 +3844,20 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("UserDmWhenCloseMessageTemplateId");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Tickets.GuildTicketFeedbackEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Tickets.GuildTicketFeedbackEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Tickets.GuildTicketEntity", "Ticket")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Tickets.GuildTicketEntity", "Ticket")
                         .WithOne("TicketFeedback")
-                        .HasForeignKey("Shared.Entities.Guilds.Tickets.GuildTicketFeedbackEntity", "TicketId")
+                        .HasForeignKey("DisBot.Shared.Entities.Guilds.Tickets.GuildTicketFeedbackEntity", "TicketId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Ticket");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Tickets.GuildTicketModalDataEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Tickets.GuildTicketModalDataEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Tickets.GuildTicketSetupEntity", "TicketSetup")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Tickets.GuildTicketSetupEntity", "TicketSetup")
                         .WithMany("TicketModalData")
                         .HasForeignKey("TicketSetupId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3866,9 +3866,9 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("TicketSetup");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Tickets.GuildTicketPermissionEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Tickets.GuildTicketPermissionEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Tickets.GuildTicketSetupEntity", "TicketSetup")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Tickets.GuildTicketSetupEntity", "TicketSetup")
                         .WithMany("TicketPermissions")
                         .HasForeignKey("TicketSetupId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3877,28 +3877,28 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("TicketSetup");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Tickets.GuildTicketSetupEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Tickets.GuildTicketSetupEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "AutoReplyMessageTemplateId")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "AutoReplyMessageTemplateId")
                         .WithMany()
                         .HasForeignKey("AutoReplyMessageTemplateIdId");
 
-                    b.HasOne("Shared.Entities.Guilds.GuildEntity", "Guild")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.GuildEntity", "Guild")
                         .WithMany("TicketSetups")
                         .HasForeignKey("GuildId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "TicketStatusMessageId")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "TicketStatusMessageId")
                         .WithMany()
                         .HasForeignKey("TicketStatusMessageIdId");
 
-                    b.HasOne("Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "TicketStatusMessageTemplateId")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "TicketStatusMessageTemplateId")
                         .WithMany()
                         .HasForeignKey("TicketStatusMessageTemplateIdId")
                         .HasConstraintName("FK_GuildTicketSetups_GuildMessageTemplates_TicketStatusMessag~1");
 
-                    b.HasOne("Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "UserDmWhenCloseMessageTemplateId")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "UserDmWhenCloseMessageTemplateId")
                         .WithMany()
                         .HasForeignKey("UserDmWhenCloseMessageTemplateIdId");
 
@@ -3913,26 +3913,26 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("UserDmWhenCloseMessageTemplateId");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Welcome.GuildWelcomeImageDataEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Welcome.GuildWelcomeImageDataEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.Welcome.GuildWelcomeSetupEntity", "WelcomeSetup")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.Welcome.GuildWelcomeSetupEntity", "WelcomeSetup")
                         .WithOne("ImageData")
-                        .HasForeignKey("Shared.Entities.Guilds.Welcome.GuildWelcomeImageDataEntity", "WelcomeSetupId")
+                        .HasForeignKey("DisBot.Shared.Entities.Guilds.Welcome.GuildWelcomeImageDataEntity", "WelcomeSetupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("WelcomeSetup");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Welcome.GuildWelcomeSetupEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Welcome.GuildWelcomeSetupEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Guilds.GuildEntity", "Guild")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.GuildEntity", "Guild")
                         .WithOne("WelcomeSetup")
-                        .HasForeignKey("Shared.Entities.Guilds.Welcome.GuildWelcomeSetupEntity", "GuildId")
+                        .HasForeignKey("DisBot.Shared.Entities.Guilds.Welcome.GuildWelcomeSetupEntity", "GuildId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "MessageTemplate")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "MessageTemplate")
                         .WithMany()
                         .HasForeignKey("MessageTemplateId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3943,9 +3943,9 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("MessageTemplate");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Users.Backup.UserGuildBackupEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Users.Backup.UserGuildBackupEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Users.UserEntity", "User")
+                    b.HasOne("DisBot.Shared.Entities.Users.UserEntity", "User")
                         .WithMany("GuildBackups")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3954,26 +3954,26 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Users.UserApiEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Users.UserApiEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Users.UserEntity", "User")
+                    b.HasOne("DisBot.Shared.Entities.Users.UserEntity", "User")
                         .WithOne("Api")
-                        .HasForeignKey("Shared.Entities.Users.UserApiEntity", "UserId")
+                        .HasForeignKey("DisBot.Shared.Entities.Users.UserApiEntity", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Users.Vanity.UserGuildVanityAnalyticsEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Users.Vanity.UserGuildVanityAnalyticsEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Users.Vanity.UserGuildVanityEntity", "GuildVanity")
+                    b.HasOne("DisBot.Shared.Entities.Users.Vanity.UserGuildVanityEntity", "GuildVanity")
                         .WithOne("VanityAnalytic")
-                        .HasForeignKey("Shared.Entities.Users.Vanity.UserGuildVanityAnalyticsEntity", "GuildVanityId")
+                        .HasForeignKey("DisBot.Shared.Entities.Users.Vanity.UserGuildVanityAnalyticsEntity", "GuildVanityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "TrackMessageTemplate")
+                    b.HasOne("DisBot.Shared.Entities.Guilds.MessageTemplates.GuildMessageTemplateEntity", "TrackMessageTemplate")
                         .WithMany()
                         .HasForeignKey("TrackMessageTemplateId");
 
@@ -3982,42 +3982,42 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("TrackMessageTemplate");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Users.Vanity.UserGuildVanityAnalyticsLatest30DayEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Users.Vanity.UserGuildVanityAnalyticsLatest30DayEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Users.Vanity.UserGuildVanityAnalyticsEntity", "GuildVanityAnalytics")
+                    b.HasOne("DisBot.Shared.Entities.Users.Vanity.UserGuildVanityAnalyticsEntity", "GuildVanityAnalytics")
                         .WithOne("VanityAnalyticsLatest30Day")
-                        .HasForeignKey("Shared.Entities.Users.Vanity.UserGuildVanityAnalyticsLatest30DayEntity", "GuildVanityAnalyticsId")
+                        .HasForeignKey("DisBot.Shared.Entities.Users.Vanity.UserGuildVanityAnalyticsLatest30DayEntity", "GuildVanityAnalyticsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("GuildVanityAnalytics");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Users.Vanity.UserGuildVanityEmbedAuthorEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Users.Vanity.UserGuildVanityEmbedAuthorEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Users.Vanity.UserGuildVanityEmbedEntity", "GuildVanityEmbed")
+                    b.HasOne("DisBot.Shared.Entities.Users.Vanity.UserGuildVanityEmbedEntity", "GuildVanityEmbed")
                         .WithOne("VanityEmbedAuthor")
-                        .HasForeignKey("Shared.Entities.Users.Vanity.UserGuildVanityEmbedAuthorEntity", "GuildVanityEmbedId")
+                        .HasForeignKey("DisBot.Shared.Entities.Users.Vanity.UserGuildVanityEmbedAuthorEntity", "GuildVanityEmbedId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("GuildVanityEmbed");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Users.Vanity.UserGuildVanityEmbedEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Users.Vanity.UserGuildVanityEmbedEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Users.Vanity.UserGuildVanityEntity", "GuildVanity")
+                    b.HasOne("DisBot.Shared.Entities.Users.Vanity.UserGuildVanityEntity", "GuildVanity")
                         .WithOne("VanityEmbed")
-                        .HasForeignKey("Shared.Entities.Users.Vanity.UserGuildVanityEmbedEntity", "GuildVanityId")
+                        .HasForeignKey("DisBot.Shared.Entities.Users.Vanity.UserGuildVanityEmbedEntity", "GuildVanityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("GuildVanity");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Users.Vanity.UserGuildVanityEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Users.Vanity.UserGuildVanityEntity", b =>
                 {
-                    b.HasOne("Shared.Entities.Users.UserEntity", "User")
+                    b.HasOne("DisBot.Shared.Entities.Users.UserEntity", "User")
                         .WithMany("Vanities")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -4026,12 +4026,12 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.ChannelLinks.GuildChannelLinksEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.ChannelLinks.GuildChannelLinksEntity", b =>
                 {
                     b.Navigation("SyncedChannelLinkMessages");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.GuildEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.GuildEntity", b =>
                 {
                     b.Navigation("AutoDelete");
 
@@ -4078,12 +4078,12 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("YoutubeNotification");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Interactions.GuildCommandMangerEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Interactions.GuildCommandMangerEntity", b =>
                 {
                     b.Navigation("BuildInCommands");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Interactions.GuildInteractionManagerEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Interactions.GuildInteractionManagerEntity", b =>
                 {
                     b.Navigation("CommandManager")
                         .IsRequired();
@@ -4092,12 +4092,12 @@ namespace DisBot.API.Database.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Leave.GuildLeaveSetupEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Leave.GuildLeaveSetupEntity", b =>
                 {
                     b.Navigation("ImageData");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.GuildModerationEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.GuildModerationEntity", b =>
                 {
                     b.Navigation("AttachmentAutoModeration");
 
@@ -4120,14 +4120,14 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("UserModeration");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutCaseEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutCaseEntity", b =>
                 {
                     b.Navigation("ModerationScoutUserAppeal");
 
                     b.Navigation("UserModeration");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutEntity", b =>
                 {
                     b.Navigation("ModerationScoutCases");
 
@@ -4140,58 +4140,58 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("UserModeration");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutFormEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutFormEntity", b =>
                 {
                     b.Navigation("ModerationScoutUserAppeals");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutReportEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Moderation.ModerationScout.GuildModerationScoutReportEntity", b =>
                 {
                     b.Navigation("ModerationScoutCases");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Polls.GuildPollEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Polls.GuildPollEntity", b =>
                 {
                     b.Navigation("PollAnswers");
 
                     b.Navigation("PollOptions");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Polls.GuildPollOptionEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Polls.GuildPollOptionEntity", b =>
                 {
                     b.Navigation("PollAnswers");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Security.GuildSecurityEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Security.GuildSecurityEntity", b =>
                 {
                     b.Navigation("VerificationGates");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.TempVoice.GuildTempVoiceConfigEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.TempVoice.GuildTempVoiceConfigEntity", b =>
                 {
                     b.Navigation("TempVoiceChannels");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.TempVoice.GuildTempVoicePresetEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.TempVoice.GuildTempVoicePresetEntity", b =>
                 {
                     b.Navigation("RolePermissions");
 
                     b.Navigation("TempVoiceConfig");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.TempVoice.GuildTempVoiceSettingsEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.TempVoice.GuildTempVoiceSettingsEntity", b =>
                 {
                     b.Navigation("TempVoiceConfigs");
 
                     b.Navigation("TempVoicePreset");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Tickets.GuildTicketEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Tickets.GuildTicketEntity", b =>
                 {
                     b.Navigation("TicketFeedback");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Tickets.GuildTicketSetupEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Tickets.GuildTicketSetupEntity", b =>
                 {
                     b.Navigation("TicketModalData");
 
@@ -4200,12 +4200,12 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("Tickets");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Guilds.Welcome.GuildWelcomeSetupEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Guilds.Welcome.GuildWelcomeSetupEntity", b =>
                 {
                     b.Navigation("ImageData");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Users.UserEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Users.UserEntity", b =>
                 {
                     b.Navigation("Api");
 
@@ -4216,17 +4216,17 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("Vanities");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Users.Vanity.UserGuildVanityAnalyticsEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Users.Vanity.UserGuildVanityAnalyticsEntity", b =>
                 {
                     b.Navigation("VanityAnalyticsLatest30Day");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Users.Vanity.UserGuildVanityEmbedEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Users.Vanity.UserGuildVanityEmbedEntity", b =>
                 {
                     b.Navigation("VanityEmbedAuthor");
                 });
 
-            modelBuilder.Entity("Shared.Entities.Users.Vanity.UserGuildVanityEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Users.Vanity.UserGuildVanityEntity", b =>
                 {
                     b.Navigation("VanityAnalytic");
 

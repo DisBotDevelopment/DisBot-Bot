@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using DisBot.API.Configuration;
 using DisBot.API.Database;
+using DisBot.Shared.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
@@ -36,7 +37,6 @@ public class UserAuthService
         if (principal is null)
             return false;
 
-
         var username = principal.FindFirstValue(ClaimTypes.Name);
         var userId = principal.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -46,29 +46,32 @@ public class UserAuthService
             return false;
         }
 
-        // We use email as the primary identifier here
         var user = await DataContext.Users
             .FirstOrDefaultAsync(user => user.UserId == ulong.Parse(userId));
 
         if (user == null) // Sync user if not already existing in the database
         {
-            /*
-             *  user = await DataContext.Users.AddAsync(new UserEntity
-                          {
-                              Username = username,
-                              UserId = ulong.Parse(userId),
-                              InvalidateTimestamp = DateTimeOffset.UtcNow.AddMinutes(-1)
-                          });
-             */
+            var createdUser = await DataContext.Users.AddAsync(new UserEntity
+            {
+                Username = username,
+                UserId = ulong.Parse(userId),
+                AccessToken = "",
+                RefreshToken = "",
+                InvalidateTimestamp = DateTimeOffset.UtcNow.AddMinutes(-1)
+            });
+            await DataContext.SaveChangesAsync();
+            user = createdUser.Entity;
         }
         else // Update properties of existing user
         {
             user.Username = username;
+            user.AccessToken = "";
+            user.RefreshToken = "";
             await DataContext.SaveChangesAsync();
         }
 
         principal.Identities.First().AddClaims([
-            new Claim(UserIdClaim, user.Id.ToString()),
+            new Claim(UserIdClaim, user.UserId.ToString()),
             new Claim(IssuedAtClaim, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString())
         ]);
 
@@ -100,7 +103,7 @@ public class UserAuthService
         {
             session = await DataContext.Users
                 .AsNoTracking()
-                .Where(user => user.Id == userId)
+                .Where(user => user.UserId == ulong.Parse(userId.ToString()))
                 .Select(user => new UserSession(user.InvalidateTimestamp))
                 .FirstOrDefaultAsync();
 

@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using Shared.Interfaces;
+using DisBot.Shared.Interfaces;
 
-namespace Shared.Entities.Guilds.Logging;
+namespace DisBot.Shared.Entities.Guilds.Logging;
 
 public class GuildLoggingEntity : IActionTimestamps
 {

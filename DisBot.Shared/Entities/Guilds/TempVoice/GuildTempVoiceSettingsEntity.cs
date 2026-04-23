@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
-using Shared.Entities.Guilds.MessageTemplates;
-using Shared.Interfaces;
+using DisBot.Shared.Entities.Guilds.MessageTemplates;
+using DisBot.Shared.Interfaces;
 
-namespace Shared.Entities.Guilds.TempVoice;
+namespace DisBot.Shared.Entities.Guilds.TempVoice;
 
 public class GuildTempVoiceSettingsEntity : IActionTimestamps
 {

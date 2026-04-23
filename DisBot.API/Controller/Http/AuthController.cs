@@ -1,8 +1,8 @@
+using DisBot.Shared.Http.Responses.Auth;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Shared.Http.Responses.Auth;
 
 namespace DisBot.API.Controller.Http;
 

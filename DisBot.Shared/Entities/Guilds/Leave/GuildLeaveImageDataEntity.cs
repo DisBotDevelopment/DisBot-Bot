@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using Shared.Interfaces;
+using DisBot.Shared.Interfaces;
 
-namespace Shared.Entities.Guilds.Leave;
+namespace DisBot.Shared.Entities.Guilds.Leave;
 
 public class GuildLeaveImageDataEntity : IActionTimestamps
 {

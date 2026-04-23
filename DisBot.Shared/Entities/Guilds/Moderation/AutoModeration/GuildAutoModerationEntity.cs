@@ -1,9 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Shared.Enums.Moderation;
-using Shared.Interfaces;
+using DisBot.Shared.Enums.Moderation;
+using DisBot.Shared.Interfaces;
 
-namespace Shared.Entities.Guilds.Moderation.AutoModeration;
+namespace DisBot.Shared.Entities.Guilds.Moderation.AutoModeration;
 
 public class GuildAutoModerationEntity : IActionTimestamps
 {

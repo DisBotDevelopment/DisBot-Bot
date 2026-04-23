@@ -1,13 +1,11 @@
 using DisBot.API.Database;
 using DisBot.API.Mapper;
+using DisBot.Shared.Http.Requests.User;
+using DisBot.Shared.Http.Responses;
+using DisBot.Shared.Http.Responses.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Shared.Entities.Users;
-using Shared.Http.Requests;
-using Shared.Http.Requests.User;
-using Shared.Http.Responses;
-using Shared.Http.Responses.User;
 
 namespace DisBot.API.Controller.Http;
 

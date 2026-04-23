@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace Shared.Http.Requests;
+namespace DisBot.Shared.Http.Requests;
 
 public class FilterOptions : IParsable<FilterOptions>
 {

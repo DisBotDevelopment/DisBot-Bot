@@ -1,4 +1,4 @@
-namespace Shared.Http.Requests.User;
+namespace DisBot.Shared.Http.Requests.User;
 
 public class UpdateUserDto
 {

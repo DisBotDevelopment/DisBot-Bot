@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
-using Shared.Entities.Guilds.MessageTemplates;
-using Shared.Interfaces;
+using DisBot.Shared.Entities.Guilds.MessageTemplates;
+using DisBot.Shared.Interfaces;
 
-namespace Shared.Entities.Guilds.Levels;
+namespace DisBot.Shared.Entities.Guilds.Levels;
 
 public class GuildXpStreakEntity : IActionTimestamps
 {

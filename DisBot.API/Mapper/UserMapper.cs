@@ -1,8 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
+using DisBot.Shared.Entities.Users;
+using DisBot.Shared.Http.Requests.User;
+using DisBot.Shared.Http.Responses.User;
 using Riok.Mapperly.Abstractions;
-using Shared.Entities.Users;
-using Shared.Http.Requests.User;
-using Shared.Http.Responses.User;
 
 namespace DisBot.API.Mapper;
 

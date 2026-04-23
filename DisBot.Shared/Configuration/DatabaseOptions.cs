@@ -1,4 +1,4 @@
-namespace Shared.Configuration;
+namespace DisBot.Shared.Configuration;
 
 public class DatabaseOptions
 {

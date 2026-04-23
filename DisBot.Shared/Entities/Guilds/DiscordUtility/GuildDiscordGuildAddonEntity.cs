@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using Shared.Interfaces;
+using DisBot.Shared.Interfaces;
 
-namespace Shared.Entities.Guilds.DiscordUtility;
+namespace DisBot.Shared.Entities.Guilds.DiscordUtility;
 
 public class GuildDiscordGuildAddonEntity : IActionTimestamps
 {

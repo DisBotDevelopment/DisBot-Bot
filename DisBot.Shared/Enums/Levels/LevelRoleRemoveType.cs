@@ -1,4 +1,4 @@
-namespace Shared.Enums.Levels;
+namespace DisBot.Shared.Enums.Levels;
 
 public enum LevelRoleRemoveType
 {

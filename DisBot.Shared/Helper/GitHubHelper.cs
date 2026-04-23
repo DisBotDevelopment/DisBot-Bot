@@ -1,8 +1,7 @@
 using System.Net.Http.Json;
-using System.Runtime.CompilerServices;
-using Shared.Models.GitHub;
+using DisBot.Shared.Models.GitHub;
 
-namespace Shared.Helper;
+namespace DisBot.Shared.Helper;
 
 public static class GitHubHelper
 {

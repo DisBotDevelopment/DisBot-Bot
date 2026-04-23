@@ -1,4 +1,4 @@
-namespace Shared.Interfaces;
+namespace DisBot.Shared.Interfaces;
 
 public class IActionTimestamps
 {

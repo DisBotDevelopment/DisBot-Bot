@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
-using Shared.Enums.Ticket;
-using Shared.Interfaces;
+using DisBot.Shared.Enums.Ticket;
+using DisBot.Shared.Interfaces;
 
-namespace Shared.Entities.Guilds.Tickets;
+namespace DisBot.Shared.Entities.Guilds.Tickets;
 
 public class GuildTicketModalDataEntity : IActionTimestamps
 {

@@ -1,22 +1,22 @@
 using System.ComponentModel.DataAnnotations;
-using Shared.Entities.Guilds.Automation;
-using Shared.Entities.Guilds.ChannelLinks;
-using Shared.Entities.Guilds.DiscordUtility;
-using Shared.Entities.Guilds.Giveaways;
-using Shared.Entities.Guilds.Interactions;
-using Shared.Entities.Guilds.Leave;
-using Shared.Entities.Guilds.Levels;
-using Shared.Entities.Guilds.Logging;
-using Shared.Entities.Guilds.MessageTemplates;
-using Shared.Entities.Guilds.Moderation;
-using Shared.Entities.Guilds.Notifications;
-using Shared.Entities.Guilds.Polls;
-using Shared.Entities.Guilds.Security;
-using Shared.Entities.Guilds.TempVoice;
-using Shared.Entities.Guilds.Tickets;
-using Shared.Entities.Guilds.Welcome;
+using DisBot.Shared.Entities.Guilds.Automation;
+using DisBot.Shared.Entities.Guilds.ChannelLinks;
+using DisBot.Shared.Entities.Guilds.DiscordUtility;
+using DisBot.Shared.Entities.Guilds.Giveaways;
+using DisBot.Shared.Entities.Guilds.Interactions;
+using DisBot.Shared.Entities.Guilds.Leave;
+using DisBot.Shared.Entities.Guilds.Levels;
+using DisBot.Shared.Entities.Guilds.Logging;
+using DisBot.Shared.Entities.Guilds.MessageTemplates;
+using DisBot.Shared.Entities.Guilds.Moderation;
+using DisBot.Shared.Entities.Guilds.Notifications;
+using DisBot.Shared.Entities.Guilds.Polls;
+using DisBot.Shared.Entities.Guilds.Security;
+using DisBot.Shared.Entities.Guilds.TempVoice;
+using DisBot.Shared.Entities.Guilds.Tickets;
+using DisBot.Shared.Entities.Guilds.Welcome;
 
-namespace Shared.Entities.Guilds;
+namespace DisBot.Shared.Entities.Guilds;
 
 public class GuildEntity
 {

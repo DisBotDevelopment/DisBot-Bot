@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using Shared.Interfaces;
+using DisBot.Shared.Interfaces;
 
-namespace Shared.Entities.Guilds.Moderation.Settings;
+namespace DisBot.Shared.Entities.Guilds.Moderation.Settings;
 
 public class GuildKickModerationSettingsEntity : IActionTimestamps
 {

@@ -1,6 +1,4 @@
-using NetCord;
-
-namespace Shared.Enums.Interactions;
+namespace DisBot.Shared.Enums.Interactions;
 
 public enum InteractionPermissionType
 {

@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using Shared.Interfaces;
+using DisBot.Shared.Interfaces;
 
-namespace Shared.Entities.Guilds.Polls;
+namespace DisBot.Shared.Entities.Guilds.Polls;
 
 public class GuildPollAnswerEntity : IActionTimestamps
 {

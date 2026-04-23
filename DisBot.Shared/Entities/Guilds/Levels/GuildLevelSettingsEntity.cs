@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
-using Shared.Entities.Guilds.MessageTemplates;
-using Shared.Enums.Levels;
+using DisBot.Shared.Entities.Guilds.MessageTemplates;
+using DisBot.Shared.Enums.Levels;
 
-namespace Shared.Entities.Guilds.Levels;
+namespace DisBot.Shared.Entities.Guilds.Levels;
 
 public class GuildLevelSettingsEntity
 {
@@ -20,7 +20,7 @@ public class GuildLevelSettingsEntity
     public bool IsMessageXpEnabled { get; set; } = false;
     public bool IsVoiceXpEnabled { get; set; } = false;
     public int? MessageXpCooldown { get; set; } = 900000;
-    public MessageXpType[] MessageXpType { get; set; } = [Shared.Enums.Levels.MessageXpType.Cooldown];
+    public MessageXpType[] MessageXpType { get; set; } = [global::DisBot.Shared.Enums.Levels.MessageXpType.Cooldown];
     public string? RequiredXpFormular { get; set; }
     public LevelMessageType? LevelUpMessageType { get; set; }
 

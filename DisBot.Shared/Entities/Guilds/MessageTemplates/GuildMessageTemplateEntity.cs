@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using Shared.Interfaces;
+using DisBot.Shared.Interfaces;
 
-namespace Shared.Entities.Guilds.MessageTemplates;
+namespace DisBot.Shared.Entities.Guilds.MessageTemplates;
 
 public class GuildMessageTemplateEntity : IActionTimestamps
 {

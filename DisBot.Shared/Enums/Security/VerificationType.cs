@@ -1,4 +1,4 @@
-namespace Shared.Enums.Security;
+namespace DisBot.Shared.Enums.Security;
 
 public enum VerificationType
 {

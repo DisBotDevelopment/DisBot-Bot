@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using Shared.Interfaces;
+using DisBot.Shared.Interfaces;
 
-namespace Shared.Entities.Users.Backup;
+namespace DisBot.Shared.Entities.Users.Backup;
 
 public class UserGuildBackupEntity : IActionTimestamps
 {

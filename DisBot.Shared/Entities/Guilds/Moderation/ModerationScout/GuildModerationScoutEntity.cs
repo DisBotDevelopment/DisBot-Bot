@@ -1,9 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Shared.Entities.Guilds.MessageTemplates;
-using Shared.Interfaces;
+using DisBot.Shared.Entities.Guilds.MessageTemplates;
+using DisBot.Shared.Interfaces;
 
-namespace Shared.Entities.Guilds.Moderation.ModerationScout;
+namespace DisBot.Shared.Entities.Guilds.Moderation.ModerationScout;
 
 public class GuildModerationScoutEntity : IActionTimestamps
 {

@@ -1,9 +1,9 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Shared.Http.Requests.User;
-using Shared.Http.Responses.Auth;
+using DisBot.Shared.Http.Requests.User;
+using DisBot.Shared.Http.Responses.Auth;
 
-namespace Shared;
+namespace DisBot.Shared;
 
 [JsonSerializable(typeof(CreateUserDto))]
 [JsonSerializable(typeof(UpdateUserDto))]

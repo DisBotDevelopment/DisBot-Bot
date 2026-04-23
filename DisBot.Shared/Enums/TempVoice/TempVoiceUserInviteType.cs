@@ -1,6 +1,4 @@
-using System.Net.NetworkInformation;
-
-namespace Shared.Enums.TempVoice;
+namespace DisBot.Shared.Enums.TempVoice;
 
 public enum TempVoiceUserInviteType
 {

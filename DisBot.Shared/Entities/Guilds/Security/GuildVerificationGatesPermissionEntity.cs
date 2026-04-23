@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using Shared.Interfaces;
+using DisBot.Shared.Interfaces;
 
-namespace Shared.Entities.Guilds.Security;
+namespace DisBot.Shared.Entities.Guilds.Security;
 
 public class GuildVerificationGatesPermissionEntity :IActionTimestamps
 {

@@ -1,4 +1,4 @@
-namespace Shared.Enums.Ticket;
+namespace DisBot.Shared.Enums.Ticket;
 
 public enum TicketAutoCloseActionType
 {

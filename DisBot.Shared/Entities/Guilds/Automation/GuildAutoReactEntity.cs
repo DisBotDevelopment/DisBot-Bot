@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using Shared.Interfaces;
+using DisBot.Shared.Interfaces;
 
-namespace Shared.Entities.Guilds.Automation;
+namespace DisBot.Shared.Entities.Guilds.Automation;
 
 public class GuildAutoReactEntity : IActionTimestamps
 {

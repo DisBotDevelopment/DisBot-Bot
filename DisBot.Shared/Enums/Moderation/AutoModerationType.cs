@@ -1,4 +1,4 @@
-namespace Shared.Enums.Moderation;
+namespace DisBot.Shared.Enums.Moderation;
 
 public enum AutoModerationType
 {

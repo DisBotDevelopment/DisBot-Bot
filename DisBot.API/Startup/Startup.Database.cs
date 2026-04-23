@@ -1,6 +1,5 @@
 using DisBot.API.Database;
 using Microsoft.EntityFrameworkCore;
-using Shared.Configuration;
 
 namespace DisBot.API.Startup;
 

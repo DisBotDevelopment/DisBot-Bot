@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using Shared.Interfaces;
+using DisBot.Shared.Interfaces;
 
-namespace Shared.Entities.Guilds.Levels;
+namespace DisBot.Shared.Entities.Guilds.Levels;
 
 public class GuildXpDropEntity : IActionTimestamps
 {

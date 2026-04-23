@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using Shared.Interfaces;
+using DisBot.Shared.Interfaces;
 
-namespace Shared.Entities.Guilds.Welcome;
+namespace DisBot.Shared.Entities.Guilds.Welcome;
 
 public class GuildWelcomeImageDataEntity : IActionTimestamps
 {

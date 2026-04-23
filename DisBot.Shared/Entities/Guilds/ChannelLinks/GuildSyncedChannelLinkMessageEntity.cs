@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using Shared.Interfaces;
+using DisBot.Shared.Interfaces;
 
-namespace Shared.Entities.Guilds.ChannelLinks;
+namespace DisBot.Shared.Entities.Guilds.ChannelLinks;
 
 public class GuildSyncedChannelLinkMessageEntity : IActionTimestamps
 {

@@ -1,9 +1,9 @@
 using System.Net;
 using System.Net.Http.Json;
 using System.Security.Claims;
+using DisBot.Shared.Http.Responses.Auth;
 using Microsoft.AspNetCore.Components.Authorization;
-using Shared;
-using Shared.Http.Responses.Auth;
+using SerializationContext = DisBot.Shared.SerializationContext;
 
 namespace DisBot.Dashboard.Services;
 

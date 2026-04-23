@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Shared.Models.GitHub;
+namespace DisBot.Shared.Models.GitHub;
 
 public class GitHubTag
 {

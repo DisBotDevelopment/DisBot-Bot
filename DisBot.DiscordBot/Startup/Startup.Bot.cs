@@ -1,3 +1,4 @@
+using DisBot.Shared.Helper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using NetCord;
@@ -7,7 +8,6 @@ using NetCord.Hosting.Services;
 using NetCord.Hosting.Services.ApplicationCommands;
 using NetCord.Hosting.Services.ComponentInteractions;
 using NetCord.Services.ComponentInteractions;
-using Shared.Helper;
 
 namespace DisBot.DiscordBot.Startup;
 

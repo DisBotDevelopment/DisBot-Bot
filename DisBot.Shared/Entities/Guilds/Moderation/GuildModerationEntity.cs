@@ -1,10 +1,10 @@
 using System.ComponentModel.DataAnnotations;
-using Shared.Entities.Guilds.Moderation.AutoModeration;
-using Shared.Entities.Guilds.Moderation.ModerationScout;
-using Shared.Entities.Guilds.Moderation.Settings;
-using Shared.Interfaces;
+using DisBot.Shared.Entities.Guilds.Moderation.AutoModeration;
+using DisBot.Shared.Entities.Guilds.Moderation.ModerationScout;
+using DisBot.Shared.Entities.Guilds.Moderation.Settings;
+using DisBot.Shared.Interfaces;
 
-namespace Shared.Entities.Guilds.Moderation;
+namespace DisBot.Shared.Entities.Guilds.Moderation;
 
 public class GuildModerationEntity : IActionTimestamps
 {

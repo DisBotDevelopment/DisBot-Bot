@@ -1,10 +1,10 @@
 using System.ComponentModel.DataAnnotations;
+using DisBot.Shared.Entities.Guilds.MessageTemplates;
+using DisBot.Shared.Enums.Ticket;
+using DisBot.Shared.Interfaces;
 using NetCord;
-using Shared.Entities.Guilds.MessageTemplates;
-using Shared.Enums.Ticket;
-using Shared.Interfaces;
 
-namespace Shared.Entities.Guilds.Tickets;
+namespace DisBot.Shared.Entities.Guilds.Tickets;
 
 public class GuildTicketEntity : IActionTimestamps
 {
