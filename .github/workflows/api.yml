@@ -33,6 +33,10 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Get latest tag pushed
+        id: tag
+        uses: 32teeth/action-github-tag@v1
+
       - uses: docker/build-push-action@v5
         with:
           context: .
@@ -40,5 +44,5 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/disbotdevelopment/disbot-dashboard:${{ github.ref_name }}
+            ghcr.io/disbotdevelopment/disbot-dashboard:${{ steps.tag.outputs.tag }}
             ghcr.io/disbotdevelopment/disbot-api:v2
