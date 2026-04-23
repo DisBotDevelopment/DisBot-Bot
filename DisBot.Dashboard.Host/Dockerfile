@@ -16,8 +16,8 @@ ENV PATH="/root/.bun/bin:${PATH}"
 ARG BUILD_CONFIGURATION=Release
 
 # Download npm packages
-WORKDIR /src/DisBot.Dashboard.Client/Styles
-COPY ["DisBot.Dashboard.Client/Styles/package.json", "DisBot.Dashboard.Client/Styles/package.json"]
+WORKDIR "/src/DisBot.Dashboard.Client/Styles"
+COPY ["DisBot.Dashboard.Client/Styles/package.json", "package.json"]
 
 RUN bun install
 
