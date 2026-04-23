@@ -16,14 +16,9 @@ public static partial class Startup
 
         await using var scope = application.Services.CreateAsyncScope();
         var dataContext = scope.ServiceProvider.GetService<DataContext>();
-        var migrations = await dataContext.Database.GetPendingMigrationsAsync();
         application.Logger.Log(LogLevel.Information, "Database initialized.");
-        if (migrations.ToArray().Length > 0)
-        {
-            await dataContext.Database.MigrateAsync();
-            application.Logger.Log(LogLevel.Information, "Database migrated.");
-        }
-
+        await dataContext.Database.MigrateAsync();
+        application.Logger.Log(LogLevel.Information, "Database migrated.");
         application.Logger.Log(LogLevel.Information, "Database ready to accept connections.");
     }
 }
