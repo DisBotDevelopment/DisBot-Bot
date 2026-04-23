@@ -13,7 +13,7 @@
       - "DATABASE__Database=${DATABASE_DATABASE_NAME}"
     depends_on:
       - database
-  disbot-api:  
+  disbot-api:
     image: ghcr.io/disbotdevelopment/disbot-api:v2
     container_name: disbot-api
     environment:
