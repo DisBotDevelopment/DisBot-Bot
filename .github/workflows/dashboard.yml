@@ -4,6 +4,8 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
   push:
+    tags:
+      - v.2.*
     branches:
       - v2
 env:
@@ -40,5 +42,5 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/disbotdevelopment/disbot-dashboard:v2-${{ github.run_number }}
+            ghcr.io/disbotdevelopment/disbot-dashboard:${{ github.ref_name }}
             ghcr.io/disbotdevelopment/disbot-dashboard:v2
