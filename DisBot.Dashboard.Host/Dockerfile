@@ -17,7 +17,7 @@ ARG BUILD_CONFIGURATION=Release
 
 # Download npm packages
 WORKDIR /src/DisBot.Dashboard.Client/Styles
-COPY ["DisBot.Dashboard.Client/Styles", "DisBot.Dashboard.Client/Styles"]
+COPY ["DisBot.Dashboard.Client/Styles/package.json", "DisBot.Dashboard.Client/Styles/package.json"]
 
 RUN bun install
 
@@ -35,7 +35,7 @@ COPY . .
 WORKDIR "/src/DisBot.Dashboard.Client"
 RUN dotnet build "./DisBot.Dashboard.Client.csproj" -c $BUILD_CONFIGURATION -o /app/build-frontend
 
-WORKDIR "/src/DisBot.Dashboard.Client"
+WORKDIR "/src/DisBot.Dashboard.Client/Styles"
 RUN bun run build
 
 WORKDIR "/src/DisBot.Dashboard.Host"
