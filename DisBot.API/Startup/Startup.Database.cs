@@ -14,11 +14,9 @@ public static partial class Startup
     private static async Task LoadDatabase(this WebApplication application)
     {
         application.Logger.Log(LogLevel.Information, "Loading database...");
-
-        Console.WriteLine(application.Configuration.GetSection("Database").Get<DatabaseOptions>().Password);
         
         await using var scope = application.Services.CreateAsyncScope();
-        var dataContext = scope.ServiceProvider.GetService<DataContext>();
+        var dataContext = scope.ServiceProvider.GetRequiredService<DataContext>();
         application.Logger.Log(LogLevel.Information, "Database initialized.");
         await dataContext.Database.MigrateAsync();
         application.Logger.Log(LogLevel.Information, "Database migrated.");
