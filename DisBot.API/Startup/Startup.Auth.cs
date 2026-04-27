@@ -16,21 +16,21 @@ public static partial class Startup
         
         var oidcOptions = builder.Configuration.GetSection("OAuth2").Get<OAuth2Options>();
         builder.Services.AddAuthentication("Discord")
-            .AddCookie("Discord", null, options =>
+            .AddCookie("Discord", "Discord", options =>
             {
                 options.Events.OnSigningIn += async context =>
                 {
-                    var authService = context
-                        .HttpContext
-                        .RequestServices
-                        .GetRequiredService<UserAuthService>();
+                     var authService = context
+                           .HttpContext
+                           .RequestServices
+                           .GetRequiredService<UserAuthService>();
 
-                    var result = await authService.SyncAsync(context.Principal);
+                       var result = await authService.SyncAsync(context);
 
-                    if (result)
-                        context.Properties.IsPersistent = true;
-                    else
-                        context.Principal = new ClaimsPrincipal();
+                       if (result)
+                           context.Properties.IsPersistent = true;
+                       else
+                           context.Principal = new ClaimsPrincipal();
                 };
 
                 options.Events.OnValidatePrincipal += async context =>
@@ -68,10 +68,12 @@ public static partial class Startup
                 options.ClientId = oidcOptions.ClientId;
                 options.ClientSecret = oidcOptions.ClientSecret;
                 options.ResponseType = oidcOptions.ResponseType;
-
+                options.SaveTokens = true;
+                // options.CallbackPath = "/v1/auth/discord";
+                
                 options.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "user_id");
                 options.ClaimActions.MapJsonKey(ClaimTypes.Name, "username");
-
+                
                 options.GetClaimsFromUserInfoEndpoint = true;
             });
     }

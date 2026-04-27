@@ -10,6 +10,11 @@ public partial class Startup
 {
     private static async Task InitialiseBase(this WebApplicationBuilder builder)
     {
+        builder.Services.AddHttpClient("discord", (serviceProvider, client) =>
+        {
+            client.BaseAddress = new Uri("https://discord.com");
+        });
+        
         builder.Services.AddControllers();
         builder.Services.AddOptions<SessionsOptions>().BindConfiguration("Sessions");
         builder.Services.AddOptions<DatabaseOptions>().BindConfiguration("Database");

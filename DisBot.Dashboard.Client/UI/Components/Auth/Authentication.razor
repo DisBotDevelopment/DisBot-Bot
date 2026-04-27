@@ -1,0 +1,63 @@
+@using DisBot.Shared
+@using DisBot.Shared.Http.Responses.Auth
+@using ShadcnBlazor.Cards
+@using ShadcnBlazor.Spinners
+@using ShadcnBlazor.Buttons
+
+@inject HttpClient HttpClient
+@inject NavigationManager Navigation
+
+<div class="h-screen w-full flex items-center justify-center">
+    <Card ClassName="w-full max-w-sm">
+        @if (Schemes == null || Schemes.Length == 1)
+        {
+            <div class="w-full flex justify-center items-center">
+                <Spinner ClassName="size-10"/>
+            </div>
+        }
+        else
+        {
+            <CardHeader>
+                <CardTitle>Login to WebApp</CardTitle>
+                <CardDescription>Select a login provider to continue</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <div class="flex flex-col gap-y-1.5">
+                    @foreach (var scheme in Schemes)
+                    {
+                        <Button>
+                            <Slot>
+                                <a href="/api/auth/@scheme.Name" @attributes="context">
+                                    Continue with @scheme.DisplayName
+                                </a>
+                            </Slot>
+                        </Button>
+                    }
+                </div>
+            </CardContent>
+        }
+    </Card>
+</div>
+
+@code
+{
+    private SchemeDto[]? Schemes;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+            return;
+
+        var schemes = await HttpClient.GetFromJsonAsync<SchemeDto[]>(
+            "api/auth", SerializationContext.Default.Options
+        );
+
+        if (schemes == null)
+            return;
+
+        Schemes = schemes;
+        
+        if (schemes.Length == 1)
+            Navigation.NavigateTo($"/api/auth/{schemes[0].Name}", true);
+    }
+}

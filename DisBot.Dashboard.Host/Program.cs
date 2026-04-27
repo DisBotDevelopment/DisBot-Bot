@@ -1,3 +1,5 @@
+namespace DisBot.Dashboard;
+
 public static class Program
 {
     public static async Task Main(String[] args)

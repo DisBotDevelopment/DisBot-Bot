@@ -30,10 +30,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="UI\Components\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <AdditionalFiles Include="UI\Layout\MainLayout.razor" />
       <AdditionalFiles Include="UI\Pages\Home.razor" />
       <AdditionalFiles Include="UI\Pages\NotFound.razor" />

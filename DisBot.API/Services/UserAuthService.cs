@@ -1,15 +1,26 @@
+using System.Net.Http.Headers;
+using System.Security.AccessControl;
 using System.Security.Claims;
+using System.Text.Json;
 using DisBot.API.Configuration;
 using DisBot.API.Database;
+using DisBot.Shared;
 using DisBot.Shared.Entities.Users;
+using DisBot.Shared.Models.Discord;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
+using Namotion.Reflection;
+using NetCord;
 
 namespace DisBot.API.Services;
 
 public class UserAuthService
 {
+    private readonly IHttpClientFactory HttpClientFactory;
     private readonly IMemoryCache MemoryCache;
     private readonly ILogger<UserAuthService> Logger;
     private readonly DataContext DataContext;
@@ -20,27 +31,28 @@ public class UserAuthService
     private const string CacheKeyFormat = $"{nameof(UserAuthService)}_{nameof(ValidateAsync)}_{{0}}";
 
     public UserAuthService(
+        IHttpClientFactory httpClientFactory,
         ILogger<UserAuthService> logger,
         DataContext dataContext,
         IOptions<SessionsOptions> sessionsOptions,
         IMemoryCache memoryCache
     )
     {
+        HttpClientFactory = httpClientFactory;
         DataContext = dataContext;
         Logger = logger;
         SessionsOptions = sessionsOptions;
         MemoryCache = memoryCache;
     }
 
-    public async Task<bool> SyncAsync(ClaimsPrincipal? principal)
+    public async Task<bool> SyncAsync(CookieSigningInContext context)
     {
-        if (principal is null)
+        if (context.Principal is null)
             return false;
 
-        var username = principal.FindFirstValue(ClaimTypes.Name);
-        var userId = principal.FindFirstValue(ClaimTypes.NameIdentifier);
+        var userId = context.Principal.FindFirstValue(ClaimTypes.NameIdentifier);
 
-        if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(userId))
+        if (string.IsNullOrWhiteSpace(userId))
         {
             Logger.LogWarning("Unable to sync user to database as name and/or email claims are missing");
             return false;
@@ -49,14 +61,33 @@ public class UserAuthService
         var user = await DataContext.Users
             .FirstOrDefaultAsync(user => user.UserId == ulong.Parse(userId));
 
+        var idToken = context.Properties.Items.Where(pair => pair.Key == ".Token.id_token").Select(pair => pair.Value)
+            .FirstOrDefault();
+        var accessToken = context.Properties.Items.Where(pair => pair.Key == ".Token.access_token")
+            .Select(pair => pair.Value)
+            .FirstOrDefault();
+        var refreshToken = context.Properties.Items.Where(pair => pair.Key == ".Token.refresh_token")
+            .Select(pair => pair.Value)
+            .FirstOrDefault();
+
+        if (string.IsNullOrWhiteSpace(idToken) || string.IsNullOrWhiteSpace(refreshToken) ||
+            string.IsNullOrWhiteSpace(accessToken))
+        {
+            Logger.LogWarning("Unable to get Token data from OAuth Flow.");
+            return false;
+        }
+
+        var discordData = await FetchDiscordDataAsync(accessToken);
+        if (discordData == null) return false;
+
         if (user == null) // Sync user if not already existing in the database
         {
             var createdUser = await DataContext.Users.AddAsync(new UserEntity
             {
-                Username = username,
-                UserId = ulong.Parse(userId),
-                AccessToken = "",
-                RefreshToken = "",
+                Username = discordData.User.Username,
+                UserId = ulong.Parse(discordData.User.Id),
+                AccessToken = accessToken,
+                RefreshToken = refreshToken,
                 InvalidateTimestamp = DateTimeOffset.UtcNow.AddMinutes(-1)
             });
             await DataContext.SaveChangesAsync();
@@ -64,13 +95,13 @@ public class UserAuthService
         }
         else // Update properties of existing user
         {
-            user.Username = username;
-            user.AccessToken = "";
-            user.RefreshToken = "";
+            user.Username = discordData.User.Username;
+            user.AccessToken = accessToken;
+            user.RefreshToken = refreshToken;
             await DataContext.SaveChangesAsync();
         }
 
-        principal.Identities.First().AddClaims([
+        context.Principal.Identities.First().AddClaims([
             new Claim(UserIdClaim, user.UserId.ToString()),
             new Claim(IssuedAtClaim, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString())
         ]);
@@ -121,6 +152,18 @@ public class UserAuthService
             return false;
 
         return issuedAt > session.InvalidateTimestamp;
+    }
+
+    public async Task<OAuth2Authorization?> FetchDiscordDataAsync(string accessToken)
+    {
+        var httpClient = HttpClientFactory.CreateClient("discord");
+        httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {accessToken}");
+        var responseMessage = await httpClient.GetAsync("/api/v10/oauth2/@me");
+        var discordData =
+            await responseMessage.Content.ReadFromJsonAsync<OAuth2Authorization>(SerializationContext.Default
+                .Options);
+
+        return discordData ?? null;
     }
 
     private record UserSession(DateTimeOffset InvalidateTimestamp);
