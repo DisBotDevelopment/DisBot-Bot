@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
-namespace DisBot.Dashboard.Startup;
+namespace DisBot.Dashboard.Client.Startup;
 
 public static partial class Startup
 {
-    public static void PerformPreBuild(this WebAssemblyHostBuilder builder)
+    public static async Task PerformPreBuild(this WebAssemblyHostBuilder builder)
     {
-        AddBase(builder);
+        await AddBase(builder);
         AddAuth(builder);
     }
 }

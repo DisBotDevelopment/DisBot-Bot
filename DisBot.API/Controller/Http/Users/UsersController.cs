@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace DisBot.API.Controller.Http;
+namespace DisBot.API.Controller.Http.Users;
 
 [Authorize]
 [ApiController]

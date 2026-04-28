@@ -117,7 +117,7 @@ public class UserAuthService
 
         var userIdString = principal.FindFirstValue(UserIdClaim);
 
-        if (!int.TryParse(userIdString, out var userId))
+        if (!ulong.TryParse(userIdString, out var userId))
             return false;
 
         var issuedAtString = principal.FindFirstValue(IssuedAtClaim);
@@ -154,7 +154,7 @@ public class UserAuthService
         return issuedAt > session.InvalidateTimestamp;
     }
 
-    public async Task<OAuth2Authorization?> FetchDiscordDataAsync(string accessToken)
+    private async Task<OAuth2Authorization?> FetchDiscordDataAsync(string accessToken)
     {
         var httpClient = HttpClientFactory.CreateClient("discord");
         httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {accessToken}");

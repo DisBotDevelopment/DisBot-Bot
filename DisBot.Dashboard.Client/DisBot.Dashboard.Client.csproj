@@ -6,7 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <OverrideHtmlAssetPlaceholders>true</OverrideHtmlAssetPlaceholders>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-        <RootNamespace>DisBot.Dashboard</RootNamespace>
+        <RootNamespace>DisBot.Dashboard.Client</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

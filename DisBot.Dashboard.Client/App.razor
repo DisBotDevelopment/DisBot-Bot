@@ -1,6 +1,6 @@
-﻿@using DisBot.Dashboard.UI.Components.Auth
-@using DisBot.Dashboard.UI.Layout
-@using DisBot.Dashboard.UI.Pages
+﻿@using DisBot.Dashboard.Client.UI.Components.Auth
+@using DisBot.Dashboard.Client.UI.Layout
+@using DisBot.Dashboard.Client.UI.Pages
 @using Microsoft.AspNetCore.Components.Authorization
 @using ShadcnBlazor.Extras.Toasts
 @using ShadcnBlazor.Portals
@@ -9,7 +9,6 @@
     <ChildContent>
         <Router AppAssembly="@typeof(App).Assembly" NotFoundPage="typeof(NotFound)">
             <Found Context="routeData">
-                <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)"/>
                 <FocusOnNavigate RouteData="@routeData" Selector="h1"/>
                 <AuthorizeRouteView RouteData="routeData" DefaultLayout="typeof(MainLayout)">
                     <NotAuthorized Context="authRouteViewContext">

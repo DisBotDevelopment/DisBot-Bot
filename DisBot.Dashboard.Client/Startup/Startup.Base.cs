@@ -1,21 +1,28 @@
-using DisBot.Dashboard.Configuration;
+using System.Net.Http.Json;
+using DisBot.Shared;
+using DisBot.Shared.Http.Responses.Frontend;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using ShadcnBlazor;
 using ShadcnBlazor.Extras;
 
-namespace DisBot.Dashboard.Startup;
+namespace DisBot.Dashboard.Client.Startup;
 
 public static partial class Startup
 {
-    private static void AddBase(WebAssemblyHostBuilder builder)
+    private static async Task AddBase(WebAssemblyHostBuilder builder)
     {
-        builder.Services.AddOptions<BackendOptions>().BindConfiguration("Backend");
-        var backendOptions = builder.Configuration.GetSection("Backend").Get<BackendOptions>();
-        
+        var httpClient = new HttpClient();
+        var data = await httpClient.GetFromJsonAsync<BackendResponse>($"{builder.HostEnvironment.BaseAddress}config",
+            SerializationContext.Default.Options);
+
         builder.RootComponents.Add<App>("#app");
         builder.RootComponents.Add<HeadOutlet>("head::after");
-        builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(backendOptions.ApiUrl) });
+
+        builder.Services.AddScoped(sp => new HttpClient
+        {
+            BaseAddress = new Uri(data.BackendUrl)
+        });
         builder.Services.AddShadcnBlazor();
         builder.Services.AddShadcnBlazorExtras();
     }

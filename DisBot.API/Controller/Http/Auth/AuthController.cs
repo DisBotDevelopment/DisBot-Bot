@@ -1,22 +1,25 @@
-using DisBot.Shared.Http.Requests.Auth;
+using DisBot.API.Configuration;
 using DisBot.Shared.Http.Responses.Auth;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
-namespace DisBot.API.Controller.Http;
+namespace DisBot.API.Controller.Http.Auth;
 
 [ApiController]
 [Route("v1/auth")]
 public class AuthController : Microsoft.AspNetCore.Mvc.Controller
 {
+    private readonly IOptions<OAuth2Options> OAuth2Options;
     private readonly IAuthenticationSchemeProvider SchemeProvider;
     private readonly string[] AllowedSchemes = [OpenIdConnectDefaults.AuthenticationScheme];
 
-    public AuthController(IAuthenticationSchemeProvider schemeProvider)
+    public AuthController(IAuthenticationSchemeProvider schemeProvider, IOptions<OAuth2Options> oAuth2Options)
     {
         SchemeProvider = schemeProvider;
+        OAuth2Options = oAuth2Options;
     }
 
     [HttpGet]
@@ -40,7 +43,7 @@ public class AuthController : Microsoft.AspNetCore.Mvc.Controller
 
         return Challenge(new AuthenticationProperties()
         {
-            RedirectUri = "/"
+            RedirectUri = OAuth2Options.Value.FrontendUrl
         }, scheme.Name);
     }
 
@@ -61,7 +64,7 @@ public class AuthController : Microsoft.AspNetCore.Mvc.Controller
         return Task.FromResult<ActionResult>(
             SignOut(new AuthenticationProperties()
             {
-                RedirectUri = "/"
+                RedirectUri = OAuth2Options.Value.FrontendUrl
             })
         );
     }

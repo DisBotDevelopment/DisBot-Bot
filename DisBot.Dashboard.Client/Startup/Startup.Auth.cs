@@ -1,10 +1,8 @@
-using DisBot.Dashboard.Services;
+using DisBot.Dashboard.Client.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using ShadcnBlazor;
-using ShadcnBlazor.Extras;
 
-namespace DisBot.Dashboard.Startup;
+namespace DisBot.Dashboard.Client.Startup;
 
 public static partial class Startup
 {

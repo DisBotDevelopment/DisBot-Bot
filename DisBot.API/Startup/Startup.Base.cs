@@ -10,11 +10,9 @@ public partial class Startup
 {
     private static async Task InitialiseBase(this WebApplicationBuilder builder)
     {
-        builder.Services.AddHttpClient("discord", (serviceProvider, client) =>
-        {
-            client.BaseAddress = new Uri("https://discord.com");
-        });
-        
+        builder.Services.AddHttpClient("discord",
+            (serviceProvider, client) => { client.BaseAddress = new Uri("https://discord.com"); });
+
         builder.Services.AddControllers();
         builder.Services.AddOptions<SessionsOptions>().BindConfiguration("Sessions");
         builder.Services.AddOptions<DatabaseOptions>().BindConfiguration("Database");
@@ -42,5 +40,13 @@ public partial class Startup
                 options.PreserveSchemaPropertyOrder();
             });
         application.MapControllers();
+
+        var frontendUrl = application.Configuration.GetSection("OAuth2").Get<OAuth2Options>().FrontendUrl;
+        application.UseCors(x => x
+            .WithOrigins(frontendUrl)
+            .AllowCredentials()
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+        );
     }
 }

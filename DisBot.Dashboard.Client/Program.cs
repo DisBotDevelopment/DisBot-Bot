@@ -1,12 +1,14 @@
+using DisBot.Dashboard.Client.Startup;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using DisBot.Dashboard.Startup;
+
+namespace DisBot.Dashboard.Client;
 
 public static class Program
 {
     public static async Task Main(String[] args)
     {
         var builder = WebAssemblyHostBuilder.CreateDefault(args);
-        builder.PerformPreBuild();
+        await builder.PerformPreBuild();
         await builder.Build().RunAsync();
     }
 }

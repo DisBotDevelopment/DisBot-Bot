@@ -8,4 +8,5 @@ public class OAuth2Options
     public string[]? Scopes { get; set; }
     public string ClientId { get; set; }
     public string ClientSecret { get; set; }
+    public string FrontendUrl { get; set; }
 }

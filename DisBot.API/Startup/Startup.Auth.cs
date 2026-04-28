@@ -10,27 +10,25 @@ public static partial class Startup
 {
     private static async Task InitialiseAuth(this WebApplicationBuilder builder)
     {
-        builder.Services.AddAuthorization();
-
         builder.Services.AddScoped<UserAuthService>();
-        
+
         var oidcOptions = builder.Configuration.GetSection("OAuth2").Get<OAuth2Options>();
         builder.Services.AddAuthentication("Discord")
             .AddCookie("Discord", "Discord", options =>
             {
                 options.Events.OnSigningIn += async context =>
                 {
-                     var authService = context
-                           .HttpContext
-                           .RequestServices
-                           .GetRequiredService<UserAuthService>();
+                    var authService = context
+                        .HttpContext
+                        .RequestServices
+                        .GetRequiredService<UserAuthService>();
 
-                       var result = await authService.SyncAsync(context);
+                    var result = await authService.SyncAsync(context);
 
-                       if (result)
-                           context.Properties.IsPersistent = true;
-                       else
-                           context.Principal = new ClaimsPrincipal();
+                    if (result)
+                        context.Properties.IsPersistent = true;
+                    else
+                        context.Principal = new ClaimsPrincipal();
                 };
 
                 options.Events.OnValidatePrincipal += async context =>
@@ -48,10 +46,12 @@ public static partial class Startup
 
                 options.Cookie = new CookieBuilder()
                 {
-                    Name = "discord-session",
+                    Name = "token",
                     Path = "/",
+                    SameSite = SameSiteMode.None,
+                    SecurePolicy = CookieSecurePolicy.SameAsRequest,
                     IsEssential = true,
-                    SecurePolicy = CookieSecurePolicy.SameAsRequest
+                    MaxAge = TimeSpan.FromDays(30)
                 };
             })
             .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, "Discord", options =>
@@ -70,12 +70,12 @@ public static partial class Startup
                 options.ResponseType = oidcOptions.ResponseType;
                 options.SaveTokens = true;
                 // options.CallbackPath = "/v1/auth/discord";
-                
-                options.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "user_id");
-                options.ClaimActions.MapJsonKey(ClaimTypes.Name, "username");
-                
+
+                options.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "UserId");
+
                 options.GetClaimsFromUserInfoEndpoint = true;
             });
+        builder.Services.AddAuthorization();
     }
 
     private static async Task LoadAuth(this WebApplication application)
