@@ -15,6 +15,7 @@ using DisBot.Shared.Entities.Guilds.Security;
 using DisBot.Shared.Entities.Guilds.TempVoice;
 using DisBot.Shared.Entities.Guilds.Tickets;
 using DisBot.Shared.Entities.Guilds.Welcome;
+using DisBot.Shared.Entities.Users;
 
 namespace DisBot.Shared.Entities.Guilds;
 
@@ -24,7 +25,7 @@ public class GuildEntity
     [Required] public ulong GuildId { get; set; }
 
     public string? GuildName { get; set; }
-    public string? GuildOwner { get; set; }
+    public UserEntity User { get; set; }
 
     public DateTimeOffset CreatedAt { get; set; }
     public DateTimeOffset UpdatedAt { get; set; }
@@ -41,6 +42,7 @@ public class GuildEntity
     public GuildInteractionManagerEntity? InteractionManager { get; set; }
     public GuildModerationEntity? Moderation { get; set; }
 
+    public List<UserApiGuildPermissionEntity> UserApiGuildPermissions { get; set; } = [];
     public List<GuildMessageTemplateEntity> MessageTemplates { get; set; } = [];
     public List<GuildSpotifyNotificationEntity> SpotifyNotification { get; set; } = [];
     public List<GuildTwitchNotificationEntity> TwitchNotification { get; set; } = [];

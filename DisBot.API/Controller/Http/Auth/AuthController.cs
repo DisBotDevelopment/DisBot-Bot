@@ -1,8 +1,9 @@
+using DisBot.API.Authentication;
 using DisBot.API.Configuration;
+using DisBot.Shared.Enums;
 using DisBot.Shared.Http.Responses.Auth;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
@@ -47,7 +48,7 @@ public class AuthController : Microsoft.AspNetCore.Mvc.Controller
         }, scheme.Name);
     }
 
-    [Authorize]
+    [ApiAuthorize("user", ApiAuthorizationType.User, true)]
     [HttpGet("claims")]
     public Task<ActionResult<ClaimDto[]>> GetClaimsAsync()
     {

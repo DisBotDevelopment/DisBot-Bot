@@ -1,8 +1,10 @@
 using System.Security.Claims;
+using DisBot.API.Authentication;
 using DisBot.API.Configuration;
 using DisBot.API.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DisBot.API.Startup;
 
@@ -11,6 +13,7 @@ public static partial class Startup
     private static async Task InitialiseAuth(this WebApplicationBuilder builder)
     {
         builder.Services.AddScoped<UserAuthService>();
+
 
         var oidcOptions = builder.Configuration.GetSection("OAuth2").Get<OAuth2Options>();
         builder.Services.AddAuthentication("Discord")
@@ -76,6 +79,9 @@ public static partial class Startup
                 options.GetClaimsFromUserInfoEndpoint = true;
             });
         builder.Services.AddAuthorization();
+
+        builder.Services.AddSingleton<IAuthorizationPolicyProvider, ApiAuthorizationPolicyProvider>();
+        builder.Services.AddScoped<IAuthorizationHandler, ApiAuthorizationHandler>();
     }
 
     private static async Task LoadAuth(this WebApplication application)
