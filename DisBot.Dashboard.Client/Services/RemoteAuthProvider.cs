@@ -12,17 +12,15 @@ namespace DisBot.Dashboard.Client.Services;
 public class RemoteAuthProvider : AuthenticationStateProvider
 {
     private readonly ILogger<RemoteAuthProvider> Logger;
-    private readonly IJSRuntime JsRuntime;
     private readonly HttpClient HttpClient;
 
-    public RemoteAuthProvider(ILogger<RemoteAuthProvider> logger, IJSRuntime jsRuntime, HttpClient httpClient
+    public RemoteAuthProvider(ILogger<RemoteAuthProvider> logger, HttpClient httpClient
     )
     {
         Logger = logger;
-        JsRuntime = jsRuntime;
         HttpClient = httpClient;
     }
-
+    
     public override async Task<AuthenticationState> GetAuthenticationStateAsync()
     {
         try
@@ -52,7 +50,6 @@ public class RemoteAuthProvider : AuthenticationStateProvider
         {
             Logger.LogError("An unhandled error occured while requesting claims from api");
         }
-
         return new AuthenticationState(new ClaimsPrincipal());
     }
 }

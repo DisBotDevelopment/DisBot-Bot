@@ -87,6 +87,7 @@ public class UserAuthService
                 Username = discordData.User.Username,
                 DiscordUserId = ulong.Parse(discordData.User.Id),
                 AccessToken = accessToken,
+                DiscordAvatarId = discordData.User.Avatar,
                 RefreshToken = refreshToken,
                 InvalidateTimestamp = DateTimeOffset.UtcNow.AddMinutes(-1)
             });
@@ -97,6 +98,7 @@ public class UserAuthService
         {
             user.Username = discordData.User.Username;
             user.AccessToken = accessToken;
+            user.DiscordAvatarId = discordData.User.Avatar;
             user.RefreshToken = refreshToken;
             await DataContext.SaveChangesAsync();
         }
