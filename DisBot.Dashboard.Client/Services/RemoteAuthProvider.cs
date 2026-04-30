@@ -46,11 +46,11 @@ public class RemoteAuthProvider : AuthenticationStateProvider
         catch (HttpRequestException e)
         {
             if (e.StatusCode != HttpStatusCode.Unauthorized)
-                Logger.LogError(e, "An api error occured while requesting claims from api");
+                Logger.LogError("An api error occured while requesting claims from api");
         }
         catch (Exception e)
         {
-            Logger.LogError(e, "An unhandled error occured while requesting claims from api");
+            Logger.LogError("An unhandled error occured while requesting claims from api");
         }
 
         return new AuthenticationState(new ClaimsPrincipal());

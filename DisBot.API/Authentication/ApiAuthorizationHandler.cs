@@ -1,10 +1,6 @@
-using System.Diagnostics.CodeAnalysis;
-using DisBot.API.Database;
-using DisBot.Shared.Enums;
+using DisBot.API.Database; 
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi;
 using Namotion.Reflection;
 
 namespace DisBot.API.Authentication;
@@ -31,6 +27,7 @@ public class ApiAuthorizationHandler : AuthorizationHandler<ApiRequirement>
                 if (apiEntity != null && apiEntity.Permissions.Contains(requirement.Permission))
                 {
                     context.Succeed(requirement);
+                    return Task.CompletedTask;
                 }
             }
             else
@@ -46,11 +43,11 @@ public class ApiAuthorizationHandler : AuthorizationHandler<ApiRequirement>
 
                 switch (requirement.Type)
                 {
-                    case ApiAuthorizationType.Guild:
+                    case "Guild":
                     {
                         var userGuildPermission = DataContext.UserApiGuildPermissions
                             .Include(entity => entity.User)
-                            .FirstOrDefault(entity => entity.User.UserId == ulong.Parse(userId));
+                            .FirstOrDefault(entity => entity.User.DiscordUserId == ulong.Parse(userId));
                         if (userGuildPermission == null)
                         {
                             context.Fail();
@@ -66,6 +63,7 @@ public class ApiAuthorizationHandler : AuthorizationHandler<ApiRequirement>
                                 if (userGuildPermission.Permissions.Contains(requirement.Permission))
                                 {
                                     context.Succeed(requirement);
+                                    return Task.CompletedTask;
                                 }
                             }
                             else
@@ -73,21 +71,22 @@ public class ApiAuthorizationHandler : AuthorizationHandler<ApiRequirement>
                                 // Owner Check
                                 var guildEntity = DataContext.Guilds.Include(entity => entity.User)
                                     .Where(entity =>
-                                        entity.User.UserId == ulong.Parse(userId) &&
+                                        entity.User.DiscordUserId == ulong.Parse(userId) &&
                                         entity.GuildId == ulong.Parse(guildId))
                                     .Select(entity => entity)
                                     .FirstOrDefault();
                                 if (guildEntity != null)
                                 {
                                     context.Succeed(requirement);
+                                    return Task.CompletedTask;
                                 }
                             }
                         }
                     }
                         break;
-                    case ApiAuthorizationType.User:
+                    case "User":
                     {
-                        var userEntity = DataContext.Users.Where(entity => entity.UserId == ulong.Parse(userId))
+                        var userEntity = DataContext.Users.Where(entity => entity.DiscordUserId == ulong.Parse(userId))
                             .Select(entity => entity).FirstOrDefault();
                         if (userEntity != null)
                         {
@@ -95,6 +94,7 @@ public class ApiAuthorizationHandler : AuthorizationHandler<ApiRequirement>
                                 userEntity.Permissions.Contains(requirement.Permission))
                             {
                                 context.Succeed(requirement);
+                                return Task.CompletedTask;
                             }
                         }
                     }
@@ -105,7 +105,6 @@ public class ApiAuthorizationHandler : AuthorizationHandler<ApiRequirement>
                 }
             }
         }
-
         context.Fail();
         return Task.CompletedTask;
     }

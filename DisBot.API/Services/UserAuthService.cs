@@ -59,7 +59,7 @@ public class UserAuthService
         }
 
         var user = await DataContext.Users
-            .FirstOrDefaultAsync(user => user.UserId == ulong.Parse(userId));
+            .FirstOrDefaultAsync(user => user.DiscordUserId == ulong.Parse(userId));
 
         var idToken = context.Properties.Items.Where(pair => pair.Key == ".Token.id_token").Select(pair => pair.Value)
             .FirstOrDefault();
@@ -85,7 +85,7 @@ public class UserAuthService
             var createdUser = await DataContext.Users.AddAsync(new UserEntity
             {
                 Username = discordData.User.Username,
-                UserId = ulong.Parse(discordData.User.Id),
+                DiscordUserId = ulong.Parse(discordData.User.Id),
                 AccessToken = accessToken,
                 RefreshToken = refreshToken,
                 InvalidateTimestamp = DateTimeOffset.UtcNow.AddMinutes(-1)
@@ -102,7 +102,7 @@ public class UserAuthService
         }
 
         context.Principal.Identities.First().AddClaims([
-            new Claim(UserIdClaim, user.UserId.ToString()),
+            new Claim(UserIdClaim, user.DiscordUserId.ToString()),
             new Claim(IssuedAtClaim, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString())
         ]);
 
@@ -134,7 +134,7 @@ public class UserAuthService
         {
             session = await DataContext.Users
                 .AsNoTracking()
-                .Where(user => user.UserId == ulong.Parse(userId.ToString()))
+                .Where(user => user.DiscordUserId == ulong.Parse(userId.ToString()))
                 .Select(user => new UserSession(user.InvalidateTimestamp))
                 .FirstOrDefaultAsync();
 

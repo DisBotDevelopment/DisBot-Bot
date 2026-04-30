@@ -19,11 +19,9 @@ public class ApiAuthorizationPolicyProvider : IAuthorizationPolicyProvider
         if (!policyName.StartsWith(POLICY_PREFIX, StringComparison.OrdinalIgnoreCase))
             return FallbackPolicyProvider.GetPolicyAsync(policyName);
         var policy = new AuthorizationPolicyBuilder();
-        
-        Enum.TryParse<ApiAuthorizationType>(policyName.Split(":")[1], out var type);
         policy.AddRequirements(new ApiRequirement(
             policyName.Split(":")[2],
-            type,
+            policyName.Split(":")[1],
             bool.Parse(policyName.Split(":")[3])
         ));
         return Task.FromResult(policy.Build());

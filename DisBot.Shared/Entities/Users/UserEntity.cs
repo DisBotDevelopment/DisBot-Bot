@@ -9,12 +9,13 @@ namespace DisBot.Shared.Entities.Users;
 public class UserEntity : IActionTimestamps
 {
     public int Id { get; set; }
-    [Required] public ulong UserId { get; set; }
+    [Required] public ulong DiscordUserId { get; set; }
     [Required] public string AccessToken { get; set; }
     [Required] public string RefreshToken { get; set; }
 
     public string[] Permissions { get; set; } = [];
     public string? Username { get; set; }
+    public string? DiscordAvatarId { get; set; }
     public DateTimeOffset? LastVote { get; set; } = null;
     public int BackupCount { get; set; } = 5000;
 

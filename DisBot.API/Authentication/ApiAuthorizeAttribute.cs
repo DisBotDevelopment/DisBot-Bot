@@ -7,20 +7,11 @@ public class ApiAuthorizeAttribute : AuthorizeAttribute
 {
     private const string POLICY_PREFIX = "Api";
 
+    /**
+     * Please use the ApiAuthorizationType class.
+     */
     public ApiAuthorizeAttribute(string permission, ApiAuthorizationType type, bool onlyUser = false)
     {
-        Permission = permission;
-        Type = type;
-        OnlyUser = onlyUser;
-    }
-
-    private bool OnlyUser { get; set; }
-
-    private ApiAuthorizationType Type { get; }
-
-    public string Permission
-    {
-        get => Permission;
-        set => Policy = $"{POLICY_PREFIX}:{Type.ToString()}:{value}:{OnlyUser}";
+        Policy = $"{POLICY_PREFIX}:{type}:{permission}:{onlyUser}";
     }
 }

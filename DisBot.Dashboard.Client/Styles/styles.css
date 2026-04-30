@@ -11,8 +11,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
-#blazor-error-ui {
-    display: none;
+@theme {
+    --color-background: #070709;
+    --color-foreground: #FFFFFF;
+    --color-discord-text: #424549;
 }
 
 @layer base {

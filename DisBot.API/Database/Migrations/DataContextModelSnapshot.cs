@@ -2895,6 +2895,12 @@ namespace DisBot.API.Database.Migrations
                     b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("DiscordAvatarId")
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("DiscordUserId")
+                        .HasColumnType("numeric(20,0)");
+
                     b.Property<DateTimeOffset>("InvalidateTimestamp")
                         .HasColumnType("timestamp with time zone");
 
@@ -2911,9 +2917,6 @@ namespace DisBot.API.Database.Migrations
 
                     b.Property<DateTimeOffset>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<decimal>("UserId")
-                        .HasColumnType("numeric(20,0)");
 
                     b.Property<string>("Username")
                         .HasColumnType("text");
