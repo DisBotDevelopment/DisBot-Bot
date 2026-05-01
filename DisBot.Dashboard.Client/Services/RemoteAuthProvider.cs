@@ -4,7 +4,6 @@ using System.Security.Claims;
 using DisBot.Shared.Http.Responses.Auth;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Http;
-using Microsoft.JSInterop;
 using SerializationContext = DisBot.Shared.SerializationContext;
 
 namespace DisBot.Dashboard.Client.Services;

@@ -2,6 +2,14 @@
 @using LucideBlazor
 @using ShadcnBlazor.Buttons
 @using ShadcnBlazor.Emptys
+@inject NavigationManager NavigationManager
+
+@code {
+    private void Callback()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+}
 
 <PageTitle>404 - Not Found</PageTitle>
 
@@ -19,7 +27,7 @@
         </EmptyTitle>
         <EmptyDescription>
             <div class="flex flex-wrap items-center gap-2 md:flex-row">
-                <Button Variant="ButtonVariant.Outline" ClassName="inline-flex cursor-pointer">
+                <Button @onclick="Callback" Variant="ButtonVariant.Outline" ClassName="inline-flex cursor-pointer">
                     <ArrowLeftIcon></ArrowLeftIcon>
                     <span>Go back</span>
                 </Button>

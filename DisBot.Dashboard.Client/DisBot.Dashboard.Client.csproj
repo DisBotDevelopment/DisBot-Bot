@@ -35,4 +35,9 @@
       <AdditionalFiles Include="UI\Pages\NotFound.razor" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="UI\Pages\General\" />
+      <Folder Include="UI\Pages\Guilds\" />
+    </ItemGroup>
+
 </Project>
