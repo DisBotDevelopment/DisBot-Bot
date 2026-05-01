@@ -49,7 +49,7 @@
 
     <ItemGroup>
         <Folder Include="Contexts\"/>
-        <Folder Include="Modules\"/>
+        <Folder Include="Modules\Internal\Commands\" />
     </ItemGroup>
 
     <ItemGroup>

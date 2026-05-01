@@ -11,6 +11,7 @@ public partial class Startup
     {
         builder.Services.AddOptions<DatabaseOptions>().BindConfiguration("Database");
         builder.Services.AddOptions<BotOptions>().BindConfiguration("Bot");
+        builder.Services.AddOptions<LoggingOptions>().BindConfiguration("Logging");
     }
 
     private static async Task LoadBase(this IHost host)

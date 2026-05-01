@@ -2,6 +2,7 @@
 @using Microsoft.AspNetCore.Components.Authorization
 @using ShadcnBlazor.Extras.Toasts
 @using ShadcnBlazor.Portals
+@using NotFound = DisBot.Dashboard.Client.UI.Pages.Errors.NotFound
 <Router AppAssembly="@typeof(App).Assembly" NotFoundPage="typeof(NotFound)">
     <Found Context="routeData">
         <FocusOnNavigate RouteData="@routeData" Selector="h1"/>
