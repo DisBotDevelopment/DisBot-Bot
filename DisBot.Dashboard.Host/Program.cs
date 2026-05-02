@@ -1,4 +1,4 @@
-using DisBot.Dashboard.Configuration;
+using DisBot.Shared.Configuration;
 
 namespace DisBot.Dashboard.Host;
 

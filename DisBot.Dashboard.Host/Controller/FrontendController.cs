@@ -1,4 +1,4 @@
-using DisBot.Dashboard.Configuration;
+using DisBot.Shared.Configuration;
 using DisBot.Shared.Http.Responses.Frontend;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;

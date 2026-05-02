@@ -36,6 +36,8 @@
   disbot-dashboard:
     image: ghcr.io/disbotdevelopment/disbot-dashboard:v2
     container_name: disbot-dash
+    environment:
+      - "BACKEND__ApiUrl=${FRONTEND_API_URL}"
     env_file:
       - .env
     ports:

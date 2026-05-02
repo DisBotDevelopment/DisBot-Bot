@@ -1,4 +1,4 @@
-namespace DisBot.Dashboard.Configuration;
+namespace DisBot.Shared.Configuration;
 
 public class BackendOptions
 {

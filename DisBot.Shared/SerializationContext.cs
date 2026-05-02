@@ -1,6 +1,5 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using DisBot.Dashboard.Configuration;
 using DisBot.Shared.Http.Requests.User;
 using DisBot.Shared.Http.Responses.Auth;
 using DisBot.Shared.Http.Responses.Frontend;
