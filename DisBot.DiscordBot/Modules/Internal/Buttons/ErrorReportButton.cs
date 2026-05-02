@@ -1,4 +1,5 @@
 using DisBot.DiscordBot.Configuration;
+using DisBot.DiscordBot.Services.Internal;
 using DisBot.Shared.Helper;
 using Microsoft.Extensions.Options;
 using NetCord;
@@ -13,7 +14,8 @@ public class ErrorReportButton : ComponentInteractionModule<ButtonInteractionCon
     private readonly RestClient RestClient;
     private readonly IOptions<BotOptions> BotOptions;
 
-    public ErrorReportButton(IOptions<LoggingOptions> options, IOptions<BotOptions> botOptions, RestClient restClient)
+    public ErrorReportButton(IOptions<LoggingOptions> options, IOptions<BotOptions> botOptions, RestClient restClient,
+        EmojiService emojiService)
     {
         LoggingOptions = options;
         BotOptions = botOptions;
@@ -41,17 +43,16 @@ public class ErrorReportButton : ComponentInteractionModule<ButtonInteractionCon
                 [
                     new ComponentContainerProperties
                     {
-                        // TODO: Add Emoji Manager
                         new TextDisplayProperties($"""
-                                                   ### <:error:1366430438444236911> Error Report: {error.Title}
+                                                   ### {EmojiService.Emojis["errorred"]} Error Report: {error.Title}
                                                    -# {error.Description}
                                                    """),
                         new ComponentSeparatorProperties(),
                         new TextDisplayProperties($"""
-                                                   -# <:info:1260322428140130365> {error.Exception.Message}
+                                                   -# {EmojiService.Emojis["info"]} {error.Exception.Message}
 
                                                    ``` {error.Exception.StackTrace ?? "N/A"} ```
-                                                   ** <:reply:1430577881205182555> Read more about the Error [@DisBotDevelopment/DisBot-Bot/issues]({error.GitHubIssueUrl})**
+                                                   ** {EmojiService.Emojis["reply"]} Read more about the Error [@DisBotDevelopment/DisBot-Bot/issues]({error.GitHubIssueUrl})**
                                                    """)
                     }
                 ]
@@ -66,7 +67,7 @@ public class ErrorReportButton : ComponentInteractionModule<ButtonInteractionCon
                 new ComponentContainerProperties
                 {
                     new TextDisplayProperties($"""
-                                               -# <:GitHub:1395716087009509407> GitHub: [@DisBotDevelopment/DisBot-Bot/issues]({error.GitHubIssueUrl})
+                                               -# {EmojiService.Emojis["github"]} GitHub: [@DisBotDevelopment/DisBot-Bot/issues]({error.GitHubIssueUrl})
                                                -# View on Discord: [@{channel.Name}](https://discord.com/channels/{channel.GuildId}/{channel.Id}/{channel.Id})
                                                """)
                 }

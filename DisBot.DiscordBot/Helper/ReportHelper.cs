@@ -1,5 +1,6 @@
 using System.Net.Http.Json;
 using System.Text.Json.Serialization;
+using DisBot.DiscordBot.Services.Internal;
 using NetCord;
 using NetCord.Rest;
 
@@ -39,7 +40,8 @@ public static class ReportHelper
                                 new TextDisplayProperties($"## {title}"),
                                 new TextDisplayProperties($"-# {description}"),
                                 new ComponentSeparatorProperties(),
-                                new TextDisplayProperties($"||```cs\n// {Exception.Message}\n{Exception.StackTrace ?? "N/A"}```||"),
+                                new TextDisplayProperties(
+                                    $"||```cs\n// {Exception.Message}\n{Exception.StackTrace ?? "N/A"}```||"),
                                 new ComponentSeparatorProperties(),
                                 new ComponentSectionProperties(new ButtonProperties($"internal.error.report:{id}",
                                     "Report Error",
@@ -55,16 +57,15 @@ public static class ReportHelper
                                         "Read More",
                                         EmojiProperties.Custom(1438974310042697909)))
                                 {
-                                    // TODO: Add Emoji Manager
-                                    new TextDisplayProperties("""
-                                                              ### <:error:1366430438444236911> Follow this Steps!
-                                                              -# **Steps you can do**
-                                                              -# - Check your Action or Input.
-                                                              -# - Check the Error Message and the Error Details below.
-                                                              -# - Check Github and Discord for this problem.
-                                                              -# - If there is no problem from you side and on Github or Discord then click \"Report Error\"
-                                                              -# - Thanks for your Report - You will see a message with the Reports Liked.
-                                                              """)
+                                    new TextDisplayProperties($"""
+                                                               ### {EmojiService.Emojis["info"]} Follow this Steps!
+                                                               -# **Steps you can do**
+                                                               -# - Check your Action or Input.
+                                                               -# - Check the Error Message and the Error Details below.
+                                                               -# - Check Github and Discord for this problem.
+                                                               -# - If there is no problem from you side and on Github or Discord then click \"Report Error\"
+                                                               -# - Thanks for your Report - You will see a message with the Reports Liked.
+                                                               """)
                                 }
                             }
                         ]

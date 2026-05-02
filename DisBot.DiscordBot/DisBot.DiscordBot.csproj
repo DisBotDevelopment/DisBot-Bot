@@ -49,7 +49,6 @@
 
     <ItemGroup>
         <Folder Include="Contexts\"/>
-        <Folder Include="Modules\Internal\Commands\" />
     </ItemGroup>
 
     <ItemGroup>
