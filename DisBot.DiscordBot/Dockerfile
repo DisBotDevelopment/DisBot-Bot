@@ -21,4 +21,5 @@ RUN dotnet publish "./DisBot.DiscordBot.csproj" -c $BUILD_CONFIGURATION -o /app/
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+COPY --from=build /src/DisBot.DiscordBot/Resources ./Resources/
 ENTRYPOINT ["dotnet", "DisBot.DiscordBot.dll"]

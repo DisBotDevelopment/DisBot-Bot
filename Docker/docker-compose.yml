@@ -6,6 +6,11 @@
       - .env
     environment:
       - "BOT__DiscordApplicationToken=${DISCORD_APPLICATION_TOKEN}"
+      - "BOT__DiscordAdminGuildId=${DISCORD_ADMIN_GUILD_ID}"
+      - "BOT__DiscordApplicationId=${DISCORD_APPLICATION_ID}"
+      - "LOGGING__ErrorReportForumTags=${LOGGING_REPORT_FORUM_TAGS}"
+      - "LOGGING__ErrorReportForumId=${LOGGING_REPORT_FORUM_ID}"
+      - "LOGGING__GitHubApiToken=${LOGGING_GITHUB_API_KEY}"
       - "DATABASE__Host=${DATABASE_HOST}"
       - "DATABASE__Port=${DATABASE_PORT}"
       - "DATABASE__Username=${DATABASE_USERNAME}"
