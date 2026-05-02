@@ -4,7 +4,7 @@ using DisBot.DiscordBot.Services.Internal;
 using NetCord;
 using NetCord.Rest;
 
-namespace DisBot.Shared.Helper;
+namespace DisBot.DiscordBot.Helper;
 
 public static class ReportHelper
 {

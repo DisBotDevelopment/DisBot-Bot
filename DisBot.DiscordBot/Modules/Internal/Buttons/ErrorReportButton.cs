@@ -1,4 +1,5 @@
 using DisBot.DiscordBot.Configuration;
+using DisBot.DiscordBot.Helper;
 using DisBot.DiscordBot.Services.Internal;
 using DisBot.Shared.Helper;
 using Microsoft.Extensions.Options;
