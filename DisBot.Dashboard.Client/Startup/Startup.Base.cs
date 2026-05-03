@@ -1,4 +1,5 @@
 using System.Net.Http.Json;
+using DisBot.Dashboard.Client.Services;
 using DisBot.Shared;
 using DisBot.Shared.Http.Responses.Frontend;
 using Microsoft.AspNetCore.Components.Web;
@@ -23,6 +24,7 @@ public static partial class Startup
         {
             BaseAddress = new Uri(data.BackendUrl)
         });
+        builder.Services.AddScoped<HttpService>();
         builder.Services.AddShadcnBlazor();
         builder.Services.AddShadcnBlazorExtras();
     }

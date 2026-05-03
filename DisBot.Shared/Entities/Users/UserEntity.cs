@@ -22,7 +22,7 @@ public class UserEntity : IActionTimestamps
     public DateTimeOffset InvalidateTimestamp { get; set; }
 
     public UserApiEntity? Api { get; set; }
-    public List<UserApiGuildPermissionEntity> UserApiGuildPermissions { get; set; } = [];
+    public List<UserSharedGuildEntity> UserSharedGuilds { get; set; } = [];
     public List<UserGuildBackupEntity> GuildBackups { get; set; } = [];
     public List<GuildLevelEntity> Levels { get; set; } = [];
     public List<UserGuildVanityEntity> Vanities { get; set; } = [];

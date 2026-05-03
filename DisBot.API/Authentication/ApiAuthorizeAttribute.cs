@@ -7,11 +7,8 @@ public class ApiAuthorizeAttribute : AuthorizeAttribute
 {
     private const string POLICY_PREFIX = "Api";
 
-    /**
-     * Please use the ApiAuthorizationType class.
-     */
-    public ApiAuthorizeAttribute(string permission, ApiAuthorizationType type, bool onlyUser = false)
+    public ApiAuthorizeAttribute(string[] permission, ApiAuthorizationType type, bool onlyUser = false)
     {
-        Policy = $"{POLICY_PREFIX}:{type}:{permission}:{onlyUser}";
+        Policy = $"{POLICY_PREFIX}:{type}:{string.Join(",", permission)}:{onlyUser}";
     }
 }

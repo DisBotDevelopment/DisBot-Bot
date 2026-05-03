@@ -364,10 +364,13 @@ namespace DisBot.API.Database.Migrations
                     b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<decimal>("GuildId")
+                    b.Property<string>("DiscordGuildAvatar")
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("DiscordGuildId")
                         .HasColumnType("numeric(20,0)");
 
-                    b.Property<string>("GuildName")
+                    b.Property<string>("DiscordGuildName")
                         .HasColumnType("text");
 
                     b.Property<DateTimeOffset>("UpdatedAt")
@@ -2851,32 +2854,6 @@ namespace DisBot.API.Database.Migrations
                     b.ToTable("UserApis");
                 });
 
-            modelBuilder.Entity("DisBot.Shared.Entities.Users.UserApiGuildPermissionEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("GuildId")
-                        .HasColumnType("integer");
-
-                    b.PrimitiveCollection<string[]>("Permissions")
-                        .HasColumnType("text[]");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GuildId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserApiGuildPermissions");
-                });
-
             modelBuilder.Entity("DisBot.Shared.Entities.Users.UserEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -2924,6 +2901,32 @@ namespace DisBot.API.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("DisBot.Shared.Entities.Users.UserSharedGuildEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("GuildId")
+                        .HasColumnType("integer");
+
+                    b.PrimitiveCollection<string[]>("Permissions")
+                        .HasColumnType("text[]");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GuildId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserSharedGuilds");
                 });
 
             modelBuilder.Entity("DisBot.Shared.Entities.Users.Vanity.UserGuildVanityAnalyticsEntity", b =>
@@ -4011,16 +4014,16 @@ namespace DisBot.API.Database.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("DisBot.Shared.Entities.Users.UserApiGuildPermissionEntity", b =>
+            modelBuilder.Entity("DisBot.Shared.Entities.Users.UserSharedGuildEntity", b =>
                 {
                     b.HasOne("DisBot.Shared.Entities.Guilds.GuildEntity", "Guild")
-                        .WithMany("UserApiGuildPermissions")
+                        .WithMany("UserSharedGuilds")
                         .HasForeignKey("GuildId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DisBot.Shared.Entities.Users.UserEntity", "User")
-                        .WithMany("UserApiGuildPermissions")
+                        .WithMany("UserSharedGuilds")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -4138,7 +4141,7 @@ namespace DisBot.API.Database.Migrations
 
                     b.Navigation("TwitchNotification");
 
-                    b.Navigation("UserApiGuildPermissions");
+                    b.Navigation("UserSharedGuilds");
 
                     b.Navigation("WelcomeSetup");
 
@@ -4280,7 +4283,7 @@ namespace DisBot.API.Database.Migrations
 
                     b.Navigation("Levels");
 
-                    b.Navigation("UserApiGuildPermissions");
+                    b.Navigation("UserSharedGuilds");
 
                     b.Navigation("Vanities");
                 });

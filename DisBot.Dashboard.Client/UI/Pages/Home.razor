@@ -1,6 +1,77 @@
 ﻿@page "/"
+@using DisBot.Dashboard.Client.Services
+@using DisBot.Shared.Http.Responses.Guild
+@using LucideBlazor
 @using Microsoft.AspNetCore.Authorization
+@using ShadcnBlazor.Buttons
+@using ShadcnBlazor.Cards
+@using ShadcnBlazor.Items
 @attribute [Authorize]
+@inject HttpService HttpService
+@inject NavigationManager NavigationManager
 
-<PageTitle>DisBot Dashboard</PageTitle>
+<PageTitle>Guild Discover - DisBot Dashboard</PageTitle>
 
+<div class="min-h-min flex items-center justify-center">
+    <Card ClassName="text-white bg-background border-0">
+        <CardHeader>
+            <CardTitle>DisBot Guild Discovery</CardTitle>
+            <CardDescription>
+                Select a guild to manage.
+            </CardDescription>
+            <CardAction>
+                <Button ClassName="text-white" @onclick="AddDisBot" Variant="ButtonVariant.Link">
+                    <PlusIcon></PlusIcon>
+                    Add DisBot
+                </Button>
+            </CardAction>
+        </CardHeader>
+        <CardContent>
+            <div
+                class="flex flex-col justify-center items-center p-3 border-2 rounded-2xl shadow-2xl overflow-y-scroll h-60 w-full">
+                @foreach (var guildDto in Guilds)
+                {
+                    <Item Variant="ItemVariant.Outline" ClassName="p-2">
+                        <ItemMedia>
+                            <img
+                                class="rounded-full w-5 flex items-center justify-center"
+                                alt="guild image"
+                                width="512"
+                                height="512"
+                                src="@guildDto.DiscordGuildAvatar"/>
+                        </ItemMedia>
+                        <ItemContent>
+                            <ItemTitle>@guildDto.DiscordGuildName</ItemTitle>
+                        </ItemContent>
+                        <ItemActions>
+                            <Button Variant="ButtonVariant.Outline" Size="ButtonSize.Sm"
+                                    @onclick="args => ToGuildPage(guildDto.DiscordGuildId)">
+                                Select
+                            </Button>
+                        </ItemActions>
+                    </Item>
+                }
+            </div>
+        </CardContent>
+    </Card>
+</div>
+
+@code
+{
+    private GuildDto[] Guilds = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        Guilds = await HttpService.Fetch<GuildDto[]>(HttpMethod.Get, "/v1/guilds");
+    }
+
+    private void ToGuildPage(string id)
+    {
+        NavigationManager.NavigateTo($"/guilds/{id}/overview");
+    }
+
+    private void AddDisBot(MouseEventArgs obj)
+    {
+        NavigationManager.NavigateTo("https://disbot.app/invite");
+    }
+}

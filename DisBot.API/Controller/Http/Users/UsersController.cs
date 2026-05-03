@@ -1,7 +1,6 @@
 using DisBot.API.Database;
 using DisBot.API.Mapper;
-using DisBot.Shared.Http.Requests.User;
-using DisBot.Shared.Http.Responses;
+using DisBot.Shared.Extensions;
 using DisBot.Shared.Http.Responses.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,39 +20,11 @@ public class UsersController : Microsoft.AspNetCore.Mvc.Controller
         DataContext = dataContext;
     }
 
-    [HttpGet]
-    public async Task<ActionResult<PagedData<UserDto>>> GetAsync(
-        [FromQuery] int startIndex,
-        [FromQuery] int length
-    )
-    {
-        // Validation
-        if (startIndex < 0)
-            return Problem("Invalid start index specified", statusCode: 400);
-
-        if (length is < 1 or > 100)
-            return Problem("Invalid length specified");
-
-        var query = DataContext.Users.AsSingleQuery();
-
-        // Pagination
-        var data = await query
-            .OrderBy(x => x.Id)
-            .Skip(startIndex)
-            .Take(length)
-            .ProjectToDto()
-            .ToArrayAsync();
-
-        var total = await query.CountAsync();
-
-        return new PagedData<UserDto>(data, total);
-    }
-
     [HttpGet("{id:int}")]
     public async Task<ActionResult<UserDto>> GetAsync([FromRoute] int id)
     {
         var user = await DataContext.Users
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .FirstOrDefaultAsync(x => x.DiscordUserId == User.AuthenticatedUserId());
 
         if (user == null)
             return Problem("No user with this id found", statusCode: 404);
@@ -61,37 +32,11 @@ public class UsersController : Microsoft.AspNetCore.Mvc.Controller
         return UserMapper.ToDto(user);
     }
 
-    [HttpPost]
-    public async Task<ActionResult<UserDto>> CreateAsync([FromBody] CreateUserDto request)
-    {
-        var user = UserMapper.ToEntity(request);
-        user.InvalidateTimestamp = DateTimeOffset.UtcNow.AddMinutes(-1);
-
-        var finalUser = await DataContext.Users.AddAsync(user);
-
-        return UserMapper.ToDto(finalUser.Entity);
-    }
-
-    [HttpPatch("{id:int}")]
-    public async Task<ActionResult<UserDto>> UpdateAsync([FromRoute] int id, [FromBody] UpdateUserDto request)
+    [HttpDelete]
+    public async Task<ActionResult> DeleteAsync()
     {
         var user = await DataContext.Users
-            .FirstOrDefaultAsync(x => x.Id == id);
-
-        if (user == null)
-            return Problem("No user with this id found", statusCode: 404);
-
-        UserMapper.Merge(user, request);
-        await DataContext.SaveChangesAsync();
-
-        return UserMapper.ToDto(user);
-    }
-
-    [HttpDelete("{id:int}")]
-    public async Task<ActionResult> DeleteAsync([FromRoute] int id)
-    {
-        var user = await DataContext.Users
-            .FirstOrDefaultAsync(user => user.Id == id);
+            .FirstOrDefaultAsync(user => user.DiscordUserId == User.AuthenticatedUserId());
 
         if (user == null)
             return Problem("No user with this id found", statusCode: 404);

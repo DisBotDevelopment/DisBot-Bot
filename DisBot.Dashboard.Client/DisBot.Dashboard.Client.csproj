@@ -35,6 +35,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Mappers\" />
       <Folder Include="UI\Pages\General\" />
       <Folder Include="UI\Pages\Guilds\" />
     </ItemGroup>

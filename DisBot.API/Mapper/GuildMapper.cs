@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using DisBot.Shared.Entities.Users;
-using DisBot.Shared.Http.Responses.User;
+using DisBot.Shared.Entities.Guilds;
+using DisBot.Shared.Http.Responses.Guild;
 using Riok.Mapperly.Abstractions;
 
 namespace DisBot.API.Mapper;
@@ -9,9 +9,8 @@ namespace DisBot.API.Mapper;
 [Mapper]
 [SuppressMessage("Mapper", "RMG020:No members are mapped in an object mapping")]
 [SuppressMessage("Mapper", "RMG012:No members are mapped in an object mapping")]
-public static partial class UserMapper
+public static partial class GuildMapper
 {
-    public static partial IQueryable<UserDto> ToDto(this IQueryable<UserEntity> users);
-    
-    public static partial UserDto ToDto(UserEntity user);
+    public static partial IQueryable<GuildDto> ToDto(this IQueryable<GuildEntity> guilds);
+    public static partial GuildDto ToDto(GuildEntity guild);
 }

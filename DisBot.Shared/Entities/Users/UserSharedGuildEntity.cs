@@ -3,7 +3,7 @@ using DisBot.Shared.Entities.Guilds;
 
 namespace DisBot.Shared.Entities.Users;
 
-public class UserApiGuildPermissionEntity
+public class UserSharedGuildEntity
 {
     public int Id { get; set; }
     public string[]? Permissions { get; set; }

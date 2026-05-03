@@ -5,11 +5,11 @@ namespace DisBot.API.Authentication;
 
 public class ApiRequirement : IAuthorizationRequirement
 {
-    public string Permission { get; private set; }
+    public string[] Permission { get; private set; }
     public string Type { get; private set; }
     public bool OnlyUser { get; private set; }
 
-    public ApiRequirement(string permission, string type, bool onlyUser)
+    public ApiRequirement(string[] permission, string type, bool onlyUser)
     {
         Permission = permission;
         Type = type;

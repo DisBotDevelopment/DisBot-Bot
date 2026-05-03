@@ -120,7 +120,7 @@ public class DataContext : DbContext
 
     public DbSet<UserEntity> Users { get; set; }
     public DbSet<UserApiEntity> UserApis { get; set; }
-    public DbSet<UserApiGuildPermissionEntity> UserApiGuildPermissions { get; set; }
+    public DbSet<UserSharedGuildEntity> UserSharedGuilds { get; set; }
     
     public DbSet<UserGuildBackupEntity> UserGuildBackups { get; set; }
 

@@ -48,7 +48,7 @@ public class AuthController : Microsoft.AspNetCore.Mvc.Controller
         }, scheme.Name);
     }
 
-    [ApiAuthorize("user", ApiAuthorizationType.User, true)]
+    [ApiAuthorize(["user"], ApiAuthorizationType.User, true)]
     [HttpGet("claims")]
     public Task<ActionResult<ClaimDto[]>> GetClaimsAsync()
     {

@@ -21,10 +21,10 @@ namespace DisBot.Shared.Entities.Guilds;
 
 public class GuildEntity
 {
-    public int Id { get; set; }
-    [Required] public ulong GuildId { get; set; }
-
-    public string? GuildName { get; set; }
+    public int Id { get; set; } 
+    [Required] public ulong DiscordGuildId { get; set; }
+    public string? DiscordGuildName { get; set; }
+    public string? DiscordGuildAvatar { get; set; }
     public UserEntity User { get; set; }
 
     public DateTimeOffset CreatedAt { get; set; }
@@ -42,7 +42,7 @@ public class GuildEntity
     public GuildInteractionManagerEntity? InteractionManager { get; set; }
     public GuildModerationEntity? Moderation { get; set; }
 
-    public List<UserApiGuildPermissionEntity> UserApiGuildPermissions { get; set; } = [];
+    public List<UserSharedGuildEntity> UserSharedGuilds { get; set; } = [];
     public List<GuildMessageTemplateEntity> MessageTemplates { get; set; } = [];
     public List<GuildSpotifyNotificationEntity> SpotifyNotification { get; set; } = [];
     public List<GuildTwitchNotificationEntity> TwitchNotification { get; set; } = [];

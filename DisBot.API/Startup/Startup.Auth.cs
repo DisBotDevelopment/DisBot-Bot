@@ -14,7 +14,6 @@ public static partial class Startup
     {
         builder.Services.AddScoped<UserAuthService>();
 
-
         var oidcOptions = builder.Configuration.GetSection("OAuth2").Get<OAuth2Options>();
         builder.Services.AddAuthentication("Discord")
             .AddCookie("Discord", "Discord", options =>

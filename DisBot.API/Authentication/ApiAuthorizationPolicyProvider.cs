@@ -20,7 +20,7 @@ public class ApiAuthorizationPolicyProvider : IAuthorizationPolicyProvider
             return FallbackPolicyProvider.GetPolicyAsync(policyName);
         var policy = new AuthorizationPolicyBuilder();
         policy.AddRequirements(new ApiRequirement(
-            policyName.Split(":")[2],
+            policyName.Split(":")[2].Split(","),
             policyName.Split(":")[1],
             bool.Parse(policyName.Split(":")[3])
         ));
