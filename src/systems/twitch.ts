@@ -10,16 +10,12 @@ import {MessageBuilder} from "../helper/messageHelper.js";
  * @param {ExtendedClient} client
  */
 export async function checkTwitch(client: ExtendedClient) {
-
     const config = await database.disBot.findFirst({where: {GetConf: "config"}});
-    const twitchdata = await database.guildTwitchNotifications.findMany()
+    const twitchData = await database.guildTwitchNotifications.findMany()
+    if (!twitchData) return;
 
-    if (!twitchdata) return;
-
-    for (const twitchDocument of twitchdata) {
-
+    for (const twitchDocument of twitchData) {
         try {
-
             const isChannel = await axios.get(`https://api.twitch.tv/helix/users?login=${twitchDocument.TwitchChannelName}`, {
                 headers: {
                     "Client-Id": Config.Modules.Notifications.TwitchClientId,

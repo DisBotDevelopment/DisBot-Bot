@@ -16,51 +16,42 @@ export async function checkYoutube(client: ExtendedClient) {
     const {guilds, channels} = client;
 
     const youtubeData = await database.guildYoutubeNotifications.findMany();
-
     if (!youtubeData) return;
 
-    for (const data of youtubeData) {
+    for (let data of youtubeData) {
         try {
-            const videodata = await parser.parseURL(
-                `https://www.youtube.com/feeds/videos.xml?channel_id=${data.YoutubeChannelId}`
-            );
-
-            if (!videodata) continue;
-            if (!videodata.items[0]) continue;
-
-            const guild = guilds.cache.get(`${data.GuildId}`);
-            if (!guild) continue;
-
             const toggleData = await database.guildFeatureToggles.findFirst({
                 where: {
-                    GuildId: guild.id
+                    GuildId: data.GuildId
                 }
             });
-
             if (!toggleData) continue;
             if (toggleData.YoutubeEnabled == false) continue;
-            const youtubeChannel = channels.cache.get(`${data.ChannelId}`);
-            if (!youtubeChannel) new Error("twitchChannel not found");
+            const videoData = await parser.parseURL(
+                `https://www.youtube.com/feeds/videos.xml?channel_id=${data.YoutubeChannelId}`
+            );
+            if (!videoData) continue;
+            if (!videoData.items[0]) continue;
+            if (data.Latest.includes(videoData.items[0].id)) continue;
 
-            const {link, author, title, id} = videodata.items[0];
 
+            const {link, author, title, id} = videoData.items[0];
             const thumbnail = `https://img.youtube.com/vi/${id.split(":")[2]
             }/0.jpg`;
 
-            if (data.Latest && (data.Latest as unknown as string).includes(id))
-                continue;
-            else {
-                await database.guildYoutubeNotifications.updateMany({
-                    where: {
-                        GuildId: data.GuildId,
-                        YoutubeChannelId: data.YoutubeChannelId
-                    }, data: {
-                        Latest: {
-                            push: id
-                        }
+            const discordYoutubeChannel = await channels.fetch(data.ChannelId);
+            if (!discordYoutubeChannel) new Error("twitchChannel not found");
+
+            await database.guildYoutubeNotifications.updateMany({
+                where: {
+                    GuildId: data.GuildId,
+                    YoutubeChannelId: data.YoutubeChannelId
+                }, data: {
+                    Latest: {
+                        push: id
                     }
-                })
-            }
+                }
+            })
 
             const pingrole = data.PingRoles[0];
 
@@ -70,12 +61,14 @@ export async function checkYoutube(client: ExtendedClient) {
                     Name: data.MessageTemplateId,
                 }
             });
-            if (!messageData) return
+            if (!messageData) continue
 
+            const guild = await guilds.fetch(data.GuildId);
+            if (!guild) continue;
             const channel = guild.channels.cache.get(
-                (youtubeChannel as TextChannel)?.id as string
+                (discordYoutubeChannel as TextChannel)?.id as string
             );
-            if (!channel) return
+            if (!channel) continue
 
             if (!messageData) continue;
             const placeholder = {
@@ -91,16 +84,15 @@ export async function checkYoutube(client: ExtendedClient) {
                 messageData,
                 placeholder
             )
-            if (!message) return
+            if (!message) continue
 
             if (channel.type == ChannelType.PublicThread) {
                 await channel.send(message!.messageData)
             } else {
                 await (channel as TextChannel).send(message.messageData)
             }
-
         } catch (e) {
-            return
+        
         }
     }
 }
