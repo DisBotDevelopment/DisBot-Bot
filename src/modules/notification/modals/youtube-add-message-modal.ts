@@ -33,6 +33,7 @@ export default {
         await database.guildYoutubeNotifications.update(
             {
                 where: {
+                    GuildId: interaction.guild.id,
                     UUID: interaction.customId.split(":")[1]
                 },
                 data: {

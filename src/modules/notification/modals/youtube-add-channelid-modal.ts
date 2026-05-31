@@ -18,6 +18,7 @@ import {convertToEmojiToPng} from "../../../helper/emojis.js";
 import {database} from "../../../main/database.js";
 import {randomUUID} from "crypto";
 import {sendDefaultMessage} from "../../../helper/utilityHelper.js";
+import Parser from "rss-parser";
 
 export default {
     id: "youtube-add-channelid-modal",
@@ -33,14 +34,25 @@ export default {
 
         const uuids = randomUUID();
 
-        const getChannelName = interaction.fields.getTextInputValue(
+        const youtubeChannelId = interaction.fields.getTextInputValue(
             "channelid"
         );
+
+        try {
+            const parser = new Parser()
+            const videoData = await parser.parseURL(
+                `https://www.youtube.com/feeds/videos.xml?channel_id=${youtubeChannelId}`
+            );
+            // @ts-ignore
+            const {author} = videoData.items[0];
+        } catch (e) {
+            return await sendDefaultMessage(`## ${await convertToEmojiToPng("error")} No Youtube Channel found with this ID!`, interaction, true)
+        }
 
         const data = await database.guildYoutubeNotifications.findFirst({
             where: {
                 GuildId: interaction.guild?.id,
-                YoutubeChannelId: getChannelName
+                YoutubeChannelId: youtubeChannelId
             }
         });
 
@@ -55,7 +67,7 @@ export default {
                         GuildId: interaction.guild?.id
                     }
                 },
-                YoutubeChannelId: getChannelName,
+                YoutubeChannelId: youtubeChannelId,
                 ChannelId: "",
                 MessageTemplateId: "",
                 PingRoles: [],
@@ -82,7 +94,7 @@ export default {
                         ChannelType.GuildAnnouncement
                     )
                     .setCustomId(
-                        "youtube-add-channel:" + interaction.customId.split(":")[1]
+                        "youtube-add-channel:" + uuids
                     )
                     .setMaxValues(1)
                     .setMinValues(1)
@@ -92,7 +104,7 @@ export default {
         const message = new ActionRowBuilder<ButtonBuilder>().addComponents(
             new ButtonBuilder()
                 .setCustomId(
-                    "youtube-add-message:" + interaction.customId.split(":")[1]
+                    "youtube-add-message:" + uuids
                 )
                 .setStyle(ButtonStyle.Secondary)
                 .setLabel("Message Template")
