@@ -18,6 +18,7 @@ import * as process from "node:process";
 import {ExtendedClient} from "../types/ExtendedClient.js";
 import {convertToEmojiToPng} from "./emojis.js";
 import type {DrawCardOptions} from "../types/drawcardoptions.js";
+import {randomUUID} from "crypto";
 
 export function getInteractionData(interaction: ButtonInteraction | ModalSubmitInteraction | AnySelectMenuInteraction, split: number) {
     return interaction.customId.split(":")[split];
@@ -285,24 +286,21 @@ export async function drawCardCanvas(opts: DrawCardOptions): Promise<Buffer> {
     return canvas.toBuffer("image/png");
 }
 
-export async function uploadToCDN(buffer: Buffer): Promise<string | null> {
+export async function uploadToCDN(buffer: Buffer): Promise<string> {
+    const url = `${Config.Other.CDN.Url}/api/upload`;
+
     const form = new FormData();
-    form.append("file", buffer, {
-        filename: "image.png",
-        contentType: "image/png",
+    form.append('file', buffer, {
+        filename: `${randomUUID()}.png`,
+        contentType: 'image/png',
     });
 
-    const req = await axios.post(`${Config.Other.CDN.Url}/api/upload`, form, {
+    const response = await axios.post(url, form, {
         headers: {
-            'Authorization': Config.Other.CDN.APIToken,
+            "Authorization": Config.Other.CDN.APIToken,
             ...form.getHeaders(),
-            "Content-Type": "multipart/form-data",
-            "x-zipline-deletes-at": "5d"
-        },
+        }
     });
-    if (req.status != 200) {
-        return null;
-    }
-    const data = await req.data;
-    return data.files[0].url ?? null;
+
+    return response.data.files[0].url;
 }
