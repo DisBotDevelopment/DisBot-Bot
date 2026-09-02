@@ -8,6 +8,10 @@ import {
 
 const types = [
     {
+            name: "📍 Default",
+            value: "default",
+    },
+    {
         name: "🌎 All Logging Types",
         value: "all",
     },
