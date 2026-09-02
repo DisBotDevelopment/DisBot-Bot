@@ -66,7 +66,7 @@ export default {
 
         switch (getLogType) {
             case "default":
-                           await updateLogging(
+                           await updateLogging({
                                Invite: getChannel,
                                Member: getChannel,
                                Message: getChannel,

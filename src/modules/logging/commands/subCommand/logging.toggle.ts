@@ -29,7 +29,7 @@ export default {
         if (!interaction.guild) throw new Error("Guild not found");
         if (!interaction.member) throw new Error("Member not found");
 
-        const {options, guildId, guild} = interaction;
+        const {options, guildId} = interaction;
 
         const getToggle = options.getString("toggle");
         const data = await database.guildFeatureToggles.findFirst({

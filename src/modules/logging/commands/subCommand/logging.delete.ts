@@ -52,7 +52,7 @@ export default {
 
         const resetLog = async (fieldName: string) => {
             await database.guildLogging.updateMany({
-                where: {GuildId: interaction.guild.id},
+                where: {GuildId: interaction.guild?.id},
                 data: {[fieldName]: null}
             });
 
@@ -62,6 +62,21 @@ export default {
         };
 
         switch (getLogType) {
+             case "default":
+                 await database.guildLogging.updateMany({
+                    where: {GuildId: interaction.guild.id},
+                    data: {
+                        Invite: null,
+                        Member: null,
+                        Message: null,
+                        Ban: null,
+                        Kick: null,
+                    }
+                });
+
+                return interaction.editReply({
+                    content: `## ${await convertToEmojiToPng("check")} You have successfully reset default logging`
+                });
             case "all": {
                 await database.guildLogging.updateMany({
                     where: {GuildId: interaction.guild.id},
