@@ -65,33 +65,44 @@ export default {
         const emoji = await convertToEmojiToPng("check");
 
         switch (getLogType) {
+            case "default":
+                           await updateLogging(
+                               Invite: getChannel,
+                               Member: getChannel,
+                               Message: getChannel,
+                               Ban: getChannel,
+                               Kick: getChannel,
+                           });
+                           return interaction.editReply({
+                               content: `## ${emoji} You have successfully set all logging`,
+                           });
             case "all":
                 await updateLogging({
-                    AutoMod: getChannel,
-                    Channel: getChannel,
-                    Emoji: getChannel,
-                    Guild: getChannel,
-                    Integration: getChannel,
-                    Invite: getChannel,
-                    Member: getChannel,
-                    Message: getChannel,
-                    Moderation: getChannel,
-                    Reaction: getChannel,
-                    Role: getChannel,
-                    SoundBoard: getChannel,
-                    Sticker: getChannel,
-                    Thread: getChannel,
-                    Voice: getChannel,
-                    Webhook: getChannel,
-                    Ban: getChannel,
-                    Kick: getChannel,
-                    Poll: getChannel,
-                    Stage: getChannel,
-                    Event: getChannel,
-                });
-                return interaction.editReply({
-                    content: `## ${emoji} You have successfully set all logging`,
-                });
+                                    AutoMod: getChannel,
+                                    Channel: getChannel,
+                                    Emoji: getChannel,
+                                    Guild: getChannel,
+                                    Integration: getChannel,
+                                    Invite: getChannel,
+                                    Member: getChannel,
+                                    Message: getChannel,
+                                    Moderation: getChannel,
+                                    Reaction: getChannel,
+                                    Role: getChannel,
+                                    SoundBoard: getChannel,
+                                    Sticker: getChannel,
+                                    Thread: getChannel,
+                                    Voice: getChannel,
+                                    Webhook: getChannel,
+                                    Ban: getChannel,
+                                    Kick: getChannel,
+                                    Poll: getChannel,
+                                    Stage: getChannel,
+                                    Event: getChannel,
+                                });
+                                return interaction.editReply({
+                                    content: `## ${emoji} You have successfully set all logging`,
+                                });
 
             case "message":
                 await updateLogging({Message: getChannel});
